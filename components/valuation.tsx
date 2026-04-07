@@ -43,7 +43,7 @@ export function Valuation() {
 
           {/* Row 1: CTAs */}
           <div 
-            className="flex flex-col sm:flex-row gap-4"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch"
             data-gsap="stagger-children"
             data-gsap-direction="up"
           >
@@ -51,7 +51,7 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/contact"
-              className="flex-1 text-base px-8 py-4 bg-m2m-deep text-m2m-cream font-medium rounded-lg transition-all duration-300 hover:bg-m2m-deep/80 text-center"
+              className="flex items-center justify-center text-base px-6 py-4 bg-m2m-deep text-m2m-cream font-medium rounded-lg transition-all duration-300 hover:bg-m2m-deep/80 text-center"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Get Your Free Home Valuation
@@ -60,7 +60,7 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/sell"
-              className="flex-1 text-base px-8 py-4 border border-m2m-cream/50 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-cream hover:bg-m2m-cream/5 text-center"
+              className="flex items-center justify-center text-base px-6 py-4 border border-m2m-cream/50 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-cream hover:bg-m2m-cream/5 text-center"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Learn More
@@ -69,7 +69,7 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/sell#checklist"
-              className="flex-1 text-base px-8 py-4 border border-m2m-cream/50 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-cream hover:bg-m2m-cream/5 text-center"
+              className="flex items-center justify-center text-base px-6 py-4 border border-m2m-cream/50 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-cream hover:bg-m2m-cream/5 text-center"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Get The Pre-Listing Checklist
@@ -77,7 +77,7 @@ export function Valuation() {
           </div>
 
           {/* Row 2: Guide description */}
-          <div data-gsap="fade-up" className="mt-6 sm:text-right">
+          <div data-gsap="fade-up" className="mt-6 text-right">
             <p 
               className="text-sm text-m2m-gold italic"
               style={{ fontFamily: 'var(--font-sans)' }}
