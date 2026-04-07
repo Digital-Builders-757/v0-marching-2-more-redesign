@@ -1,134 +1,89 @@
 "use client"
 
+import Link from "next/link"
 import { Star } from "lucide-react"
 
 const testimonials = [
   {
-    quote: "So excited for our new journey! I can't thank Donavan McFadden and the Marching2More team enough for finding the perfect home for my little family! He was extremely dedicated to finding a home that fit our needs and wants!",
+    initial: "G",
     name: "The Sanchez Family",
     role: "U.S. Navy",
-    avatar: "S",
+    quote: "So excited for our new journey! I can't thank Donavan McFadden and the Marching2More team enough for finding the perfect home for my little family! He was extremely dedicated to finding a home that fit our needs and wants! Here's to new beginnings!",
   },
   {
-    quote: "Donavan McFadden assisted my wife and I in purchasing our first home together. He was very responsive and really took his time to explain everything we did not know. He made it an enjoyable experience.",
+    initial: "G",
     name: "The Cole Family",
     role: "U.S. Navy",
-    avatar: "C",
+    quote: "Donavan McFadden assisted my wife and I in purchasing our first home together. Buying a home for the first time can be scary and confusing, it certainly was for us. We had spoken to and tried to work with different agents before we settled in with Mr. Donavan. Our experiences before and after working with him were night and day. He was very responsive and really took his time to explain everything we did not know. He took what can be a laborious and stressful process and made it an enjoyable one. For as long as we are in the Hampton roads area we will use Donavan McFadden as our agent to buy and sell. Thank you Donavan!",
   },
   {
-    quote: "When you have family and friends you care about you want to refer them to someone you can trust! Roger Lee was that person for me. He built trust. He was relatable. He was patient!",
+    initial: "G",
     name: "Terri Hill",
     role: "Hampton Roads Resident",
-    avatar: "T",
-  },
-  {
-    quote: "The team went above and beyond to help us find our dream home near the base. Their knowledge of VA loans and military relocation made the entire process stress-free. Highly recommend!",
-    name: "The Martinez Family",
-    role: "U.S. Army",
-    avatar: "M",
+    quote: "When you have family and friends you care about you want to refer them to some one you can trust! Roger Lee was that person for me. He built trust. He was relatable. He was patient! He helped my relative and I truly believe gained a repeat client.",
   },
 ]
 
 export function Testimonials() {
   return (
-    <section id="reviews" className="bg-m2m-black relative overflow-hidden">
-      {/* Subtle gradient overlay with parallax */}
-      <div 
-        data-gsap="parallax"
-        data-gsap-speed="0.2"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at top right, rgba(205,176,95,0.03) 0%, transparent 50%)',
-        }}
-      />
-
-      <div className="relative px-6 py-20 md:px-16 lg:px-24 md:py-32">
+    <section className="bg-[#0a1628] text-white py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16 lg:mb-20">
-          <span 
-            data-gsap="fade-down"
-            className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-4 block"
-            style={{ fontFamily: 'var(--font-nav)' }}
-          >
-            Client Stories
-          </span>
-          
-          <h2 
-            data-gsap="blur-in"
-            className="text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-m2m-cream font-light"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Serving with integrity.
-            <br />
-            <span className="italic text-m2m-gold">Leading with experience.</span>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Serving with integrity. Leading with experience.
           </h2>
         </div>
 
-        {/* Testimonial Cards - 2x2 Grid with stagger */}
-        <div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto"
-          data-gsap="stagger-children"
-          data-gsap-direction="up"
-        >
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {testimonials.map((testimonial, index) => (
-            <div 
+            <div
               key={index}
-              data-gsap-child
-              className="group relative bg-m2m-deep/60 backdrop-blur-sm rounded-2xl border border-m2m-gold/10 p-8 md:p-10 transition-all duration-500 hover:border-m2m-gold/30 hover:bg-m2m-deep/80 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/5"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6"
             >
-              {/* 5 Stars */}
-              <div className="flex items-center justify-center gap-1 mb-6">
+              {/* Google Icon */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-lg font-bold text-blue-600">
+                  {testimonial.initial}
+                </div>
+                <div>
+                  <p className="font-semibold">{testimonial.name}</p>
+                  <p className="text-sm text-gray-400">{testimonial.role}</p>
+                </div>
+              </div>
+
+              {/* Stars */}
+              <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className="w-5 h-5 fill-m2m-gold text-m2m-gold transition-transform duration-300 group-hover:scale-110"
-                    style={{ 
-                      transitionDelay: `${i * 50}ms`,
-                    }}
-                  />
+                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
 
               {/* Quote */}
-              <blockquote className="text-center mb-8">
-                <p 
-                  className="text-sm md:text-base leading-relaxed text-m2m-cream/80"
-                  style={{ fontFamily: 'var(--font-sans)' }}
-                >
-                  {testimonial.quote}
-                </p>
-              </blockquote>
-
-              {/* Author */}
-              <div className="flex items-center justify-center gap-3">
-                {/* Avatar */}
-                <div className="w-10 h-10 rounded-full bg-m2m-gold/20 border border-m2m-gold/30 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-m2m-gold/50">
-                  <span 
-                    className="text-sm font-medium text-m2m-gold"
-                    style={{ fontFamily: 'var(--font-nav)' }}
-                  >
-                    {testimonial.avatar}
-                  </span>
-                </div>
-                
-                {/* Name & Role */}
-                <div className="text-left">
-                  <p 
-                    className="text-sm tracking-wide text-m2m-cream font-medium"
-                    style={{ fontFamily: 'var(--font-nav)' }}
-                  >
-                    {testimonial.name}
-                  </p>
-                  <p 
-                    className="text-xs tracking-wide text-m2m-gold/70"
-                    style={{ fontFamily: 'var(--font-nav)' }}
-                  >
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                {testimonial.quote}
+              </p>
             </div>
           ))}
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <Link
+            href="/reviews"
+            className="inline-block bg-[#c9a961] hover:bg-[#b89a52] text-black font-semibold px-8 py-3 rounded text-center transition-colors"
+          >
+            More Reviews
+          </Link>
+          <a
+            href="https://www.google.com/search?q=marching+2+more+real+estate+reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block border border-[#c9a961] text-[#c9a961] hover:bg-[#c9a961] hover:text-black font-semibold px-8 py-3 rounded text-center transition-colors"
+          >
+            Review us on Google
+          </a>
         </div>
       </div>
     </section>
