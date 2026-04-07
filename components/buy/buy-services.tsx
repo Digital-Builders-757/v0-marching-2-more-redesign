@@ -67,7 +67,7 @@ export function BuyServices() {
           {services.map((service, index) => (
             <div 
               key={service.title}
-              className="group p-8 border border-m2m-deep/10 bg-white transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg"
+              className="group p-8 border border-m2m-deep/10 bg-white rounded-xl transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg"
               data-gsap="fade-up"
               data-gsap-delay={index * 0.1}
             >

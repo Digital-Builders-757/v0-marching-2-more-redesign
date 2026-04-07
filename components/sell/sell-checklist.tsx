@@ -46,7 +46,7 @@ export function SellChecklist() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-deep text-m2m-cream font-medium transition-all duration-300 hover:bg-m2m-deep/90"
+                className="inline-flex items-center justify-center gap-2 text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-deep text-m2m-cream font-medium rounded-lg transition-all duration-300 hover:bg-m2m-deep/90"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 <Download className="w-4 h-4" />
@@ -54,7 +54,7 @@ export function SellChecklist() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep text-m2m-deep transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
+                className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep text-m2m-deep rounded-lg transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 Schedule Consultation
@@ -63,7 +63,7 @@ export function SellChecklist() {
           </div>
 
           {/* Right Checklist */}
-          <div className="bg-m2m-deep/5 p-8 md:p-10" data-gsap="fade-left">
+          <div className="bg-m2m-deep/5 p-8 md:p-10 rounded-xl" data-gsap="fade-left">
             <h3 
               className="text-lg text-m2m-deep mb-6"
               style={{ fontFamily: 'var(--font-display)' }}

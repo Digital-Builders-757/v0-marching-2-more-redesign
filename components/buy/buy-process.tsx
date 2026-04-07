@@ -69,7 +69,7 @@ export function BuyProcess() {
               data-gsap="fade-up"
               data-gsap-delay={index * 0.1}
             >
-              <div className="p-8 border border-m2m-gold/20 bg-m2m-panel transition-all duration-300 hover:border-m2m-gold/40">
+              <div className="p-8 border border-m2m-gold/20 bg-m2m-panel rounded-xl transition-all duration-300 hover:border-m2m-gold/40">
                 <span 
                   className="text-4xl font-light text-m2m-gold/30 mb-4 block"
                   style={{ fontFamily: 'var(--font-display)' }}

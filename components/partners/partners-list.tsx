@@ -86,7 +86,7 @@ export function PartnersList() {
             <a 
               key={partner.name}
               href={partner.link}
-              className="group p-6 border border-m2m-deep/10 bg-white transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg flex flex-col"
+              className="group p-6 border border-m2m-deep/10 bg-white rounded-xl transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg flex flex-col"
               data-gsap="fade-up"
               data-gsap-delay={index * 0.08}
             >

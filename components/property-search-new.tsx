@@ -6,7 +6,17 @@ import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export function PropertySearchNew() {
   return (
-    <section id="properties" className="relative bg-white px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden">
+    <section id="properties" className="relative bg-m2m-black px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div 
+        data-gsap="parallax"
+        data-gsap-speed="0.2"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at top right, rgba(205,176,95,0.03) 0%, transparent 50%)',
+        }}
+      />
+
       {/* Background - Overlapping circular images on right with parallax */}
       <div 
         data-gsap="parallax" 
@@ -18,7 +28,7 @@ export function PropertySearchNew() {
           <div 
             data-gsap="image-reveal"
             data-gsap-direction="left"
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-[280px] xl:w-[320px] h-[280px] xl:h-[320px] rounded-full overflow-hidden shadow-2xl"
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-[280px] xl:w-[320px] h-[280px] xl:h-[320px] rounded-full overflow-hidden shadow-2xl border-4 border-m2m-gold/20"
           >
             <div className="relative h-full w-full">
               <Image
@@ -35,7 +45,7 @@ export function PropertySearchNew() {
           <div 
             data-gsap="image-reveal"
             data-gsap-direction="right"
-            className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-[220px] xl:w-[260px] h-[220px] xl:h-[260px] rounded-full overflow-hidden shadow-2xl"
+            className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-[220px] xl:w-[260px] h-[220px] xl:h-[260px] rounded-full overflow-hidden shadow-2xl border-4 border-m2m-gold/20"
           >
             <div className="relative h-full w-full">
               <Image
@@ -50,32 +60,33 @@ export function PropertySearchNew() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto">
-        <div className="max-w-3xl relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-3xl">
           <div className="flex flex-col gap-6" data-gsap="stagger-children" data-gsap-direction="up">
             {/* Section label */}
-            <p 
+            <div 
               data-gsap-child
-              className="text-m2m-gold text-sm tracking-[0.3em] uppercase"
+              className="flex items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
+              <span className="w-6 h-px bg-m2m-gold" />
               Find Your New Home
-            </p>
+            </div>
 
             {/* Title */}
             <h2 
               data-gsap-child
-              className="text-m2m-deep text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] font-light"
+              className="text-m2m-cream text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] font-light"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Search Available<br />
-              Properties
+              <em className="italic text-m2m-gold">Properties</em>
             </h2>
 
             {/* Body */}
             <p 
               data-gsap-child
-              className="text-m2m-muted text-base md:text-lg leading-relaxed max-w-xl"
+              className="text-sm leading-relaxed text-m2m-muted max-w-xl pl-6 border-l border-m2m-gold/20"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               We&apos;ve curated a range of properties that fit the lifestyle and requirements of military personnel and their families. From relocations to finding homes near military bases, we&apos;re here to support you at every step.
@@ -87,7 +98,7 @@ export function PropertySearchNew() {
                 <Link
                   href="#"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-deep text-white font-medium transition-all duration-300 hover:bg-m2m-deep/90 hover:scale-[1.02] text-center"
+                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Start Your Search Now
@@ -101,12 +112,12 @@ export function PropertySearchNew() {
               </div>
               <div className="flex flex-col gap-2">
                 <Link
-                  href="#contact"
+                  href="/contact"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border-2 border-m2m-deep text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-deep hover:text-white text-center"
+                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
-                  Or — Tell us your needs.
+                  Or — Tell us your needs
                 </Link>
                 <p 
                   className="text-xs text-m2m-muted italic text-center"

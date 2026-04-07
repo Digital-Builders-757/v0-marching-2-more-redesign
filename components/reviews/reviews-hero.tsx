@@ -1,7 +1,5 @@
 "use client"
 
-import { Star } from "lucide-react"
-
 export function ReviewsHero() {
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: '#050d06' }}>
@@ -25,26 +23,13 @@ export function ReviewsHero() {
       />
 
       <div className="relative z-[2] px-6 py-24 md:px-16 lg:px-24 md:py-32 text-center">
-        {/* 5 Stars */}
-        <div 
-          data-gsap="fade-down"
-          className="flex items-center justify-center gap-2 mb-8"
-        >
-          {[...Array(5)].map((_, i) => (
-            <Star 
-              key={i} 
-              className="w-6 h-6 md:w-8 md:h-8 fill-m2m-gold text-m2m-gold"
-            />
-          ))}
-        </div>
-
         {/* Headline */}
         <h1 
           data-gsap="blur-in"
-          className="text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] font-light text-m2m-cream mb-6"
+          className="text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] font-light text-m2m-cream mb-6"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Building a Reputation of
+          ★ ★ ★ ★ ★ Building a Reputation of
           <br />
           <span className="italic text-m2m-gold">Integrity and Trust</span>
         </h1>

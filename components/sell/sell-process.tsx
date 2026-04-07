@@ -69,7 +69,7 @@ export function SellProcess() {
               data-gsap="fade-up"
               data-gsap-delay={index * 0.1}
             >
-              <div className="p-8 border border-m2m-gold/20 bg-m2m-deep/50 transition-all duration-300 hover:border-m2m-gold/40 hover:bg-m2m-deep">
+              <div className="p-8 border border-m2m-gold/20 bg-m2m-deep/50 rounded-xl transition-all duration-300 hover:border-m2m-gold/40 hover:bg-m2m-deep">
                 <span 
                   className="text-4xl font-light text-m2m-gold/30 mb-4 block"
                   style={{ fontFamily: 'var(--font-display)' }}

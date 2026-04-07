@@ -3,7 +3,7 @@ export function Agent() {
     <section className="bg-m2m-deep px-6 py-16 md:px-[60px] md:py-[120px] border-t border-m2m-gold/20">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-center">
         {/* Photo placeholder */}
-        <div className="relative aspect-[4/3] lg:aspect-[3/4] bg-m2m-panel border border-m2m-gold/20 flex items-center justify-center overflow-hidden">
+        <div className="relative aspect-[4/3] lg:aspect-[3/4] bg-m2m-panel border border-m2m-gold/20 rounded-xl flex items-center justify-center overflow-hidden">
           <span className="font-serif text-8xl text-m2m-gold opacity-10 italic">
             M2
           </span>
@@ -27,7 +27,7 @@ export function Agent() {
 
           {/* Title */}
           <p className="text-xs tracking-[0.2em] uppercase text-m2m-muted">
-            Licensed Real Estate Professionals in Virginia Beach, VA
+            Licensed Real Estate Professionals in Virginia Beach, VA, USA
           </p>
 
           {/* Bio */}
