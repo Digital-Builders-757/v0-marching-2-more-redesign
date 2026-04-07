@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 const interestOptions = [
   { value: "buying", label: "Buying a Home" },
@@ -51,7 +52,7 @@ export function ContactForm() {
               For immediate assistance, give us a call.
             </p>
             <a
-              href="tel:7572062859"
+              href={M2M_PHONE_HREF}
               className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep text-m2m-deep transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
               style={{ fontFamily: 'var(--font-nav)' }}
             >

@@ -11,11 +11,16 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <GSAPAnimations />
+
+      <main id="main-content" tabIndex={-1}>
+        {/* Wix parity section order: Hero → Reviews → Search → Sell → Partners */}
         <Hero />
         <Testimonials />
         <PropertySearch />
+        <PropertySearchNew />
         <SellHero />
+        <Valuation />
         <Services />
         <TeamCTA />
       </main>

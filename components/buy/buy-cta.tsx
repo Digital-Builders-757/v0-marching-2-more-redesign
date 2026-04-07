@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function BuyCTA() {
   return (
@@ -35,7 +36,7 @@ export function BuyCTA() {
             Book a Consultation
           </Link>
           <a
-            href="tel:7572062859"
+            href={M2M_PHONE_HREF}
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-deep text-m2m-deep transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
             style={{ fontFamily: 'var(--font-nav)' }}
           >

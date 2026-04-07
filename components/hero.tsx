@@ -1,7 +1,8 @@
 "use client"
 
-import Link from "next/link"
-import { Star, Phone } from "lucide-react"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function Hero() {
   return (
@@ -80,13 +81,34 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Contact Link */}
-          <p className="text-sm">
-            Have a question?{" "}
-            <Link href="/contact" className="underline hover:text-[#c9a961]">
-              Contact Us
-            </Link>
-          </p>
+        {/* CTAs - at bottom of content */}
+        <div 
+          ref={ctasRef}
+          className="flex flex-col md:flex-row items-stretch gap-6 mt-12 w-full"
+        >
+          <a
+            href="/contact"
+            data-gsap="magnetic"
+            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
+            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+          >
+            Work With Us
+          </a>
+          <a
+            href="/sell#valuation"
+            data-gsap="magnetic"
+            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
+            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+          >
+            Free Home Valuation
+          </a>
+          <a
+            href={M2M_PHONE_HREF}
+            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
+            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+          >
+            757-206-2859
+          </a>
         </div>
       </div>
     </section>

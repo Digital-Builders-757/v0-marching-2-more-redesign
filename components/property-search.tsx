@@ -1,6 +1,38 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
+import { useState, useEffect } from "react"
+
+const teamMembers = [
+  {
+    name: "Donavan",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Donavan%20copy-R9RwXLWqjd9OnQw4gBl6EiAVWOj9x1.avif",
+  },
+  {
+    name: "Roger Lee",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roger%20Lee%20copy-ZbhqIDwo7JeGrBkKFa6Sv0ylWIuI1D.avif",
+  },
+  {
+    name: "Kristin",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Kristin%20copy-lMfUtkHjgotsvjdeeUby9aj3quqUGu.avif",
+  },
+]
+
+const positions = [
+  {
+    className: "left-0 top-[45px] lg:top-[60px] z-[3]",
+    size: "w-[165px] lg:w-[255px] h-[165px] lg:h-[255px]",
+  },
+  {
+    className: "left-[100px] lg:left-[160px] top-[15px] lg:top-[28px] z-[2]",
+    size: "w-[140px] lg:w-[215px] h-[140px] lg:h-[215px]",
+  },
+  {
+    className: "left-[190px] lg:left-[295px] top-[55px] lg:top-[75px] z-[1]",
+    size: "w-[130px] lg:w-[195px] h-[130px] lg:h-[195px]",
+  },
+]
 
 export function PropertySearch() {
   return (
@@ -37,21 +69,36 @@ export function PropertySearch() {
               </Link>
             </div>
 
-            <p className="text-sm text-gray-500 italic">
-              Local Property Search Powered by CREED REALTY*
-            </p>
-            <p className="text-sm text-gray-500 mt-2">
-              We&apos;ll prepare the best options.
-            </p>
-          </div>
-
-          {/* Right Image */}
-          <div className="relative">
-            <img
-              src="https://static.wixstatic.com/media/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg/v1/fill/w_560,h_374,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg"
-              alt="Property Search"
-              className="w-full rounded-lg shadow-lg"
-            />
+        {/* Right - Team member circles with rotating animation */}
+        <div 
+          data-gsap="scale-in"
+          className="order-1 lg:order-2"
+        >
+          <div className="relative h-[300px] lg:h-[440px] flex items-center justify-center">
+            <div className="relative w-[280px] lg:w-[420px] h-[260px] lg:h-[380px]">
+              {teamMembers.map((member, memberIndex) => {
+                const positionIndex = order.indexOf(memberIndex)
+                const position = positions[positionIndex]
+                
+                return (
+                  <div
+                    key={member.name}
+                    className={`absolute ${position.size} ${position.className} rounded-full overflow-hidden border-2 border-m2m-gold/30 shadow-2xl cursor-pointer transition-all duration-1000 ease-in-out hover:scale-105 hover:-translate-y-2`}
+                    style={{ zIndex: 3 - positionIndex }}
+                  >
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={member.src}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 255px, 165px"
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
