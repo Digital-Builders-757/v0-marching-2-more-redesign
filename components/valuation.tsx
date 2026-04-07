@@ -47,31 +47,29 @@ export function Valuation() {
             data-gsap="stagger-children"
             data-gsap-direction="up"
           >
-            <div className="flex flex-col md:flex-row gap-3">
-              <Link
-                data-gsap-child
-                data-gsap="magnetic"
-                href="/contact"
-                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
-                style={{ fontFamily: 'var(--font-nav)' }}
-              >
-                Get Your Free Home Valuation
-              </Link>
-              <Link
-                data-gsap-child
-                data-gsap="magnetic"
-                href="/sell"
-                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
-                style={{ fontFamily: 'var(--font-nav)' }}
-              >
-                Learn More
-              </Link>
-            </div>
+            <Link
+              data-gsap-child
+              data-gsap="magnetic"
+              href="/contact"
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+              style={{ fontFamily: 'var(--font-nav)' }}
+            >
+              Get Your Free Home Valuation
+            </Link>
+            <Link
+              data-gsap-child
+              data-gsap="magnetic"
+              href="/sell"
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+              style={{ fontFamily: 'var(--font-nav)' }}
+            >
+              Learn More
+            </Link>
             <Link
               data-gsap-child
               data-gsap="magnetic"
               href="/sell#checklist"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center md:w-fit"
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Get The Pre-Listing Checklist
