@@ -1,0 +1,67 @@
+/**
+ * Navigation constants for Wix parity.
+ *
+ * Keep this file as the single source of truth for header/footer internal nav.
+ */
+
+import { M2M_MEDIA } from "@/lib/m2m-media"
+
+export type M2MNavLink = {
+  label: string
+  href: string
+}
+
+/** Wix header hamburger menu (label "=") items. */
+export const M2M_WIX_HEADER_MENU_LINKS: readonly M2MNavLink[] = [
+  { label: "Welcome", href: "/" },
+  { label: "Home Search", href: "/home-search" },
+  { label: "More Resources", href: "/resources" },
+  { label: "CMA Request Form", href: "/cma-form" },
+  { label: "Free Home Valuation", href: "/free-home-valuation" },
+  { label: "Our Team", href: "/our-team" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact Us", href: "/contact-us" },
+] as const
+
+export const M2M_FOOTER_QUICK_LINKS: readonly M2MNavLink[] = [
+  { label: "Home Valuation", href: "/free-home-valuation" },
+  { label: "Pre-Listing Checklist", href: "/resources" },
+  { label: "Work With Us", href: "/home-search" },
+  { label: "Our Team", href: "/our-team" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Contact Us", href: "/contact-us" },
+] as const
+
+export const M2M_FOOTER_POLICY_LINKS: readonly M2MNavLink[] = [
+  { label: "Cookie Policy", href: "/cookie-policy" },
+  { label: "Disclaimers", href: "/copy-of-privacy-policy" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms and Conditions", href: "/terms-and-conditions" },
+  { label: "Accessibility Statement", href: "/accessibility-statement" },
+] as const
+
+export type M2MAgentLink = {
+  name: string
+  href: string
+  image: string
+}
+
+/** Wix header quick links (headshots). */
+export const M2M_HEADER_AGENT_LINKS: readonly M2MAgentLink[] = [
+  {
+    name: "Donavan McFadden",
+    href: "/profile-page",
+    image: M2M_MEDIA.headshotDonavan,
+  },
+  {
+    name: "Roger Lee",
+    href: "/roger-lee",
+    image: M2M_MEDIA.headshotRoger,
+  },
+  {
+    name: "Kristin Allen",
+    href: "/kristin-s-profile",
+    image: M2M_MEDIA.headshotKristin,
+  },
+] as const

@@ -12,22 +12,7 @@ import {
   M2M_PHONE_DISPLAY,
 } from "@/lib/m2m-constants"
 
-const quickLinks = [
-  { label: "Home Valuation", href: "/free-home-valuation" },
-  { label: "Pre-Listing Checklist", href: "/resources" },
-  { label: "Work With Us", href: "/home-search" },
-  { label: "Our Team", href: "/our-team" },
-  { label: "Reviews", href: "/reviews" },
-  { label: "Contact Us", href: "/contact-us" },
-]
-
-const policyLinks = [
-  { label: "Cookie Policy", href: "/cookie-policy" },
-  { label: "Disclaimers", href: "/copy-of-privacy-policy" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms and Conditions", href: "/terms-and-conditions" },
-  { label: "Accessibility Statement", href: "/accessibility-statement" },
-]
+import { M2M_FOOTER_POLICY_LINKS, M2M_FOOTER_QUICK_LINKS } from "@/lib/m2m-nav"
 
 const agentLinks = [
   {
@@ -56,7 +41,7 @@ export function Footer() {
               Quick Links
             </h3>
             <nav className="flex flex-col gap-2">
-              {quickLinks.map((l) => (
+              {M2M_FOOTER_QUICK_LINKS.map((l) => (
                 <Link
                   key={l.label}
                   href={l.href}
@@ -116,7 +101,7 @@ export function Footer() {
               Policies
             </h3>
             <nav className="flex flex-col gap-2">
-              {policyLinks.map((l) => (
+              {M2M_FOOTER_POLICY_LINKS.map((l) => (
                 <Link
                   key={l.label}
                   href={l.href}
