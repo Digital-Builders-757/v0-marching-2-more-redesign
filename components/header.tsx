@@ -158,7 +158,7 @@ export function Header() {
         />
         <div className="relative flex items-center justify-between h-20 px-6 md:px-10 lg:px-16">
           {/* Logo */}
-          <Link ref={logoRef} href="/" className="flex-shrink-0 opacity-0" aria-label="Marching2More - Home">
+          <Link ref={logoRef} href="/" className="flex-shrink-0 opacity-0 flex items-center gap-3" aria-label="Marching2More - Home">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-WlleymhFpZWiaSsI0YKWHMAcn1V6SX.avif"
               alt="Marching2More"
@@ -167,6 +167,20 @@ export function Header() {
               className="h-[34px] md:h-[41px] w-auto"
               priority
             />
+            <div className="hidden sm:flex flex-col">
+              <span 
+                className="text-sm md:text-base tracking-[0.15em] uppercase text-m2m-gold font-medium"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                Marching 2 More
+              </span>
+              <span 
+                className="text-[0.6rem] md:text-xs tracking-[0.2em] uppercase text-m2m-gold/70 font-light"
+                style={{ fontFamily: 'var(--font-nav)' }}
+              >
+                Real Estate Team
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation - visible inline */}
