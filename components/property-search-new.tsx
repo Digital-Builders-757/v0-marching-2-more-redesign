@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 
 export function PropertySearchNew() {
   return (
@@ -18,11 +19,15 @@ export function PropertySearchNew() {
             data-gsap-direction="left"
             className="absolute left-0 top-1/2 -translate-y-1/2 w-[280px] xl:w-[320px] h-[280px] xl:h-[320px] rounded-full overflow-hidden shadow-2xl"
           >
-            <img 
-              src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=600&fit=crop&crop=faces"
-              alt="Happy couple in front of their new home"
-              className="w-full h-full object-cover"
-            />
+            <div className="relative h-full w-full">
+              <Image
+                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=600&fit=crop&crop=faces"
+                alt="Happy couple in front of their new home"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1280px) 320px, 280px"
+              />
+            </div>
           </div>
           
           {/* Medium circle - house */}
@@ -31,11 +36,15 @@ export function PropertySearchNew() {
             data-gsap-direction="right"
             className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-[220px] xl:w-[260px] h-[220px] xl:h-[260px] rounded-full overflow-hidden shadow-2xl"
           >
-            <img 
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=600&fit=crop"
-              alt="Luxury home exterior"
-              className="w-full h-full object-cover"
-            />
+            <div className="relative h-full w-full">
+              <Image
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=600&fit=crop"
+                alt="Luxury home exterior"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1280px) 260px, 220px"
+              />
+            </div>
           </div>
         </div>
       </div>
