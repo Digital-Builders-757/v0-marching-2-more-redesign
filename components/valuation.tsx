@@ -41,9 +41,9 @@ export function Valuation() {
             Learn your home&apos;s <em className="italic text-m2m-gold">true value.</em>
           </h2>
 
-          {/* CTAs */}
+          {/* Row 1: CTAs */}
           <div 
-            className="flex flex-col gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             data-gsap="stagger-children"
             data-gsap-direction="up"
           >
@@ -51,7 +51,7 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/contact"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+              className="flex-1 text-[0.7rem] tracking-[0.2em] uppercase px-6 sm:px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Get Your Free Home Valuation
@@ -60,7 +60,7 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/sell"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+              className="flex-1 text-[0.7rem] tracking-[0.2em] uppercase px-6 sm:px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Learn More
@@ -69,14 +69,14 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/sell#checklist"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+              className="flex-1 text-[0.7rem] tracking-[0.2em] uppercase px-6 sm:px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Get The Pre-Listing Checklist
             </Link>
           </div>
 
-          {/* Guide description */}
+          {/* Row 2: Guide description */}
           <div data-gsap="fade-up" className="mt-6">
             <p 
               className="text-xs text-m2m-muted italic"
