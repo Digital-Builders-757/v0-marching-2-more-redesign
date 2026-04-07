@@ -128,7 +128,7 @@ function ServiceCard({
   return (
     <div 
       data-gsap-child
-      className="bg-m2m-panel border border-m2m-gold/20 rounded-xl p-8 flex flex-col gap-5 transition-all duration-500 cursor-pointer hover:border-m2m-gold/40 hover:bg-m2m-panel/60 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/5 group"
+      className="aspect-square bg-m2m-panel border border-m2m-gold/20 rounded-full p-8 flex flex-col gap-5 transition-all duration-500 cursor-pointer hover:border-m2m-gold/40 hover:bg-m2m-panel/60 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/5 group justify-center items-center text-center"
     >
       <Icon className="w-7 h-7 text-m2m-gold opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110" />
       <h3 
@@ -144,7 +144,7 @@ function ServiceCard({
         {body}
       </p>
       <span 
-        className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold flex items-center gap-2 group-hover:gap-3.5 transition-all duration-300"
+        className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold flex items-center justify-center gap-2 group-hover:gap-3.5 transition-all duration-300"
         style={{ fontFamily: 'var(--font-nav)' }}
       >
         {link}
