@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Clock, User, Calendar } from "lucide-react"
+import { M2M_MEDIA } from "@/lib/m2m-media"
 
 const blogPosts = [
   {
@@ -12,7 +13,7 @@ const blogPosts = [
     author: "Marching 2 More Team",
     date: "Mar 24, 2026",
     readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=500&fit=crop",
+    image: M2M_MEDIA.heroScreenshot,
     category: "Market Insights",
   },
   {
@@ -22,7 +23,7 @@ const blogPosts = [
     author: "Marching 2 More Team",
     date: "Mar 10, 2026",
     readTime: "3 min read",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop",
+    image: M2M_MEDIA.sellHeroStill,
     category: "Selling Tips",
   },
   {
@@ -32,7 +33,7 @@ const blogPosts = [
     author: "Marching 2 More Team",
     date: "Feb 24, 2026",
     readTime: "3 min read",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=500&fit=crop",
+    image: M2M_MEDIA.familyBackyard,
     category: "Coastal Living",
   },
   {
@@ -42,7 +43,7 @@ const blogPosts = [
     author: "Donavan McFadden",
     date: "Feb 24, 2026",
     readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&h=500&fit=crop",
+    image: M2M_MEDIA.teamCtaBackdrop,
     category: "Buyer Tips",
   },
   {
@@ -52,7 +53,7 @@ const blogPosts = [
     author: "Roger Lee",
     date: "Feb 15, 2026",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=500&fit=crop",
+    image: M2M_MEDIA.buyHeroStill,
     category: "VA Loans",
   },
   {
@@ -62,7 +63,7 @@ const blogPosts = [
     author: "Kristin Allen",
     date: "Feb 10, 2026",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop",
+    image: M2M_MEDIA.teamPhotoWide,
     category: "PCS Relocation",
   },
 ]

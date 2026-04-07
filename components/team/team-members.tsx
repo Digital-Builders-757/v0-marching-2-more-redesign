@@ -3,34 +3,35 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
+import { M2M_MEDIA } from "@/lib/m2m-media"
 
 const teamMembers = [
   {
     name: "Donavan McFadden",
     role: "Founding Partner",
     title: "Licensed Agent",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Donavan%20copy-R9RwXLWqjd9OnQw4gBl6EiAVWOj9x1.avif",
+    image: M2M_MEDIA.headshotDonavan,
     bio: "A dedicated real estate professional with military background, Donavan brings discipline, integrity, and commitment to every client relationship.",
   },
   {
     name: "Roger Lee",
     role: "Founding Partner",
     title: "Licensed Agent",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roger%20Lee%20copy-ZbhqIDwo7JeGrBkKFa6Sv0ylWIuI1D.avif",
+    image: M2M_MEDIA.headshotRoger,
     bio: "With deep roots in Hampton Roads, Roger combines local market knowledge with a passion for helping families find their perfect home.",
   },
   {
     name: "Kristin Allen",
     role: "Licensed Agent",
     title: "",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Kristin%20copy-lMfUtkHjgotsvjdeeUby9aj3quqUGu.avif",
+    image: M2M_MEDIA.headshotKristin,
     bio: "Kristin's attention to detail and genuine care for clients makes every transaction smooth and stress-free.",
   },
   {
     name: "Jalessa Hendricks",
     role: "Licensed Agent",
     title: "",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=faces",
+    image: M2M_MEDIA.teamPhotoWide,
     bio: "Jalessa brings energy and dedication to helping clients navigate the real estate market with confidence.",
   },
 ]

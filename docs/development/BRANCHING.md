@@ -2,17 +2,33 @@
 
 This repo integrates feature work through **pull requests into `develop`**.
 
-## Defaults
+## Branches
 
-- Create **feature branches** from **`develop`**: `feat/*`, `fix/*`, `docs/*`, `chore/*`, etc.
-- Open a PR with **base `develop`** and your branch as **head**.
-- Avoid long sequences of commits directly on `develop` for product changes; use a branch unless it is a small agreed exception (for example docs-only hotfixes).
+- **`main`**: production / release line (GitHub default for stable snapshots).
+- **`develop`**: integration branch — merge feature work here first.
 
-## Shipping
+## Rules
 
-- Run **`npm run typecheck`**, **`npm run test`**, **`npm run lint`**, **`npm run build`** before pushing when possible (see `/Ship` in `.cursor/commands/Ship.md`).
-- After push: `gh pr create --base develop --head <your-branch>` or use the GitHub UI.
+1. Create **feature branches** from **`develop`**: `feat/*`, `fix/*`, `docs/*`, `chore/*`, `polish/*`, etc.
+2. Open a PR with **base `develop`** and your branch as **head**.
+3. Prefer **merge commits** when merging PRs if that keeps history readable for your team (see `docs/development/RELEASING.md`).
+4. Ship to production via PR **`develop` → `main`** when ready.
 
-## Main vs develop
+Avoid long sequences of commits directly on `develop` for product changes; use a branch unless it is a small agreed exception (for example docs-only hotfixes).
 
-- If the remote uses **`main`** as the default release line, treat **`develop`** as the integration branch for active work unless your team documents otherwise.
+## Local workflow
+
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feat/some-change
+
+# work + commit
+
+git push -u origin feat/some-change
+# open PR into develop (GitHub UI or gh pr create --base develop)
+```
+
+## Shipping checks
+
+Run **`npm run typecheck`**, **`npm run test`**, **`npm run lint`**, **`npm run build`** before pushing when possible (see `/Ship` in `.cursor/commands/Ship.md`).
