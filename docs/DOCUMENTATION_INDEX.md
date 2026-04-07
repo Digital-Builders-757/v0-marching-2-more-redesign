@@ -10,6 +10,13 @@ Canonical listing of project docs. (Alias/index companion to [DOCUMENTATION.md](
 | [development/BRANCHING.md](./development/BRANCHING.md) | Branch + PR flow toward `develop` |
 | [../README.md](../README.md) | Clone, install, dev server |
 
+## Testing
+
+| Path / command | Purpose |
+|----------------|---------|
+| [e2e/smoke.spec.ts](../e2e/smoke.spec.ts) | Playwright smoke: home hero CTAs, pre-listing `/resources`, `/contact-us` |
+| `npm run test` | Runs `playwright test` (starts production server via `playwright.config.ts` when needed) |
+
 ## Cursor
 
 | Path | Purpose |

@@ -9,4 +9,7 @@ node_modules
 .env*.local
 .DS_Store
 tsconfig.tsbuildinfo
-tsconfig.tsbuildinfo
+
+# Playwright
+playwright-report/
+test-results/

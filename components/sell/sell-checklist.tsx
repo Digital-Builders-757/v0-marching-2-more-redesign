@@ -2,19 +2,7 @@
 
 import Link from "next/link"
 import { CheckCircle, Download } from "lucide-react"
-
-const checklistItems = [
-  "Declutter and depersonalize living spaces",
-  "Deep clean entire home including carpets and windows",
-  "Complete minor repairs and touch-ups",
-  "Enhance curb appeal with landscaping",
-  "Stage key rooms for maximum impact",
-  "Gather important documents and disclosures",
-  "Review and understand market conditions",
-  "Set a competitive listing price",
-  "Prepare for professional photography",
-  "Plan for showings and open houses",
-]
+import { PRE_LISTING_CHECKLIST_ITEMS } from "@/lib/pre-listing-checklist-content"
 
 export function SellChecklist() {
   return (
@@ -71,7 +59,7 @@ export function SellChecklist() {
               Quick Checklist Preview
             </h3>
             <ul className="space-y-4">
-              {checklistItems.map((item, index) => (
+              {PRE_LISTING_CHECKLIST_ITEMS.map((item, index) => (
                 <li 
                   key={index}
                   className="flex items-start gap-3"
