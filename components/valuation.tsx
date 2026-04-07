@@ -74,8 +74,11 @@ export function Valuation() {
             >
               Get The Pre-Listing Checklist
             </Link>
+          </div>
+
+          {/* Guide description */}
+          <div data-gsap="fade-up" className="mt-6">
             <p 
-              data-gsap-child
               className="text-xs text-m2m-muted italic"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
