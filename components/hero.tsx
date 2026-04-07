@@ -2,7 +2,11 @@
 
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
-import { M2M_PHONE_HREF } from "@/lib/m2m-site"
+import {
+  CALENDLY_BOOK_URL,
+  M2M_PHONE_HREF,
+  REALSCOUT_HOME_VALUATION_URL,
+} from "@/lib/m2m-site"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -125,7 +129,7 @@ export function Hero() {
             className="block h-px bg-m2m-gold w-8"
             style={{ transform: 'scaleX(0)' }}
           />
-          Veteran Owned | 5.0 Star Rating
+          Licensed Real Estate Professionals in Virginia Beach, VA, USA • Veteran Owned | 5.0 ★ ★ ★ ★ ★
         </div>
 
         {/* Headline - reveal animation */}
@@ -162,32 +166,41 @@ export function Hero() {
         </p>
 
         {/* CTAs - at bottom of content */}
-        <div 
-          ref={ctasRef}
-          className="flex flex-col md:flex-row items-stretch gap-6 mt-12 w-full"
-        >
+        <div ref={ctasRef} className="mt-12 grid w-full gap-4 md:max-w-2xl md:grid-cols-2">
           <a
-            href="/contact"
+            href="/home-search"
             data-gsap="magnetic"
-            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
-            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+            className="cta-btn w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
+            style={{ fontFamily: "var(--font-nav)", opacity: 0 }}
           >
             Work With Us
           </a>
           <a
-            href="/sell#valuation"
+            href={REALSCOUT_HOME_VALUATION_URL}
+            target="_blank"
+            rel="noreferrer"
             data-gsap="magnetic"
-            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
-            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+            className="cta-btn w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
+            style={{ fontFamily: "var(--font-nav)", opacity: 0 }}
           >
             Free Home Valuation
           </a>
           <a
-            href={M2M_PHONE_HREF}
-            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
-            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+            href={CALENDLY_BOOK_URL}
+            target="_blank"
+            rel="noreferrer"
+            data-gsap="magnetic"
+            className="cta-btn w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream hover:scale-[1.02]"
+            style={{ fontFamily: "var(--font-nav)", opacity: 0 }}
           >
-            757-206-2859
+            Speak with an Agent.
+          </a>
+          <a
+            href={M2M_PHONE_HREF}
+            className="cta-btn w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
+            style={{ fontFamily: "var(--font-nav)", opacity: 0 }}
+          >
+            Call or Text — Anytime.
           </a>
         </div>
       </div>
