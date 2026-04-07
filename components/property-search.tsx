@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 
 const teamMembers = [
@@ -130,11 +131,15 @@ export function PropertySearch() {
                     className={`absolute ${position.size} ${position.className} rounded-full overflow-hidden border-2 border-m2m-gold/30 shadow-2xl cursor-pointer transition-all duration-1000 ease-in-out hover:scale-105 hover:-translate-y-2`}
                     style={{ zIndex: 3 - positionIndex }}
                   >
-                    <img
-                      src={member.src}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={member.src}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 255px, 165px"
+                      />
+                    </div>
                   </div>
                 )
               })}

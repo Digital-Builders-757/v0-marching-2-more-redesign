@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -113,22 +114,6 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-[780px] flex-1 flex flex-col justify-center">
-        {/* Team Name */}
-        <h2 
-          className="text-xl md:text-2xl lg:text-3xl font-light text-m2m-cream mb-2"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          Marching 2 More Real Estate Team
-        </h2>
-
-        {/* Location */}
-        <p 
-          className="text-xs md:text-sm tracking-wider text-m2m-muted mb-4"
-          style={{ fontFamily: 'var(--font-nav)' }}
-        >
-          Licensed Real Estate Professionals in Virginia Beach, VA, USA
-        </p>
-
         {/* Tag - fade in from right */}
         <div 
           ref={tagRef}
@@ -140,7 +125,7 @@ export function Hero() {
             className="block h-px bg-m2m-gold w-8"
             style={{ transform: 'scaleX(0)' }}
           />
-          Veteran Owned | 5.0 ★ ★ ★ ★ ★
+          Veteran Owned | 5.0 Star Rating
         </div>
 
         {/* Headline - reveal animation */}
@@ -176,60 +161,34 @@ export function Hero() {
           Ask about our Financing Options.
         </p>
 
-        {/* Have a question link */}
-        <a 
-          href="/contact"
-          className="text-sm text-m2m-gold hover:text-m2m-gold-lt transition-colors mt-6"
-          style={{ fontFamily: 'var(--font-sans)' }}
-        >
-          Have a question? Contact Us &#9656;
-        </a>
-
         {/* CTAs - at bottom of content */}
         <div 
           ref={ctasRef}
-          className="flex flex-col gap-6 mt-8 w-full"
+          className="flex flex-col md:flex-row items-stretch gap-6 mt-12 w-full"
         >
-          {/* First Row - Main CTAs */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-            {/* Work With Us */}
-            <div className="cta-btn flex flex-col items-center text-center p-6 border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold hover:bg-m2m-gold/5" style={{ opacity: 0 }}>
-              <span className="text-xs text-m2m-muted mb-2" style={{ fontFamily: 'var(--font-sans)' }}>Buy. Sell. Relocate.</span>
-              <a
-                href="/contact"
-                data-gsap="magnetic"
-                className="text-[0.7rem] tracking-[0.2em] uppercase text-m2m-cream hover:text-m2m-gold transition-colors"
-                style={{ fontFamily: 'var(--font-nav)' }}
-              >
-                Work With Us
-              </a>
-            </div>
-
-            {/* Free Home Valuation */}
-            <div className="cta-btn flex flex-col items-center text-center p-6 bg-m2m-gold transition-all duration-300 hover:bg-m2m-gold-lt" style={{ opacity: 0 }}>
-              <span className="text-xs text-m2m-deep/70 mb-2" style={{ fontFamily: 'var(--font-sans)' }}>Speak with an Agent.</span>
-              <a
-                href="/sell#valuation"
-                data-gsap="magnetic"
-                className="text-[0.7rem] tracking-[0.2em] uppercase text-m2m-deep font-medium"
-                style={{ fontFamily: 'var(--font-nav)' }}
-              >
-                Free Home Valuation
-              </a>
-            </div>
-
-            {/* Phone */}
-            <div className="cta-btn flex flex-col items-center text-center p-6 border border-white/10 transition-all duration-300 hover:border-m2m-muted-lt hover:bg-white/5" style={{ opacity: 0 }}>
-              <span className="text-xs text-m2m-muted mb-2" style={{ fontFamily: 'var(--font-sans)' }}>Call or Text — Anytime.</span>
-              <a
-                href="tel:7572062859"
-                className="text-[0.7rem] tracking-[0.2em] uppercase text-m2m-muted-lt hover:text-m2m-cream transition-colors"
-                style={{ fontFamily: 'var(--font-nav)' }}
-              >
-                757-206-2859
-              </a>
-            </div>
-          </div>
+          <a
+            href="/contact"
+            data-gsap="magnetic"
+            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
+            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+          >
+            Work With Us
+          </a>
+          <a
+            href="/sell#valuation"
+            data-gsap="magnetic"
+            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
+            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+          >
+            Free Home Valuation
+          </a>
+          <a
+            href={M2M_PHONE_HREF}
+            className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
+            style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
+          >
+            757-206-2859
+          </a>
         </div>
       </div>
     </section>

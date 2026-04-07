@@ -23,10 +23,9 @@ interface UseScrollAnimationOptions {
   triggerOnce?: boolean
 }
 
-export function useScrollAnimation(
-  options: UseScrollAnimationOptions = {}
-) {
-  const { threshold = 0.1, rootMargin = "0px 0px -50px 0px", triggerOnce = true } = options
+export function useScrollAnimation(options?: UseScrollAnimationOptions) {
+  const { threshold = 0.1, rootMargin = "0px 0px -50px 0px", triggerOnce = true } =
+    options ?? {}
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -313,7 +312,7 @@ export function Counter({ end, duration = 2, prefix = "", suffix = "", className
   const { ref, isVisible } = useScrollAnimation()
   const [count, setCount] = useState(0)
   const countRef = useRef(0)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     if (!isVisible) return

@@ -1,35 +1,37 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
+import { M2M_MEDIA } from "@/lib/m2m-media"
 
 const teamMembers = [
   {
     name: "Donavan McFadden",
     role: "Founding Partner",
     title: "Licensed Agent",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Donavan%20copy-R9RwXLWqjd9OnQw4gBl6EiAVWOj9x1.avif",
+    image: M2M_MEDIA.headshotDonavan,
     bio: "A dedicated real estate professional with military background, Donavan brings discipline, integrity, and commitment to every client relationship.",
   },
   {
     name: "Roger Lee",
     role: "Founding Partner",
     title: "Licensed Agent",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roger%20Lee%20copy-ZbhqIDwo7JeGrBkKFa6Sv0ylWIuI1D.avif",
+    image: M2M_MEDIA.headshotRoger,
     bio: "With deep roots in Hampton Roads, Roger combines local market knowledge with a passion for helping families find their perfect home.",
   },
   {
     name: "Kristin Allen",
     role: "Licensed Agent",
     title: "",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Kristin%20copy-lMfUtkHjgotsvjdeeUby9aj3quqUGu.avif",
+    image: M2M_MEDIA.headshotKristin,
     bio: "Kristin's attention to detail and genuine care for clients makes every transaction smooth and stress-free.",
   },
   {
     name: "Jalessa Hendricks",
     role: "Licensed Agent",
     title: "",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=faces",
+    image: M2M_MEDIA.teamPhotoWide,
     bio: "Jalessa brings energy and dedication to helping clients navigate the real estate market with confidence.",
   },
 ]
@@ -47,13 +49,15 @@ export function TeamMembers() {
               data-gsap="fade-up"
               data-gsap-delay={index * 0.15}
             >
-              <div className="flex flex-col sm:flex-row gap-6 p-6 border border-m2m-deep/10 rounded-xl transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
+              <div className="flex flex-col sm:flex-row gap-6 p-6 border border-m2m-deep/10 transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
                 {/* Image */}
-                <div className="w-full sm:w-40 h-48 sm:h-40 flex-shrink-0 overflow-hidden rounded-lg">
-                  <img 
+                <div className="relative w-full sm:w-40 h-48 sm:h-40 flex-shrink-0 overflow-hidden">
+                  <Image
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(min-width: 640px) 160px, 100vw"
                   />
                 </div>
                 

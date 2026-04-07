@@ -3,6 +3,8 @@ import { Hero } from "@/components/hero"
 import { PropertySearchNew } from "@/components/property-search-new"
 import { SellHero } from "@/components/sell-hero"
 import { Testimonials } from "@/components/testimonials"
+import { PropertySearch } from "@/components/property-search"
+import { Valuation } from "@/components/valuation"
 import { Services } from "@/components/services"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
@@ -22,10 +24,13 @@ export default function Home() {
       <GSAPAnimations />
 
       <main id="main-content" tabIndex={-1}>
+        {/* Wix parity section order: Hero → Reviews → Search → Sell → Partners */}
         <Hero />
         <Testimonials />
+        <PropertySearch />
         <PropertySearchNew />
         <SellHero />
+        <Valuation />
         <Services />
         <Footer />
       </main>

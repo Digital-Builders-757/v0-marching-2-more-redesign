@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 const interestOptions = [
   { value: "buying", label: "Buying a Home" },
@@ -51,8 +52,8 @@ export function ContactForm() {
               For immediate assistance, give us a call.
             </p>
             <a
-              href="tel:7572062859"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep text-m2m-deep rounded-lg transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
+              href={M2M_PHONE_HREF}
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep text-m2m-deep transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Call 757-206-2859
@@ -75,7 +76,7 @@ export function ContactForm() {
                     value={formData.firstName}
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     placeholder="John"
-                    className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
+                    className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
                     style={{ fontFamily: 'var(--font-sans)' }}
                   />
                 </div>
@@ -91,7 +92,7 @@ export function ContactForm() {
                     value={formData.lastName}
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                     placeholder="Smith"
-                    className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
+                    className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
                     style={{ fontFamily: 'var(--font-sans)' }}
                   />
                 </div>
@@ -110,7 +111,7 @@ export function ContactForm() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="you@example.com"
-                    className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
+                    className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
                     style={{ fontFamily: 'var(--font-sans)' }}
                   />
                 </div>
@@ -126,7 +127,7 @@ export function ContactForm() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="(757) 000-0000"
-                    className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
+                    className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
                     style={{ fontFamily: 'var(--font-sans)' }}
                   />
                 </div>
@@ -145,7 +146,7 @@ export function ContactForm() {
                       key={option.value}
                       type="button"
                       onClick={() => setFormData({ ...formData, interest: option.value })}
-                      className={`text-xs tracking-wider px-4 py-2 border rounded-lg transition-all duration-300 ${
+                      className={`text-xs tracking-wider px-4 py-2 border transition-all duration-300 ${
                         formData.interest === option.value
                           ? "border-m2m-gold bg-m2m-gold text-m2m-deep"
                           : "border-m2m-deep/20 text-m2m-muted hover:border-m2m-gold hover:text-m2m-deep"
@@ -170,14 +171,14 @@ export function ContactForm() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tell us about your real estate goals..."
                   rows={5}
-                  className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted resize-none"
+                  className="w-full border border-m2m-deep/20 text-m2m-deep text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted resize-none"
                   style={{ fontFamily: 'var(--font-sans)' }}
                 />
               </div>
 
               <button
                 type="submit"
-                className="text-[0.7rem] tracking-[0.2em] uppercase bg-m2m-deep text-m2m-cream font-medium px-10 py-4 rounded-lg transition-colors hover:bg-m2m-deep/90"
+                className="text-[0.7rem] tracking-[0.2em] uppercase bg-m2m-deep text-m2m-cream font-medium px-10 py-4 transition-colors hover:bg-m2m-deep/90"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 Send Message

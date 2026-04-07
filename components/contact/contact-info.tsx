@@ -1,6 +1,7 @@
 "use client"
 
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function ContactInfo() {
   return (
@@ -21,7 +22,7 @@ export function ContactInfo() {
               Call or Text
             </h3>
             <a 
-              href="tel:7572062859"
+              href={M2M_PHONE_HREF}
               className="text-m2m-muted-lt hover:text-m2m-gold transition-colors"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
