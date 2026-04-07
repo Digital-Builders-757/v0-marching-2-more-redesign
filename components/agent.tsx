@@ -27,7 +27,7 @@ export function Agent() {
 
           {/* Title */}
           <p className="text-xs tracking-[0.2em] uppercase text-m2m-muted">
-            Licensed Real Estate Professionals in Virginia Beach, VA
+            Licensed Real Estate Professionals in Virginia Beach, VA, USA
           </p>
 
           {/* Bio */}

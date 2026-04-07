@@ -38,33 +38,51 @@ export function Valuation() {
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Sell with confidence. <br />
-            Learn your home&apos;s <em className="italic text-m2m-gold">true value</em>
+            Learn your home&apos;s <em className="italic text-m2m-gold">true value.</em>
           </h2>
 
           {/* CTAs */}
           <div 
-            className="flex flex-col md:flex-row gap-3"
+            className="flex flex-col gap-4"
             data-gsap="stagger-children"
             data-gsap-direction="up"
           >
+            <div className="flex flex-col md:flex-row gap-3">
+              <Link
+                data-gsap-child
+                data-gsap="magnetic"
+                href="/contact"
+                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+                style={{ fontFamily: 'var(--font-nav)' }}
+              >
+                Get Your Free Home Valuation
+              </Link>
+              <Link
+                data-gsap-child
+                data-gsap="magnetic"
+                href="/sell"
+                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                style={{ fontFamily: 'var(--font-nav)' }}
+              >
+                Learn More
+              </Link>
+            </div>
             <Link
               data-gsap-child
               data-gsap="magnetic"
-              href="#contact"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
-              style={{ fontFamily: 'var(--font-nav)' }}
-            >
-              Get Your Free Home Valuation
-            </Link>
-            <Link
-              data-gsap-child
-              data-gsap="magnetic"
-              href="#"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+              href="/sell#checklist"
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center md:w-fit"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Get The Pre-Listing Checklist
             </Link>
+            <p 
+              data-gsap-child
+              className="text-xs text-m2m-muted italic"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Our 20 page guide to assist you with every phase of selling your home.
+            </p>
           </div>
         </div>
 

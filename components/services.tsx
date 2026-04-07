@@ -6,25 +6,25 @@ const services = [
   {
     icon: Home,
     title: "New World Builders",
-    body: "General Contractors - Quality construction and renovation services for your home improvement needs.",
+    body: "General Contractors",
     link: "Learn More",
   },
   {
     icon: Plane,
     title: "Off Load Moving",
-    body: "Professional moving services to make your relocation smooth and stress-free.",
+    body: "Moving",
     link: "Learn More",
   },
   {
     icon: Shield,
-    title: "Cara Erickson - Atlantic Bay",
-    body: "Expert mortgage lending services to help you secure the best financing for your new home.",
+    title: "Cara Erickson of Atlantic Bay Mortgage",
+    body: "Lending",
     link: "Learn More",
   },
   {
     icon: Wallet,
     title: "2-10 Home Warranty",
-    body: "Comprehensive home warranty protection for peace of mind in your new home.",
+    body: "Home Warranty",
     link: "Learn More",
   },
 ]

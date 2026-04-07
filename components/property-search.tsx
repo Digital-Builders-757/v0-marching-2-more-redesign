@@ -95,19 +95,20 @@ export function PropertySearch() {
               <Link
                 data-gsap-child
                 data-gsap="magnetic"
-                href="#contact"
+                href="/contact"
                 className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
-                Tell Us Your Needs
+                Or — Tell us your needs
               </Link>
             </div>
             <div 
               data-gsap-child
-              className="flex gap-4 text-[0.6rem] tracking-wider text-m2m-gold-dim italic justify-center md:justify-start"
+              className="flex flex-col gap-1 text-[0.6rem] tracking-wider text-m2m-gold-dim italic justify-center md:justify-start"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
-              <span className="text-center">Local Property Search Powered by CREED REALTY</span>
+              <span className="text-center md:text-left">Local Property Search Powered by CREED REALTY*</span>
+              <span className="text-center md:text-left">We&apos;ll prepare the best options.</span>
             </div>
           </div>
         </div>
