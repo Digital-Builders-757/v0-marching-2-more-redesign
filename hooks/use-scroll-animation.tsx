@@ -249,7 +249,7 @@ interface TextRevealProps {
 }
 
 export function TextReveal({ text, className = "", delay = 0, stagger = 0.1 }: TextRevealProps) {
-  const { ref, isVisible } = useScrollAnimation()
+  const { ref, isVisible } = useScrollAnimation({})
   const words = text.split(" ")
 
   return (
@@ -283,7 +283,7 @@ interface LineRevealProps {
 }
 
 export function LineReveal({ direction = "horizontal", className = "", delay = 0 }: LineRevealProps) {
-  const { ref, isVisible } = useScrollAnimation()
+  const { ref, isVisible } = useScrollAnimation({})
 
   const styles: React.CSSProperties = direction === "horizontal"
     ? {
@@ -310,10 +310,10 @@ interface CounterProps {
 }
 
 export function Counter({ end, duration = 2, prefix = "", suffix = "", className = "" }: CounterProps) {
-  const { ref, isVisible } = useScrollAnimation()
+  const { ref, isVisible } = useScrollAnimation({})
   const [count, setCount] = useState(0)
   const countRef = useRef(0)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     if (!isVisible) return

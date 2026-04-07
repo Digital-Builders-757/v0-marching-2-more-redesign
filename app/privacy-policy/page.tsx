@@ -1,21 +1,14 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { GSAPAnimations } from "@/components/gsap-animations"
+import { M2mInnerPageShell } from "@/components/m2m-inner-page-shell"
+import { M2mPolicyStub } from "@/components/m2m-policy-stub"
 
-export const metadata = {
-  title: "Privacy Policy | Marching 2 More Real Estate",
-}
+export const metadata = { title: "Privacy Policy | Marching 2 More" }
 
 export default function PrivacyPolicyPage() {
   return (
-    <>
-      <Header />
-      <GSAPAnimations />
-      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-5xl px-6 py-16">
-        <h1 className="font-serif text-4xl font-semibold text-m2m-green">Privacy Policy</h1>
-        <p className="mt-4 text-m2m-sage">Content migration pending.</p>
-      </main>
-      <Footer />
-    </>
+    <M2mInnerPageShell>
+      <div className="pt-24 px-6 md:px-16">
+        <M2mPolicyStub title="Privacy Policy" />
+      </div>
+    </M2mInnerPageShell>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { mailtoNeedsHelp, REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
 
 export function PropertySearchNew() {
   return (
@@ -74,14 +74,16 @@ export function PropertySearchNew() {
             {/* CTAs */}
             <div data-gsap-child className="flex flex-col sm:flex-row gap-4 mt-4">
               <div className="flex flex-col gap-2">
-                <Link
-                  href="#"
+                <a
+                  href={REALSCOUT_MAP_SEARCH_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   data-gsap="magnetic"
                   className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-deep text-white font-medium transition-all duration-300 hover:bg-m2m-deep/90 hover:scale-[1.02] text-center"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Start Your Search Now
-                </Link>
+                </a>
                 <p 
                   className="text-xs text-m2m-muted italic text-center"
                   style={{ fontFamily: 'var(--font-sans)' }}
@@ -90,14 +92,14 @@ export function PropertySearchNew() {
                 </p>
               </div>
               <div className="flex flex-col gap-2">
-                <Link
-                  href="#contact"
+                <a
+                  href={mailtoNeedsHelp()}
                   data-gsap="magnetic"
                   className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border-2 border-m2m-deep text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-deep hover:text-white text-center"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Or — Tell us your needs.
-                </Link>
+                </a>
                 <p 
                   className="text-xs text-m2m-muted italic text-center"
                   style={{ fontFamily: 'var(--font-sans)' }}

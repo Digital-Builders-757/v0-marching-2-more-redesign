@@ -47,6 +47,12 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={`${jost.variable} ${cormorant.variable} ${playfair.variable} ${montserrat.variable} font-sans antialiased`}>
+        <a
+          href="#main-content"
+          className="fixed top-[-100%] left-1/2 -translate-x-1/2 bg-m2m-gold text-m2m-black text-sm font-medium tracking-wider uppercase px-7 py-3.5 z-[9999] transition-[top] duration-300 focus:top-3"
+        >
+          Skip to main content
+        </a>
         {children}
         <Analytics />
       </body>
