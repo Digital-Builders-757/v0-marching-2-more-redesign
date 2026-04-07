@@ -82,11 +82,11 @@ export function TeamMembers() {
                     {member.bio}
                   </p>
                   <Link
-                    href="/contact"
+                    href="/contact-us"
                     className="inline-flex items-center gap-2 text-[0.65rem] tracking-[0.2em] uppercase text-m2m-deep hover:text-m2m-gold transition-colors group/link"
                     style={{ fontFamily: 'var(--font-nav)' }}
                   >
-                    Contact {member.name.split(' ')[0]}
+                    Introduce Yourself
                     <ArrowRight className="w-3 h-3 transition-transform group-hover/link:translate-x-1" />
                   </Link>
                 </div>
