@@ -28,8 +28,8 @@ export default function Home() {
         <Testimonials />
         <PropertySearchNew />
         <PropertySearch />
-        <SellHero />
         <Valuation />
+        <SellHero />
         <Services />
         <Footer />
       </main>
