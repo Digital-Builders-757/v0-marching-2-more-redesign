@@ -87,7 +87,7 @@ export function PropertySearch() {
                 data-gsap-child
                 data-gsap="magnetic"
                 href="#"
-                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 Start Your Search Now
@@ -96,7 +96,7 @@ export function PropertySearch() {
                 data-gsap-child
                 data-gsap="magnetic"
                 href="#contact"
-                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 Tell Us Your Needs

@@ -220,11 +220,11 @@ export function Header() {
         <div className="absolute top-0 left-0 right-0 flex items-center justify-center h-20 px-6 md:px-10 lg:px-16 z-10">
           {/* Centered Logo */}
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-WlleymhFpZWiaSsI0YKWHMAcn1V6SX.avif"
-            alt="Marching2More"
-            width={140}
-            height={50}
-            className="h-[38px] md:h-[44px] w-auto"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/The%20Teams%20Recent%20Logo-GsUXoeL3EiWROX3JIa8ElUX8qrURcN.png"
+            alt="The Marching 2 More Real Estate Team"
+            width={180}
+            height={120}
+            className="h-[70px] md:h-[80px] w-auto"
           />
           
           {/* Close button - Plus rotated to X */}

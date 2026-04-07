@@ -128,7 +128,7 @@ function ServiceCard({
   return (
     <div 
       data-gsap-child
-      className="bg-m2m-panel border border-m2m-gold/20 p-8 flex flex-col gap-5 transition-all duration-500 cursor-pointer hover:border-m2m-gold/40 hover:bg-m2m-panel/60 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/5 group"
+      className="bg-m2m-panel border border-m2m-gold/20 rounded-xl p-8 flex flex-col gap-5 transition-all duration-500 cursor-pointer hover:border-m2m-gold/40 hover:bg-m2m-panel/60 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/5 group"
     >
       <Icon className="w-7 h-7 text-m2m-gold opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110" />
       <h3 

@@ -47,9 +47,9 @@ export function TeamMembers() {
               data-gsap="fade-up"
               data-gsap-delay={index * 0.15}
             >
-              <div className="flex flex-col sm:flex-row gap-6 p-6 border border-m2m-deep/10 transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
+              <div className="flex flex-col sm:flex-row gap-6 p-6 border border-m2m-deep/10 rounded-xl transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
                 {/* Image */}
-                <div className="w-full sm:w-40 h-48 sm:h-40 flex-shrink-0 overflow-hidden">
+                <div className="w-full sm:w-40 h-48 sm:h-40 flex-shrink-0 overflow-hidden rounded-lg">
                   <img 
                     src={member.image}
                     alt={member.name}

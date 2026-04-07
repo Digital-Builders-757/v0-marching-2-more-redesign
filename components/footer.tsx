@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 
 const footerLinks = {
   properties: [
@@ -72,12 +73,14 @@ export function Footer() {
       >
         {/* Brand */}
         <div data-gsap-child className="flex flex-col gap-5">
-          <Link 
-            href="#" 
-            className="font-light text-xl tracking-wider uppercase text-m2m-cream"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Marching <strong className="text-m2m-gold">2</strong> More
+          <Link href="/" className="inline-block">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/The%20Teams%20Recent%20Logo-GsUXoeL3EiWROX3JIa8ElUX8qrURcN.png"
+              alt="The Marching 2 More Real Estate Team"
+              width={180}
+              height={120}
+              className="h-auto w-[160px]"
+            />
           </Link>
           <p 
             className="text-xs leading-relaxed text-m2m-muted italic max-w-[260px]"

@@ -51,7 +51,7 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="#contact"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Get Your Free Home Valuation
@@ -60,7 +60,7 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="#"
-              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Get The Pre-Listing Checklist
@@ -95,7 +95,7 @@ function StatCard({
   return (
     <div 
       data-gsap-child
-      className="bg-black/30 border border-m2m-gold/20 p-8 flex flex-col gap-2 transition-all duration-500 hover:border-m2m-gold/40 hover:bg-black/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-m2m-gold/5"
+      className="bg-black/30 border border-m2m-gold/20 rounded-xl p-8 flex flex-col gap-2 transition-all duration-500 hover:border-m2m-gold/40 hover:bg-black/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-m2m-gold/5"
     >
       <span 
         className="text-4xl lg:text-5xl font-light text-m2m-cream tracking-tight"
