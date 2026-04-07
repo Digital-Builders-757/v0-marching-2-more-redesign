@@ -79,7 +79,7 @@ export function BlogList() {
         >
           <Link href={`/blog/${blogPosts[0].slug}`} className="group block">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-sm">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
                 <Image
                   src={blogPosts[0].image}
                   alt={blogPosts[0].title}
@@ -88,7 +88,7 @@ export function BlogList() {
                 />
                 <div className="absolute top-4 left-4">
                   <span 
-                    className="inline-block px-3 py-1.5 bg-m2m-gold text-m2m-deep text-[0.6rem] tracking-[0.15em] uppercase"
+                    className="inline-block px-3 py-1.5 bg-m2m-gold text-m2m-deep text-[0.6rem] tracking-[0.15em] uppercase rounded-md"
                     style={{ fontFamily: 'var(--font-nav)' }}
                   >
                     {blogPosts[0].category}
@@ -149,7 +149,7 @@ export function BlogList() {
               data-gsap="fade-up"
               data-gsap-delay={index * 0.1}
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-sm mb-5">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl mb-5">
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -158,7 +158,7 @@ export function BlogList() {
                 />
                 <div className="absolute top-3 left-3">
                   <span 
-                    className="inline-block px-2.5 py-1 bg-m2m-gold text-m2m-deep text-[0.55rem] tracking-[0.15em] uppercase"
+                    className="inline-block px-2.5 py-1 bg-m2m-gold text-m2m-deep text-[0.55rem] tracking-[0.15em] uppercase rounded-md"
                     style={{ fontFamily: 'var(--font-nav)' }}
                   >
                     {post.category}

@@ -1,86 +1,107 @@
 "use client"
 
+import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 const partners = [
-  {
-    name: "New World Builders",
-    category: "General Contractors",
-    link: "#",
-  },
-  {
-    name: "Off Load Moving",
-    category: "Moving",
-    link: "#",
-  },
-  {
-    name: "R.S. Andrews",
-    category: "HVAC",
-    link: "#",
-  },
-  {
-    name: "QAI",
-    category: "Home Inspection",
-    link: "#",
-  },
-  {
-    name: "John Edwards",
-    category: "Pest & Termite",
-    link: "#",
-  },
-  {
-    name: "True North Title",
-    category: "Title",
-    link: "#",
-  },
-  {
-    name: "Cara Erickson of Atlantic Bay Mortgage",
-    category: "Lending",
-    link: "#",
-  },
-  {
-    name: "2-10 Home Warranty",
-    category: "Home Warranty",
-    link: "#",
-  },
+  { name: "New World Builders", category: "General Contractors", href: "#" },
+  { name: "Off Load Moving", category: "Moving", href: "#" },
+  { name: "R.S. Andrews", category: "HVAC", href: "#" },
+  { name: "QAI", category: "Home Inspection", href: "#" },
+  { name: "John Edwards", category: "Pest & Termite", href: "#" },
+  { name: "True North Title", category: "Title", href: "#" },
+  { name: "Cara Erickson of Atlantic Bay Mortgage", category: "Lending", href: "#" },
+  { name: "2-10 Home Warranty", category: "Home Warranty", href: "#" },
 ]
 
 export function Services() {
   return (
-    <section className="bg-[#f5f5f5] py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-m2m-black relative overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div 
+        data-gsap="parallax"
+        data-gsap-speed="0.2"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at top right, rgba(205,176,95,0.03) 0%, transparent 50%)',
+        }}
+      />
+
+      <div className="relative px-6 py-20 md:px-16 lg:px-24 md:py-32">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="mb-16 lg:mb-20">
+          {/* Tagline */}
+          <span 
+            data-gsap="fade-down"
+            className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-4 block"
+            style={{ fontFamily: 'var(--font-nav)' }}
+          >
             You&apos;re in great hands.
+          </span>
+
+          {/* Headline */}
+          <h2 
+            data-gsap="blur-in"
+            className="text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-m2m-cream font-light"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Financing, renovations,
+            <br />
+            <span className="italic text-m2m-gold">moving solutions</span>
           </h2>
-          <p className="text-lg text-gray-600 mb-2">
-            Financing, renovations, moving solutions
-          </p>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-xl font-bold text-[#c9a961]">MARCHING 2 MORE</span>
-            <span className="text-gray-600">REALTY GROUP</span>
-          </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            And so much more. Access a network of trusted local leaders. We&apos;ve experienced their professionalism and standard of excellence first hand.
+        </div>
+
+        {/* Description */}
+        <div className="mb-12" data-gsap="fade-up">
+          <p 
+            className="text-sm leading-relaxed text-m2m-muted max-w-2xl pl-6 border-l border-m2m-gold/20"
+            style={{ fontFamily: 'var(--font-sans)' }}
+          >
+            <strong className="text-m2m-cream">And so much more.</strong> Access a network of trusted local leaders. We&apos;ve experienced their professionalism and standard of excellence first hand.
           </p>
         </div>
 
-        {/* Partners Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Partners Grid - 4 columns x 2 rows */}
+        <div 
+          className="grid grid-cols-2 md:grid-cols-4 border-t border-m2m-gold/20"
+          data-gsap="stagger-children"
+          data-gsap-direction="up"
+        >
           {partners.map((partner, index) => (
-            <a
-              key={index}
-              href={partner.link}
-              className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-200"
+            <div 
+              key={partner.name}
+              data-gsap-child
+              className={`py-8 px-4 text-center ${
+                index % 4 !== 3 ? "border-r border-m2m-gold/20" : ""
+              } ${index >= 4 ? "border-t border-m2m-gold/20" : ""}`}
             >
-              <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-[#c9a961] transition-colors flex items-center gap-2">
-                {partner.name}
-                <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </h3>
-              <p className="text-sm text-gray-500">{partner.category}</p>
-            </a>
+              <Link 
+                href={partner.href}
+                className="group inline-flex items-center gap-1 text-m2m-cream hover:text-m2m-gold transition-colors mb-2"
+                style={{ fontFamily: 'var(--font-sans)' }}
+              >
+                <span className="text-sm underline underline-offset-2">{partner.name}</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+              <p 
+                className="text-sm text-m2m-muted italic"
+                style={{ fontFamily: 'var(--font-sans)' }}
+              >
+                {partner.category}
+              </p>
+            </div>
           ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="mt-16" data-gsap="fade-up">
+          <Link
+            href="/team"
+            className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
+            style={{ fontFamily: 'var(--font-nav)' }}
+          >
+            Meet Your Team
+          </Link>
         </div>
       </div>
     </section>

@@ -4,55 +4,91 @@ import Link from "next/link"
 
 export function SellHero() {
   return (
-    <section className="bg-[#0a1628] text-white py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section 
+      id="sell"
+      className="relative bg-m2m-black px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden"
+    >
+      {/* Subtle gradient overlay */}
+      <div 
+        data-gsap="parallax" 
+        data-gsap-speed="0.2"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at bottom left, rgba(205,176,95,0.03) 0%, transparent 50%)',
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-3xl ml-auto text-right">
+          <div className="flex flex-col gap-6 items-end" data-gsap="stagger-children" data-gsap-direction="up">
+            {/* Section label */}
+            <div 
+              data-gsap-child
+              className="flex items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
+              style={{ fontFamily: 'var(--font-nav)' }}
+            >
               Sell with confidence.
+              <span className="w-6 h-px bg-m2m-gold" />
+            </div>
+
+            {/* Title */}
+            <h2 
+              data-gsap-child
+              className="text-m2m-cream text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] font-light"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              Learn your home&apos;s<br />
+              <em className="italic text-m2m-gold">true value.</em>
             </h2>
-            <h3 className="text-2xl md:text-3xl font-semibold text-[#c9a961] mb-8">
-              Learn your home&apos;s true value.
-            </h3>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link
-                href="/home-valuation"
-                className="inline-block bg-[#c9a961] hover:bg-[#b89a52] text-black font-semibold px-8 py-3 rounded text-center transition-colors"
-              >
-                Get Your Free Home Valuation
-              </Link>
-              <Link
-                href="/home-valuation"
-                className="inline-block border border-[#c9a961] text-[#c9a961] hover:bg-[#c9a961] hover:text-black font-semibold px-8 py-3 rounded text-center transition-colors"
-              >
-                Learn More
-              </Link>
+            {/* Body */}
+            <p 
+              data-gsap-child
+              className="text-sm leading-relaxed text-m2m-muted max-w-xl pr-6 border-r border-m2m-gold/20"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Get an accurate, no-obligation home valuation from our experienced team. We&apos;ll help you understand your home&apos;s true market value and guide you through every step of the selling process.
+            </p>
+
+            {/* CTAs */}
+            <div data-gsap-child className="flex flex-col sm:flex-row gap-4 mt-4 justify-end">
+              <div className="flex flex-col gap-2">
+                <Link
+                  href="/contact"
+                  data-gsap="magnetic"
+                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+                  style={{ fontFamily: 'var(--font-nav)' }}
+                >
+                  Get Your Free Home Valuation
+                </Link>
+              </div>
+              <div className="flex flex-col gap-2">
+                <Link
+                  href="/sell"
+                  data-gsap="magnetic"
+                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                  style={{ fontFamily: 'var(--font-nav)' }}
+                >
+                  Learn More
+                </Link>
+              </div>
+              <div className="flex flex-col gap-2">
+                <Link
+                  href="/sell#checklist"
+                  data-gsap="magnetic"
+                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                  style={{ fontFamily: 'var(--font-nav)' }}
+                >
+                  Get The Pre-Listing Checklist
+                </Link>
+                <p 
+                  className="text-xs text-m2m-muted italic text-center"
+                  style={{ fontFamily: 'var(--font-sans)' }}
+                >
+                  Our 20 page guide to assist you with every phase of selling your home.
+                </p>
+              </div>
             </div>
-
-            {/* Pre-Listing Checklist */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6">
-              <a
-                href="#"
-                className="inline-block bg-[#c9a961] hover:bg-[#b89a52] text-black font-semibold px-6 py-3 rounded mb-4 transition-colors"
-              >
-                Get The Pre-Listing Checklist
-              </a>
-              <p className="text-gray-300 text-sm">
-                Our 20 page guide to assist you with every phase of selling your home.
-              </p>
-            </div>
-          </div>
-
-          {/* Right Image */}
-          <div className="relative">
-            <img
-              src="https://static.wixstatic.com/media/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg/v1/fill/w_560,h_374,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg"
-              alt="Sell your home"
-              className="w-full rounded-lg shadow-lg"
-            />
           </div>
         </div>
       </div>

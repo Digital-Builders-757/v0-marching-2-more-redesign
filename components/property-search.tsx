@@ -51,23 +51,61 @@ export function PropertySearch() {
               We&apos;ve curated a range of properties that fit the lifestyle and requirements of military personnel and their families. From relocations to finding homes near military bases, we&apos;re here to support you at every step.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <a
-                href="https://marching2more.realscout.com/homesearch"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-[#c9a961] hover:bg-[#b89a52] text-black font-semibold px-8 py-3 rounded text-center transition-colors"
+          {/* Title */}
+          <h2 
+            data-gsap="blur-in"
+            className="font-light text-[clamp(3rem,5vw,5rem)] leading-[0.97] text-m2m-cream"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Find Your <br />
+            <em className="italic text-m2m-gold">New Home</em>
+          </h2>
+
+          {/* Body */}
+          <p 
+            data-gsap="fade-up"
+            className="text-sm leading-relaxed text-m2m-muted pl-5 border-l border-m2m-gold/20 max-w-md"
+            style={{ fontFamily: 'var(--font-sans)' }}
+          >
+            We&apos;ve curated a range of properties that fit the lifestyle and requirements of military personnel and their families. From relocations to finding homes near military bases, we&apos;re here to support you at every step.
+          </p>
+
+          {/* CTAs */}
+          <div 
+            className="flex flex-col gap-3"
+            data-gsap="stagger-children"
+            data-gsap-direction="up"
+          >
+            <div className="flex flex-col md:flex-row gap-3">
+              <Link
+                data-gsap-child
+                data-gsap="magnetic"
+                href="#"
+                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+                style={{ fontFamily: 'var(--font-nav)' }}
               >
                 Start Your Search Now
               </a>
               <Link
+                data-gsap-child
+                data-gsap="magnetic"
                 href="/contact"
-                className="inline-block border border-gray-400 text-gray-700 hover:bg-gray-100 font-semibold px-8 py-3 rounded text-center transition-colors"
+                className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                style={{ fontFamily: 'var(--font-nav)' }}
               >
-                Or - Tell us your needs.
+                Or — Tell us your needs
               </Link>
             </div>
+            <div 
+              data-gsap-child
+              className="flex flex-col gap-1 text-[0.6rem] tracking-wider text-m2m-gold-dim italic justify-center md:justify-start"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              <span className="text-center md:text-left">Local Property Search Powered by CREED REALTY*</span>
+              <span className="text-center md:text-left">We&apos;ll prepare the best options.</span>
+            </div>
+          </div>
+        </div>
 
         {/* Right - Team member circles with rotating animation */}
         <div 
