@@ -56,6 +56,10 @@ export function mailtoNeedsHelp(): string {
 export const PARTNER_LINKS = {
   newWorldBuilders: "https://www.newworldbuilders.com/",
   offLoadMoving: "https://offloadmoving.com/",
+  rsAndrewsTidewater: "https://www.ars.com/rs-andrews-tidewater",
+  qaiHome: "https://www.qaihome.com/",
+  johnEdwardsPest: "https://www.johnedwardspestcontrol.com/index.php",
+  trueNorthTitle: "https://truenorthtitle.com/",
   atlanticBayCara: "https://www.atlanticbay.com/caraerickson/",
   homeWarranty210: "https://www.2-10.com/",
 } as const

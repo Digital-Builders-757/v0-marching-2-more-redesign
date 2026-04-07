@@ -41,9 +41,9 @@ const teamMembers: TeamMember[] = [
 
 function MemberCard({ member }: { member: TeamMember }) {
   const content = (
-    <div className="flex flex-col gap-6 p-6 border border-m2m-deep/10 transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
-      <div className="flex flex-col sm:flex-row gap-6">
-        <div className="relative w-full sm:w-40 h-48 sm:h-40 flex-shrink-0 overflow-hidden">
+    <div className="flex flex-col gap-6 border border-m2m-deep/10 p-6 transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
+      <div className="flex flex-col gap-6 sm:flex-row">
+        <div className="relative h-48 w-full flex-shrink-0 overflow-hidden sm:h-40 sm:w-40">
           <Image
             src={member.image}
             alt={member.name}
@@ -54,22 +54,16 @@ function MemberCard({ member }: { member: TeamMember }) {
         </div>
 
         <div className="flex flex-col justify-center">
-          <h3
-            className="text-xl text-m2m-deep mb-1"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
+          <h3 className="mb-1 text-xl text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
             {member.name}
           </h3>
-          <p
-            className="text-sm text-m2m-gold"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
+          <p className="text-sm text-m2m-gold" style={{ fontFamily: "var(--font-nav)" }}>
             {member.subtitle}
           </p>
 
           {member.href ? (
-            <div className="mt-4 inline-flex items-center gap-2 text-[0.65rem] tracking-[0.2em] uppercase text-m2m-muted group-hover:text-m2m-gold transition-colors">
-              View Profile <ArrowRight className="w-3 h-3" />
+            <div className="mt-4 inline-flex items-center gap-2 text-[0.65rem] tracking-[0.2em] uppercase text-m2m-muted transition-colors group-hover:text-m2m-gold">
+              View Profile <ArrowRight className="h-3 w-3" />
             </div>
           ) : null}
         </div>
@@ -91,8 +85,8 @@ function MemberCard({ member }: { member: TeamMember }) {
 export function TeamMembers() {
   return (
     <section className="bg-white px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
           {teamMembers.map((member, index) => (
             <div key={member.name} data-gsap="fade-up" data-gsap-delay={index * 0.15}>
               <MemberCard member={member} />

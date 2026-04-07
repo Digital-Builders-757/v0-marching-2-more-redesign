@@ -1,14 +1,16 @@
 import Link from "next/link"
 
+import { PARTNER_LINKS } from "@/lib/m2m-site"
+
 const partners = [
-  { name: "New World Builders", service: "General Contractors", href: "#" },
-  { name: "Off Load Moving", service: "Moving", href: "#" },
-  { name: "R.S. Andrews", service: "HVAC", href: "#" },
-  { name: "QAI", service: "Home Inspection", href: "#" },
-  { name: "John Edwards", service: "Pest & Termite", href: "#" },
-  { name: "True North Title", service: "Title", href: "#" },
-  { name: "Cara Erickson of Atlantic Bay Mortgage", service: "Lending", href: "#" },
-  { name: "2-10 Home Warranty", service: "Home Warranty", href: "#" },
+  { name: "New World Builders", service: "General Contractors", href: PARTNER_LINKS.newWorldBuilders },
+  { name: "Off Load Moving", service: "Moving", href: PARTNER_LINKS.offLoadMoving },
+  { name: "R.S. Andrews", service: "HVAC", href: PARTNER_LINKS.rsAndrewsTidewater },
+  { name: "QAI", service: "Home Inspection", href: PARTNER_LINKS.qaiHome },
+  { name: "John Edwards", service: "Pest & Termite", href: PARTNER_LINKS.johnEdwardsPest },
+  { name: "True North Title", service: "Title", href: PARTNER_LINKS.trueNorthTitle },
+  { name: "Cara Erickson of Atlantic Bay Mortgage", service: "Lending", href: PARTNER_LINKS.atlanticBayCara },
+  { name: "2-10 Home Warranty", service: "Home Warranty", href: PARTNER_LINKS.homeWarranty210 },
 ]
 
 export function Partners() {
@@ -45,13 +47,15 @@ export function Partners() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 mb-12 border-t border-gray-200 pt-8">
           {partners.map((partner) => (
             <div key={partner.name} className="flex flex-col gap-1">
-              <Link 
+              <a
                 href={partner.href}
+                target="_blank"
+                rel="noreferrer"
                 className="text-sm text-m2m-gold hover:text-m2m-deep transition-colors"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 {partner.name} &rsaquo;
-              </Link>
+              </a>
               <span 
                 className="text-xs text-m2m-muted italic"
                 style={{ fontFamily: 'var(--font-sans)' }}
@@ -64,7 +68,7 @@ export function Partners() {
 
         {/* CTA */}
         <Link
-          href="#team"
+          href="/our-team"
           className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-deep text-white font-medium transition-all duration-300 hover:bg-m2m-deep/90"
           style={{ fontFamily: 'var(--font-nav)' }}
         >
