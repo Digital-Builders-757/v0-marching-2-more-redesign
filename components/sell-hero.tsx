@@ -14,12 +14,12 @@ export function SellHero() {
         data-gsap-speed="0.2"
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at bottom right, rgba(205,176,95,0.03) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at bottom left, rgba(205,176,95,0.03) 0%, transparent 50%)',
         }}
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl ml-auto">
           <div className="flex flex-col gap-6" data-gsap="stagger-children" data-gsap-direction="up">
             {/* Section label */}
             <div 
