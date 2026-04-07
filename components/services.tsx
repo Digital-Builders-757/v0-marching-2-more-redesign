@@ -18,8 +18,8 @@ const partners = [
 export function Services() {
   return (
     <section className="bg-m2m-cream px-6 py-16 md:px-[60px] md:py-[120px] overflow-hidden">
-      {/* Top Section - Two columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-16">
+      {/* Top Section */}
+      <div className="mb-16">
         {/* Left Column - Text */}
         <div className="flex flex-col gap-8">
           {/* Tagline */}
@@ -43,28 +43,7 @@ export function Services() {
           </h2>
         </div>
 
-        {/* Right Column - Image */}
-        <div 
-          data-gsap="fade-left"
-          className="relative rounded-lg overflow-hidden"
-        >
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-07%20at%202.45.28%20PM-GuGElpF7uCp6vHe9gS9Z22TeZlbhvh.png"
-            alt="Family working together"
-            width={600}
-            height={400}
-            className="w-full h-full object-cover object-[65%_15%] aspect-[3/2]"
-          />
-          {/* Branding overlay */}
-          <div className="absolute top-6 left-6 flex flex-col items-start gap-1">
-            <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-              <polyline points="9,22 9,12 15,12 15,22" />
-            </svg>
-            <span className="text-white text-sm font-medium tracking-wide">MARCHING 2 MORE</span>
-            <span className="text-white/70 text-xs tracking-widest">REALTY GROUP</span>
-          </div>
-        </div>
+
       </div>
 
       {/* Description */}
