@@ -43,7 +43,7 @@ export function Valuation() {
 
           {/* Row 1: CTAs */}
           <div 
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+            className="flex flex-col sm:flex-row gap-4"
             data-gsap="stagger-children"
             data-gsap-direction="up"
           >
@@ -51,8 +51,8 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/contact"
-              className="flex-1 text-[0.7rem] tracking-[0.2em] uppercase px-6 sm:px-9 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
-              style={{ fontFamily: 'var(--font-nav)' }}
+              className="flex-1 text-base px-8 py-4 bg-m2m-deep text-m2m-cream font-medium rounded-lg transition-all duration-300 hover:bg-m2m-deep/80 text-center"
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               Get Your Free Home Valuation
             </Link>
@@ -60,8 +60,8 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/sell"
-              className="flex-1 text-[0.7rem] tracking-[0.2em] uppercase px-6 sm:px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
-              style={{ fontFamily: 'var(--font-nav)' }}
+              className="flex-1 text-base px-8 py-4 border border-m2m-cream/50 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-cream hover:bg-m2m-cream/5 text-center"
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               Learn More
             </Link>
@@ -69,20 +69,21 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/sell#checklist"
-              className="flex-1 text-[0.7rem] tracking-[0.2em] uppercase px-6 sm:px-9 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
-              style={{ fontFamily: 'var(--font-nav)' }}
+              className="flex-1 text-base px-8 py-4 border border-m2m-cream/50 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-cream hover:bg-m2m-cream/5 text-center"
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               Get The Pre-Listing Checklist
             </Link>
           </div>
 
           {/* Row 2: Guide description */}
-          <div data-gsap="fade-up" className="mt-6">
+          <div data-gsap="fade-up" className="mt-6 sm:text-right">
             <p 
-              className="text-xs text-m2m-muted italic"
+              className="text-sm text-m2m-gold italic"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
-              Our 20 page guide to assist you with every phase of selling your home.
+              Our 20 page guide to assist you with<br />
+              every phase of selling your home.
             </p>
           </div>
         </div>
