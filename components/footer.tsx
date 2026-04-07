@@ -2,13 +2,14 @@
 
 import Link from "next/link"
 import Image from "next/image"
+
 import {
   ABOUT_COPY,
+  CALENDLY_URL,
   GOOGLE_REVIEW_URL,
   M2M_ADDRESS,
   M2M_INBOX_EMAIL,
   M2M_PHONE_DISPLAY,
-  CALENDLY_URL,
 } from "@/lib/m2m-constants"
 
 const quickLinks = [
@@ -86,14 +87,11 @@ export function Footer() {
             >
               About Marching 2 More
             </h3>
-            <p
-              className="text-xs leading-relaxed text-m2m-muted"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
+            <p className="text-xs leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
               {ABOUT_COPY}
             </p>
 
-            <div className="mt-2 flex items-center gap-3">
+            <div className="mt-2 flex flex-wrap items-center gap-3">
               {agentLinks.map((a) => (
                 <Link
                   key={a.name}

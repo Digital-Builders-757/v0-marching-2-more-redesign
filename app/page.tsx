@@ -24,11 +24,12 @@ export default function Home() {
       <GSAPAnimations />
 
       <main id="main-content" tabIndex={-1}>
+        {/* Wix parity section order: Hero → Reviews → Search → Sell → Partners */}
         <Hero />
+        <Testimonials />
         <PropertySearch />
         <PropertySearchNew />
         <SellHero />
-        <Testimonials />
         <Valuation />
         <Services />
         <Footer />
