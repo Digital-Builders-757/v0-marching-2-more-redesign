@@ -29,7 +29,10 @@ export default function PrivacyPolicyPage() {
         <ul>
           <li>We may process personal information depending on how you interact with our Services.</li>
           <li>We do not process sensitive personal information.</li>
-          <li>We may receive information from public databases, marketing partners, social media platforms, and other outside sources.</li>
+          <li>
+            We may receive information from public databases, marketing partners, social media platforms, and other
+            outside sources.
+          </li>
         </ul>
         <p>
           For the full text (including table of contents and detailed sections), please use the canonical source link

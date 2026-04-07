@@ -10,7 +10,7 @@ export function ContactInfo() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Phone */}
           <div 
-            className="text-center p-8 border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold/40"
+            className="text-center p-8 border border-m2m-gold/20 rounded-xl transition-all duration-300 hover:border-m2m-gold/40"
             data-gsap="fade-up"
             data-gsap-delay="0"
           >
@@ -32,7 +32,7 @@ export function ContactInfo() {
 
           {/* Email */}
           <div 
-            className="text-center p-8 border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold/40"
+            className="text-center p-8 border border-m2m-gold/20 rounded-xl transition-all duration-300 hover:border-m2m-gold/40"
             data-gsap="fade-up"
             data-gsap-delay="0.1"
           >
@@ -54,7 +54,7 @@ export function ContactInfo() {
 
           {/* Location */}
           <div 
-            className="text-center p-8 border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold/40"
+            className="text-center p-8 border border-m2m-gold/20 rounded-xl transition-all duration-300 hover:border-m2m-gold/40"
             data-gsap="fade-up"
             data-gsap-delay="0.2"
           >
@@ -76,7 +76,7 @@ export function ContactInfo() {
 
           {/* Hours */}
           <div 
-            className="text-center p-8 border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold/40"
+            className="text-center p-8 border border-m2m-gold/20 rounded-xl transition-all duration-300 hover:border-m2m-gold/40"
             data-gsap="fade-up"
             data-gsap-delay="0.3"
           >

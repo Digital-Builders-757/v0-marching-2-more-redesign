@@ -1,0 +1,19 @@
+name: only-develop-to-main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  enforce-source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail unless PR comes from develop
+        run: |
+          if [ "${{ github.head_ref }}" != "develop" ]; then
+            echo "Only pull requests from 'develop' may be merged into 'main'."
+            echo "Detected head ref: '${{ github.head_ref }}'"
+            exit 1
+          fi
+          echo "PR source branch is develop. OK."

@@ -1,155 +1,109 @@
 "use client"
 
-import { Shield, Home, Wallet, Plane, ArrowRight } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
-const services = [
-  {
-    icon: Home,
-    title: "New World Builders",
-    body: "General Contractors - Quality construction and renovation services for your home improvement needs.",
-    link: "Learn More",
-  },
-  {
-    icon: Plane,
-    title: "Off Load Moving",
-    body: "Professional moving services to make your relocation smooth and stress-free.",
-    link: "Learn More",
-  },
-  {
-    icon: Shield,
-    title: "Cara Erickson - Atlantic Bay",
-    body: "Expert mortgage lending services to help you secure the best financing for your new home.",
-    link: "Learn More",
-  },
-  {
-    icon: Wallet,
-    title: "2-10 Home Warranty",
-    body: "Comprehensive home warranty protection for peace of mind in your new home.",
-    link: "Learn More",
-  },
-]
-
-const stats = [
-  { number: 500, label: "Families Served", suffix: "+" },
-  { number: 15, label: "Years Experience", suffix: "+" },
-  { number: 125, label: "Sales Volume", prefix: "$", suffix: "M" },
-  { number: 49, label: "Client Rating", suffix: "/5", display: "4.9" },
+const partners = [
+  { name: "New World Builders", category: "General Contractors", href: "#" },
+  { name: "Off Load Moving", category: "Moving", href: "#" },
+  { name: "R.S. Andrews", category: "HVAC", href: "#" },
+  { name: "QAI", category: "Home Inspection", href: "#" },
+  { name: "John Edwards", category: "Pest & Termite", href: "#" },
+  { name: "True North Title", category: "Title", href: "#" },
+  { name: "Cara Erickson of Atlantic Bay Mortgage", category: "Lending", href: "#" },
+  { name: "2-10 Home Warranty", category: "Home Warranty", href: "#" },
 ]
 
 export function Services() {
   return (
-    <section className="bg-m2m-black px-6 py-16 md:px-[60px] md:py-[120px] overflow-hidden">
-      {/* Header */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end mb-16">
-        <h2 
-          data-gsap="blur-in"
-          className="font-light text-[clamp(2.5rem,5vw,4.8rem)] leading-none text-m2m-cream"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          You&apos;re in <br />
-          <em className="italic text-m2m-gold">great hands.</em>
-        </h2>
-        
-        <p 
-          data-gsap="fade-left"
-          className="text-sm leading-relaxed text-m2m-muted pl-6 border-l border-m2m-gold/20"
-          style={{ fontFamily: 'var(--font-sans)' }}
-        >
-          Financing, renovations, moving solutions and so much more. Access a network of trusted local leaders. We&apos;ve experienced their professionalism and standard of excellence first hand.
-        </p>
-      </div>
-
-      {/* Services grid with stagger */}
+    <section className="bg-m2m-black relative overflow-hidden">
+      {/* Subtle gradient overlay */}
       <div 
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0.5 mb-16"
-        data-gsap="stagger-children"
-        data-gsap-direction="up"
-      >
-        {services.map((service) => (
-          <ServiceCard key={service.title} {...service} />
-        ))}
-      </div>
+        data-gsap="parallax"
+        data-gsap-speed="0.2"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at top right, rgba(205,176,95,0.03) 0%, transparent 50%)',
+        }}
+      />
 
-      {/* Stats with counters */}
-      <div 
-        data-gsap="fade-up"
-        className="grid grid-cols-2 lg:grid-cols-4 border border-m2m-gold/20"
-      >
-        {stats.map((stat, index) => (
-          <div
-            key={stat.label}
-            className={`p-8 flex flex-col gap-1.5 ${
-              index < stats.length - 1 ? "border-r border-m2m-gold/20" : ""
-            } ${index >= 2 ? "border-t lg:border-t-0 border-m2m-gold/20" : ""}`}
+      <div className="relative px-6 py-20 md:px-16 lg:px-24 md:py-32">
+        {/* Header */}
+        <div className="mb-16 lg:mb-20">
+          {/* Tagline */}
+          <span 
+            data-gsap="fade-down"
+            className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-4 block"
+            style={{ fontFamily: 'var(--font-nav)' }}
           >
-            <span 
-              className="text-3xl lg:text-4xl font-light text-m2m-cream"
-              style={{ fontFamily: 'var(--font-display)' }}
+            You&apos;re in great hands.
+          </span>
+
+          {/* Headline */}
+          <h2 
+            data-gsap="blur-in"
+            className="text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-m2m-cream font-light"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Financing, renovations,
+            <br />
+            <span className="italic text-m2m-gold">moving solutions</span>
+          </h2>
+        </div>
+
+        {/* Description */}
+        <div className="mb-12" data-gsap="fade-up">
+          <p 
+            className="text-sm leading-relaxed text-m2m-muted max-w-2xl pl-6 border-l border-m2m-gold/20"
+            style={{ fontFamily: 'var(--font-sans)' }}
+          >
+            <strong className="text-m2m-cream">And so much more.</strong> Access a network of trusted local leaders. We&apos;ve experienced their professionalism and standard of excellence first hand.
+          </p>
+        </div>
+
+        {/* Partners Grid - 4 columns x 2 rows */}
+        <div 
+          className="grid grid-cols-2 md:grid-cols-4 border-t border-m2m-gold/20"
+          data-gsap="stagger-children"
+          data-gsap-direction="up"
+        >
+          {partners.map((partner, index) => (
+            <div 
+              key={partner.name}
+              data-gsap-child
+              className={`py-8 px-4 text-center ${
+                index % 4 !== 3 ? "border-r border-m2m-gold/20" : ""
+              } ${index >= 4 ? "border-t border-m2m-gold/20" : ""}`}
             >
-              {stat.display ? (
-                stat.display
-              ) : (
-                <>
-                  {stat.prefix || ""}
-                  <span 
-                    data-gsap="counter" 
-                    data-gsap-end={stat.number}
-                    data-gsap-suffix={stat.suffix || ""}
-                  >
-                    0
-                  </span>
-                </>
-              )}
-            </span>
-            <span 
-              className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-muted"
-              style={{ fontFamily: 'var(--font-nav)' }}
-            >
-              {stat.label}
-            </span>
-          </div>
-        ))}
+              <Link 
+                href={partner.href}
+                className="group inline-flex items-center gap-1 text-m2m-cream hover:text-m2m-gold transition-colors mb-2"
+                style={{ fontFamily: 'var(--font-sans)' }}
+              >
+                <span className="text-sm underline underline-offset-2">{partner.name}</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+              <p 
+                className="text-sm text-m2m-muted italic"
+                style={{ fontFamily: 'var(--font-sans)' }}
+              >
+                {partner.category}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="mt-16" data-gsap="fade-up">
+          <Link
+            href="/team"
+            className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
+            style={{ fontFamily: 'var(--font-nav)' }}
+          >
+            Meet Your Team
+          </Link>
+        </div>
       </div>
     </section>
-  )
-}
-
-function ServiceCard({
-  icon: Icon,
-  title,
-  body,
-  link,
-}: {
-  icon: typeof Shield
-  title: string
-  body: string
-  link: string
-}) {
-  return (
-    <div 
-      data-gsap-child
-      className="bg-m2m-panel border border-m2m-gold/20 p-8 flex flex-col gap-5 transition-all duration-500 cursor-pointer hover:border-m2m-gold/40 hover:bg-m2m-panel/60 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/5 group"
-    >
-      <Icon className="w-7 h-7 text-m2m-gold opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110" />
-      <h3 
-        className="text-lg text-m2m-cream leading-tight"
-        style={{ fontFamily: 'var(--font-display)' }}
-      >
-        {title}
-      </h3>
-      <p 
-        className="text-xs leading-relaxed text-m2m-muted flex-1"
-        style={{ fontFamily: 'var(--font-sans)' }}
-      >
-        {body}
-      </p>
-      <span 
-        className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold flex items-center gap-2 group-hover:gap-3.5 transition-all duration-300"
-        style={{ fontFamily: 'var(--font-nav)' }}
-      >
-        {link}
-        <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
-      </span>
-    </div>
   )
 }

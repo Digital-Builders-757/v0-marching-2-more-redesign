@@ -87,7 +87,7 @@ export function SellValuation() {
           </div>
 
           {/* Right Form */}
-          <div className="bg-m2m-deep p-8 md:p-12" data-gsap="fade-left">
+          <div className="bg-m2m-deep p-8 md:p-12 rounded-xl" data-gsap="fade-left">
             <h3 
               className="text-xl text-m2m-cream mb-6"
               style={{ fontFamily: 'var(--font-display)' }}
@@ -107,7 +107,7 @@ export function SellValuation() {
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                   placeholder="123 Main Street, Virginia Beach, VA"
-                  className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
+                  className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
                   style={{ fontFamily: 'var(--font-sans)' }}
                 />
               </div>
@@ -124,7 +124,7 @@ export function SellValuation() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="John Smith"
-                    className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
+                    className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
                     style={{ fontFamily: 'var(--font-sans)' }}
                   />
                 </div>
@@ -140,7 +140,7 @@ export function SellValuation() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="(757) 000-0000"
-                    className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
+                    className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
                     style={{ fontFamily: 'var(--font-sans)' }}
                   />
                 </div>
@@ -157,13 +157,13 @@ export function SellValuation() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="you@example.com"
-                  className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
+                  className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
                   style={{ fontFamily: 'var(--font-sans)' }}
                 />
               </div>
               <button
                 type="submit"
-                className="w-full text-[0.7rem] tracking-[0.2em] uppercase bg-m2m-gold text-m2m-deep font-medium px-8 py-4 transition-colors hover:bg-m2m-gold-lt mt-4"
+                className="w-full text-[0.7rem] tracking-[0.2em] uppercase bg-m2m-gold text-m2m-deep font-medium px-8 py-4 rounded-lg transition-colors hover:bg-m2m-gold-lt mt-4"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 Get My Free Valuation
