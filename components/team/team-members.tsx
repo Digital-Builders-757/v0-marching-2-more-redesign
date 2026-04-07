@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
 const teamMembers = [
@@ -49,11 +50,13 @@ export function TeamMembers() {
             >
               <div className="flex flex-col sm:flex-row gap-6 p-6 border border-m2m-deep/10 transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
                 {/* Image */}
-                <div className="w-full sm:w-40 h-48 sm:h-40 flex-shrink-0 overflow-hidden">
-                  <img 
+                <div className="relative w-full sm:w-40 h-48 sm:h-40 flex-shrink-0 overflow-hidden">
+                  <Image
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(min-width: 640px) 160px, 100vw"
                   />
                 </div>
                 

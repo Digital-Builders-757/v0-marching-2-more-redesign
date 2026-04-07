@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 import { Plus, Phone, Mail, MapPin } from "lucide-react"
 import { gsap } from "gsap"
 
@@ -50,7 +51,7 @@ const menuSections = [
     links: [
       { label: "Contact Us", href: "/contact" },
       { label: "Book Consultation", href: "/contact#book" },
-      { label: "757-206-2859", href: "tel:7572062859" },
+      { label: "757-206-2859", href: M2M_PHONE_HREF },
     ],
   },
 ]
@@ -294,7 +295,7 @@ export function Header() {
                     hello@marching2more.com
                   </a>
                   <a 
-                    href="tel:7572062859"
+                    href={M2M_PHONE_HREF}
                     className="flex items-center justify-center gap-2 text-[0.65rem] tracking-[0.15em] uppercase text-m2m-muted hover:text-m2m-gold transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5" />
