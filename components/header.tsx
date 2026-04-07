@@ -7,16 +7,6 @@ import { cn } from "@/lib/utils"
 import { Plus, Phone, Mail, MapPin } from "lucide-react"
 import { gsap } from "gsap"
 
-const navLinks = [
-  { label: "Buy", href: "/buy" },
-  { label: "Sell", href: "/sell" },
-  { label: "Our Team", href: "/team" },
-  { label: "Partners", href: "/partners" },
-  { label: "Reviews", href: "/reviews" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
-]
-
 const menuSections = [
   {
     title: "Buyers",
@@ -66,7 +56,6 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const logoRef = useRef<HTMLAnchorElement>(null)
-  const navRef = useRef<HTMLElement>(null)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const menuContentRef = useRef<HTMLDivElement>(null)
@@ -83,21 +72,11 @@ export function Header() {
         0.2
       )
 
-      const navItems = navRef.current?.querySelectorAll("a")
-      if (navItems) {
-        tl.fromTo(
-          navItems,
-          { opacity: 0, y: -15 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.05 },
-          0.4
-        )
-      }
-
       tl.fromTo(
         menuBtnRef.current,
         { opacity: 0, rotate: -90 },
         { opacity: 1, rotate: 0, duration: 0.6 },
-        0.7
+        0.5
       )
     })
 
@@ -183,19 +162,7 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation - visible inline */}
-          <nav ref={navRef} className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-[0.7rem] tracking-[0.2em] uppercase text-m2m-cream/90 hover:text-m2m-gold transition-colors opacity-0"
-                style={{ fontFamily: 'var(--font-nav)' }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+
 
           {/* Menu button - Plus icon that rotates to X when menu opens */}
           <button
