@@ -26,8 +26,8 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <Testimonials />
-        <PropertySearch />
         <PropertySearchNew />
+        <PropertySearch />
         <SellHero />
         <Valuation />
         <Services />
