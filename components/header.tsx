@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
@@ -63,120 +63,31 @@ const socialLinks = [
 ]
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const headerRef = useRef<HTMLElement>(null)
-  const logoRef = useRef<HTMLAnchorElement>(null)
-  const navRef = useRef<HTMLElement>(null)
-  const menuBtnRef = useRef<HTMLButtonElement>(null)
-  const overlayRef = useRef<HTMLDivElement>(null)
-  const menuContentRef = useRef<HTMLDivElement>(null)
-
-  // Header entrance animation
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
-
-      tl.fromTo(
-        logoRef.current,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.8 },
-        0.2
-      )
-
-      const navItems = navRef.current?.querySelectorAll("a")
-      if (navItems) {
-        tl.fromTo(
-          navItems,
-          { opacity: 0, y: -15 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.05 },
-          0.4
-        )
-      }
-
-      tl.fromTo(
-        menuBtnRef.current,
-        { opacity: 0, rotate: -90 },
-        { opacity: 1, rotate: 0, duration: 0.6 },
-        0.7
-      )
-    })
-
-    return () => ctx.revert()
-  }, [])
-
-  // Menu open/close animation
-  useEffect(() => {
-    if (!overlayRef.current) return
-    
-    if (isOpen) {
-      // First set visibility and initial state
-      gsap.set(overlayRef.current, { visibility: "visible", x: "100%" })
-      
-      // Animate in
-      gsap.to(overlayRef.current, {
-        opacity: 1,
-        x: 0,
-        duration: 0.6,
-        ease: "power3.out",
-      })
-
-      const sections = menuContentRef.current?.querySelectorAll(".menu-section")
-      if (sections && sections.length > 0) {
-        gsap.fromTo(
-          sections,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, delay: 0.3, ease: "power3.out" }
-        )
-      }
-    } else {
-      // Only animate out if it was previously open (not on initial render)
-      if (overlayRef.current.style.visibility === "visible") {
-        gsap.to(overlayRef.current, {
-          opacity: 0,
-          x: "100%",
-          duration: 0.5,
-          ease: "power3.inOut",
-          onComplete: () => {
-            if (overlayRef.current) {
-              gsap.set(overlayRef.current, { visibility: "hidden" })
-            }
-          },
-        })
-      }
-    }
-  }, [isOpen])
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <>
-      <header ref={headerRef} className="fixed top-0 left-0 right-0 z-[100]">
-        {/* Cinematic top gradient for readability */}
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)',
-          }}
-        />
-        <div className="relative flex items-center justify-between h-20 px-6 md:px-10 lg:px-16">
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link ref={logoRef} href="/" className="flex-shrink-0 opacity-0" aria-label="Marching 2 More - Home">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-WlleymhFpZWiaSsI0YKWHMAcn1V6SX.avif"
-              alt="Marching2More"
-              width={120}
-              height={43}
-              className="h-[34px] md:h-[41px] w-auto"
+              src="https://static.wixstatic.com/media/63ece0_60ae3c63ab0d4755b7e49fbd76ad97c2~mv2.png/v1/fill/w_233,h_82,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_60ae3c63ab0d4755b7e49fbd76ad97c2~mv2.png"
+              alt="Marching 2 More Real Estate Team"
+              width={175}
+              height={62}
+              className="h-14 w-auto"
               priority
             />
           </Link>
 
-          {/* Desktop Navigation - visible inline */}
-          <nav ref={navRef} className="hidden md:flex items-center gap-6 lg:gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-[0.7rem] tracking-[0.2em] uppercase text-m2m-cream/90 hover:text-m2m-gold transition-colors opacity-0"
-                style={{ fontFamily: 'var(--font-nav)' }}
+                className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
               >
                 {link.label}
               </Link>
@@ -397,6 +308,24 @@ export function Header() {
           </div>
         </div>
       </div>
-    </>
+
+      {/* Mobile Navigation */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t">
+          <nav className="flex flex-col py-4 px-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="py-3 text-sm font-medium text-gray-700 hover:text-gray-900 border-b border-gray-100 last:border-0"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
+    </header>
   )
 }

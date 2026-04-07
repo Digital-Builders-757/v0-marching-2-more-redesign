@@ -9,112 +9,16 @@ import {
 } from "@/lib/m2m-site"
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const bgRef = useRef<HTMLDivElement>(null)
-  const tagRef = useRef<HTMLDivElement>(null)
-  const lineRef = useRef<HTMLSpanElement>(null)
-  const headlineRef = useRef<HTMLHeadingElement>(null)
-  const subtitleRef = useRef<HTMLParagraphElement>(null)
-  const ctasRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Create master timeline
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
-
-      // Background zoom
-      tl.fromTo(
-        bgRef.current,
-        { scale: 1.15, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 2 },
-        0
-      )
-
-      // Tag fade in from left
-      tl.fromTo(
-        tagRef.current,
-        { opacity: 0, x: -30 },
-        { opacity: 1, x: 0, duration: 0.8 },
-        0.4
-      )
-
-      // Line reveal
-      tl.fromTo(
-        lineRef.current,
-        { scaleX: 0, transformOrigin: "left center" },
-        { scaleX: 1, duration: 0.8 },
-        0.6
-      )
-
-      // Headline lines reveal
-      const lines = headlineRef.current?.querySelectorAll(".hero-line")
-      if (lines) {
-        tl.fromTo(
-          lines,
-          { y: "110%", opacity: 0 },
-          { y: "0%", opacity: 1, duration: 1, stagger: 0.15 },
-          0.7
-        )
-      }
-
-      // Subtitle fade up
-      tl.fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8 },
-        1.2
-      )
-
-      // CTAs fade up with stagger
-      const ctas = ctasRef.current?.querySelectorAll(".cta-btn")
-      if (ctas && ctas.length > 0) {
-        tl.fromTo(
-          ctas,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 },
-          1.4
-        )
-      }
-
-    })
-
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section 
-      ref={sectionRef}
-      className="relative min-h-screen flex flex-col px-6 pt-32 pb-12 md:px-16 lg:px-24 overflow-hidden" 
-      style={{ backgroundColor: '#050d06' }} 
-      aria-labelledby="hero-heading"
-    >
-      {/* Image Background - base layer with GSAP zoom animation */}
+    <section className="relative bg-[#0a1628] text-white">
+      {/* Background Image */}
       <div 
-        ref={bgRef}
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-0"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-03%20at%207.30.14%20PM-JVsmkDPrwryZHLk0Lm3Wqm4bAhGTc2.png')`,
+          backgroundImage: `url('https://static.wixstatic.com/media/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg/v1/fill/w_1903,h_813,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg')`,
         }}
       />
-
-      {/* Gradient overlay for text readability - above video */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background: `
-            linear-gradient(to right, rgba(5,13,6,0.92) 0%, rgba(5,13,6,0.75) 35%, rgba(5,13,6,0.45) 60%, rgba(5,13,6,0.2) 100%),
-            linear-gradient(to bottom, rgba(5,13,6,0.4) 0%, transparent 40%, transparent 70%, rgba(5,13,6,0.5) 100%)
-          `,
-        }}
-      />
-
-      {/* Ambient glow */}
-      <div
-        className="absolute -top-[100px] -right-[100px] w-[700px] h-[700px] pointer-events-none z-[2]"
-        style={{
-          background: 'radial-gradient(ellipse, rgba(205,176,95,0.08) 0%, transparent 65%)',
-        }}
-      />
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
       <div className="relative z-10 max-w-[780px] flex-1 flex flex-col justify-center">
@@ -132,38 +36,48 @@ export function Hero() {
           Licensed Real Estate Professionals in Virginia Beach, VA, USA • Veteran Owned | 5.0 ★ ★ ★ ★ ★
         </div>
 
-        {/* Headline - reveal animation */}
-        <h1 
-          ref={headlineRef}
-          className="font-light text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.05] tracking-tight text-m2m-cream mb-8" 
-          id="hero-heading"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          <span className="block overflow-hidden">
-            <span className="hero-line block">
-              Where You
-            </span>
-          </span>
-          <span className="block overflow-hidden">
-            <span className="hero-line block">
-              Find Your
-            </span>
-          </span>
-          <span className="block overflow-hidden">
-            <span className="hero-line block">
-              <em className="italic text-m2m-gold">Next Home</em>
-            </span>
-          </span>
-        </h1>
+          {/* Main Headline */}
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            Where You Find Your Next Home
+          </h2>
+          
+          <p className="text-lg mb-8 text-gray-200">
+            Ask about our Financing Options.
+          </p>
 
-        {/* Subtitle - fade up */}
-        <p 
-          ref={subtitleRef}
-          className="text-sm text-m2m-muted-lt tracking-wider italic opacity-0"
-          style={{ fontFamily: 'var(--font-sans)', textShadow: '0 2px 8px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.2)' }}
-        >
-          Ask about our Financing Options.
-        </p>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 text-center">
+              <h3 className="text-xl font-bold mb-2">Buy. Sell. Relocate.</h3>
+              <Link
+                href="/contact"
+                className="inline-block bg-[#c9a961] hover:bg-[#b89a52] text-black font-semibold px-6 py-3 rounded transition-colors"
+              >
+                Work With Us
+              </Link>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 text-center">
+              <h3 className="text-xl font-bold mb-2">Free Home Valuation</h3>
+              <Link
+                href="/home-valuation"
+                className="inline-block bg-[#c9a961] hover:bg-[#b89a52] text-black font-semibold px-6 py-3 rounded transition-colors"
+              >
+                Free Home Valuation
+              </Link>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 text-center">
+              <h3 className="text-xl font-bold mb-2">Speak with an Agent.</h3>
+              <a
+                href="tel:7572062859"
+                className="inline-flex items-center gap-2 bg-[#c9a961] hover:bg-[#b89a52] text-black font-semibold px-6 py-3 rounded transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                757-206-2859
+              </a>
+            </div>
+          </div>
 
         {/* CTAs - at bottom of content */}
         <div ref={ctasRef} className="mt-12 grid w-full gap-4 md:max-w-2xl md:grid-cols-2">

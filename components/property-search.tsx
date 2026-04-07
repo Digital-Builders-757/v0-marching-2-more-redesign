@@ -35,28 +35,21 @@ const positions = [
 ]
 
 export function PropertySearch() {
-  const [order, setOrder] = useState([0, 1, 2])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setOrder((prev) => [prev[2], prev[0], prev[1]])
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
-    <section className="bg-m2m-black px-6 py-16 md:px-[60px] md:py-[120px] overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Left content */}
-        <div className="flex flex-col gap-9 order-2 lg:order-1">
-          {/* Section label */}
-          <div className="flex items-center gap-3 text-[0.6rem] tracking-[0.3em] uppercase text-m2m-gold">
-            <div 
-              data-gsap="line-reveal"
-              className="w-6 h-px bg-m2m-gold" 
-            />
-            <span data-gsap="fade-right">Search Available Properties</span>
-          </div>
+    <section className="bg-[#f5f5f5] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Find Your New Home
+            </h2>
+            <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+              Search Available Properties
+            </h3>
+            <p className="text-gray-600 mb-8 leading-relaxed">
+              We&apos;ve curated a range of properties that fit the lifestyle and requirements of military personnel and their families. From relocations to finding homes near military bases, we&apos;re here to support you at every step.
+            </p>
 
           {/* Title */}
           <h2 
@@ -92,7 +85,7 @@ export function PropertySearch() {
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 Start Your Search Now
-              </Link>
+              </a>
               <Link
                 data-gsap-child
                 data-gsap="magnetic"
