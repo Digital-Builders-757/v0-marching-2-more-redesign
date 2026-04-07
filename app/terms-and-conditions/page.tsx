@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
+import { PolicyPage } from "@/components/policy/policy-page"
 
 export const metadata = {
   title: "Terms and Conditions | Marching 2 More Real Estate",
@@ -11,10 +12,7 @@ export default function TermsAndConditionsPage() {
     <>
       <Header />
       <GSAPAnimations />
-      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-5xl px-6 py-16">
-        <h1 className="font-serif text-4xl font-semibold text-m2m-green">Terms and Conditions</h1>
-        <p className="mt-4 text-m2m-sage">Content migration pending.</p>
-      </main>
+      <PolicyPage title="Terms and Conditions" sourceUrl="https://www.marching2more.com/terms-and-conditions" />
       <Footer />
     </>
   )

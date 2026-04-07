@@ -1,6 +1,12 @@
 # v0-marching-2-more-redesign
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app) for **Marching 2 More** (military real estate marketing site).
+
+## Documentation
+
+- [docs/DOCUMENTATION.md](./docs/DOCUMENTATION.md) — index  
+- [docs/WORK_ORDER.md](./docs/WORK_ORDER.md) — recent work and next steps  
+- Project Cursor skill: `.cursor/skills/marching-2-more/SKILL.md` (AI / agent context for this repo)
 
 ## Built with v0
 
@@ -10,15 +16,14 @@ This repository is linked to a [v0](https://v0.app) project. You can continue de
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies and run the development server (this repo standardizes on **npm**):
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
+
+Quality gate before a PR: `npm run ci` (lint, test placeholder, TypeScript, production build).
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function BuyHero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -124,7 +125,7 @@ export function BuyHero() {
             VA Loan Information
           </Link>
           <a
-            href="tel:7572062859"
+            href={M2M_PHONE_HREF}
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
             style={{ fontFamily: 'var(--font-nav)' }}
           >

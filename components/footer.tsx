@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 const footerLinks = {
   properties: [
@@ -87,7 +88,7 @@ export function Footer() {
           </p>
           <div className="flex flex-col gap-2.5">
             <a 
-              href="tel:7572062859" 
+              href={M2M_PHONE_HREF} 
               className="text-xs tracking-wider text-m2m-muted hover:text-m2m-gold transition-colors"
               style={{ fontFamily: 'var(--font-sans)' }}
             >

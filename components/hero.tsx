@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -182,7 +183,7 @@ export function Hero() {
             Free Home Valuation
           </a>
           <a
-            href="tel:7572062859"
+            href={M2M_PHONE_HREF}
             className="cta-btn w-full md:w-auto text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
             style={{ fontFamily: 'var(--font-nav)', opacity: 0 }}
           >

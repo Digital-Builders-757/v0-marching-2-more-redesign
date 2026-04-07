@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
+import { PolicyPage } from "@/components/policy/policy-page"
 
 export const metadata = {
   title: "Privacy Policy | Marching 2 More Real Estate",
@@ -11,10 +12,33 @@ export default function PrivacyPolicyPage() {
     <>
       <Header />
       <GSAPAnimations />
-      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-5xl px-6 py-16">
-        <h1 className="font-serif text-4xl font-semibold text-m2m-green">Privacy Policy</h1>
-        <p className="mt-4 text-m2m-sage">Content migration pending.</p>
-      </main>
+      <PolicyPage
+        title="Privacy Policy"
+        lastUpdated="January 1, 2024"
+        sourceUrl="https://www.marching2more.com/privacy-policy"
+      >
+        <p>
+          This privacy notice for Marching 2 More LLC describes how and why we might collect, store, use, and/or share
+          your information when you use our services.
+        </p>
+        <p>
+          Questions or concerns? If you do not agree with our policies and practices, please do not use our Services.
+          For questions, contact: <a href="mailto:Marching2morerei@outlook.com">Marching2morerei@outlook.com</a>.
+        </p>
+        <h2>Summary of key points</h2>
+        <ul>
+          <li>We may process personal information depending on how you interact with our Services.</li>
+          <li>We do not process sensitive personal information.</li>
+          <li>
+            We may receive information from public databases, marketing partners, social media platforms, and other
+            outside sources.
+          </li>
+        </ul>
+        <p>
+          For the full text (including table of contents and detailed sections), please use the canonical source link
+          above.
+        </p>
+      </PolicyPage>
       <Footer />
     </>
   )
