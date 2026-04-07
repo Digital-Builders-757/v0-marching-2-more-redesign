@@ -1,0 +1,120 @@
+"use client"
+
+import Link from "next/link"
+
+export function Valuation() {
+  return (
+    <section id="valuation" className="bg-m2m-panel border-t border-b border-m2m-gold/20 px-6 py-16 md:px-[60px] md:py-[120px] relative overflow-hidden">
+      {/* Diagonal light with parallax */}
+      <div 
+        data-gsap="parallax"
+        data-gsap-speed="0.2"
+        className="absolute inset-0 pointer-events-none"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(125deg, rgba(205,176,95,0.06) 0%, transparent 50%)',
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-center">
+        {/* Left */}
+        <div>
+          {/* Label */}
+          <div className="flex items-center gap-3 text-[0.6rem] tracking-[0.3em] uppercase text-m2m-gold mb-7">
+            <div 
+              data-gsap="line-reveal"
+              className="w-6 h-px bg-m2m-gold" 
+            />
+            <span data-gsap="fade-right">Free Home Valuation</span>
+          </div>
+
+          {/* Headline */}
+          <h2 
+            data-gsap="blur-in"
+            className="font-light text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[0.95] text-m2m-cream mb-12"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Sell with confidence. <br />
+            Learn your home&apos;s <em className="italic text-m2m-gold">true value</em>
+          </h2>
+
+          {/* CTAs */}
+          <div 
+            className="flex flex-col md:flex-row gap-3"
+            data-gsap="stagger-children"
+            data-gsap-direction="up"
+          >
+            <Link
+              data-gsap-child
+              data-gsap="magnetic"
+              href="#contact"
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+              style={{ fontFamily: 'var(--font-nav)' }}
+            >
+              Get Your Free Home Valuation
+            </Link>
+            <Link
+              data-gsap-child
+              data-gsap="magnetic"
+              href="#"
+              className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+              style={{ fontFamily: 'var(--font-nav)' }}
+            >
+              Get The Pre-Listing Checklist
+            </Link>
+          </div>
+        </div>
+
+        {/* Right - Stats with stagger */}
+        <div 
+          className="flex flex-col gap-4 lg:gap-8"
+          data-gsap="stagger-children"
+          data-gsap-direction="left"
+        >
+          <StatCard number="$485K" label="Average Sale Price" note="Hampton Roads 2024" />
+          <StatCard number="18" label="Days on Market" note="For Our Listings" />
+          <StatCard number="102%" label="List-to-Sale Ratio" note="We Maximize Value" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function StatCard({
+  number,
+  label,
+  note,
+}: {
+  number: string
+  label: string
+  note: string
+}) {
+  return (
+    <div 
+      data-gsap-child
+      className="bg-black/30 border border-m2m-gold/20 p-8 flex flex-col gap-2 transition-all duration-500 hover:border-m2m-gold/40 hover:bg-black/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-m2m-gold/5"
+    >
+      <span 
+        className="text-4xl lg:text-5xl font-light text-m2m-cream tracking-tight"
+        style={{ fontFamily: 'var(--font-display)' }}
+      >
+        {number}
+      </span>
+      <span 
+        className="text-[0.6rem] tracking-[0.2em] uppercase text-m2m-muted"
+        style={{ fontFamily: 'var(--font-nav)' }}
+      >
+        {label}
+      </span>
+      <span 
+        className="text-xs text-m2m-gold-dim italic mt-1"
+        style={{ fontFamily: 'var(--font-sans)' }}
+      >
+        {note}
+      </span>
+    </div>
+  )
+}
