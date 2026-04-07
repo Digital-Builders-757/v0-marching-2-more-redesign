@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 
+import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
+
 import { ContactForm } from "@/components/contact/contact-form"
 import { ContactInfo } from "@/components/contact/contact-info"
 
@@ -29,11 +31,11 @@ export function ContactUsParity() {
 
           <p className="mt-6">
             <a
-              href="tel:757-206-2859"
+              href={M2M_PHONE_HREF}
               className="text-xs tracking-[0.2em] uppercase text-m2m-deep hover:text-m2m-gold transition-colors"
               style={{ fontFamily: "var(--font-nav)" }}
             >
-              Or give us a call — 757-206-2859
+              Or give us a call — {M2M_PHONE_DISPLAY}
             </a>
           </p>
 
