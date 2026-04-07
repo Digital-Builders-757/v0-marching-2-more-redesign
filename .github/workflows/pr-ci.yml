@@ -33,6 +33,6 @@ jobs:
         run: npm run typecheck
 
       - name: Build
-        # Next 16 + Tailwind 4 sometimes fails on linux under Turbopack due to lightningcss native module resolution.
-        # Force the stable pipeline for CI.
-        run: npx next build --no-turbo
+        # Next 16.2+ uses Turbopack for production builds; `--no-turbo` was removed from the CLI.
+        # If linux CI hits lightningcss native resolution issues, pin/install the correct optional deps for the runner.
+        run: npm run build
