@@ -3,7 +3,6 @@ import { Hero } from "@/components/hero"
 import { PropertySearchNew } from "@/components/property-search-new"
 import { SellHero } from "@/components/sell-hero"
 import { Testimonials } from "@/components/testimonials"
-import { PropertySearch } from "@/components/property-search"
 import { Valuation } from "@/components/valuation"
 import { Services } from "@/components/services"
 import { Footer } from "@/components/footer"
@@ -27,7 +26,6 @@ export default function Home() {
         <Hero />
         <Testimonials />
         <PropertySearchNew />
-        <PropertySearch />
         <Valuation />
         <SellHero />
         <Services />
