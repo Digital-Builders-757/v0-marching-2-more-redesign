@@ -7,15 +7,14 @@ import { cn } from "@/lib/utils"
 import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 import { Plus, Phone, Mail, MapPin } from "lucide-react"
 import { gsap } from "gsap"
+import { CALENDLY_URL } from "@/lib/m2m-constants"
 
 const navLinks = [
-  { label: "Buy", href: "/buy" },
-  { label: "Sell", href: "/sell" },
-  { label: "Our Team", href: "/team" },
-  { label: "Partners", href: "/partners" },
+  { label: "Work With Us", href: "/home-search" },
+  { label: "Home Valuation", href: "/free-home-valuation" },
+  { label: "Our Team", href: "/our-team" },
   { label: "Reviews", href: "/reviews" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact-us" },
 ]
 
 const menuSections = [
@@ -159,7 +158,7 @@ export function Header() {
         />
         <div className="relative flex items-center justify-between h-20 px-6 md:px-10 lg:px-16">
           {/* Logo */}
-          <Link ref={logoRef} href="/" className="flex-shrink-0 opacity-0" aria-label="Marching2More - Home">
+          <Link ref={logoRef} href="/" className="flex-shrink-0 opacity-0" aria-label="Marching 2 More - Home">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-WlleymhFpZWiaSsI0YKWHMAcn1V6SX.avif"
               alt="Marching2More"
@@ -184,13 +183,65 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Menu button - Plus icon that rotates to X when menu opens */}
-          <button
-            ref={menuBtnRef}
-            className="w-10 h-10 flex items-center justify-center text-m2m-cream hover:text-m2m-gold transition-colors opacity-0"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-          >
+          <div className="flex items-center gap-3">
+            {/* Agent quick-links (Wix parity) */}
+            <div className="hidden lg:flex items-center gap-1.5">
+              <Link
+                href="/profile-page"
+                className="relative h-9 w-9 overflow-hidden rounded-full border border-m2m-gold/20 hover:border-m2m-gold/50 transition"
+                aria-label="Donavan McFadden profile"
+              >
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Donavan%20copy-R9RwXLWqjd9OnQw4gBl6EiAVWOj9x1.avif"
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+              </Link>
+              <Link
+                href="/roger-lee"
+                className="relative h-9 w-9 overflow-hidden rounded-full border border-m2m-gold/20 hover:border-m2m-gold/50 transition"
+                aria-label="Roger Lee profile"
+              >
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roger%20Lee%20copy-ZbhqIDwo7JeGrBkKFa6Sv0ylWIuI1D.avif"
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+              </Link>
+              <Link
+                href="/kristin-s-profile"
+                className="relative h-9 w-9 overflow-hidden rounded-full border border-m2m-gold/20 hover:border-m2m-gold/50 transition"
+                aria-label="Kristin Allen profile"
+              >
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Kristin%20copy-lMfUtkHjgotsvjdeeUby9aj3quqUGu.avif"
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+              </Link>
+            </div>
+
+            {/* Book CTA (Wix parity) */}
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden md:inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:bg-m2m-gold-lt"
+              style={{ fontFamily: 'var(--font-nav)' }}
+            >
+              BOOK A HOME CONSULTATION
+            </a>
+
+            {/* Menu button - Plus icon that rotates to X when menu opens */}
+            <button
+              ref={menuBtnRef}
+              className="w-10 h-10 flex items-center justify-center text-m2m-cream hover:text-m2m-gold transition-colors opacity-0"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
             <Plus 
               className={cn(
                 "w-6 h-6 transition-transform duration-500 ease-out",
@@ -198,7 +249,8 @@ export function Header() {
               )} 
               strokeWidth={1.5} 
             />
-          </button>
+            </button>
+          </div>
         </div>
       </header>
 
