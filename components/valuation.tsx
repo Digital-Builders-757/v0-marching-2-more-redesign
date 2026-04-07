@@ -4,8 +4,8 @@ import Link from "next/link"
 
 export function Valuation() {
   return (
-    <section id="valuation" className="bg-m2m-panel border-t border-b border-m2m-gold/20 px-6 py-16 md:px-[60px] md:py-[120px] relative overflow-hidden">
-      {/* Diagonal light with parallax */}
+    <section id="valuation" className="bg-m2m-black px-6 py-16 md:px-[60px] md:py-[120px] relative overflow-hidden">
+      {/* Subtle gold gradient overlay */}
       <div 
         data-gsap="parallax"
         data-gsap-speed="0.2"
@@ -14,7 +14,7 @@ export function Valuation() {
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(125deg, rgba(205,176,95,0.06) 0%, transparent 50%)',
+            background: 'radial-gradient(ellipse at 30% 20%, rgba(205,176,95,0.03) 0%, transparent 60%)',
           }}
         />
       </div>
@@ -51,8 +51,8 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/contact"
-              className="flex items-center justify-center text-base px-6 py-4 bg-m2m-deep text-m2m-cream font-medium rounded-lg transition-all duration-300 hover:bg-m2m-deep/80 text-center"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="flex items-center justify-center text-sm px-6 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+              style={{ fontFamily: 'var(--font-nav)' }}
             >
               Get Your Free Home Valuation
             </Link>
@@ -60,8 +60,8 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/sell"
-              className="flex items-center justify-center text-base px-6 py-4 border border-m2m-cream/50 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-cream hover:bg-m2m-cream/5 text-center"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="flex items-center justify-center text-sm px-6 py-4 border border-m2m-gold/30 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+              style={{ fontFamily: 'var(--font-nav)' }}
             >
               Learn More
             </Link>
@@ -69,8 +69,8 @@ export function Valuation() {
               data-gsap-child
               data-gsap="magnetic"
               href="/sell#checklist"
-              className="flex items-center justify-center text-base px-6 py-4 border border-m2m-cream/50 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-cream hover:bg-m2m-cream/5 text-center"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="flex items-center justify-center text-sm px-6 py-4 border border-m2m-gold/30 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+              style={{ fontFamily: 'var(--font-nav)' }}
             >
               Get The Pre-Listing Checklist
             </Link>
@@ -115,7 +115,7 @@ function StatCard({
   return (
     <div 
       data-gsap-child
-      className="bg-black/30 border border-m2m-gold/20 rounded-xl p-8 flex flex-col gap-2 transition-all duration-500 hover:border-m2m-gold/40 hover:bg-black/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-m2m-gold/5"
+      className="bg-m2m-panel border border-m2m-gold/20 rounded-xl p-8 flex flex-col gap-2 transition-all duration-500 hover:border-m2m-gold/40 hover:bg-m2m-panel/80 hover:-translate-y-1 hover:shadow-lg hover:shadow-m2m-gold/5"
     >
       <span 
         className="text-4xl lg:text-5xl font-light text-m2m-cream tracking-tight"
