@@ -6,8 +6,7 @@ import Image from "next/image"
 import { Plus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { M2M_PHONE_HREF } from "@/lib/m2m-site"
-import { CALENDLY_URL } from "@/lib/m2m-constants"
+import { CALENDLY_BOOK_URL, M2M_PHONE_HREF } from "@/lib/m2m-site"
 import { M2M_HEADER_AGENT_LINKS, M2M_WIX_HEADER_MENU_LINKS } from "@/lib/m2m-nav"
 
 export function Header() {
@@ -91,7 +90,7 @@ export function Header() {
           </div>
 
           <a
-            href={CALENDLY_URL}
+            href={CALENDLY_BOOK_URL}
             target="_blank"
             rel="noreferrer"
             className="hidden md:inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:bg-m2m-gold-lt"
@@ -131,7 +130,7 @@ export function Header() {
 
               <li className="pt-1 md:hidden">
                 <a
-                  href={CALENDLY_URL}
+                  href={CALENDLY_BOOK_URL}
                   target="_blank"
                   rel="noreferrer"
                   className="block rounded-sm bg-m2m-gold px-2 py-2 text-center text-[0.7rem] tracking-[0.2em] uppercase font-medium text-m2m-deep hover:bg-m2m-gold-lt"

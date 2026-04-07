@@ -112,6 +112,26 @@
 
 ---
 
+## Block 4 — Wix parity: global site constants + page body alignment
+
+- [x] Consolidate duplicated site constants into a single source of truth (`lib/m2m-site.ts`)
+  - Phone / tel href
+  - Address (footer single-line + address lines)
+  - Email display vs mailto target (Wix parity)
+  - Calendly / RealScout / Google review / Creed Realty links
+- [x] Keep `lib/m2m-constants.ts` as a backwards-compatible facade (re-exports)
+- [x] Update footer + contact surfaces to use unified constants and match Wix mailto/address
+
+### Page parity QA (minimal diffs)
+
+- [x] `/our-team` — team cards link to profile pages + CTA cluster matches Wix (Calendly / Contact Us / Call)
+- [x] `/free-home-valuation` — implement valuation hero + process + review CTAs + final CTA (no longer aliases `/sell`)
+- [x] `/reviews` — CTA uses Wix-compatible route + Google review link
+- [x] `/resources` — replace placeholder with Wix-compatible “More Resources / Pre-Listing Checklist” surface
+- [x] `/home-search` — replace redirect with Wix-compatible home search landing (RealScout map + mailto + Creed link)
+
+---
+
 ## Notes / guardrails
 
 - Follow `docs/development/BRANCHING.md`: branch from `develop`, PR into `develop`, then ship `develop` → `main`.

@@ -3,14 +3,16 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { ABOUT_COPY } from "@/lib/m2m-constants"
 import {
-  ABOUT_COPY,
-  CALENDLY_URL,
+  CALENDLY_BOOK_URL,
   GOOGLE_REVIEW_URL,
-  M2M_ADDRESS,
-  M2M_INBOX_EMAIL,
+  M2M_ADDRESS_SINGLE_LINE,
+  M2M_EMAIL_DISPLAY,
+  M2M_EMAIL_HREF,
   M2M_PHONE_DISPLAY,
-} from "@/lib/m2m-constants"
+  M2M_PHONE_HREF,
+} from "@/lib/m2m-site"
 
 import { M2M_FOOTER_POLICY_LINKS, M2M_FOOTER_QUICK_LINKS } from "@/lib/m2m-nav"
 
@@ -54,7 +56,7 @@ export function Footer() {
             </nav>
 
             <a
-              href={CALENDLY_URL}
+              href={CALENDLY_BOOK_URL}
               target="_blank"
               rel="noreferrer"
               className="mt-4 inline-flex w-fit items-center justify-center bg-m2m-gold text-m2m-deep text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:bg-m2m-gold-lt"
@@ -133,21 +135,21 @@ export function Footer() {
               Contact
             </h3>
             <p className="text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
-              {M2M_ADDRESS}
+              {M2M_ADDRESS_SINGLE_LINE}
             </p>
             <a
-              href={`tel:${M2M_PHONE_DISPLAY}`}
+              href={M2M_PHONE_HREF}
               className="text-xs tracking-wider text-m2m-muted hover:text-m2m-cream transition-colors"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               {M2M_PHONE_DISPLAY}
             </a>
             <a
-              href={`mailto:${M2M_INBOX_EMAIL}`}
+              href={M2M_EMAIL_HREF}
               className="text-xs tracking-wider text-m2m-muted hover:text-m2m-cream transition-colors"
               style={{ fontFamily: "var(--font-sans)" }}
             >
-              {M2M_INBOX_EMAIL}
+              {M2M_EMAIL_DISPLAY}
             </a>
           </div>
         </div>
