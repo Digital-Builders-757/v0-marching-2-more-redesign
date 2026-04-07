@@ -211,3 +211,8 @@ body::before {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Valuation CTA alignment fix */
+.relative.z-10.flex.flex-col.md\:flex-row.items-start.md\:items-end.gap-4.md\:gap-6.mt-auto {
+  align-items: flex-start;
+}
