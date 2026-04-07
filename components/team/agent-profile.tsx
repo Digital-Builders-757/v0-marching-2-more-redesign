@@ -1,8 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { CALENDLY_URL, M2M_PHONE_DISPLAY } from "@/lib/m2m-constants"
-import { M2M_PHONE_HREF } from "@/lib/m2m-site"
+import {
+  CALENDLY_BOOK_URL,
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+} from "@/lib/m2m-site"
 
 type AgentProfileProps = {
   name: string
@@ -47,7 +50,7 @@ export function AgentProfile({ name, subtitle, image, bio }: AgentProfileProps) 
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
-                href={CALENDLY_URL}
+                href={CALENDLY_BOOK_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:bg-m2m-gold-lt"

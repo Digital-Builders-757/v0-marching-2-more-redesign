@@ -1,7 +1,13 @@
 "use client"
 
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
-import { M2M_PHONE_HREF } from "@/lib/m2m-site"
+import {
+  M2M_ADDRESS_LINES,
+  M2M_EMAIL_DISPLAY,
+  M2M_EMAIL_HREF,
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+} from "@/lib/m2m-site"
 
 export function ContactInfo() {
   return (
@@ -26,7 +32,7 @@ export function ContactInfo() {
               className="text-m2m-muted-lt hover:text-m2m-gold transition-colors"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
-              757-206-2859
+              {M2M_PHONE_DISPLAY}
             </a>
           </div>
 
@@ -44,11 +50,11 @@ export function ContactInfo() {
               Email
             </h3>
             <a 
-              href="mailto:hello@marching2more.com"
+              href={M2M_EMAIL_HREF}
               className="text-m2m-muted-lt hover:text-m2m-gold transition-colors text-sm"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
-              hello@marching2more.com
+              {M2M_EMAIL_DISPLAY}
             </a>
           </div>
 
@@ -69,8 +75,12 @@ export function ContactInfo() {
               className="text-m2m-muted-lt text-sm leading-relaxed"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
-              582 Lynnhaven Pkwy Ste 400<br />
-              Virginia Beach, VA 23452
+              {M2M_ADDRESS_LINES.map((line, idx) => (
+                <span key={line}>
+                  {line}
+                  {idx < M2M_ADDRESS_LINES.length - 1 ? <br /> : null}
+                </span>
+              ))}
             </p>
           </div>
 

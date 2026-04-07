@@ -1,21 +1,21 @@
-export const M2M_PHONE_DISPLAY = "757-206-2859"
-export const M2M_PHONE_TEL = "757-206-2859"
+/**
+ * Legacy constants (kept for backward compatibility).
+ *
+ * Prefer importing from `@/lib/m2m-site` for Wix parity globals.
+ */
 
-export const M2M_INBOX_EMAIL = "Info@marching2more.com"
-
-export const M2M_ADDRESS = "600 Lynnhaven Pkwy, STE 106 Virginia Beach, VA 23452 United States"
-
-export const CALENDLY_URL = "https://calendly.com/marching2more/45min"
-
-export const REALSCOUT_VALUATION_URL =
-  "https://donavanmcfadden63.realscout.com/homesearch/home-reports?hva_public=true"
-
-export const REALSCOUT_SEARCH_URL =
-  "https://donavanmcfadden63.realscout.com/homesearch/map?for_sale=1&for_rent=0"
-
-export const CREED_REALTY_SEARCH_URL = "https://donavan.atcoastal.com/results-gallery/?status=A"
-
-export const GOOGLE_REVIEW_URL = "https://g.page/r/Cdr645m9lC69EBM/review"
+export {
+  CALENDLY_BOOK_URL as CALENDLY_URL,
+  CREED_REALTY_SEARCH_URL,
+  GOOGLE_REVIEW_URL,
+  M2M_ADDRESS_SINGLE_LINE as M2M_ADDRESS,
+  M2M_EMAIL_MAILTO as M2M_INBOX_EMAIL,
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+  M2M_PHONE_TEL,
+  REALSCOUT_HOME_VALUATION_URL as REALSCOUT_VALUATION_URL,
+  REALSCOUT_MAP_SEARCH_URL as REALSCOUT_SEARCH_URL,
+} from "./m2m-site"
 
 export const ABOUT_COPY =
   "Your Trusted Real Estate Partners — With integrity and experience, Marching 2 More Real Estate is here to help you find your dream or sell your property quickly at competitive prices. Our disciplined leadership and local market expertise ensure a seamless and stress-free experience. Let's march to more together."
