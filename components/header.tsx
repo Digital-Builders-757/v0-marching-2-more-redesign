@@ -25,7 +25,17 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      {/* Backdrop */}
+      {menuOpen ? (
+        <button
+          type="button"
+          aria-label="Close menu"
+          className="fixed inset-0 z-[60] bg-black/20"
+          onClick={() => setMenuOpen(false)}
+        />
+      ) : null}
+
+      <div className="relative z-[70] mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-3" aria-label="Marching 2 More - Home">
@@ -101,17 +111,31 @@ export function Header() {
         </div>
       </div>
 
-      {/* Menu panel */}
+      {/* Menu panel (Wix-like: right-side floating panel) */}
       {menuOpen ? (
-        <div className="border-t border-gray-200 bg-white">
-          <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8" aria-label="Site">
-            <ul className="flex flex-col gap-2">
+        <div className="relative z-[80]">
+          <nav
+            className="absolute right-4 top-2 w-[min(340px,calc(100vw-2rem))] overflow-hidden rounded-md bg-[#244b2a] shadow-xl ring-1 ring-black/10 sm:right-6"
+            aria-label="Site"
+          >
+            {/* (Optional parity) search input — presentational */}
+            <div className="p-4 pb-2">
+              <input
+                type="search"
+                placeholder=""
+                className="w-full rounded-sm bg-white px-3 py-2 text-sm text-gray-900 outline-none"
+                aria-label="Menu search"
+              />
+            </div>
+
+            <ul className="flex flex-col gap-1 p-2 pt-1">
               {M2M_WIX_HEADER_MENU_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block rounded-sm px-2 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50"
+                    className="block rounded-sm px-3 py-3 text-base font-medium text-m2m-cream hover:bg-white/10"
                     onClick={() => setMenuOpen(false)}
+                    style={{ fontFamily: "var(--font-nav)" }}
                   >
                     {link.label}
                   </Link>
@@ -121,19 +145,20 @@ export function Header() {
               <li className="pt-2">
                 <a
                   href={M2M_PHONE_HREF}
-                  className="block rounded-sm px-2 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50"
+                  className="block rounded-sm px-3 py-3 text-base font-medium text-m2m-cream hover:bg-white/10"
                   onClick={() => setMenuOpen(false)}
+                  style={{ fontFamily: "var(--font-nav)" }}
                 >
                   Call / Text
                 </a>
               </li>
 
-              <li className="pt-1 md:hidden">
+              <li className="px-2 pb-2 pt-1 md:hidden">
                 <a
                   href={CALENDLY_BOOK_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="block rounded-sm bg-m2m-gold px-2 py-2 text-center text-[0.7rem] tracking-[0.2em] uppercase font-medium text-m2m-deep hover:bg-m2m-gold-lt"
+                  className="block rounded-sm bg-m2m-gold px-3 py-3 text-center text-[0.7rem] tracking-[0.2em] uppercase font-medium text-m2m-deep hover:bg-m2m-gold-lt"
                   onClick={() => setMenuOpen(false)}
                   style={{ fontFamily: "var(--font-nav)" }}
                 >
