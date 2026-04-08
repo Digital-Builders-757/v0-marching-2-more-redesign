@@ -40,11 +40,11 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-3" aria-label="Marching 2 More - Home">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1000013362-wxNemvq2lQZhsEHdmeBFKYzMEC35d9.avif"
+              src="/brand/m2m-logo.avif"
               alt="Marching 2 More Logo"
-              width={175}
-              height={62}
-              className="h-14 w-auto"
+              width={180}
+              height={52}
+              className="h-12 w-auto"
               priority
             />
 
