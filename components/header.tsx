@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Plus } from "lucide-react"
+import { Menu, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { CALENDLY_BOOK_URL, M2M_PHONE_HREF } from "@/lib/m2m-site"
@@ -24,13 +24,13 @@ export function Header() {
   }, [menuOpen])
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-[#244b2a]">
       {/* Backdrop */}
       {menuOpen ? (
         <button
           type="button"
           aria-label="Close menu"
-          className="fixed inset-0 z-[60] bg-black/20"
+          className="fixed inset-0 z-[60] bg-black/30"
           onClick={() => setMenuOpen(false)}
         />
       ) : null}
@@ -51,13 +51,13 @@ export function Header() {
             {/* Wix parity: brand text links */}
             <span className="hidden flex-col leading-none sm:flex">
               <span
-                className="text-[0.75rem] font-semibold tracking-[0.2em] text-m2m-deep"
+                className="text-[0.75rem] font-semibold tracking-[0.2em] text-m2m-cream"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 MARCHING 2 MORE
               </span>
               <span
-                className="mt-1 text-[0.7rem] font-medium tracking-[0.22em] text-m2m-deep/80"
+                className="mt-1 text-[0.7rem] font-medium tracking-[0.22em] text-m2m-cream/80"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 REAL ESTATE TEAM
@@ -68,18 +68,16 @@ export function Header() {
           {/* Wix parity: hamburger/menu (shown on desktop too) */}
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center text-gray-700 transition-colors hover:text-gray-900"
+            className="inline-flex h-10 w-10 items-center justify-center text-m2m-cream/90 transition-colors hover:text-m2m-cream"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
-            <Plus
-              className={cn(
-                "h-6 w-6 transition-transform duration-300 ease-out",
-                menuOpen && "rotate-[135deg]"
-              )}
-              strokeWidth={1.5}
-            />
+            {menuOpen ? (
+              <X className="h-6 w-6" strokeWidth={1.5} />
+            ) : (
+              <Menu className="h-6 w-6" strokeWidth={1.5} />
+            )}
           </button>
         </div>
 
@@ -115,11 +113,11 @@ export function Header() {
       {menuOpen ? (
         <div className="relative z-[80]">
           <nav
-            className="absolute right-4 top-2 w-[min(340px,calc(100vw-2rem))] overflow-hidden rounded-md bg-[#244b2a] shadow-xl ring-1 ring-black/10 sm:right-6"
+            className="absolute right-4 top-2 w-[min(360px,calc(100vw-2rem))] overflow-hidden rounded-md bg-[#244b2a] shadow-xl ring-1 ring-black/20 sm:right-6"
             aria-label="Site"
           >
-            {/* (Optional parity) search input — presentational */}
-            <div className="p-4 pb-2">
+            {/* Search input — presentational parity */}
+            <div className="p-4 pb-3">
               <input
                 type="search"
                 placeholder=""
@@ -128,7 +126,7 @@ export function Header() {
               />
             </div>
 
-            <ul className="flex flex-col gap-1 p-2 pt-1">
+            <ul className="flex flex-col gap-1 p-2 pt-0">
               {M2M_WIX_HEADER_MENU_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
