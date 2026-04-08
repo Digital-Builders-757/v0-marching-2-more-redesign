@@ -3,15 +3,17 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
+import { PARTNER_LINKS } from "@/lib/m2m-site"
+
 const partners = [
-  { name: "New World Builders", category: "General Contractors", href: "#" },
-  { name: "Off Load Moving", category: "Moving", href: "#" },
-  { name: "R.S. Andrews", category: "HVAC", href: "#" },
-  { name: "QAI", category: "Home Inspection", href: "#" },
-  { name: "John Edwards", category: "Pest & Termite", href: "#" },
-  { name: "True North Title", category: "Title", href: "#" },
-  { name: "Cara Erickson of Atlantic Bay Mortgage", category: "Lending", href: "#" },
-  { name: "2-10 Home Warranty", category: "Home Warranty", href: "#" },
+  { name: "New World Builders", category: "General Contractors", href: PARTNER_LINKS.newWorldBuilders },
+  { name: "Off Load Moving", category: "Moving", href: PARTNER_LINKS.offLoadMoving },
+  { name: "R.S. Andrews", category: "HVAC", href: PARTNER_LINKS.rsAndrewsTidewater },
+  { name: "QAI", category: "Home Inspection", href: PARTNER_LINKS.qaiHome },
+  { name: "John Edwards", category: "Pest & Termite", href: PARTNER_LINKS.johnEdwardsPest },
+  { name: "True North Title", category: "Title", href: PARTNER_LINKS.trueNorthTitle },
+  { name: "Cara Erickson of Atlantic Bay Mortgage", category: "Lending", href: PARTNER_LINKS.atlanticBayCara },
+  { name: "2-10 Home Warranty", category: "Home Warranty", href: PARTNER_LINKS.homeWarranty210 },
 ]
 
 export function Services() {
@@ -75,14 +77,16 @@ export function Services() {
                 index % 4 !== 3 ? "border-r border-m2m-gold/20" : ""
               } ${index >= 4 ? "border-t border-m2m-gold/20" : ""}`}
             >
-              <Link 
+              <a
                 href={partner.href}
+                target="_blank"
+                rel="noreferrer"
                 className="group inline-flex items-center gap-1 text-m2m-cream hover:text-m2m-gold transition-colors mb-2"
                 style={{ fontFamily: 'var(--font-sans)' }}
               >
                 <span className="text-sm underline underline-offset-2">{partner.name}</span>
                 <ArrowRight className="w-3 h-3" />
-              </Link>
+              </a>
               <p 
                 className="text-sm text-m2m-muted italic"
                 style={{ fontFamily: 'var(--font-sans)' }}
@@ -96,7 +100,7 @@ export function Services() {
         {/* CTA Button */}
         <div className="mt-16" data-gsap="fade-up">
           <Link
-            href="/team"
+            href="/our-team"
             className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
