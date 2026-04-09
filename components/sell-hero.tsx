@@ -49,7 +49,7 @@ export function SellHero() {
             {/* Body */}
             <p 
               data-gsap-child
-              className="text-sm leading-relaxed text-m2m-muted max-w-xl pr-6 border-r border-m2m-gold/20"
+              className="text-sm leading-relaxed text-white max-w-xl pr-6 border-r border-m2m-gold/20"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               Get an accurate, no-obligation home valuation from our experienced team. We&apos;ll help you understand your home&apos;s true market value and guide you through every step of the selling process.
