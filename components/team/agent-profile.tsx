@@ -1,91 +1,70 @@
 import Image from "next/image"
-import Link from "next/link"
-
-import {
-  CALENDLY_BOOK_URL,
-  M2M_PHONE_DISPLAY,
-  M2M_PHONE_HREF,
-} from "@/lib/m2m-site"
 
 type AgentProfileProps = {
   name: string
-  subtitle: string
+  role: string
+  licenseNumber?: string
   image: string
   bio: string
 }
 
-export function AgentProfile({ name, subtitle, image, bio }: AgentProfileProps) {
+export function AgentProfile({ name, role, licenseNumber, image, bio }: AgentProfileProps) {
   return (
-    <main id="main-content" tabIndex={-1} className="bg-m2m-cream">
-      <section className="px-6 pt-24 pb-12 md:px-16 lg:px-24" style={{ backgroundColor: "#050d06" }}>
-        <div className="mx-auto max-w-5xl">
-          <p
-            className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
-            style={{ fontFamily: "var(--font-nav)" }}
+    <main id="main-content" tabIndex={-1}>
+      {/* Hero section with background image */}
+      <section className="relative px-6 pt-28 pb-20 md:px-16 lg:px-24 overflow-hidden min-h-[70vh] flex items-center">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src={image}
+            alt=""
+            fill
+            priority
+            className="object-cover object-top"
+            sizes="100vw"
+          />
+        </div>
+        {/* Dark overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{ backgroundColor: "rgba(5, 13, 6, 0.6)" }}
+        />
+
+        {/* Content */}
+        <div className="relative mx-auto max-w-4xl text-center">
+          {/* Role */}
+          <h2
+            className="text-[clamp(1.5rem,3vw,2rem)] font-light text-m2m-cream mb-4"
+            style={{ fontFamily: "var(--font-display)" }}
           >
-            Agent Profile
-          </p>
+            {role}
+          </h2>
+
+          {/* Name */}
           <h1
-            className="mt-4 font-light text-[clamp(2.5rem,5vw,4rem)] text-m2m-cream"
+            className="font-light italic text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] text-m2m-cream mb-6"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {name}
           </h1>
-          <p className="mt-4 text-sm text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
-            {subtitle}
-          </p>
-        </div>
-      </section>
 
-      <section className="px-6 pb-20 pt-10 md:px-16 lg:px-24">
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 md:grid-cols-[280px_1fr]">
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg border border-m2m-deep/10 bg-white">
-            <Image src={image} alt={name} fill className="object-cover" sizes="(min-width: 768px) 280px, 100vw" />
-          </div>
-
-          <div>
-            <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
-              {bio}
+          {/* License number */}
+          {licenseNumber && (
+            <p
+              className="text-sm text-m2m-cream/70 mb-8"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              {licenseNumber}
             </p>
+          )}
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
-                href={CALENDLY_BOOK_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:bg-m2m-gold-lt"
-                style={{ fontFamily: "var(--font-nav)" }}
-              >
-                BOOK A HOME CONSULTATION
-              </a>
-
-              <a
-                href={M2M_PHONE_HREF}
-                className="inline-flex items-center justify-center border border-m2m-deep/20 bg-white text-m2m-deep text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:border-m2m-gold/50"
-                style={{ fontFamily: "var(--font-nav)" }}
-              >
-                Call {M2M_PHONE_DISPLAY}
-              </a>
-
-              <Link
-                href="/contact-us"
-                className="inline-flex items-center justify-center text-[0.62rem] tracking-[0.2em] uppercase font-medium text-m2m-deep hover:text-m2m-gold"
-                style={{ fontFamily: "var(--font-nav)" }}
-              >
-                Introduce Yourself
-              </Link>
-            </div>
-
-            <div className="mt-10">
-              <Link
-                href="/our-team"
-                className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-muted hover:text-m2m-deep transition-colors"
-                style={{ fontFamily: "var(--font-nav)" }}
-              >
-                Back to Our Team
-              </Link>
-            </div>
-          </div>
+          {/* Bio */}
+          <p
+            className="text-base leading-relaxed text-m2m-cream/90 max-w-3xl mx-auto"
+            style={{ fontFamily: "var(--font-sans)" }}
+          >
+            {bio}
+          </p>
         </div>
       </section>
     </main>

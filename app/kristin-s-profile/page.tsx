@@ -14,9 +14,10 @@ export default function KristinProfilePage() {
       <Header />
       <AgentProfile
         name="Kristin Allen"
-        subtitle="Licensed Agent"
+        role="Licensed Agent"
+        licenseNumber="Licensed Agent of Virginia"
         image={M2M_MEDIA.headshotKristin}
-        bio="Kristin Allen brings thoughtful attention to detail and a calm, supportive presence to each transaction — helping clients feel informed and cared for from first showing to closing day."
+        bio="Kristin Allen brings thoughtful attention to detail and a calm, supportive presence to each transaction. With a genuine passion for helping families find their perfect home, Kristin is dedicated to making the real estate process as smooth and stress-free as possible. Her commitment to clear communication and personalized service ensures that every client feels informed and cared for from first showing to closing day."
       />
       <Footer />
     </>
