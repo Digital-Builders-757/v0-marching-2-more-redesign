@@ -50,38 +50,38 @@ export function PropertySearch() {
             </p>
           </div>
 
-          {/* Three circular images in a row */}
-          <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8">
-            {/* Circle 1 - couple */}
-            <div className="relative w-[100px] h-[100px] md:w-[140px] md:h-[140px] lg:w-[180px] lg:h-[180px] rounded-full overflow-hidden shadow-lg border-4 border-white flex-shrink-0">
-              <Image
-                src="/images/sap-1.avif"
-                alt="Happy couple in front of their new home"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 180px, (min-width: 768px) 140px, 100px"
-              />
-            </div>
-            
-            {/* Circle 2 - white house */}
-            <div className="relative w-[100px] h-[100px] md:w-[140px] md:h-[140px] lg:w-[180px] lg:h-[180px] rounded-full overflow-hidden shadow-lg border-4 border-white flex-shrink-0">
+          {/* Overlapping circular images - Venn diagram style */}
+          <div className="relative w-full h-[250px] md:h-[300px] lg:h-[320px]">
+            {/* White house - back left, slightly higher */}
+            <div className="absolute left-[10%] md:left-[5%] lg:left-0 top-0 w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] rounded-full overflow-hidden shadow-lg border-4 border-white z-10">
               <Image
                 src="/images/sap-3.avif"
                 alt="Beautiful white home exterior"
                 fill
                 className="object-cover"
-                sizes="(min-width: 1024px) 180px, (min-width: 768px) 140px, 100px"
+                sizes="(min-width: 1024px) 240px, (min-width: 768px) 200px, 150px"
               />
             </div>
-
-            {/* Circle 3 - blue house */}
-            <div className="relative w-[100px] h-[100px] md:w-[140px] md:h-[140px] lg:w-[180px] lg:h-[180px] rounded-full overflow-hidden shadow-lg border-4 border-white flex-shrink-0">
+            
+            {/* Blue house - back right, overlapping, slightly lower */}
+            <div className="absolute right-[10%] md:right-[5%] lg:right-0 top-[20%] md:top-[15%] w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] rounded-full overflow-hidden shadow-lg border-4 border-white z-20">
               <Image
                 src="/images/sap-2.avif"
                 alt="Elegant blue home exterior"
                 fill
                 className="object-cover"
-                sizes="(min-width: 1024px) 180px, (min-width: 768px) 140px, 100px"
+                sizes="(min-width: 1024px) 240px, (min-width: 768px) 200px, 150px"
+              />
+            </div>
+
+            {/* Couple - smaller, front center-left at intersection */}
+            <div className="absolute left-[5%] md:left-[8%] lg:left-[5%] bottom-0 w-[120px] h-[120px] md:w-[150px] md:h-[150px] lg:w-[170px] lg:h-[170px] rounded-full overflow-hidden shadow-xl border-4 border-white z-30">
+              <Image
+                src="/images/sap-1.avif"
+                alt="Happy couple in front of their new home"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 170px, (min-width: 768px) 150px, 120px"
               />
             </div>
           </div>
