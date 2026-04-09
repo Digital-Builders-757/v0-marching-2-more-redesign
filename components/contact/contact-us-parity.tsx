@@ -39,8 +39,8 @@ export function ContactUsParity() {
             </a>
           </p>
 
-          <div className="mt-10">
-            <ContactInfo />
+          <div className="mt-10 overflow-hidden rounded-md bg-m2m-deep p-6">
+            <ContactInfo variant="panel" />
           </div>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
