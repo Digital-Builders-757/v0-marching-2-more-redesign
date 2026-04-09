@@ -49,7 +49,7 @@ export default function ResourcesPage() {
           {/* Background image */}
           <div className="absolute inset-0">
             <Image
-              src="/images/home-search-hero.png"
+              src="/images/resources-hero.png"
               alt=""
               fill
               priority
