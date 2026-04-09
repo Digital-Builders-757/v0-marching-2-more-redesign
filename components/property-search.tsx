@@ -21,8 +21,8 @@ export function PropertySearch() {
 
             {/* Large dark green serif heading */}
             <h2 
-              className="text-5xl md:text-6xl lg:text-7xl leading-tight"
-              style={{ color: '#1B4332', fontFamily: 'Georgia, serif', fontWeight: 800 }}
+              className="text-5xl md:text-6xl lg:text-7xl leading-tight font-light"
+              style={{ color: '#1B4332', fontFamily: 'var(--font-display)' }}
             >
               Search Available<br />Properties
             </h2>
@@ -30,7 +30,7 @@ export function PropertySearch() {
             {/* Body paragraph */}
             <p 
               className="text-base leading-relaxed max-w-[480px]"
-              style={{ color: '#333' }}
+              style={{ color: '#333', fontFamily: 'var(--font-sans)' }}
             >
               We&apos;ve curated a range of properties that fit the lifestyle and requirements of military personnel and their families. From relocations to finding homes near military bases, we&apos;re here to support you at every step.
             </p>
