@@ -28,6 +28,7 @@ export function PropertySearchNew() {
           <div 
             data-gsap="image-reveal"
             data-gsap-direction="left"
+            data-gsap-scroll="true"
             className="absolute left-0 top-1/2 -translate-y-1/2 w-[280px] xl:w-[320px] h-[280px] xl:h-[320px] rounded-full overflow-hidden shadow-2xl border-4 border-m2m-gold/20"
           >
             <div className="relative h-full w-full">
@@ -45,6 +46,7 @@ export function PropertySearchNew() {
           <div 
             data-gsap="image-reveal"
             data-gsap-direction="right"
+            data-gsap-scroll="true"
             className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-[220px] xl:w-[260px] h-[220px] xl:h-[260px] rounded-full overflow-hidden shadow-2xl border-4 border-m2m-gold/20"
           >
             <div className="relative h-full w-full">
