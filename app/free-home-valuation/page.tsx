@@ -45,7 +45,7 @@ export default function FreeHomeValuationPage() {
           {/* Background image */}
           <div className="absolute inset-0">
             <Image
-              src="/images/sell-with-confidence-bg.png"
+              src="/images/cma-hero.png"
               alt=""
               fill
               priority
