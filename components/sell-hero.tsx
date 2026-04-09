@@ -1,18 +1,48 @@
 "use client"
 
+import { useEffect, useRef } from "react"
 import Link from "next/link"
 
 export function SellHero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    const image = imageRef.current
+    if (!section || !image) return
+
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      
+      // Only apply parallax when section is in view
+      if (rect.top < windowHeight && rect.bottom > 0) {
+        const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height)
+        const parallaxOffset = (scrollProgress - 0.5) * 100 // Move by up to 50px in either direction
+        image.style.transform = `translateY(${parallaxOffset}px) scale(1.1)`
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll() // Initial call
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <section 
+      ref={sectionRef}
       id="sell"
       className="relative bg-m2m-black px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden"
     >
-      {/* Background image */}
+      {/* Background image with parallax */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        ref={imageRef}
+        className="absolute inset-[-10%] z-0 bg-cover bg-center bg-no-repeat will-change-transform"
         style={{
           backgroundImage: "url('/images/sell-with-confidence-bg.png')",
+          transform: "translateY(0) scale(1.1)",
         }}
       />
       {/* Dark overlay for text readability */}
