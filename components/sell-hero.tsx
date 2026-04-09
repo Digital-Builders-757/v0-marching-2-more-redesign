@@ -87,7 +87,7 @@ export function SellHero() {
                   Get The Pre-Listing Checklist
                 </Link>
                 <p 
-                  className="text-xs text-m2m-muted italic text-center"
+                  className="text-xs text-white/80 italic text-center"
                   style={{ fontFamily: 'var(--font-sans)' }}
                 >
                   Our 20 page guide to assist you with every phase of selling your home.
