@@ -125,6 +125,11 @@ export function PropertySearch() {
                   className="object-cover"
                   sizes="260px"
                 />
+                {/* Dark green tint overlay */}
+                <div 
+                  className="absolute inset-0 rounded-full"
+                  style={{ backgroundColor: 'rgba(27, 67, 50, 0.35)' }}
+                />
               </div>
 
               {/* Circle 3 - Cottage house (back-right, smallest 220px, z-index 1) */}
@@ -145,6 +150,11 @@ export function PropertySearch() {
                   fill
                   className="object-cover"
                   sizes="220px"
+                />
+                {/* Dark green tint overlay */}
+                <div 
+                  className="absolute inset-0 rounded-full"
+                  style={{ backgroundColor: 'rgba(27, 67, 50, 0.35)' }}
                 />
               </div>
             </div>
