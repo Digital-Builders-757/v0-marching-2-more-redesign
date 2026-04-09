@@ -24,7 +24,7 @@ export function Partners() {
           <div className="flex-1">
             {/* Kicker */}
             <p 
-              className="text-sm tracking-[0.3em] uppercase mb-6"
+              className="text-[0.65rem] tracking-[0.3em] uppercase mb-4"
               style={{ fontFamily: 'var(--font-nav)', color: '#B8963E' }}
             >
               You&apos;re in great hands.

@@ -31,11 +31,18 @@ export function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
+          {/* Kicker */}
+          <p 
+            className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-4"
+            style={{ fontFamily: 'var(--font-nav)' }}
+          >
+            Real Stories. Real Results.
+          </p>
           <h2 
-            className="text-3xl md:text-4xl font-light mb-4 text-m2m-cream"
+            className="text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light text-m2m-cream"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Serving with integrity. Leading with experience.
+            Serving with integrity.<br />Leading with experience.
           </h2>
         </div>
 

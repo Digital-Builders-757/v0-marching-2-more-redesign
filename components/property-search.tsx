@@ -11,17 +11,17 @@ export function PropertySearch() {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left column - Text content */}
           <div className="flex-1 flex flex-col gap-6 lg:pl-8">
-            {/* Gold label */}
+            {/* Kicker */}
             <p 
-              className="text-sm font-bold tracking-wide"
+              className="text-[0.65rem] tracking-[0.3em] uppercase"
               style={{ color: '#B8963E', fontFamily: 'var(--font-nav)' }}
             >
               Find Your New Home
             </p>
 
-            {/* Large dark green serif heading */}
+            {/* Heading */}
             <h2 
-              className="text-5xl md:text-6xl lg:text-7xl leading-tight font-light"
+              className="text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light"
               style={{ color: '#1B4332', fontFamily: 'var(--font-display)' }}
             >
               Search Available<br />Properties
@@ -42,12 +42,10 @@ export function PropertySearch() {
                   href={REALSCOUT_MAP_SEARCH_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white transition hover:opacity-90"
+                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 text-white font-medium transition-all duration-300 hover:opacity-90"
                   style={{ 
                     backgroundColor: '#1B4332',
-                    fontFamily: 'var(--font-nav)',
-                    borderRadius: '6px',
-                    padding: '16px 32px'
+                    fontFamily: 'var(--font-nav)'
                   }}
                 >
                   Start Your Search Now
@@ -65,17 +63,14 @@ export function PropertySearch() {
               <div className="flex flex-col items-center sm:items-start">
                 <a
                   href={mailtoNeedsHelp()}
-                  className="inline-flex items-center justify-center text-sm font-bold transition hover:bg-gray-50"
+                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border font-medium transition-all duration-300 hover:bg-gray-50"
                   style={{ 
-                    border: '1px solid #333',
-                    color: '#333',
-                    fontFamily: 'var(--font-nav)',
-                    borderRadius: '6px',
-                    padding: '16px 32px',
-                    backgroundColor: 'transparent'
+                    borderColor: '#1B4332',
+                    color: '#1B4332',
+                    fontFamily: 'var(--font-nav)'
                   }}
                 >
-                  Or — Tell us your needs.
+                  Tell Us Your Needs
                 </a>
                 <p 
                   className="text-xs italic mt-2 text-center sm:text-left"

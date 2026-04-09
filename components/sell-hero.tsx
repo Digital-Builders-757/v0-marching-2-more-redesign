@@ -26,20 +26,19 @@ export function SellHero() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="max-w-3xl ml-auto text-right">
           <div className="flex flex-col gap-6 items-end" data-gsap="stagger-children" data-gsap-direction="up">
-            {/* Section label */}
-            <div 
+            {/* Kicker */}
+            <p 
               data-gsap-child
-              className="flex items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
+              className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
               style={{ fontFamily: 'var(--font-nav)' }}
             >
               Sell with confidence.
-              <span className="w-6 h-px bg-m2m-gold" />
-            </div>
+            </p>
 
-            {/* Title */}
+            {/* Heading */}
             <h2 
               data-gsap-child
-              className="text-m2m-cream text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] font-light"
+              className="text-m2m-cream text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Learn your home&apos;s<br />
@@ -49,7 +48,7 @@ export function SellHero() {
             {/* Body */}
             <p 
               data-gsap-child
-              className="text-sm leading-relaxed text-white max-w-xl pr-6 border-r border-m2m-gold/20"
+              className="text-base leading-relaxed text-white max-w-xl"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               Get an accurate, no-obligation home valuation from our experienced team. We&apos;ll help you understand your home&apos;s true market value and guide you through every step of the selling process.
