@@ -53,17 +53,31 @@ export function Testimonials() {
                 <span className="text-sm font-bold text-gray-700">G</span>
               </div>
 
-              {/* 5 Stars */}
-              <div className="flex items-center justify-center gap-0.5 md:gap-1 mb-4 md:mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 fill-m2m-gold text-m2m-gold transition-transform duration-300 group-hover:scale-110"
-                    style={{ 
-                      transitionDelay: `${i * 50}ms`,
-                    }}
+              {/* Avatar and Stars Row */}
+              <div className="flex items-center justify-center gap-3 md:gap-4 mb-4 md:mb-6">
+                {/* Avatar */}
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-m2m-gold/30 transition-all duration-300 group-hover:scale-110 group-hover:border-m2m-gold/50 flex-shrink-0">
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-cover"
                   />
-                ))}
+                </div>
+
+                {/* 5 Stars */}
+                <div className="flex items-center justify-center gap-0.5 md:gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star 
+                      key={i} 
+                      className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 fill-m2m-gold text-m2m-gold transition-transform duration-300 group-hover:scale-110"
+                      style={{ 
+                        transitionDelay: `${i * 50}ms`,
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* Quote */}
@@ -76,34 +90,20 @@ export function Testimonials() {
                 </p>
               </blockquote>
 
-              {/* Author */}
-              <div className="flex items-center justify-center gap-3 mt-auto">
-                {/* Avatar */}
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-m2m-gold/30 transition-all duration-300 group-hover:scale-110 group-hover:border-m2m-gold/50">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                
-                {/* Name & Role */}
-                <div className="text-left">
-                  <p 
-                    className="text-sm tracking-wide text-m2m-cream font-medium"
-                    style={{ fontFamily: 'var(--font-nav)' }}
-                  >
-                    {testimonial.name}
-                  </p>
-                  <p 
-                    className="text-xs tracking-wide text-m2m-gold/70"
-                    style={{ fontFamily: 'var(--font-nav)' }}
-                  >
-                    {testimonial.role}
-                  </p>
-                </div>
+              {/* Author Info */}
+              <div className="flex items-center justify-center flex-col mt-auto">
+                <p 
+                  className="text-sm tracking-wide text-m2m-cream font-medium"
+                  style={{ fontFamily: 'var(--font-nav)' }}
+                >
+                  {testimonial.name}
+                </p>
+                <p 
+                  className="text-xs tracking-wide text-m2m-gold/70"
+                  style={{ fontFamily: 'var(--font-nav)' }}
+                >
+                  {testimonial.role}
+                </p>
               </div>
             </div>
           ))}
