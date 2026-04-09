@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
@@ -43,10 +44,25 @@ export default function ResourcesPage() {
 
       <main id="main-content" tabIndex={-1} className="bg-m2m-cream">
         <section
-          className="px-6 pt-28 pb-10 md:px-16 lg:px-24"
-          style={{ backgroundColor: "#050d06" }}
+          className="relative px-6 pt-28 pb-10 md:px-16 lg:px-24 overflow-hidden"
         >
-          <div className="mx-auto max-w-5xl">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/home-search-hero.png"
+              alt=""
+              fill
+              priority
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+          {/* Dark overlay */}
+          <div 
+            className="absolute inset-0"
+            style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
+          />
+          <div className="relative mx-auto max-w-5xl">
             <p
               className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
               style={{ fontFamily: "var(--font-nav)" }}
