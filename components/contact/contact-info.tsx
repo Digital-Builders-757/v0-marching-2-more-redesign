@@ -9,14 +9,20 @@ import {
   M2M_PHONE_HREF,
 } from "@/lib/m2m-site"
 
-export function ContactInfo() {
-  return (
-    <section className="bg-m2m-deep px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+type ContactInfoVariant = "section" | "panel"
+
+export function ContactInfo({ variant = "section" }: { variant?: ContactInfoVariant }) {
+  const isPanel = variant === "panel"
+
+  const content = (
+    <div className={isPanel ? "mx-auto w-full" : "max-w-7xl mx-auto"}>
+      <div className={isPanel ? "grid grid-cols-2 gap-4" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"}>
           {/* Phone */}
           <div 
-            className="text-center p-8 border border-m2m-gold/20 rounded-xl transition-all duration-300 hover:border-m2m-gold/40"
+            className={
+              "text-center border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold/40 " +
+              (isPanel ? "p-5 rounded-md" : "p-8 rounded-xl")
+            }
             data-gsap="fade-up"
             data-gsap-delay="0"
           >
@@ -38,7 +44,10 @@ export function ContactInfo() {
 
           {/* Email */}
           <div 
-            className="text-center p-8 border border-m2m-gold/20 rounded-xl transition-all duration-300 hover:border-m2m-gold/40"
+            className={
+              "text-center border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold/40 " +
+              (isPanel ? "p-5 rounded-md" : "p-8 rounded-xl")
+            }
             data-gsap="fade-up"
             data-gsap-delay="0.1"
           >
@@ -60,7 +69,10 @@ export function ContactInfo() {
 
           {/* Location */}
           <div 
-            className="text-center p-8 border border-m2m-gold/20 rounded-xl transition-all duration-300 hover:border-m2m-gold/40"
+            className={
+              "text-center border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold/40 " +
+              (isPanel ? "p-5 rounded-md" : "p-8 rounded-xl")
+            }
             data-gsap="fade-up"
             data-gsap-delay="0.2"
           >
@@ -86,7 +98,10 @@ export function ContactInfo() {
 
           {/* Hours */}
           <div 
-            className="text-center p-8 border border-m2m-gold/20 rounded-xl transition-all duration-300 hover:border-m2m-gold/40"
+            className={
+              "text-center border border-m2m-gold/20 transition-all duration-300 hover:border-m2m-gold/40 " +
+              (isPanel ? "p-5 rounded-md" : "p-8 rounded-xl")
+            }
             data-gsap="fade-up"
             data-gsap-delay="0.3"
           >
@@ -105,8 +120,15 @@ export function ContactInfo() {
               Call or text anytime
             </p>
           </div>
-        </div>
       </div>
+    </div>
+  )
+
+  if (isPanel) return content
+
+  return (
+    <section className="bg-m2m-deep px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
+      {content}
     </section>
   )
 }
