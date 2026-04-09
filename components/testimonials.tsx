@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { Star } from "lucide-react"
 
 const testimonials = [
@@ -9,20 +8,19 @@ const testimonials = [
     quote: "So excited for our new journey! I can't thank Donavan McFadden and the Marching2More team enough for finding the perfect home for my little family! He was extremely dedicated to finding a home that fit our needs and wants! Here's to new beginnings!",
     name: "The Sanchez Family",
     role: "U.S. Navy",
-    image: "/images/testi-sanchez.avif",
   },
   {
     quote: "Donavan McFadden assisted my wife and I in purchasing our first home together. Buying a home for the first time can be scary and confusing, it certainly was for us. We had spoken to and tried to work with different agents before we settled in with Mr. Donavan. Our experiences before and after working with him were night and day. He was very responsive and really took his time to explain everything we did not know. He took what can be a laborious and stressful process and made it an enjoyable one. For as long as we are in the Hampton roads area we will use Donavan McFadden as our agent to buy and sell. Thank you Donavan!",
     name: "The Cole Family",
     role: "U.S. Navy",
-    image: "/images/testi-cole.avif",
   },
   {
     quote: "When you have family and friends you care about you want to refer them to some one you can trust! Roger Lee was that person for me. He built trust. He was relatable. He was patient! He helped my relative and I truly believe gained a repeat client.",
     name: "Terri Hill",
     role: "Hampton Roads Resident",
-    image: "/images/testi-tami.avif",
+    avatar: "T",
   },
+
 ]
 
 export function Testimonials() {
@@ -53,31 +51,17 @@ export function Testimonials() {
                 <span className="text-sm font-bold text-gray-700">G</span>
               </div>
 
-              {/* Avatar and Stars Row */}
-              <div className="flex items-center justify-center gap-3 md:gap-4 mb-4 md:mb-6">
-                {/* Avatar */}
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-m2m-gold/30 transition-all duration-300 group-hover:scale-110 group-hover:border-m2m-gold/50 flex-shrink-0">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-cover"
+              {/* 5 Stars */}
+              <div className="flex items-center justify-center gap-0.5 md:gap-1 mb-4 md:mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <Star 
+                    key={i} 
+                    className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 fill-m2m-gold text-m2m-gold transition-transform duration-300 group-hover:scale-110"
+                    style={{ 
+                      transitionDelay: `${i * 50}ms`,
+                    }}
                   />
-                </div>
-
-                {/* 5 Stars */}
-                <div className="flex items-center justify-center gap-0.5 md:gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 fill-m2m-gold text-m2m-gold transition-transform duration-300 group-hover:scale-110"
-                      style={{ 
-                        transitionDelay: `${i * 50}ms`,
-                      }}
-                    />
-                  ))}
-                </div>
+                ))}
               </div>
 
               {/* Quote */}
@@ -90,20 +74,33 @@ export function Testimonials() {
                 </p>
               </blockquote>
 
-              {/* Author Info */}
-              <div className="flex items-center justify-center flex-col mt-auto">
-                <p 
-                  className="text-sm tracking-wide text-m2m-cream font-medium"
-                  style={{ fontFamily: 'var(--font-nav)' }}
-                >
-                  {testimonial.name}
-                </p>
-                <p 
-                  className="text-xs tracking-wide text-m2m-gold/70"
-                  style={{ fontFamily: 'var(--font-nav)' }}
-                >
-                  {testimonial.role}
-                </p>
+              {/* Author */}
+              <div className="flex items-center justify-center gap-3 mt-auto">
+                {/* Avatar */}
+                <div className="w-10 h-10 rounded-full bg-m2m-gold/20 border border-m2m-gold/30 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-m2m-gold/50">
+                  <span 
+                    className="text-sm font-medium text-m2m-gold"
+                    style={{ fontFamily: 'var(--font-nav)' }}
+                  >
+                    {testimonial.avatar}
+                  </span>
+                </div>
+                
+                {/* Name & Role */}
+                <div className="text-left">
+                  <p 
+                    className="text-sm tracking-wide text-m2m-cream font-medium"
+                    style={{ fontFamily: 'var(--font-nav)' }}
+                  >
+                    {testimonial.name}
+                  </p>
+                  <p 
+                    className="text-xs tracking-wide text-m2m-gold/70"
+                    style={{ fontFamily: 'var(--font-nav)' }}
+                  >
+                    {testimonial.role}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
