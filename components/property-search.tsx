@@ -87,6 +87,7 @@ export function PropertySearch() {
             <div className="relative" style={{ width: '550px', height: '320px' }}>
               {/* Circle 1 - Couple (front-left, largest 300px, z-index 3) */}
               <div 
+                data-gsap="scale-in"
                 className="absolute rounded-full overflow-hidden"
                 style={{ 
                   width: '300px', 
@@ -107,6 +108,7 @@ export function PropertySearch() {
               
               {/* Circle 2 - Blue house (middle 260px, z-index 2) */}
               <div 
+                data-gsap="scale-in"
                 className="absolute rounded-full overflow-hidden"
                 style={{ 
                   width: '260px', 
@@ -127,6 +129,7 @@ export function PropertySearch() {
 
               {/* Circle 3 - Cottage house (back-right, smallest 220px, z-index 1) */}
               <div 
+                data-gsap="scale-in"
                 className="absolute rounded-full overflow-hidden"
                 style={{ 
                   width: '220px', 
