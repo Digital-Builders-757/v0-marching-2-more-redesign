@@ -1,9 +1,8 @@
+import Link from "next/link"
+
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { GSAPAnimations } from "@/components/gsap-animations"
-
 import { BLOG_POSTS } from "@/lib/blog/posts"
-import { BlogPostCard } from "@/components/blog/blog-post-card"
 
 export const metadata = {
   title: "Blog | Marching 2 More",
@@ -15,36 +14,46 @@ export default function BlogIndexPage() {
   return (
     <>
       <Header />
-      <GSAPAnimations />
 
-      <main id="main-content" tabIndex={-1} className="bg-m2m-cream">
-        <section className="px-6 pt-28 pb-10 md:px-16 lg:px-24" style={{ backgroundColor: "#050d06" }}>
-          <div className="mx-auto max-w-6xl">
-            <p
-              className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
-              style={{ fontFamily: "var(--font-nav)" }}
-            >
-              Blog
-            </p>
-            <h1
-              className="mt-6 font-light text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] text-m2m-cream"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Guides &amp; insights
-            </h1>
-            <p
-              className="mt-6 max-w-2xl text-sm leading-relaxed text-m2m-muted-lt"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              Structure-only demo (Supabase-backed posts coming next). For now, these posts show layout and flow.
-            </p>
-          </div>
-        </section>
+      <main id="main-content" tabIndex={-1} className="bg-white">
+        {/* Blog posts list */}
+        <section className="px-6 pt-28 pb-20 md:px-16 lg:px-24">
+          <div className="mx-auto max-w-4xl">
+            {BLOG_POSTS.map((post, index) => (
+              <article 
+                key={post.slug}
+                className={`py-12 ${index !== BLOG_POSTS.length - 1 ? 'border-b border-gray-200' : ''}`}
+              >
+                <Link href={`/blog/${post.slug}`} className="group block">
+                  {/* Title */}
+                  <h2
+                    className="text-[clamp(1.5rem,3vw,2rem)] leading-[1.2] font-medium text-[#1B4332] group-hover:text-[#1B4332]/80 transition-colors"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {post.title}
+                  </h2>
 
-        <section className="px-6 py-14 md:px-16 lg:px-24">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {BLOG_POSTS.map((post) => (
-              <BlogPostCard key={post.slug} post={post} />
+                  {/* Excerpt */}
+                  <p
+                    className="mt-4 text-base leading-relaxed text-gray-600"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    {post.excerpt}
+                  </p>
+
+                  {/* Meta */}
+                  <div 
+                    className="mt-4 flex items-center gap-2 text-sm text-gray-500"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    <span>{post.author}</span>
+                    <span className="text-gray-300">|</span>
+                    <span>{post.publishedAt}</span>
+                    <span className="text-gray-300">|</span>
+                    <span>{post.readTime}</span>
+                  </div>
+                </Link>
+              </article>
             ))}
           </div>
         </section>
