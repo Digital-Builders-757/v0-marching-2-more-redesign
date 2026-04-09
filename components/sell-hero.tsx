@@ -8,13 +8,18 @@ export function SellHero() {
       id="sell"
       className="relative bg-m2m-black px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden"
     >
-      {/* Subtle gradient overlay */}
+      {/* Background image */}
       <div 
-        data-gsap="parallax" 
-        data-gsap-speed="0.2"
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
-          background: 'radial-gradient(ellipse at bottom left, rgba(205,176,95,0.03) 0%, transparent 50%)',
+          backgroundImage: "url('/images/sell-with-confidence-bg.png')",
+        }}
+      />
+      {/* Dark overlay for text readability */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: 'linear-gradient(to left, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.7) 50%, rgba(10,22,40,0.5) 100%)',
         }}
       />
 
