@@ -108,19 +108,19 @@ export default function ResourcesPage() {
                 <input
                   type="text"
                   placeholder="First Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold"
+                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold placeholder:text-gray-600"
                   style={{ fontFamily: "var(--font-sans)" }}
                 />
                 <input
                   type="text"
                   placeholder="Last Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold"
+                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold placeholder:text-gray-600"
                   style={{ fontFamily: "var(--font-sans)" }}
                 />
                 <input
                   type="email"
                   placeholder="Email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold"
+                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold placeholder:text-gray-600"
                   style={{ fontFamily: "var(--font-sans)" }}
                 />
               </div>
