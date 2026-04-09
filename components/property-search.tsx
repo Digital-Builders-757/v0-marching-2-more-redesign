@@ -8,9 +8,9 @@ export function PropertySearch() {
   return (
     <section id="properties" className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left column - Text content */}
-          <div className="flex flex-col gap-6">
+          <div className="flex-1 flex flex-col gap-6 lg:pl-8">
             {/* Gold label */}
             <p 
               className="text-sm font-bold tracking-wide"
@@ -21,16 +21,16 @@ export function PropertySearch() {
 
             {/* Large dark green serif heading */}
             <h2 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-              style={{ color: '#1B4332', fontFamily: 'var(--font-heading)' }}
+              className="text-5xl md:text-6xl lg:text-7xl leading-tight"
+              style={{ color: '#1B4332', fontFamily: 'Georgia, serif', fontWeight: 800 }}
             >
               Search Available<br />Properties
             </h2>
 
             {/* Body paragraph */}
             <p 
-              className="text-base leading-relaxed max-w-[500px]"
-              style={{ color: '#4a4a4a' }}
+              className="text-base leading-relaxed max-w-[480px]"
+              style={{ color: '#333' }}
             >
               We&apos;ve curated a range of properties that fit the lifestyle and requirements of military personnel and their families. From relocations to finding homes near military bases, we&apos;re here to support you at every step.
             </p>
@@ -42,11 +42,12 @@ export function PropertySearch() {
                   href={REALSCOUT_MAP_SEARCH_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-md px-8 py-4 text-sm font-semibold text-white transition hover:opacity-90"
+                  className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white transition hover:opacity-90"
                   style={{ 
                     backgroundColor: '#1B4332',
                     fontFamily: 'var(--font-nav)',
-                    minWidth: '220px'
+                    borderRadius: '6px',
+                    padding: '16px 32px'
                   }}
                 >
                   Start Your Search Now
@@ -64,12 +65,14 @@ export function PropertySearch() {
               <div className="flex flex-col items-center sm:items-start">
                 <a
                   href={mailtoNeedsHelp()}
-                  className="inline-flex items-center justify-center rounded-md px-8 py-4 text-sm font-semibold transition hover:bg-gray-50"
+                  className="inline-flex items-center justify-center text-sm font-bold transition hover:bg-gray-50"
                   style={{ 
                     border: '1px solid #333',
                     color: '#333',
                     fontFamily: 'var(--font-nav)',
-                    minWidth: '220px'
+                    borderRadius: '6px',
+                    padding: '16px 32px',
+                    backgroundColor: 'transparent'
                   }}
                 >
                   Or — Tell us your needs.
@@ -85,17 +88,17 @@ export function PropertySearch() {
           </div>
 
           {/* Right column - Cascading overlapping circular images */}
-          <div className="relative h-[280px] md:h-[320px] lg:h-[360px] w-full flex items-center justify-center lg:justify-end">
-            <div className="relative" style={{ width: '480px', height: '320px' }}>
-              {/* Circle 1 - Couple (front-left, largest ~320px, z-index 30) */}
+          <div className="flex-1 relative flex items-center justify-center" style={{ height: '420px' }}>
+            <div className="relative" style={{ width: '550px', height: '320px' }}>
+              {/* Circle 1 - Couple (front-left, largest 300px, z-index 3) */}
               <div 
                 className="absolute rounded-full overflow-hidden"
                 style={{ 
-                  width: '220px', 
-                  height: '220px', 
-                  left: '0', 
-                  top: '50px',
-                  zIndex: 30 
+                  width: '300px', 
+                  height: '300px', 
+                  left: '0px', 
+                  top: '10px',
+                  zIndex: 3 
                 }}
               >
                 <Image
@@ -103,19 +106,19 @@ export function PropertySearch() {
                   alt="Happy couple smiling in front of their new home"
                   fill
                   className="object-cover"
-                  sizes="220px"
+                  sizes="300px"
                 />
               </div>
               
-              {/* Circle 2 - Blue house (middle ~270px, z-index 20) */}
+              {/* Circle 2 - Blue house (middle 260px, z-index 2) */}
               <div 
                 className="absolute rounded-full overflow-hidden"
                 style={{ 
-                  width: '200px', 
-                  height: '200px', 
-                  left: '130px', 
-                  top: '20px',
-                  zIndex: 20 
+                  width: '260px', 
+                  height: '260px', 
+                  left: '180px', 
+                  top: '0px',
+                  zIndex: 2 
                 }}
               >
                 <Image
@@ -123,19 +126,19 @@ export function PropertySearch() {
                   alt="Modern blue craftsman home exterior"
                   fill
                   className="object-cover"
-                  sizes="200px"
+                  sizes="260px"
                 />
               </div>
 
-              {/* Circle 3 - Cottage house (back-right, smallest ~220px, z-index 10) */}
+              {/* Circle 3 - Cottage house (back-right, smallest 220px, z-index 1) */}
               <div 
                 className="absolute rounded-full overflow-hidden"
                 style={{ 
-                  width: '180px', 
-                  height: '180px', 
-                  left: '260px', 
-                  top: '60px',
-                  zIndex: 10 
+                  width: '220px', 
+                  height: '220px', 
+                  left: '330px', 
+                  top: '50px',
+                  zIndex: 1 
                 }}
               >
                 <Image
@@ -143,7 +146,7 @@ export function PropertySearch() {
                   alt="Warm-toned cottage home with garden path"
                   fill
                   className="object-cover"
-                  sizes="180px"
+                  sizes="220px"
                 />
               </div>
             </div>
