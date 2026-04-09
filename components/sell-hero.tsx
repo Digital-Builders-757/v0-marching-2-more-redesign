@@ -36,20 +36,20 @@ export function SellHero() {
       id="sell"
       className="relative bg-m2m-black px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden"
     >
-      {/* Background image with parallax */}
+      {/* Background image */}
       <div 
-        ref={imageRef}
-        className="absolute inset-[-10%] z-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/sell-with-confidence-bg.png')",
-          transform: "translateY(0) scale(1.1)",
         }}
       />
-      {/* Dark overlay for text readability */}
+      {/* Dark overlay for text readability with parallax */}
       <div 
-        className="absolute inset-0 z-0"
+        ref={imageRef}
+        className="absolute inset-0 z-0 will-change-transform"
         style={{
           background: 'linear-gradient(to left, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.7) 50%, rgba(10,22,40,0.5) 100%)',
+          transform: "translateY(0)",
         }}
       />
 
