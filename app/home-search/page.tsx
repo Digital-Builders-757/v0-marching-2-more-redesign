@@ -25,10 +25,10 @@ export default function HomeSearchPage() {
 
       <main id="main-content" tabIndex={-1} className="bg-m2m-black">
         <section className="relative overflow-hidden">
-          {/* Background image (Wix parity vibe) */}
+          {/* Background image */}
           <div className="absolute inset-0">
             <Image
-              src="https://static.wixstatic.com/media/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg/v1/fill/w_1903,h_812,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg"
+              src="/images/home-search-hero.png"
               alt=""
               fill
               priority
