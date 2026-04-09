@@ -50,40 +50,63 @@ export function PropertySearch() {
             </p>
           </div>
 
-          {/* Overlapping circular images - Venn diagram style */}
-          <div className="relative w-full h-[220px] md:h-[280px] lg:h-[300px] flex items-center justify-center">
-            {/* Container for the overlapping circles */}
-            <div className="relative w-[320px] md:w-[420px] lg:w-[480px] h-full">
-              {/* White house - left circle */}
-              <div className="absolute left-0 top-0 w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden border-4 border-white z-10">
+          {/* Cascading overlapping circular images */}
+          <div className="relative h-[200px] md:h-[260px] lg:h-[280px] w-full flex items-center justify-center lg:justify-end">
+            <div className="relative" style={{ width: '340px', height: '200px' }}>
+              {/* Circle 1 - Couple (front-left, largest, z-index 30) */}
+              <div 
+                className="absolute rounded-full overflow-hidden"
+                style={{ 
+                  width: '160px', 
+                  height: '160px', 
+                  left: '0', 
+                  top: '20px',
+                  zIndex: 30 
+                }}
+              >
                 <Image
-                  src="/images/sap-3.avif"
-                  alt="Beautiful white home exterior"
+                  src="/images/sap-1.avif"
+                  alt="Happy couple"
                   fill
                   className="object-cover"
-                  sizes="(min-width: 1024px) 220px, (min-width: 768px) 200px, 160px"
                 />
               </div>
               
-              {/* Blue house - right circle, overlapping */}
-              <div className="absolute right-0 top-[10%] md:top-[8%] w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden border-4 border-white z-20">
+              {/* Circle 2 - White house (middle, behind couple, z-index 20) */}
+              <div 
+                className="absolute rounded-full overflow-hidden"
+                style={{ 
+                  width: '150px', 
+                  height: '150px', 
+                  left: '95px', 
+                  top: '0',
+                  zIndex: 20 
+                }}
+              >
                 <Image
-                  src="/images/sap-2.avif"
-                  alt="Elegant blue home exterior"
+                  src="/images/sap-3.avif"
+                  alt="White home exterior"
                   fill
                   className="object-cover"
-                  sizes="(min-width: 1024px) 220px, (min-width: 768px) 200px, 160px"
                 />
               </div>
 
-              {/* Couple - smaller circle at bottom-left intersection */}
-              <div className="absolute left-[15%] md:left-[18%] bottom-0 w-[110px] h-[110px] md:w-[140px] md:h-[140px] lg:w-[150px] lg:h-[150px] rounded-full overflow-hidden border-4 border-white z-30">
+              {/* Circle 3 - Blue house (back-right, smallest, z-index 10) */}
+              <div 
+                className="absolute rounded-full overflow-hidden"
+                style={{ 
+                  width: '140px', 
+                  height: '140px', 
+                  left: '185px', 
+                  top: '25px',
+                  zIndex: 10 
+                }}
+              >
                 <Image
-                  src="/images/sap-1.avif"
-                  alt="Happy couple in front of their new home"
+                  src="/images/sap-2.avif"
+                  alt="Blue home exterior"
                   fill
                   className="object-cover"
-                  sizes="(min-width: 1024px) 150px, (min-width: 768px) 140px, 110px"
                 />
               </div>
             </div>
