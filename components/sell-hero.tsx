@@ -19,8 +19,9 @@ export function SellHero() {
       // Only apply parallax when section is in view
       if (rect.top < windowHeight && rect.bottom > 0) {
         const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height)
-        const parallaxOffset = (scrollProgress - 0.5) * 100 // Move by up to 50px in either direction
-        image.style.transform = `translateY(${parallaxOffset}px) scale(1.1)`
+        // Move from left to right slowly (up to 50px)
+        const parallaxOffset = scrollProgress * 50
+        image.style.transform = `translateX(${parallaxOffset}px) scale(1.1)`
       }
     }
 
@@ -42,7 +43,7 @@ export function SellHero() {
         className="absolute inset-[-10%] z-0 bg-cover bg-center bg-no-repeat will-change-transform"
         style={{
           backgroundImage: "url('/images/sell-with-confidence-bg.png')",
-          transform: "translateY(0) scale(1.1)",
+          transform: "translateX(0) scale(1.1)",
         }}
       />
       {/* Dark overlay for text readability */}
