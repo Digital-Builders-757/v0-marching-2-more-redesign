@@ -7,8 +7,6 @@ import { Header } from "@/components/header"
 import {
   CALENDLY_BOOK_URL,
   CREED_REALTY_SEARCH_URL,
-  M2M_PHONE_DISPLAY,
-  M2M_PHONE_HREF,
   REALSCOUT_HOME_VALUATION_URL,
   REALSCOUT_MAP_SEARCH_URL,
 } from "@/lib/m2m-site"
@@ -26,11 +24,11 @@ export default function HomeSearchPage() {
       <GSAPAnimations />
 
       <main id="main-content" tabIndex={-1} className="bg-m2m-black">
-        <section className="relative overflow-hidden">
-          {/* Background image (Wix parity vibe) */}
+        <section className="relative px-6 pt-28 pb-16 md:px-16 lg:px-24 overflow-hidden">
+          {/* Background image */}
           <div className="absolute inset-0">
             <Image
-              src="https://static.wixstatic.com/media/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg/v1/fill/w_1903,h_812,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg"
+              src="/images/home-search-hero.png"
               alt=""
               fill
               priority
@@ -38,92 +36,93 @@ export default function HomeSearchPage() {
               sizes="100vw"
             />
           </div>
-          <div className="absolute inset-0 bg-black/50" aria-hidden />
+          {/* Dark overlay */}
+          <div 
+            className="absolute inset-0"
+            style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
+          />
 
-          <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-28 md:px-16 md:pt-32 lg:px-24">
-            <div className="max-w-6xl">
-              <div
-                className="inline-flex items-center gap-6 text-sm text-m2m-cream/90"
-                style={{ fontFamily: "var(--font-nav)" }}
-              >
-                <span>Work With Us</span>
-                <span className="h-px w-24 bg-m2m-cream/40" aria-hidden />
-              </div>
+          <div className="relative mx-auto max-w-5xl">
+            {/* Kicker */}
+            <p
+              className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
+              style={{ fontFamily: "var(--font-nav)" }}
+            >
+              Work With Us
+            </p>
 
-              <h1
-                className="mt-10 text-balance font-light leading-[0.95] text-m2m-cream text-[clamp(3.25rem,8vw,6.25rem)]"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                We&apos;re looking
-                <br />
-                to buy.
-                <span className="inline-block w-10" />I&apos;m
-                <br />
-                ready
-                <br />
-                to sell.
-              </h1>
-
-              <div className="mt-14 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
-                <a
-                  href={REALSCOUT_MAP_SEARCH_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-sm bg-[#1e5a2b] px-6 py-5 text-sm font-medium tracking-[0.2em] uppercase text-m2m-cream transition hover:bg-[#1e5a2b]/90"
-                  style={{ fontFamily: "var(--font-nav)" }}
+            {/* Two column headings */}
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+              {/* Left column - Buy */}
+              <div>
+                <h1
+                  className="font-light italic leading-[1.05] text-[clamp(2.25rem,5vw,4rem)] text-m2m-cream"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
-                  Start Your Search
-                </a>
-
-                <a
-                  href={REALSCOUT_HOME_VALUATION_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-sm bg-m2m-gold px-6 py-5 text-sm font-medium tracking-[0.2em] uppercase text-m2m-deep transition hover:bg-m2m-gold-lt"
-                  style={{ fontFamily: "var(--font-nav)" }}
+                  We&apos;re looking<br />to buy.
+                </h1>
+                <p
+                  className="mt-6 max-w-md text-sm leading-relaxed text-m2m-muted-lt"
+                  style={{ fontFamily: "var(--font-sans)" }}
                 >
-                  Get Your Free Home Valuation
-                </a>
-
-                <a
-                  href={CALENDLY_BOOK_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-sm border border-m2m-cream/70 bg-black/20 px-6 py-5 text-sm font-medium tracking-[0.2em] uppercase text-m2m-cream transition hover:border-m2m-cream"
-                  style={{ fontFamily: "var(--font-nav)" }}
-                >
-                  Or Speak with an Agent
-                </a>
-
-                <a
-                  href={CREED_REALTY_SEARCH_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-sm border border-m2m-cream/70 bg-black/20 px-6 py-5 text-sm font-medium tracking-[0.2em] uppercase text-m2m-cream transition hover:border-m2m-cream"
-                  style={{ fontFamily: "var(--font-nav)" }}
-                >
-                  Receive Your Free Listing Guide
-                </a>
-              </div>
-
-              <div className="mt-14 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <span
-                    className="text-sm text-m2m-cream/90"
+                  Start your property search or speak with one of our agents to find your perfect home.
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                  <a
+                    href={REALSCOUT_MAP_SEARCH_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:bg-m2m-gold-lt"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
-                    Meet Your Team
-                  </span>
-                  <span className="h-px w-16 bg-m2m-cream/30" aria-hidden />
+                    Start Your Search
+                  </a>
+                  <a
+                    href={CALENDLY_BOOK_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center border border-m2m-gold/30 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:border-m2m-gold hover:text-m2m-gold"
+                    style={{ fontFamily: "var(--font-nav)" }}
+                  >
+                    Speak with an Agent
+                  </a>
                 </div>
+              </div>
 
-                <a
-                  href={M2M_PHONE_HREF}
-                  className="inline-flex items-center justify-center rounded-sm border border-m2m-cream/30 bg-black/20 px-6 py-3 text-[0.75rem] tracking-[0.2em] uppercase text-m2m-cream transition hover:border-m2m-cream/60"
-                  style={{ fontFamily: "var(--font-nav)" }}
+              {/* Right column - Sell */}
+              <div>
+                <h2
+                  className="font-light italic leading-[1.05] text-[clamp(2.25rem,5vw,4rem)] text-m2m-cream"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
-                  {M2M_PHONE_DISPLAY}
-                </a>
+                  I&apos;m ready<br />to sell.
+                </h2>
+                <p
+                  className="mt-6 max-w-md text-sm leading-relaxed text-m2m-muted-lt"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  Get a free home consultation or receive our comprehensive listing guide.
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                  <a
+                    href={REALSCOUT_HOME_VALUATION_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:bg-m2m-gold-lt"
+                    style={{ fontFamily: "var(--font-nav)" }}
+                  >
+                    Free Home Consultation
+                  </a>
+                  <a
+                    href={CREED_REALTY_SEARCH_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center border border-m2m-gold/30 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:border-m2m-gold hover:text-m2m-gold"
+                    style={{ fontFamily: "var(--font-nav)" }}
+                  >
+                    Free Listing Guide
+                  </a>
+                </div>
               </div>
             </div>
           </div>

@@ -10,46 +10,54 @@ export type BlogPost = {
   content: string
 }
 
-// Structure-only demo content. Swap this module to Supabase later.
 export const BLOG_POSTS: BlogPost[] = [
   {
-    slug: "hampton-roads-home-buying-guide",
-    title: "A first-time home buying guide for Hampton Roads",
+    slug: "virginia-beach-homes-fly-off-market",
+    title: "Why Virginia Beach Homes Fly Off the Market and How to Leverage Expert Help",
     excerpt:
-      "A practical walkthrough for military families and first-time buyers: budgeting, VA loans, timelines, and what to expect.",
-    coverImage:
-      "https://static.wixstatic.com/media/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg/v1/fill/w_1903,h_813,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg",
-    author: "Marching 2 More",
-    publishedAt: "2026-04-01",
-    readTime: "6 min",
-    category: "Buy",
-    content: `## What to expect\n\nBuying a home doesn’t have to be overwhelming. Here’s the process we recommend:\n\n- Clarify budget + financing\n- Get a strong pre-approval\n- Identify must-haves vs nice-to-haves\n- Tour strategically\n- Negotiate confidently\n\n## Our approach\n\nWe’ll help you make clean decisions, avoid surprises, and keep the experience calm and organized.\n\n> Demo note: this is placeholder content. We’ll replace posts with Supabase-backed content later.`,
+      "If you have been watching the Virginia Beach real estate scene lately, you've likely noticed a clear trend: homes priced right and presented well are selling incredibly fast. Buyers are eager, offers come quickly, and sellers often find themselves surprised by how swiftly their properties move. This fast pace is no accident. It reflects a combination of steady buyer demand, limited inventory, and smart marketing strategies. The Marching 2 More Real Estate Team has firsthand",
+    coverImage: "/images/home-search-hero.png",
+    author: "info960426",
+    publishedAt: "Mar 24",
+    readTime: "4 min read",
+    category: "Market Insights",
+    content: `## Why Virginia Beach Homes Fly Off the Market\n\nIf you have been watching the Virginia Beach real estate scene lately, you've likely noticed a clear trend: homes priced right and presented well are selling incredibly fast.\n\nBuyers are eager, offers come quickly, and sellers often find themselves surprised by how swiftly their properties move. This fast pace is no accident. It reflects a combination of steady buyer demand, limited inventory, and smart marketing strategies.`,
   },
   {
-    slug: "va-loan-basics",
-    title: "VA Loan basics: what matters and what doesn’t",
+    slug: "costly-mistakes-selling-without-realtor",
+    title: "The Costly Mistakes of Selling Your Hampton Roads Home Without a Realtor",
     excerpt:
-      "A clear explanation of eligibility, funding fees, appraisal timelines, and common misconceptions about VA loans.",
-    coverImage:
-      "https://static.wixstatic.com/media/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg/v1/fill/w_1903,h_812,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg",
-    author: "Marching 2 More",
-    publishedAt: "2026-03-21",
-    readTime: "5 min",
-    category: "Finance",
-    content: `## The short version\n\nVA loans can be an incredible advantage. The key is making sure your timeline and paperwork are tight.\n\n### Common myths\n\n- *Myth:* VA loans always take longer\n- *Myth:* Sellers won’t accept VA\n\nWe’ll help you present a clean offer and keep everything moving.`,
+      "Selling your home in Hampton Roads on your own might seem like a smart way to save money. The idea of skipping the real estate agent and avoiding commission fees is tempting. But many homeowners who choose the for sale by owner Virginia route soon find out that it can cost them more than they expected. Selling a house yourself in VA involves many challenges that can reduce your profit or delay your sale. A typical Hampton Roads home with a FSBO sign in the yard The Hidden Ri",
+    coverImage: "/images/sell-with-confidence-bg.png",
+    author: "info960426",
+    publishedAt: "Mar 10",
+    readTime: "3 min read",
+    category: "Selling Tips",
+    content: `## The Costly Mistakes of Selling Without a Realtor\n\nSelling your home in Hampton Roads on your own might seem like a smart way to save money. The idea of skipping the real estate agent and avoiding commission fees is tempting.\n\nBut many homeowners who choose the for sale by owner Virginia route soon find out that it can cost them more than they expected.`,
   },
   {
-    slug: "pre-listing-checklist",
-    title: "Pre-listing checklist: maximize value before you list",
+    slug: "selling-coastal-properties-hampton-roads",
+    title: "Selling Coastal Properties in Hampton Roads: Strategies to Elevate Your Waterfront Listing in 2026",
     excerpt:
-      "Small upgrades + smart preparation can change your final sale price. Here’s a simple checklist that works.",
-    coverImage:
-      "https://static.wixstatic.com/media/63ece0_0f4f064e9f5d4f3492a21f78817e3539~mv2.jpg/v1/fill/w_1903,h_812,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_0f4f064e9f5d4f3492a21f78817e3539~mv2.jpg",
-    author: "Marching 2 More",
-    publishedAt: "2026-03-10",
-    readTime: "4 min",
-    category: "Sell",
-    content: `## The goal\n\nWe want buyers to feel certainty the moment they walk in.\n\n- Declutter\n- Deep clean\n- Fix the small obvious things\n- Make curb appeal effortless\n\nIf you want the full guide, grab the Pre-Listing Checklist page.`,
+      "Selling a home near the water in Hampton Roads requires more than just listing it on the market. Coastal properties offer unique lifestyle benefits and challenges that demand a specialized approach. Whether your home is in Ocean Lakes, Fox Hill, Willoughby Spit, or Knotts Island, standing out in 2026 means showcasing both the value and the emotional appeal of waterfront living. This guide explains how to prepare your coastal listing to attract the right buyers, especially tho",
+    coverImage: "/images/cma-hero.png",
+    author: "info960426",
+    publishedAt: "Feb 24",
+    readTime: "3 min read",
+    category: "Coastal Living",
+    content: `## Selling Coastal Properties in Hampton Roads\n\nSelling a home near the water in Hampton Roads requires more than just listing it on the market. Coastal properties offer unique lifestyle benefits and challenges that demand a specialized approach.\n\nWhether your home is in Ocean Lakes, Fox Hill, Willoughby Spit, or Knotts Island, standing out in 2026 means showcasing both the value and the emotional appeal of waterfront living.`,
+  },
+  {
+    slug: "role-of-real-estate-professional",
+    title: "Unveiling the Role of a Real Estate Professional",
+    excerpt:
+      "Buying or selling a home is a big deal. It's more than just a transaction - it's about finding a place where memories will be made or moving on to a new chapter. For military families in Virginia, this process can be even more complex due to frequent relocations and unique housing needs. That's where a real estate professional steps in. They guide you through the maze of paperwork, negotiations, and market trends, making the journey smoother and less stressful. Why a Real Est",
+    coverImage: "/images/resources-hero.png",
+    author: "Donavan McFadden",
+    publishedAt: "Feb 24",
+    readTime: "4 min read",
+    category: "Buyer Tips",
+    content: `## Unveiling the Role of a Real Estate Professional\n\nBuying or selling a home is a big deal. It's more than just a transaction - it's about finding a place where memories will be made or moving on to a new chapter.\n\nFor military families in Virginia, this process can be even more complex due to frequent relocations and unique housing needs. That's where a real estate professional steps in.`,
   },
 ]
 

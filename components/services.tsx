@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
 import { PARTNER_LINKS } from "@/lib/m2m-site"
@@ -30,27 +31,43 @@ export function Services() {
       />
 
       <div className="relative px-6 py-20 md:px-16 lg:px-24 md:py-32">
-        {/* Header */}
-        <div className="mb-16 lg:mb-20">
-          {/* Tagline */}
-          <span 
-            data-gsap="fade-down"
-            className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-4 block"
-            style={{ fontFamily: 'var(--font-nav)' }}
-          >
-            You&apos;re in great hands.
-          </span>
+        {/* Header with image */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16 mb-16 lg:mb-20">
+          {/* Left - Text content */}
+          <div className="flex-1">
+            {/* Tagline */}
+            <span 
+              data-gsap="fade-down"
+              className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-4 block"
+              style={{ fontFamily: 'var(--font-nav)' }}
+            >
+              You&apos;re in great hands.
+            </span>
 
-          {/* Headline */}
-          <h2 
-            data-gsap="blur-in"
-            className="text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-m2m-cream font-light"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Financing, renovations,
-            <br />
-            <span className="italic text-m2m-gold">moving solutions</span>
-          </h2>
+            {/* Headline */}
+            <h2 
+              data-gsap="blur-in"
+              className="text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-m2m-cream font-light"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              Financing, renovations,
+              <br />
+              <span className="italic text-m2m-gold">moving solutions</span>
+            </h2>
+          </div>
+
+          {/* Right - Family image */}
+          <div className="flex-shrink-0" data-gsap="fade-up">
+            <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px] rounded-full overflow-hidden">
+              <Image
+                src="/images/bfam-sect.avif"
+                alt="Happy family together"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 380px, (min-width: 768px) 320px, 280px"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Description */}
