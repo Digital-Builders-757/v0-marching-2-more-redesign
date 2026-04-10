@@ -10,7 +10,7 @@ import {
 export function Hero() {
   return (
     <section
-      className="relative min-h-[100dvh] overflow-hidden bg-white py-6 md:py-8"
+      className="relative min-h-[100dvh] overflow-hidden bg-white py-6 md:py-8 mt-[50px]"
       aria-labelledby="hero-heading"
     >
       {/* Inner container with background image at 90% width */}
