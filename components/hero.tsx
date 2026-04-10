@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Image from "next/image"
 import {
   CALENDLY_BOOK_URL,
   M2M_PHONE_DISPLAY,
@@ -134,31 +135,47 @@ export function Hero() {
             {/* Logos row */}
             <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
               {/* U.S. Veteran Owned Business */}
-              <div className="h-12 w-24 flex items-center justify-center">
-                <div className="text-m2m-cream/60 text-[0.5rem] text-center uppercase tracking-wider">
-                  Veteran<br />Owned
-                </div>
+              <div className="relative h-12 w-24">
+                <Image
+                  src="/images/hero-icon-1.avif"
+                  alt="U.S. Veteran Owned Business"
+                  fill
+                  className="object-contain"
+                  sizes="96px"
+                />
               </div>
               
               {/* CreedRealty.com */}
-              <div className="h-12 w-32 flex items-center justify-center">
-                <div className="text-m2m-cream/60 text-[0.5rem] text-center uppercase tracking-wider">
-                  CreedRealty
-                </div>
+              <div className="relative h-12 w-32">
+                <Image
+                  src="/images/hero-icon-2.avif"
+                  alt="CreedRealty.com - Client Focused. Agent Owned."
+                  fill
+                  className="object-contain"
+                  sizes="128px"
+                />
               </div>
               
               {/* Equal Housing Opportunity */}
-              <div className="h-12 w-24 flex items-center justify-center">
-                <div className="text-m2m-cream/60 text-[0.5rem] text-center uppercase tracking-wider">
-                  Equal Housing
-                </div>
+              <div className="relative h-12 w-24">
+                <Image
+                  src="/images/hero-icon-3.avif"
+                  alt="Equal Housing Opportunity"
+                  fill
+                  className="object-contain"
+                  sizes="96px"
+                />
               </div>
               
               {/* National Association of Realtors */}
-              <div className="h-12 w-32 flex items-center justify-center">
-                <div className="text-m2m-cream/60 text-[0.5rem] text-center uppercase tracking-wider">
-                  Realtors
-                </div>
+              <div className="relative h-12 w-32">
+                <Image
+                  src="/images/hero-icon-4.avif"
+                  alt="National Association of Realtors"
+                  fill
+                  className="object-contain"
+                  sizes="128px"
+                />
               </div>
             </div>
 
