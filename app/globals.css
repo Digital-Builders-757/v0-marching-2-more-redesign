@@ -110,7 +110,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-m2m-black text-m2m-cream font-sans font-light antialiased;
+    @apply bg-white text-m2m-deep font-sans font-light antialiased;
   }
 }
 

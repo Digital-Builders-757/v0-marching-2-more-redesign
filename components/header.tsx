@@ -24,7 +24,7 @@ export function Header() {
   }, [menuOpen])
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
+    <header className="sticky top-0 z-50 bg-[#244b2a]">
       {/* Backdrop */}
       {menuOpen ? (
         <button
@@ -51,13 +51,13 @@ export function Header() {
             {/* Wix parity: brand text links */}
             <span className="hidden flex-col leading-none sm:flex">
               <span
-                className="text-[0.75rem] font-semibold tracking-[0.2em] text-m2m-deep"
+                className="text-[0.75rem] font-semibold tracking-[0.2em] text-m2m-cream"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 MARCHING 2 MORE
               </span>
               <span
-                className="mt-1 text-[0.7rem] font-medium tracking-[0.22em] text-m2m-deep/70"
+                className="mt-1 text-[0.7rem] font-medium tracking-[0.22em] text-m2m-cream/80"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 REAL ESTATE TEAM
@@ -68,7 +68,7 @@ export function Header() {
           {/* Wix parity: hamburger/menu (shown on desktop too) */}
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center text-m2m-deep/80 transition-colors hover:text-m2m-deep"
+            className="inline-flex h-10 w-10 items-center justify-center text-m2m-cream/90 transition-colors hover:text-m2m-cream"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
