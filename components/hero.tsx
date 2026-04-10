@@ -94,6 +94,7 @@ export function Hero() {
             Call or Text — {M2M_PHONE_DISPLAY}
           </a>
         </div>
+        </div>
       </div>
     </section>
   )
