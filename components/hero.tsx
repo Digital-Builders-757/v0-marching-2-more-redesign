@@ -128,7 +128,7 @@ export function Hero() {
           </div>
 
           {/* Partner logos section */}
-          <div className="mt-16">
+          <div className="mt-16 py-[50px]">
             {/* Horizontal line */}
             <div className="w-full h-px bg-m2m-cream/20 mb-8" />
             
