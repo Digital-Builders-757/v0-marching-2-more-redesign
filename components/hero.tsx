@@ -10,13 +10,13 @@ import {
 export function Hero() {
   return (
     <section
-      className="relative min-h-[100dvh] overflow-hidden bg-white py-6 md:py-8 mt-[50px]"
+      className="relative min-h-[100dvh] overflow-hidden bg-white py-6 md:py-8"
       aria-labelledby="hero-heading"
     >
-      {/* Inner container with background image at 90% width */}
+      {/* Inner container with background image at 95% width */}
       <div 
         className="relative mx-auto overflow-hidden rounded-xl"
-        style={{ width: '90%', minHeight: 'calc(100dvh - 48px)' }}
+        style={{ width: '95%', minHeight: 'calc(100dvh - 48px)' }}
       >
         {/* Background image */}
         <div
