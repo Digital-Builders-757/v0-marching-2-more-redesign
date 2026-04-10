@@ -140,7 +140,7 @@ export function Hero() {
                   src="/images/hero-icon-1.avif"
                   alt="U.S. Veteran Owned Business"
                   fill
-                  className="object-contain"
+                  className="object-contain brightness-0 invert sepia saturate-[10] hue-rotate-[10deg]"
                   sizes="96px"
                 />
               </div>
@@ -151,7 +151,7 @@ export function Hero() {
                   src="/images/hero-icon-2.avif"
                   alt="CreedRealty.com - Client Focused. Agent Owned."
                   fill
-                  className="object-contain"
+                  className="object-contain brightness-0 invert sepia saturate-[10] hue-rotate-[10deg]"
                   sizes="128px"
                 />
               </div>
@@ -162,7 +162,7 @@ export function Hero() {
                   src="/images/hero-icon-3.avif"
                   alt="Equal Housing Opportunity"
                   fill
-                  className="object-contain"
+                  className="object-contain brightness-0 invert sepia saturate-[10] hue-rotate-[10deg]"
                   sizes="96px"
                 />
               </div>
@@ -173,7 +173,7 @@ export function Hero() {
                   src="/images/hero-icon-4.avif"
                   alt="National Association of Realtors"
                   fill
-                  className="object-contain"
+                  className="object-contain brightness-0 invert sepia saturate-[10] hue-rotate-[10deg]"
                   sizes="128px"
                 />
               </div>
