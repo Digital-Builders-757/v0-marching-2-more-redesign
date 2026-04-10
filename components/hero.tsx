@@ -125,6 +125,60 @@ export function Hero() {
             Call or Text — {M2M_PHONE_DISPLAY}
           </a>
           </div>
+
+          {/* Partner logos section */}
+          <div className="mt-16">
+            {/* Horizontal line */}
+            <div className="w-full h-px bg-m2m-cream/20 mb-8" />
+            
+            {/* Logos row */}
+            <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
+              {/* U.S. Veteran Owned Business */}
+              <div className="h-12 w-24 flex items-center justify-center">
+                <div className="text-m2m-cream/60 text-[0.5rem] text-center uppercase tracking-wider">
+                  Veteran<br />Owned
+                </div>
+              </div>
+              
+              {/* CreedRealty.com */}
+              <div className="h-12 w-32 flex items-center justify-center">
+                <div className="text-m2m-cream/60 text-[0.5rem] text-center uppercase tracking-wider">
+                  CreedRealty
+                </div>
+              </div>
+              
+              {/* Equal Housing Opportunity */}
+              <div className="h-12 w-24 flex items-center justify-center">
+                <div className="text-m2m-cream/60 text-[0.5rem] text-center uppercase tracking-wider">
+                  Equal Housing
+                </div>
+              </div>
+              
+              {/* National Association of Realtors */}
+              <div className="h-12 w-32 flex items-center justify-center">
+                <div className="text-m2m-cream/60 text-[0.5rem] text-center uppercase tracking-wider">
+                  Realtors
+                </div>
+              </div>
+            </div>
+
+            {/* Have a question? Contact Us */}
+            <div className="mt-8 text-center">
+              <span 
+                className="text-sm text-m2m-cream/70"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                Have a question?{" "}
+              </span>
+              <a
+                href="/contact-us"
+                className="text-sm text-m2m-cream hover:text-m2m-gold transition-colors"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                Contact Us &#9656;
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
