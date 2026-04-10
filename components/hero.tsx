@@ -180,7 +180,7 @@ export function Hero() {
             </div>
 
             {/* Have a question? Contact Us */}
-            <div className="mt-8 text-center">
+            <div className="mt-[100px] text-center">
               <span 
                 className="text-sm text-m2m-cream/70"
                 style={{ fontFamily: "var(--font-sans)" }}
