@@ -18,8 +18,7 @@ export function Hero() {
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage:
-            "url('https://static.wixstatic.com/media/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg/v1/fill/w_1903,h_813,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg')",
+          backgroundImage: "url('/images/hero-background.png')",
         }}
       />
 
@@ -44,14 +43,14 @@ export function Hero() {
 
         <h1
           id="hero-heading"
-          className="mt-8 text-balance font-light leading-[1.05] tracking-tight text-m2m-cream text-[clamp(2.5rem,6vw,5.25rem)]"
+          className="mt-8 text-balance font-light leading-[1.1] text-m2m-cream text-[clamp(2.5rem,5vw,4.5rem)]"
           style={{ fontFamily: "var(--font-display)" }}
         >
           Where You Find Your Next Home
         </h1>
 
         <p
-          className="mt-6 max-w-xl text-sm tracking-wider italic text-m2m-muted-lt"
+          className="mt-6 max-w-xl text-base leading-relaxed text-m2m-cream/80"
           style={{ fontFamily: "var(--font-sans)" }}
         >
           Ask about our Financing Options.

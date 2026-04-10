@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Star } from "lucide-react"
 
 const testimonials = [
@@ -8,19 +9,20 @@ const testimonials = [
     quote: "So excited for our new journey! I can't thank Donavan McFadden and the Marching2More team enough for finding the perfect home for my little family! He was extremely dedicated to finding a home that fit our needs and wants! Here's to new beginnings!",
     name: "The Sanchez Family",
     role: "U.S. Navy",
+    image: "/images/testi-sanchez.avif",
   },
   {
     quote: "Donavan McFadden assisted my wife and I in purchasing our first home together. Buying a home for the first time can be scary and confusing, it certainly was for us. We had spoken to and tried to work with different agents before we settled in with Mr. Donavan. Our experiences before and after working with him were night and day. He was very responsive and really took his time to explain everything we did not know. He took what can be a laborious and stressful process and made it an enjoyable one. For as long as we are in the Hampton roads area we will use Donavan McFadden as our agent to buy and sell. Thank you Donavan!",
     name: "The Cole Family",
     role: "U.S. Navy",
+    image: "/images/testi-cole.avif",
   },
   {
     quote: "When you have family and friends you care about you want to refer them to some one you can trust! Roger Lee was that person for me. He built trust. He was relatable. He was patient! He helped my relative and I truly believe gained a repeat client.",
     name: "Terri Hill",
     role: "Hampton Roads Resident",
-    avatar: "T",
+    image: "/images/testi-tami.avif",
   },
-
 ]
 
 export function Testimonials() {
@@ -29,8 +31,18 @@ export function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Serving with integrity. Leading with experience.
+          {/* Kicker */}
+          <p 
+            className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-4"
+            style={{ fontFamily: 'var(--font-nav)' }}
+          >
+            Real Stories. Real Results.
+          </p>
+          <h2 
+            className="text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light text-m2m-cream"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Serving with integrity.<br />Leading with experience.
           </h2>
         </div>
 
@@ -77,13 +89,14 @@ export function Testimonials() {
               {/* Author */}
               <div className="flex items-center justify-center gap-3 mt-auto">
                 {/* Avatar */}
-                <div className="w-10 h-10 rounded-full bg-m2m-gold/20 border border-m2m-gold/30 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-m2m-gold/50">
-                  <span 
-                    className="text-sm font-medium text-m2m-gold"
-                    style={{ fontFamily: 'var(--font-nav)' }}
-                  >
-                    {testimonial.avatar}
-                  </span>
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-m2m-gold/30 transition-all duration-300 group-hover:scale-110 group-hover:border-m2m-gold/50">
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 
                 {/* Name & Role */}
