@@ -54,26 +54,31 @@ export default function ResourcesPage() {
       <Header />
       <GSAPAnimations />
 
-      <main id="main-content" tabIndex={-1} className="bg-m2m-cream">
-        <section className="relative px-6 pt-24 pb-20 md:px-16 lg:px-24 overflow-hidden min-h-screen">
-          {/* Background image */}
-          <div className="absolute inset-0">
-            <Image
-              src="/images/resources-hero.png"
-              alt=""
-              fill
-              priority
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-          {/* Dark overlay */}
+      <main id="main-content" tabIndex={-1} className="bg-white">
+        <section className="relative min-h-screen overflow-hidden bg-white py-6 md:py-8">
+          {/* Inner container with background image at 95% width */}
           <div 
-            className="absolute inset-0"
-            style={{ backgroundColor: "rgba(5, 13, 6, 0.6)" }}
-          />
+            className="relative mx-auto overflow-hidden rounded-xl"
+            style={{ width: '95%', minHeight: 'calc(100vh - 48px)' }}
+          >
+            {/* Background image */}
+            <div className="absolute inset-0">
+              <Image
+                src="/images/resources-hero.png"
+                alt=""
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+            {/* Dark overlay */}
+            <div 
+              className="absolute inset-0"
+              style={{ backgroundColor: "rgba(5, 13, 6, 0.6)" }}
+            />
           
-          <div className="relative mx-auto max-w-5xl">
+            <div className="relative mx-auto max-w-5xl px-6 pt-24 pb-20 md:px-16 lg:px-24">
             {/* Kicker with line */}
             <div className="flex items-center gap-4">
               <p
@@ -164,6 +169,7 @@ export default function ResourcesPage() {
                   </a>
                 ))}
               </div>
+            </div>
             </div>
           </div>
         </section>
