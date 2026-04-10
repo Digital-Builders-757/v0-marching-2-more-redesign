@@ -10,33 +10,29 @@ import {
 export function Hero() {
   return (
     <section
-      className="relative min-h-[100dvh] overflow-hidden bg-white py-8 px-6 md:px-16 lg:px-24"
+      className="relative min-h-[100dvh] overflow-hidden px-6 pb-16 pt-32 md:px-16 lg:px-24"
+      style={{ backgroundColor: "#050d06" }}
       aria-labelledby="hero-heading"
     >
-      {/* Inner container with background image at 80% width */}
-      <div 
-        className="relative mx-auto overflow-hidden rounded-2xl"
-        style={{ width: '80%', minHeight: 'calc(100dvh - 64px)' }}
-      >
-        {/* Background image */}
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('/images/hero-background.png')",
-          }}
-        />
+      {/* Background image */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/hero-background.png')",
+        }}
+      />
 
-        {/* Readability overlays */}
-        <div
-          className="absolute inset-0 z-[1]"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(5,13,6,0.92) 0%, rgba(5,13,6,0.75) 35%, rgba(5,13,6,0.45) 60%, rgba(5,13,6,0.2) 100%), linear-gradient(to bottom, rgba(5,13,6,0.4) 0%, transparent 40%, transparent 70%, rgba(5,13,6,0.55) 100%)",
-          }}
-          aria-hidden
-        />
+      {/* Readability overlays */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(5,13,6,0.92) 0%, rgba(5,13,6,0.75) 35%, rgba(5,13,6,0.45) 60%, rgba(5,13,6,0.2) 100%), linear-gradient(to bottom, rgba(5,13,6,0.4) 0%, transparent 40%, transparent 70%, rgba(5,13,6,0.55) 100%)",
+        }}
+        aria-hidden
+      />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col justify-center px-6 pb-16 pt-32 md:px-16">
+      <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col justify-center">
         <div
           className="inline-flex items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
           style={{ fontFamily: "var(--font-nav)" }}
@@ -93,7 +89,6 @@ export function Hero() {
           >
             Call or Text — {M2M_PHONE_DISPLAY}
           </a>
-        </div>
         </div>
       </div>
     </section>
