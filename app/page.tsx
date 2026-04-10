@@ -13,7 +13,7 @@ export default function Home() {
       <Header />
       <GSAPAnimations />
 
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className="bg-white">
         {/* Wix parity section order: Hero → Reviews → Search → Sell → Partners */}
         <Hero />
         <Testimonials />

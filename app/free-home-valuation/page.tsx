@@ -17,27 +17,32 @@ export default function FreeHomeValuationPage() {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className="bg-white">
         {/* Hero Section */}
-        <section className="relative px-6 pt-28 pb-20 md:px-16 lg:px-24 overflow-hidden min-h-[70vh]">
-          {/* Background image */}
-          <div className="absolute inset-0">
-            <Image
-              src="/images/cma-hero.png"
-              alt=""
-              fill
-              priority
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-          {/* Dark overlay */}
+        <section className="relative min-h-[70vh] overflow-hidden bg-white py-6 md:py-8">
+          {/* Inner container with background image at 95% width */}
           <div 
-            className="absolute inset-0"
-            style={{ backgroundColor: "rgba(5, 13, 6, 0.7)" }}
-          />
+            className="relative mx-auto overflow-hidden rounded-xl"
+            style={{ width: '95%', minHeight: 'calc(70vh - 48px)' }}
+          >
+            {/* Background image */}
+            <div className="absolute inset-0">
+              <Image
+                src="/images/cma-hero.png"
+                alt=""
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+            {/* Dark overlay */}
+            <div 
+              className="absolute inset-0"
+              style={{ backgroundColor: "rgba(5, 13, 6, 0.7)" }}
+            />
 
-          <div className="relative mx-auto max-w-5xl text-center">
+            <div className="relative mx-auto max-w-5xl text-center px-6 pt-28 pb-20 md:px-16 lg:px-24">
             {/* Kicker */}
             <div className="inline-flex items-center gap-4 mb-8">
               <p
@@ -94,10 +99,11 @@ export default function FreeHomeValuationPage() {
               style={{ fontFamily: "var(--font-nav)" }}
             >
               Have a question?{" "}
-              <Link href="/contact" className="underline hover:text-m2m-gold">
-                Contact Us
-              </Link>
+            <Link href="/contact" className="underline hover:text-m2m-gold">
+              Contact Us
+            </Link>
             </p>
+            </div>
           </div>
         </section>
 

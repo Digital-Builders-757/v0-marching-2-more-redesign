@@ -39,28 +39,33 @@ export default function FreeHomeValuationPage() {
       <Header />
       <GSAPAnimations />
 
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className="bg-white">
         {/* Hero with background image */}
-        <section className="relative min-h-screen overflow-hidden">
-          {/* Background image */}
-          <div className="absolute inset-0">
-            <Image
-              src="/images/cma-hero.png"
-              alt=""
-              fill
-              priority
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-          {/* Dark green overlay */}
+        <section className="relative min-h-screen overflow-hidden bg-white py-6 md:py-8">
+          {/* Inner container with background image at 95% width */}
           <div 
-            className="absolute inset-0"
-            style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
-          />
+            className="relative mx-auto overflow-hidden rounded-xl"
+            style={{ width: '95%', minHeight: 'calc(100vh - 48px)' }}
+          >
+            {/* Background image */}
+            <div className="absolute inset-0">
+              <Image
+                src="/images/cma-hero.png"
+                alt=""
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+            {/* Dark green overlay */}
+            <div 
+              className="absolute inset-0"
+              style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
+            />
 
-          <div className="relative px-6 pt-28 pb-16 md:px-16 lg:px-24">
-            <div className="mx-auto max-w-5xl">
+            <div className="relative px-6 pt-28 pb-16 md:px-16 lg:px-24">
+              <div className="mx-auto max-w-5xl">
               {/* Kicker */}
               <div className="flex items-center gap-4">
                 <p
@@ -287,6 +292,7 @@ export default function FreeHomeValuationPage() {
                   That&apos;s it — Send!
                 </button>
               </form>
+              </div>
             </div>
           </div>
         </section>

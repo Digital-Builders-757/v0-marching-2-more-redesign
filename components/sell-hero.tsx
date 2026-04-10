@@ -19,8 +19,9 @@ export function SellHero() {
       // Only apply parallax when section is in view
       if (rect.top < windowHeight && rect.bottom > 0) {
         const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height)
-        const parallaxOffset = (scrollProgress - 0.5) * 100 // Move by up to 50px in either direction
-        image.style.transform = `translateY(${parallaxOffset}px) scale(1.1)`
+        // Move from left to right slowly (up to 50px)
+        const parallaxOffset = scrollProgress * 50
+        image.style.transform = `translateX(${parallaxOffset}px) scale(1.1)`
       }
     }
 
@@ -36,20 +37,20 @@ export function SellHero() {
       id="sell"
       className="relative bg-m2m-black px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden"
     >
-      {/* Background image */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/sell-with-confidence-bg.png')",
-        }}
-      />
-      {/* Dark overlay for text readability with parallax */}
+      {/* Background image with parallax */}
       <div 
         ref={imageRef}
-        className="absolute inset-0 z-0 will-change-transform"
+        className="absolute inset-[-10%] z-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        style={{
+          backgroundImage: "url('/images/sell-with-confidence-bg.png')",
+          transform: "translateX(0) scale(1.1)",
+        }}
+      />
+      {/* Dark overlay for text readability */}
+      <div 
+        className="absolute inset-0 z-0"
         style={{
           background: 'linear-gradient(to left, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.7) 50%, rgba(10,22,40,0.5) 100%)',
-          transform: "translateY(0)",
         }}
       />
 

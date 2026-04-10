@@ -23,26 +23,31 @@ export default function HomeSearchPage() {
       <Header />
       <GSAPAnimations />
 
-      <main id="main-content" tabIndex={-1} className="bg-m2m-black">
-        <section className="relative px-6 pt-28 pb-16 md:px-16 lg:px-24 overflow-hidden">
-          {/* Background image */}
-          <div className="absolute inset-0">
-            <Image
-              src="/images/home-search-hero.png"
-              alt=""
-              fill
-              priority
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-          {/* Dark overlay */}
+      <main id="main-content" tabIndex={-1} className="bg-white">
+        <section className="relative min-h-[80dvh] overflow-hidden bg-white py-6 md:py-8">
+          {/* Inner container with background image at 95% width */}
           <div 
-            className="absolute inset-0"
-            style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
-          />
+            className="relative mx-auto overflow-hidden rounded-xl"
+            style={{ width: '95%', minHeight: 'calc(80dvh - 48px)' }}
+          >
+            {/* Background image */}
+            <div className="absolute inset-0">
+              <Image
+                src="/images/home-search-hero.png"
+                alt=""
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+            {/* Dark overlay */}
+            <div 
+              className="absolute inset-0"
+              style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
+            />
 
-          <div className="relative mx-auto max-w-5xl">
+            <div className="relative mx-auto max-w-5xl px-6 pt-28 pb-16 md:px-16 lg:px-24">
             {/* Kicker */}
             <p
               className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
@@ -124,6 +129,7 @@ export default function HomeSearchPage() {
                   </a>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </section>
