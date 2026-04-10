@@ -128,9 +128,9 @@ export function Hero() {
           </div>
 
           {/* Partner logos section */}
-          <div className="mt-16 py-[50px]">
+          <div className="mt-16 pb-[50px]">
             {/* Horizontal line */}
-            <div className="w-full h-px bg-m2m-cream/20 mb-8" />
+            <div className="w-full h-px bg-m2m-cream/20 mb-[50px]" />
             
             {/* Logos row */}
             <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
