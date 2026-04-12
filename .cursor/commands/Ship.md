@@ -1,6 +1,8 @@
 /ship
 
-Intent: Summarize the session, run checks, update docs, stage intended files only, commit, push **the current branch** (integration happens via PR into **`develop`**).
+Intent: Summarize the session, run checks, update docs, stage intended files only, commit, push **the current branch**. Integration into the shared line is always via **PR into `develop`** (not direct pushes of product work to `develop` unless a small agreed exception).
+
+**Typical sequence:** (1) **`/Ship`** on a feature/fix branch → push → open **PR base `develop`**. (2) When the site is ready for production, use **`/pr`** to open or update **PR `develop` → `main`** (see `docs/development/RELEASING.md`).
 
 Prompt text:
 

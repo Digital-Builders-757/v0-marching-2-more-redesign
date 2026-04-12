@@ -20,7 +20,7 @@ Or run **`npm run ci`** once (same four steps).
 OPTIONAL (WHEN RELEVANT)
 ────────────────────────────────────────────
 - When Playwright E2E exists, use `/playwright-smoke` for route regression.
-- After schema changes, follow `/schema` verification and update `database_schema_audit.md` + spec.
+- This repo has **no** app database in-tree; skip `/schema` and DB audit docs unless a backend is added.
 
 ────────────────────────────────────────────
 OUTPUT FORMAT

@@ -2,6 +2,8 @@
 
 This repo integrates feature work through **pull requests into `develop`**.
 
+**Cursor:** `.cursor/commands/Ship.md` (**`/Ship`**) is for commit + push on your branch; `.cursor/commands/pr.md` (**`/pr`**) is for opening/updating PRs. Index: `.cursor/commands/README.md`.
+
 ## Branches
 
 - **`main`**: production / release line (GitHub default for stable snapshots).

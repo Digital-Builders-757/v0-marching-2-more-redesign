@@ -27,7 +27,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="bg-[#0a1628] text-white py-16 md:py-24">
+    <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -39,7 +39,7 @@ export function Testimonials() {
             Real Stories. Real Results.
           </p>
           <h2 
-            className="text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light text-m2m-cream"
+            className="text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light text-m2m-deep"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Serving with integrity.<br />Leading with experience.
@@ -56,7 +56,7 @@ export function Testimonials() {
             <div
               key={index}
               data-gsap-child
-              className="group relative bg-m2m-deep/60 backdrop-blur-sm rounded-2xl border border-m2m-gold/10 p-4 md:p-6 lg:p-8 transition-all duration-500 hover:border-m2m-gold/30 hover:bg-m2m-deep/80 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/5 flex flex-col h-full"
+              className="group relative bg-gray-50 rounded-2xl border border-gray-200 p-4 md:p-6 lg:p-8 transition-all duration-500 hover:border-m2m-gold/50 hover:bg-gray-100 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/10 flex flex-col h-full"
             >
               {/* Google G badge */}
               <div className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white flex items-center justify-center">
@@ -79,7 +79,7 @@ export function Testimonials() {
               {/* Quote */}
               <blockquote className="text-center mb-8 flex-grow">
                 <p 
-                  className="text-xs md:text-sm leading-relaxed text-m2m-cream/80"
+                  className="text-xs md:text-sm leading-relaxed text-m2m-deep/80"
                   style={{ fontFamily: 'var(--font-sans)' }}
                 >
                   {testimonial.quote}
@@ -102,13 +102,13 @@ export function Testimonials() {
                 {/* Name & Role */}
                 <div className="text-left">
                   <p 
-                    className="text-sm tracking-wide text-m2m-cream font-medium"
+                    className="text-sm tracking-wide text-m2m-deep font-medium"
                     style={{ fontFamily: 'var(--font-nav)' }}
                   >
                     {testimonial.name}
                   </p>
                   <p 
-                    className="text-xs tracking-wide text-m2m-gold/70"
+                    className="text-xs tracking-wide text-m2m-deep/60"
                     style={{ fontFamily: 'var(--font-nav)' }}
                   >
                     {testimonial.role}
@@ -135,7 +135,7 @@ export function Testimonials() {
             href="https://g.page/r/marching2more/review"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/30 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+            className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep/30 text-m2m-deep rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Review us on Google &#9656;

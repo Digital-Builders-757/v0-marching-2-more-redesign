@@ -42,7 +42,9 @@ description: >-
 ## Documentation
 
 - **Work queue and next steps**: `docs/WORK_ORDER.md`.
-- **Index**: `docs/DOCUMENTATION.md`.
+- **Index**: `docs/DOCUMENTATION.md` and `docs/DOCUMENTATION_INDEX.md`.
+- **Git workflow**: `docs/development/BRANCHING.md` (feature → `develop`), `docs/development/RELEASING.md` (`develop` → `main`).
+- **Cursor commands** (prompt-driven workflow): `.cursor/commands/README.md` — use **`/Ship`** before opening a PR to `develop`, then **`/pr`** for feature or release PRs.
 
 ## Deeper reference
 

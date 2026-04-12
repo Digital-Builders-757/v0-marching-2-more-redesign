@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Jost, Cormorant_Garamond, Playfair_Display, Montserrat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import './globals.css'
 
 const jost = Jost({
@@ -47,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={`${jost.variable} ${cormorant.variable} ${playfair.variable} ${montserrat.variable} font-sans antialiased`}>
+        <ScrollToTop />
         {children}
         <Analytics />
       </body>

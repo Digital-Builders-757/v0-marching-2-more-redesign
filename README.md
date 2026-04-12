@@ -6,6 +6,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v
 
 - [docs/DOCUMENTATION.md](./docs/DOCUMENTATION.md) — index  
 - [docs/WORK_ORDER.md](./docs/WORK_ORDER.md) — recent work and next steps  
+- [docs/development/BRANCHING.md](./docs/development/BRANCHING.md) — feature branches → **`develop`**  
+- [docs/development/RELEASING.md](./docs/development/RELEASING.md) — **`develop` → `main`** when updating the live site  
+- Cursor slash commands: [`.cursor/commands/README.md`](./.cursor/commands/README.md) (**`/Ship`**, **`/pr`**, **`/verify`**, …)  
 - Project Cursor skill: `.cursor/skills/marching-2-more/SKILL.md` (AI / agent context for this repo)
 
 ## Built with v0
