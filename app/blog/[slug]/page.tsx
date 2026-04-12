@@ -39,56 +39,77 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <Header />
       <GSAPAnimations />
 
-      <main id="main-content" tabIndex={-1} className="bg-m2m-cream">
-        <section className="px-6 pt-28 pb-10 md:px-16 lg:px-24" style={{ backgroundColor: "#050d06" }}>
-          <div className="mx-auto max-w-4xl">
-            <p
-              className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
-              style={{ fontFamily: "var(--font-nav)" }}
-            >
-              {post.category} • {post.readTime}
-            </p>
-            <h1
-              className="mt-6 font-light text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] text-m2m-cream"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {post.title}
-            </h1>
-            <p
-              className="mt-6 max-w-2xl text-sm leading-relaxed text-m2m-muted-lt"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              {post.excerpt}
-            </p>
+      <main id="main-content" tabIndex={-1} className="bg-white">
+        {/* Hero section with 95% width container */}
+        <section className="relative overflow-hidden bg-white py-6 md:py-8">
+          <div 
+            className="relative mx-auto overflow-hidden rounded-xl"
+            style={{ width: '95%' }}
+          >
+            {/* Background image */}
+            <div className="absolute inset-0">
+              <Image
+                src={post.coverImage}
+                alt=""
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+            {/* Dark overlay */}
+            <div 
+              className="absolute inset-0"
+              style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
+            />
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                href="/blog"
-                className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-muted hover:text-m2m-cream transition-colors"
-                style={{ fontFamily: "var(--font-nav)" }}
-              >
-                Back to Blog
-              </Link>
-              <a
-                href={CALENDLY_BOOK_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold hover:text-m2m-cream transition-colors"
-                style={{ fontFamily: "var(--font-nav)" }}
-              >
-                Book Consultation
-              </a>
+            <div className="relative px-6 pt-28 pb-16 md:px-16 lg:px-24">
+              <div className="mx-auto max-w-4xl">
+                <p
+                  className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
+                  style={{ fontFamily: "var(--font-nav)" }}
+                >
+                  {post.category} • {post.readTime}
+                </p>
+                <h1
+                  className="mt-6 font-light text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] text-m2m-cream"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {post.title}
+                </h1>
+                <p
+                  className="mt-6 max-w-2xl text-sm leading-relaxed text-m2m-muted-lt"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  {post.excerpt}
+                </p>
+
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/blog"
+                    className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-muted hover:text-m2m-cream transition-colors"
+                    style={{ fontFamily: "var(--font-nav)" }}
+                  >
+                    Back to Blog
+                  </Link>
+                  <a
+                    href={CALENDLY_BOOK_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold hover:text-m2m-cream transition-colors"
+                    style={{ fontFamily: "var(--font-nav)" }}
+                  >
+                    Book Consultation
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="px-6 pb-16 md:px-16 lg:px-24">
+        <section className="px-6 py-16 md:px-16 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-md bg-m2m-black">
-              <Image src={post.coverImage} alt="" fill className="object-cover" sizes="100vw" />
-            </div>
-
-            <article className="prose prose-neutral mt-10 max-w-none">
+            <article className="prose prose-neutral max-w-none">
               {/* structure-only rendering */}
               {post.content.split("\n").map((line, idx) => (
                 <p key={idx}>{line}</p>
