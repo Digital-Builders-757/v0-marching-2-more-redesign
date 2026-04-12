@@ -92,7 +92,7 @@ export function Header() {
                 aria-label={agent.name}
                 className="relative h-10 w-10 overflow-hidden rounded-full border border-m2m-deep/10 transition hover:border-m2m-gold/40"
               >
-                <Image src={agent.image} alt={agent.name} fill className="object-cover" sizes="40px" />
+                <Image src={agent.image} alt={agent.name} fill className="object-cover object-top" sizes="40px" />
               </Link>
             ))}
           </div>

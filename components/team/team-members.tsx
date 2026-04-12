@@ -48,7 +48,7 @@ function MemberCard({ member }: { member: TeamMember }) {
             src={member.image}
             alt={member.name}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             sizes="(min-width: 640px) 160px, 100vw"
           />
         </div>
