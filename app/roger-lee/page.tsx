@@ -14,9 +14,18 @@ export default function RogerLeeProfilePage() {
       <Header />
       <AgentProfile
         name="Roger Lee"
-        subtitle="Founding Partner • Licensed Agent"
+        firstName="Roger"
+        role="Founding Partner"
+        licenseNumber="0225-250-043"
         image={M2M_MEDIA.headshotRoger}
-        bio="Roger Lee combines deep local knowledge of Hampton Roads with a steady, client-first approach — helping families buy, sell, and relocate with confidence and care."
+        email="Roger@marching2more.com"
+        linkedin="https://www.linkedin.com/in/roger-lee"
+        instagram="https://www.instagram.com/marching2more"
+        bio={`Roger Lee is a dedicated real estate professional with a passion for helping clients achieve their homeownership dreams. With a background in the United States Navy, Roger brings discipline, integrity, and a strong work ethic to every transaction.
+
+His experience as a military family member gives him unique insight into the challenges faced by relocating families, making him an invaluable resource for those navigating the Hampton Roads real estate market.
+
+Roger is committed to providing personalized service and expert guidance to ensure a smooth and successful real estate experience for every client.`}
       />
       <Footer />
     </>

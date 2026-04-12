@@ -55,81 +55,48 @@ const reviews = [
 
 export function ReviewsList() {
   return (
-    <section className="bg-m2m-black relative overflow-hidden">
-      {/* Subtle gradient */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at bottom left, rgba(205,176,95,0.03) 0%, transparent 50%)',
-        }}
-      />
-
-      <div className="relative px-6 py-20 md:px-16 lg:px-24 md:py-28">
-        <div className="max-w-6xl mx-auto">
-          {/* Reviews Grid */}
-          <div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-            data-gsap="stagger-children"
-            data-gsap-direction="up"
-          >
+    <section className="bg-[#244b2a]">
+      <div className="px-6 py-16 md:px-16 md:py-20 lg:px-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {reviews.map((review, index) => (
-              <div 
+              <div
                 key={index}
-                data-gsap-child
-                className="group relative bg-m2m-deep/40 backdrop-blur-sm rounded-2xl border border-m2m-gold/10 p-8 md:p-10 transition-all duration-500 hover:border-m2m-gold/30 hover:bg-m2m-deep/60 hover:-translate-y-2 hover:shadow-xl hover:shadow-m2m-gold/5"
+                className="relative rounded-lg bg-white p-6 shadow-sm"
+                data-gsap="fade-up"
+                data-gsap-delay={index * 0.05}
               >
-                {/* Google "G" badge */}
-                <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                  <span className="text-lg font-bold text-gray-700">G</span>
+                {/* Google G */}
+                <div className="absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow">
+                  <span className="text-sm font-bold text-gray-700">G</span>
                 </div>
 
-                {/* Avatar and Info */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-full bg-m2m-gold/20 border border-m2m-gold/30 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-m2m-gold/50">
-                    <span 
-                      className="text-xl font-medium text-m2m-gold"
-                      style={{ fontFamily: 'var(--font-nav)' }}
-                    >
+                <div className="flex items-center gap-4">
+                  <div className="h-14 w-14 overflow-hidden rounded-full bg-gray-200">
+                    <div className="flex h-full w-full items-center justify-center text-lg font-semibold text-gray-700">
                       {review.avatar}
-                    </span>
+                    </div>
                   </div>
-                  
+
                   <div>
-                    <h3 
-                      className="text-lg text-m2m-cream font-medium"
-                      style={{ fontFamily: 'var(--font-display)' }}
-                    >
+                    <p className="text-sm font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                       {review.name}
-                    </h3>
-                    <p 
-                      className="text-sm text-m2m-gold/70"
-                      style={{ fontFamily: 'var(--font-nav)' }}
-                    >
+                    </p>
+                    <p className="text-xs text-gray-500" style={{ fontFamily: "var(--font-sans)" }}>
                       {review.affiliation}
                     </p>
                   </div>
                 </div>
 
-                {/* 5 Stars */}
-                <div className="flex items-center gap-1 mb-4">
+                <div className="mt-4 flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      className="w-5 h-5 fill-m2m-gold text-m2m-gold transition-transform duration-300 group-hover:scale-110"
-                      style={{ transitionDelay: `${i * 50}ms` }}
-                    />
+                    <Star key={i} className="h-4 w-4 fill-m2m-gold text-m2m-gold" />
                   ))}
                 </div>
 
-                {/* Quote */}
-                <blockquote>
-                  <p 
-                    className="text-sm md:text-base leading-relaxed text-m2m-cream/80"
-                    style={{ fontFamily: 'var(--font-sans)' }}
-                  >
-                    {review.quote}
-                  </p>
-                </blockquote>
+                <p className="mt-4 text-sm leading-relaxed text-gray-700" style={{ fontFamily: "var(--font-sans)" }}>
+                  {review.quote}
+                </p>
               </div>
             ))}
           </div>

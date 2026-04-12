@@ -12,7 +12,6 @@ export type BlogPost = {
   content: string
 }
 
-// Structure-only demo content. Swap this module to Supabase later.
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "virginia-beach-homes-fly-off-market",
