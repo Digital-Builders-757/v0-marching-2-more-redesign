@@ -1,6 +1,6 @@
 /release
 
-Intent: Make merge-to-main a product moment: release notes + rollout + rollback + post-merge verification.
+Intent: Make merge-to-main a product moment: release notes + rollout + rollback + post-merge verification. Use after **`/pr`** has opened (or will open) **`develop` → `main`**, or when documenting what shipped to production.
 
 MODE: ANALYSIS
 
@@ -8,9 +8,9 @@ MODE: ANALYSIS
 INPUTS
 ────────────────────────────────────────────
 Collect:
-- PR(s) being merged
-- User-visible changes
-- Risk areas (auth/middleware/Stripe/RLS)
+- PR(s) being merged (usually **`develop` → `main`** for this repo)
+- User-visible changes (copy, routes, CTAs, `lib/m2m-site.ts`, images)
+- Risk areas for **this** stack: broken links, wrong phone/email, `next.config.mjs` image hosts, analytics — or auth/Stripe/RLS **only if** those exist in the project
 
 ────────────────────────────────────────────
 OUTPUT (REQUIRED SECTIONS)
@@ -43,7 +43,7 @@ After generating the release notes above, you MUST save them to the repo:
 - Create a new markdown file under: `docs/releasenotes/`
 - Filename convention:
   - `YYYY-MM-DD_pr-<number>_<short-slug>.md`
-  - Example: `2025-12-19_pr-110_signout-redirect-convergence.md`
+  - Example: `2026-04-12_pr-42_develop-to-main-home-hero.md`
 - Doc header must include:
   - `**Date:** <MMMM d, yyyy>`
   - `**Status:** ✅ COMPLETE`

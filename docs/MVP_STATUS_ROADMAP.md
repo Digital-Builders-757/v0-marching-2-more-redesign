@@ -5,7 +5,7 @@ High-level phase view. Detailed “done / next” lives in **[WORK_ORDER.md](./W
 ## Current focus (P0)
 
 - **Wix / content parity QA** — Home, buy, sell, team, contact, policies; CTAs and numbers match **`lib/m2m-site.ts`**.
-- **CI health** — `npm run ci` (lint, test, typecheck, build) stays green on PRs.
+- **CI health** — `npm run ci` (lint, test, typecheck, build) stays green locally and on PRs (`.github/workflows/pr-ci.yml` matches that sequence).
 
 ## Next (P1)
 

@@ -2,6 +2,13 @@
 
 Intent: Open or update a pull request with a consistent narrative.
 
+**When to use which base/head**
+
+| Goal | Base | Head | Notes |
+|------|------|------|--------|
+| Land daily work | `develop` | your `feat/*` / `fix/*` branch | After **`/Ship`** pushed the branch. |
+| Update production / public site | `main` | `develop` | When you are ready to deploy what is on `develop` (often after **`/Ship`** work is merged into `develop`). |
+
 **ViZb workflow (see `docs/development/BRANCHING.md`):**
 
 1. **Feature integration:** **`<feature-branch>` → `develop`** (daily work).

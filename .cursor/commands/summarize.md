@@ -20,7 +20,7 @@ STEP 1 — OUTPUT (PASTE AS THE NEW AGENT’S FIRST MESSAGE)
 Write a single message the user can copy with these sections:
 
 1. **Project:** Marching 2 More — **Next.js App Router marketing site** (`v0-marching-2-more-redesign`). (If the work is in a different repo, name that repo instead.)  
-2. **Read first:** `.cursor/skills/marching-2-more/SKILL.md`, `docs/DOCUMENTATION_INDEX.md`, `docs/WORK_ORDER.md`. For full-stack projects with architecture docs, add `docs/ARCHITECTURE_CONSTITUTION.md` when it exists.  
+2. **Read first:** `.cursor/skills/marching-2-more/SKILL.md`, `docs/DOCUMENTATION_INDEX.md`, `docs/WORK_ORDER.md`, `.cursor/commands/README.md` (workflow: `/Ship` then `/pr` toward `develop` / `main`). For full-stack projects with architecture docs, add `docs/ARCHITECTURE_CONSTITUTION.md` when it exists.  
 3. **Done this session:** bullet list (features, fixes, docs).  
 4. **Files touched:** high-signal paths only.  
 5. **Verification:** which of `npm run typecheck` / `test` / `lint` / `build` ran and result.  
