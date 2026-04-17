@@ -1,0 +1,69 @@
+# Architecture — source of truth
+
+**Canonical technical overview** of this repository for humans and agents.  
+For workflow, see [WORKFLOW.md](./WORKFLOW.md). For visual rules, see [BRAND_CONSTITUTION.md](./BRAND_CONSTITUTION.md).
+
+## System shape
+
+```mermaid
+flowchart LR
+  subgraph app_layer [App Router]
+    pages[app routes]
+  end
+  subgraph ui [UI]
+    components[components]
+    ui_primitives[components/ui]
+  end
+  subgraph data [Constants and media]
+    m2m_site[lib/m2m-site.ts]
+    m2m_nav[lib/m2m-nav.ts]
+    m2m_media[lib/m2m-media.ts]
+  end
+  pages --> components
+  components --> m2m_site
+  components --> m2m_nav
+  components --> m2m_media
+```
+
+## Runtime and stack
+
+- **Framework:** Next.js 16 (App Router), React 19.
+- **Styling:** Tailwind CSS 4, tokens in `app/globals.css` (`@theme`, `--font-*`, `m2m-*` colors).
+- **UI primitives:** Radix-based shadcn-style under `components/ui/`.
+- **Analytics:** `@vercel/analytics` in `app/layout.tsx`.
+- **Content:** Mostly static TS/TSX and per-route `content.ts` files; no in-repo database.
+
+## Directory responsibilities
+
+| Path | Role |
+|------|------|
+| `app/` | Routes, `layout.tsx`, `page.tsx`, metadata |
+| `components/` | Page sections, layout chrome (`header`, `footer`), feature folders (`buy/`, `sell/`, …) |
+| `lib/` | `m2m-site.ts`, `m2m-nav.ts`, `m2m-media.ts`, `utils.ts`, etc. |
+| `public/` | Static assets; `public/brand/`, route-specific image folders with `.gitkeep` |
+| `.cursor/` | Skills and slash-command prompts |
+
+## Page patterns
+
+1. **Core marketing pages** (e.g. home, buy, sell, resources): `Header`, optional `GSAPAnimations`, `main` often `bg-white`, global `Footer`. Some older routes nest `Footer` inside `main` — prefer matching home: `Footer` sibling to `main` for new work unless touching legacy layout.
+2. **Campaign landings** (e.g. `/fha-loan`, `/improve-your-credit`, `/va-loan-benefits`): `Header` with `consultationCtaVariant="outlineCream"`, `main` with `bg-m2m-panel`, sections composed from `components/<campaign>/`, **`DivorceLandingFooter`** (luxury footer) — not the global `Footer` unless intentionally unified.
+3. **Pricing / simple interior** (e.g. `/plans-and-pricing`): standard `Header` + light `main` + global `Footer` for site consistency.
+
+## Routing reference
+
+See [diagrams/site-routes.md](./diagrams/site-routes.md) for a grouped route list.  
+**Dynamic:** `app/blog/[slug]/page.tsx` (SSG with `generateStaticParams`).
+
+## Images
+
+- Use `next/image`.
+- Remote hosts must match `next.config.mjs` → `images.remotePatterns` (Vercel Blob for `M2M_MEDIA`, etc.).
+
+## CI
+
+- `npm run ci` → lint, placeholder test, `tsc`, `next build`.
+- `typescript.ignoreBuildErrors` may be set in `next.config.mjs`; still run typecheck in CI.
+
+## Out of scope (today)
+
+- Supabase, auth middleware, RLS, Stripe — not part of this repo unless explicitly added.

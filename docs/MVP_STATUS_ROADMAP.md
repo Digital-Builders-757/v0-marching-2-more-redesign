@@ -9,7 +9,7 @@ High-level phase view. Detailed “done / next” lives in **[WORK_ORDER.md](./W
 
 ## Next (P1)
 
-- **Production media** — Replace placeholder remote images with finalized assets; keep **`next.config.mjs`** `images.remotePatterns` in sync.
+- **Production media** — Replace placeholder remote images with finalized assets; keep **`next.config.mjs`** `images.remotePatterns` in sync. Campaigns **`/improve-your-credit`**, **`/downsizing-your-home`**, **`/va-loan-benefits`**, and **`/facing-pre-foreclosure`** use `content.ts` “SWAP” / TODO notes for final art, links, and form backends.
 - **Real tests** — Replace placeholder `npm test` with unit or Playwright smoke coverage when prioritized.
 - **TypeScript strictness** — Narrow or remove `typescript.ignoreBuildErrors` in `next.config.mjs` when the codebase is ready.
 
@@ -17,6 +17,9 @@ High-level phase view. Detailed “done / next” lives in **[WORK_ORDER.md](./W
 
 | Doc | Purpose |
 |-----|---------|
+| [AGENTS.md](../AGENTS.md) | Agent start + canonical doc order |
+| [ARCHITECTURE_CONSTITUTION.md](./ARCHITECTURE_CONSTITUTION.md) | Invariant list |
+| [ARCHITECTURE_SOURCE_OF_TRUTH.md](./ARCHITECTURE_SOURCE_OF_TRUTH.md) | Technical overview |
 | [WORK_ORDER.md](./WORK_ORDER.md) | Recent ships and ordered next steps |
 | [DOCUMENTATION.md](./DOCUMENTATION.md) | Doc index |
 | [lib/m2m-site.ts](../lib/m2m-site.ts) | Phone, mailto, Calendly, partners, resource URLs |
