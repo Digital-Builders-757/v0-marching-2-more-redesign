@@ -13,6 +13,8 @@ import {
 } from "@/lib/m2m-site"
 import { M2M_FOOTER_POLICY_LINKS, M2M_HEADER_AGENT_LINKS } from "@/lib/m2m-nav"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { DIVORCE_FOOTER_TOP_LINKS, PARTNER_PLACEHOLDERS, TEAM_SOCIAL } from "./content"
 
 const footerAgents = M2M_HEADER_AGENT_LINKS.slice(0, 2)
@@ -20,7 +22,7 @@ const footerAgents = M2M_HEADER_AGENT_LINKS.slice(0, 2)
 export function DivorceLandingFooter() {
   return (
     <footer className="bg-m2m-panel text-m2m-cream">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+      <M2mContainer className="py-14 lg:py-16">
         <nav
           className="mb-12 flex flex-wrap justify-center gap-x-8 gap-y-3 border-b border-m2m-gold/20 pb-10 md:justify-start"
           aria-label="Footer"
@@ -167,12 +169,14 @@ export function DivorceLandingFooter() {
             </div>
           </div>
         </div>
-      </div>
+      </M2mContainer>
 
-      <div className="border-t border-m2m-gold/20 px-4 py-6 sm:px-6 lg:px-8">
-        <p className="text-[0.65rem] tracking-wider text-m2m-muted-lt" style={{ fontFamily: "var(--font-nav)" }}>
-          ©2018 — {new Date().getFullYear()} MARCHING 2 MORE REALTY GROUP
-        </p>
+      <div className="border-t border-m2m-gold/20">
+        <M2mContainer className="py-6">
+          <p className="text-[0.65rem] tracking-wider text-m2m-muted-lt font-nav">
+            ©2018 — {new Date().getFullYear()} MARCHING 2 MORE REALTY GROUP
+          </p>
+        </M2mContainer>
       </div>
     </footer>
   )

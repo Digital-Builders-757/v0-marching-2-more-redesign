@@ -1,10 +1,10 @@
-import Link from "next/link"
 import Image from "next/image"
 
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
-
+import { M2mContainer } from "@/components/m2m-layout"
+import { m2mInteriorFormInputClass } from "@/lib/m2m-form"
 import { RESOURCE_EXTERNAL_LINKS } from "@/lib/m2m-site"
 
 export const metadata = {
@@ -78,7 +78,7 @@ export default function ResourcesPage() {
               style={{ backgroundColor: "rgba(5, 13, 6, 0.6)" }}
             />
           
-            <div className="relative mx-auto max-w-5xl px-6 pt-24 pb-20 md:px-16 lg:px-24">
+            <M2mContainer className="relative max-w-5xl pt-24 pb-20">
             {/* Kicker with line */}
             <div className="flex items-center gap-4">
               <p
@@ -108,37 +108,36 @@ export default function ResourcesPage() {
             </p>
 
             {/* Form */}
-            <form className="mt-10 mx-auto max-w-3xl bg-white/90 backdrop-blur-sm rounded-lg p-6 md:p-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <form className="mx-auto mt-10 max-w-3xl rounded-lg bg-white/90 p-6 backdrop-blur-sm md:p-8">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <input
                   type="text"
                   placeholder="First Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold placeholder:text-gray-600"
-                  style={{ fontFamily: "var(--font-sans)" }}
+                  aria-label="First name"
+                  className={m2mInteriorFormInputClass}
                 />
                 <input
                   type="text"
                   placeholder="Last Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold placeholder:text-gray-600"
-                  style={{ fontFamily: "var(--font-sans)" }}
+                  aria-label="Last name"
+                  className={m2mInteriorFormInputClass}
                 />
                 <input
                   type="email"
                   placeholder="Email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-m2m-gold placeholder:text-gray-600"
-                  style={{ fontFamily: "var(--font-sans)" }}
+                  aria-label="Email"
+                  className={m2mInteriorFormInputClass}
                 />
               </div>
-              
-              <div className="mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <label className="flex items-center gap-2 text-sm text-gray-700" style={{ fontFamily: "var(--font-sans)" }}>
-                  <input type="checkbox" className="w-4 h-4 rounded border-gray-300" />
+
+              <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-m2m-deep/80 font-sans">
+                  <input type="checkbox" className="size-4 rounded border-m2m-deep/20 text-m2m-panel" />
                   I agree to the terms & conditions
                 </label>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center bg-[#1B4332] text-white text-[0.75rem] tracking-[0.15em] font-medium px-8 py-4 rounded transition hover:bg-[#1B4332]/90"
-                  style={{ fontFamily: "var(--font-nav)" }}
+                  className="inline-flex min-h-11 items-center justify-center bg-m2m-panel px-8 py-3 text-[0.75rem] font-medium tracking-[0.15em] text-m2m-cream transition hover:bg-m2m-panel-lt font-nav"
                 >
                   Email me the Checklist
                 </button>
@@ -170,12 +169,11 @@ export default function ResourcesPage() {
                 ))}
               </div>
             </div>
-            </div>
+            </M2mContainer>
           </div>
         </section>
-
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

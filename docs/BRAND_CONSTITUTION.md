@@ -33,6 +33,8 @@ Use `style={{ fontFamily: "var(--font-display)" }}` (etc.) to match existing com
 
 ## Components and motion
 
+- **Layout rhythm:** prefer `M2mContainer` / `M2mSection` from `components/m2m-layout.tsx` for section width and vertical spacing; consultation CTAs via `components/m2m-cta.tsx`.
+- **Utility classes:** `font-nav`, `m2m-eyebrow`, `m2m-section-title` in `app/globals.css` (`@layer components` / `@layer utilities`).
 - **Header:** sticky green bar; optional `consultationCtaVariant="outlineCream"` on landings.
 - **Motion:** GSAP via `components/gsap-animations.tsx` and `data-gsap-*` hooks where present.
 

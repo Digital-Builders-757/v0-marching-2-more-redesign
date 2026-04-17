@@ -2,6 +2,13 @@
 
 import { useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
+import { cn } from "@/lib/utils"
+
 import {
   FORM_LABEL_EMAIL,
   FORM_LABEL_FIRST,
@@ -30,12 +37,6 @@ export function PreForeclosureForm() {
     console.log("Pre-foreclosure lead:", form)
   }
 
-  const inputClass =
-    "w-full rounded-md border border-m2m-deep/15 bg-white px-3 py-3 text-sm text-m2m-deep outline-none transition placeholder:text-m2m-muted focus:border-m2m-panel focus:ring-2 focus:ring-m2m-panel/25"
-
-  const labelClass =
-    "mb-1.5 block text-left text-[0.7rem] font-medium uppercase tracking-[0.12em] text-m2m-deep/75"
-
   return (
     <div className="rounded-sm bg-m2m-cream p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] sm:p-8 lg:p-9">
       <h2
@@ -54,90 +55,81 @@ export function PreForeclosureForm() {
       <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Pre-foreclosure signup">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label htmlFor="pf-first" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+            <Label htmlFor="pf-first" className={m2mLeadFieldLabelClass}>
               {FORM_LABEL_FIRST}
-            </label>
-            <input
+            </Label>
+            <Input
               id="pf-first"
               type="text"
               autoComplete="given-name"
               value={form.firstName}
               onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-              className={inputClass}
-              style={{ fontFamily: "var(--font-sans)" }}
+              className={m2mLeadFieldInputClass}
             />
           </div>
           <div>
-            <label htmlFor="pf-last" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+            <Label htmlFor="pf-last" className={m2mLeadFieldLabelClass}>
               {FORM_LABEL_LAST}
-            </label>
-            <input
+            </Label>
+            <Input
               id="pf-last"
               type="text"
               autoComplete="family-name"
               value={form.lastName}
               onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-              className={inputClass}
-              style={{ fontFamily: "var(--font-sans)" }}
+              className={m2mLeadFieldInputClass}
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="pf-email" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+          <Label htmlFor="pf-email" className={m2mLeadFieldLabelClass}>
             {FORM_LABEL_EMAIL} <span className="text-m2m-panel">*</span>
-          </label>
-          <input
+          </Label>
+          <Input
             id="pf-email"
             type="email"
             required
             autoComplete="email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className={inputClass}
-            style={{ fontFamily: "var(--font-sans)" }}
+            className={m2mLeadFieldInputClass}
           />
         </div>
 
         <div>
-          <label htmlFor="pf-phone" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+          <Label htmlFor="pf-phone" className={m2mLeadFieldLabelClass}>
             {FORM_LABEL_PHONE}
-          </label>
-          <input
+          </Label>
+          <Input
             id="pf-phone"
             type="tel"
             autoComplete="tel"
             placeholder={FORM_PLACEHOLDER_PHONE}
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            className={inputClass}
-            style={{ fontFamily: "var(--font-sans)" }}
+            className={m2mLeadFieldInputClass}
           />
         </div>
 
         <div>
-          <label htmlFor="pf-message" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+          <Label htmlFor="pf-message" className={m2mLeadFieldLabelClass}>
             {FORM_LABEL_MESSAGE}
-          </label>
-          <textarea
+          </Label>
+          <Textarea
             id="pf-message"
             rows={5}
             placeholder={FORM_PLACEHOLDER_MESSAGE}
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
-            className={`${inputClass} min-h-[7.5rem] resize-y`}
-            style={{ fontFamily: "var(--font-sans)" }}
+            className={cn(m2mLeadFieldTextareaClass, "min-h-[7.5rem]")}
           />
         </div>
 
         <div className="pt-2">
-          <button
-            type="submit"
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-sm bg-m2m-panel px-6 py-3.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-m2m-cream transition hover:bg-m2m-panel-lt"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
+          <Button type="submit" variant="m2mPanel" className="w-full">
             {FORM_SUBMIT_LABEL}
-          </button>
+          </Button>
         </div>
       </form>
     </div>

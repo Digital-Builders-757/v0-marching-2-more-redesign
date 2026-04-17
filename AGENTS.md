@@ -23,6 +23,8 @@
 
 **Full index:** [docs/DOCUMENTATION_INDEX.md](docs/DOCUMENTATION_INDEX.md)
 
+**Active overhaul (vision + standards):** [docs/M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](docs/M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) — execution log: [docs/WORK_ORDER.md](docs/WORK_ORDER.md).
+
 ## Tooling
 
 - **Package manager:** `npm` only (`package-lock.json`).

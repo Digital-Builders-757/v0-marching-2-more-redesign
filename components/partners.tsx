@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { M2mContainer } from "@/components/m2m-layout"
 import { PARTNER_LINKS } from "@/lib/m2m-site"
 
 const partners = [
@@ -16,8 +17,8 @@ const partners = [
 
 export function Partners() {
   return (
-    <section id="services" className="bg-white px-6 py-20 md:px-16 lg:px-24">
-      <div className="max-w-6xl mx-auto">
+    <section id="services" className="bg-white py-20">
+      <M2mContainer className="max-w-6xl">
         {/* Header with image */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16 mb-12">
           {/* Left - Text content */}
@@ -94,7 +95,7 @@ export function Partners() {
         >
           Meet Your Team
         </Link>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

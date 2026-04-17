@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 export function SellHero() {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
@@ -35,7 +37,7 @@ export function SellHero() {
     <section 
       ref={sectionRef}
       id="sell"
-      className="relative bg-m2m-black px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden"
+      className="relative overflow-hidden bg-m2m-black py-20 md:py-28"
     >
       {/* Background image with parallax */}
       <div 
@@ -54,7 +56,7 @@ export function SellHero() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <M2mContainer className="relative z-10">
         <div className="max-w-3xl ml-auto text-right">
           <div className="flex flex-col gap-6 items-end" data-gsap="stagger-children" data-gsap-direction="up">
             {/* Kicker */}
@@ -126,7 +128,7 @@ export function SellHero() {
             </div>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

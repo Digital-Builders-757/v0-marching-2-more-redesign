@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel"
+import { M2mContainer } from "@/components/m2m-layout"
 import { cn } from "@/lib/utils"
 
 import { HERO_SLIDES, INVESTMENTS_HERO_INTRO } from "./content"
@@ -90,7 +91,7 @@ export function InvestmentsHero() {
       className="border-b border-m2m-gold/15 bg-m2m-panel pb-16 pt-12 lg:pb-24 lg:pt-16"
       aria-labelledby="investments-hero-heading"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <M2mContainer>
         <p
           className="mb-4 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-m2m-gold sm:mb-5 lg:max-w-xl"
           style={{ fontFamily: "var(--font-nav)" }}
@@ -128,7 +129,7 @@ export function InvestmentsHero() {
             </div>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

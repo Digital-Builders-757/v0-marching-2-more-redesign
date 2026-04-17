@@ -19,6 +19,12 @@ const buttonVariants = cva(
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
+        m2mGold:
+          'h-auto min-h-12 rounded-sm bg-m2m-gold px-6 py-3.5 font-nav text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-m2m-deep shadow-none hover:bg-m2m-gold-lt',
+        m2mPanel:
+          'h-auto min-h-12 rounded-sm bg-m2m-panel px-6 py-3.5 font-nav text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-m2m-cream shadow-none hover:bg-m2m-panel-lt',
+        m2mTextUnderline:
+          'h-auto min-h-11 rounded-none bg-transparent p-0 font-nav text-sm font-semibold uppercase tracking-[0.14em] text-m2m-panel underline decoration-m2m-gold-dim decoration-2 underline-offset-8 shadow-none hover:text-m2m-deep',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

@@ -2,6 +2,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { Banknote, CalendarCheck, CreditCard, Globe2 } from "lucide-react"
 
+import { m2mOutlineGoldLinkClass } from "@/components/m2m-cta"
+import { M2mContainer } from "@/components/m2m-layout"
+import { cn } from "@/lib/utils"
+
 import {
   CREDIT_PLAYBOOK_SECTION_ID,
   DOWNLOAD_GUIDE_CTA,
@@ -17,16 +21,18 @@ const ICONS = [CalendarCheck, Banknote, Globe2, CreditCard] as const
 export function CreditTakeaways() {
   return (
     <section className="border-b border-m2m-gold/15" aria-labelledby="credit-takeaways-heading">
-      <div className="bg-m2m-panel-lt/90 px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl justify-center">
+      <div className="bg-m2m-panel-lt/90 py-4">
+        <M2mContainer className="flex justify-center">
           <Link
             href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
-            className="inline-flex min-h-11 w-full max-w-md items-center justify-center border border-m2m-gold/80 bg-m2m-panel px-4 py-3 text-center text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-m2m-cream transition hover:border-m2m-gold sm:w-auto"
-            style={{ fontFamily: "var(--font-nav)" }}
+            className={cn(
+              m2mOutlineGoldLinkClass,
+              "w-full max-w-md border-m2m-gold/80 bg-m2m-panel px-4 hover:border-m2m-gold sm:w-auto",
+            )}
           >
             {DOWNLOAD_GUIDE_CTA}
           </Link>
-        </div>
+        </M2mContainer>
       </div>
 
       <div className="relative min-h-[28rem] w-full sm:min-h-[32rem]">
@@ -40,7 +46,7 @@ export function CreditTakeaways() {
         <div className="absolute inset-0 bg-m2m-deep/55" />
         <div className="absolute inset-0 bg-gradient-to-b from-m2m-deep/30 via-transparent to-m2m-deep/70" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <M2mContainer className="relative z-10 py-14 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <h2
               id="credit-takeaways-heading"
@@ -84,7 +90,7 @@ export function CreditTakeaways() {
               )
             })}
           </ul>
-        </div>
+        </M2mContainer>
       </div>
     </section>
   )

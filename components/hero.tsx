@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
+import { M2mContainer } from "@/components/m2m-layout"
 import {
   CALENDLY_BOOK_URL,
   M2M_PHONE_DISPLAY,
@@ -68,7 +69,7 @@ export function Hero() {
           aria-hidden
         />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col justify-center px-6 pb-16 pt-32 md:px-16">
+        <M2mContainer className="relative z-10 flex max-w-3xl flex-col justify-center pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div
           className="inline-flex items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
           style={{ fontFamily: "var(--font-nav)" }}
@@ -196,7 +197,7 @@ export function Hero() {
               </a>
             </div>
           </div>
-        </div>
+        </M2mContainer>
       </div>
     </section>
   )

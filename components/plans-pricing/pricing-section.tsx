@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
 import { cn } from "@/lib/utils"
 
 import { CTA_LABEL, PAGE_INTRO, PRICING_PLANS } from "./content"
@@ -7,15 +8,12 @@ import { CTA_LABEL, PAGE_INTRO, PRICING_PLANS } from "./content"
 export function PricingSection() {
   return (
     <section
-      className="border-b border-m2m-gold/15 bg-gradient-to-b from-m2m-cream via-white to-m2m-cream/80 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="border-b border-m2m-gold/15 bg-gradient-to-b from-m2m-cream via-white to-m2m-cream/80 py-16 sm:py-20 lg:py-24"
       aria-labelledby="pricing-heading"
     >
-      <div className="mx-auto max-w-6xl">
+      <M2mContainer className="max-w-6xl">
         <header className="mx-auto max-w-2xl text-center">
-          <p
-            className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-m2m-panel"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
+          <p className="m2m-eyebrow text-m2m-panel">
             {PAGE_INTRO.eyebrow}
           </p>
           <h1
@@ -47,10 +45,7 @@ export function PricingSection() {
                 )}
               >
                 {isFeatured ? (
-                  <p
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-m2m-gold px-4 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-m2m-deep"
-                    style={{ fontFamily: "var(--font-nav)" }}
-                  >
+                  <p className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-m2m-gold px-4 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-m2m-deep font-nav">
                     Best value
                   </p>
                 ) : null}
@@ -93,12 +88,11 @@ export function PricingSection() {
                   <Link
                     href={`/contact-us?plan=${plan.id}`}
                     className={cn(
-                      "inline-flex min-h-12 w-full items-center justify-center rounded-sm text-[0.65rem] font-semibold uppercase tracking-[0.16em] transition",
+                      "inline-flex min-h-12 w-full items-center justify-center rounded-sm text-[0.65rem] font-semibold uppercase tracking-[0.16em] transition font-nav focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold",
                       isFeatured
                         ? "bg-m2m-gold text-m2m-deep hover:bg-m2m-gold-lt"
                         : "border border-m2m-panel/25 bg-m2m-panel text-m2m-cream hover:bg-m2m-panel-lt",
                     )}
-                    style={{ fontFamily: "var(--font-nav)" }}
                   >
                     {CTA_LABEL}
                   </Link>
@@ -107,7 +101,7 @@ export function PricingSection() {
             )
           })}
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

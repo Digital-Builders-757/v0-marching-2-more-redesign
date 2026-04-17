@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import {
   HERO_BACKGROUND,
   HERO_BODY,
@@ -26,7 +28,7 @@ export function DownsizingHero() {
       <div className="absolute inset-0 bg-m2m-panel/60" />
       <div className="absolute inset-0 bg-gradient-to-t from-m2m-deep/85 via-m2m-deep/25 to-m2m-panel/50" />
 
-      <div className="relative z-10 mx-auto flex min-h-[min(78vh,680px)] max-w-4xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-24">
+      <M2mContainer className="relative z-10 flex min-h-[min(78vh,680px)] max-w-4xl flex-col items-center justify-center py-20 text-center lg:py-24">
         <h1
           id="downsizing-hero-heading"
           className="text-[clamp(2rem,5vw,3.35rem)] font-medium leading-[1.12] tracking-tight text-m2m-cream [text-shadow:0_2px_28px_rgba(0,0,0,0.4)]"
@@ -51,7 +53,7 @@ export function DownsizingHero() {
             {HERO_CTA_LABEL}
           </Link>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

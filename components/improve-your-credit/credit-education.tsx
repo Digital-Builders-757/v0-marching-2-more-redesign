@@ -1,6 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import { m2mOutlineGoldLinkClass } from "@/components/m2m-cta"
+import { M2mContainer } from "@/components/m2m-layout"
+import { cn } from "@/lib/utils"
+
 import {
   CREDIT_FACTORS,
   CREDIT_HOMEWORK_HEADING,
@@ -17,14 +21,7 @@ import {
 
 function DownloadGuideLink({ className }: { className?: string }) {
   return (
-    <Link
-      href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
-      className={
-        className ??
-        "inline-flex min-h-11 items-center justify-center border border-m2m-gold px-6 py-3 text-center text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-m2m-cream transition hover:bg-m2m-gold/10"
-      }
-      style={{ fontFamily: "var(--font-nav)" }}
-    >
+    <Link href={`#${CREDIT_PLAYBOOK_SECTION_ID}`} className={cn(m2mOutlineGoldLinkClass, className)}>
       {DOWNLOAD_GUIDE_CTA}
     </Link>
   )
@@ -33,10 +30,10 @@ function DownloadGuideLink({ className }: { className?: string }) {
 export function CreditEducation() {
   return (
     <section
-      className="border-b border-m2m-gold/15 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="border-b border-m2m-gold/15 py-16 sm:py-20 lg:py-24"
       aria-labelledby="credit-education-heading"
     >
-      <div className="mx-auto max-w-7xl">
+      <M2mContainer>
         <div className="mb-10 flex justify-center lg:mb-12">
           <DownloadGuideLink />
         </div>
@@ -164,7 +161,7 @@ export function CreditEducation() {
             </div>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

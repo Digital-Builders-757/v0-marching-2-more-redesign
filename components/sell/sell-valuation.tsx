@@ -2,6 +2,12 @@
 
 import { useState } from "react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { m2mDarkPanelFieldLabelClass, m2mDarkPanelInputClass } from "@/lib/m2m-form"
+
 export function SellValuation() {
   const [formData, setFormData] = useState({
     address: "",
@@ -17,8 +23,8 @@ export function SellValuation() {
   }
 
   return (
-    <section id="valuation" className="bg-white px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="max-w-7xl mx-auto">
+    <section id="valuation" className="bg-white py-24" data-gsap-section>
+      <M2mContainer>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div data-gsap="fade-right">
@@ -87,91 +93,75 @@ export function SellValuation() {
           </div>
 
           {/* Right Form */}
-          <div className="bg-m2m-deep p-8 md:p-12 rounded-xl" data-gsap="fade-left">
-            <h3 
-              className="text-xl text-m2m-cream mb-6"
-              style={{ fontFamily: 'var(--font-display)' }}
+          <div className="rounded-xl bg-m2m-deep p-8 md:p-12" data-gsap="fade-left">
+            <h3
+              className="mb-6 text-xl text-m2m-cream"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Request Your Free Valuation
             </h3>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label 
-                  className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold mb-2 block"
-                  style={{ fontFamily: 'var(--font-nav)' }}
-                >
+                <Label htmlFor="sell-val-address" className={m2mDarkPanelFieldLabelClass}>
                   Property Address
-                </label>
-                <input
+                </Label>
+                <Input
+                  id="sell-val-address"
                   type="text"
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                   placeholder="123 Main Street, Virginia Beach, VA"
-                  className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
-                  style={{ fontFamily: 'var(--font-sans)' }}
+                  className={m2mDarkPanelInputClass}
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div>
-                  <label 
-                    className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold mb-2 block"
-                    style={{ fontFamily: 'var(--font-nav)' }}
-                  >
+                  <Label htmlFor="sell-val-name" className={m2mDarkPanelFieldLabelClass}>
                     Your Name
-                  </label>
-                  <input
+                  </Label>
+                  <Input
+                    id="sell-val-name"
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="John Smith"
-                    className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
-                    style={{ fontFamily: 'var(--font-sans)' }}
+                    className={m2mDarkPanelInputClass}
                   />
                 </div>
                 <div>
-                  <label 
-                    className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold mb-2 block"
-                    style={{ fontFamily: 'var(--font-nav)' }}
-                  >
+                  <Label htmlFor="sell-val-phone" className={m2mDarkPanelFieldLabelClass}>
                     Phone
-                  </label>
-                  <input
+                  </Label>
+                  <Input
+                    id="sell-val-phone"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="(757) 000-0000"
-                    className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
-                    style={{ fontFamily: 'var(--font-sans)' }}
+                    className={m2mDarkPanelInputClass}
                   />
                 </div>
               </div>
               <div>
-                <label 
-                  className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold mb-2 block"
-                  style={{ fontFamily: 'var(--font-nav)' }}
-                >
+                <Label htmlFor="sell-val-email" className={m2mDarkPanelFieldLabelClass}>
                   Email
-                </label>
-                <input
+                </Label>
+                <Input
+                  id="sell-val-email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="you@example.com"
-                  className="w-full bg-black/20 border border-m2m-gold/20 text-m2m-cream text-sm px-4 py-3 rounded-lg outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"
-                  style={{ fontFamily: 'var(--font-sans)' }}
+                  className={m2mDarkPanelInputClass}
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full text-[0.7rem] tracking-[0.2em] uppercase bg-m2m-gold text-m2m-deep font-medium px-8 py-4 rounded-lg transition-colors hover:bg-m2m-gold-lt mt-4"
-                style={{ fontFamily: 'var(--font-nav)' }}
-              >
+              <Button type="submit" variant="m2mGold" className="mt-4 w-full">
                 Get My Free Valuation
-              </button>
+              </Button>
             </form>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

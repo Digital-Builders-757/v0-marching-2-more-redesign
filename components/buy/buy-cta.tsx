@@ -1,12 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { M2M_PHONE_HREF } from "@/lib/m2m-site"
+
+import { M2mContainer } from "@/components/m2m-layout"
+import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function BuyCTA() {
   return (
-    <section className="bg-white px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="max-w-4xl mx-auto text-center" data-gsap="blur-in">
+    <section className="bg-white py-24" data-gsap-section>
+      <M2mContainer className="max-w-4xl text-center" data-gsap="blur-in">
         <p 
           className="text-sm tracking-[0.3em] uppercase text-m2m-gold mb-4"
           style={{ fontFamily: 'var(--font-nav)' }}
@@ -40,10 +42,10 @@ export function BuyCTA() {
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-deep text-m2m-deep transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
-            Call 757-206-2859
+            Call {M2M_PHONE_DISPLAY}
           </a>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

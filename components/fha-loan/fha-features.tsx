@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { Globe, Smile, Star, Zap } from "lucide-react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { FEATURES_CTA_STRIP, FEATURES_GRID } from "./content"
 
 const featureIcons = {
@@ -13,7 +15,7 @@ const featureIcons = {
 export function FhaFeatures() {
   return (
     <section className="bg-m2m-panel text-m2m-cream" aria-labelledby="fha-features-heading">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <M2mContainer className="max-w-6xl py-16 lg:py-24">
         <h2 id="fha-features-heading" className="sr-only">
           Features
         </h2>
@@ -40,10 +42,10 @@ export function FhaFeatures() {
             )
           })}
         </div>
-      </div>
+      </M2mContainer>
 
       <div className="border-t border-m2m-gold/15 bg-m2m-deep/90">
-        <div className="mx-auto max-w-3xl px-4 py-12 text-center sm:px-6 lg:px-8 lg:py-14">
+        <M2mContainer className="max-w-3xl py-12 text-center lg:py-14">
           <p
             className="mb-8 text-lg font-medium leading-snug text-m2m-cream sm:text-xl"
             style={{ fontFamily: "var(--font-display)" }}
@@ -57,7 +59,7 @@ export function FhaFeatures() {
           >
             {FEATURES_CTA_STRIP.buttonLabel}
           </Link>
-        </div>
+        </M2mContainer>
       </div>
     </section>
   )

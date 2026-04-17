@@ -7,6 +7,8 @@ import {
   Zap,
 } from "lucide-react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { PROBLEM_ITEMS, PROBLEMS_HEADING, PROBLEMS_SUBHEAD } from "./content"
 
 const ICON_MAP = {
@@ -21,10 +23,10 @@ const ICON_MAP = {
 export function DownsizingProblems() {
   return (
     <section
-      className="border-t border-m2m-gold/15 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="border-t border-m2m-gold/15 py-16 sm:py-20 lg:py-24"
       aria-labelledby="downsizing-problems-heading"
     >
-      <div className="mx-auto max-w-6xl">
+      <M2mContainer className="max-w-6xl">
         <h2
           id="downsizing-problems-heading"
           className="text-center text-[clamp(1.75rem,3.5vw,2.65rem)] font-medium text-m2m-cream"
@@ -64,7 +66,7 @@ export function DownsizingProblems() {
             )
           })}
         </ul>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

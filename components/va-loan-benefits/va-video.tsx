@@ -1,15 +1,17 @@
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { VIDEO_ATTRIBUTION, YOUTUBE_EMBED_SRC } from "./content"
 
 export function VaVideo() {
   return (
     <section
-      className="border-b border-m2m-gold/15 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="border-b border-m2m-gold/15 py-16 sm:py-20 lg:py-24"
       aria-labelledby="va-video-heading"
     >
       <h2 id="va-video-heading" className="sr-only">
         VA home loan video
       </h2>
-      <div className="mx-auto max-w-4xl">
+      <M2mContainer className="max-w-4xl">
         <div className="overflow-hidden rounded-lg ring-1 ring-m2m-gold/25 shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
           <div className="relative aspect-video w-full bg-m2m-deep">
             <iframe
@@ -29,7 +31,7 @@ export function VaVideo() {
         >
           {VIDEO_ATTRIBUTION}
         </p>
-      </div>
+      </M2mContainer>
     </section>
   )
 }
