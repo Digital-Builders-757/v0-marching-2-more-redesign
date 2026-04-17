@@ -4,6 +4,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v
 
 ## Documentation
 
+- [AGENTS.md](./AGENTS.md) — **start here** (architecture, brand, workflow pointers)  
 - [docs/DOCUMENTATION.md](./docs/DOCUMENTATION.md) — index  
 - [docs/WORK_ORDER.md](./docs/WORK_ORDER.md) — recent work and next steps  
 - [docs/development/BRANCHING.md](./docs/development/BRANCHING.md) — feature branches → **`develop`**  

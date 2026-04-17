@@ -9,7 +9,12 @@ import { cn } from "@/lib/utils"
 import { CALENDLY_BOOK_URL, M2M_PHONE_HREF } from "@/lib/m2m-site"
 import { M2M_HEADER_AGENT_LINKS, M2M_WIX_HEADER_MENU_LINKS } from "@/lib/m2m-nav"
 
-export function Header() {
+export type HeaderProps = {
+  /** Landing pages: cream outline CTA on green. Default keeps Wix gold fill. */
+  consultationCtaVariant?: "default" | "outlineCream"
+}
+
+export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -101,7 +106,12 @@ export function Header() {
             href={CALENDLY_BOOK_URL}
             target="_blank"
             rel="noreferrer"
-            className="hidden md:inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:bg-m2m-gold-lt"
+            className={cn(
+              "hidden md:inline-flex items-center justify-center text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition",
+              consultationCtaVariant === "outlineCream"
+                ? "border border-m2m-cream/90 bg-transparent text-m2m-cream hover:bg-m2m-cream/10"
+                : "bg-m2m-gold text-m2m-deep hover:bg-m2m-gold-lt",
+            )}
             style={{ fontFamily: "var(--font-nav)" }}
           >
             BOOK A HOME CONSULTATION
@@ -156,7 +166,12 @@ export function Header() {
                   href={CALENDLY_BOOK_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="block rounded-sm bg-m2m-gold px-3 py-3 text-center text-[0.7rem] tracking-[0.2em] uppercase font-medium text-m2m-deep hover:bg-m2m-gold-lt"
+                  className={cn(
+                    "block rounded-sm px-3 py-3 text-center text-[0.7rem] tracking-[0.2em] uppercase font-medium",
+                    consultationCtaVariant === "outlineCream"
+                      ? "border border-m2m-cream/70 text-m2m-cream hover:bg-white/10"
+                      : "bg-m2m-gold text-m2m-deep hover:bg-m2m-gold-lt",
+                  )}
                   onClick={() => setMenuOpen(false)}
                   style={{ fontFamily: "var(--font-nav)" }}
                 >
