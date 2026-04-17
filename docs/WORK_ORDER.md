@@ -10,6 +10,12 @@
 - Phone links use `M2M_PHONE_HREF` (`tel:+17572062859`) from `lib/m2m-site.ts`.
 - `next.config.mjs`: `turbopack.root` pinned; `images.remotePatterns` for Vercel Blob (`lib/m2m-media.ts`).
 - Replaced decorative `<img>` with `next/image` where ESLint flagged LCP (`property-search`, `property-search-new`, `team-members`).
+- **`/improve-your-credit`** — Credit campaign landing (`app/improve-your-credit/`, `components/improve-your-credit/`): hero collage, education + homework, takeaways + embedded video, playbook lead form (integration TODO), closing band; copy and image swap points in `content.ts`; not added to hamburger nav by default.
+- **`/downsizing-your-home`** — Downsizing campaign landing: hero + “Common Problems” icon grid, guide form (ship-to + special instructions; integration TODO), four service cards, webinar/action-plan block; `WEBINAR_REGISTER_URL` temporary Calendly + TODO in `content.ts`; `public/images/downsizing-your-home/` for future art.
+- **`/va-loan-benefits`** — VA benefits campaign landing: hero, embedded VA video + attribution, long-form benefits copy, full-bleed CTA to `#va-lead-form`, “Get on the List” lead form (integration TODO); `content.ts` SWAP comments for hero/CTA art; `public/images/va-loan-benefits/` for future assets.
+- **`/facing-pre-foreclosure`** — Pre-foreclosure webinar landing: hero + “Save My Spot” to `#pre-foreclosure-signup`, three education cards, split lead form + image (form integration TODO); `content.ts` SWAP comments; `public/images/facing-pre-foreclosure/` for future art; shared `DivorceLandingFooter` only.
+- **`/plans-and-pricing`** — Interior pricing page: Beginner / Pro (highlighted) / VIP tiers, `components/plans-pricing/`, global `Header` + `Footer`; Select CTAs link to `/contact-us?plan=…`.
+- **Documentation spine** — `AGENTS.md`, `docs/ARCHITECTURE_SOURCE_OF_TRUTH.md`, `docs/BRAND_CONSTITUTION.md`, `docs/WORKFLOW.md`, `docs/PROJECT_CONTEXT_PROMPT.md`, `docs/ROADMAP.md`, `docs/diagrams/`; `docs/WORK_ORDER_WIX_PARITY.md` moved to **`docs/archive/`** (historical).
 
 ## Next
 
@@ -21,6 +27,9 @@
 
 | Area | Location |
 |------|----------|
+| Agent + doc map | `AGENTS.md`, `docs/DOCUMENTATION_INDEX.md` |
+| Architecture | `docs/ARCHITECTURE_SOURCE_OF_TRUTH.md` |
+| Brand / tokens | `docs/BRAND_CONSTITUTION.md`, `app/globals.css` |
 | External URLs, phone, mailto helpers | `lib/m2m-site.ts` |
 | Blob image URLs for UI | `lib/m2m-media.ts` |
 | App routes | `app/` |

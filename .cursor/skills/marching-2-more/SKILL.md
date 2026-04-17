@@ -41,10 +41,17 @@ description: >-
 
 ## Documentation
 
-- **Work queue and next steps**: `docs/WORK_ORDER.md`.
+- **Agent entry / doc order**: repo root **`AGENTS.md`**.
+- **Architecture invariants**: `docs/ARCHITECTURE_CONSTITUTION.md`.
+- **Architecture (full map)**: `docs/ARCHITECTURE_SOURCE_OF_TRUTH.md`.
+- **Brand / tokens**: `docs/BRAND_CONSTITUTION.md`.
+- **Workflow (Ship, branches)**: `docs/WORKFLOW.md`.
+- **Work queue**: `docs/WORK_ORDER.md`.
+- **Roadmap**: `docs/MVP_STATUS_ROADMAP.md` (see also `docs/ROADMAP.md`).
+- **Paste context**: `docs/PROJECT_CONTEXT_PROMPT.md`.
 - **Index**: `docs/DOCUMENTATION.md` and `docs/DOCUMENTATION_INDEX.md`.
-- **Git workflow**: `docs/development/BRANCHING.md` (feature → `develop`), `docs/development/RELEASING.md` (`develop` → `main`).
-- **Cursor commands** (prompt-driven workflow): `.cursor/commands/README.md` — use **`/Ship`** before opening a PR to `develop`, then **`/pr`** for feature or release PRs.
+- **Git detail**: `docs/development/BRANCHING.md`, `docs/development/RELEASING.md`.
+- **Cursor commands**: `.cursor/commands/README.md` — **`/Ship`** then **`/pr`**.
 
 ## Deeper reference
 
