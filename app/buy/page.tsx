@@ -21,8 +21,8 @@ export default function BuyPage() {
         <BuyServices />
         <BuyProcess />
         <BuyCTA />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

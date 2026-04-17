@@ -5,8 +5,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 
-import { cn } from "@/lib/utils"
-import { CALENDLY_BOOK_URL, M2M_PHONE_HREF } from "@/lib/m2m-site"
+import { M2mConsultationCta } from "@/components/m2m-cta"
+import { M2M_PHONE_HREF } from "@/lib/m2m-site"
 import { M2M_HEADER_AGENT_LINKS, M2M_WIX_HEADER_MENU_LINKS } from "@/lib/m2m-nav"
 
 export type HeaderProps = {
@@ -29,7 +29,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
   }, [menuOpen])
 
   return (
-    <header className="sticky top-0 z-50 bg-[#244b2a]">
+    <header className="sticky top-0 z-50 border-b border-m2m-gold/15 bg-m2m-panel">
       {/* Backdrop */}
       {menuOpen ? (
         <button
@@ -102,20 +102,10 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
             ))}
           </div>
 
-          <a
-            href={CALENDLY_BOOK_URL}
-            target="_blank"
-            rel="noreferrer"
-            className={cn(
-              "hidden md:inline-flex items-center justify-center text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition",
-              consultationCtaVariant === "outlineCream"
-                ? "border border-m2m-cream/90 bg-transparent text-m2m-cream hover:bg-m2m-cream/10"
-                : "bg-m2m-gold text-m2m-deep hover:bg-m2m-gold-lt",
-            )}
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
-            BOOK A HOME CONSULTATION
-          </a>
+          <M2mConsultationCta
+            variant={consultationCtaVariant === "outlineCream" ? "outlineCream" : "gold"}
+            className="hidden md:inline-flex"
+          />
         </div>
       </div>
 
@@ -123,7 +113,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
       {menuOpen ? (
         <div className="relative z-[80]">
           <nav
-            className="absolute right-4 top-2 w-[min(360px,calc(100vw-2rem))] overflow-hidden rounded-md bg-[#244b2a] shadow-xl ring-1 ring-black/20 sm:right-6"
+            className="absolute right-4 top-2 w-[min(360px,calc(100vw-2rem))] overflow-hidden rounded-md bg-m2m-panel shadow-xl ring-1 ring-black/20 sm:right-6"
             aria-label="Site"
           >
             {/* Search input — presentational parity */}
@@ -162,21 +152,11 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
               </li>
 
               <li className="px-2 pb-2 pt-1 md:hidden">
-                <a
-                  href={CALENDLY_BOOK_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={cn(
-                    "block rounded-sm px-3 py-3 text-center text-[0.7rem] tracking-[0.2em] uppercase font-medium",
-                    consultationCtaVariant === "outlineCream"
-                      ? "border border-m2m-cream/70 text-m2m-cream hover:bg-white/10"
-                      : "bg-m2m-gold text-m2m-deep hover:bg-m2m-gold-lt",
-                  )}
+                <M2mConsultationCta
+                  variant={consultationCtaVariant === "outlineCream" ? "outlineCream" : "gold"}
+                  className="block w-full rounded-sm px-3 py-3 text-[0.7rem]"
                   onClick={() => setMenuOpen(false)}
-                  style={{ fontFamily: "var(--font-nav)" }}
-                >
-                  BOOK A HOME CONSULTATION
-                </a>
+                />
               </li>
             </ul>
           </nav>

@@ -1,12 +1,14 @@
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { VIDEO_HEADING, VIDEO_SUBHEAD, YOUTUBE_EMBED_SRC } from "./content"
 
 export function CreditVideo() {
   return (
     <section
-      className="border-b border-m2m-gold/15 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="border-b border-m2m-gold/15 py-16 sm:py-20 lg:py-24"
       aria-labelledby="credit-video-heading"
     >
-      <div className="mx-auto max-w-5xl text-center">
+      <M2mContainer className="max-w-5xl text-center">
         <h2
           id="credit-video-heading"
           className="text-2xl font-medium text-m2m-cream sm:text-3xl"
@@ -34,7 +36,7 @@ export function CreditVideo() {
             />
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

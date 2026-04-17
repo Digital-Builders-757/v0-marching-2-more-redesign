@@ -1,3 +1,5 @@
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { TESTIMONIALS } from "./content"
 
 export function FhaTestimonials() {
@@ -6,7 +8,7 @@ export function FhaTestimonials() {
       <h2 id="fha-testimonials-heading" className="sr-only">
         Client testimonials
       </h2>
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-14 px-4 sm:px-6 md:grid-cols-3 md:gap-10 lg:px-8">
+      <M2mContainer className="grid max-w-6xl grid-cols-1 gap-14 md:grid-cols-3 md:gap-10">
         {TESTIMONIALS.map((t) => (
           <blockquote key={t.name} className="flex flex-col items-center text-center">
             <span
@@ -27,7 +29,7 @@ export function FhaTestimonials() {
             </p>
           </blockquote>
         ))}
-      </div>
+      </M2mContainer>
     </section>
   )
 }

@@ -1,13 +1,15 @@
 "use client"
 
 import Image from "next/image"
+
+import { M2mContainer } from "@/components/m2m-layout"
 import { CREED_REALTY_SEARCH_URL } from "@/lib/m2m-constants"
 import { mailtoNeedsHelp, REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
 
 export function PropertySearch() {
   return (
     <section id="properties" className="bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <M2mContainer>
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left column - Text content */}
           <div className="flex-1 flex flex-col gap-6 lg:pl-8">
@@ -160,7 +162,7 @@ export function PropertySearch() {
             </div>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

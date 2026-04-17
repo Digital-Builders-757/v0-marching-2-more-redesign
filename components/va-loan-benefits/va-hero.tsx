@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { HERO_BACKGROUND, HERO_KICKER, HERO_TITLE } from "./content"
 
 export function VaHero() {
@@ -19,7 +21,7 @@ export function VaHero() {
       <div className="absolute inset-0 bg-m2m-panel/58" />
       <div className="absolute inset-0 bg-gradient-to-t from-m2m-deep/82 via-m2m-deep/20 to-m2m-panel/45" />
 
-      <div className="relative z-10 mx-auto flex min-h-[min(80vh,720px)] max-w-5xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
+      <M2mContainer className="relative z-10 flex min-h-[min(80vh,720px)] max-w-5xl flex-col items-center justify-center py-24 text-center">
         <p
           className="text-[clamp(1.15rem,2.8vw,1.5rem)] font-medium tracking-wide text-m2m-cream/95"
           style={{ fontFamily: "var(--font-display)" }}
@@ -33,7 +35,7 @@ export function VaHero() {
         >
           {HERO_TITLE}
         </h1>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

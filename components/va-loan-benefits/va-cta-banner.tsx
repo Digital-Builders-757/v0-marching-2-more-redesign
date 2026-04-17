@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import {
   CTA_BANNER_BACKGROUND,
   CTA_BANNER_BUTTON,
@@ -24,7 +26,7 @@ export function VaCtaBanner() {
       <div className="absolute inset-0 bg-m2m-deep/65" />
       <div className="absolute inset-0 bg-gradient-to-t from-m2m-deep/80 via-transparent to-m2m-deep/40" />
 
-      <div className="relative z-10 flex min-h-[280px] flex-col items-center justify-center px-4 py-16 text-center sm:min-h-[340px] sm:py-20 lg:min-h-[400px]">
+      <M2mContainer className="relative z-10 flex min-h-[280px] flex-col items-center justify-center py-16 text-center sm:min-h-[340px] sm:py-20 lg:min-h-[400px]">
         <h2
           id="va-cta-banner-heading"
           className="max-w-xl text-2xl font-semibold leading-snug text-m2m-cream sm:text-3xl lg:text-[2rem]"
@@ -41,7 +43,7 @@ export function VaCtaBanner() {
             {CTA_BANNER_BUTTON}
           </Link>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

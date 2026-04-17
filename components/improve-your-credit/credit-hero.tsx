@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import {
   HERO_FEATURE_OVERLAY_LINE_1,
   HERO_FEATURE_OVERLAY_LINE_2,
@@ -13,10 +15,10 @@ import {
 export function CreditHero() {
   return (
     <section
-      className="border-b border-m2m-gold/15 px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-16 lg:px-8 lg:pb-24"
+      className="border-b border-m2m-gold/15 pb-16 pt-12 sm:pb-20 sm:pt-16 lg:pb-24"
       aria-labelledby="credit-hero-heading"
     >
-      <div className="mx-auto max-w-7xl">
+      <M2mContainer>
         <h1
           id="credit-hero-heading"
           className="mx-auto mb-12 max-w-4xl text-center text-[clamp(1.85rem,4.2vw,3.25rem)] font-medium leading-[1.18] tracking-tight text-m2m-cream"
@@ -101,7 +103,7 @@ export function CreditHero() {
             />
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

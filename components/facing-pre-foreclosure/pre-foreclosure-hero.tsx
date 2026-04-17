@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import {
   HERO_BACKGROUND,
   HERO_CTA_LABEL,
@@ -26,7 +28,7 @@ export function PreForeclosureHero() {
       <div className="absolute inset-0 bg-m2m-panel/55" />
       <div className="absolute inset-0 bg-gradient-to-t from-m2m-deep/88 via-m2m-deep/35 to-m2m-panel/50" />
 
-      <div className="relative z-10 mx-auto flex min-h-[min(82vh,760px)] max-w-4xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
+      <M2mContainer className="relative z-10 flex min-h-[min(82vh,760px)] max-w-4xl flex-col items-center justify-center py-24 text-center">
         <h1
           id="pre-foreclosure-hero-heading"
           className="text-[clamp(1.85rem,4.5vw,3rem)] font-medium leading-[1.15] tracking-tight text-m2m-cream [text-shadow:0_2px_28px_rgba(0,0,0,0.35)]"
@@ -49,7 +51,7 @@ export function PreForeclosureHero() {
             {HERO_CTA_LABEL}
           </Link>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

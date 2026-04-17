@@ -8,7 +8,8 @@ Marching 2 More — **Next.js marketing site** (not the TOTL/Supabase product un
 
 | Doc | Purpose |
 |-----|---------|
-| [WORK_ORDER.md](./WORK_ORDER.md) | Recent ships and next steps |
+| [WORK_ORDER.md](./WORK_ORDER.md) | Recent ships, route overhaul tracking, next steps |
+| [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) | Overhaul vision, standards, documentation outcomes |
 | [MVP_STATUS_ROADMAP.md](./MVP_STATUS_ROADMAP.md) | P0/P1 snapshot |
 | [development/BRANCHING.md](./development/BRANCHING.md) | Branch / PR flow |
 | [development/RELEASING.md](./development/RELEASING.md) | Promote `develop` → `main` |

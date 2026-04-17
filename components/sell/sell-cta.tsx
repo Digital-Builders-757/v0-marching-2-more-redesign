@@ -1,11 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { M2M_PHONE_HREF } from "@/lib/m2m-site"
+
+import { M2mContainer } from "@/components/m2m-layout"
+import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function SellCTA() {
   return (
-    <section className="relative px-6 py-24 md:px-16 lg:px-24 overflow-hidden" style={{ backgroundColor: '#050d06' }} data-gsap-section>
+    <section className="relative overflow-hidden py-24" style={{ backgroundColor: '#050d06' }} data-gsap-section>
       {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -25,7 +27,7 @@ export function SellCTA() {
         }}
       />
 
-      <div className="relative z-[2] max-w-4xl mx-auto text-center" data-gsap="blur-in">
+      <M2mContainer className="relative z-[2] max-w-4xl text-center" data-gsap="blur-in">
         <p 
           className="text-sm tracking-[0.3em] uppercase text-m2m-gold mb-4"
           style={{ fontFamily: 'var(--font-nav)' }}
@@ -59,10 +61,10 @@ export function SellCTA() {
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-gold/30 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
-            Call 757-206-2859
+            Call {M2M_PHONE_DISPLAY}
           </a>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

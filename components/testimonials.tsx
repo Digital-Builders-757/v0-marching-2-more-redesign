@@ -4,6 +4,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Star } from "lucide-react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 const testimonials = [
   {
     quote: "So excited for our new journey! I can't thank Donavan McFadden and the Marching2More team enough for finding the perfect home for my little family! He was extremely dedicated to finding a home that fit our needs and wants! Here's to new beginnings!",
@@ -28,7 +30,7 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="bg-white py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <M2mContainer>
         {/* Header */}
         <div className="text-center mb-12">
           {/* Kicker */}
@@ -141,7 +143,7 @@ export function Testimonials() {
             Review us on Google &#9656;
           </a>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

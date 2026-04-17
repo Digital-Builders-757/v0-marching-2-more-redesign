@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { CheckCircle, Download } from "lucide-react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 const checklistItems = [
   "Declutter and depersonalize living spaces",
   "Deep clean entire home including carpets and windows",
@@ -18,8 +20,8 @@ const checklistItems = [
 
 export function SellChecklist() {
   return (
-    <section id="checklist" className="bg-white px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="max-w-7xl mx-auto">
+    <section id="checklist" className="bg-white py-24" data-gsap-section>
+      <M2mContainer>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div data-gsap="fade-right">
@@ -90,7 +92,7 @@ export function SellChecklist() {
             </ul>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

@@ -33,13 +33,25 @@ flowchart LR
 - **Analytics:** `@vercel/analytics` in `app/layout.tsx`.
 - **Content:** Mostly static TS/TSX and per-route `content.ts` files; no in-repo database.
 
+## Shared layout and conversion primitives
+
+Use these for consistent width, rhythm, and CTAs (see [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md)):
+
+| Module | Role |
+|--------|------|
+| `components/m2m-layout.tsx` | `M2mContainer` (max-width + horizontal padding aligned with header), `M2mSection`, `M2mProse` |
+| `components/m2m-cta.tsx` | `M2mConsultationCta` (Calendly book link, gold vs outline cream), `m2mOutlineGoldLinkClass` for in-page links on green |
+| `lib/m2m-form.ts` | Shared class strings for forms: campaign leads (`m2mLeadField*`, `m2mPlaybook*`), interior light pages (`m2mInterior*`), dark panels (`m2mDarkPanel*`) — pair with `components/ui/input`, `label`, `textarea`, `button` |
+
+Header and global footer use `M2mConsultationCta` and `M2mContainer` where applicable; campaign footers use `M2mContainer` for the same horizontal rhythm.
+
 ## Directory responsibilities
 
 | Path | Role |
 |------|------|
 | `app/` | Routes, `layout.tsx`, `page.tsx`, metadata |
 | `components/` | Page sections, layout chrome (`header`, `footer`), feature folders (`buy/`, `sell/`, …) |
-| `lib/` | `m2m-site.ts`, `m2m-nav.ts`, `m2m-media.ts`, `utils.ts`, etc. |
+| `lib/` | `m2m-site.ts`, `m2m-nav.ts`, `m2m-media.ts`, `m2m-form.ts`, `utils.ts`, etc. |
 | `public/` | Static assets; `public/brand/`, route-specific image folders with `.gitkeep` |
 | `.cursor/` | Skills and slash-command prompts |
 

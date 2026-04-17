@@ -2,6 +2,13 @@
 
 import { useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
+import { cn } from "@/lib/utils"
+
 import {
   DOWNSIZING_GUIDE_SECTION_ID,
   GUIDE_CTA_LABEL,
@@ -24,12 +31,6 @@ export function DownsizingGuideForm() {
     console.log("Downsizing guide request:", form)
   }
 
-  const inputClass =
-    "w-full rounded-md border border-m2m-deep/15 bg-white px-3 py-3 text-sm text-m2m-deep outline-none transition placeholder:text-m2m-muted focus:border-m2m-panel focus:ring-2 focus:ring-m2m-panel/25"
-
-  const labelClass =
-    "mb-1.5 block text-[0.7rem] font-medium uppercase tracking-[0.12em] text-m2m-deep/75"
-
   return (
     <div
       id={DOWNSIZING_GUIDE_SECTION_ID}
@@ -41,100 +42,86 @@ export function DownsizingGuideForm() {
       >
         {GUIDE_HEADING}
       </h2>
-      <p
-        className="mt-3 text-sm leading-relaxed text-m2m-deep/80"
-        style={{ fontFamily: "var(--font-sans)" }}
-      >
-        {GUIDE_INTRO}
-      </p>
+      <p className="mt-3 text-sm leading-relaxed text-m2m-deep/80 font-sans">{GUIDE_INTRO}</p>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Request downsizing guide">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div className="sm:col-span-1">
-            <label htmlFor="ds-first" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+            <Label htmlFor="ds-first" className={m2mLeadFieldLabelClass}>
               First name
-            </label>
-            <input
+            </Label>
+            <Input
               id="ds-first"
               type="text"
               autoComplete="given-name"
               value={form.firstName}
               onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-              className={inputClass}
-              style={{ fontFamily: "var(--font-sans)" }}
+              className={m2mLeadFieldInputClass}
             />
           </div>
           <div className="sm:col-span-1">
-            <label htmlFor="ds-last" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+            <Label htmlFor="ds-last" className={m2mLeadFieldLabelClass}>
               Last name
-            </label>
-            <input
+            </Label>
+            <Input
               id="ds-last"
               type="text"
               autoComplete="family-name"
               value={form.lastName}
               onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-              className={inputClass}
-              style={{ fontFamily: "var(--font-sans)" }}
+              className={m2mLeadFieldInputClass}
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="ds-email" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+          <Label htmlFor="ds-email" className={m2mLeadFieldLabelClass}>
             Email
-          </label>
-          <input
+          </Label>
+          <Input
             id="ds-email"
             type="email"
             required
             autoComplete="email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className={inputClass}
-            style={{ fontFamily: "var(--font-sans)" }}
+            className={m2mLeadFieldInputClass}
           />
         </div>
 
         <div>
-          <label htmlFor="ds-ship" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+          <Label htmlFor="ds-ship" className={m2mLeadFieldLabelClass}>
             Ship to
-          </label>
-          <input
+          </Label>
+          <Input
             id="ds-ship"
             type="text"
             autoComplete="street-address"
             value={form.shipTo}
             onChange={(e) => setForm({ ...form, shipTo: e.target.value })}
-            className={inputClass}
-            style={{ fontFamily: "var(--font-sans)" }}
+            className={m2mLeadFieldInputClass}
             placeholder="Mailing address (optional)"
           />
         </div>
 
         <div>
-          <label htmlFor="ds-notes" className={labelClass} style={{ fontFamily: "var(--font-nav)" }}>
+          <Label htmlFor="ds-notes" className={m2mLeadFieldLabelClass}>
             Special instructions
-          </label>
-          <textarea
+          </Label>
+          <Textarea
             id="ds-notes"
             rows={4}
             value={form.specialInstructions}
             onChange={(e) => setForm({ ...form, specialInstructions: e.target.value })}
-            className={`${inputClass} min-h-[7rem] resize-y`}
-            style={{ fontFamily: "var(--font-sans)" }}
+            className={cn(m2mLeadFieldTextareaClass, "min-h-[7rem]")}
             placeholder="Anything we should know about delivery or timing?"
           />
         </div>
 
         <div className="pt-2">
-          <button
-            type="submit"
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-sm bg-m2m-gold px-6 py-3.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-m2m-deep transition hover:bg-m2m-gold-lt"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
+          <Button type="submit" variant="m2mGold" className="w-full">
             {GUIDE_CTA_LABEL}
-          </button>
+          </Button>
         </div>
       </form>
     </div>
