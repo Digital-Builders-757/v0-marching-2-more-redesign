@@ -15,12 +15,12 @@ export default function PartnersPage() {
     <>
       <Header />
       <GSAPAnimations />
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className="bg-white">
         <PartnersHero />
         <PartnersList />
         <PartnersCTA />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

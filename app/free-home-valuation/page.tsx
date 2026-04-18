@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
+import { Header } from "@/components/header"
+import { M2mContainer, M2mSection } from "@/components/m2m-layout"
+import { GOOGLE_REVIEW_URL, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export const metadata: Metadata = {
   title: "Free Home Valuation | Marching 2 More",
@@ -42,7 +43,7 @@ export default function FreeHomeValuationPage() {
               style={{ backgroundColor: "rgba(5, 13, 6, 0.7)" }}
             />
 
-            <div className="relative mx-auto max-w-5xl text-center px-6 pt-28 pb-20 md:px-16 lg:px-24">
+            <M2mContainer className="relative max-w-5xl text-center pt-28 pb-20">
             {/* Kicker */}
             <div className="inline-flex items-center gap-4 mb-8">
               <p
@@ -99,17 +100,17 @@ export default function FreeHomeValuationPage() {
               style={{ fontFamily: "var(--font-nav)" }}
             >
               Have a question?{" "}
-            <Link href="/contact" className="underline hover:text-m2m-gold">
+            <Link href="/contact-us" className="underline hover:text-m2m-gold">
               Contact Us
             </Link>
             </p>
-            </div>
+            </M2mContainer>
           </div>
         </section>
 
         {/* Support Section */}
-        <section className="bg-white px-6 py-20 md:px-16 lg:px-24">
-          <div className="mx-auto max-w-3xl text-center">
+        <M2mSection variant="light" className="py-20">
+          <M2mContainer className="max-w-3xl text-center">
             {/* M2M Logo/Icon */}
             <div className="mb-8">
               <Image
@@ -123,32 +124,29 @@ export default function FreeHomeValuationPage() {
 
             {/* Heading */}
             <h2
-              className="text-[clamp(1.75rem,4vw,2.5rem)] leading-[1.2] font-light mb-6"
-              style={{ fontFamily: "var(--font-display)", color: "#1B4332" }}
+              className="mb-6 text-[clamp(1.75rem,4vw,2.5rem)] font-light leading-[1.2] text-m2m-deep"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Start your journey with personalized<br />
               guidance and dedicated support.
             </h2>
 
             {/* Body */}
-            <p
-              className="text-base leading-relaxed max-w-xl mx-auto"
-              style={{ fontFamily: "var(--font-sans)", color: "#555" }}
-            >
+            <p className="mx-auto max-w-xl text-base leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
               Our team truly gets that selling your home is more than a transaction —
               it&apos;s a personal journey. That is why we are committed to guide you
               through each step. <strong>No pressure, only support.</strong>
             </p>
-          </div>
-        </section>
+          </M2mContainer>
+        </M2mSection>
 
         {/* Process Section */}
-        <section className="bg-white px-6 py-16 md:px-16 lg:px-24 border-t border-gray-100">
-          <div className="mx-auto max-w-5xl">
+        <M2mSection variant="light" className="border-t border-gray-100 py-16">
+          <M2mContainer className="max-w-5xl">
             {/* Heading */}
             <h2
-              className="text-center text-[clamp(1.5rem,3vw,2rem)] font-light mb-12"
-              style={{ fontFamily: "var(--font-display)", color: "#1B4332" }}
+              className="mb-12 text-center text-[clamp(1.5rem,3vw,2rem)] font-light text-m2m-deep"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               A Simple Valuation Process:
             </h2>
@@ -157,64 +155,34 @@ export default function FreeHomeValuationPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
               {/* Step 1 */}
               <div>
-                <h3
-                  className="text-sm font-semibold mb-3"
-                  style={{ fontFamily: "var(--font-nav)", color: "#B8963E" }}
-                >
-                  Schedule a Walkthrough
-                </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ fontFamily: "var(--font-sans)", color: "#555" }}
-                >
+                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Schedule a Walkthrough</h3>
+                <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                   Share your home&apos;s unique features and any concerns you have. We&apos;re here to listen and address your specific needs.
                 </p>
               </div>
 
               {/* Step 2 */}
               <div>
-                <h3
-                  className="text-sm font-semibold mb-3"
-                  style={{ fontFamily: "var(--font-nav)", color: "#B8963E" }}
-                >
-                  Review Market Positioning Options
-                </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ fontFamily: "var(--font-sans)", color: "#555" }}
-                >
+                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Review Market Positioning Options</h3>
+                <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                   Comprehensive Market Analysis: Gain insights with a detailed Comparative Market Analysis (CMA), understanding how your home stacks up in the current market.
                 </p>
               </div>
 
               {/* Step 3 */}
               <div>
-                <h3
-                  className="text-sm font-semibold mb-3"
-                  style={{ fontFamily: "var(--font-nav)", color: "#B8963E" }}
-                >
+                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">
                   Personalized Value Enhancement Checklist
                 </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ fontFamily: "var(--font-sans)", color: "#555" }}
-                >
+                <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                   Whether improving your home&apos;s value or listing as is, we provide expert guidance every step of the way.
                 </p>
               </div>
 
               {/* Step 4 */}
               <div>
-                <h3
-                  className="text-sm font-semibold mb-3"
-                  style={{ fontFamily: "var(--font-nav)", color: "#B8963E" }}
-                >
-                  No pressure, only support.
-                </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ fontFamily: "var(--font-sans)", color: "#555" }}
-                >
+                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">No pressure, only support.</h3>
+                <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                   From contracts to closing, we handle everything. We coordinate with lawyers, manage projects, and keep your sale on track.
                 </p>
               </div>
@@ -230,16 +198,16 @@ export default function FreeHomeValuationPage() {
                 Get Your Free Home Valuation
               </Link>
             </div>
-          </div>
-        </section>
+          </M2mContainer>
+        </M2mSection>
 
         {/* Testimonials Section */}
-        <section className="bg-gray-50 px-6 py-20 md:px-16 lg:px-24">
-          <div className="mx-auto max-w-6xl">
+        <section className="bg-gray-50 py-20">
+          <M2mContainer className="max-w-6xl">
             {/* Heading */}
             <h2
-              className="text-center text-[clamp(1.25rem,3vw,1.75rem)] font-light mb-12"
-              style={{ fontFamily: "var(--font-display)", color: "#1B4332" }}
+              className="mb-12 text-center text-[clamp(1.25rem,3vw,1.75rem)] font-light text-m2m-deep"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               We&apos;re committed to being the best.
             </h2>
@@ -259,12 +227,12 @@ export default function FreeHomeValuationPage() {
                     />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold" style={{ color: "#1B4332" }}>Kristin Jacob</p>
-                    <p className="text-xs" style={{ color: "#B8963E" }}>U.S. Navy</p>
+                    <p className="text-sm font-semibold text-m2m-deep">Kristin Jacob</p>
+                    <p className="text-xs text-m2m-gold">U.S. Navy</p>
                   </div>
                 </div>
                 <div className="text-m2m-gold text-sm mb-3">★ ★ ★ ★ ★</div>
-                <p className="text-sm leading-relaxed" style={{ color: "#555" }}>
+                <p className="text-sm leading-relaxed text-m2m-muted">
                   Donavan and his team were above and beyond in the care and details they took getting my home sold. The process was streamlined and explained every step of the way. I highly recommend them to anyone interested in selling or purchasing a home.
                 </p>
               </div>
@@ -282,12 +250,12 @@ export default function FreeHomeValuationPage() {
                     />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold" style={{ color: "#1B4332" }}>Timothy L. Cunningham</p>
-                    <p className="text-xs" style={{ color: "#B8963E" }}>U.S Navy</p>
+                    <p className="text-sm font-semibold text-m2m-deep">Timothy L. Cunningham</p>
+                    <p className="text-xs text-m2m-gold">U.S Navy</p>
                   </div>
                 </div>
                 <div className="text-m2m-gold text-sm mb-3">★ ★ ★ ★ ★</div>
-                <p className="text-sm leading-relaxed" style={{ color: "#555" }}>
+                <p className="text-sm leading-relaxed text-m2m-muted">
                   My wife and I have bought 3 houses and sold 2, but our experience with Mr. McFadden has been hands down the smoothest, fastest, and easiest. He took care of everything we needed while selling our home. I would recommend in a heart beat.
                 </p>
               </div>
@@ -305,12 +273,12 @@ export default function FreeHomeValuationPage() {
                     />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold" style={{ color: "#1B4332" }}>Dwayne Jenkins</p>
-                    <p className="text-xs" style={{ color: "#B8963E" }}>Credit Advocate</p>
+                    <p className="text-sm font-semibold text-m2m-deep">Dwayne Jenkins</p>
+                    <p className="text-xs text-m2m-gold">Credit Advocate</p>
                   </div>
                 </div>
                 <div className="text-m2m-gold text-sm mb-3">★ ★ ★ ★ ★</div>
-                <p className="text-sm leading-relaxed" style={{ color: "#555" }}>
+                <p className="text-sm leading-relaxed text-m2m-muted">
                   Donny and Roger are an amazing 1-2 punch for both buyers and sellers in the VA Beach area. They are constantly providing valuable information through seminars and education in the community. They are going to make sure the home you buy fits your financial needs.
                 </p>
               </div>
@@ -319,7 +287,7 @@ export default function FreeHomeValuationPage() {
             {/* More Reviews */}
             <div className="text-center">
               <Link
-                href="https://www.google.com/search?q=marching+2+more+reviews"
+                href={GOOGLE_REVIEW_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-block bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-3 transition hover:bg-m2m-gold-lt mb-3"
@@ -329,7 +297,7 @@ export default function FreeHomeValuationPage() {
               </Link>
               <p className="text-sm">
                 <Link
-                  href="https://www.google.com/search?q=marching+2+more+reviews"
+                  href={GOOGLE_REVIEW_URL}
                   target="_blank"
                   rel="noreferrer"
                   className="text-m2m-gold hover:underline"
@@ -339,11 +307,11 @@ export default function FreeHomeValuationPage() {
                 </Link>
               </p>
             </div>
-          </div>
+          </M2mContainer>
         </section>
 
         {/* Bottom CTA Section */}
-        <section className="relative px-6 py-24 md:px-16 lg:px-24 overflow-hidden">
+        <section className="relative overflow-hidden py-24">
           {/* Background image */}
           <div className="absolute inset-0">
             <Image
@@ -360,7 +328,7 @@ export default function FreeHomeValuationPage() {
             style={{ backgroundColor: "rgba(5, 13, 6, 0.8)" }}
           />
 
-          <div className="relative mx-auto max-w-3xl text-center">
+          <M2mContainer className="relative max-w-3xl text-center">
             <h2
               className="font-light italic leading-[1.1] text-[clamp(2rem,5vw,3rem)] text-m2m-cream mb-10"
               style={{ fontFamily: "var(--font-display)" }}
@@ -394,7 +362,7 @@ export default function FreeHomeValuationPage() {
                 Meet Your Team
               </Link>
             </div>
-          </div>
+          </M2mContainer>
         </section>
       </main>
 

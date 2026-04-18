@@ -1,7 +1,8 @@
 import Link from "next/link"
 
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
+import { M2mContainer, M2mSection } from "@/components/m2m-layout"
 import { BLOG_POSTS } from "@/lib/blog/posts"
 
 export const metadata = {
@@ -16,18 +17,26 @@ export default function BlogIndexPage() {
       <Header />
 
       <main id="main-content" tabIndex={-1} className="bg-white">
-        {/* Blog posts list */}
-        <section className="px-6 pt-28 pb-20 md:px-16 lg:px-24">
-          <div className="mx-auto max-w-4xl">
+        <M2mSection variant="light" className="pt-28 pb-20">
+          <M2mContainer className="max-w-4xl">
+            <p className="m2m-eyebrow-gold">Hampton Roads</p>
+            <h1 className="m2m-section-title text-m2m-deep mt-4">Blog</h1>
+            <p
+              className="mt-4 max-w-2xl text-base leading-relaxed text-m2m-muted"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Stories, guides, and practical insights for buying and selling homes in Hampton Roads.
+            </p>
+
             {BLOG_POSTS.map((post, index) => (
-              <article 
+              <article
                 key={post.slug}
-                className={`py-12 ${index !== BLOG_POSTS.length - 1 ? 'border-b border-gray-200' : ''}`}
+                className={`py-12 ${index !== BLOG_POSTS.length - 1 ? "border-b border-gray-200" : ""}`}
               >
                 <Link href={`/blog/${post.slug}`} className="group block">
                   {/* Title */}
                   <h2
-                    className="text-[clamp(1.5rem,3vw,2rem)] leading-[1.2] font-medium text-[#1B4332] group-hover:text-[#1B4332]/80 transition-colors"
+                    className="text-[clamp(1.5rem,3vw,2rem)] leading-[1.2] font-medium text-m2m-deep transition-colors group-hover:text-m2m-deep/80"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {post.title}
@@ -55,11 +64,10 @@ export default function BlogIndexPage() {
                 </Link>
               </article>
             ))}
-          </div>
-        </section>
-
-        <Footer />
+          </M2mContainer>
+        </M2mSection>
       </main>
+      <Footer />
     </>
   )
 }

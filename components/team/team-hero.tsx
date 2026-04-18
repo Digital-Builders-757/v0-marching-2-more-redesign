@@ -1,10 +1,12 @@
 import Image from "next/image"
+
+import { M2mContainer } from "@/components/m2m-layout"
 import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export function TeamHero() {
   return (
     <section
-      className="relative px-6 pt-28 pb-16 md:px-16 lg:px-24 overflow-hidden"
+      className="relative overflow-hidden pt-28 pb-16"
     >
       {/* Background image */}
       <div className="absolute inset-0">
@@ -24,7 +26,7 @@ export function TeamHero() {
       />
 
       {/* Content */}
-      <div className="relative mx-auto max-w-5xl text-center">
+      <M2mContainer className="relative max-w-5xl text-center">
         {/* Kicker */}
         <div 
           className="inline-flex items-center gap-4 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-8"
@@ -53,7 +55,7 @@ export function TeamHero() {
           our local market expertise and personalized care, ensures a real estate experience that is 
           seamless and feels effortless.
         </p>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

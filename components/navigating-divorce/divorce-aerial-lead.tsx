@@ -4,6 +4,8 @@ import { useState } from "react"
 import Image from "next/image"
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { AERIAL_BACKGROUND, AERIAL_COPY } from "./content"
 
 export function DivorceAerialLead() {
@@ -32,7 +34,7 @@ export function DivorceAerialLead() {
         <div className="absolute inset-0 bg-gradient-to-r from-m2m-deep/92 via-m2m-deep/80 to-m2m-deep/65" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:flex lg:items-stretch lg:gap-14 lg:px-8 lg:py-24">
+      <M2mContainer className="relative z-10 py-16 lg:flex lg:items-stretch lg:gap-14 lg:py-24">
         <div className="mb-12 max-w-xl lg:mb-0 lg:flex-1 lg:pt-4">
           <h2
             id="aerial-heading"
@@ -188,7 +190,7 @@ export function DivorceAerialLead() {
             </form>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

@@ -17,4 +17,5 @@ export const M2M_MEDIA = {
   blogIndexBackdrop: `${BLOB_BASE}/-post-ai-image-27298-tXKCb2L8gZaxkWi49XwXGN6rmgkbLf.png`,
   contactHeroStill: `${BLOB_BASE}/-post-ai-image-72291.png-s80gDsDR2DizqJSBhQrT95yxOc2O01.jpeg`,
   partnersHeroStill: `${BLOB_BASE}/-post-ai-image-19289-VMjgEppbjmetIgqpoqeYogIoctYAr0.png`,
+  partnersCtaStill: `${BLOB_BASE}/-post-ai-image-19388-jf99jfe9gtZUgHDymGUB60jS4Jvrd8.png`,
 } as const

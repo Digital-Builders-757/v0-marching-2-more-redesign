@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { M2mContainer } from "@/components/m2m-layout"
+import { M2M_MEDIA } from "@/lib/m2m-media"
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function SellPageHero() {
@@ -55,14 +56,13 @@ export function SellPageHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden py-24 md:py-32"
-      style={{ backgroundColor: '#050d06' }}
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-m2m-black py-24 md:py-32"
     >
       {/* Background image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-post-ai-image-7353.png-XuugaQAYYKTeQCH48KchTJCafF1MW6.jpeg')`,
+          backgroundImage: `url('${M2M_MEDIA.sellHeroStill}')`,
         }}
       />
 

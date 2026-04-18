@@ -1,9 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
+import { Header } from "@/components/header"
+import { M2mContainer } from "@/components/m2m-layout"
 
 import { BLOG_POSTS, getPostBySlug } from "@/lib/blog/posts"
 import { CALENDLY_BOOK_URL } from "@/lib/m2m-site"
@@ -19,15 +20,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     return (
       <>
         <Header />
-        <main className="px-6 py-28">
-          <div className="mx-auto max-w-2xl">
-            <h1 className="text-2xl">Post not found</h1>
+        <main id="main-content" tabIndex={-1} className="bg-white py-28">
+          <M2mContainer className="max-w-2xl">
+            <h1 className="text-2xl text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
+              Post not found
+            </h1>
             <p className="mt-4">
-              <Link href="/blog" className="underline">
+              <Link href="/blog" className="text-m2m-gold underline underline-offset-4 hover:text-m2m-deep">
                 Back to Blog
               </Link>
             </p>
-          </div>
+          </M2mContainer>
         </main>
         <Footer />
       </>
@@ -40,8 +43,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <GSAPAnimations />
 
       <main id="main-content" tabIndex={-1} className="bg-m2m-cream">
-        <section className="px-6 pt-28 pb-10 md:px-16 lg:px-24" style={{ backgroundColor: "#050d06" }}>
-          <div className="mx-auto max-w-4xl">
+        <section className="bg-m2m-black pt-28 pb-10">
+          <M2mContainer className="max-w-4xl">
             <p
               className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
               style={{ fontFamily: "var(--font-nav)" }}
@@ -79,11 +82,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 Book Consultation
               </a>
             </div>
-          </div>
+          </M2mContainer>
         </section>
 
-        <section className="px-6 pb-16 md:px-16 lg:px-24">
-          <div className="mx-auto max-w-4xl">
+        <section className="pb-16">
+          <M2mContainer className="max-w-4xl">
             <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-md bg-m2m-black">
               <Image src={post.coverImage} alt="" fill className="object-cover" sizes="100vw" />
             </div>
@@ -118,11 +121,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 </a>
               </div>
             </div>
-          </div>
+          </M2mContainer>
         </section>
-
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

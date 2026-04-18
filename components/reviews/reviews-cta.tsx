@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
 import { GOOGLE_REVIEW_URL } from "@/lib/m2m-site"
 
 export function ReviewsCta() {
@@ -14,7 +15,7 @@ export function ReviewsCta() {
         }}
       />
 
-      <div className="relative px-6 py-20 md:px-16 lg:px-24 md:py-28 text-center">
+      <M2mContainer className="relative py-20 md:py-28 text-center">
         <h2
           data-gsap="blur-in"
           className="text-[clamp(1.8rem,4vw,3rem)] leading-[1.1] font-light text-m2m-cream mb-8"
@@ -42,7 +43,7 @@ export function ReviewsCta() {
             Review us on Google ▸
           </a>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

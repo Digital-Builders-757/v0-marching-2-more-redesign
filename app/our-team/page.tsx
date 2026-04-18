@@ -16,12 +16,12 @@ export default function OurTeamPage() {
     <>
       <Header />
       <GSAPAnimations />
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className="bg-white">
         <TeamHero />
         <TeamMembers />
         <TeamCTA />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }
