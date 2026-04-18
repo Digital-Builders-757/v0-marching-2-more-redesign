@@ -6,7 +6,7 @@ import Image from "next/image"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
-import { M2mContainer } from "@/components/m2m-layout"
+import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
 
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
@@ -44,12 +44,7 @@ export default function CmaFormPage() {
       <main id="main-content" tabIndex={-1} className="bg-white">
         {/* Hero with background image */}
         <section className="relative min-h-screen overflow-hidden bg-white py-6 md:py-8">
-          {/* Inner container with background image at 95% width */}
-          <div 
-            className="relative mx-auto overflow-hidden rounded-xl"
-            style={{ width: '95%', minHeight: 'calc(100vh - 48px)' }}
-          >
-            {/* Background image */}
+          <M2mInsetHeroFrame className="min-h-[calc(100dvh-3rem)]">
             <div className="absolute inset-0">
               <Image
                 src="/images/cma-hero.png"
@@ -60,11 +55,7 @@ export default function CmaFormPage() {
                 sizes="100vw"
               />
             </div>
-            {/* Dark green overlay */}
-            <div 
-              className="absolute inset-0"
-              style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
-            />
+            <M2mInsetHeroScrim variant="75" />
 
             <M2mContainer className="relative pt-28 pb-16">
               <div className="mx-auto max-w-5xl">
@@ -141,28 +132,28 @@ export default function CmaFormPage() {
                   </div>
                 </div>
 
-                <hr className="border-gray-200 mb-8" />
+                <hr className="mb-8 border-m2m-deep/10" />
 
                 {/* Property Condition Section */}
                 <div className="mb-8">
                   <h2 className="mb-2 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                     Property Condition
                   </h2>
-                  <p className="text-xs text-gray-500 mb-4" style={{ fontFamily: "var(--font-sans)" }}>
+                  <p className="mb-4 text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                     Select an option
                   </p>
                   <div className="space-y-2">
                     {["Newly Renovated", "Well Maintained", "Needs Work", "Distressed Property"].map((option) => (
-                      <label key={option} className="flex items-center gap-3 cursor-pointer">
+                      <label key={option} className="flex cursor-pointer items-center gap-3">
                         <input
                           type="radio"
                           name="propertyCondition"
                           value={option}
                           checked={formData.propertyCondition === option}
                           onChange={handleInputChange}
-                          className="w-4 h-4 text-m2m-gold border-gray-300 focus:ring-m2m-gold"
+                          className="size-4 border-m2m-deep/25 text-m2m-gold focus:ring-m2m-gold"
                         />
-                        <span className="text-sm text-gray-700" style={{ fontFamily: "var(--font-sans)" }}>
+                        <span className="text-sm text-m2m-deep/90" style={{ fontFamily: "var(--font-sans)" }}>
                           {option}
                         </span>
                       </label>
@@ -170,14 +161,14 @@ export default function CmaFormPage() {
                   </div>
                 </div>
 
-                <hr className="border-gray-200 mb-8" />
+                <hr className="mb-8 border-m2m-deep/10" />
 
                 {/* Timeline for Selling Section */}
                 <div className="mb-8">
                   <h2 className="mb-2 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                     Timeline for Selling
                   </h2>
-                  <p className="text-xs text-gray-500 mb-4" style={{ fontFamily: "var(--font-sans)" }}>
+                  <p className="mb-4 text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                     Select an option
                   </p>
                   <div className="space-y-2">
@@ -188,16 +179,16 @@ export default function CmaFormPage() {
                       "Long Term (6+ months)",
                       "Undecided",
                     ].map((option) => (
-                      <label key={option} className="flex items-center gap-3 cursor-pointer">
+                      <label key={option} className="flex cursor-pointer items-center gap-3">
                         <input
                           type="radio"
                           name="timeline"
                           value={option}
                           checked={formData.timeline === option}
                           onChange={handleInputChange}
-                          className="w-4 h-4 text-m2m-gold border-gray-300 focus:ring-m2m-gold"
+                          className="size-4 border-m2m-deep/25 text-m2m-gold focus:ring-m2m-gold"
                         />
-                        <span className="text-sm text-gray-700" style={{ fontFamily: "var(--font-sans)" }}>
+                        <span className="text-sm text-m2m-deep/90" style={{ fontFamily: "var(--font-sans)" }}>
                           {option}
                         </span>
                       </label>
@@ -205,7 +196,7 @@ export default function CmaFormPage() {
                   </div>
                 </div>
 
-                <hr className="border-gray-200 mb-8" />
+                <hr className="mb-8 border-m2m-deep/10" />
 
                 {/* Introduce Yourself Section */}
                 <div className="mb-8">
@@ -276,7 +267,7 @@ export default function CmaFormPage() {
               </form>
               </div>
             </M2mContainer>
-          </div>
+          </M2mInsetHeroFrame>
         </section>
       </main>
       <Footer />

@@ -16,17 +16,18 @@ import {
 } from "@/lib/m2m-site"
 
 import { M2M_FOOTER_POLICY_LINKS, M2M_FOOTER_QUICK_LINKS } from "@/lib/m2m-nav"
+import { M2M_MEDIA } from "@/lib/m2m-media"
 
 const agentLinks = [
   {
     name: "Donavan McFadden",
     href: "/profile-page",
-    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Donavan%20copy-R9RwXLWqjd9OnQw4gBl6EiAVWOj9x1.avif",
+    img: M2M_MEDIA.headshotDonavan,
   },
   {
     name: "Roger Lee",
     href: "/roger-lee",
-    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roger%20Lee%20copy-ZbhqIDwo7JeGrBkKFa6Sv0ylWIuI1D.avif",
+    img: M2M_MEDIA.headshotRoger,
   },
 ]
 

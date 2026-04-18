@@ -1,61 +1,90 @@
 # Work order (Marching 2 More — site redesign)
 
+**Execution spine for the public website.** Vision and rules: [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md). Operational CRM / automation work is **out of scope** here; see [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) only when that project is active.
+
 ## Done recently
 
-- **GHL integration planning boundary added** — created [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) to capture the future GoHighLevel workstream without letting it blur into the current website redesign. The doc separates website-owned lead capture work from GHL-owned CRM/automation ops, records the request for a fifth agent profile (Nathan Croslin, property manager), and protects the current redesign scope from unapproved CRM expansion.
-- **Design token sweep (home funnel + reviews + valuation)** — **`app/globals.css`:** `m2m-reviews-band` (`#244b2a`) for reviews UI. **`BuyHero` / `SellPageHero` / `SellCTA`:** `bg-m2m-black` + hero/backdrop art from **`M2M_MEDIA`**. **Home `Partners` + `PropertySearch`:** `text-m2m-deep` / `m2m-gold` / `m2m-muted`, `bg-m2m-deep` CTAs, `bg-m2m-panel/35` image tints, `noopener` on external links. **`/free-home-valuation`:** inline legacy hex replaced with M2M tokens. **`reviews-hero` / `reviews-list`:** `bg-m2m-reviews-band`. **Unused `BlogHero` / `ContactHero`:** aligned to **`M2M_MEDIA`** + `bg-m2m-black` for future use. **`docs/BRAND_CONSTITUTION.md`:** token row for `m2m-reviews-band`.
-- **Partners + global shell + CMA form** — Partner grid **`href`s from `PARTNER_LINKS`** in **`lib/m2m-site.ts`** (`target="_blank"`). **`/plans-and-pricing`:** **`Footer` sibling** of `main`. **`app/not-found.tsx`:** branded 404 with **`M2mSection` / `M2mContainer`**, links to **`/`** and **`/contact-us`**. **`/cma-form`:** **`m2mInteriorForm*`** field classes, **`text-m2m-deep`** section titles, submit **`bg-m2m-deep`**, privacy line corrected; default export renamed to **`CmaFormPage`**.
-- **Overhaul sweep (partners / blog / agent profiles)** — **`/partners`:** `M2mContainer` in hero + CTA, `M2mSection` + `M2mContainer` in list; hero/CTA backdrops from **`M2M_MEDIA`** (`partnersHeroStill`, `partnersCtaStill`); **`Footer` sibling** of `main`; CTAs **`/contact-us`** and **`/our-team`**. **`/blog`:** index uses `M2mSection` + `M2mContainer`, page intro + semantic **`h1`**, post titles use **`text-m2m-deep`**; **`Footer` sibling**. **`/blog/[slug]`:** hero + body use `M2mContainer`, **`bg-m2m-black`** hero, **`Footer` sibling**; not-found uses container. **Agent profiles** (`AgentProfile`): `M2mContainer`, brand tokens for headings/CTAs (`text-m2m-deep`, `bg-m2m-deep`, etc.).
-- **Overhaul sweep (team / reviews / home-search / valuation / CMA / divorce / policy shell)** — `M2mContainer` / `M2mSection` on **`/our-team`** (`TeamHero`, `TeamMembers`, `TeamCTA`; `Footer` sibling of `main`), **`/reviews`**, **`/home-search`** (hero + `Footer` placement), **`/free-home-valuation`** (sections + `GOOGLE_REVIEW_URL` for review links; contact → `/contact-us`), **`/cma-form`** (`Footer` sibling). **`/navigating-divorce`** sections use shared layout primitives. **`PolicyPage`** uses `M2mContainer` (`max-w-4xl` prose). Route table below updated.
-- **Overhaul sweep (buy / sell / contact / resources / FHA / investments)** — `lib/m2m-form.ts`: `m2mInteriorForm*` (light pages), `m2mDarkPanel*` (sell valuation card). **`/buy` & `/sell`:** `M2mContainer` across sections; sell valuation uses `Input`/`Label`/`Button`; phone CTAs use `M2M_PHONE_DISPLAY`; `Footer` is sibling of `main`. **`/contact-us`:** `M2mContainer`, shadcn fields, `m2mInterior` classes, `Footer` outside `main`. **`/resources`:** same container + field classes + footer placement. **`/fha-loan`:** `M2mContainer` in hero, why-split, features, testimonials; quote form uses shared lead field styles + `M2mContainer`. **`/more-investments`:** hero + testimonials containers. Route table in this file updated.
-- **Site overhaul (shared system + priority routes)** — `components/m2m-layout.tsx` (`M2mContainer`, `M2mSection`, `M2mProse`), `components/m2m-cta.tsx` (`M2mConsultationCta`, outline-gold link class), `lib/m2m-form.ts` (lead/playbook field classes); `components/ui/button.tsx` variants `m2mGold`, `m2mPanel`, `m2mTextUnderline`; header/footer/divorce footer token alignment; `app/globals.css` `font-nav` + `m2m-eyebrow` / section title utilities. **Pages touched:** home (`Hero`, `Testimonials`, `PropertySearch`, `SellHero`, `Partners`), credit/downsizing/VA/pre-foreclosure campaigns, `plans-and-pricing`. **Docs:** completed [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) outcomes section; indexed in [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md); architecture + brand updated.
-- **Production media** — `lib/m2m-media.ts` (Vercel Blob). Blog cards, `property-search-new` circles, and `team-members` use Blob URLs; Unsplash removed from `next.config.mjs`.
-- **CI & docs** — PR template, `pr-ci.yml`, `docs/development/RELEASING.md`, merged branching guide.
-- `.cursor/commands` aligned with **`.cursor/skills/marching-2-more`** (implement/plan/summarize/Ship + `commands/README.md`); Ship doc paths for `docs/development/BRANCHING.md`, `MVP_STATUS_ROADMAP`, troubleshooting quick reference.
-- ESLint 9 flat config (`eslint.config.mjs` + `eslint-config-next/core-web-vitals`).
-- `npm run ci`: lint, placeholder test, TypeScript, production build.
-- Phone links use `M2M_PHONE_HREF` (`tel:+17572062859`) from `lib/m2m-site.ts`.
-- `next.config.mjs`: `turbopack.root` pinned; `images.remotePatterns` for Vercel Blob (`lib/m2m-media.ts`).
-- Replaced decorative `<img>` with `next/image` where ESLint flagged LCP (`property-search`, `property-search-new`, `team-members`).
-- **`/improve-your-credit`** — Credit campaign landing (`app/improve-your-credit/`, `components/improve-your-credit/`): hero collage, education + homework, takeaways + embedded video, playbook lead form (integration TODO), closing band; copy and image swap points in `content.ts`; not added to hamburger nav by default.
-- **`/downsizing-your-home`** — Downsizing campaign landing: hero + “Common Problems” icon grid, guide form (ship-to + special instructions; integration TODO), four service cards, webinar/action-plan block; `WEBINAR_REGISTER_URL` temporary Calendly + TODO in `content.ts`; `public/images/downsizing-your-home/` for future art.
-- **`/va-loan-benefits`** — VA benefits campaign landing: hero, embedded VA video + attribution, long-form benefits copy, full-bleed CTA to `#va-lead-form`, “Get on the List” lead form (integration TODO); `content.ts` SWAP comments for hero/CTA art; `public/images/va-loan-benefits/` for future assets.
-- **`/facing-pre-foreclosure`** — Pre-foreclosure webinar landing: hero + “Save My Spot” to `#pre-foreclosure-signup`, three education cards, split lead form + image (form integration TODO); `content.ts` SWAP comments; `public/images/facing-pre-foreclosure/` for future art; shared `DivorceLandingFooter` only.
-- **`/plans-and-pricing`** — Interior pricing page: Beginner / Pro (highlighted) / VIP tiers, `components/plans-pricing/`, global `Header` + `Footer`; Select CTAs link to `/contact-us?plan=…`.
-- **Documentation spine** — `AGENTS.md`, `docs/ARCHITECTURE_SOURCE_OF_TRUTH.md`, `docs/BRAND_CONSTITUTION.md`, `docs/WORKFLOW.md`, `docs/PROJECT_CONTEXT_PROMPT.md`, `docs/ROADMAP.md`, `docs/diagrams/`; `docs/WORK_ORDER_WIX_PARITY.md` moved to **`docs/archive/`** (historical).
+- **Inset hero system** — `M2mInsetHeroFrame` + `M2mInsetHeroScrim` in [`components/m2m-layout.tsx`](../components/m2m-layout.tsx): shared 95% rounded card, ring/shadow, and tokenized scrims (`home` gradient + `60`–`80` opacity). Adopted on home [`Hero`](../components/hero.tsx), [`/home-search`](../app/home-search/page.tsx), [`/resources`](../app/resources/page.tsx), [`/cma-form`](../app/cma-form/page.tsx), [`/free-home-valuation`](../app/free-home-valuation/page.tsx) hero bands.
+- **Policy + profiles + blog + contact** — [`PolicyPage`](../components/policy/policy-page.tsx): `m2m-deep` / `m2m-muted`, display title, `M2mSection` rhythm. [`AgentProfile`](../components/team/agent-profile.tsx): M2M tokens, shadcn `Button` CTAs. [`/blog`](../app/blog/page.tsx) and [`/blog/[slug]`](../app/blog/[slug]/page.tsx): on-brand prose/meta. [`/contact-us`](../app/contact-us/page.tsx): correct `h1` / eyebrow, trust row (phone + Calendly).
+- **Footer media** — Agent thumbnails use [`M2M_MEDIA`](../lib/m2m-media.ts) in [`Footer`](../components/footer.tsx).
+- **Design token sweep (home funnel + reviews + valuation)** — `app/globals.css`: `m2m-reviews-band`. Buy/sell heroes + `M2M_MEDIA`. Partners / PropertySearch tokens. Reviews bands. Brand doc updated for reviews token.
+- **Partners + shell + CMA** — Partner `href`s from `PARTNER_LINKS` in `lib/m2m-site.ts`. Branded `not-found`. CMA form shared field classes and footer placement.
+- **Broader overhaul sweeps** — `M2mContainer` / `M2mSection` on partners, blog, team, reviews, contact, resources, campaigns, etc. Shared `m2m-layout`, `m2m-cta`, `m2m-form`, button variants (`m2mGold`, `m2mPanel`). Production Blob imagery in `lib/m2m-media.ts`.
+- **Campaign landings** — `/improve-your-credit`, `/downsizing-your-home`, `/va-loan-benefits`, `/facing-pre-foreclosure`, `/plans-and-pricing` (see repo and [site-routes.md](./diagrams/site-routes.md)).
+- **Tooling** — `npm run ci`; ESLint 9 flat config; docs spine (`AGENTS.md`, architecture, brand, workflow).
 
-## Public route audit (overhaul tracking)
+## Highest-priority weak routes (next visual passes)
 
-**Patterns:** `core` = `Header` + light `main` + global `Footer`. `campaign` = `Header` + `consultationCtaVariant="outlineCream"` + `bg-m2m-panel` + `DivorceLandingFooter`. `interior` = mixed (often core). **Status** updates as the shared system and pages are modernized.
+1. **Framed-hero cluster** — `/`, `/home-search`, `/resources`, `/cma-form`, `/free-home-valuation`: shared system is in place; optional upgrades = Blob art instead of local PNGs where ready, and parallax only where it aids (home).
+2. **Agent profiles** — `/profile-page`, `/roger-lee`, `/kristin-s-profile`: elevated with tokens/buttons; further polish = photography art direction, optional pull-quote or stats strip.
+3. **Blog** — `/blog`, `/blog/[slug]`: typography improved; optional = index backdrop from `M2M_MEDIA.blogIndexBackdrop`, richer article typography (lists/blockquotes) when content supports it.
+4. **Contact** — `/contact-us`: hierarchy fixed; optional = light hero still (`M2M_MEDIA.contactHeroStill`) if it stays minimal.
+5. **Reviews** — `/reviews`: consider `GSAPAnimations` parity with other core pages; verify band tokens vs home.
 
-| Route | Pattern | Overhaul status |
-|-------|---------|-----------------|
-| `/` | core | improved (container + home sections) |
-| `/buy`, `/sell` | core | improved (`M2mContainer`, valuation form primitives, `Footer` sibling) |
-| `/partners` | core | improved |
-| `/blog`, `/blog/[slug]` | core | improved |
-| `/reviews` | core | improved (container + list + CTA bands) |
-| `/contact`, `/contact-us` | core | improved (`/contact-us` form + layout; `/contact` redirects) |
-| `/resources` | core | improved (container, form field classes, `Footer` sibling) |
-| `/our-team`, `/team` | core | improved (`/team` redirects) |
-| `/profile-page`, `/roger-lee`, `/kristin-s-profile` | interior | improved (`AgentProfile` layout + tokens) |
-| `/home-search` | core | improved |
-| `/free-home-valuation`, `/home-valuation` | core | improved (`/home-valuation` redirects) |
-| `/cma-form` | core | improved |
-| `/cookie-policy`, `/privacy-policy`, `/terms-and-conditions`, `/accessibility-statement`, `/copy-of-privacy-policy` | legal | improved (`PolicyPage` container) |
-| `/plans-and-pricing` | core | improved |
-| `/fha-loan`, `/improve-your-credit`, `/more-investments`, `/navigating-divorce` | campaign | improved (`/navigating-divorce` sections aligned to layout primitives) |
-| `/downsizing-your-home`, `/va-loan-benefits`, `/facing-pre-foreclosure` | campaign | improved |
+## Public route audit (strength + pattern)
 
-Authoritative list: `app/**/page.tsx`. Grouped reference: `docs/diagrams/site-routes.md`.
+**Patterns:** `core` = `Header` + light `main` + global `Footer`. `campaign` = `Header` + `consultationCtaVariant="outlineCream"` + `bg-m2m-panel` + `DivorceLandingFooter`. `legal` = `PolicyPage` + footer.
 
-## Next
+| Route | Pattern | Strength | Notes |
+|-------|---------|----------|--------|
+| `/` | core | Good | Inset hero system; below-fold sections strong; buy page still reads slightly more “premium full-bleed.” |
+| `/buy`, `/sell` | core | Strong | Full-bleed heroes, `M2M_MEDIA`, consistent sections. |
+| `/partners` | core | Strong | Blob hero/CTA stills, containers. |
+| `/blog` | core | Good | Index rhythm; could add subtle backdrop. |
+| `/blog/[slug]` | core | Good | Editorial hero; prose tuned to brand. |
+| `/reviews` | core | Good | Missing optional GSAP parity; otherwise on system. |
+| `/contact`, `/contact-us` | core | Good | `/contact` redirect; contact page trust row + semantics. |
+| `/resources` | core | Good | Inset hero + form card; PNG hero until Blob. |
+| `/our-team`, `/team` | core | Strong | Team hero + members; `/team` redirect. |
+| `/profile-page`, `/roger-lee`, `/kristin-s-profile` | interior | Good | `AgentProfile` on tokens + buttons. |
+| `/home-search` | core | Good | Inset hero; tool CTAs. |
+| `/free-home-valuation`, `/home-valuation` | core | Good | Inset hero + sections; `/home-valuation` redirect. |
+| `/cma-form` | core | Good | Inset hero + form card. |
+| Legal (`/cookie-policy`, `/privacy-policy`, `/terms-and-conditions`, `/accessibility-statement`, `/copy-of-privacy-policy`) | legal | Good | Token-aligned policy shell. |
+| `/plans-and-pricing` | core | Good | Interior pricing tiers. |
+| `/fha-loan`, `/improve-your-credit`, `/more-investments`, `/navigating-divorce` | campaign | Strong–Good | Layout primitives; per-page copy/forms vary. |
+| `/downsizing-your-home`, `/va-loan-benefits`, `/facing-pre-foreclosure` | campaign | Strong–Good | Same. |
 
-1. **Content / parity QA** — Walk primary routes (home, buy, sell, team, contact, policy pages). Confirm CTAs match `lib/m2m-site.ts` (Calendly, RealScout, Google reviews, partners).
-2. **Protect scope during redesign** — Keep the GHL workstream in planning mode unless the client explicitly expands scope beyond the current website redesign / connection package.
-3. **Future GHL prep** — When timing and scope are approved, use [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) to collect dependencies first: API key, location ID, custom field IDs, booking URLs, routing rules, and approved team/profile content for Nathan Croslin.
-4. **Tests** — Replace the placeholder `npm test` script with real unit or E2E coverage once priorities are set (e.g. Playwright for smoke routes).
-5. **Optional** — Re-enable strict Next typecheck in CI (remove or narrow `typescript.ignoreBuildErrors` in `next.config.mjs` when the codebase is ready).
+Authoritative list: `app/**/page.tsx`. Grouped reference: [docs/diagrams/site-routes.md](./diagrams/site-routes.md).
+
+## P0 / P1 punchlist (visual & system)
+
+**P0**
+
+- Keep inset hero + scrim **one system** — extend to any new tool pages; avoid reintroducing inline `rgba(5,13,6,…)` one-offs.
+- Primary page **`<h1>`** must match the page topic (contact, blog index, etc.).
+- Forms: shared field classes from [`lib/m2m-form.ts`](../lib/m2m-form.ts); submit hierarchy clear on light cards.
+
+**P1**
+
+- Replace remaining **local PNG heroes** with `M2M_MEDIA` when assets exist (resources, home-search, CMA funnel).
+- **Blog** body: richer `prose` modifiers if posts gain structure beyond paragraphs.
+- **Reviews** + **plans-and-pricing**: section-by-section pass for dead zones and CTA bands.
+- **Strict TypeScript in CI** — when ready, narrow `typescript.ignoreBuildErrors` in `next.config.mjs`.
+
+## Next 3 batches
+
+1. **Batch A (shipped in this pass)** — Inset hero primitive + framed-route sweep; policy shell; profiles; blog/contact; footer `M2M_MEDIA`.
+2. **Batch B** — Blob/tool hero imagery; blog index backdrop; contact optional hero still; CMA form radio/hint token cleanup sweep on other long forms.
+3. **Batch C** — Campaign page CTA/form consistency audit; reviews GSAP + spacing parity; legal long-form readability (TOC anchors if needed); E2E smoke (e.g. Playwright) when prioritized.
+
+## Shared-system follow-ups
+
+- `M2mInsetHeroFrame` / `M2mInsetHeroScrim` — default choice for “premium card” heroes; full-bleed (`BuyHero`) remains for key marketing pages.
+- `M2mProse` — use for short policy callouts or pull quotes where `prose` is heavy.
+- **Button hierarchy** — primary `m2mPanel` / `m2mGold` on dark; forms on light already use panel/deep; audit campaign landings for outliers.
+
+## Strong vs lagging (snapshot)
+
+- **Strong:** `/buy`, `/sell`, `/our-team`, `/partners`, most **campaign** landings, blog post hero treatment.
+- **Good (steady improvement):** home, tool pages (search, resources, valuation, CMA), blog index, contact, profiles, legal.
+- **Lag if unattended:** any new route that skips `M2mContainer` / inset or full-bleed pattern; long forms that revert to raw gray borders.
+
+## Next (website-only)
+
+1. **Content / parity QA** — Walk primary routes; confirm CTAs match [`lib/m2m-site.ts`](../lib/m2m-site.ts) (Calendly, RealScout, Google reviews, partners).
+2. **Tests** — Replace placeholder `npm test` with smoke E2E when prioritized.
+3. **Optional** — Strict Next typecheck in CI when the codebase is ready.
 
 ## Source of truth
 
@@ -64,9 +93,10 @@ Authoritative list: `app/**/page.tsx`. Grouped reference: `docs/diagrams/site-ro
 | Agent + doc map | `AGENTS.md`, `docs/DOCUMENTATION_INDEX.md` |
 | Architecture | `docs/ARCHITECTURE_SOURCE_OF_TRUTH.md` |
 | Brand / tokens | `docs/BRAND_CONSTITUTION.md`, `app/globals.css` |
-| Future GHL integration boundary | `docs/M2M_GHL_INTEGRATION_MASTER_PLAN.md` |
-| External URLs, phone, mailto helpers | `lib/m2m-site.ts` |
-| Blob image URLs for UI | `lib/m2m-media.ts` |
+| External URLs, phone, mailto | `lib/m2m-site.ts` |
+| Blob image URLs | `lib/m2m-media.ts` |
 | App routes | `app/` |
-| Shared UI (shadcn-style) | `components/ui/` |
-| Marketing sections | `components/` |
+| Shared UI | `components/ui/` |
+| Layout / inset hero | `components/m2m-layout.tsx` |
+
+CRM integration (when active): [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) — not tracked as tasks in this file.

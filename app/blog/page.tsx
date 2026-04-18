@@ -31,7 +31,7 @@ export default function BlogIndexPage() {
             {BLOG_POSTS.map((post, index) => (
               <article
                 key={post.slug}
-                className={`py-12 ${index !== BLOG_POSTS.length - 1 ? "border-b border-gray-200" : ""}`}
+                className={`py-12 ${index !== BLOG_POSTS.length - 1 ? "border-b border-m2m-deep/10" : ""}`}
               >
                 <Link href={`/blog/${post.slug}`} className="group block">
                   {/* Title */}
@@ -44,21 +44,21 @@ export default function BlogIndexPage() {
 
                   {/* Excerpt */}
                   <p
-                    className="mt-4 text-base leading-relaxed text-gray-600"
+                    className="mt-4 text-base leading-relaxed text-m2m-muted"
                     style={{ fontFamily: "var(--font-sans)" }}
                   >
                     {post.excerpt}
                   </p>
 
                   {/* Meta */}
-                  <div 
-                    className="mt-4 flex items-center gap-2 text-sm text-gray-500"
+                  <div
+                    className="mt-4 flex flex-wrap items-center gap-2 text-sm text-m2m-muted"
                     style={{ fontFamily: "var(--font-sans)" }}
                   >
                     <span>{post.author}</span>
-                    <span className="text-gray-300">|</span>
+                    <span className="text-m2m-deep/20">|</span>
                     <span>{post.publishedAt}</span>
-                    <span className="text-gray-300">|</span>
+                    <span className="text-m2m-deep/20">|</span>
                     <span>{post.readTime}</span>
                   </div>
                 </Link>

@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
-import { M2mContainer } from "@/components/m2m-layout"
+import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import { m2mInteriorFormInputClass } from "@/lib/m2m-form"
 import { RESOURCE_EXTERNAL_LINKS } from "@/lib/m2m-site"
 
@@ -56,12 +56,7 @@ export default function ResourcesPage() {
 
       <main id="main-content" tabIndex={-1} className="bg-white">
         <section className="relative min-h-screen overflow-hidden bg-white py-6 md:py-8">
-          {/* Inner container with background image at 95% width */}
-          <div 
-            className="relative mx-auto overflow-hidden rounded-xl"
-            style={{ width: '95%', minHeight: 'calc(100vh - 48px)' }}
-          >
-            {/* Background image */}
+          <M2mInsetHeroFrame className="min-h-[calc(100dvh-3rem)]">
             <div className="absolute inset-0">
               <Image
                 src="/images/resources-hero.png"
@@ -72,11 +67,7 @@ export default function ResourcesPage() {
                 sizes="100vw"
               />
             </div>
-            {/* Dark overlay */}
-            <div 
-              className="absolute inset-0"
-              style={{ backgroundColor: "rgba(5, 13, 6, 0.6)" }}
-            />
+            <M2mInsetHeroScrim variant="60" />
           
             <M2mContainer className="relative max-w-5xl pt-24 pb-20">
             {/* Kicker with line */}
@@ -170,7 +161,7 @@ export default function ResourcesPage() {
               </div>
             </div>
             </M2mContainer>
-          </div>
+          </M2mInsetHeroFrame>
         </section>
       </main>
       <Footer />

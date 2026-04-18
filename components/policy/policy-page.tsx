@@ -1,6 +1,7 @@
+import type { ReactNode } from "react"
 import Link from "next/link"
 
-import { M2mContainer } from "@/components/m2m-layout"
+import { M2mContainer, M2mSection } from "@/components/m2m-layout"
 
 export function PolicyPage({
   title,
@@ -11,24 +12,47 @@ export function PolicyPage({
   title: string
   sourceUrl: string
   lastUpdated?: string
-  children?: React.ReactNode
+  children?: ReactNode
 }) {
   return (
-    <main id="main-content" tabIndex={-1} className="py-16">
-      <M2mContainer className="max-w-4xl">
-      <h1 className="font-serif text-4xl font-semibold text-m2m-green">{title}</h1>
-      {lastUpdated ? <p className="mt-2 text-xs text-m2m-sage">Last updated: {lastUpdated}</p> : null}
+    <main id="main-content" tabIndex={-1} className="bg-white">
+      <M2mSection variant="light" className="py-16 md:py-20">
+        <M2mContainer className="max-w-4xl">
+          <h1
+            className="text-[clamp(2rem,4vw,2.75rem)] font-light leading-[1.15] text-m2m-deep"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            {title}
+          </h1>
+          {lastUpdated ? (
+            <p className="mt-2 text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+              Last updated: {lastUpdated}
+            </p>
+          ) : null}
 
-      <p className="mt-6 text-sm leading-relaxed text-m2m-sage">
-        This page is a migrated copy from our prior Wix site. If you need the canonical source, view it here:{" "}
-        <Link href={sourceUrl} className="underline underline-offset-4" target="_blank" rel="noreferrer">
-          {sourceUrl}
-        </Link>
-        .
-      </p>
+          <p className="mt-6 text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+            This page is a migrated copy from our prior Wix site. If you need the canonical source, view it here:{" "}
+            <Link
+              href={sourceUrl}
+              className="font-medium text-m2m-deep underline underline-offset-4 transition-colors hover:text-m2m-gold"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {sourceUrl}
+            </Link>
+            .
+          </p>
 
-      {children ? <div className="prose prose-sm mt-10 max-w-none text-m2m-deep">{children}</div> : null}
-      </M2mContainer>
+          {children ? (
+            <div
+              className="prose prose-sm prose-headings:font-normal prose-headings:text-m2m-deep prose-p:text-m2m-deep/90 prose-li:text-m2m-deep/90 prose-a:text-m2m-gold prose-a:no-underline hover:prose-a:underline mt-10 max-w-none"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              {children}
+            </div>
+          ) : null}
+        </M2mContainer>
+      </M2mSection>
     </main>
   )
 }

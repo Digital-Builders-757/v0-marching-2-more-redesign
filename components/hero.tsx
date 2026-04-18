@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
-import { M2mContainer } from "@/components/m2m-layout"
+import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import {
   CALENDLY_BOOK_URL,
   M2M_PHONE_DISPLAY,
@@ -44,11 +44,7 @@ export function Hero() {
       className="relative min-h-[100dvh] overflow-hidden bg-white py-6 md:py-8"
       aria-labelledby="hero-heading"
     >
-      {/* Inner container with background image at 95% width */}
-      <div 
-        className="relative mx-auto overflow-hidden rounded-xl"
-        style={{ width: '95%', minHeight: 'calc(100dvh - 48px)' }}
-      >
+      <M2mInsetHeroFrame className="min-h-[calc(100dvh-3rem)]">
         {/* Background image with horizontal parallax */}
         <div
           ref={imageRef}
@@ -59,15 +55,7 @@ export function Hero() {
           }}
         />
 
-        {/* Readability overlays */}
-        <div
-          className="absolute inset-0 z-[1]"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(5,13,6,0.92) 0%, rgba(5,13,6,0.75) 35%, rgba(5,13,6,0.45) 60%, rgba(5,13,6,0.2) 100%), linear-gradient(to bottom, rgba(5,13,6,0.4) 0%, transparent 40%, transparent 70%, rgba(5,13,6,0.55) 100%)",
-          }}
-          aria-hidden
-        />
+        <M2mInsetHeroScrim variant="home" />
 
         <M2mContainer className="relative z-10 flex max-w-3xl flex-col justify-center pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div
@@ -198,7 +186,7 @@ export function Hero() {
             </div>
           </div>
         </M2mContainer>
-      </div>
+      </M2mInsetHeroFrame>
     </section>
   )
 }
