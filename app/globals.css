@@ -103,6 +103,8 @@
   --color-m2m-cream: #f0ebe2;
   --color-m2m-muted: #7a8f7c;
   --color-m2m-muted-lt: #a3b5a5;
+  /** Reviews / social proof bands (Wix-adjacent green, distinct from panel) */
+  --color-m2m-reviews-band: #244b2a;
 }
 
 @layer base {
@@ -111,6 +113,25 @@
   }
   body {
     @apply bg-white text-m2m-deep font-sans font-light antialiased;
+  }
+}
+
+@layer utilities {
+  .font-nav {
+    font-family: var(--font-nav);
+  }
+}
+
+@layer components {
+  .m2m-eyebrow {
+    @apply text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-panel sm:text-[0.7rem] font-nav;
+  }
+  .m2m-eyebrow-gold {
+    @apply text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-gold sm:text-[0.7rem] font-nav;
+  }
+  .m2m-section-title {
+    @apply text-[clamp(1.85rem,3.5vw,2.65rem)] font-medium leading-tight;
+    font-family: var(--font-display);
   }
 }
 

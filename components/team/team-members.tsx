@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
+import { M2mContainer, M2mSection } from "@/components/m2m-layout"
 import { M2M_MEDIA } from "@/lib/m2m-media"
 
 type TeamMember = {
@@ -84,8 +85,8 @@ function MemberCard({ member }: { member: TeamMember }) {
 
 export function TeamMembers() {
   return (
-    <section className="bg-white px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="mx-auto max-w-7xl">
+    <M2mSection variant="light" className="py-24" data-gsap-section>
+      <M2mContainer>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
           {teamMembers.map((member, index) => (
             <div key={member.name} data-gsap="fade-up" data-gsap-delay={index * 0.15}>
@@ -93,7 +94,7 @@ export function TeamMembers() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </M2mContainer>
+    </M2mSection>
   )
 }

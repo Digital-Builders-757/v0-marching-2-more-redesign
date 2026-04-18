@@ -3,9 +3,10 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { M2mConsultationCta } from "@/components/m2m-cta"
+import { M2mContainer } from "@/components/m2m-layout"
 import { ABOUT_COPY } from "@/lib/m2m-constants"
 import {
-  CALENDLY_BOOK_URL,
   GOOGLE_REVIEW_URL,
   M2M_ADDRESS_SINGLE_LINE,
   M2M_EMAIL_DISPLAY,
@@ -31,8 +32,8 @@ const agentLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-m2m-black border-t border-m2m-gold/20">
-      <div className="px-6 py-16 md:px-[60px]">
+    <footer className="border-t border-m2m-gold/20 bg-m2m-black">
+      <M2mContainer className="py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Quick links */}
           <div className="flex flex-col gap-3">
@@ -55,15 +56,7 @@ export function Footer() {
               ))}
             </nav>
 
-            <a
-              href={CALENDLY_BOOK_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex w-fit items-center justify-center bg-m2m-gold text-m2m-deep text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:bg-m2m-gold-lt"
-              style={{ fontFamily: "var(--font-nav)" }}
-            >
-              BOOK A HOME CONSULTATION
-            </a>
+            <M2mConsultationCta variant="gold" className="mt-4 w-fit" />
           </div>
 
           {/* About */}
@@ -153,12 +146,14 @@ export function Footer() {
             </a>
           </div>
         </div>
-      </div>
+      </M2mContainer>
 
-      <div className="border-t border-m2m-gold/20 px-6 py-6 md:px-[60px]">
-        <p className="text-[0.65rem] tracking-wider text-m2m-muted" style={{ fontFamily: "var(--font-nav)" }}>
+      <div className="border-t border-m2m-gold/20">
+        <M2mContainer className="py-6">
+        <p className="text-[0.65rem] tracking-wider text-m2m-muted font-nav">
           ©2018 — {new Date().getFullYear()} MARCHING 2 MORE REALTY GROUP
         </p>
+        </M2mContainer>
       </div>
     </footer>
   )

@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel"
+import { M2mContainer } from "@/components/m2m-layout"
 import { cn } from "@/lib/utils"
 
 import { INVESTMENTS_TESTIMONIALS } from "./content"
@@ -38,7 +39,7 @@ export function InvestmentsTestimonials() {
       <h2 id="investments-testimonials-heading" className="sr-only">
         Client testimonials
       </h2>
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <M2mContainer className="max-w-5xl">
         <Carousel opts={{ loop: true, align: "start" }} setApi={setApi} className="w-full">
           <div className="relative min-h-[280px] sm:min-h-[300px]">
             <CarouselContent className="-ml-0">
@@ -106,7 +107,7 @@ export function InvestmentsTestimonials() {
             ))}
           </div>
         </Carousel>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

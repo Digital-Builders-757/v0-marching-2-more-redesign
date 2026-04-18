@@ -8,6 +8,7 @@ import {
   CircleDollarSign,
 } from "lucide-react"
 
+import { M2mContainer } from "@/components/m2m-layout"
 import { cn } from "@/lib/utils"
 
 import { FHA_VALUE_POINTS, WHY_CHOOSE_HEADER, WHY_SPLIT_LEFT } from "./content"
@@ -25,8 +26,8 @@ export function FhaWhySplit() {
   return (
     <section className="border-b border-m2m-gold/10" aria-labelledby="fha-why-heading">
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="flex min-h-[320px] items-center justify-center bg-white px-8 py-16 lg:min-h-[480px] lg:py-24">
-          <div className="text-center lg:text-left">
+        <div className="flex min-h-[320px] items-center justify-center bg-white py-16 lg:min-h-[480px] lg:py-24">
+          <M2mContainer className="max-w-xl text-center lg:text-left">
             <h2
               id="fha-why-heading"
               className="mb-8 text-[clamp(1.75rem,3vw,2.5rem)] font-semibold text-m2m-deep"
@@ -41,10 +42,11 @@ export function FhaWhySplit() {
             >
               {WHY_SPLIT_LEFT.ctaLabel}
             </Link>
-          </div>
+          </M2mContainer>
         </div>
 
-        <div className="bg-[#f7f6f2] px-6 py-14 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+        <div className="bg-[#f7f6f2] py-14 sm:py-16 lg:py-20">
+          <M2mContainer>
           <header className="mb-12 text-center">
             <p
               className="text-[0.65rem] font-medium uppercase tracking-[0.28em] text-m2m-deep/65"
@@ -107,6 +109,7 @@ export function FhaWhySplit() {
               )
             })}
           </div>
+          </M2mContainer>
         </div>
       </div>
     </section>

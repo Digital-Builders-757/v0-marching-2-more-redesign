@@ -1,5 +1,7 @@
 import { Fragment } from "react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import {
   BENEFITS_CLOSING,
   BENEFITS_HEADING,
@@ -13,10 +15,10 @@ export function VaBenefitsContent() {
 
   return (
     <section
-      className="border-b border-m2m-gold/15 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="border-b border-m2m-gold/15 py-16 sm:py-20 lg:py-24"
       aria-labelledby="va-benefits-heading"
     >
-      <div className="mx-auto max-w-3xl">
+      <M2mContainer className="max-w-3xl">
         <h2
           id="va-benefits-heading"
           className="text-center text-[clamp(1.5rem,3.2vw,2.25rem)] font-medium leading-snug text-m2m-cream"
@@ -71,7 +73,7 @@ export function VaBenefitsContent() {
         >
           {BENEFITS_CLOSING}
         </p>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

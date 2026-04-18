@@ -6,10 +6,12 @@ import Image from "next/image"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
+import { M2mContainer } from "@/components/m2m-layout"
+import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
 
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
-export default function FreeHomeValuationPage() {
+export default function CmaFormPage() {
   const [formData, setFormData] = useState({
     streetAddress: "",
     city: "",
@@ -64,7 +66,7 @@ export default function FreeHomeValuationPage() {
               style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
             />
 
-            <div className="relative px-6 pt-28 pb-16 md:px-16 lg:px-24">
+            <M2mContainer className="relative pt-28 pb-16">
               <div className="mx-auto max-w-5xl">
               {/* Kicker */}
               <div className="flex items-center gap-4">
@@ -106,10 +108,7 @@ export default function FreeHomeValuationPage() {
               <form onSubmit={handleSubmit} className="mt-12 bg-white/95 backdrop-blur-sm rounded-lg p-8 max-w-2xl shadow-xl">
                 {/* Property Address Section */}
                 <div className="mb-8">
-                  <h2
-                    className="text-lg font-semibold text-[#1B4332] mb-4"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
+                  <h2 className="mb-4 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                     Property Address
                   </h2>
                   <div className="space-y-4">
@@ -119,8 +118,7 @@ export default function FreeHomeValuationPage() {
                       placeholder="Street Address"
                       value={formData.streetAddress}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 border-0 rounded text-sm focus:outline-none focus:ring-2 focus:ring-m2m-gold placeholder:text-gray-600"
-                      style={{ fontFamily: "var(--font-sans)" }}
+                      className={m2mInteriorFormInputClass}
                     />
                     <div className="grid grid-cols-2 gap-4">
                       <input
@@ -129,8 +127,7 @@ export default function FreeHomeValuationPage() {
                         placeholder="City"
                         value={formData.city}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 border-0 rounded text-sm focus:outline-none focus:ring-2 focus:ring-m2m-gold placeholder:text-gray-600"
-                        style={{ fontFamily: "var(--font-sans)" }}
+                        className={m2mInteriorFormInputClass}
                       />
                       <input
                         type="text"
@@ -138,8 +135,7 @@ export default function FreeHomeValuationPage() {
                         placeholder="Postal / Zip code"
                         value={formData.postalCode}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 border-0 rounded text-sm focus:outline-none focus:ring-2 focus:ring-m2m-gold placeholder:text-gray-600"
-                        style={{ fontFamily: "var(--font-sans)" }}
+                        className={m2mInteriorFormInputClass}
                       />
                     </div>
                   </div>
@@ -149,10 +145,7 @@ export default function FreeHomeValuationPage() {
 
                 {/* Property Condition Section */}
                 <div className="mb-8">
-                  <h2
-                    className="text-lg font-semibold text-[#1B4332] mb-2"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
+                  <h2 className="mb-2 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                     Property Condition
                   </h2>
                   <p className="text-xs text-gray-500 mb-4" style={{ fontFamily: "var(--font-sans)" }}>
@@ -181,10 +174,7 @@ export default function FreeHomeValuationPage() {
 
                 {/* Timeline for Selling Section */}
                 <div className="mb-8">
-                  <h2
-                    className="text-lg font-semibold text-[#1B4332] mb-2"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
+                  <h2 className="mb-2 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                     Timeline for Selling
                   </h2>
                   <p className="text-xs text-gray-500 mb-4" style={{ fontFamily: "var(--font-sans)" }}>
@@ -219,10 +209,7 @@ export default function FreeHomeValuationPage() {
 
                 {/* Introduce Yourself Section */}
                 <div className="mb-8">
-                  <h2
-                    className="text-lg font-semibold text-[#1B4332] mb-4"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
+                  <h2 className="mb-4 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                     Introduce Yourself
                   </h2>
                   <div className="space-y-4">
@@ -233,8 +220,7 @@ export default function FreeHomeValuationPage() {
                         placeholder="First Name"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 border-0 rounded text-sm focus:outline-none focus:ring-2 focus:ring-m2m-gold placeholder:text-gray-600"
-                        style={{ fontFamily: "var(--font-sans)" }}
+                        className={m2mInteriorFormInputClass}
                       />
                       <input
                         type="text"
@@ -242,8 +228,7 @@ export default function FreeHomeValuationPage() {
                         placeholder="Last Name"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 border-0 rounded text-sm focus:outline-none focus:ring-2 focus:ring-m2m-gold placeholder:text-gray-600"
-                        style={{ fontFamily: "var(--font-sans)" }}
+                        className={m2mInteriorFormInputClass}
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -253,8 +238,7 @@ export default function FreeHomeValuationPage() {
                         placeholder="Email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 border-0 rounded text-sm focus:outline-none focus:ring-2 focus:ring-m2m-gold placeholder:text-gray-600"
-                        style={{ fontFamily: "var(--font-sans)" }}
+                        className={m2mInteriorFormInputClass}
                       />
                       <input
                         type="tel"
@@ -262,8 +246,7 @@ export default function FreeHomeValuationPage() {
                         placeholder="Phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 border-0 rounded text-sm focus:outline-none focus:ring-2 focus:ring-m2m-gold placeholder:text-gray-600"
-                        style={{ fontFamily: "var(--font-sans)" }}
+                        className={m2mInteriorFormInputClass}
                       />
                     </div>
                     <textarea
@@ -272,33 +255,31 @@ export default function FreeHomeValuationPage() {
                       value={formData.goals}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 bg-gray-100 border-0 rounded text-sm focus:outline-none focus:ring-2 focus:ring-m2m-gold placeholder:text-gray-600 resize-none"
-                      style={{ fontFamily: "var(--font-sans)" }}
+                      className={m2mInteriorFormTextareaClass}
                     />
                   </div>
                 </div>
 
                 {/* Privacy text */}
-                <p className="text-xs text-gray-500 mb-6 text-center" style={{ fontFamily: "var(--font-sans)" }}>
-                  assure users about the confidentiality of their information and how it will be used.
+                <p className="mb-6 text-center text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                  Your information is kept confidential and used only to respond to your CMA request.
                 </p>
 
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-[#1B4332] text-white text-[0.7rem] tracking-[0.15em] uppercase font-medium rounded transition hover:bg-[#1B4332]/90"
+                  className="w-full rounded-md bg-m2m-deep py-4 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-m2m-cream transition hover:bg-m2m-deep/90"
                   style={{ fontFamily: "var(--font-nav)" }}
                 >
                   That&apos;s it — Send!
                 </button>
               </form>
               </div>
-            </div>
+            </M2mContainer>
           </div>
         </section>
-
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

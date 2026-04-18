@@ -1,12 +1,14 @@
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { EDUCATION_COLUMNS, EDUCATION_HEADING } from "./content"
 
 export function PreForeclosureEducation() {
   return (
     <section
-      className="border-t border-m2m-gold/15 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="border-t border-m2m-gold/15 py-16 sm:py-20 lg:py-24"
       aria-labelledby="pre-foreclosure-education-heading"
     >
-      <div className="mx-auto max-w-6xl">
+      <M2mContainer className="max-w-6xl">
         <h2
           id="pre-foreclosure-education-heading"
           className="mx-auto max-w-4xl text-center text-[clamp(1.5rem,3.2vw,2.35rem)] font-medium leading-snug text-m2m-cream"
@@ -36,7 +38,7 @@ export function PreForeclosureEducation() {
             </article>
           ))}
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

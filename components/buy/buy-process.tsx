@@ -1,5 +1,7 @@
 "use client"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 const steps = [
   {
     number: "01",
@@ -35,8 +37,8 @@ const steps = [
 
 export function BuyProcess() {
   return (
-    <section id="pcs" className="bg-m2m-deep px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="max-w-7xl mx-auto">
+    <section id="pcs" className="bg-m2m-deep py-24" data-gsap-section>
+      <M2mContainer>
         {/* Header */}
         <div className="max-w-3xl mb-16" data-gsap="blur-in">
           <p 
@@ -92,7 +94,7 @@ export function BuyProcess() {
             </div>
           ))}
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

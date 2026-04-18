@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 
+import { M2mContainer } from "@/components/m2m-layout"
 import {
   CALENDLY_BOOK_URL,
   CREED_REALTY_SEARCH_URL,
@@ -47,7 +48,7 @@ export default function HomeSearchPage() {
               style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
             />
 
-            <div className="relative mx-auto max-w-5xl px-6 pt-28 pb-16 md:px-16 lg:px-24">
+            <M2mContainer className="relative max-w-5xl pt-28 pb-16">
             {/* Kicker */}
             <p
               className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
@@ -130,12 +131,11 @@ export default function HomeSearchPage() {
                 </div>
               </div>
             </div>
-            </div>
+            </M2mContainer>
           </div>
         </section>
-
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

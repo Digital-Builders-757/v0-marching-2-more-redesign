@@ -1,5 +1,7 @@
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import {
   ACTION_PLAN_BODY,
   SERVICE_BLOCKS,
@@ -46,13 +48,13 @@ function ServiceCard({
 export function DownsizingServices() {
   return (
     <section
-      className="border-t border-m2m-gold/15 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:pb-24 lg:pt-20"
+      className="border-t border-m2m-gold/15 py-16 sm:py-20 lg:pb-24 lg:pt-20"
       aria-labelledby="downsizing-services-heading"
     >
       <h2 id="downsizing-services-heading" className="sr-only">
         Downsizing guide, services, and webinar
       </h2>
-      <div className="mx-auto max-w-7xl">
+      <M2mContainer>
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
             <DownsizingGuideForm />
@@ -95,7 +97,7 @@ export function DownsizingServices() {
             </div>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

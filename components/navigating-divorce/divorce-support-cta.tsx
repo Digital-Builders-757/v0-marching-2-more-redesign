@@ -1,9 +1,11 @@
+import { M2mContainer, M2mSection } from "@/components/m2m-layout"
+
 import { SUPPORT_PARAGRAPH } from "./content"
 
 export function DivorceSupportCta() {
   return (
-    <section className="border-b border-m2m-gold/15 bg-m2m-panel px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-      <div className="mx-auto max-w-3xl text-center">
+    <M2mSection variant="panel" className="border-b border-m2m-gold/15 py-16 lg:py-20">
+      <M2mContainer className="max-w-3xl text-center">
         <p
           className="mb-10 text-lg leading-relaxed text-m2m-cream/95 sm:text-xl"
           style={{ fontFamily: "var(--font-display)" }}
@@ -17,7 +19,7 @@ export function DivorceSupportCta() {
         >
           Get Your Free Guide
         </a>
-      </div>
-    </section>
+      </M2mContainer>
+    </M2mSection>
   )
 }

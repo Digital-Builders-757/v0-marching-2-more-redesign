@@ -1,5 +1,7 @@
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 export function PolicyPage({
   title,
   sourceUrl,
@@ -12,7 +14,8 @@ export function PolicyPage({
   children?: React.ReactNode
 }) {
   return (
-    <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-4xl px-6 py-16">
+    <main id="main-content" tabIndex={-1} className="py-16">
+      <M2mContainer className="max-w-4xl">
       <h1 className="font-serif text-4xl font-semibold text-m2m-green">{title}</h1>
       {lastUpdated ? <p className="mt-2 text-xs text-m2m-sage">Last updated: {lastUpdated}</p> : null}
 
@@ -25,6 +28,7 @@ export function PolicyPage({
       </p>
 
       {children ? <div className="prose prose-sm mt-10 max-w-none text-m2m-deep">{children}</div> : null}
+      </M2mContainer>
     </main>
   )
 }

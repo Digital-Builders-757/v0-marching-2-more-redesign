@@ -2,14 +2,17 @@
 
 import Link from "next/link"
 
+import { M2mContainer } from "@/components/m2m-layout"
+import { M2M_MEDIA } from "@/lib/m2m-media"
+
 export function PartnersCTA() {
   return (
-    <section className="relative px-6 py-24 md:px-16 lg:px-24 overflow-hidden" style={{ backgroundColor: '#050d06' }} data-gsap-section>
+    <section className="relative overflow-hidden bg-m2m-black py-24" data-gsap-section>
       {/* Background image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-post-ai-image-19388-jf99jfe9gtZUgHDymGUB60jS4Jvrd8.png')`,
+          backgroundImage: `url('${M2M_MEDIA.partnersCtaStill}')`,
         }}
       />
 
@@ -24,7 +27,7 @@ export function PartnersCTA() {
         }}
       />
 
-      <div className="relative z-[2] max-w-4xl mx-auto text-center" data-gsap="blur-in">
+      <M2mContainer className="relative z-[2] max-w-4xl text-center" data-gsap="blur-in">
         <p 
           className="text-sm tracking-[0.3em] uppercase text-m2m-gold mb-4"
           style={{ fontFamily: 'var(--font-nav)' }}
@@ -47,21 +50,21 @@ export function PartnersCTA() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href="/contact"
+            href="/contact-us"
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Contact Us
           </Link>
           <Link
-            href="/team"
+            href="/our-team"
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-gold/30 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Meet Your Team
           </Link>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

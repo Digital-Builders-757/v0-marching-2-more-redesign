@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 import { LEAD_SUPPORT_IMAGE, SIGNUP_SECTION_ID } from "./content"
 import { PreForeclosureForm } from "./pre-foreclosure-form"
 
@@ -7,13 +9,13 @@ export function PreForeclosureLead() {
   return (
     <section
       id={SIGNUP_SECTION_ID}
-      className="scroll-mt-28 border-t border-m2m-gold/15 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="scroll-mt-28 border-t border-m2m-gold/15 py-16 sm:py-20 lg:py-24"
       aria-labelledby="pre-foreclosure-lead-heading"
     >
       <h2 id="pre-foreclosure-lead-heading" className="sr-only">
         Sign up for the guide and action plan
       </h2>
-      <div className="mx-auto max-w-6xl">
+      <M2mContainer className="max-w-6xl">
         <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2 lg:gap-12">
           <div className="order-1 lg:order-1">
             <PreForeclosureForm />
@@ -30,7 +32,7 @@ export function PreForeclosureLead() {
             </div>
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

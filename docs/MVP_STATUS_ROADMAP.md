@@ -4,7 +4,8 @@ High-level phase view. Detailed “done / next” lives in **[WORK_ORDER.md](./W
 
 ## Current focus (P0)
 
-- **Wix / content parity QA** — Home, buy, sell, team, contact, policies; CTAs and numbers match **`lib/m2m-site.ts`**.
+- **Wix / content parity QA** — Home, buy, sell, team, contact, policies; CTAs and numbers match **`lib/m2m-site.ts`** (partner URLs: **`PARTNER_LINKS`**; review CTA: **`GOOGLE_REVIEW_URL`**).
+- **Site modernization** — Public routes in **[WORK_ORDER.md](./WORK_ORDER.md)** are largely aligned to **`M2mContainer`** / **`M2mSection`**, shared form classes, **`m2m-reviews-band`**, and **`M2M_MEDIA`** for key heroes; **`app/not-found.tsx`** branded. Ongoing: final art swaps (campaign `content.ts`), form backends, strict TypeScript in CI.
 - **CI health** — `npm run ci` (lint, test, typecheck, build) stays green locally and on PRs (`.github/workflows/pr-ci.yml` matches that sequence).
 
 ## Next (P1)

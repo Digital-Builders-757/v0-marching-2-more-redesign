@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { M2mContainer } from "@/components/m2m-layout"
 import { PARTNER_LINKS } from "@/lib/m2m-site"
 
 const partners = [
@@ -16,24 +17,19 @@ const partners = [
 
 export function Partners() {
   return (
-    <section id="services" className="bg-white px-6 py-20 md:px-16 lg:px-24">
-      <div className="max-w-6xl mx-auto">
+    <section id="services" className="bg-white py-20">
+      <M2mContainer className="max-w-6xl">
         {/* Header with image */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16 mb-12">
           {/* Left - Text content */}
           <div className="flex-1">
             {/* Kicker */}
-            <p 
-              className="text-[0.65rem] tracking-[0.3em] uppercase mb-4"
-              style={{ fontFamily: 'var(--font-nav)', color: '#B8963E' }}
-            >
-              You&apos;re in great hands.
-            </p>
+            <p className="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-m2m-gold font-nav">You&apos;re in great hands.</p>
 
             {/* Headline */}
-            <h2 
-              className="text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light mb-8"
-              style={{ fontFamily: 'var(--font-display)', color: '#1B4332' }}
+            <h2
+              className="mb-8 text-[clamp(2.5rem,5vw,4rem)] font-light leading-[1.1] text-m2m-deep"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Financing,<br />
               renovations,<br />
@@ -41,11 +37,9 @@ export function Partners() {
             </h2>
 
             {/* Body text */}
-            <p 
-              className="text-base leading-relaxed max-w-md"
-              style={{ fontFamily: 'var(--font-sans)', color: '#555' }}
-            >
-              <span className="font-semibold" style={{ color: '#1B4332' }}>And so much more.</span> Access a network of trusted local leaders. We&apos;ve experienced their professionalism and standard of excellence first hand.
+            <p className="max-w-md text-base leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+              <span className="font-semibold text-m2m-deep">And so much more.</span> Access a network of trusted local
+              leaders. We&apos;ve experienced their professionalism and standard of excellence first hand.
             </p>
           </div>
 
@@ -70,16 +64,12 @@ export function Partners() {
               <a
                 href={partner.href}
                 target="_blank"
-                rel="noreferrer"
-                className="text-sm transition-colors"
-                style={{ fontFamily: 'var(--font-nav)', color: '#B8963E' }}
+                rel="noopener noreferrer"
+                className="text-sm text-m2m-gold transition-colors hover:text-m2m-gold-lt font-nav"
               >
                 {partner.name} &rsaquo;
               </a>
-              <span 
-                className="text-xs italic"
-                style={{ fontFamily: 'var(--font-sans)', color: '#666' }}
-              >
+              <span className="text-xs italic text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                 {partner.service}
               </span>
             </div>
@@ -89,12 +79,11 @@ export function Partners() {
         {/* CTA */}
         <Link
           href="/our-team"
-          className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 text-white font-medium transition-all duration-300 hover:opacity-90"
-          style={{ fontFamily: 'var(--font-nav)', backgroundColor: '#1B4332' }}
+          className="inline-block bg-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:opacity-90 font-nav"
         >
           Meet Your Team
         </Link>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

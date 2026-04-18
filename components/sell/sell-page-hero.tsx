@@ -3,7 +3,9 @@
 import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
-import { M2M_PHONE_HREF } from "@/lib/m2m-site"
+import { M2mContainer } from "@/components/m2m-layout"
+import { M2M_MEDIA } from "@/lib/m2m-media"
+import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function SellPageHero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -54,14 +56,13 @@ export function SellPageHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col justify-center px-6 py-32 md:px-16 lg:px-24 overflow-hidden"
-      style={{ backgroundColor: '#050d06' }}
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-m2m-black py-24 md:py-32"
     >
       {/* Background image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-post-ai-image-7353.png-XuugaQAYYKTeQCH48KchTJCafF1MW6.jpeg')`,
+          backgroundImage: `url('${M2M_MEDIA.sellHeroStill}')`,
         }}
       />
 
@@ -77,7 +78,7 @@ export function SellPageHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl">
+      <M2mContainer className="relative z-10 max-w-4xl">
         {/* Tag */}
         <div 
           ref={tagRef}
@@ -129,10 +130,10 @@ export function SellPageHero() {
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
-            757-206-2859
+            {M2M_PHONE_DISPLAY}
           </a>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

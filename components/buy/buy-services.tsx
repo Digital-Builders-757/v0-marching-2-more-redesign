@@ -2,6 +2,8 @@
 
 import { Shield, Home, MapPin, FileCheck, Users, DollarSign } from "lucide-react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 const services = [
   {
     icon: Shield,
@@ -37,8 +39,8 @@ const services = [
 
 export function BuyServices() {
   return (
-    <section id="va-loans" className="bg-white px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="max-w-7xl mx-auto">
+    <section id="va-loans" className="bg-white py-24" data-gsap-section>
+      <M2mContainer>
         {/* Header */}
         <div className="max-w-3xl mb-16" data-gsap="blur-in">
           <p 
@@ -87,7 +89,7 @@ export function BuyServices() {
             </div>
           ))}
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

@@ -1,5 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
+
+import { M2mContainer } from "@/components/m2m-layout"
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 type AgentProfileProps = {
@@ -30,23 +32,20 @@ export function AgentProfile({
 
   return (
     <main id="main-content" tabIndex={-1} className="bg-white">
-      <section className="px-6 pt-32 pb-20 md:px-16 lg:px-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr_400px] gap-12 lg:gap-16">
+      <section className="pt-32 pb-20">
+        <M2mContainer>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[300px_1fr_400px] lg:gap-16">
             {/* Left column - Info & CTAs */}
             <div>
               {/* Role */}
-              <p
-                className="text-base font-semibold mb-4"
-                style={{ fontFamily: "var(--font-nav)", color: "#1B4332" }}
-              >
+              <p className="mb-4 text-base font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-nav)" }}>
                 {role}
               </p>
 
               {/* Name */}
               <h1
-                className="font-light text-[clamp(2.5rem,5vw,3.5rem)] leading-[1.1] mb-4"
-                style={{ fontFamily: "var(--font-display)", color: "#1B4332" }}
+                className="mb-4 font-light text-[clamp(2.5rem,5vw,3.5rem)] leading-[1.1] text-m2m-deep"
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {name}
               </h1>
@@ -76,8 +75,8 @@ export function AgentProfile({
               <div className="flex flex-col gap-4">
                 <Link
                   href="/contact-us"
-                  className="inline-flex items-center justify-center px-6 py-4 text-sm font-medium text-white rounded-full transition hover:opacity-90"
-                  style={{ fontFamily: "var(--font-nav)", backgroundColor: "#1B4332" }}
+                  className="inline-flex items-center justify-center rounded-full bg-m2m-deep px-6 py-4 text-sm font-medium text-m2m-cream transition hover:opacity-90"
+                  style={{ fontFamily: "var(--font-nav)" }}
                 >
                   Work with {firstName}
                 </Link>
@@ -85,8 +84,8 @@ export function AgentProfile({
                 {email && (
                   <a
                     href={`mailto:${email}`}
-                    className="inline-flex items-center justify-center px-6 py-4 text-sm font-medium rounded-full border-2 transition hover:bg-gray-50"
-                    style={{ fontFamily: "var(--font-nav)", borderColor: "#1B4332", color: "#1B4332" }}
+                    className="inline-flex items-center justify-center rounded-full border-2 border-m2m-deep px-6 py-4 text-sm font-medium text-m2m-deep transition hover:bg-m2m-cream/50"
+                    style={{ fontFamily: "var(--font-nav)" }}
                   >
                     {email}
                   </a>
@@ -159,7 +158,7 @@ export function AgentProfile({
               </div>
             </div>
           </div>
-        </div>
+        </M2mContainer>
       </section>
     </main>
   )

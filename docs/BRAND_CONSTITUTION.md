@@ -15,6 +15,7 @@ Defined as `--m2m-*` in Tailwind theme (see `app/globals.css`).
 | Token | Typical use |
 |-------|-------------|
 | `m2m-panel`, `m2m-deep`, `m2m-black` | Dark green backgrounds, headers, campaign pages |
+| `m2m-reviews-band` | Deeper band green for reviews / social proof sections (see `globals.css`) |
 | `m2m-cream`, `m2m-gold`, `m2m-gold-lt` | Text and accents on green; gold CTAs |
 | `m2m-muted` | Secondary text |
 
@@ -33,6 +34,8 @@ Use `style={{ fontFamily: "var(--font-display)" }}` (etc.) to match existing com
 
 ## Components and motion
 
+- **Layout rhythm:** prefer `M2mContainer` / `M2mSection` from `components/m2m-layout.tsx` for section width and vertical spacing; consultation CTAs via `components/m2m-cta.tsx`.
+- **Utility classes:** `font-nav`, `m2m-eyebrow`, `m2m-section-title` in `app/globals.css` (`@layer components` / `@layer utilities`).
 - **Header:** sticky green bar; optional `consultationCtaVariant="outlineCream"` on landings.
 - **Motion:** GSAP via `components/gsap-animations.tsx` and `data-gsap-*` hooks where present.
 

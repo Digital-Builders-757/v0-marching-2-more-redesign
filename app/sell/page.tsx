@@ -23,8 +23,8 @@ export default function SellPage() {
         <SellProcess />
         <SellChecklist />
         <SellCTA />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 
+import { M2M_MEDIA } from "@/lib/m2m-media"
+
 export function BlogHero() {
   const sectionRef = useRef<HTMLElement>(null)
   const tagRef = useRef<HTMLDivElement>(null)
@@ -39,16 +41,15 @@ export function BlogHero() {
   }, [])
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="relative min-h-[50vh] flex flex-col justify-center px-6 py-32 md:px-16 lg:px-24 overflow-hidden"
-      style={{ backgroundColor: '#050d06' }}
+      className="relative flex min-h-[50vh] flex-col justify-center overflow-hidden bg-m2m-black px-6 py-32 md:px-16 lg:px-24"
     >
       {/* Background image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/-post-ai-image-27298-tXKCb2L8gZaxkWi49XwXGN6rmgkbLf.png')`,
+          backgroundImage: `url('${M2M_MEDIA.blogIndexBackdrop}')`,
         }}
       />
 

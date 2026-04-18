@@ -15,6 +15,8 @@
 | [DOCUMENTATION.md](./DOCUMENTATION.md) | Short index + repo role |
 | [WORK_ORDER.md](./WORK_ORDER.md) | Done recently + ordered next steps |
 | [MVP_STATUS_ROADMAP.md](./MVP_STATUS_ROADMAP.md) | P0/P1 priorities |
+| [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) | Active site overhaul: goals, standards, doc outcomes |
+| [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) | Future GoHighLevel integration boundary, phases, and dependency checklist |
 | [ROADMAP.md](./ROADMAP.md) | Pointer to MVP_STATUS_ROADMAP (search alias) |
 | [development/BRANCHING.md](./development/BRANCHING.md) | Branch + PR flow toward `develop` |
 | [development/RELEASING.md](./development/RELEASING.md) | **`develop` → `main`** when ready for production |

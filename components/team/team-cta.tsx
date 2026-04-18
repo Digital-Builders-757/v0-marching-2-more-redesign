@@ -1,13 +1,12 @@
 import Link from "next/link"
 
+import { M2mContainer, M2mSection } from "@/components/m2m-layout"
+
 /** Wix parity: CTA cluster on /our-team. */
 export function TeamCTA() {
   return (
-    <section
-      className="px-6 py-20 md:px-16 lg:px-24"
-      style={{ backgroundColor: "#050d06" }}
-    >
-      <div className="mx-auto max-w-4xl text-center">
+    <M2mSection variant="black" className="py-20">
+      <M2mContainer className="max-w-4xl text-center">
         {/* Heading */}
         <h2
           className="font-light italic text-[clamp(2rem,4vw,3rem)] leading-[1.1] text-m2m-cream mb-8"
@@ -26,7 +25,7 @@ export function TeamCTA() {
             Contact Us
           </Link>
         </div>
-      </div>
-    </section>
+      </M2mContainer>
+    </M2mSection>
   )
 }
