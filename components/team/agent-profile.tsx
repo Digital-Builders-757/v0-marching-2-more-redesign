@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
+import { Button } from "@/components/ui/button"
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 type AgentProfileProps = {
@@ -53,51 +54,47 @@ export function AgentProfile({
               {/* License info */}
               {licenseNumber && (
                 <div className="mb-6">
-                  <p
-                    className="text-sm text-gray-600"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
+                  <p className="text-sm text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                     Licensed Agent of Virginia
                   </p>
-                  <p
-                    className="text-sm text-gray-600"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
+                  <p className="text-sm text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
                     {licenseNumber}
                   </p>
                 </div>
               )}
 
               {/* Divider */}
-              <div className="w-full h-px bg-gray-300 mb-8" />
+              <div className="mb-8 h-px w-full bg-m2m-deep/15" />
 
               {/* CTAs */}
               <div className="flex flex-col gap-4">
-                <Link
-                  href="/contact-us"
-                  className="inline-flex items-center justify-center rounded-full bg-m2m-deep px-6 py-4 text-sm font-medium text-m2m-cream transition hover:opacity-90"
-                  style={{ fontFamily: "var(--font-nav)" }}
-                >
-                  Work with {firstName}
-                </Link>
+                <Button variant="m2mPanel" asChild className="h-auto rounded-full px-6 py-4 text-sm">
+                  <Link href="/contact-us" style={{ fontFamily: "var(--font-nav)" }}>
+                    Work with {firstName}
+                  </Link>
+                </Button>
 
                 {email && (
-                  <a
-                    href={`mailto:${email}`}
-                    className="inline-flex items-center justify-center rounded-full border-2 border-m2m-deep px-6 py-4 text-sm font-medium text-m2m-deep transition hover:bg-m2m-cream/50"
-                    style={{ fontFamily: "var(--font-nav)" }}
+                  <Button
+                    variant="outline"
+                    asChild
+                    className="h-auto rounded-full border-2 border-m2m-deep bg-transparent px-6 py-4 text-sm text-m2m-deep shadow-none hover:bg-m2m-cream/40"
                   >
-                    {email}
-                  </a>
+                    <a href={`mailto:${email}`} style={{ fontFamily: "var(--font-nav)" }}>
+                      {email}
+                    </a>
+                  </Button>
                 )}
 
-                <a
-                  href={M2M_PHONE_HREF}
-                  className="inline-flex items-center justify-center px-6 py-4 text-sm font-medium rounded-full border-2 border-gray-300 text-gray-600 transition hover:bg-gray-50"
-                  style={{ fontFamily: "var(--font-nav)" }}
+                <Button
+                  variant="outline"
+                  asChild
+                  className="h-auto rounded-full border-2 border-m2m-deep/20 bg-transparent px-6 py-4 text-sm text-m2m-muted shadow-none hover:border-m2m-deep/35 hover:bg-m2m-cream/30 hover:text-m2m-deep"
                 >
-                  {M2M_PHONE_DISPLAY}
-                </a>
+                  <a href={M2M_PHONE_HREF} style={{ fontFamily: "var(--font-nav)" }}>
+                    {M2M_PHONE_DISPLAY}
+                  </a>
+                </Button>
               </div>
 
               {/* Social icons */}
@@ -107,7 +104,7 @@ export function AgentProfile({
                     href={linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-gray-400 hover:text-gray-600 transition"
+                    className="text-m2m-muted transition hover:text-m2m-deep"
                     aria-label="LinkedIn"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -120,7 +117,7 @@ export function AgentProfile({
                     href={instagram}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-gray-400 hover:text-gray-600 transition"
+                    className="text-m2m-muted transition hover:text-m2m-deep"
                     aria-label="Instagram"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -136,7 +133,7 @@ export function AgentProfile({
               {bioParagraphs.map((paragraph, index) => (
                 <p
                   key={index}
-                  className="text-base leading-relaxed text-gray-700 mb-6 last:mb-0"
+                  className="mb-6 text-base leading-relaxed text-m2m-deep/90 last:mb-0"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
                   {paragraph}

@@ -4,7 +4,7 @@ import Link from "next/link"
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
-import { M2mContainer, M2mSection } from "@/components/m2m-layout"
+import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim, M2mSection } from "@/components/m2m-layout"
 import { GOOGLE_REVIEW_URL, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export const metadata: Metadata = {
@@ -15,18 +15,13 @@ export const metadata: Metadata = {
 
 export default function FreeHomeValuationPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <>
       <Header />
 
       <main id="main-content" tabIndex={-1} className="bg-white">
         {/* Hero Section */}
         <section className="relative min-h-[70vh] overflow-hidden bg-white py-6 md:py-8">
-          {/* Inner container with background image at 95% width */}
-          <div 
-            className="relative mx-auto overflow-hidden rounded-xl"
-            style={{ width: '95%', minHeight: 'calc(70vh - 48px)' }}
-          >
-            {/* Background image */}
+          <M2mInsetHeroFrame className="min-h-[calc(70vh-3rem)]">
             <div className="absolute inset-0">
               <Image
                 src="/images/cma-hero.png"
@@ -37,11 +32,7 @@ export default function FreeHomeValuationPage() {
                 sizes="100vw"
               />
             </div>
-            {/* Dark overlay */}
-            <div 
-              className="absolute inset-0"
-              style={{ backgroundColor: "rgba(5, 13, 6, 0.7)" }}
-            />
+            <M2mInsetHeroScrim variant="70" />
 
             <M2mContainer className="relative max-w-5xl text-center pt-28 pb-20">
             {/* Kicker */}
@@ -105,7 +96,7 @@ export default function FreeHomeValuationPage() {
             </Link>
             </p>
             </M2mContainer>
-          </div>
+          </M2mInsetHeroFrame>
         </section>
 
         {/* Support Section */}
@@ -322,11 +313,7 @@ export default function FreeHomeValuationPage() {
               sizes="100vw"
             />
           </div>
-          {/* Dark overlay */}
-          <div 
-            className="absolute inset-0"
-            style={{ backgroundColor: "rgba(5, 13, 6, 0.8)" }}
-          />
+          <div className="absolute inset-0 bg-m2m-black/80" aria-hidden />
 
           <M2mContainer className="relative max-w-3xl text-center">
             <h2
@@ -367,6 +354,6 @@ export default function FreeHomeValuationPage() {
       </main>
 
       <Footer />
-    </div>
+    </>
   )
 }

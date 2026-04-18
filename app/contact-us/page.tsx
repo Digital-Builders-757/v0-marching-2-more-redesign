@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
-import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
+import { CALENDLY_BOOK_URL, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
@@ -33,26 +33,36 @@ export default function ContactUsPage() {
       <main id="main-content" tabIndex={-1} className="bg-white">
         <section className="pb-20 pt-28">
           <M2mContainer className="max-w-2xl">
-            <h1 className="m2m-eyebrow mb-8 text-m2m-deep">Contact Us</h1>
+            <p className="m2m-eyebrow mb-3 text-m2m-deep">Contact Us</p>
 
-            <h2
+            <h1
               className="mb-6 font-light italic text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-m2m-deep"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Introduce Yourself
-            </h2>
+            </h1>
 
             <p className="mb-6 text-base leading-relaxed text-m2m-muted font-sans">
               Tell us a bit about your goals. One of our agents will review your request and follow up with your next
               steps within 24hrs.
             </p>
 
-            <a
-              href={M2M_PHONE_HREF}
-              className="mb-10 inline-block text-sm text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
-            >
-              Or give us a call — {M2M_PHONE_DISPLAY}
-            </a>
+            <div className="mb-10 flex flex-col gap-3 border-y border-m2m-deep/10 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
+              <a
+                href={M2M_PHONE_HREF}
+                className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
+              >
+                Call or text — {M2M_PHONE_DISPLAY}
+              </a>
+              <a
+                href={CALENDLY_BOOK_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
+              >
+                Book a consultation
+              </a>
+            </div>
 
             {submitted ? (
               <div className="py-12 text-center">

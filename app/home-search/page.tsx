@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 
-import { M2mContainer } from "@/components/m2m-layout"
+import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import {
   CALENDLY_BOOK_URL,
   CREED_REALTY_SEARCH_URL,
@@ -26,12 +26,7 @@ export default function HomeSearchPage() {
 
       <main id="main-content" tabIndex={-1} className="bg-white">
         <section className="relative min-h-[80dvh] overflow-hidden bg-white py-6 md:py-8">
-          {/* Inner container with background image at 95% width */}
-          <div 
-            className="relative mx-auto overflow-hidden rounded-xl"
-            style={{ width: '95%', minHeight: 'calc(80dvh - 48px)' }}
-          >
-            {/* Background image */}
+          <M2mInsetHeroFrame className="min-h-[calc(80dvh-3rem)]">
             <div className="absolute inset-0">
               <Image
                 src="/images/home-search-hero.png"
@@ -42,11 +37,7 @@ export default function HomeSearchPage() {
                 sizes="100vw"
               />
             </div>
-            {/* Dark overlay */}
-            <div 
-              className="absolute inset-0"
-              style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
-            />
+            <M2mInsetHeroScrim variant="75" />
 
             <M2mContainer className="relative max-w-5xl pt-28 pb-16">
             {/* Kicker */}
@@ -132,7 +123,7 @@ export default function HomeSearchPage() {
               </div>
             </div>
             </M2mContainer>
-          </div>
+          </M2mInsetHeroFrame>
         </section>
       </main>
       <Footer />

@@ -91,7 +91,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <Image src={post.coverImage} alt="" fill className="object-cover" sizes="100vw" />
             </div>
 
-            <article className="prose prose-neutral mt-10 max-w-none">
+            <article className="prose prose-neutral mt-10 max-w-none text-m2m-deep prose-headings:font-normal prose-headings:text-m2m-deep prose-p:text-m2m-deep/90 prose-li:text-m2m-deep/90 prose-a:text-m2m-gold prose-a:no-underline hover:prose-a:underline">
               {/* structure-only rendering */}
               {post.content.split("\n").map((line, idx) => (
                 <p key={idx}>{line}</p>
