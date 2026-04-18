@@ -2,6 +2,8 @@
 
 import { Star } from "lucide-react"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 const reviews = [
   {
     name: "The Sanchez Family",
@@ -55,8 +57,8 @@ const reviews = [
 
 export function ReviewsList() {
   return (
-    <section className="bg-[#244b2a]">
-      <div className="px-6 py-16 md:px-16 md:py-20 lg:px-24">
+    <section className="bg-m2m-reviews-band">
+      <M2mContainer className="py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {reviews.map((review, index) => (
@@ -101,7 +103,7 @@ export function ReviewsList() {
             ))}
           </div>
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

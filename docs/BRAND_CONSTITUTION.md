@@ -15,6 +15,7 @@ Defined as `--m2m-*` in Tailwind theme (see `app/globals.css`).
 | Token | Typical use |
 |-------|-------------|
 | `m2m-panel`, `m2m-deep`, `m2m-black` | Dark green backgrounds, headers, campaign pages |
+| `m2m-reviews-band` | Deeper band green for reviews / social proof sections (see `globals.css`) |
 | `m2m-cream`, `m2m-gold`, `m2m-gold-lt` | Text and accents on green; gold CTAs |
 | `m2m-muted` | Secondary text |
 

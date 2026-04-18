@@ -18,8 +18,8 @@ export default function PlansAndPricingPage() {
       <GSAPAnimations />
       <main id="main-content" tabIndex={-1} className="bg-white">
         <PricingSection />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

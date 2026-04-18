@@ -103,6 +103,8 @@
   --color-m2m-cream: #f0ebe2;
   --color-m2m-muted: #7a8f7c;
   --color-m2m-muted-lt: #a3b5a5;
+  /** Reviews / social proof bands (Wix-adjacent green, distinct from panel) */
+  --color-m2m-reviews-band: #244b2a;
 }
 
 @layer base {

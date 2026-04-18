@@ -3,16 +3,17 @@
 import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
+import { M2M_MEDIA } from "@/lib/m2m-media"
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export function SellCTA() {
   return (
-    <section className="relative overflow-hidden py-24" style={{ backgroundColor: '#050d06' }} data-gsap-section>
+    <section className="relative overflow-hidden bg-m2m-black py-24" data-gsap-section>
       {/* Background image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Family%20backyard-A4xyD0dmvycOgFVMeTBrduH5GxteWt.jpg')`,
+          backgroundImage: `url('${M2M_MEDIA.familyBackyard}')`,
         }}
       />
 

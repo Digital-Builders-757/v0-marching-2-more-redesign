@@ -1,8 +1,10 @@
 "use client"
 
+import { M2mContainer } from "@/components/m2m-layout"
+
 export function ReviewsHero() {
   return (
-    <section className="relative overflow-hidden bg-[#244b2a]">
+    <section className="relative overflow-hidden bg-m2m-reviews-band">
       {/* Background image (Wix parity) */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -11,9 +13,9 @@ export function ReviewsHero() {
             "url('https://static.wixstatic.com/media/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg/v1/fill/w_1903,h_812,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg')",
         }}
       />
-      <div className="absolute inset-0 bg-[#244b2a]/85" aria-hidden />
+      <div className="absolute inset-0 bg-m2m-reviews-band/85" aria-hidden />
 
-      <div className="relative px-6 py-24 text-center md:px-16 md:py-32 lg:px-24">
+      <M2mContainer className="relative py-24 text-center md:py-32">
         <p
           className="text-m2m-gold text-sm tracking-[0.25em] uppercase"
           style={{ fontFamily: "var(--font-nav)" }}
@@ -29,7 +31,7 @@ export function ReviewsHero() {
           <br />
           Integrity and Trust
         </h1>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

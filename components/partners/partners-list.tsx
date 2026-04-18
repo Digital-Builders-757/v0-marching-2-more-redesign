@@ -2,61 +2,64 @@
 
 import { ArrowUpRight } from "lucide-react"
 
+import { M2mContainer, M2mSection } from "@/components/m2m-layout"
+import { PARTNER_LINKS } from "@/lib/m2m-site"
+
 const partners = [
   {
     category: "General Contractors",
     name: "New World Builders",
     description: "Quality construction and renovation services for residential properties.",
-    link: "#",
+    href: PARTNER_LINKS.newWorldBuilders,
   },
   {
     category: "Moving",
     name: "Off Load Moving",
     description: "Professional moving services for local and long-distance relocations.",
-    link: "#",
+    href: PARTNER_LINKS.offLoadMoving,
   },
   {
     category: "HVAC",
     name: "R.S. Andrews",
     description: "Heating, ventilation, and air conditioning installation and service.",
-    link: "#",
+    href: PARTNER_LINKS.rsAndrewsTidewater,
   },
   {
     category: "Home Inspection",
     name: "QAI",
     description: "Comprehensive home inspection services for buyers and sellers.",
-    link: "#",
+    href: PARTNER_LINKS.qaiHome,
   },
   {
     category: "Pest & Termite",
     name: "John Edwards",
     description: "Complete pest control and termite inspection services.",
-    link: "#",
+    href: PARTNER_LINKS.johnEdwardsPest,
   },
   {
     category: "Title",
     name: "True North Title",
     description: "Reliable title services ensuring smooth real estate transactions.",
-    link: "#",
+    href: PARTNER_LINKS.trueNorthTitle,
   },
   {
     category: "Lending",
     name: "Cara Erickson of Atlantic Bay Mortgage",
     description: "Expert mortgage lending with VA loan specialization.",
-    link: "#",
+    href: PARTNER_LINKS.atlanticBayCara,
   },
   {
     category: "Home Warranty",
     name: "2-10 Home Warranty",
     description: "Comprehensive home warranty coverage for peace of mind.",
-    link: "#",
+    href: PARTNER_LINKS.homeWarranty210,
   },
-]
+] as const
 
 export function PartnersList() {
   return (
-    <section className="bg-white px-6 py-24 md:px-16 lg:px-24" data-gsap-section>
-      <div className="max-w-7xl mx-auto">
+    <M2mSection variant="light" className="py-24" data-gsap-section>
+      <M2mContainer>
         {/* Header */}
         <div className="max-w-3xl mb-16" data-gsap="blur-in">
           <p 
@@ -83,10 +86,12 @@ export function PartnersList() {
         {/* Partners Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {partners.map((partner, index) => (
-            <a 
+            <a
               key={partner.name}
-              href={partner.link}
-              className="group p-6 border border-m2m-deep/10 bg-white rounded-xl transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg flex flex-col"
+              href={partner.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col rounded-xl border border-m2m-deep/10 bg-white p-6 transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg"
               data-gsap="fade-up"
               data-gsap-delay={index * 0.08}
             >
@@ -112,7 +117,7 @@ export function PartnersList() {
             </a>
           ))}
         </div>
-      </div>
-    </section>
+      </M2mContainer>
+    </M2mSection>
   )
 }
