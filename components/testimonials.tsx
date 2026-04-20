@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Star } from "lucide-react"
 
 import { M2mContainer } from "@/components/m2m-layout"
+import { GOOGLE_REVIEW_URL } from "@/lib/m2m-site"
 
 const testimonials = [
   {
@@ -134,7 +135,7 @@ export function Testimonials() {
             More Reviews
           </a>
           <a
-            href="https://g.page/r/marching2more/review"
+            href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep/30 text-m2m-deep rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"

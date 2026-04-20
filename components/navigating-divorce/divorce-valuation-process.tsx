@@ -1,8 +1,8 @@
 import Image from "next/image"
-import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
 import { cn } from "@/lib/utils"
+import { REALSCOUT_HOME_VALUATION_URL } from "@/lib/m2m-site"
 
 import { VALUATION_BACKGROUND, VALUATION_BLOCKS } from "./content"
 
@@ -54,13 +54,15 @@ export function DivorceValuationProcess() {
         </div>
 
         <div className="flex justify-center">
-          <Link
-            href="/free-home-valuation"
+          <a
+            href={REALSCOUT_HOME_VALUATION_URL}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex bg-m2m-panel px-8 py-4 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-m2m-cream ring-1 ring-m2m-gold/35 transition hover:bg-m2m-panel-lt"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Get Your Free Home Valuation
-          </Link>
+          </a>
         </div>
       </M2mContainer>
     </section>

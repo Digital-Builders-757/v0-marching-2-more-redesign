@@ -2,6 +2,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
 
+import { M2mBrandLogo } from "@/components/m2m-brand-logo"
+
 import { ABOUT_COPY } from "@/lib/m2m-constants"
 import {
   GOOGLE_REVIEW_URL,
@@ -15,7 +17,7 @@ import { M2M_FOOTER_POLICY_LINKS, M2M_HEADER_AGENT_LINKS } from "@/lib/m2m-nav"
 
 import { M2mContainer } from "@/components/m2m-layout"
 
-import { DIVORCE_FOOTER_TOP_LINKS, PARTNER_PLACEHOLDERS, TEAM_SOCIAL } from "./content"
+import { DIVORCE_FOOTER_TOP_LINKS, TEAM_SOCIAL } from "./content"
 
 const footerAgents = M2M_HEADER_AGENT_LINKS.slice(0, 2)
 
@@ -62,7 +64,7 @@ export function DivorceLandingFooter() {
                     className="flex flex-wrap items-center gap-4 border-t border-m2m-gold/25 py-5 first:border-t-0 first:pt-0 sm:first:pt-0"
                   >
                     <Link href={agent.href} className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-m2m-gold/35">
-                      <Image src={agent.image} alt={agent.name} fill className="object-cover" sizes="48px" />
+                      <Image src={agent.image} alt={agent.name} fill className="object-cover object-top" sizes="48px" />
                     </Link>
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-medium text-m2m-cream" style={{ fontFamily: "var(--font-nav)" }}>
@@ -86,7 +88,7 @@ export function DivorceLandingFooter() {
 
               <div className="flex flex-wrap items-center gap-4 border-t border-m2m-gold/25 py-5">
                 <Link href="/" className="flex flex-shrink-0 items-center gap-2" aria-label="Marching 2 More home">
-                  <Image src="/brand/m2m-logo.avif" alt="" width={40} height={40} className="h-10 w-auto" />
+                  <M2mBrandLogo variant="footer" alt="" />
                 </Link>
                 <span className="text-sm font-semibold tracking-wide text-m2m-cream" style={{ fontFamily: "var(--font-nav)" }}>
                   Marching 2 More
@@ -103,19 +105,6 @@ export function DivorceLandingFooter() {
                   </a>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              {PARTNER_PLACEHOLDERS.map((p) => (
-                <div
-                  key={p.label}
-                  className="flex h-14 min-w-[7rem] flex-1 items-center justify-center border border-m2m-gold/35 px-3 text-center text-[0.6rem] font-medium uppercase tracking-wider text-m2m-gold/90 sm:min-w-[8.5rem]"
-                  style={{ fontFamily: "var(--font-nav)" }}
-                  title={p.label}
-                >
-                  <span className="leading-tight">{p.label}</span>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -144,18 +133,10 @@ export function DivorceLandingFooter() {
               href={GOOGLE_REVIEW_URL}
               target="_blank"
               rel="noreferrer"
-              className="mb-4 inline-flex w-full max-w-sm items-center justify-center bg-m2m-gold px-5 py-3.5 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-m2m-deep transition hover:bg-m2m-gold-lt sm:w-auto"
-              style={{ fontFamily: "var(--font-nav)" }}
+              className="mb-8 inline-block w-fit text-sm text-m2m-cream/90 underline decoration-m2m-gold/45 underline-offset-4 transition hover:text-m2m-cream"
+              style={{ fontFamily: "var(--font-sans)" }}
             >
-              Review us on Google <span className="ml-1" aria-hidden>•</span>
-            </a>
-
-            <a
-              href={M2M_PHONE_HREF}
-              className="mb-10 inline-flex w-full max-w-sm items-center justify-center border border-m2m-gold/60 px-5 py-3.5 text-[0.65rem] font-medium tracking-[0.12em] text-m2m-cream transition hover:border-m2m-gold sm:w-auto"
-              style={{ fontFamily: "var(--font-nav)" }}
-            >
-              {M2M_PHONE_DISPLAY}
+              Leave a Google review →
             </a>
 
             <div className="space-y-2 text-sm text-m2m-cream/85" style={{ fontFamily: "var(--font-sans)" }}>

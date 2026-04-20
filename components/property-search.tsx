@@ -4,7 +4,7 @@ import Image from "next/image"
 
 import { M2mContainer } from "@/components/m2m-layout"
 import { CREED_REALTY_SEARCH_URL } from "@/lib/m2m-constants"
-import { mailtoNeedsHelp, REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
+import { REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
 
 export function PropertySearch() {
   return (
@@ -54,13 +54,13 @@ export function PropertySearch() {
 
               <div className="flex flex-col items-center sm:items-start">
                 <a
-                  href={mailtoNeedsHelp()}
+                  href="/contact-us"
                   className="inline-block border border-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:bg-m2m-cream/40 font-nav"
                 >
                   Tell Us Your Needs
                 </a>
-                <p className="mt-2 text-center text-xs italic text-m2m-muted sm:text-left">
-                  We&apos;ll prepare the best options.
+                <p className="mt-2 max-w-xs text-center text-xs leading-relaxed text-m2m-deep/85 sm:text-left">
+                  Use the contact form and we&apos;ll follow up—including Donavan&apos;s free listing guide PDF when selling is on your radar.
                 </p>
               </div>
             </div>

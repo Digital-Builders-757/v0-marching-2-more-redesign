@@ -9,7 +9,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
-import { CALENDLY_BOOK_URL, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
+import {
+  GOHIGHLEVEL_BOOKING_URL,
+  isGohighlevelBookingConfigured,
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+} from "@/lib/m2m-site"
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
@@ -54,14 +59,24 @@ export default function ContactUsPage() {
               >
                 Call or text — {M2M_PHONE_DISPLAY}
               </a>
-              <a
-                href={CALENDLY_BOOK_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
-              >
-                Book a consultation
-              </a>
+              {isGohighlevelBookingConfigured() ? (
+                <a
+                  href={GOHIGHLEVEL_BOOKING_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
+                >
+                  Book a consultation
+                </a>
+              ) : (
+                <span
+                  className="text-sm font-medium text-m2m-muted font-sans"
+                  title="Set GOHIGHLEVEL_BOOKING_URL in lib/m2m-site.ts to your GoHighLevel booking link."
+                >
+                  Book a consultation{" "}
+                  <span className="text-xs font-normal text-m2m-deep/50">(link pending)</span>
+                </span>
+              )}
             </div>
 
             {submitted ? (

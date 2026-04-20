@@ -68,18 +68,30 @@ export const HERO_SLIDES = [
 
 export type HeroSlide = (typeof HERO_SLIDES)[number]
 
-export const INVESTMENTS_TESTIMONIALS = [
+export const INVESTOR_VALUE_SECTION_ID = "investor-value" as const
+
+export const INVESTOR_VALUE_HEADING = "How we help you invest with intention" as const
+
+export const INVESTOR_VALUE_SUBHEAD =
+  "Whether you are exploring your first deal or scaling a portfolio, we focus on clarity, local market context, and a plan that fits your timeline — not generic hype." as const
+
+export const INVESTOR_VALUE_COLUMNS = [
   {
-    quote:
-      "Testimonials provide a sense of what it's like to work with you or use your products. Change the text and add your own.",
-    name: "Alexa Young, CA",
+    title: "Strategy before spreadsheets",
+    body: "We start with your goals and risk comfort, then map realistic paths — fix-and-flip, rentals, or long-term holds — so every next step feels grounded.",
   },
   {
-    quote: "A great testimonial can boost your brand's image. Click to edit and add your own.",
-    name: "Morgan James, NY",
+    title: "Hampton Roads on the ground",
+    body: "Neighborhood nuance matters. We bring local pricing, rental demand, and military-market context so you are not guessing from national headlines.",
   },
   {
-    quote: "Have customers review you and share what they had to say. Click to edit and add your testimonial.",
-    name: "Lisa Driver, MI",
+    title: "Partners in the long game",
+    body: "Investing is a relationship, not a transaction. We stay available for questions, introductions, and course corrections as your portfolio evolves.",
   },
 ] as const
+
+/** Pulled from real client voice on /reviews — condensed for scannability. */
+export const INVESTMENTS_TRUST_QUOTE =
+  "Donavan was patient and diligent throughout the entire process and was readily available at all times… Highly recommend! Him and his team will take care of you!" as const
+
+export const INVESTMENTS_TRUST_ATTRIBUTION = "Marching 2 More client review" as const

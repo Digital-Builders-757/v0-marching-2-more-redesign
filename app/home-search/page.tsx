@@ -6,7 +6,6 @@ import { Header } from "@/components/header"
 
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import {
-  CALENDLY_BOOK_URL,
   CREED_REALTY_SEARCH_URL,
   REALSCOUT_HOME_VALUATION_URL,
   REALSCOUT_MAP_SEARCH_URL,
@@ -37,7 +36,7 @@ export default function HomeSearchPage() {
                 sizes="100vw"
               />
             </div>
-            <M2mInsetHeroScrim variant="75" />
+            <M2mInsetHeroScrim variant="80" />
 
             <M2mContainer className="relative max-w-5xl pt-28 pb-16">
             {/* Kicker */}
@@ -59,10 +58,10 @@ export default function HomeSearchPage() {
                   We&apos;re looking<br />to buy.
                 </h1>
                 <p
-                  className="mt-6 max-w-md text-sm leading-relaxed text-m2m-muted-lt"
+                  className="mt-6 max-w-md text-sm leading-relaxed text-m2m-cream/90"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
-                  Start your property search or speak with one of our agents to find your perfect home.
+                  Start your property search or reach out and we&apos;ll help you find your perfect home.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <a
@@ -75,9 +74,7 @@ export default function HomeSearchPage() {
                     Start Your Search
                   </a>
                   <a
-                    href={CALENDLY_BOOK_URL}
-                    target="_blank"
-                    rel="noreferrer"
+                    href="/contact-us"
                     className="inline-flex items-center justify-center border border-m2m-gold/30 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:border-m2m-gold hover:text-m2m-gold"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
@@ -95,10 +92,10 @@ export default function HomeSearchPage() {
                   I&apos;m ready<br />to sell.
                 </h2>
                 <p
-                  className="mt-6 max-w-md text-sm leading-relaxed text-m2m-muted-lt"
+                  className="mt-6 max-w-md text-sm leading-relaxed text-m2m-cream/90"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
-                  Get a free home consultation or receive our comprehensive listing guide.
+                  Get a free home evaluation online, and request our comprehensive listing guide when you connect with the team.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <a
@@ -108,7 +105,7 @@ export default function HomeSearchPage() {
                     className="inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:bg-m2m-gold-lt"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
-                    Free Home Consultation
+                    Free Home Evaluation
                   </a>
                   <a
                     href={CREED_REALTY_SEARCH_URL}

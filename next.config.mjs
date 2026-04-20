@@ -11,6 +11,13 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  async redirects() {
+    return [
+      { source: "/plans-and-pricing", destination: "/get-license-in-va", permanent: true },
+      { source: "/facing-pre-foreclosure", destination: "/facing-foreclosure", permanent: true },
+      { source: "/facing-pre-foreclorure", destination: "/facing-foreclosure", permanent: true },
+    ]
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

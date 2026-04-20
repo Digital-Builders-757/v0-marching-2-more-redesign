@@ -10,7 +10,7 @@
 - **Design token sweep (home funnel + reviews + valuation)** — `app/globals.css`: `m2m-reviews-band`. Buy/sell heroes + `M2M_MEDIA`. Partners / PropertySearch tokens. Reviews bands. Brand doc updated for reviews token.
 - **Partners + shell + CMA** — Partner `href`s from `PARTNER_LINKS` in `lib/m2m-site.ts`. Branded `not-found`. CMA form shared field classes and footer placement.
 - **Broader overhaul sweeps** — `M2mContainer` / `M2mSection` on partners, blog, team, reviews, contact, resources, campaigns, etc. Shared `m2m-layout`, `m2m-cta`, `m2m-form`, button variants (`m2mGold`, `m2mPanel`). Production Blob imagery in `lib/m2m-media.ts`.
-- **Campaign landings** — `/improve-your-credit`, `/downsizing-your-home`, `/va-loan-benefits`, `/facing-pre-foreclosure`, `/plans-and-pricing` (see repo and [site-routes.md](./diagrams/site-routes.md)).
+- **Campaign landings** — `/improve-your-credit`, `/downsizing-your-home`, `/va-loan-benefits`, `/facing-foreclosure`, `/get-license-in-va` (see repo and [site-routes.md](./diagrams/site-routes.md)).
 - **Tooling** — `npm run ci`; ESLint 9 flat config; docs spine (`AGENTS.md`, architecture, brand, workflow).
 
 ## Highest-priority weak routes (next visual passes)
@@ -41,9 +41,9 @@
 | `/free-home-valuation`, `/home-valuation` | core | Good | Inset hero + sections; `/home-valuation` redirect. |
 | `/cma-form` | core | Good | Inset hero + form card. |
 | Legal (`/cookie-policy`, `/privacy-policy`, `/terms-and-conditions`, `/accessibility-statement`, `/copy-of-privacy-policy`) | legal | Good | Token-aligned policy shell. |
-| `/plans-and-pricing` | core | Good | Interior pricing tiers. |
+| `/get-license-in-va` | core | Good | Moseley VA license referral landing. |
 | `/fha-loan`, `/improve-your-credit`, `/more-investments`, `/navigating-divorce` | campaign | Strong–Good | Layout primitives; per-page copy/forms vary. |
-| `/downsizing-your-home`, `/va-loan-benefits`, `/facing-pre-foreclosure` | campaign | Strong–Good | Same. |
+| `/downsizing-your-home`, `/va-loan-benefits`, `/facing-foreclosure` | campaign | Strong–Good | Same. |
 
 Authoritative list: `app/**/page.tsx`. Grouped reference: [docs/diagrams/site-routes.md](./diagrams/site-routes.md).
 
@@ -59,7 +59,7 @@ Authoritative list: `app/**/page.tsx`. Grouped reference: [docs/diagrams/site-ro
 
 - Replace remaining **local PNG heroes** with `M2M_MEDIA` when assets exist (resources, home-search, CMA funnel).
 - **Blog** body: richer `prose` modifiers if posts gain structure beyond paragraphs.
-- **Reviews** + **plans-and-pricing**: section-by-section pass for dead zones and CTA bands.
+- **Reviews** + **get-license-in-va**: section-by-section pass for dead zones and CTA bands as needed.
 - **Strict TypeScript in CI** — when ready, narrow `typescript.ignoreBuildErrors` in `next.config.mjs`.
 
 ## Next 3 batches

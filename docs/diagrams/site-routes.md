@@ -24,13 +24,13 @@
 ## Campaign / landing (often not in hamburger)
 
 - `/fha-loan`, `/improve-your-credit`, `/more-investments`, `/navigating-divorce`
-- `/downsizing-your-home`, `/va-loan-benefits`, `/facing-pre-foreclosure`
+- `/downsizing-your-home`, `/va-loan-benefits`, `/facing-foreclosure`
 
 *(Hamburger inventory may omit some campaign URLs—see `lib/m2m-nav.ts`.)*
 
 ## Other interior
 
-- `/plans-and-pricing` — pricing / membership tiers
+- `/get-license-in-va` — Moseley Virginia salesperson licensing (referral landing)
 
 ```mermaid
 flowchart TB
@@ -45,7 +45,7 @@ flowchart TB
     other["..."]
   end
   subgraph interior [Interior]
-    pricing["/plans-and-pricing"]
+    license["/get-license-in-va"]
     resources["/resources"]
   end
 ```

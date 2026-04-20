@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { M2mContainer } from "@/components/m2m-layout"
+import { M2mLeadQuizSection } from "@/components/m2m-lead-quiz-section"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,6 +10,7 @@ import {
   m2mPlaybookFieldLabelClass,
   m2mPlaybookInputClass,
 } from "@/lib/m2m-form"
+import { GOHIGHLEVEL_QUIZ_CREDIT_URL, isGohighlevelUrlConfigured } from "@/lib/m2m-site"
 
 import {
   CREDIT_PLAYBOOK_SECTION_ID,
@@ -32,33 +33,32 @@ export function CreditPlaybookForm() {
     console.log("Credit playbook lead:", form)
   }
 
-  return (
-    <section
-      id={CREDIT_PLAYBOOK_SECTION_ID}
-      className="scroll-mt-28 border-b border-m2m-gold/15 py-16 md:py-20"
-      aria-labelledby="credit-playbook-heading"
-    >
-      <M2mContainer>
-        <div className="mx-auto max-w-3xl text-center">
-          <h2
-            id="credit-playbook-heading"
-            className="m2m-section-title text-m2m-cream"
-          >
-            {PLAYBOOK_HEADING}
-          </h2>
-          <div className="mx-auto mt-8 max-w-2xl space-y-4 text-left sm:text-center">
-            {PLAYBOOK_PARAGRAPHS.map((p) => (
-              <p
-                key={p.slice(0, 32)}
-                className="text-sm leading-relaxed text-m2m-cream/88 sm:text-base font-sans"
-              >
-                {p}
-              </p>
-            ))}
-          </div>
-        </div>
+  const showLocalForm = !isGohighlevelUrlConfigured(GOHIGHLEVEL_QUIZ_CREDIT_URL)
 
-        <div className="mx-auto mt-12 max-w-xl">
+  const description = (
+    <div className="space-y-4">
+      {PLAYBOOK_PARAGRAPHS.map((p) => (
+        <p key={p.slice(0, 32)} className="text-sm leading-relaxed text-m2m-cream/88 sm:text-base font-sans">
+          {p}
+        </p>
+      ))}
+    </div>
+  )
+
+  return (
+    <M2mLeadQuizSection
+      id={CREDIT_PLAYBOOK_SECTION_ID}
+      title={PLAYBOOK_HEADING}
+      description={description}
+      embedSrc={GOHIGHLEVEL_QUIZ_CREDIT_URL}
+      footnote={
+        showLocalForm
+          ? "We’ll email your playbook and practical next steps. You can connect the GoHighLevel quiz in lib/m2m-site.ts when it’s ready."
+          : undefined
+      }
+    >
+      {showLocalForm ? (
+        <div className="mx-auto max-w-xl">
           <div className="bg-m2m-cream px-6 py-10 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:px-10 sm:py-12">
             <p
               className="mb-10 text-center text-base font-semibold leading-snug text-m2m-deep sm:text-lg"
@@ -117,7 +117,7 @@ export function CreditPlaybookForm() {
             </form>
           </div>
         </div>
-      </M2mContainer>
-    </section>
+      ) : null}
+    </M2mLeadQuizSection>
   )
 }

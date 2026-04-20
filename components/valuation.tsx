@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 
+import { REALSCOUT_HOME_VALUATION_URL } from "@/lib/m2m-site"
+
 export function Valuation() {
   return (
     <section id="valuation" className="relative bg-m2m-black px-6 py-20 md:px-16 lg:px-24 md:py-28 overflow-hidden">
@@ -57,7 +59,7 @@ export function Valuation() {
             {/* Body */}
             <p 
               data-gsap-child
-              className="text-sm leading-relaxed text-m2m-muted max-w-xl pl-6 border-l border-m2m-gold/20"
+              className="text-sm leading-relaxed text-m2m-cream/88 max-w-xl pl-6 border-l border-m2m-gold/20"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               Get an accurate, no-obligation home valuation from our experienced team. We&apos;ll help you understand your home&apos;s true market value and guide you through every step of the selling process.
@@ -66,18 +68,20 @@ export function Valuation() {
             {/* CTAs */}
             <div data-gsap-child className="flex flex-col sm:flex-row gap-4 mt-4">
               <div className="flex flex-col gap-2">
-                <Link
-                  href="/contact"
+                <a
+                  href={REALSCOUT_HOME_VALUATION_URL}
+                  target="_blank"
+                  rel="noreferrer"
                   data-gsap="magnetic"
                   className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get Your Free Home Valuation
-                </Link>
+                </a>
               </div>
               <div className="flex flex-col gap-2">
                 <Link
-                  href="/sell"
+                  href="/free-home-valuation"
                   data-gsap="magnetic"
                   className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
                   style={{ fontFamily: 'var(--font-nav)' }}

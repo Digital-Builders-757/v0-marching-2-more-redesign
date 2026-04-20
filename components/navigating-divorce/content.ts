@@ -90,14 +90,6 @@ export const AERIAL_COPY = {
   ],
 } as const
 
-/** Partner marks — replace with official SVG/PNG logos when available. */
-export const PARTNER_PLACEHOLDERS = [
-  { label: "U.S. Military On the Move", abbr: "MM" },
-  { label: "Creed Realty", abbr: "CR" },
-  { label: "Equal Housing Opportunity", abbr: "EQ" },
-  { label: "National Association of Realtors®", abbr: "NAR" },
-] as const
-
 export const TEAM_SOCIAL = {
   donavan: {
     linkedin: "https://www.linkedin.com/in/donavan-mcfadden",

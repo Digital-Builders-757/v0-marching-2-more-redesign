@@ -59,7 +59,7 @@ Header and global footer use `M2mConsultationCta` and `M2mContainer` where appli
 
 1. **Core marketing pages** (e.g. home, buy, sell, resources): `Header`, optional `GSAPAnimations`, `main` often `bg-white`, global `Footer`. Some older routes nest `Footer` inside `main` — prefer matching home: `Footer` sibling to `main` for new work unless touching legacy layout.
 2. **Campaign landings** (e.g. `/fha-loan`, `/improve-your-credit`, `/va-loan-benefits`): `Header` with `consultationCtaVariant="outlineCream"`, `main` with `bg-m2m-panel`, sections composed from `components/<campaign>/`, **`DivorceLandingFooter`** (luxury footer) — not the global `Footer` unless intentionally unified.
-3. **Pricing / simple interior** (e.g. `/plans-and-pricing`): standard `Header` + light `main` + global `Footer` for site consistency.
+3. **Partner / referral interior** (e.g. `/get-license-in-va`): standard `Header` + light `main` + global `Footer` for site consistency.
 
 ## Routing reference
 

@@ -140,8 +140,8 @@ Known page work includes:
 - `/improve-your-credit`
 - `/downsizing-your-home`
 - `/va-loan-benefits`
-- `/facing-pre-foreclosure`
-- `/plans-and-pricing`
+- `/facing-foreclosure`
+- `/get-license-in-va`
 
 Also scan the codebase for other public routes and include them in the audit and overhaul plan where appropriate.
 

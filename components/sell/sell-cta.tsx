@@ -1,10 +1,12 @@
 "use client"
 
-import Link from "next/link"
-
 import { M2mContainer } from "@/components/m2m-layout"
 import { M2M_MEDIA } from "@/lib/m2m-media"
-import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
+import {
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+  REALSCOUT_HOME_VALUATION_URL,
+} from "@/lib/m2m-site"
 
 export function SellCTA() {
   return (
@@ -50,13 +52,15 @@ export function SellCTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/contact"
+          <a
+            href={REALSCOUT_HOME_VALUATION_URL}
+            target="_blank"
+            rel="noreferrer"
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Get Free Valuation
-          </Link>
+          </a>
           <a
             href={M2M_PHONE_HREF}
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-gold/30 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold"

@@ -7,3 +7,4 @@
 | Build warns about pnpm lockfile | `pnpm-lock.yaml` present while using npm | Use **one** lockfile; this repo standardizes on **`package-lock.json`** (see skill `marching-2-more`) |
 | Turbopack root warning | Monorepo or nested `node_modules` confusion | Set `turbopack.root` in `next.config.mjs` to the app root (see `WORK_ORDER.md`) |
 | Typecheck noise in CI | `typescript.ignoreBuildErrors` in Next config | Temporary escape hatch; remove when types are clean |
+| `tsc`: Cannot find module `../../app/.../page.js` under `.next/types` | Stale Next generated types after removing or renaming `app/` routes | Delete the `.next` folder, then run `npm run typecheck` or `npm run ci` again |

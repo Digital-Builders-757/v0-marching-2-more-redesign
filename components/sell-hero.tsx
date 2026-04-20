@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
+import { REALSCOUT_HOME_VALUATION_URL } from "@/lib/m2m-site"
 
 export function SellHero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -90,18 +91,20 @@ export function SellHero() {
             {/* CTAs */}
             <div data-gsap-child className="flex flex-col sm:flex-row gap-4 mt-4 justify-end">
               <div className="flex flex-col gap-2">
-                <Link
-                  href="/contact"
+                <a
+                  href={REALSCOUT_HOME_VALUATION_URL}
+                  target="_blank"
+                  rel="noreferrer"
                   data-gsap="magnetic"
                   className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get Your Free Home Valuation
-                </Link>
+                </a>
               </div>
               <div className="flex flex-col gap-2">
                 <Link
-                  href="/sell"
+                  href="/free-home-valuation"
                   data-gsap="magnetic"
                   className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
                   style={{ fontFamily: 'var(--font-nav)' }}

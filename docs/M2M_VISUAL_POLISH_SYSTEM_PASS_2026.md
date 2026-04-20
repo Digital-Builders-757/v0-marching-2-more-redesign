@@ -348,10 +348,10 @@ Routes:
 - `/improve-your-credit`
 - `/downsizing-your-home`
 - `/va-loan-benefits`
-- `/facing-pre-foreclosure`
+- `/facing-foreclosure`
 - `/navigating-divorce`
 - `/more-investments`
-- `/plans-and-pricing`
+- `/get-license-in-va`
 
 #### Focus
 - unify CTA quality
