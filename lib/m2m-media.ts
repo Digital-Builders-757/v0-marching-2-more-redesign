@@ -3,9 +3,9 @@
 const BLOB_BASE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com"
 
 export const M2M_MEDIA = {
-  headshotDonavan: `${BLOB_BASE}/Donavan%20copy-R9RwXLWqjd9OnQw4gBl6EiAVWOj9x1.avif`,
-  headshotRoger: `${BLOB_BASE}/Roger%20Lee%20copy-ZbhqIDwo7JeGrBkKFa6Sv0ylWIuI1D.avif`,
-  headshotKristin: `${BLOB_BASE}/Kristin%20copy-lMfUtkHjgotsvjdeeUby9aj3quqUGu.avif`,
+  headshotDonavan: `${BLOB_BASE}/e81220_8e480009b082445c98c907867aaa4c9d~mv2-KalLf1y4zskbfQKC2EMe8s55rwTz3x.avif`,
+  headshotRoger: `${BLOB_BASE}/Roger%20Lee%20copy-oGCmwJdfHIojKRd0KSU9KThUhCbtek.avif`,
+  headshotKristin: `${BLOB_BASE}/DSC_0936-8_1-fP8OcW80aTTISgh6g9ONEXmaAKcPTO.avif`,
   /** Team/office — use until a dedicated headshot is uploaded. */
   teamPhotoWide: `${BLOB_BASE}/56d085e3a24effcebd880c3f6b20700c-b9nQPT49tOe3Bawn6ymNxBTkFMP2sW.jpg`,
   heroScreenshot: `${BLOB_BASE}/Screenshot%202026-04-03%20at%207.30.14%20PM-JVsmkDPrwryZHLk0Lm3Wqm4bAhGTc2.png`,
