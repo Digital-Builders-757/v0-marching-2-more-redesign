@@ -4,11 +4,11 @@ import Link from "next/link"
 import { M2mContainer } from "@/components/m2m-layout"
 
 import {
+  DOWNSIZING_GUIDE_SECTION_ID,
   HERO_BACKGROUND,
   HERO_BODY,
   HERO_CTA_LABEL,
   HERO_HEADLINE,
-  WEBINAR_REGISTER_URL,
 } from "./content"
 
 export function DownsizingHero() {
@@ -44,9 +44,7 @@ export function DownsizingHero() {
         </p>
         <div className="mt-10 w-full max-w-md sm:max-w-none">
           <Link
-            href={WEBINAR_REGISTER_URL}
-            target="_blank"
-            rel="noreferrer"
+            href={`#${DOWNSIZING_GUIDE_SECTION_ID}`}
             className="inline-flex min-h-12 w-full items-center justify-center bg-m2m-panel px-8 py-3.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-m2m-cream ring-1 ring-m2m-cream/35 transition hover:bg-m2m-panel-lt sm:w-auto"
             style={{ fontFamily: "var(--font-nav)" }}
           >

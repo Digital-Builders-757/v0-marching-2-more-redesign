@@ -17,6 +17,7 @@ export default function KristinProfilePage() {
         firstName="Kristin"
         role="Licensed Agent"
         image={M2M_MEDIA.headshotKristin}
+        imageObjectPosition="object-[center_28%]"
         email="Kristin@marching2more.com"
         instagram="https://www.instagram.com/marching2more"
         bio={`Kristin Allen brings thoughtful attention to detail and a calm, supportive presence to each transaction. With a genuine passion for helping families find their perfect home, Kristin is dedicated to making the real estate process as smooth and stress-free as possible.

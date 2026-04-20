@@ -34,7 +34,7 @@ export function PreForeclosureForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // TODO: Wire to CRM, Server Action, or transactional email — replace console stub before launch.
-    console.log("Pre-foreclosure lead:", form)
+    console.log("Facing foreclosure lead:", form)
   }
 
   return (
@@ -52,7 +52,7 @@ export function PreForeclosureForm() {
         {LEAD_SUBHEAD}
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Pre-foreclosure signup">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Request foreclosure guide">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <Label htmlFor="pf-first" className={m2mLeadFieldLabelClass}>

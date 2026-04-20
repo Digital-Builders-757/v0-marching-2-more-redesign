@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 
 import { Header } from "@/components/header"
 import { InvestmentsHero } from "@/components/more-investments/investments-hero"
-import { InvestmentsTestimonials } from "@/components/more-investments/investments-testimonials"
+import { InvestmentsSocialProof } from "@/components/more-investments/investments-social-proof"
+import { InvestmentsValue } from "@/components/more-investments/investments-value"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
 
 export const metadata: Metadata = {
@@ -17,7 +18,8 @@ export default function MoreInvestmentsPage() {
       <Header consultationCtaVariant="outlineCream" />
       <main id="main-content" tabIndex={-1} className="bg-m2m-panel">
         <InvestmentsHero />
-        <InvestmentsTestimonials />
+        <InvestmentsValue />
+        <InvestmentsSocialProof />
       </main>
       <DivorceLandingFooter />
     </>

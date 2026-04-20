@@ -21,10 +21,10 @@ export default function ImproveYourCreditPage() {
       <Header consultationCtaVariant="outlineCream" />
       <main id="main-content" tabIndex={-1} className="bg-m2m-panel text-m2m-cream">
         <CreditHero />
+        <CreditPlaybookForm />
         <CreditEducation />
         <CreditTakeaways />
         <CreditVideo />
-        <CreditPlaybookForm />
         <CreditClosing />
       </main>
       <DivorceLandingFooter />

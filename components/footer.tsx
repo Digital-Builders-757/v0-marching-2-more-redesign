@@ -79,8 +79,8 @@ export function Footer() {
                   href={a.href}
                   className="flex items-center gap-2 text-xs text-m2m-muted hover:text-m2m-cream transition-colors"
                 >
-                  <span className="relative h-8 w-8 overflow-hidden rounded-full border border-m2m-gold/20">
-                    <Image src={a.img} alt="" fill className="object-cover" />
+                  <span className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-m2m-gold/25">
+                    <Image src={a.img} alt="" fill className="object-cover object-top" sizes="32px" />
                   </span>
                   <span style={{ fontFamily: "var(--font-sans)" }}>{a.name}</span>
                 </Link>
@@ -113,10 +113,10 @@ export function Footer() {
               href={GOOGLE_REVIEW_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-4 inline-flex w-fit items-center justify-center border border-m2m-gold/30 bg-black/30 text-m2m-cream text-[0.62rem] tracking-[0.2em] uppercase font-medium px-5 py-3 rounded-sm transition hover:border-m2m-gold/60"
-              style={{ fontFamily: "var(--font-nav)" }}
+              className="mt-3 w-fit text-xs tracking-wider text-m2m-muted underline decoration-m2m-gold/40 underline-offset-4 transition-colors hover:text-m2m-cream"
+              style={{ fontFamily: "var(--font-sans)" }}
             >
-              Review us on Google ▸
+              Leave a Google review →
             </a>
           </div>
 

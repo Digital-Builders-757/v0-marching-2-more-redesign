@@ -6,12 +6,14 @@ import { ArrowRight } from "lucide-react"
 
 import { M2mContainer, M2mSection } from "@/components/m2m-layout"
 import { M2M_MEDIA } from "@/lib/m2m-media"
+import { cn } from "@/lib/utils"
 
 type TeamMember = {
   name: string
   subtitle: string
   image: string
   href?: string
+  imageObjectPosition?: string
 }
 
 const teamMembers: TeamMember[] = [
@@ -20,37 +22,46 @@ const teamMembers: TeamMember[] = [
     subtitle: "Founding Partner • Licensed Agent",
     image: M2M_MEDIA.headshotDonavan,
     href: "/profile-page",
+    imageObjectPosition: "object-[center_26%]",
   },
   {
     name: "Roger Lee",
     subtitle: "Founding Partner • Licensed Agent",
     image: M2M_MEDIA.headshotRoger,
     href: "/roger-lee",
+    imageObjectPosition: "object-[center_24%]",
   },
   {
     name: "Kristin Allen",
     subtitle: "Licensed Agent",
     image: M2M_MEDIA.headshotKristin,
     href: "/kristin-s-profile",
+    imageObjectPosition: "object-[center_28%]",
   },
   {
     name: "Jalessa Hendricks",
     subtitle: "Licensed Agent",
     image: M2M_MEDIA.teamPhotoWide,
+    imageObjectPosition: "object-[center_40%]",
   },
 ]
 
 function MemberCard({ member }: { member: TeamMember }) {
   const content = (
     <div className="flex flex-col gap-6 border border-m2m-deep/10 p-6 transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
-      <div className="flex flex-col gap-6 sm:flex-row">
-        <div className="relative h-48 w-full flex-shrink-0 overflow-hidden sm:h-40 sm:w-40">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-stretch">
+        <div
+          className={cn(
+            "relative mx-auto aspect-[3/4] w-full max-w-[220px] shrink-0 overflow-hidden",
+            "sm:mx-0 sm:aspect-auto sm:h-40 sm:w-40 sm:max-w-none",
+          )}
+        >
           <Image
             src={member.image}
             alt={member.name}
             fill
-            className="object-cover"
-            sizes="(min-width: 640px) 160px, 100vw"
+            className={cn("object-cover", member.imageObjectPosition)}
+            sizes="(min-width: 640px) 160px, 220px"
           />
         </div>
 

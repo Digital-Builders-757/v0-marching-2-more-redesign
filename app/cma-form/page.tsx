@@ -7,7 +7,7 @@ import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
-import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
+import { m2mCmaFormInputClass, m2mCmaFormTextareaClass } from "@/lib/m2m-form"
 
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
@@ -61,12 +61,12 @@ export default function CmaFormPage() {
               <div className="mx-auto max-w-5xl">
               {/* Kicker */}
               <div className="flex items-center gap-4">
-                <p
-                  className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-cream"
-                  style={{ fontFamily: "var(--font-nav)" }}
-                >
-                  CMA Request Form
-                </p>
+              <p
+                className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
+                style={{ fontFamily: "var(--font-nav)" }}
+              >
+                CMA Request Form
+              </p>
                 <span className="h-px w-24 bg-m2m-cream/40" />
               </div>
 
@@ -80,7 +80,7 @@ export default function CmaFormPage() {
 
               {/* Subheading */}
               <p
-                className="mt-6 max-w-lg text-base leading-relaxed text-m2m-cream"
+                className="mt-6 max-w-lg text-base leading-relaxed text-m2m-cream/95"
                 style={{ fontFamily: "var(--font-sans)" }}
               >
                 Unlock the true potential of your property with our Comprehensive Market Analysis
@@ -96,7 +96,10 @@ export default function CmaFormPage() {
               </a>
 
               {/* Form Card */}
-              <form onSubmit={handleSubmit} className="mt-12 bg-white/95 backdrop-blur-sm rounded-lg p-8 max-w-2xl shadow-xl">
+              <form
+                onSubmit={handleSubmit}
+                className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5"
+              >
                 {/* Property Address Section */}
                 <div className="mb-8">
                   <h2 className="mb-4 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
@@ -109,7 +112,7 @@ export default function CmaFormPage() {
                       placeholder="Street Address"
                       value={formData.streetAddress}
                       onChange={handleInputChange}
-                      className={m2mInteriorFormInputClass}
+                      className={m2mCmaFormInputClass}
                     />
                     <div className="grid grid-cols-2 gap-4">
                       <input
@@ -118,7 +121,7 @@ export default function CmaFormPage() {
                         placeholder="City"
                         value={formData.city}
                         onChange={handleInputChange}
-                        className={m2mInteriorFormInputClass}
+                        className={m2mCmaFormInputClass}
                       />
                       <input
                         type="text"
@@ -126,7 +129,7 @@ export default function CmaFormPage() {
                         placeholder="Postal / Zip code"
                         value={formData.postalCode}
                         onChange={handleInputChange}
-                        className={m2mInteriorFormInputClass}
+                        className={m2mCmaFormInputClass}
                       />
                     </div>
                   </div>
@@ -139,7 +142,7 @@ export default function CmaFormPage() {
                   <h2 className="mb-2 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                     Property Condition
                   </h2>
-                  <p className="mb-4 text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                  <p className="mb-4 text-xs text-m2m-deep/70" style={{ fontFamily: "var(--font-sans)" }}>
                     Select an option
                   </p>
                   <div className="space-y-2">
@@ -168,7 +171,7 @@ export default function CmaFormPage() {
                   <h2 className="mb-2 text-lg font-semibold text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                     Timeline for Selling
                   </h2>
-                  <p className="mb-4 text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                  <p className="mb-4 text-xs text-m2m-deep/70" style={{ fontFamily: "var(--font-sans)" }}>
                     Select an option
                   </p>
                   <div className="space-y-2">
@@ -211,7 +214,7 @@ export default function CmaFormPage() {
                         placeholder="First Name"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className={m2mInteriorFormInputClass}
+                        className={m2mCmaFormInputClass}
                       />
                       <input
                         type="text"
@@ -219,7 +222,7 @@ export default function CmaFormPage() {
                         placeholder="Last Name"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className={m2mInteriorFormInputClass}
+                        className={m2mCmaFormInputClass}
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -229,7 +232,7 @@ export default function CmaFormPage() {
                         placeholder="Email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className={m2mInteriorFormInputClass}
+                        className={m2mCmaFormInputClass}
                       />
                       <input
                         type="tel"
@@ -237,7 +240,7 @@ export default function CmaFormPage() {
                         placeholder="Phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className={m2mInteriorFormInputClass}
+                        className={m2mCmaFormInputClass}
                       />
                     </div>
                     <textarea
@@ -246,13 +249,13 @@ export default function CmaFormPage() {
                       value={formData.goals}
                       onChange={handleInputChange}
                       rows={4}
-                      className={m2mInteriorFormTextareaClass}
+                      className={m2mCmaFormTextareaClass}
                     />
                   </div>
                 </div>
 
                 {/* Privacy text */}
-                <p className="mb-6 text-center text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                <p className="mb-6 text-center text-xs text-m2m-deep/70" style={{ fontFamily: "var(--font-sans)" }}>
                   Your information is kept confidential and used only to respond to your CMA request.
                 </p>
 

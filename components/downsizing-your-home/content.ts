@@ -1,13 +1,9 @@
 /**
  * Copy and assets for `/downsizing-your-home`.
  *
- * SWAP: Replace placeholder imagery and WEBINAR_REGISTER_URL when final assets/links exist.
+ * SWAP: Replace placeholder `M2M_MEDIA` when final campaign art exists.
  */
-import { CALENDLY_BOOK_URL } from "@/lib/m2m-site"
 import { M2M_MEDIA } from "@/lib/m2m-media"
-
-// TODO: Replace with the real webinar registration URL when marketing provides it (Calendly is a temporary stand-in).
-export const WEBINAR_REGISTER_URL = CALENDLY_BOOK_URL
 
 /** Hero lifestyle background — warm interior / family moment. */
 // SWAP: client hero — couple downsizing / packing kitchen scene
@@ -18,7 +14,7 @@ export const HERO_HEADLINE = "Is It Time To Downsize?" as const
 export const HERO_BODY =
   "The Marching 2 More real estate team is not simply selling houses; we’re guiding families through a profound journey of downsizing, where each step is infused with our ethos of more giving, more community, and more prosperity for YOU." as const
 
-export const HERO_CTA_LABEL = "Register For Our Webinar" as const
+export const HERO_CTA_LABEL = "Download the guide" as const
 
 export const PROBLEMS_HEADING = "Common Problems" as const
 
@@ -39,14 +35,21 @@ export const PROBLEM_ITEMS = [
   { key: "mortgage", label: "Want to Eliminate Your Mortgage Payments?" },
 ] as const
 
+export const DOWNSIZING_QUIZ_SECTION_ID = "downsizing-quiz" as const
+
+export const DOWNSIZING_QUIZ_HEADING = "Wondering if now is the right time to downsize?" as const
+
+export const DOWNSIZING_QUIZ_DESCRIPTION =
+  "A short quiz helps you think through timing, lifestyle, and equity — so your next step feels clear, not rushed." as const
+
 export const DOWNSIZING_GUIDE_SECTION_ID = "downsizing-guide" as const
 
 export const GUIDE_HEADING = "Downsizing Guide" as const
 
 export const GUIDE_INTRO =
-  "Fill out the form to receive our complete guide in your email or sent directly to your home." as const
+  "Request the guide for practical steps, timing considerations, and how we support your move — delivered by email or mailed to your home." as const
 
-export const GUIDE_CTA_LABEL = "Get Your Guide" as const
+export const GUIDE_CTA_LABEL = "Get your guide" as const
 
 export const SERVICE_BLOCKS = [
   {
@@ -71,12 +74,9 @@ export const SERVICE_BLOCKS = [
   },
 ] as const
 
-export const WEBINAR_ACTION_PLAN_SECTION_ID = "webinar-action-plan" as const
+export const GUIDE_CALLOUT_SECTION_ID = "downsizing-guide-next" as const
 
-export const WEBINAR_HEADING =
-  "Attend Our Webinar to Receive Your Personalized Action Plan" as const
+export const GUIDE_CALLOUT_HEADING = "Your personalized roadmap starts with the guide" as const
 
-export const ACTION_PLAN_BODY =
-  "Each personalized action plan resonates with your aspirations and comfort levels. We navigate the complexities of downsizing by ensuring every decision reflects your goals, while fostering an environment where downsizing becomes synonymous with liberation and contentment." as const
-
-export const WEBINAR_SECONDARY_CTA = "Save your seat" as const
+export const GUIDE_CALLOUT_BODY =
+  "Download the guide for a calm, step-by-step look at preparing your home, timing the market, and planning your next chapter — then connect with our team when you are ready to talk specifics." as const

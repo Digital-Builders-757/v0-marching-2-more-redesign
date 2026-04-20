@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+import { M2mBrandLogo } from "@/components/m2m-brand-logo"
+
 import type { HeroSlide } from "./content"
 
 /** Shared readable uppercase label — matches FHA / divorce marketing scale */
@@ -10,7 +12,7 @@ const titleLg =
 function SlideBrandLockup() {
   return (
     <div className="mt-auto flex flex-col items-center border-t border-m2m-gold/15 pt-5">
-      <Image src="/brand/m2m-logo.avif" alt="" width={112} height={36} className="h-9 w-auto opacity-95" />
+      <M2mBrandLogo variant="carouselSm" className="opacity-95" alt="" />
       <p
         className="mt-2.5 text-center text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-m2m-gold sm:text-[0.68rem]"
         style={{ fontFamily: "var(--font-nav)" }}
@@ -28,7 +30,7 @@ function IntroSlide({ slide }: { slide: Extract<HeroSlide, { variant: "intro" }>
   return (
     <div className="flex min-h-[min(72vh,580px)] flex-col bg-m2m-panel px-5 py-8 sm:min-h-[560px] sm:px-6 sm:py-9">
       <div className="flex flex-col items-center">
-        <Image src="/brand/m2m-logo.avif" alt="" width={72} height={72} className="h-16 w-auto sm:h-[4.25rem]" />
+        <M2mBrandLogo variant="carouselLg" alt="" />
         <p
           className="mt-4 text-center text-[0.68rem] font-bold uppercase tracking-[0.2em] text-m2m-gold sm:text-[0.75rem]"
           style={{ fontFamily: "var(--font-nav)" }}
