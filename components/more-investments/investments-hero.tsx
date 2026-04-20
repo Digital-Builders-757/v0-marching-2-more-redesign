@@ -13,7 +13,9 @@ import {
 import { M2mContainer } from "@/components/m2m-layout"
 import { cn } from "@/lib/utils"
 
-import { HERO_SLIDES, INVESTMENTS_HERO_INTRO } from "./content"
+import Link from "next/link"
+
+import { HERO_SLIDES, INVESTOR_VALUE_SECTION_ID, INVESTMENTS_HERO_INTRO } from "./content"
 import { HeroSlideContent } from "./investments-hero-slides"
 
 function HeroCarouselInner() {
@@ -112,6 +114,15 @@ export function InvestmentsHero() {
               style={{ fontFamily: "var(--font-sans)" }}
             >
               {INVESTMENTS_HERO_INTRO.subhead}
+            </p>
+            <p className="mt-6">
+              <Link
+                href={`#${INVESTOR_VALUE_SECTION_ID}`}
+                className="text-sm font-medium text-m2m-gold-lt underline decoration-m2m-gold/50 underline-offset-[6px] transition hover:text-m2m-cream"
+                style={{ fontFamily: "var(--font-nav)" }}
+              >
+                How we help investors →
+              </Link>
             </p>
           </div>
 

@@ -26,6 +26,12 @@ export const m2mInteriorFormTextareaClass = cn(
   "min-h-[8rem] resize-y",
 )
 
+/** CMA / long hero forms on photography — high readability on warm white. */
+export const m2mCmaFormInputClass =
+  "min-h-11 w-full rounded-md border border-m2m-deep/20 bg-white px-4 py-3 text-base text-m2m-deep shadow-xs outline-none transition placeholder:text-m2m-deep/45 focus-visible:border-m2m-panel focus-visible:ring-[3px] focus-visible:ring-m2m-panel/25 md:text-sm font-sans"
+
+export const m2mCmaFormTextareaClass = cn(m2mCmaFormInputClass, "min-h-[8rem] resize-y")
+
 /** Dark panel card (e.g. sell page valuation request). */
 export const m2mDarkPanelFieldLabelClass =
   "mb-2 block text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold font-nav"

@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
@@ -11,6 +12,8 @@ type AgentProfileProps = {
   role: string
   licenseNumber?: string
   image: string
+  /** Tailwind object-position helpers, e.g. `object-[center_28%]` to keep full head in frame. */
+  imageObjectPosition?: string
   bio: string
   email?: string
   linkedin?: string
@@ -22,7 +25,8 @@ export function AgentProfile({
   firstName,
   role, 
   licenseNumber, 
-  image, 
+  image,
+  imageObjectPosition,
   bio,
   email,
   linkedin,
@@ -149,7 +153,7 @@ export function AgentProfile({
                   alt={name}
                   fill
                   priority
-                  className="object-cover"
+                  className={cn("object-cover", imageObjectPosition)}
                   sizes="(min-width: 1024px) 400px, 100vw"
                 />
               </div>

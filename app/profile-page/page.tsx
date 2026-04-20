@@ -18,6 +18,7 @@ export default function DonavanProfilePage() {
         role="Founding Partner"
         licenseNumber="0225-233-714"
         image={M2M_MEDIA.headshotDonavan}
+        imageObjectPosition="object-[center_26%]"
         email="Donavan@marching2more.com"
         linkedin="https://www.linkedin.com/in/donavan-mcfadden"
         instagram="https://www.instagram.com/marching2more"

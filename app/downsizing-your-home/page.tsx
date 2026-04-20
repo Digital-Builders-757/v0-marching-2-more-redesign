@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { DownsizingHero } from "@/components/downsizing-your-home/downsizing-hero"
 import { DownsizingProblems } from "@/components/downsizing-your-home/downsizing-problems"
+import { DownsizingQuiz } from "@/components/downsizing-your-home/downsizing-quiz"
 import { DownsizingServices } from "@/components/downsizing-your-home/downsizing-services"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
 
@@ -18,6 +19,7 @@ export default function DownsizingYourHomePage() {
       <Header consultationCtaVariant="outlineCream" />
       <main id="main-content" tabIndex={-1} className="bg-m2m-panel text-m2m-cream">
         <DownsizingHero />
+        <DownsizingQuiz />
         <DownsizingProblems />
         <DownsizingServices />
       </main>

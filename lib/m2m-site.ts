@@ -1,5 +1,10 @@
 /** Site-wide URLs and contact constants (Wix parity). */
 
+/** Canonical wordmark under `public/brand/` — swap file in place when final gold art ships. */
+export const M2M_BRAND_LOGO_SRC = "/brand/m2m-logo-gold.avif" as const
+
+export const M2M_BRAND_LOGO_ALT = "Marching 2 More Logo" as const
+
 export const M2M_PHONE_DISPLAY = "757-206-2859"
 export const M2M_PHONE_TEL = "+17572062859"
 /** Wix parity: `tel:+17572062859` (RFC 3966). */
@@ -32,6 +37,33 @@ export const M2M_ADDRESS_SINGLE_LINE =
 /** Wix parity primary CTA. */
 export const CALENDLY_BOOK_URL = "https://calendly.com/marching2more/45min"
 
+/**
+ * GoHighLevel booking/scheduling URL for “Book a consultation” on Contact Us.
+ * Replace with the real GHL public booking link when provided (must be https://).
+ */
+export const GOHIGHLEVEL_BOOKING_URL = "REPLACE_WITH_GOHIGHLEVEL_BOOKING_URL" as const
+
+export function isGohighlevelBookingConfigured(url: string = GOHIGHLEVEL_BOOKING_URL): boolean {
+  return isGohighlevelUrlConfigured(url)
+}
+
+/** True when a GHL (or any) public URL is set — not a placeholder string. */
+export function isGohighlevelUrlConfigured(url: string): boolean {
+  return url.startsWith("https://") || url.startsWith("http://")
+}
+
+/**
+ * GoHighLevel quiz / survey embed or form URLs (lead-gen landings).
+ * Replace with real https:// links when marketing provides them.
+ */
+export const GOHIGHLEVEL_QUIZ_CREDIT_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_CREDIT_URL" as const
+export const GOHIGHLEVEL_QUIZ_DOWNSIZING_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_DOWNSIZING_URL" as const
+export const GOHIGHLEVEL_QUIZ_FORECLOSURE_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_FORECLOSURE_URL" as const
+
+/** Moseley Real Estate School — Virginia salesperson licensing (Donavan referral path). */
+export const MOSELEY_VA_SALESPERSON_LICENSE_URL =
+  "https://moseley.org/get-license-virginia-salesperson/" as const
+
 export const REALSCOUT_MAP_SEARCH_URL =
   "https://donavanmcfadden63.realscout.com/homesearch/map?for_sale=1&for_rent=0"
 
@@ -41,7 +73,7 @@ export const REALSCOUT_HOME_VALUATION_URL =
 export const CREED_REALTY_SEARCH_URL =
   "https://donavan.atcoastal.com/results-gallery/?status=A"
 
-export const GOOGLE_REVIEW_URL = "https://g.page/r/Cdr645m9lC69EBM/review"
+export const GOOGLE_REVIEW_URL = "https://g.page/r/Cdr645m9lC69EAE/review"
 
 export const WIX_MAIL_NEED_HELP_SUBJECT =
   "I need the Marching 2 More teams help with..."

@@ -20,7 +20,6 @@ export const M2M_WIX_HEADER_MENU_LINKS: readonly M2MNavLink[] = [
   { label: "Free Home Valuation", href: "/free-home-valuation" },
   { label: "Our Team", href: "/our-team" },
   { label: "Reviews", href: "/reviews" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact-us" },
 ] as const
 

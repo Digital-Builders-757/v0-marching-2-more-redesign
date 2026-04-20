@@ -4,8 +4,14 @@ import Link from "next/link"
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { M2mBrandLogo } from "@/components/m2m-brand-logo"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim, M2mSection } from "@/components/m2m-layout"
-import { GOOGLE_REVIEW_URL, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
+import {
+  GOOGLE_REVIEW_URL,
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+  REALSCOUT_HOME_VALUATION_URL,
+} from "@/lib/m2m-site"
 
 export const metadata: Metadata = {
   title: "Free Home Valuation | Marching 2 More",
@@ -32,18 +38,18 @@ export default function FreeHomeValuationPage() {
                 sizes="100vw"
               />
             </div>
-            <M2mInsetHeroScrim variant="70" />
+            <M2mInsetHeroScrim variant="80" />
 
             <M2mContainer className="relative max-w-5xl text-center pt-28 pb-20">
             {/* Kicker */}
             <div className="inline-flex items-center gap-4 mb-8">
               <p
-                className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-cream"
+                className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Home Valuation
               </p>
-              <span className="h-px w-16 bg-m2m-cream/50" />
+              <span className="h-px w-16 bg-m2m-gold/60" />
             </div>
 
             {/* Heading */}
@@ -58,7 +64,7 @@ export default function FreeHomeValuationPage() {
 
             {/* Subheading */}
             <p
-              className="text-base md:text-lg italic text-m2m-cream/90 mb-8 max-w-xl mx-auto"
+              className="text-base md:text-lg italic text-m2m-cream mb-8 max-w-xl mx-auto"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Effortless Home Valuation for Top Market<br />
@@ -66,18 +72,20 @@ export default function FreeHomeValuationPage() {
             </p>
 
             {/* CTA Button */}
-            <Link
-              href="/cma-form"
+            <a
+              href={REALSCOUT_HOME_VALUATION_URL}
+              target="_blank"
+              rel="noreferrer"
               className="inline-block bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:bg-m2m-gold-lt mb-8"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               Get Your Free Home Valuation
-            </Link>
+            </a>
 
             {/* Veteran Owned Badge */}
             <div className="flex items-center justify-center gap-2 mb-8">
               <p
-                className="text-xs text-m2m-cream/80"
+                className="text-xs text-m2m-cream/95"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Veteran Owned
@@ -87,7 +95,7 @@ export default function FreeHomeValuationPage() {
 
             {/* Contact Link */}
             <p
-              className="text-sm text-m2m-cream/70"
+              className="text-sm text-m2m-cream/90"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               Have a question?{" "}
@@ -102,15 +110,10 @@ export default function FreeHomeValuationPage() {
         {/* Support Section */}
         <M2mSection variant="light" className="py-20">
           <M2mContainer className="max-w-3xl text-center">
-            {/* M2M Logo/Icon */}
-            <div className="mb-8">
-              <Image
-                src="/m2m-logo-gold.png"
-                alt="Marching 2 More"
-                width={60}
-                height={60}
-                className="mx-auto"
-              />
+            <div className="mb-8 flex items-center justify-center gap-3">
+              <span className="h-px w-12 bg-m2m-gold/35" aria-hidden />
+              <M2mBrandLogo variant="inline" className="shrink-0 opacity-90" alt="" />
+              <span className="h-px w-12 bg-m2m-gold/35" aria-hidden />
             </div>
 
             {/* Heading */}
@@ -123,7 +126,10 @@ export default function FreeHomeValuationPage() {
             </h2>
 
             {/* Body */}
-            <p className="mx-auto max-w-xl text-base leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+            <p
+              className="mx-auto max-w-xl text-base leading-relaxed text-m2m-deep/85"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
               Our team truly gets that selling your home is more than a transaction —
               it&apos;s a personal journey. That is why we are committed to guide you
               through each step. <strong>No pressure, only support.</strong>
@@ -147,7 +153,7 @@ export default function FreeHomeValuationPage() {
               {/* Step 1 */}
               <div>
                 <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Schedule a Walkthrough</h3>
-                <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                <p className="text-sm leading-relaxed text-m2m-deep/80" style={{ fontFamily: "var(--font-sans)" }}>
                   Share your home&apos;s unique features and any concerns you have. We&apos;re here to listen and address your specific needs.
                 </p>
               </div>
@@ -155,7 +161,7 @@ export default function FreeHomeValuationPage() {
               {/* Step 2 */}
               <div>
                 <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Review Market Positioning Options</h3>
-                <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                <p className="text-sm leading-relaxed text-m2m-deep/80" style={{ fontFamily: "var(--font-sans)" }}>
                   Comprehensive Market Analysis: Gain insights with a detailed Comparative Market Analysis (CMA), understanding how your home stacks up in the current market.
                 </p>
               </div>
@@ -165,7 +171,7 @@ export default function FreeHomeValuationPage() {
                 <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">
                   Personalized Value Enhancement Checklist
                 </h3>
-                <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                <p className="text-sm leading-relaxed text-m2m-deep/80" style={{ fontFamily: "var(--font-sans)" }}>
                   Whether improving your home&apos;s value or listing as is, we provide expert guidance every step of the way.
                 </p>
               </div>
@@ -173,7 +179,7 @@ export default function FreeHomeValuationPage() {
               {/* Step 4 */}
               <div>
                 <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">No pressure, only support.</h3>
-                <p className="text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                <p className="text-sm leading-relaxed text-m2m-deep/80" style={{ fontFamily: "var(--font-sans)" }}>
                   From contracts to closing, we handle everything. We coordinate with lawyers, manage projects, and keep your sale on track.
                 </p>
               </div>
@@ -181,13 +187,15 @@ export default function FreeHomeValuationPage() {
 
             {/* CTA */}
             <div className="text-center">
-              <Link
-                href="/cma-form"
+              <a
+                href={REALSCOUT_HOME_VALUATION_URL}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-block border-2 border-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:bg-m2m-gold hover:text-m2m-deep"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Get Your Free Home Valuation
-              </Link>
+              </a>
             </div>
           </M2mContainer>
         </M2mSection>
@@ -223,7 +231,7 @@ export default function FreeHomeValuationPage() {
                   </div>
                 </div>
                 <div className="text-m2m-gold text-sm mb-3">★ ★ ★ ★ ★</div>
-                <p className="text-sm leading-relaxed text-m2m-muted">
+                <p className="text-sm leading-relaxed text-m2m-deep/80">
                   Donavan and his team were above and beyond in the care and details they took getting my home sold. The process was streamlined and explained every step of the way. I highly recommend them to anyone interested in selling or purchasing a home.
                 </p>
               </div>
@@ -246,7 +254,7 @@ export default function FreeHomeValuationPage() {
                   </div>
                 </div>
                 <div className="text-m2m-gold text-sm mb-3">★ ★ ★ ★ ★</div>
-                <p className="text-sm leading-relaxed text-m2m-muted">
+                <p className="text-sm leading-relaxed text-m2m-deep/80">
                   My wife and I have bought 3 houses and sold 2, but our experience with Mr. McFadden has been hands down the smoothest, fastest, and easiest. He took care of everything we needed while selling our home. I would recommend in a heart beat.
                 </p>
               </div>
@@ -269,7 +277,7 @@ export default function FreeHomeValuationPage() {
                   </div>
                 </div>
                 <div className="text-m2m-gold text-sm mb-3">★ ★ ★ ★ ★</div>
-                <p className="text-sm leading-relaxed text-m2m-muted">
+                <p className="text-sm leading-relaxed text-m2m-deep/80">
                   Donny and Roger are an amazing 1-2 punch for both buyers and sellers in the VA Beach area. They are constantly providing valuable information through seminars and education in the community. They are going to make sure the home you buy fits your financial needs.
                 </p>
               </div>
@@ -325,13 +333,15 @@ export default function FreeHomeValuationPage() {
             </h2>
 
             <div className="flex flex-col items-center gap-4">
-              <Link
-                href="/cma-form"
+              <a
+                href={REALSCOUT_HOME_VALUATION_URL}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-block bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:bg-m2m-gold-lt"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Your Free Home Valuation
-              </Link>
+              </a>
 
               <a
                 href={M2M_PHONE_HREF}
