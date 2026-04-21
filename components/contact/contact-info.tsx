@@ -58,10 +58,10 @@ export function ContactInfo({ variant = "section" }: { variant?: ContactInfoVari
             >
               Email
             </h3>
-            <a 
+            <a
               href={M2M_EMAIL_HREF}
-              className="text-m2m-muted-lt hover:text-m2m-gold transition-colors text-sm"
-              style={{ fontFamily: 'var(--font-sans)' }}
+              className="break-words text-sm text-m2m-muted-lt transition-colors hover:text-m2m-gold"
+              style={{ fontFamily: "var(--font-sans)" }}
             >
               {M2M_EMAIL_DISPLAY}
             </a>

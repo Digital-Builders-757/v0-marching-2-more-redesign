@@ -82,9 +82,13 @@ export function AgentProfile({
                   <Button
                     variant="outline"
                     asChild
-                    className="h-auto rounded-full border-2 border-m2m-deep bg-transparent px-6 py-4 text-sm text-m2m-deep shadow-none hover:bg-m2m-cream/40"
+                    className="h-auto rounded-full border-2 border-m2m-deep bg-transparent px-6 py-4 text-left text-sm text-m2m-deep shadow-none hover:bg-m2m-cream/40"
                   >
-                    <a href={`mailto:${email}`} style={{ fontFamily: "var(--font-nav)" }}>
+                    <a
+                      href={`mailto:${email}`}
+                      className="break-words"
+                      style={{ fontFamily: "var(--font-nav)" }}
+                    >
                       {email}
                     </a>
                   </Button>

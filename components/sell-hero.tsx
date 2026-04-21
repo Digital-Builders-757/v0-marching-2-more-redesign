@@ -58,8 +58,12 @@ export function SellHero() {
       />
 
       <M2mContainer className="relative z-10">
-        <div className="max-w-3xl ml-auto text-right">
-          <div className="flex flex-col gap-6 items-end" data-gsap="stagger-children" data-gsap-direction="up">
+        <div className="ml-auto max-w-3xl text-right max-md:mx-auto max-md:max-w-none max-md:text-left">
+          <div
+            className="flex flex-col items-end gap-6 max-md:items-stretch"
+            data-gsap="stagger-children"
+            data-gsap-direction="up"
+          >
             {/* Kicker */}
             <p 
               data-gsap-child
@@ -89,14 +93,17 @@ export function SellHero() {
             </p>
 
             {/* CTAs */}
-            <div data-gsap-child className="flex flex-col sm:flex-row gap-4 mt-4 justify-end">
+            <div
+              data-gsap-child
+              className="mt-4 flex flex-col justify-end gap-4 max-md:items-stretch sm:flex-row sm:justify-end"
+            >
               <div className="flex flex-col gap-2">
                 <a
                   href={REALSCOUT_HOME_VALUATION_URL}
                   target="_blank"
                   rel="noreferrer"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+                  className="inline-block w-full text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:scale-[1.02] hover:bg-m2m-gold-lt sm:w-auto rounded-lg bg-m2m-gold px-8 py-4"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get Your Free Home Valuation
@@ -106,7 +113,7 @@ export function SellHero() {
                 <Link
                   href="/free-home-valuation"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                  className="inline-block w-full rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Learn More
@@ -116,14 +123,14 @@ export function SellHero() {
                 <Link
                   href="/sell#checklist"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                  className="inline-block w-full rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get The Pre-Listing Checklist
                 </Link>
-                <p 
-                  className="text-xs text-white/80 italic text-center"
-                  style={{ fontFamily: 'var(--font-sans)' }}
+                <p
+                  className="text-center text-xs italic text-white/80 max-md:text-left sm:text-center"
+                  style={{ fontFamily: "var(--font-sans)" }}
                 >
                   Our 20 page guide to assist you with every phase of selling your home.
                 </p>

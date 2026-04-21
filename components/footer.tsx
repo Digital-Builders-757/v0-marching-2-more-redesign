@@ -140,7 +140,7 @@ export function Footer() {
             </a>
             <a
               href={M2M_EMAIL_HREF}
-              className="text-xs tracking-wider text-m2m-muted hover:text-m2m-cream transition-colors"
+              className="break-words text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               {M2M_EMAIL_DISPLAY}

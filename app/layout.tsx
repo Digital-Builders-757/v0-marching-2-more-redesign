@@ -46,8 +46,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${jost.variable} ${cormorant.variable} ${playfair.variable} ${montserrat.variable} font-sans antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className="overflow-x-clip">
+      <body
+        className={`${jost.variable} ${cormorant.variable} ${playfair.variable} ${montserrat.variable} font-sans antialiased overflow-x-clip`}
+      >
         <ScrollToTop />
         {children}
         <Analytics />
