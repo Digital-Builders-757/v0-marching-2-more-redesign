@@ -51,14 +51,18 @@ export function BuyLeadMini() {
 
   if (done) {
     return (
-      <p className="text-m2m-muted text-base font-sans text-center">
+      <p
+        className="text-m2m-muted text-base font-sans text-center"
+        role="status"
+        aria-live="polite"
+      >
         Thank you! We&apos;ll reach out to help with your home search.
       </p>
     )
   }
 
   return (
-    <form onSubmit={submit} className="mt-8 max-w-xl mx-auto text-left space-y-4">
+    <form onSubmit={submit} aria-busy={submitting} className="mt-8 max-w-xl mx-auto text-left space-y-4">
       <p className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold font-nav text-center">Get matched with an agent</p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <input

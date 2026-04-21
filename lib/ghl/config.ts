@@ -130,3 +130,14 @@ export function getGhlConfig(): GhlConfig {
     dryRun,
   }
 }
+
+/** When pipelines is null, lists which of the four pipeline/stage env vars are unset (names only). */
+export function listUnsetPipelineEnvVars(): string[] {
+  const checks: [string, string | undefined][] = [
+    ["GHL_BUYER_PIPELINE_ID", process.env.GHL_BUYER_PIPELINE_ID],
+    ["GHL_SELLER_PIPELINE_ID", process.env.GHL_SELLER_PIPELINE_ID],
+    ["GHL_BUYER_STAGE_NEW_INQUIRY_ID", process.env.GHL_BUYER_STAGE_NEW_INQUIRY_ID],
+    ["GHL_SELLER_STAGE_NEW_INQUIRY_ID", process.env.GHL_SELLER_STAGE_NEW_INQUIRY_ID],
+  ]
+  return checks.filter(([, v]) => !opt(v)).map(([name]) => name)
+}

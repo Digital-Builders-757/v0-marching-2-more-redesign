@@ -56,7 +56,11 @@ export function ValuationSellerLeadForm() {
 
   if (done) {
     return (
-      <div className="rounded-xl border border-m2m-deep/12 bg-white p-8 text-center shadow-lg">
+      <div
+        className="rounded-xl border border-m2m-deep/12 bg-white p-8 text-center shadow-lg"
+        role="status"
+        aria-live="polite"
+      >
         <p className="text-xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
           Thank you!
         </p>
@@ -74,7 +78,7 @@ export function ValuationSellerLeadForm() {
       <p className="mt-2 text-sm text-m2m-deep/80 font-sans">
         Short form — we&apos;ll reach out to coordinate your CMA and next steps.
       </p>
-      <form onSubmit={submit} className="mt-6 space-y-4">
+      <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <input
             type="text"

@@ -4,6 +4,7 @@ export type { SubmitLeadRequest, SubmitLeadResponse }
 
 /**
  * POST JSON to the server-only lead route. No secrets in the request.
+ * Error strings in the response are user-safe (no stack traces or upstream internals).
  */
 export async function submitLeadToApi(body: SubmitLeadRequest): Promise<SubmitLeadResponse> {
   const res = await fetch("/api/submit-lead", {

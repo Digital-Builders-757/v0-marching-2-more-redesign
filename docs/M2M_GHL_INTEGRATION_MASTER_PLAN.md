@@ -281,15 +281,15 @@ Important: Slack can remain part of the architecture, but the preferred trigger 
 
 ## Booking and calendars
 
-Calendly should be removed from the current operating model.
+**Target operating model:** booking through **GoHighLevel calendars** (not Calendly as the long-term system).
 
-Booking should be handled through **GoHighLevel calendars**.
+**Current website behavior (transitional):** [`getPrimaryConsultationBookUrl()`](../lib/m2m-site.ts) uses **`GOHIGHLEVEL_BOOKING_URL`** when it is a real `http(s)` URL; otherwise it falls back to **`CALENDLY_BOOK_URL`** until GHL provides the primary public link. All primary “book consultation” CTAs should use this helper — do not scatter raw Calendly URLs in components.
 
-### Rules
+### Rules (GHL account)
 
 - each agent should connect their own Google Calendar individually
-- buyer consults and seller consults should use **separate booking links**
-- booking a calendar event should move the opportunity into the appointment stage automatically
+- buyer consults and seller consults should use **separate booking links** (or distinct flows) as the account defines
+- opportunity stage moves after appointments remain **GHL workflow** concerns once pipelines are live
 
 ---
 
@@ -383,29 +383,25 @@ Server-only secrets must remain server-side only and must never use the `NEXT_PU
 
 ## Implementation phases
 
+**Website phases 1–3 are shipped in this repo.** Phases 4–5 depend on GHL account configuration and live QA.
+
 ## Phase 1 — foundation
 
-- finalize this plan
-- identify all current forms, booking links, and CTA entry points
-- add / confirm environment variable contract
-- add shared GHL config module and API client wrapper
-- define common lead payload contract
+**Done (repo):** env contract in [`.env.example`](../.env.example); shared GHL modules; lead payload contract aligned with `lib/ghl/validate.ts`.
+
+- ongoing: keep this plan and checklists aligned with production learnings
 
 ## Phase 2 — website submission path
 
-- implement `POST /api/submit-lead`
-- validate required fields
-- create/update GHL contacts server-side
-- map required custom fields
-- apply buyer / seller tags
-- create/update opportunities in the correct pipeline
+**Done (repo):** `POST /api/submit-lead`; Zod validation; upsert → tags → optional opportunity; stable JSON responses.
+
+- live behavior requires valid **`GHL_*`** env (or `GHL_DRY_RUN=true` for testing without upstream calls)
 
 ## Phase 3 — page wiring
 
-- connect seller forms first
-- connect buyer forms second
-- replace contact / consultation paths that still point to Calendly where required
-- preserve thank-you UX and attribution capture
+**Status: shipped in repo** — seller and buyer surfaces wired; consultation URLs use **`getPrimaryConsultationBookUrl()`** (GHL when configured, else transitional Calendly). Remaining: swap **`GOHIGHLEVEL_BOOKING_URL`** to a real link when the account provides it.
+
+- preserve thank-you UX and attribution capture (ongoing QA)
 
 ## Phase 4 — automations + notifications
 
@@ -436,7 +432,7 @@ The integration is not “done” until the following are true:
 - seller leads receive the correct seller automation
 - buyer leads receive the correct buyer automation
 - urgency triggers elevated alerting
-- booking uses GHL, not Calendly
+- primary public booking uses **GHL** (`GOHIGHLEVEL_BOOKING_URL`); transitional Calendly fallback in code is acceptable only until that URL is live
 - owner / assigned-agent notifications are working
 - attribution fields are present where available
 - thank-you UX still feels polished and branded
@@ -450,7 +446,7 @@ The integration is not “done” until the following are true:
 - booking links shipped before calendar ownership is verified per agent
 - hidden UTMs dropped during page refactors
 - mixed buyer/seller routing caused by over-generic form reuse
-- old Calendly links lingering in components or docs
+- raw Calendly URLs added **outside** `getPrimaryConsultationBookUrl()` / `CALENDLY_BOOK_URL` (breaks single source of truth)
 
 ---
 
@@ -465,14 +461,20 @@ The integration is not “done” until the following are true:
 
 ---
 
-## Immediate next deliverables
+## Deliverable status (website repo)
 
-1. Audit current forms, CTA destinations, and consultation links
-2. Add or finish shared GHL config in this repo
-3. Build `POST /api/submit-lead`
-4. Wire seller forms first
-5. Replace remaining required booking paths with GHL-aware logic
-6. Produce a QA checklist for Donavan before May 1
+**Completed**
+
+1. Shared GHL config + `POST /api/submit-lead` + LeadConnector-style client (`lib/ghl/`).
+2. Seller and buyer forms wired with stable contract + `source_path` (priority surfaces + campaign fallbacks + contact-us + credit playbook local path).
+3. Consultation links use **`getPrimaryConsultationBookUrl()`** (GHL-first, Calendly fallback while `GOHIGHLEVEL_BOOKING_URL` is still a placeholder).
+4. Cutover docs: [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md), [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md); structured server logs with **`correlationId`** for live debugging.
+
+**Remaining (outside repo-only work)**
+
+1. Populate **`GHL_*`** env in Vercel and complete [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md).
+2. Replace **`GOHIGHLEVEL_*`** public URLs in `lib/m2m-site.ts` when available.
+3. Run end-to-end QA per runbook against the real sub-account before May 1 deadline.
 
 ---
 
@@ -492,16 +494,25 @@ This plan is the governing source of truth for the active GHL integration scope 
 
 ## Implementation status (website repo)
 
-**Shipped in code (foundation):**
+**Shipped in code (foundation + cutover readiness):**
 
 - Shared server modules under **`lib/ghl/`** (config, validation, LeadConnector-style HTTP client, contact upsert, tags, opportunity create).
 - **`POST /api/submit-lead`** — Node runtime, Zod validation, stable JSON responses; secrets stay server-only.
 - Client helpers: **`lib/m2m-lead-submit.ts`**, **`lib/m2m-utm.ts`**, **`useM2mUtm`**, **`M2mLeadDobField`**.
 - Forms wired with `lead_type`, DOB, UTMs, and `source_path` on priority seller and buyer surfaces (see checklist doc).
+- **Observability:** per-request **`correlationId`**; logs **`opportunity_skipped`** with **`missingEnvVars`** when pipeline env incomplete; no raw email/phone in logs.
+- **Booking single source of truth:** **`getPrimaryConsultationBookUrl()`** — documented in **`lib/m2m-site.ts`**; contact page uses the same helper as header/footer/hero/blog.
 
-**Still requires the GHL account + Vercel env:**
+**Confirmed technical decisions**
+
+- **Dry run:** `GHL_DRY_RUN=true` skips upstream calls; custom field env vars optional (placeholders injected server-side).
+- **Partial pipelines:** If any of the four pipeline/stage env vars are missing, contact upsert + tags still run; opportunities are skipped (degraded mode, not a silent failure — see logs).
+- **Notes:** Long `notes` are accepted in the API and logged server-side when present; auto-posting to GHL conversations is **not** implemented (optional follow-up).
+
+**Still requires the GHL account + Vercel env (not completable from repo alone):**
 
 - All **`GHL_*`** credentials and custom field / pipeline / stage IDs — see **[M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md)** and **[`.env.example`](../.env.example)**.
-- Public booking + quiz URLs in **`lib/m2m-site.ts`** (`GOHIGHLEVEL_*`) until marketing supplies real links.
+- **Live cutover + QA order:** **[M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md)** · **Blunt gap list:** **[M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md)**.
+- Public booking + quiz URLs in **`lib/m2m-site.ts`** (`GOHIGHLEVEL_*`) — replace placeholders when marketing/GHL supply real `https://` links.
 
 **API note:** Contact/opportunity request bodies are isolated in **`lib/ghl/client.ts`**. If the live API returns 4xx after credentials are set, adjust payloads there against the current [HighLevel API docs](https://marketplace.gohighlevel.com/docs/).

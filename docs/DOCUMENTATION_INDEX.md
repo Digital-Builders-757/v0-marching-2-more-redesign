@@ -19,6 +19,8 @@
 | [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md) | Cross-site visual system pass for buttons, image framing, surfaces, and route polish |
 | [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) | Active GoHighLevel integration boundary, phases, env contract |
 | [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) | GHL sub-account tasks: fields, pipelines, tags, workflows, calendars |
+| [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) | Ordered env + QA steps for live hookup and verification |
+| [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md) | Skimmable status: done vs blocked (GHL) vs remaining QA / next operator steps |
 | [ROADMAP.md](./ROADMAP.md) | Pointer to MVP_STATUS_ROADMAP (search alias) |
 | [development/BRANCHING.md](./development/BRANCHING.md) | Branch + PR flow toward `develop` |
 | [development/RELEASING.md](./development/RELEASING.md) | **`develop` → `main`** when ready for production |

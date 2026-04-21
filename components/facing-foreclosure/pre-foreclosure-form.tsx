@@ -71,7 +71,11 @@ export function PreForeclosureForm() {
 
   if (done) {
     return (
-      <div className="rounded-sm bg-m2m-cream p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] sm:p-8 lg:p-9">
+      <div
+        className="rounded-sm bg-m2m-cream p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] sm:p-8 lg:p-9"
+        role="status"
+        aria-live="polite"
+      >
         <p
           className="text-center text-2xl font-semibold text-m2m-panel sm:text-[1.65rem]"
           style={{ fontFamily: "var(--font-display)" }}
@@ -100,7 +104,12 @@ export function PreForeclosureForm() {
         {LEAD_SUBHEAD}
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Request foreclosure guide">
+      <form
+        onSubmit={handleSubmit}
+        aria-busy={submitting}
+        className="mt-8 space-y-5"
+        aria-label="Request foreclosure guide"
+      >
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <Label htmlFor="pf-first" className={m2mLeadFieldLabelClass}>

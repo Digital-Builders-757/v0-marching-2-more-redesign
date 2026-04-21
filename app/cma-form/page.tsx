@@ -141,7 +141,11 @@ export default function CmaFormPage() {
 
                 {/* Form Card */}
                 {done ? (
-                  <div className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 text-center shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5">
+                  <div
+                    className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 text-center shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5"
+                    role="status"
+                    aria-live="polite"
+                  >
                     <p className="text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                       Thank you!
                     </p>
@@ -152,6 +156,7 @@ export default function CmaFormPage() {
                 ) : (
                   <form
                     onSubmit={handleSubmit}
+                    aria-busy={submitting}
                     className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5"
                   >
                     {/* Property Address Section */}

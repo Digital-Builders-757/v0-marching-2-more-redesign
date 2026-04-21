@@ -13,12 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { LeadType } from "@/lib/ghl/types"
-import {
-  GOHIGHLEVEL_BOOKING_URL,
-  isGohighlevelBookingConfigured,
-  M2M_PHONE_DISPLAY,
-  M2M_PHONE_HREF,
-} from "@/lib/m2m-site"
+import { getPrimaryConsultationBookUrl, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export default function ContactUsPage() {
   const utm = useM2mUtm()
@@ -99,35 +94,25 @@ export default function ContactUsPage() {
               >
                 Call or text — {M2M_PHONE_DISPLAY}
               </a>
-              {isGohighlevelBookingConfigured() ? (
-                <a
-                  href={GOHIGHLEVEL_BOOKING_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
-                >
-                  Book a consultation
-                </a>
-              ) : (
-                <span
-                  className="text-sm font-medium text-m2m-muted font-sans"
-                  title="Set GOHIGHLEVEL_BOOKING_URL in lib/m2m-site.ts to your GoHighLevel booking link."
-                >
-                  Book a consultation{" "}
-                  <span className="text-xs font-normal text-m2m-deep/50">(link pending)</span>
-                </span>
-              )}
+              <a
+                href={getPrimaryConsultationBookUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
+              >
+                Book a consultation
+              </a>
             </div>
 
             {submitted ? (
-              <div className="py-12 text-center">
+              <div className="py-12 text-center" role="status" aria-live="polite">
                 <p className="text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                   Thank you!
                 </p>
                 <p className="mt-4 text-sm text-m2m-muted font-sans">We&apos;ll be in touch within 24 hours.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} aria-busy={submitting} className="space-y-6">
                 <fieldset className="space-y-3">
                   <legend className="text-sm font-medium text-m2m-deep font-sans mb-2">I am primarily…</legend>
                   <div className="flex flex-wrap gap-6">

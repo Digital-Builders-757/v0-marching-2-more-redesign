@@ -4,13 +4,14 @@ import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
-import { m2mLeadFieldInputClass } from "@/lib/m2m-form"
-
-const labelDark = "mb-1.5 block text-left text-[0.7rem] font-medium uppercase tracking-[0.12em] text-m2m-cream/85 font-nav"
-import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { m2mLeadFieldInputClass } from "@/lib/m2m-form"
+import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+
+const labelDark =
+  "mb-1.5 block text-left text-[0.7rem] font-medium uppercase tracking-[0.12em] text-m2m-cream/85 font-nav"
 
 /**
  * Shown inside `M2mLeadQuizSection` when the GHL downsizing quiz URL is still a placeholder.
@@ -60,7 +61,11 @@ export function DownsizingFallbackLead() {
 
   if (done) {
     return (
-      <div className="rounded-sm border border-m2m-gold/25 bg-m2m-deep/40 px-6 py-8 text-center">
+      <div
+        className="rounded-sm border border-m2m-gold/25 bg-m2m-deep/40 px-6 py-8 text-center"
+        role="status"
+        aria-live="polite"
+      >
         <p className="text-lg text-m2m-cream font-display">Thank you!</p>
         <p className="mt-2 text-sm text-m2m-cream/85 font-sans">We&apos;ll follow up with downsizing resources shortly.</p>
       </div>
@@ -72,7 +77,7 @@ export function DownsizingFallbackLead() {
       <p className="text-center text-sm text-m2m-cream/90 font-sans">
         While we connect the guided quiz, leave your details and we&apos;ll send tailored next steps.
       </p>
-      <form onSubmit={submit} className="mt-6 space-y-4">
+      <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <Label htmlFor="ds-first" className={labelDark}>

@@ -54,14 +54,14 @@ export function HomeSearchBuyerLead() {
 
   if (done) {
     return (
-      <p className="mt-6 text-sm text-m2m-cream/90 font-sans">
+      <p className="mt-6 text-sm text-m2m-cream/90 font-sans" role="status" aria-live="polite">
         Thank you! An agent will reach out to help with your search.
       </p>
     )
   }
 
   return (
-    <form onSubmit={submit} className="mt-6 space-y-4 max-w-md">
+    <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-4 max-w-md">
       <p className="text-[0.62rem] tracking-[0.2em] uppercase text-m2m-gold font-nav">Want help from the team?</p>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <input

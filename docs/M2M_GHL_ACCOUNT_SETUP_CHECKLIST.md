@@ -2,7 +2,11 @@
 
 **Purpose:** Tasks that must be completed **inside** the GoHighLevel (GHL) sub-account (M2M Team Leads) and supporting tools. The website repo cannot finish these without real IDs, URLs, and workflows from the account.
 
-**Related:** [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) · Website env template: [`.env.example`](../.env.example) · Public booking/quiz placeholders: [`lib/m2m-site.ts`](../lib/m2m-site.ts)
+**Website repo (already done):** `POST /api/submit-lead`, `lib/ghl/`, form wiring, `getPrimaryConsultationBookUrl()`, structured logs — see [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md). This checklist is **only** account-side + env population.
+
+**Blocked until:** an operator with GHL admin access can create or verify objects below and copy IDs into Vercel. Without **`GHL_API_KEY`** + **`GHL_LOCATION_ID`** + eight **`GHL_CF_*`** IDs, live mode will not configure (use **`GHL_DRY_RUN=true`** for UI-only testing).
+
+**Related:** [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) · Live hookup / QA order: [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) · Website env template: [`.env.example`](../.env.example) · Public booking/quiz placeholders: [`lib/m2m-site.ts`](../lib/m2m-site.ts) · Skimmable gap list: [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md)
 
 ---
 
@@ -81,13 +85,13 @@ If these env vars are omitted, the site still **upserts the contact** and **appl
 
 ## 8. Quiz / embed URLs (optional)
 
-Replace placeholders in [`lib/m2m-site.ts`](../lib/m2m-site.ts):
+Replace placeholders in [`lib/m2m-site.ts`](../lib/m2m-site.ts) (must become real `https://` embed or form URLs):
 
-- `GOHIGHLEVEL_QUIZ_CREDIT_URL`
-- `GOHIGHLEVEL_QUIZ_DOWNSIZING_URL`
-- `GOHIGHLEVEL_QUIZ_FORECLOSURE_URL`
+- `GOHIGHLEVEL_QUIZ_CREDIT_URL` — until set, **improve-your-credit** uses the **local playbook form** (already submits to `/api/submit-lead`).
+- `GOHIGHLEVEL_QUIZ_DOWNSIZING_URL` — until set, **downsizing** shows **fallback short form** to `/api/submit-lead`.
+- `GOHIGHLEVEL_QUIZ_FORECLOSURE_URL` — until set, **facing-foreclosure** relies on the on-page **lead form** (not iframe).
 
-When downsizing/foreclosure URLs are live, the iframe shows the GHL quiz; until then, the site shows the **fallback short form** (downsizing) or the **lead form** (foreclosure).
+When a URL is live, `M2mLeadQuizSection` shows the iframe; no placeholder string is loaded as `src`.
 
 ---
 

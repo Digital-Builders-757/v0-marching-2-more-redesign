@@ -29,10 +29,18 @@ export class GhlApiError extends Error {
   }
 }
 
+/** Server-only request correlation for logs (no PII). */
+export type GhlLogContext = { correlationId: string; step: string }
+
+function requestLogCtx(correlationId: string | undefined, step: string): GhlLogContext | undefined {
+  return correlationId ? { correlationId, step } : undefined
+}
+
 async function ghlFetch<T>(
   cfg: GhlConfig,
   path: string,
   init: RequestInit,
+  logCtx?: GhlLogContext,
 ): Promise<T> {
   const url = `${cfg.baseUrl.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`
   const res = await fetch(url, {
@@ -59,7 +67,12 @@ async function ghlFetch<T>(
       typeof body === "object" && body !== null && "message" in body
         ? String((body as { message?: unknown }).message ?? res.statusText)
         : res.statusText
-    console.error("[ghl] API error", { path, status: res.status, bodyPreview: text.slice(0, 500) })
+    console.error("[ghl] API error", {
+      ...(logCtx ?? {}),
+      path,
+      status: res.status,
+      bodyPreview: text.slice(0, 500),
+    })
     throw new GhlApiError(msg || "Upstream error", res.status, "ghl_upstream_error")
   }
 
@@ -78,6 +91,8 @@ export async function upsertContact(
     email: string
     phone: string
     customFields: GhlCustomFieldEntry[]
+    /** Optional; when set, API errors and parse failures include this id in server logs. */
+    correlationId?: string
   },
 ): Promise<UpsertContactResult> {
   const body: Record<string, unknown> = {
@@ -92,10 +107,15 @@ export async function upsertContact(
     body.customFields = params.customFields
   }
 
-  const data = await ghlFetch<Record<string, unknown>>(cfg, "/contacts/upsert", {
-    method: "POST",
-    body: JSON.stringify(body),
-  })
+  const data = await ghlFetch<Record<string, unknown>>(
+    cfg,
+    "/contacts/upsert",
+    {
+      method: "POST",
+      body: JSON.stringify(body),
+    },
+    requestLogCtx(params.correlationId, "contacts_upsert"),
+  )
 
   const contact = data.contact as Record<string, unknown> | undefined
   const id =
@@ -104,7 +124,10 @@ export async function upsertContact(
     (data.contactId as string | undefined)
 
   if (!id) {
-    console.error("[ghl] upsert contact: missing id in response", JSON.stringify(data).slice(0, 300))
+    console.error("[ghl] upsert contact: missing id in response", {
+      ...requestLogCtx(params.correlationId, "contacts_upsert"),
+      dataPreview: JSON.stringify(data).slice(0, 300),
+    })
     throw new GhlApiError("Invalid response from CRM", 500, "ghl_response_error")
   }
 
@@ -112,12 +135,22 @@ export async function upsertContact(
 }
 
 /** POST /contacts/:contactId/tags — tag names as configured in the sub-account */
-export async function addTagsToContact(cfg: GhlConfig, contactId: string, tags: string[]): Promise<void> {
+export async function addTagsToContact(
+  cfg: GhlConfig,
+  contactId: string,
+  tags: string[],
+  correlationId?: string,
+): Promise<void> {
   if (tags.length === 0) return
-  await ghlFetch(cfg, `/contacts/${encodeURIComponent(contactId)}/tags`, {
-    method: "POST",
-    body: JSON.stringify({ tags }),
-  })
+  await ghlFetch(
+    cfg,
+    `/contacts/${encodeURIComponent(contactId)}/tags`,
+    {
+      method: "POST",
+      body: JSON.stringify({ tags }),
+    },
+    requestLogCtx(correlationId, "contacts_tags"),
+  )
 }
 
 export type CreateOpportunityResult = { opportunityId: string }
@@ -130,6 +163,7 @@ export async function createOpportunity(
     pipelineId: string
     pipelineStageId: string
     name: string
+    correlationId?: string
   },
 ): Promise<CreateOpportunityResult> {
   const body = {
@@ -141,17 +175,25 @@ export async function createOpportunity(
     status: "open",
   }
 
-  const data = await ghlFetch<Record<string, unknown>>(cfg, "/opportunities/", {
-    method: "POST",
-    body: JSON.stringify(body),
-  })
+  const data = await ghlFetch<Record<string, unknown>>(
+    cfg,
+    "/opportunities/",
+    {
+      method: "POST",
+      body: JSON.stringify(body),
+    },
+    requestLogCtx(params.correlationId, "opportunities_create"),
+  )
 
   const id =
     (data.id as string | undefined) ??
     ((data.opportunity as Record<string, unknown> | undefined)?.id as string | undefined)
 
   if (!id) {
-    console.error("[ghl] create opportunity: missing id", JSON.stringify(data).slice(0, 300))
+    console.error("[ghl] create opportunity: missing id", {
+      ...requestLogCtx(params.correlationId, "opportunities_create"),
+      dataPreview: JSON.stringify(data).slice(0, 300),
+    })
     throw new GhlApiError("Invalid response from CRM", 500, "ghl_response_error")
   }
 
