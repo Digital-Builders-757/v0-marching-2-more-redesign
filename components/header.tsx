@@ -211,7 +211,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block rounded-sm px-3 py-3 text-base font-medium text-m2m-cream hover:bg-white/10"
+                    className="block min-h-11 rounded-sm px-3 py-3 text-base font-medium leading-snug text-m2m-cream hover:bg-white/10"
                     onClick={() => setMenuOpen(false)}
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
@@ -223,7 +223,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
               <li className="pt-2">
                 <a
                   href={M2M_PHONE_HREF}
-                  className="block rounded-sm px-3 py-3 text-base font-medium text-m2m-cream hover:bg-white/10"
+                  className="block min-h-11 rounded-sm px-3 py-3 text-base font-medium leading-snug text-m2m-cream hover:bg-white/10"
                   onClick={() => setMenuOpen(false)}
                   style={{ fontFamily: "var(--font-nav)" }}
                 >

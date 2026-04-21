@@ -1,35 +1,70 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mContainer } from "@/components/m2m-layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
-import {
-  GOHIGHLEVEL_BOOKING_URL,
-  isGohighlevelBookingConfigured,
-  M2M_PHONE_DISPLAY,
-  M2M_PHONE_HREF,
-} from "@/lib/m2m-site"
+import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+import type { LeadType } from "@/lib/ghl/types"
+import { getPrimaryConsultationBookUrl, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export default function ContactUsPage() {
+  const utm = useM2mUtm()
+  const [leadType, setLeadType] = useState<LeadType>("seller")
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
+    dateOfBirth: "",
     message: "",
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const intent = params.get("intent")?.toLowerCase()
+    if (intent === "buyer") setLeadType("buyer")
+    if (intent === "seller") setLeadType("seller")
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Contact form:", formData)
-    setSubmitted(true)
+    setError(null)
+    setSubmitting(true)
+    try {
+      const name = `${formData.firstName} ${formData.lastName}`.trim()
+      const res = await submitLeadToApi({
+        lead_type: leadType,
+        name,
+        email: formData.email,
+        phone: formData.phone,
+        date_of_birth: formData.dateOfBirth,
+        notes: formData.message || undefined,
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+        utm_content: utm.utm_content,
+        source_page: typeof window !== "undefined" ? window.location.href : undefined,
+        source_path: "/contact-us",
+      })
+      if (!res.ok) {
+        setError(res.error)
+        return
+      }
+      setSubmitted(true)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -59,35 +94,51 @@ export default function ContactUsPage() {
               >
                 Call or text — {M2M_PHONE_DISPLAY}
               </a>
-              {isGohighlevelBookingConfigured() ? (
-                <a
-                  href={GOHIGHLEVEL_BOOKING_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
-                >
-                  Book a consultation
-                </a>
-              ) : (
-                <span
-                  className="text-sm font-medium text-m2m-muted font-sans"
-                  title="Set GOHIGHLEVEL_BOOKING_URL in lib/m2m-site.ts to your GoHighLevel booking link."
-                >
-                  Book a consultation{" "}
-                  <span className="text-xs font-normal text-m2m-deep/50">(link pending)</span>
-                </span>
-              )}
+              <a
+                href={getPrimaryConsultationBookUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
+              >
+                Book a consultation
+              </a>
             </div>
 
             {submitted ? (
-              <div className="py-12 text-center">
+              <div className="py-12 text-center" role="status" aria-live="polite">
                 <p className="text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                   Thank you!
                 </p>
                 <p className="mt-4 text-sm text-m2m-muted font-sans">We&apos;ll be in touch within 24 hours.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} aria-busy={submitting} className="space-y-6">
+                <fieldset className="space-y-3">
+                  <legend className="text-sm font-medium text-m2m-deep font-sans mb-2">I am primarily…</legend>
+                  <div className="flex flex-wrap gap-6">
+                    <label className="flex cursor-pointer items-center gap-2 text-sm text-m2m-deep font-sans">
+                      <input
+                        type="radio"
+                        name="leadType"
+                        checked={leadType === "buyer"}
+                        onChange={() => setLeadType("buyer")}
+                        className="size-4 border-m2m-deep/25 text-m2m-panel focus:ring-m2m-panel"
+                      />
+                      Looking to buy
+                    </label>
+                    <label className="flex cursor-pointer items-center gap-2 text-sm text-m2m-deep font-sans">
+                      <input
+                        type="radio"
+                        name="leadType"
+                        checked={leadType === "seller"}
+                        onChange={() => setLeadType("seller")}
+                        className="size-4 border-m2m-deep/25 text-m2m-panel focus:ring-m2m-panel"
+                      />
+                      Looking to sell
+                    </label>
+                  </div>
+                </fieldset>
+
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Input
                     type="text"
@@ -97,6 +148,7 @@ export default function ContactUsPage() {
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     className={m2mInteriorFormInputClass}
                     required
+                    autoComplete="given-name"
                   />
                   <Input
                     type="text"
@@ -106,8 +158,16 @@ export default function ContactUsPage() {
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                     className={m2mInteriorFormInputClass}
                     required
+                    autoComplete="family-name"
                   />
                 </div>
+
+                <M2mLeadDobField
+                  value={formData.dateOfBirth}
+                  onChange={(v) => setFormData({ ...formData, dateOfBirth: v })}
+                  inputClassName={m2mInteriorFormInputClass}
+                  className="text-m2m-deep"
+                />
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Input
@@ -118,6 +178,7 @@ export default function ContactUsPage() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className={m2mInteriorFormInputClass}
                     required
+                    autoComplete="email"
                   />
                   <Input
                     type="tel"
@@ -126,6 +187,8 @@ export default function ContactUsPage() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className={m2mInteriorFormInputClass}
+                    required
+                    autoComplete="tel"
                   />
                 </div>
 
@@ -138,8 +201,14 @@ export default function ContactUsPage() {
                   className={m2mInteriorFormTextareaClass}
                 />
 
-                <Button type="submit" variant="m2mPanel" className="w-full">
-                  That&apos;s it — Send!
+                {error ? (
+                  <p className="text-sm text-red-700 font-sans" role="alert">
+                    {error}
+                  </p>
+                ) : null}
+
+                <Button type="submit" variant="m2mPanel" className="w-full" disabled={submitting}>
+                  {submitting ? "Sending…" : "That's it — Send!"}
                 </Button>
               </form>
             )}

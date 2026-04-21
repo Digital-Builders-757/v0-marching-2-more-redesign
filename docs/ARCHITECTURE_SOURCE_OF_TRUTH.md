@@ -76,9 +76,9 @@ See [diagrams/site-routes.md](./diagrams/site-routes.md) for a grouped route lis
 - `npm run ci` → lint, placeholder test, `tsc`, `next build`.
 - `typescript.ignoreBuildErrors` may be set in `next.config.mjs`; still run typecheck in CI.
 
-## Planned external CRM boundary
+## External CRM boundary
 
-A future GoHighLevel integration is planned, but the architectural boundary is:
+GoHighLevel integration is now an active project, and the architectural boundary is:
 - the website repo owns lead capture, server-side submission, thank-you UX, and analytics wiring
 - GoHighLevel owns CRM records, pipelines, automations, calendars, routing, and reporting
 - Slack/Zapier/direct-mail/AI layers remain external operational systems unless scope is explicitly expanded
@@ -88,4 +88,4 @@ Source of truth for that boundary: [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GH
 ## Out of scope (today)
 
 - Supabase, auth middleware, RLS, Stripe — not part of this repo unless explicitly added.
-- Full CRM / automation implementation inside the website repo — keep GHL operational logic outside this codebase unless the project scope formally changes.
+- Rebuilding all CRM / automation behavior directly inside the website repo — keep GHL operational logic in GHL wherever possible, and keep the site focused on lead capture, secure server-side submission, and clean UX.

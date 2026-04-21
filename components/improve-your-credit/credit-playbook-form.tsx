@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 
+import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { M2mLeadQuizSection } from "@/components/m2m-lead-quiz-section"
+import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,6 +12,7 @@ import {
   m2mPlaybookFieldLabelClass,
   m2mPlaybookInputClass,
 } from "@/lib/m2m-form"
+import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import { GOHIGHLEVEL_QUIZ_CREDIT_URL, isGohighlevelUrlConfigured } from "@/lib/m2m-site"
 
 import {
@@ -21,16 +24,46 @@ import {
 } from "./content"
 
 export function CreditPlaybookForm() {
+  const utm = useM2mUtm()
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
+    dateOfBirth: "",
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [done, setDone] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Wire to CRM, Server Action, or transactional email — replace console stub before launch.
-    console.log("Credit playbook lead:", form)
+    setError(null)
+    setSubmitting(true)
+    try {
+      const name = `${form.firstName} ${form.lastName}`.trim()
+      const res = await submitLeadToApi({
+        lead_type: "buyer",
+        name,
+        email: form.email,
+        phone: form.phone,
+        date_of_birth: form.dateOfBirth,
+        notes: "Credit Improvement Playbook — download request",
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+        utm_content: utm.utm_content,
+        source_page: typeof window !== "undefined" ? window.location.href : undefined,
+        source_path: "/improve-your-credit",
+      })
+      if (!res.ok) {
+        setError(res.error)
+        return
+      }
+      setDone(true)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const showLocalForm = !isGohighlevelUrlConfigured(GOHIGHLEVEL_QUIZ_CREDIT_URL)
@@ -60,61 +93,111 @@ export function CreditPlaybookForm() {
       {showLocalForm ? (
         <div className="mx-auto max-w-xl">
           <div className="bg-m2m-cream px-6 py-10 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:px-10 sm:py-12">
-            <p
-              className="mb-10 text-center text-base font-semibold leading-snug text-m2m-deep sm:text-lg"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {PLAYBOOK_CARD_TITLE}
-            </p>
+            {done ? (
+              <div role="status" aria-live="polite" className="text-center">
+                <p
+                  className="text-base font-semibold leading-snug text-m2m-deep sm:text-lg"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Thank you!
+                </p>
+                <p className="mt-4 text-sm text-m2m-deep/80 font-sans">
+                  We received your request. Check your email for next steps.
+                </p>
+              </div>
+            ) : (
+              <>
+                <p
+                  className="mb-10 text-center text-base font-semibold leading-snug text-m2m-deep sm:text-lg"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {PLAYBOOK_CARD_TITLE}
+                </p>
 
-            <form onSubmit={handleSubmit} className="space-y-8" aria-label="Credit Improvement Playbook download">
-              <div>
-                <Label htmlFor="credit-playbook-first" className={m2mPlaybookFieldLabelClass}>
-                  First name
-                </Label>
-                <Input
-                  id="credit-playbook-first"
-                  type="text"
-                  autoComplete="given-name"
-                  value={form.firstName}
-                  onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                  className={m2mPlaybookInputClass}
-                />
-              </div>
-              <div>
-                <Label htmlFor="credit-playbook-last" className={m2mPlaybookFieldLabelClass}>
-                  Last name
-                </Label>
-                <Input
-                  id="credit-playbook-last"
-                  type="text"
-                  autoComplete="family-name"
-                  value={form.lastName}
-                  onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                  className={m2mPlaybookInputClass}
-                />
-              </div>
-              <div>
-                <Label htmlFor="credit-playbook-email" className={m2mPlaybookFieldLabelClass}>
-                  Enter your email here<span className="text-m2m-panel">*</span>
-                </Label>
-                <Input
-                  id="credit-playbook-email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className={m2mPlaybookInputClass}
-                />
-              </div>
+                <form
+                  onSubmit={handleSubmit}
+                  aria-busy={submitting}
+                  className="space-y-8"
+                  aria-label="Credit Improvement Playbook download"
+                >
+                  <div>
+                    <Label htmlFor="credit-playbook-first" className={m2mPlaybookFieldLabelClass}>
+                      First name<span className="text-m2m-panel">*</span>
+                    </Label>
+                    <Input
+                      id="credit-playbook-first"
+                      type="text"
+                      required
+                      autoComplete="given-name"
+                      value={form.firstName}
+                      onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                      className={m2mPlaybookInputClass}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="credit-playbook-last" className={m2mPlaybookFieldLabelClass}>
+                      Last name<span className="text-m2m-panel">*</span>
+                    </Label>
+                    <Input
+                      id="credit-playbook-last"
+                      type="text"
+                      required
+                      autoComplete="family-name"
+                      value={form.lastName}
+                      onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                      className={m2mPlaybookInputClass}
+                    />
+                  </div>
+                  <M2mLeadDobField
+                    id="credit-playbook-dob"
+                    value={form.dateOfBirth}
+                    onChange={(v) => setForm({ ...form, dateOfBirth: v })}
+                    inputClassName={m2mPlaybookInputClass}
+                    className="text-m2m-deep"
+                  />
+                  <div>
+                    <Label htmlFor="credit-playbook-email" className={m2mPlaybookFieldLabelClass}>
+                      Enter your email here<span className="text-m2m-panel">*</span>
+                    </Label>
+                    <Input
+                      id="credit-playbook-email"
+                      type="email"
+                      required
+                      autoComplete="email"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      className={m2mPlaybookInputClass}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="credit-playbook-phone" className={m2mPlaybookFieldLabelClass}>
+                      Phone<span className="text-m2m-panel">*</span>
+                    </Label>
+                    <Input
+                      id="credit-playbook-phone"
+                      type="tel"
+                      required
+                      autoComplete="tel"
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      className={m2mPlaybookInputClass}
+                    />
+                  </div>
 
-              <div className="pt-4 text-center">
-                <Button type="submit" variant="m2mTextUnderline">
-                  {PLAYBOOK_DOWNLOAD_BUTTON}
-                </Button>
-              </div>
-            </form>
+                  {error ? (
+                    <p className="text-center text-sm text-red-800 font-sans" role="alert">
+                      {error}
+                    </p>
+                  ) : null}
+
+                  <div className="pt-4 text-center">
+                    <Button type="submit" variant="m2mTextUnderline" disabled={submitting}>
+                      {submitting ? "Sending…" : PLAYBOOK_DOWNLOAD_BUTTON}
+                    </Button>
+                  </div>
+                </form>
+              </>
+            )}
           </div>
         </div>
       ) : null}

@@ -58,14 +58,14 @@ export function Partners() {
         </div>
 
         {/* Partners Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 mb-12 border-t border-gray-200 pt-8">
+        <div className="mb-12 grid grid-cols-2 gap-x-4 gap-y-8 border-t border-gray-200 pt-8 md:grid-cols-4 md:gap-x-8">
           {partners.map((partner) => (
-            <div key={partner.name} className="flex flex-col gap-1">
+            <div key={partner.name} className="flex min-w-0 flex-col gap-1">
               <a
                 href={partner.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-m2m-gold transition-colors hover:text-m2m-gold-lt font-nav"
+                className="break-words text-sm text-m2m-gold transition-colors hover:text-m2m-gold-lt font-nav"
               >
                 {partner.name} &rsaquo;
               </a>

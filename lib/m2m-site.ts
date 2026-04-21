@@ -34,14 +34,26 @@ export const M2M_ADDRESS_LINES = [
 export const M2M_ADDRESS_SINGLE_LINE =
   "600 Lynnhaven Pkwy, STE 106 Virginia Beach, VA 23452 United States" as const
 
-/** Wix parity primary CTA. */
+/** Wix parity primary CTA — fallback when GHL booking is not configured yet. */
 export const CALENDLY_BOOK_URL = "https://calendly.com/marching2more/45min"
 
 /**
- * GoHighLevel booking/scheduling URL for “Book a consultation” on Contact Us.
- * Replace with the real GHL public booking link when provided (must be https://).
+ * GoHighLevel public booking/scheduling URL (single primary calendar link).
+ * Replace the placeholder with the real `https://` link from the GHL sub-account when ready.
  */
 export const GOHIGHLEVEL_BOOKING_URL = "REPLACE_WITH_GOHIGHLEVEL_BOOKING_URL" as const
+
+/**
+ * **Booking link source of truth**
+ *
+ * All “Book a consultation” / primary scheduling CTAs (header, footer, hero, blog, contact trust row)
+ * should use {@link getPrimaryConsultationBookUrl} so behavior stays consistent: when
+ * `GOHIGHLEVEL_BOOKING_URL` is a real `http(s)` URL, that wins; otherwise the site uses
+ * {@link CALENDLY_BOOK_URL} until GHL calendars are live. Do not hardcode Calendly in page components.
+ */
+export function getPrimaryConsultationBookUrl(): string {
+  return isGohighlevelBookingConfigured(GOHIGHLEVEL_BOOKING_URL) ? GOHIGHLEVEL_BOOKING_URL : CALENDLY_BOOK_URL
+}
 
 export function isGohighlevelBookingConfigured(url: string = GOHIGHLEVEL_BOOKING_URL): boolean {
   return isGohighlevelUrlConfigured(url)

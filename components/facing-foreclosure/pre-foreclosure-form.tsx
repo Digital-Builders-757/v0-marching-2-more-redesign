@@ -2,11 +2,14 @@
 
 import { useState } from "react"
 
+import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
+import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import { cn } from "@/lib/utils"
 
 import {
@@ -23,18 +26,67 @@ import {
 } from "./content"
 
 export function PreForeclosureForm() {
+  const utm = useM2mUtm()
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
+    dateOfBirth: "",
     message: "",
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [done, setDone] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Wire to CRM, Server Action, or transactional email — replace console stub before launch.
-    console.log("Facing foreclosure lead:", form)
+    setError(null)
+    setSubmitting(true)
+    try {
+      const name = `${form.firstName} ${form.lastName}`.trim()
+      const res = await submitLeadToApi({
+        lead_type: "seller",
+        name,
+        email: form.email,
+        phone: form.phone,
+        date_of_birth: form.dateOfBirth,
+        notes: form.message || undefined,
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+        utm_content: utm.utm_content,
+        source_page: typeof window !== "undefined" ? window.location.href : undefined,
+        source_path: "/facing-foreclosure",
+      })
+      if (!res.ok) {
+        setError(res.error)
+        return
+      }
+      setDone(true)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  if (done) {
+    return (
+      <div
+        className="rounded-sm bg-m2m-cream p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] sm:p-8 lg:p-9"
+        role="status"
+        aria-live="polite"
+      >
+        <p
+          className="text-center text-2xl font-semibold text-m2m-panel sm:text-[1.65rem]"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Thank you
+        </p>
+        <p className="mt-4 text-center text-sm text-m2m-deep/85 font-sans">
+          We received your request. A team member will follow up as soon as possible.
+        </p>
+      </div>
+    )
   }
 
   return (
@@ -52,11 +104,16 @@ export function PreForeclosureForm() {
         {LEAD_SUBHEAD}
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Request foreclosure guide">
+      <form
+        onSubmit={handleSubmit}
+        aria-busy={submitting}
+        className="mt-8 space-y-5"
+        aria-label="Request foreclosure guide"
+      >
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <Label htmlFor="pf-first" className={m2mLeadFieldLabelClass}>
-              {FORM_LABEL_FIRST}
+              {FORM_LABEL_FIRST} <span className="text-m2m-panel">*</span>
             </Label>
             <Input
               id="pf-first"
@@ -65,11 +122,12 @@ export function PreForeclosureForm() {
               value={form.firstName}
               onChange={(e) => setForm({ ...form, firstName: e.target.value })}
               className={m2mLeadFieldInputClass}
+              required
             />
           </div>
           <div>
             <Label htmlFor="pf-last" className={m2mLeadFieldLabelClass}>
-              {FORM_LABEL_LAST}
+              {FORM_LABEL_LAST} <span className="text-m2m-panel">*</span>
             </Label>
             <Input
               id="pf-last"
@@ -78,9 +136,18 @@ export function PreForeclosureForm() {
               value={form.lastName}
               onChange={(e) => setForm({ ...form, lastName: e.target.value })}
               className={m2mLeadFieldInputClass}
+              required
             />
           </div>
         </div>
+
+        <M2mLeadDobField
+          id="pf-dob"
+          value={form.dateOfBirth}
+          onChange={(v) => setForm({ ...form, dateOfBirth: v })}
+          inputClassName={m2mLeadFieldInputClass}
+          className="text-m2m-deep"
+        />
 
         <div>
           <Label htmlFor="pf-email" className={m2mLeadFieldLabelClass}>
@@ -99,11 +166,12 @@ export function PreForeclosureForm() {
 
         <div>
           <Label htmlFor="pf-phone" className={m2mLeadFieldLabelClass}>
-            {FORM_LABEL_PHONE}
+            {FORM_LABEL_PHONE} <span className="text-m2m-panel">*</span>
           </Label>
           <Input
             id="pf-phone"
             type="tel"
+            required
             autoComplete="tel"
             placeholder={FORM_PLACEHOLDER_PHONE}
             value={form.phone}
@@ -126,9 +194,15 @@ export function PreForeclosureForm() {
           />
         </div>
 
+        {error ? (
+          <p className="text-center text-sm text-red-800 font-sans" role="alert">
+            {error}
+          </p>
+        ) : null}
+
         <div className="pt-2">
-          <Button type="submit" variant="m2mPanel" className="w-full">
-            {FORM_SUBMIT_LABEL}
+          <Button type="submit" variant="m2mPanel" className="w-full" disabled={submitting}>
+            {submitting ? "Sending…" : FORM_SUBMIT_LABEL}
           </Button>
         </div>
       </form>

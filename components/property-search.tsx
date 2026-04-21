@@ -66,9 +66,9 @@ export function PropertySearch() {
             </div>
           </div>
 
-          {/* Right column - Cascading overlapping circular images */}
-          <div className="flex-1 relative flex items-center justify-center" style={{ height: '420px' }}>
-            <div className="relative" style={{ width: '550px', height: '320px' }}>
+          {/* Right column — collage centered; scale + absolute wrapper avoids 550px layout width on phones */}
+          <div className="relative w-full flex-1 min-h-[220px] overflow-x-clip py-6 sm:min-h-[280px] md:min-h-[420px] md:overflow-visible md:py-0">
+            <div className="absolute left-1/2 top-1/2 h-[320px] w-[550px] -translate-x-1/2 -translate-y-1/2 scale-[0.5] sm:scale-[0.68] md:scale-100">
               {/* Circle 1 - Couple (front-left, largest 300px, z-index 3) */}
               <div 
                 data-gsap="scale-in"

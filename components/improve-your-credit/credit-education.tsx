@@ -140,7 +140,7 @@ export function CreditEducation() {
                 ))}
               </ol>
 
-              <div className="mt-8 grid grid-cols-3 gap-2 border-t border-m2m-gold/20 pt-6">
+              <div className="mt-8 grid grid-cols-1 gap-2 border-t border-m2m-gold/20 pt-6 sm:grid-cols-3">
                 {HOMEWORK_COLLAGE_IMAGES.map((src, i) => (
                   <div key={src} className="relative aspect-[4/3] overflow-hidden bg-m2m-deep/20">
                     <Image
