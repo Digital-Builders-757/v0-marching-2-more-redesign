@@ -22,7 +22,7 @@ export function M2mInsetHeroFrame({ className, ...props }: ComponentProps<"div">
   return (
     <div
       className={cn(
-        "relative mx-auto w-[95%] max-w-[1600px] overflow-hidden rounded-xl shadow-[0_2px_28px_-6px_rgba(5,13,6,0.18)] ring-1 ring-m2m-black/10",
+        "relative mx-auto w-[min(95%,100%)] max-w-[1600px] overflow-hidden rounded-xl shadow-[0_2px_28px_-6px_rgba(5,13,6,0.18)] ring-1 ring-m2m-black/10",
         className,
       )}
       {...props}

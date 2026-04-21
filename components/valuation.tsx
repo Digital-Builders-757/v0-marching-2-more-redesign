@@ -66,14 +66,17 @@ export function Valuation() {
             </p>
 
             {/* CTAs */}
-            <div data-gsap-child className="flex flex-col sm:flex-row gap-4 mt-4">
+            <div
+              data-gsap-child
+              className="mt-4 flex flex-col gap-4 sm:flex-row sm:flex-wrap"
+            >
               <div className="flex flex-col gap-2">
                 <a
                   href={REALSCOUT_HOME_VALUATION_URL}
                   target="_blank"
                   rel="noreferrer"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
+                  className="inline-block w-full rounded-lg bg-m2m-gold px-8 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:scale-[1.02] hover:bg-m2m-gold-lt sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get Your Free Home Valuation
@@ -83,7 +86,7 @@ export function Valuation() {
                 <Link
                   href="/free-home-valuation"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                  className="inline-block w-full rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Learn More
@@ -93,7 +96,7 @@ export function Valuation() {
                 <Link
                   href="/sell#checklist"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+                  className="inline-block w-full rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get The Pre-Listing Checklist
@@ -110,7 +113,7 @@ export function Valuation() {
         </div>
 
         {/* Mobile Stats - only visible on small screens */}
-        <div className="lg:hidden mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:hidden">
           <StatCard number="$485K" label="Average Sale Price" note="Hampton Roads 2024" />
           <StatCard number="18" label="Days on Market" note="For Our Listings" />
           <StatCard number="102%" label="List-to-Sale Ratio" note="We Maximize Value" />

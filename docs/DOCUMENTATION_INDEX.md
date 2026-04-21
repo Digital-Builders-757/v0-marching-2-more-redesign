@@ -17,7 +17,8 @@
 | [MVP_STATUS_ROADMAP.md](./MVP_STATUS_ROADMAP.md) | P0/P1 priorities |
 | [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) | Active site overhaul: goals, standards, doc outcomes |
 | [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md) | Cross-site visual system pass for buttons, image framing, surfaces, and route polish |
-| [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) | Future GoHighLevel integration boundary, phases, and dependency checklist |
+| [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) | Active GoHighLevel integration boundary, phases, env contract |
+| [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) | GHL sub-account tasks: fields, pipelines, tags, workflows, calendars |
 | [ROADMAP.md](./ROADMAP.md) | Pointer to MVP_STATUS_ROADMAP (search alias) |
 | [development/BRANCHING.md](./development/BRANCHING.md) | Branch + PR flow toward `develop` |
 | [development/RELEASING.md](./development/RELEASING.md) | **`develop` → `main`** when ready for production |

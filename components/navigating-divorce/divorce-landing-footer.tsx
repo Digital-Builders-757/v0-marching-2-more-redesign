@@ -144,7 +144,10 @@ export function DivorceLandingFooter() {
               <a href={M2M_PHONE_HREF} className="block w-fit hover:text-m2m-cream">
                 {M2M_PHONE_DISPLAY}
               </a>
-              <a href={M2M_EMAIL_HREF} className="w-fit underline decoration-m2m-gold/45 underline-offset-4 hover:text-m2m-cream">
+              <a
+                href={M2M_EMAIL_HREF}
+                className="w-fit break-words underline decoration-m2m-gold/45 underline-offset-4 hover:text-m2m-cream"
+              >
                 {M2M_EMAIL_DISPLAY}
               </a>
             </div>

@@ -12,3 +12,6 @@ tsconfig.tsbuildinfo
 tsconfig.tsbuildinfotmp/
 
 tmp/
+
+# Local Cursor / PR draft scratch
+.pr-body-*.txt

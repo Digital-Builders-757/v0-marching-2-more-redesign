@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 
+import { HomeSearchBuyerLead } from "@/components/home-search/home-search-buyer-lead"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import {
   CREED_REALTY_SEARCH_URL,
@@ -63,24 +64,25 @@ export default function HomeSearchPage() {
                 >
                   Start your property search or reach out and we&apos;ll help you find your perfect home.
                 </p>
-                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                   <a
                     href={REALSCOUT_MAP_SEARCH_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:bg-m2m-gold-lt"
+                    className="inline-flex min-h-11 w-full items-center justify-center bg-m2m-gold px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition hover:bg-m2m-gold-lt sm:w-auto"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
                     Start Your Search
                   </a>
                   <a
-                    href="/contact-us"
-                    className="inline-flex items-center justify-center border border-m2m-gold/30 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:border-m2m-gold hover:text-m2m-gold"
+                    href="/contact-us?intent=buyer"
+                    className="inline-flex min-h-11 w-full items-center justify-center border border-m2m-gold/30 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream transition hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
                     Speak with an Agent
                   </a>
                 </div>
+                <HomeSearchBuyerLead />
               </div>
 
               {/* Right column - Sell */}
@@ -97,12 +99,12 @@ export default function HomeSearchPage() {
                 >
                   Get a free home evaluation online, and request our comprehensive listing guide when you connect with the team.
                 </p>
-                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                   <a
                     href={REALSCOUT_HOME_VALUATION_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:bg-m2m-gold-lt"
+                    className="inline-flex min-h-11 w-full items-center justify-center bg-m2m-gold px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition hover:bg-m2m-gold-lt sm:w-auto"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
                     Free Home Evaluation
@@ -111,7 +113,7 @@ export default function HomeSearchPage() {
                     href={CREED_REALTY_SEARCH_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center border border-m2m-gold/30 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-8 py-4 transition hover:border-m2m-gold hover:text-m2m-gold"
+                    className="inline-flex min-h-11 w-full items-center justify-center border border-m2m-gold/30 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream transition hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
                     Free Listing Guide

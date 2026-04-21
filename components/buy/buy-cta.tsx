@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 
+import { BuyLeadMini } from "@/components/buy/buy-lead-mini"
 import { M2mContainer } from "@/components/m2m-layout"
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
@@ -31,7 +32,7 @@ export function BuyCTA() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href="/contact"
+            href="/contact-us?intent=buyer"
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-deep text-m2m-cream font-medium transition-all duration-300 hover:bg-m2m-deep/90"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
@@ -45,6 +46,8 @@ export function BuyCTA() {
             Call {M2M_PHONE_DISPLAY}
           </a>
         </div>
+
+        <BuyLeadMini />
       </M2mContainer>
     </section>
   )

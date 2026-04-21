@@ -50,8 +50,8 @@ export function Testimonials() {
         </div>
 
         {/* Testimonial Cards - 3 Column Grid */}
-        <div 
-          className="grid grid-cols-3 gap-4 lg:gap-6 max-w-7xl mx-auto"
+        <div
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
           data-gsap="stagger-children"
           data-gsap-direction="up"
         >

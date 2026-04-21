@@ -110,25 +110,25 @@ export function BuyHero() {
         </p>
 
         {/* CTAs */}
-        <div ref={ctasRef} className="flex flex-col sm:flex-row gap-4">
+        <div ref={ctasRef} className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
           <Link
             href="/contact"
-            className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt"
-            style={{ fontFamily: 'var(--font-nav)' }}
+            className="inline-block w-full text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:bg-m2m-gold-lt sm:w-auto bg-m2m-gold px-10 py-4"
+            style={{ fontFamily: "var(--font-nav)" }}
           >
             Start Your Search
           </Link>
           <Link
             href="#va-loans"
-            className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-gold/30 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold"
-            style={{ fontFamily: 'var(--font-nav)' }}
+            className="inline-block w-full border border-m2m-gold/30 px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+            style={{ fontFamily: "var(--font-nav)" }}
           >
             VA Loan Information
           </Link>
           <a
             href={M2M_PHONE_HREF}
-            className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
-            style={{ fontFamily: 'var(--font-nav)' }}
+            className="inline-block w-full border border-white/10 px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream sm:w-auto"
+            style={{ fontFamily: "var(--font-nav)" }}
           >
             {M2M_PHONE_DISPLAY}
           </a>

@@ -34,7 +34,7 @@ export const M2M_ADDRESS_LINES = [
 export const M2M_ADDRESS_SINGLE_LINE =
   "600 Lynnhaven Pkwy, STE 106 Virginia Beach, VA 23452 United States" as const
 
-/** Wix parity primary CTA. */
+/** Wix parity primary CTA — fallback when GHL booking is not configured yet. */
 export const CALENDLY_BOOK_URL = "https://calendly.com/marching2more/45min"
 
 /**
@@ -42,6 +42,11 @@ export const CALENDLY_BOOK_URL = "https://calendly.com/marching2more/45min"
  * Replace with the real GHL public booking link when provided (must be https://).
  */
 export const GOHIGHLEVEL_BOOKING_URL = "REPLACE_WITH_GOHIGHLEVEL_BOOKING_URL" as const
+
+/** Header/footer/hero “book consultation” — prefer GHL calendars, fall back to Calendly during transition. */
+export function getPrimaryConsultationBookUrl(): string {
+  return isGohighlevelBookingConfigured(GOHIGHLEVEL_BOOKING_URL) ? GOHIGHLEVEL_BOOKING_URL : CALENDLY_BOOK_URL
+}
 
 export function isGohighlevelBookingConfigured(url: string = GOHIGHLEVEL_BOOKING_URL): boolean {
   return isGohighlevelUrlConfigured(url)

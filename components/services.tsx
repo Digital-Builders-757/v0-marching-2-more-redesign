@@ -87,10 +87,10 @@ export function Services() {
           data-gsap-direction="up"
         >
           {partners.map((partner, index) => (
-            <div 
+            <div
               key={partner.name}
               data-gsap-child
-              className={`py-8 px-4 text-center ${
+              className={`min-w-0 px-2 py-8 text-center sm:px-4 ${
                 index % 4 !== 3 ? "border-r border-m2m-gold/20" : ""
               } ${index >= 4 ? "border-t border-m2m-gold/20" : ""}`}
             >
@@ -98,10 +98,10 @@ export function Services() {
                 href={partner.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-1 text-m2m-cream hover:text-m2m-gold transition-colors mb-2"
-                style={{ fontFamily: 'var(--font-sans)' }}
+                className="group mb-2 inline-flex items-center gap-1 text-m2m-cream transition-colors hover:text-m2m-gold"
+                style={{ fontFamily: "var(--font-sans)" }}
               >
-                <span className="text-sm underline underline-offset-2">{partner.name}</span>
+                <span className="break-words text-sm underline underline-offset-2">{partner.name}</span>
                 <ArrowRight className="w-3 h-3" />
               </a>
               <p 

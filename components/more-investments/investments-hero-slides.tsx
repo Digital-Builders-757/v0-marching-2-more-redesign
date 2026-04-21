@@ -67,7 +67,7 @@ function IntroSlide({ slide }: { slide: Extract<HeroSlide, { variant: "intro" }>
 
 function FixFlipSlide({ slide }: { slide: Extract<HeroSlide, { variant: "fixFlip" }> }) {
   return (
-    <div className="flex min-h-[min(72vh,580px)] flex-col border-[3px] border-m2m-gold bg-m2m-panel px-4 py-7 sm:min-h-[560px] sm:border-4 sm:px-5 sm:py-8">
+    <div className="flex min-h-[min(72vh,580px)] flex-col overflow-x-clip border-[3px] border-m2m-gold bg-m2m-panel px-4 py-7 sm:min-h-[560px] sm:border-4 sm:px-5 sm:py-8">
       <h2 className={titleLg} style={{ fontFamily: "var(--font-nav)" }}>
         {slide.title}
       </h2>
@@ -85,11 +85,11 @@ function FixFlipSlide({ slide }: { slide: Extract<HeroSlide, { variant: "fixFlip
       >
         {slide.bridgeText}
       </p>
-      <div className="relative mt-5 grid grid-cols-2 gap-2 sm:mt-6 sm:gap-3">
-        <div className="relative aspect-[3/4] w-full overflow-hidden">
+      <div className="relative mt-5 grid min-w-0 grid-cols-2 gap-2 sm:mt-6 sm:gap-3">
+        <div className="relative aspect-[3/4] min-w-0 w-full overflow-hidden">
           <Image src={slide.collageLeft} alt={slide.collageLeftAlt} fill className="object-cover" sizes="200px" />
         </div>
-        <div className="relative z-10 -ml-2 mt-6 aspect-[3/4] w-[calc(100%+0.5rem)] overflow-hidden border border-m2m-gold/50 sm:-ml-3 sm:mt-10">
+        <div className="relative z-10 -ml-2 mt-6 aspect-[3/4] w-full max-w-[calc(100%+0.5rem)] overflow-hidden border border-m2m-gold/50 sm:-ml-3 sm:mt-10">
           <Image src={slide.collageRight} alt={slide.collageRightAlt} fill className="object-cover" sizes="200px" />
         </div>
       </div>
