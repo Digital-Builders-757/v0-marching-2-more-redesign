@@ -1,4 +1,6 @@
-import { getGhlConfig } from "./config"
+import { randomUUID } from "node:crypto"
+
+import { getGhlConfig, listUnsetPipelineEnvVars } from "./config"
 import { addTagsToContact, createOpportunity, GhlApiError, upsertContact } from "./client"
 import { normalizedLeadToCustomFields, pipelineStageForLeadType, resolveTagsForLead } from "./lead-mapping"
 import type { NormalizedLead } from "./types"
@@ -9,17 +11,27 @@ export type SubmitLeadResult =
   | { ok: false; error: string; code?: string }
 
 export async function submitLeadToGhl(lead: NormalizedLead): Promise<SubmitLeadResult> {
+  const correlationId = randomUUID()
+
   let cfg
   try {
     cfg = getGhlConfig()
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Configuration error"
-    console.error("[ghl] config", msg)
+    console.error("[ghl] config_error", { correlationId, message: msg })
     return { ok: false, error: "Lead capture is not configured. Please try again later.", code: "config_error" }
   }
 
   if (cfg.dryRun) {
-    console.info("[ghl] dry run — skipping upstream", { email: lead.email, leadType: lead.leadType })
+    const cf = normalizedLeadToCustomFields(lead, cfg)
+    const tg = resolveTagsForLead(lead, cfg)
+    console.info("[ghl] dry_run_skip", {
+      correlationId,
+      leadType: lead.leadType,
+      sourcePath: lead.sourcePath,
+      tagCount: tg.length,
+      customFieldCount: cf.length,
+    })
     return { ok: true, contactId: "dry-run-contact", opportunityId: "dry-run-opportunity" }
   }
 
@@ -27,6 +39,14 @@ export async function submitLeadToGhl(lead: NormalizedLead): Promise<SubmitLeadR
   const tags = resolveTagsForLead(lead, cfg)
 
   try {
+    console.info("[ghl] submit_start", {
+      correlationId,
+      leadType: lead.leadType,
+      sourcePath: lead.sourcePath,
+      tagCount: tags.length,
+      customFieldCount: customFields.length,
+    })
+
     const { contactId } = await upsertContact(cfg, {
       firstName: lead.firstName,
       lastName: lead.lastName,
@@ -34,9 +54,13 @@ export async function submitLeadToGhl(lead: NormalizedLead): Promise<SubmitLeadR
       email: lead.email,
       phone: lead.phoneE164,
       customFields,
+      correlationId,
     })
 
-    await addTagsToContact(cfg, contactId, tags)
+    console.info("[ghl] contact_upserted", { correlationId, contactId })
+
+    await addTagsToContact(cfg, contactId, tags, correlationId)
+    console.info("[ghl] tags_applied", { correlationId, contactId, tagCount: tags.length })
 
     const pipe = pipelineStageForLeadType(lead.leadType, cfg)
     let opportunityId: string | undefined
@@ -48,30 +72,46 @@ export async function submitLeadToGhl(lead: NormalizedLead): Promise<SubmitLeadR
         pipelineId: pipe.pipelineId,
         pipelineStageId: pipe.stageId,
         name: oppName,
+        correlationId,
       })
       opportunityId = oid
+      console.info("[ghl] opportunity_created", { correlationId, contactId, opportunityId })
     } else {
-      console.warn("[ghl] pipeline/stage env not set — contact saved without opportunity")
+      const missing = listUnsetPipelineEnvVars()
+      console.warn("[ghl] opportunity_skipped", {
+        correlationId,
+        contactId,
+        reason: "incomplete_pipeline_env",
+        missingEnvVars: missing,
+      })
     }
 
     if (lead.notes?.trim()) {
       /** Optional: GHL note API can be added when account workflow needs it. */
-      console.info("[ghl] lead notes present (not auto-posted to conversation)", {
+      console.info("[ghl] lead_notes_present_not_posted", {
+        correlationId,
         contactId,
-        len: lead.notes.length,
+        charCount: lead.notes.length,
       })
     }
 
+    console.info("[ghl] submit_ok", { correlationId, contactId, opportunityId: opportunityId ?? null })
     return { ok: true, contactId, opportunityId }
   } catch (e) {
     if (e instanceof GhlApiError) {
+      console.error("[ghl] upstream_error", {
+        correlationId,
+        status: e.status,
+        code: e.code,
+        message: e.message,
+      })
       return {
         ok: false,
         error: "We could not reach our CRM. Please call us or try again shortly.",
         code: e.code ?? "ghl_upstream_error",
       }
     }
-    console.error("[ghl] submitLeadToGhl", e)
+    console.error("[ghl] submit_unexpected", { correlationId, err: e })
     return { ok: false, error: "Something went wrong. Please try again.", code: "internal_error" }
   }
 }

@@ -2,11 +2,49 @@
 
 **Execution spine for the public website.** Vision and rules: [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md). Current cross-site visual system pass: [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md). GoHighLevel integration is now an **active parallel track**; use [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) as the CRM / automation source of truth.
 
+## GHL integration — status (cutover readiness pass)
+
+**Implemented in repo (this pass + prior foundation)**
+
+- `POST /api/submit-lead` (Node), [`lib/ghl/`](../lib/ghl/) pipeline: validate → upsert contact → tags → optional opportunity; user-safe JSON errors.
+- Structured server logs: `[ghl]` events + **`correlationId`** per submission; **`listUnsetPipelineEnvVars()`** when opportunities are skipped (incomplete pipeline env).
+- **Booking:** single pattern — [`getPrimaryConsultationBookUrl()`](../lib/m2m-site.ts) everywhere primary “book consultation” appears (including [`/contact-us`](../app/contact-us/page.tsx)): real `GOHIGHLEVEL_BOOKING_URL` wins, else Calendly fallback until GHL link exists.
+- **Forms → API:** CMA, contact-us, buy/sell minis, home-search buyer, free valuation seller, foreclosure, downsizing fallback, **credit playbook** (local form path).
+- UX: `aria-busy` on lead forms; success regions `aria-live`; [`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts) documents user-safe errors.
+- Docs: [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md), [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md), troubleshooting rows in [COMMON_ERRORS_QUICK_REFERENCE.md](./troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md).
+
+**Verified**
+
+- `npm run ci` (lint, test, typecheck, build) green on the integration branch.
+- No `GHL_*` secrets in client bundles by design (env server-only; browser posts JSON only to `/api/submit-lead`).
+
+**Not done (blocked on real GHL account + env)**
+
+- Populate Vercel **`GHL_*`** from [`.env.example`](../.env.example) (PIT, location, eight custom field IDs, four pipeline/stage IDs, tag names).
+- Replace **`GOHIGHLEVEL_*`** placeholders in [`lib/m2m-site.ts`](../lib/m2m-site.ts) with real `https://` booking + quiz URLs when marketing/GHL provides them.
+- Build/configure workflows, notifications, calendars, and agent Google connections **inside GHL** — see [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md).
+
+**Still open (website / QA / content, not blocked on GHL login alone)**
+
+- End-to-end smoke tests **against production GHL** (not only `GHL_DRY_RUN=true`).
+- Optional: automated E2E (Playwright) for submit-lead paths; GHL Notes API for long `notes` if product wants conversation posts.
+
+**Immediate next GHL tasks (operator order)**
+
+1. Read [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) and [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md).
+2. Create/verify PIT + location → set `GHL_API_KEY`, `GHL_LOCATION_ID`.
+3. Create custom fields → paste eight `GHL_CF_*` IDs.
+4. Set pipelines/stages → four `GHL_*PIPELINE*` / `GHL_*STAGE*` env vars (or accept contact+tags-only until then).
+5. Create tags → `GHL_TAG_LEAD_BUYER` / `GHL_TAG_LEAD_SELLER`.
+6. Paste public booking URL into `GOHIGHLEVEL_BOOKING_URL`; optional quiz URLs into `GOHIGHLEVEL_QUIZ_*`.
+7. Run seller + buyer + contact test sequences from the runbook; confirm in GHL UI.
+
 ## Done recently
 
+- **GoHighLevel live-cutover readiness** — Same scope as **GHL integration — status** above (logs, booking alignment, credit playbook, a11y on forms, runbook + gaps docs).
 - **GoHighLevel foundation (Phase 1–2 website)** — [`lib/ghl/`](../lib/ghl/) (config, validate, client, submit orchestration), [`app/api/submit-lead/route.ts`](../app/api/submit-lead/route.ts), client [`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts) + [`lib/m2m-utm.ts`](../lib/m2m-utm.ts), [`getPrimaryConsultationBookUrl()`](../lib/m2m-site.ts) (GHL-first booking). Seller/buyer forms wired on CMA, contact, foreclosure, free valuation, sell, downsizing fallback, buy, home-search. Account-side tasks: [`M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md`](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md), env template [`.env.example`](../.env.example).
 - **Inset hero system** - `M2mInsetHeroFrame` + `M2mInsetHeroScrim` in [`components/m2m-layout.tsx`](../components/m2m-layout.tsx): shared 95% rounded card, ring/shadow, and tokenized scrims (`home` gradient + `60`-`80` opacity). Adopted on home [`Hero`](../components/hero.tsx), [`/home-search`](../app/home-search/page.tsx), [`/resources`](../app/resources/page.tsx), [`/cma-form`](../app/cma-form/page.tsx), [`/free-home-valuation`](../app/free-home-valuation/page.tsx) hero bands.
-- **Policy + profiles + blog + contact** - [`PolicyPage`](../components/policy/policy-page.tsx): `m2m-deep` / `m2m-muted`, display title, `M2mSection` rhythm. [`AgentProfile`](../components/team/agent-profile.tsx): M2M tokens, shadcn `Button` CTAs. [`/blog`](../app/blog/page.tsx) and [`/blog/[slug]`](../app/blog/[slug]/page.tsx): on-brand prose/meta. [`/contact-us`](../app/contact-us/page.tsx): correct `h1` / eyebrow, trust row (phone + Calendly).
+- **Policy + profiles + blog + contact** - [`PolicyPage`](../components/policy/policy-page.tsx): `m2m-deep` / `m2m-muted`, display title, `M2mSection` rhythm. [`AgentProfile`](../components/team/agent-profile.tsx): M2M tokens, shadcn `Button` CTAs. [`/blog`](../app/blog/page.tsx) and [`/blog/[slug]`](../app/blog/[slug]/page.tsx): on-brand prose/meta. [`/contact-us`](../app/contact-us/page.tsx): correct `h1` / eyebrow, trust row (phone + book via [`getPrimaryConsultationBookUrl()`](../lib/m2m-site.ts)).
 - **Footer media** - Agent thumbnails use [`M2M_MEDIA`](../lib/m2m-media.ts) in [`Footer`](../components/footer.tsx).
 - **Design token sweep (home funnel + reviews + valuation)** - `app/globals.css`: `m2m-reviews-band`. Buy/sell heroes + `M2M_MEDIA`. Partners / PropertySearch tokens. Reviews bands. Brand doc updated for reviews token.
 - **Partners + shell + CMA** - Partner `href`s from `PARTNER_LINKS` in `lib/m2m-site.ts`. Branded `not-found`. CMA form shared field classes and footer placement.
@@ -99,5 +137,8 @@ Authoritative list: `app/**/page.tsx`. Grouped reference: [docs/diagrams/site-ro
 | App routes | `app/` |
 | Shared UI | `components/ui/` |
 | Layout / inset hero | `components/m2m-layout.tsx` |
+| GHL env contract | `.env.example` |
+| GHL live hookup + QA order | [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) |
+| GHL done vs blocked (skim) | [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md) |
 
-CRM integration source of truth: [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md). Website visual work stays here; CRM / automation execution details live in that document.
+CRM integration source of truth: [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md). Account-side tasks: [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md). Website visual work stays here; CRM / automation execution details live in those documents.

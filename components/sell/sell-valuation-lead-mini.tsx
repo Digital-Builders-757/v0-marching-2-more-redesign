@@ -52,14 +52,14 @@ export function SellValuationLeadMini() {
 
   if (done) {
     return (
-      <p className="text-sm text-m2m-cream/95 font-sans">
+      <p className="text-sm text-m2m-cream/95 font-sans" role="status" aria-live="polite">
         Thank you — we&apos;ll reach out shortly. You can still use the instant online tool below anytime.
       </p>
     )
   }
 
   return (
-    <form onSubmit={submit} className="mt-6 space-y-4 border-t border-m2m-gold/20 pt-6">
+    <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-4 border-t border-m2m-gold/20 pt-6">
       <p className="text-xs uppercase tracking-[0.15em] text-m2m-gold font-nav">Or request a call first</p>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <input
