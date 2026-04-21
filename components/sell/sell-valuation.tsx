@@ -3,6 +3,7 @@
 import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
+import { SellValuationLeadMini } from "@/components/sell/sell-valuation-lead-mini"
 import { Button } from "@/components/ui/button"
 import { REALSCOUT_HOME_VALUATION_URL } from "@/lib/m2m-site"
 
@@ -100,6 +101,7 @@ export function SellValuation() {
                 Get My Free Valuation
               </a>
             </Button>
+            <SellValuationLeadMini />
           </div>
         </div>
       </M2mContainer>

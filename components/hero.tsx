@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import {
-  CALENDLY_BOOK_URL,
+  getPrimaryConsultationBookUrl,
   M2M_PHONE_DISPLAY,
   M2M_PHONE_HREF,
   REALSCOUT_HOME_VALUATION_URL,
@@ -59,11 +59,15 @@ export function Hero() {
 
         <M2mContainer className="relative z-10 flex max-w-3xl flex-col justify-center pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div
-          className="inline-flex items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
+          className="flex max-w-full flex-wrap items-center gap-x-3 gap-y-2 text-[0.6rem] tracking-[0.22em] text-m2m-gold sm:text-[0.65rem] sm:tracking-[0.3em]"
           style={{ fontFamily: "var(--font-nav)" }}
         >
-          <span className="block h-px w-8 bg-m2m-gold" aria-hidden />
-          Licensed Real Estate Professionals in Virginia Beach, VA, USA • Veteran Owned | 5.0 ★ ★ ★ ★ ★
+          <span className="flex shrink-0 items-center gap-3">
+            <span className="block h-px w-8 bg-m2m-gold" aria-hidden />
+          </span>
+          <span className="min-w-0 leading-snug">
+            Licensed Real Estate Professionals in Virginia Beach, VA, USA • Veteran Owned | 5.0 ★ ★ ★ ★ ★
+          </span>
         </div>
 
         <h1
@@ -99,7 +103,7 @@ export function Hero() {
             Free Home Valuation
           </a>
           <a
-            href={CALENDLY_BOOK_URL}
+            href={getPrimaryConsultationBookUrl()}
             target="_blank"
             rel="noreferrer"
             className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream hover:scale-[1.02]"

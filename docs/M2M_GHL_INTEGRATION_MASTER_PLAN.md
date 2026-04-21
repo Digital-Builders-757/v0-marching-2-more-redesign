@@ -487,3 +487,21 @@ The integration is not “done” until the following are true:
 - analytics helpers if Meta CAPI support begins now
 
 This plan is the governing source of truth for the active GHL integration scope in the Marching 2 More website repo.
+
+---
+
+## Implementation status (website repo)
+
+**Shipped in code (foundation):**
+
+- Shared server modules under **`lib/ghl/`** (config, validation, LeadConnector-style HTTP client, contact upsert, tags, opportunity create).
+- **`POST /api/submit-lead`** — Node runtime, Zod validation, stable JSON responses; secrets stay server-only.
+- Client helpers: **`lib/m2m-lead-submit.ts`**, **`lib/m2m-utm.ts`**, **`useM2mUtm`**, **`M2mLeadDobField`**.
+- Forms wired with `lead_type`, DOB, UTMs, and `source_path` on priority seller and buyer surfaces (see checklist doc).
+
+**Still requires the GHL account + Vercel env:**
+
+- All **`GHL_*`** credentials and custom field / pipeline / stage IDs — see **[M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md)** and **[`.env.example`](../.env.example)**.
+- Public booking + quiz URLs in **`lib/m2m-site.ts`** (`GOHIGHLEVEL_*`) until marketing supplies real links.
+
+**API note:** Contact/opportunity request bodies are isolated in **`lib/ghl/client.ts`**. If the live API returns 4xx after credentials are set, adjust payloads there against the current [HighLevel API docs](https://marketplace.gohighlevel.com/docs/).

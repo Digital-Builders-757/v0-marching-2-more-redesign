@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Footer } from "@/components/footer"
+import { ValuationSellerLeadForm } from "@/components/free-home-valuation/valuation-seller-lead-form"
 import { Header } from "@/components/header"
 import { M2mBrandLogo } from "@/components/m2m-brand-logo"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim, M2mSection } from "@/components/m2m-layout"
@@ -106,6 +107,35 @@ export default function FreeHomeValuationPage() {
             </M2mContainer>
           </M2mInsetHeroFrame>
         </section>
+
+        {/* Seller lead capture + instant estimate */}
+        <M2mSection variant="light" className="border-t border-gray-100 py-16">
+          <M2mContainer className="max-w-5xl">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
+              <ValuationSellerLeadForm />
+              <div className="rounded-xl border border-m2m-deep/10 bg-m2m-cream/50 p-8">
+                <p className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-gold font-nav">
+                  Instant online estimate
+                </p>
+                <h2 className="mt-2 text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
+                  Prefer an automated report first?
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-m2m-deep/85 font-sans">
+                  Open our secure RealScout home value tool anytime — then we can follow up with a human-reviewed CMA if
+                  you&apos;d like.
+                </p>
+                <a
+                  href={REALSCOUT_HOME_VALUATION_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex min-h-11 items-center justify-center bg-m2m-gold px-8 py-3 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition hover:bg-m2m-gold-lt font-nav"
+                >
+                  Get Your Free Home Valuation
+                </a>
+              </div>
+            </div>
+          </M2mContainer>
+        </M2mSection>
 
         {/* Support Section */}
         <M2mSection variant="light" className="py-20">
