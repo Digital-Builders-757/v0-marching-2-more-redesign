@@ -7,6 +7,8 @@ __v0_jsx-dev-runtime.ts
 node_modules
 .next/
 .env*.local
+# Wrong filename at repo root (Next.js expects `.env.local`, which is ignored above)
+env.local
 .DS_Store
 tsconfig.tsbuildinfo
 tsconfig.tsbuildinfotmp/
@@ -15,3 +17,4 @@ tmp/
 
 # Local Cursor / PR draft scratch
 .pr-body-*.txt
+.pr-body-*.md
