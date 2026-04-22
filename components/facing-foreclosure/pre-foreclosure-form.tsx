@@ -9,7 +9,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import { cn } from "@/lib/utils"
 
 import {
@@ -36,12 +38,12 @@ export function PreForeclosureForm() {
     message: "",
   })
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    setSubmitError(null)
     setSubmitting(true)
     try {
       const name = `${form.firstName} ${form.lastName}`.trim()
@@ -60,7 +62,7 @@ export function PreForeclosureForm() {
         source_path: "/facing-foreclosure",
       })
       if (!res.ok) {
-        setError(res.error)
+        setSubmitError(res)
         return
       }
       setDone(true)
@@ -194,14 +196,10 @@ export function PreForeclosureForm() {
           />
         </div>
 
-        {error ? (
-          <p className="text-center text-sm text-red-800 font-sans" role="alert">
-            {error}
-          </p>
-        ) : null}
+        {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full" /> : null}
 
         <div className="pt-2">
-          <Button type="submit" variant="m2mPanel" className="w-full" disabled={submitting}>
+          <Button type="submit" variant="m2mPanel" className="w-full min-h-12 touch-manipulation" disabled={submitting}>
             {submitting ? "Sending…" : FORM_SUBMIT_LABEL}
           </Button>
         </div>

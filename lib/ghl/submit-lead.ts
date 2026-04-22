@@ -1,25 +1,33 @@
-import { randomUUID } from "node:crypto"
-
 import { getGhlConfig, listUnsetPipelineEnvVars } from "./config"
-import { addTagsToContact, createOpportunity, GhlApiError, upsertContact } from "./client"
+import { addTagsToContact, createOpportunity, GhlApiError, ghlStatusBucket, upsertContact } from "./client"
 import { normalizedLeadToCustomFields, pipelineStageForLeadType, resolveTagsForLead } from "./lead-mapping"
-import type { NormalizedLead } from "./types"
+import type { GhlApiStep, NormalizedLead } from "./types"
 import { parseSubmitLeadBody } from "./validate"
 
 export type SubmitLeadResult =
   | { ok: true; contactId?: string; opportunityId?: string }
-  | { ok: false; error: string; code?: string }
+  | {
+      ok: false
+      error: string
+      code?: string
+      correlationId: string
+      failed_step?: GhlApiStep
+      crm_http_status?: number
+    }
 
-export async function submitLeadToGhl(lead: NormalizedLead): Promise<SubmitLeadResult> {
-  const correlationId = randomUUID()
-
+export async function submitLeadToGhl(lead: NormalizedLead, correlationId: string): Promise<SubmitLeadResult> {
   let cfg
   try {
     cfg = getGhlConfig()
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Configuration error"
     console.error("[ghl] config_error", { correlationId, message: msg })
-    return { ok: false, error: "Lead capture is not configured. Please try again later.", code: "config_error" }
+    return {
+      ok: false,
+      error: "Lead capture is not configured. Please try again later.",
+      code: "config_error",
+      correlationId,
+    }
   }
 
   if (cfg.dryRun) {
@@ -38,6 +46,14 @@ export async function submitLeadToGhl(lead: NormalizedLead): Promise<SubmitLeadR
   const customFields = normalizedLeadToCustomFields(lead, cfg)
   const tags = resolveTagsForLead(lead, cfg)
 
+  if (!cfg.dryRun && tags.length === 0) {
+    console.warn("[ghl] tags_empty_for_lead_type", {
+      correlationId,
+      leadType: lead.leadType,
+      hint: "GHL_TAG_LEAD_BUYER / GHL_TAG_LEAD_SELLER unset — tags step will be skipped",
+    })
+  }
+
   try {
     console.info("[ghl] submit_start", {
       correlationId,
@@ -45,6 +61,7 @@ export async function submitLeadToGhl(lead: NormalizedLead): Promise<SubmitLeadR
       sourcePath: lead.sourcePath,
       tagCount: tags.length,
       customFieldCount: customFields.length,
+      willCreateOpportunity: Boolean(pipelineStageForLeadType(lead.leadType, cfg)),
     })
 
     const { contactId } = await upsertContact(cfg, {
@@ -102,25 +119,35 @@ export async function submitLeadToGhl(lead: NormalizedLead): Promise<SubmitLeadR
       console.error("[ghl] upstream_error", {
         correlationId,
         status: e.status,
+        statusBucket: ghlStatusBucket(e.status),
         code: e.code,
+        failed_step: e.step,
         message: e.message,
       })
       return {
         ok: false,
         error: "We could not reach our CRM. Please call us or try again shortly.",
         code: e.code ?? "ghl_upstream_error",
+        correlationId,
+        ...(e.step ? { failed_step: e.step } : {}),
+        crm_http_status: e.status,
       }
     }
     console.error("[ghl] submit_unexpected", { correlationId, err: e })
-    return { ok: false, error: "Something went wrong. Please try again.", code: "internal_error" }
+    return {
+      ok: false,
+      error: "Something went wrong. Please try again.",
+      code: "internal_error",
+      correlationId,
+    }
   }
 }
 
 /** Full path from raw JSON body (API route helper). */
-export async function handleSubmitLeadJson(json: unknown): Promise<SubmitLeadResult> {
+export async function handleSubmitLeadJson(json: unknown, correlationId: string): Promise<SubmitLeadResult> {
   const parsed = parseSubmitLeadBody(json)
   if (!parsed.ok) {
-    return { ok: false, error: parsed.error, code: parsed.code }
+    return { ok: false, error: parsed.error, code: parsed.code, correlationId }
   }
-  return submitLeadToGhl(parsed.data)
+  return submitLeadToGhl(parsed.data, correlationId)
 }

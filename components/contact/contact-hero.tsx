@@ -56,13 +56,13 @@ export function ContactHero() {
         }}
       />
 
-      {/* Gradient overlay for text readability */}
+      {/* Gradient overlay — centered layout: lighter vertical band, readable on mobile */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background: `
-            linear-gradient(to bottom, rgba(5,13,6,0.7) 0%, rgba(5,13,6,0.5) 40%, rgba(5,13,6,0.6) 70%, rgba(5,13,6,0.85) 100%),
-            linear-gradient(to right, rgba(5,13,6,0.3) 0%, rgba(5,13,6,0.2) 50%, rgba(5,13,6,0.3) 100%)
+            linear-gradient(to bottom, rgba(5,13,6,0.52) 0%, rgba(5,13,6,0.38) 45%, rgba(5,13,6,0.48) 72%, rgba(5,13,6,0.68) 100%),
+            linear-gradient(to right, rgba(5,13,6,0.22) 0%, rgba(5,13,6,0.12) 50%, rgba(5,13,6,0.22) 100%)
           `,
         }}
       />
@@ -83,7 +83,7 @@ export function ContactHero() {
         {/* Headline */}
         <h1 
           ref={headlineRef}
-          className="font-light text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] tracking-tight text-m2m-cream mb-8"
+          className="font-light text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] tracking-tight text-m2m-cream mb-8 [text-shadow:0_1px_4px_rgba(5,13,6,0.45)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           <span className="block">Have a Question?</span>
@@ -93,8 +93,8 @@ export function ContactHero() {
         {/* Subtitle */}
         <p 
           ref={subtitleRef}
-          className="text-base md:text-lg text-m2m-muted-lt leading-relaxed max-w-2xl mx-auto opacity-0"
-          style={{ fontFamily: 'var(--font-sans)', textShadow: '0 2px 8px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.2)' }}
+          className="text-base md:text-lg text-m2m-cream/92 leading-relaxed max-w-2xl mx-auto opacity-0"
+          style={{ fontFamily: 'var(--font-sans)', textShadow: '0 1px 3px rgba(5,13,6,0.5)' }}
         >
           Whether you&apos;re buying, selling, or just exploring your options, we&apos;re here to help. 
           Call or text anytime, or fill out the form below and we&apos;ll get back to you shortly.

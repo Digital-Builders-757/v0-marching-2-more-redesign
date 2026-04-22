@@ -6,7 +6,7 @@
 
 **Blocked until:** an operator with GHL admin access can create or verify objects below and copy IDs into Vercel. Without **`GHL_API_KEY`** + **`GHL_LOCATION_ID`** + eight **`GHL_CF_*`** IDs, live mode will not configure (use **`GHL_DRY_RUN=true`** for UI-only testing).
 
-**Related:** [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) · Live hookup / QA order: [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) · Website env template: [`.env.example`](../.env.example) · Public booking/quiz placeholders: [`lib/m2m-site.ts`](../lib/m2m-site.ts) · Skimmable gap list: [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md)
+**Related:** [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) (assumptions, tag rules, triage) · [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) · Live hookup / QA order: [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) · Website env template: [`.env.example`](../.env.example) · Public booking/quiz placeholders: [`lib/m2m-site.ts`](../lib/m2m-site.ts) · Skimmable gap list: [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md)
 
 ---
 
@@ -23,19 +23,19 @@
 
 Create or verify **contact** custom fields and paste each field’s **ID** into the matching env var:
 
-| Field label (GHL) | Env var |
-|-------------------|---------|
-| DOB | `GHL_CF_DOB` |
-| Address | `GHL_CF_ADDRESS` |
-| Urgency | `GHL_CF_URGENCY` |
-| Lead Type | `GHL_CF_LEAD_TYPE` |
-| UTM Source | `GHL_CF_UTM_SOURCE` |
-| UTM Medium | `GHL_CF_UTM_MEDIUM` |
-| UTM Campaign | `GHL_CF_UTM_CAMPAIGN` |
-| UTM Content | `GHL_CF_UTM_CONTENT` |
+| Field label (GHL) | Env var | Notes |
+|-------------------|---------|--------|
+| DOB | `GHL_CF_DOB` | Website sends **`YYYY-MM-DD`** from date inputs. |
+| **Property Address** | `GHL_CF_ADDRESS` | Free text; omitted when a form does not collect address. |
+| Urgency (**text** field) | `GHL_CF_URGENCY` | Use the **TEXT** urgency field’s ID — **not** the dropdown urgency field. |
+| Lead Type | `GHL_CF_LEAD_TYPE` | Website sends exact strings **`Buyer`** or **`Seller`**. Field must accept those values (text or matching single-select options). |
+| UTM Source | `GHL_CF_UTM_SOURCE` | Omitted when empty. |
+| UTM Medium | `GHL_CF_UTM_MEDIUM` | |
+| UTM Campaign | `GHL_CF_UTM_CAMPAIGN` | |
+| UTM Content | `GHL_CF_UTM_CONTENT` | |
 
 - [ ] All eight IDs set in Vercel / `.env.local`.
-- [ ] **Lead Type** options can mirror website values: `Buyer` / `Seller` (website sends those strings).
+- [ ] Confirm **Lead Type** in GHL accepts **`Buyer`** / **`Seller`** as sent from the site ([`lib/ghl/lead-mapping.ts`](../lib/ghl/lead-mapping.ts)).
 
 ---
 
@@ -52,8 +52,9 @@ If these env vars are omitted, the site still **upserts the contact** and **appl
 
 ## 4. Tags
 
-- [ ] Create tags the website will attach (e.g. `M2M — Buyer`, `M2M — Seller`).
-- [ ] Set **`GHL_TAG_LEAD_BUYER`** and **`GHL_TAG_LEAD_SELLER`** to comma-separated **exact tag names** as they appear in GHL.
+- [ ] Create tags the website will attach — **intended names:** `M2M - Buyer` and `M2M - Seller` (ASCII hyphen, spaces as in GHL).
+- [ ] Set **`GHL_TAG_LEAD_BUYER`** and **`GHL_TAG_LEAD_SELLER`** to comma-separated **exact tag names** as they appear in GHL (copy from GHL UI; do not paste from Word with **en dash** `–` or **em dash** `—`).
+- [ ] If these env vars are **empty**, the site **still upserts the contact** but **skips** the tag API call for that lead type (no error — verify tags in GHL after test submits).
 - [ ] Optional: **`GHL_PATH_TAGS`** for extra tags by pathname, format: `/cma-form:CMA Web|High Intent,/facing-foreclosure:Foreclosure`
 
 ---

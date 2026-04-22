@@ -5,6 +5,9 @@
 
 export type LeadType = "buyer" | "seller"
 
+/** CRM call site when logging or returning `failed_step` (no secrets). */
+export type GhlApiStep = "contacts_upsert" | "contacts_tags" | "opportunities_create"
+
 /** Inbound JSON from browser forms → POST /api/submit-lead */
 export type SubmitLeadRequest = {
   lead_type: LeadType
@@ -45,8 +48,22 @@ export type NormalizedLead = {
   notes?: string
 }
 
+export type SubmitLeadErrorResponse = {
+  ok: false
+  error: string
+  code?: string
+  /** Match server logs for Vercel triage (safe to show users as a support reference). */
+  correlationId?: string
+  failed_step?: GhlApiStep
+  /** GHL HTTP status when the failure was an error response (safe; not a secret). */
+  crm_http_status?: number
+}
+
 export type SubmitLeadResponse =
   | { ok: true; contactId?: string; opportunityId?: string }
-  | { ok: false; error: string; code?: string }
+  | SubmitLeadErrorResponse
+
+/** Failed lead API response — use with `M2mLeadSubmitErrorAlert`. */
+export type SubmitLeadFailure = SubmitLeadErrorResponse
 
 export type GhlCustomFieldEntry = { id: string; value: string }

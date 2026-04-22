@@ -72,23 +72,23 @@ export function Hero() {
 
         <h1
           id="hero-heading"
-          className="mt-8 text-balance font-light leading-[1.1] text-m2m-cream text-[clamp(2.5rem,5vw,4.5rem)]"
+          className="mt-8 text-balance font-light leading-[1.1] text-m2m-cream text-[clamp(2.5rem,5vw,4.5rem)] [text-shadow:0_1px_4px_rgba(5,13,6,0.4)]"
           style={{ fontFamily: "var(--font-display)" }}
         >
           Where You Find Your Next Home
         </h1>
 
         <p
-          className="mt-6 max-w-xl text-base leading-relaxed text-m2m-cream/80"
+          className="mt-6 max-w-xl text-base leading-relaxed text-m2m-cream [text-shadow:0_1px_10px_rgba(5,13,6,0.35)]"
           style={{ fontFamily: "var(--font-sans)" }}
         >
           Ask about our Financing Options.
         </p>
 
-        <div className="mt-12 grid w-full gap-4 sm:max-w-2xl sm:grid-cols-2">
+        <div className="mt-10 grid w-full gap-3 sm:mt-12 sm:gap-4 sm:max-w-2xl sm:grid-cols-2">
           <a
             href="/home-search"
-            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/20 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
+            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/40 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Work With Us
@@ -97,7 +97,7 @@ export function Hero() {
             href={REALSCOUT_HOME_VALUATION_URL}
             target="_blank"
             rel="noreferrer"
-            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
+            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium shadow-[0_4px_20px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Free Home Valuation
@@ -106,14 +106,14 @@ export function Hero() {
             href={getPrimaryConsultationBookUrl()}
             target="_blank"
             rel="noreferrer"
-            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream hover:scale-[1.02]"
+            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-cream/35 text-m2m-cream/95 transition-all duration-300 hover:border-m2m-cream hover:text-m2m-cream hover:scale-[1.02]"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Speak with an Agent.
           </a>
           <a
             href={M2M_PHONE_HREF}
-            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-white/10 text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream"
+            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-cream/35 text-m2m-cream/95 transition-all duration-300 hover:border-m2m-cream hover:text-m2m-cream"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Call or Text — {M2M_PHONE_DISPLAY}

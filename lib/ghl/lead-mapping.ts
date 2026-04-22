@@ -14,6 +14,7 @@ export function normalizedLeadToCustomFields(lead: NormalizedLead, cfg: GhlConfi
   addField(out, f.dob, lead.dateOfBirth)
   addField(out, f.address, lead.address)
   addField(out, f.urgency, lead.urgency)
+  /** GHL field must accept exact strings `Buyer` | `Seller` (see docs/M2M_GHL_OPERATOR_VERIFICATION.md). */
   addField(out, f.leadType, lead.leadType === "buyer" ? "Buyer" : "Seller")
   addField(out, f.utmSource, lead.utm.source)
   addField(out, f.utmMedium, lead.utm.medium)

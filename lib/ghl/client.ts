@@ -16,13 +16,14 @@
  */
 
 import type { GhlConfig } from "./config"
-import type { GhlCustomFieldEntry } from "./types"
+import type { GhlApiStep, GhlCustomFieldEntry } from "./types"
 
 export class GhlApiError extends Error {
   constructor(
     message: string,
     readonly status: number,
     readonly code?: string,
+    readonly step?: GhlApiStep,
   ) {
     super(message)
     this.name = "GhlApiError"
@@ -30,10 +31,32 @@ export class GhlApiError extends Error {
 }
 
 /** Server-only request correlation for logs (no PII). */
-export type GhlLogContext = { correlationId: string; step: string }
+export type GhlLogContext = { correlationId: string; step: GhlApiStep }
 
-function requestLogCtx(correlationId: string | undefined, step: string): GhlLogContext | undefined {
+function requestLogCtx(correlationId: string | undefined, step: GhlApiStep): GhlLogContext | undefined {
   return correlationId ? { correlationId, step } : undefined
+}
+
+/** Group GHL HTTP status for logs (no PII). */
+export function ghlStatusBucket(status: number): "auth" | "client" | "server" | "other" {
+  if (status === 401 || status === 403) return "auth"
+  if (status >= 400 && status < 500) return "client"
+  if (status >= 500) return "server"
+  return "other"
+}
+
+function upstreamDetailFromBody(body: unknown): string | undefined {
+  if (typeof body !== "object" || body === null) return undefined
+  const o = body as Record<string, unknown>
+  const msg = o.message
+  if (typeof msg === "string" && msg.trim()) return msg.slice(0, 300)
+  const err = o.error
+  if (typeof err === "string" && err.trim()) return err.slice(0, 300)
+  if (typeof err === "object" && err !== null && "message" in err) {
+    const m = (err as { message?: unknown }).message
+    if (typeof m === "string" && m.trim()) return m.slice(0, 300)
+  }
+  return undefined
 }
 
 async function ghlFetch<T>(
@@ -67,13 +90,16 @@ async function ghlFetch<T>(
       typeof body === "object" && body !== null && "message" in body
         ? String((body as { message?: unknown }).message ?? res.statusText)
         : res.statusText
+    const upstreamDetail = upstreamDetailFromBody(body)
     console.error("[ghl] API error", {
       ...(logCtx ?? {}),
       path,
       status: res.status,
+      statusBucket: ghlStatusBucket(res.status),
+      upstreamDetail,
       bodyPreview: text.slice(0, 500),
     })
-    throw new GhlApiError(msg || "Upstream error", res.status, "ghl_upstream_error")
+    throw new GhlApiError(msg || "Upstream error", res.status, "ghl_upstream_error", logCtx?.step)
   }
 
   return body as T
@@ -128,7 +154,7 @@ export async function upsertContact(
       ...requestLogCtx(params.correlationId, "contacts_upsert"),
       dataPreview: JSON.stringify(data).slice(0, 300),
     })
-    throw new GhlApiError("Invalid response from CRM", 500, "ghl_response_error")
+    throw new GhlApiError("Invalid response from CRM", 500, "ghl_response_error", "contacts_upsert")
   }
 
   return { contactId: id }
@@ -194,7 +220,7 @@ export async function createOpportunity(
       ...requestLogCtx(params.correlationId, "opportunities_create"),
       dataPreview: JSON.stringify(data).slice(0, 300),
     })
-    throw new GhlApiError("Invalid response from CRM", 500, "ghl_response_error")
+    throw new GhlApiError("Invalid response from CRM", 500, "ghl_response_error", "opportunities_create")
   }
 
   return { opportunityId: id }

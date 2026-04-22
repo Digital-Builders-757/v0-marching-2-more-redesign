@@ -19,14 +19,18 @@ export function TeamHero() {
           sizes="100vw"
         />
       </div>
-      {/* Dark overlay */}
-      <div 
-        className="absolute inset-0"
-        style={{ backgroundColor: "rgba(5, 13, 6, 0.75)" }}
+      {/* Readable overlay — photo-forward */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(5,13,6,0.45) 0%, rgba(5,13,6,0.52) 50%, rgba(5,13,6,0.58) 100%)",
+        }}
+        aria-hidden
       />
 
       {/* Content */}
-      <M2mContainer className="relative max-w-5xl text-center">
+      <M2mContainer className="relative z-10 max-w-5xl text-center">
         {/* Kicker */}
         <div 
           className="inline-flex items-center gap-4 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-8"
@@ -39,7 +43,7 @@ export function TeamHero() {
 
         {/* Headline */}
         <h1 
-          className="font-light italic text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-m2m-cream mb-8"
+          className="font-light italic text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-m2m-cream mb-8 [text-shadow:0_1px_4px_rgba(5,13,6,0.45)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Serving with integrity.<br />
@@ -48,7 +52,7 @@ export function TeamHero() {
 
         {/* Subtitle */}
         <p 
-          className="text-base leading-relaxed text-m2m-cream/80 max-w-3xl mx-auto"
+          className="text-base leading-relaxed text-m2m-cream/93 max-w-3xl mx-auto [text-shadow:0_1px_2px_rgba(5,13,6,0.35)]"
           style={{ fontFamily: 'var(--font-sans)' }}
         >
           Our unique balance of disciplined leadership, honed from military experience, combined with 
