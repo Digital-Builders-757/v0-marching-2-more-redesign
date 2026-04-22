@@ -2,15 +2,30 @@ import type { ComponentProps, CSSProperties } from "react"
 
 import { cn } from "@/lib/utils"
 
-/** Dual-gradient scrim for home hero readability over photography (matches prior inline treatment). */
+/**
+ * Editorial full-bleed hero (home, buy, sell, partners, blog): readable text without a flat /90 mud veil.
+ * Import this for any large photo hero that duplicated these stops.
+ */
 export const M2M_HOME_HERO_SCRIM_STYLE: CSSProperties = {
   background:
-    "linear-gradient(to right, rgba(5,13,6,0.92) 0%, rgba(5,13,6,0.75) 35%, rgba(5,13,6,0.45) 60%, rgba(5,13,6,0.2) 100%), linear-gradient(to bottom, rgba(5,13,6,0.4) 0%, transparent 40%, transparent 70%, rgba(5,13,6,0.55) 100%)",
+    "linear-gradient(to right, rgba(5,13,6,0.68) 0%, rgba(5,13,6,0.46) 36%, rgba(5,13,6,0.2) 62%, rgba(5,13,6,0.08) 100%), linear-gradient(to bottom, rgba(5,13,6,0.24) 0%, transparent 42%, transparent 68%, rgba(5,13,6,0.32) 100%)",
 }
 
-export type M2mInsetHeroScrimVariant = "home" | "60" | "70" | "75" | "80"
+/** Inset-card heroes (`M2mInsetHeroFrame`): warm `m2m-deep` (#0a1a0c), photo-forward, mobile-friendly. */
+export const M2M_INSET_HERO_LUMINOUS_SCRIM_STYLE: CSSProperties = {
+  background:
+    "linear-gradient(to right, rgba(10,26,12,0.3) 0%, rgba(10,26,12,0.17) 42%, rgba(10,26,12,0.08) 68%, rgba(10,26,12,0.04) 100%), linear-gradient(to bottom, rgba(10,26,12,0.12) 0%, transparent 40%, transparent 70%, rgba(10,26,12,0.16) 100%)",
+}
 
-const insetHeroScrimSolid: Record<Exclude<M2mInsetHeroScrimVariant, "home">, string> = {
+/** Full-bleed band over photography (e.g. page bottom CTAs) — same family as luminous, not flat /80. */
+export const M2M_PHOTO_BAND_SCRIM_STYLE: CSSProperties = {
+  background:
+    "linear-gradient(to bottom, rgba(10,26,12,0.26) 0%, rgba(10,26,12,0.4) 45%, rgba(10,26,12,0.5) 100%), linear-gradient(to right, rgba(10,26,12,0.18) 0%, transparent 50%, rgba(10,26,12,0.12) 100%)",
+}
+
+export type M2mInsetHeroScrimVariant = "home" | "luminous" | "60" | "70" | "75" | "80"
+
+const insetHeroScrimSolid: Record<Exclude<M2mInsetHeroScrimVariant, "home" | "luminous">, string> = {
   "60": "bg-m2m-black/60",
   "70": "bg-m2m-black/70",
   "75": "bg-m2m-black/75",
@@ -42,6 +57,15 @@ export function M2mInsetHeroScrim({
       <div
         className={cn("pointer-events-none absolute inset-0 z-[1]", className)}
         style={M2M_HOME_HERO_SCRIM_STYLE}
+        aria-hidden
+      />
+    )
+  }
+  if (variant === "luminous") {
+    return (
+      <div
+        className={cn("pointer-events-none absolute inset-0 z-[1]", className)}
+        style={M2M_INSET_HERO_LUMINOUS_SCRIM_STYLE}
         aria-hidden
       />
     )

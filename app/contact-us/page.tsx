@@ -11,8 +11,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import type { LeadType } from "@/lib/ghl/types"
+import type { LeadType, SubmitLeadFailure } from "@/lib/ghl/types"
 import { getPrimaryConsultationBookUrl, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export default function ContactUsPage() {
@@ -28,7 +29,7 @@ export default function ContactUsPage() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -39,7 +40,7 @@ export default function ContactUsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    setSubmitError(null)
     setSubmitting(true)
     try {
       const name = `${formData.firstName} ${formData.lastName}`.trim()
@@ -58,7 +59,7 @@ export default function ContactUsPage() {
         source_path: "/contact-us",
       })
       if (!res.ok) {
-        setError(res.error)
+        setSubmitError(res)
         return
       }
       setSubmitted(true)
@@ -112,7 +113,7 @@ export default function ContactUsPage() {
                 <p className="mt-4 text-sm text-m2m-muted font-sans">We&apos;ll be in touch within 24 hours.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} aria-busy={submitting} className="space-y-6">
+              <form onSubmit={handleSubmit} aria-busy={submitting} className="space-y-6 sm:space-y-7">
                 <fieldset className="space-y-3">
                   <legend className="text-sm font-medium text-m2m-deep font-sans mb-2">I am primarily…</legend>
                   <div className="flex flex-wrap gap-6">
@@ -201,13 +202,16 @@ export default function ContactUsPage() {
                   className={m2mInteriorFormTextareaClass}
                 />
 
-                {error ? (
-                  <p className="text-sm text-red-700 font-sans" role="alert">
-                    {error}
-                  </p>
+                {submitError ? (
+                  <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full" />
                 ) : null}
 
-                <Button type="submit" variant="m2mPanel" className="w-full" disabled={submitting}>
+                <Button
+                  type="submit"
+                  variant="m2mPanel"
+                  className="w-full min-h-12 touch-manipulation"
+                  disabled={submitting}
+                >
                   {submitting ? "Sending…" : "That's it — Send!"}
                 </Button>
               </form>

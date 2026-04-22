@@ -53,8 +53,10 @@ export function SellHero() {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          background: 'linear-gradient(to left, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.7) 50%, rgba(10,22,40,0.5) 100%)',
+          background:
+            "linear-gradient(to left, rgba(10,22,40,0.68) 0%, rgba(10,22,40,0.48) 50%, rgba(10,22,40,0.32) 100%)",
         }}
+        aria-hidden
       />
 
       <M2mContainer className="relative z-10">
@@ -76,7 +78,7 @@ export function SellHero() {
             {/* Heading */}
             <h2 
               data-gsap-child
-              className="text-m2m-cream text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light"
+              className="text-m2m-cream text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-light [text-shadow:0_1px_4px_rgba(5,13,6,0.45)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Learn your home&apos;s<br />
@@ -86,7 +88,7 @@ export function SellHero() {
             {/* Body */}
             <p 
               data-gsap-child
-              className="text-base leading-relaxed text-white max-w-xl"
+              className="text-base leading-relaxed text-m2m-cream/95 max-w-xl [text-shadow:0_1px_2px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               Get an accurate, no-obligation home valuation from our experienced team. We&apos;ll help you understand your home&apos;s true market value and guide you through every step of the selling process.
@@ -113,7 +115,7 @@ export function SellHero() {
                 <Link
                   href="/free-home-valuation"
                   data-gsap="magnetic"
-                  className="inline-block w-full rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+                  className="inline-block w-full rounded-lg border border-m2m-gold/40 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Learn More
@@ -123,7 +125,7 @@ export function SellHero() {
                 <Link
                   href="/sell#checklist"
                   data-gsap="magnetic"
-                  className="inline-block w-full rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+                  className="inline-block w-full rounded-lg border border-m2m-gold/40 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get The Pre-Listing Checklist

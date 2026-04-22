@@ -4,8 +4,10 @@ import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { m2mDarkPanelInputClass } from "@/lib/m2m-form"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 
 /** Compact seller intake on /sell — same contract as other seller forms. */
 export function SellValuationLeadMini() {
@@ -18,12 +20,12 @@ export function SellValuationLeadMini() {
     dateOfBirth: "",
   })
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    setSubmitError(null)
     setSubmitting(true)
     try {
       const name = `${form.firstName} ${form.lastName}`.trim()
@@ -41,7 +43,7 @@ export function SellValuationLeadMini() {
         source_path: "/sell",
       })
       if (!res.ok) {
-        setError(res.error)
+        setSubmitError(res)
         return
       }
       setDone(true)
@@ -59,7 +61,7 @@ export function SellValuationLeadMini() {
   }
 
   return (
-    <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-4 border-t border-m2m-gold/20 pt-6">
+    <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-5 border-t border-m2m-gold/20 pt-6 sm:space-y-4">
       <p className="text-xs uppercase tracking-[0.15em] text-m2m-gold font-nav">Or request a call first</p>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <input
@@ -108,15 +110,11 @@ export function SellValuationLeadMini() {
           className={m2mDarkPanelInputClass}
         />
       </div>
-      {error ? (
-        <p className="text-sm text-red-300 font-sans" role="alert">
-          {error}
-        </p>
-      ) : null}
+      {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onDark" className="w-full" /> : null}
       <button
         type="submit"
         disabled={submitting}
-        className="w-full rounded-lg bg-m2m-gold py-3 text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition hover:bg-m2m-gold-lt disabled:opacity-60 font-nav"
+        className="w-full min-h-12 touch-manipulation rounded-lg bg-m2m-gold py-3 text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition hover:bg-m2m-gold-lt disabled:opacity-60 font-nav"
       >
         {submitting ? "Sending…" : "Request contact"}
       </button>

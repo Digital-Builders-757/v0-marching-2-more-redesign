@@ -23,13 +23,13 @@ export function VaCtaBanner() {
         className="object-cover object-[center_30%]"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-m2m-deep/65" />
-      <div className="absolute inset-0 bg-gradient-to-t from-m2m-deep/80 via-transparent to-m2m-deep/40" />
+      <div className="absolute inset-0 bg-m2m-deep/52" />
+      <div className="absolute inset-0 bg-gradient-to-t from-m2m-deep/62 via-transparent to-m2m-deep/28" />
 
       <M2mContainer className="relative z-10 flex min-h-[280px] flex-col items-center justify-center py-16 text-center sm:min-h-[340px] sm:py-20 lg:min-h-[400px]">
         <h2
           id="va-cta-banner-heading"
-          className="max-w-xl text-2xl font-semibold leading-snug text-m2m-cream sm:text-3xl lg:text-[2rem]"
+          className="max-w-xl text-2xl font-semibold leading-snug text-m2m-cream sm:text-3xl lg:text-[2rem] [text-shadow:0_1px_4px_rgba(5,13,6,0.45)]"
           style={{ fontFamily: "var(--font-sans)" }}
         >
           {CTA_BANNER_HEADLINE}

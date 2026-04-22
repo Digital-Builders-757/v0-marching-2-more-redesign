@@ -63,27 +63,27 @@ export default function ResourcesPage() {
                 alt=""
                 fill
                 priority
-                className="object-cover"
+                className="object-cover object-[center_32%] sm:object-center"
                 sizes="100vw"
               />
             </div>
-            <M2mInsetHeroScrim variant="60" />
-          
-            <M2mContainer className="relative max-w-5xl pt-24 pb-20">
+            <M2mInsetHeroScrim variant="luminous" />
+
+            <M2mContainer className="relative z-10 max-w-5xl pt-20 pb-16 sm:pt-24 sm:pb-20">
             {/* Kicker with line */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4 sm:justify-start">
               <p
-                className="text-[0.7rem] tracking-[0.2em] uppercase text-m2m-cream"
+                className="text-[0.7rem] tracking-[0.2em] uppercase text-m2m-gold"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Resources
               </p>
-              <span className="h-px w-24 bg-m2m-cream/50" aria-hidden />
+              <span className="h-px w-24 bg-m2m-gold/50" aria-hidden />
             </div>
 
             {/* Main Heading */}
             <h1
-              className="mt-10 font-light italic text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] text-m2m-cream text-center"
+              className="mt-8 sm:mt-10 font-light italic text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] text-m2m-cream text-center [text-shadow:0_2px_16px_rgba(5,13,6,0.5),0_1px_4px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Prepare Your Home<br />for the Market
@@ -91,7 +91,7 @@ export default function ResourcesPage() {
 
             {/* Subheading */}
             <p
-              className="mt-8 text-center text-lg md:text-xl leading-relaxed text-m2m-cream/90"
+              className="mt-6 sm:mt-8 text-center text-base sm:text-lg md:text-xl leading-relaxed text-m2m-cream [text-shadow:0_1px_10px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               Use our 20 page guide to assist you with<br className="hidden md:block" />

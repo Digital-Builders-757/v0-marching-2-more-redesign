@@ -48,7 +48,7 @@ export function CreditHero() {
               className="object-cover object-[center_25%]"
               sizes="(max-width:1024px) 100vw, 25vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/58 via-black/12 to-transparent" />
             <div className="relative z-10 p-5 sm:p-6">
               <p
                 className="text-lg italic leading-snug text-m2m-cream sm:text-xl"

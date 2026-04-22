@@ -31,7 +31,7 @@ export function DivorceAerialLead() {
     >
       <div className="absolute inset-0">
         <Image src={AERIAL_BACKGROUND} alt="" fill className="object-cover" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-r from-m2m-deep/92 via-m2m-deep/80 to-m2m-deep/65" />
+        <div className="absolute inset-0 bg-gradient-to-r from-m2m-deep/72 via-m2m-deep/52 to-m2m-deep/38" />
       </div>
 
       <M2mContainer className="relative z-10 py-16 lg:flex lg:items-stretch lg:gap-14 lg:py-24">

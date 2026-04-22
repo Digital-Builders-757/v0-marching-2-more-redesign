@@ -4,8 +4,10 @@ import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { m2mInteriorFormInputClass } from "@/lib/m2m-form"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 
 /**
  * Short seller intake for /free-home-valuation — complements the RealScout instant estimate link.
@@ -21,12 +23,12 @@ export function ValuationSellerLeadForm() {
     address: "",
   })
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    setSubmitError(null)
     setSubmitting(true)
     try {
       const name = `${form.firstName} ${form.lastName}`.trim()
@@ -45,7 +47,7 @@ export function ValuationSellerLeadForm() {
         source_path: "/free-home-valuation",
       })
       if (!res.ok) {
-        setError(res.error)
+        setSubmitError(res)
         return
       }
       setDone(true)
@@ -75,10 +77,10 @@ export function ValuationSellerLeadForm() {
       <h2 className="mt-2 text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
         Request a personalized valuation call
       </h2>
-      <p className="mt-2 text-sm text-m2m-deep/80 font-sans">
+      <p className="mt-2 text-sm leading-relaxed text-m2m-deep/82 font-sans">
         Short form — we&apos;ll reach out to coordinate your CMA and next steps.
       </p>
-      <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-4">
+      <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-5 sm:space-y-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <input
             type="text"
@@ -133,15 +135,11 @@ export function ValuationSellerLeadForm() {
             className={m2mInteriorFormInputClass}
           />
         </div>
-        {error ? (
-          <p className="text-sm text-red-700 font-sans" role="alert">
-            {error}
-          </p>
-        ) : null}
+        {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full" /> : null}
         <button
           type="submit"
           disabled={submitting}
-          className="w-full rounded-md bg-m2m-deep py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-m2m-cream transition hover:bg-m2m-deep/90 disabled:opacity-60 font-nav"
+          className="w-full min-h-12 touch-manipulation rounded-md bg-m2m-deep py-3 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-m2m-cream transition hover:bg-m2m-deep/90 disabled:opacity-60 font-nav"
         >
           {submitting ? "Sending…" : "Submit"}
         </button>

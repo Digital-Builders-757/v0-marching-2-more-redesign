@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 
-import { M2mContainer } from "@/components/m2m-layout"
+import { M2mContainer, M2M_HOME_HERO_SCRIM_STYLE } from "@/components/m2m-layout"
 import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export function PartnersHero() {
@@ -58,15 +58,7 @@ export function PartnersHero() {
       />
 
       {/* Gradient overlay for text readability */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background: `
-            linear-gradient(to right, rgba(5,13,6,0.92) 0%, rgba(5,13,6,0.75) 35%, rgba(5,13,6,0.45) 60%, rgba(5,13,6,0.2) 100%),
-            linear-gradient(to bottom, rgba(5,13,6,0.4) 0%, transparent 40%, transparent 70%, rgba(5,13,6,0.5) 100%)
-          `,
-        }}
-      />
+      <div className="absolute inset-0 z-[1] pointer-events-none" style={M2M_HOME_HERO_SCRIM_STYLE} />
 
       {/* Content */}
       <M2mContainer className="relative z-[2] max-w-4xl">
@@ -83,7 +75,7 @@ export function PartnersHero() {
         {/* Headline */}
         <h1 
           ref={headlineRef}
-          className="font-light text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] tracking-tight text-m2m-cream mb-8"
+          className="font-light text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] tracking-tight text-m2m-cream mb-8 [text-shadow:0_1px_4px_rgba(5,13,6,0.45)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           <span className="block">Financing, Renovations,</span>
@@ -93,8 +85,8 @@ export function PartnersHero() {
         {/* Subtitle */}
         <p 
           ref={subtitleRef}
-          className="text-base md:text-lg text-m2m-muted-lt leading-relaxed max-w-2xl opacity-0"
-          style={{ fontFamily: 'var(--font-sans)', textShadow: '0 2px 8px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.2)' }}
+          className="text-base md:text-lg text-m2m-cream/92 leading-relaxed max-w-2xl opacity-0"
+          style={{ fontFamily: 'var(--font-sans)', textShadow: '0 1px 3px rgba(5,13,6,0.5)' }}
         >
           And so much more. Access a network of trusted local leaders. We&apos;ve experienced their 
           professionalism and standard of excellence first hand, and we&apos;re proud to recommend them to you.
