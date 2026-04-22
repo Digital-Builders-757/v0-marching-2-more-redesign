@@ -4,7 +4,9 @@ import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { m2mInteriorFormInputClass } from "@/lib/m2m-form"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 
 export function BuyLeadMini() {
@@ -17,12 +19,12 @@ export function BuyLeadMini() {
     dateOfBirth: "",
   })
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    setSubmitError(null)
     setSubmitting(true)
     try {
       const name = `${form.firstName} ${form.lastName}`.trim()
@@ -40,7 +42,7 @@ export function BuyLeadMini() {
         source_path: "/buy",
       })
       if (!res.ok) {
-        setError(res.error)
+        setSubmitError(res)
         return
       }
       setDone(true)
@@ -62,7 +64,7 @@ export function BuyLeadMini() {
   }
 
   return (
-    <form onSubmit={submit} aria-busy={submitting} className="mt-8 max-w-xl mx-auto text-left space-y-4">
+    <form onSubmit={submit} aria-busy={submitting} className="mt-8 max-w-xl mx-auto text-left space-y-5 sm:space-y-4">
       <p className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold font-nav text-center">Get matched with an agent</p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <input
@@ -110,15 +112,13 @@ export function BuyLeadMini() {
           className={m2mInteriorFormInputClass}
         />
       </div>
-      {error ? (
-        <p className="text-sm text-red-700 font-sans text-center" role="alert">
-          {error}
-        </p>
+      {submitError ? (
+        <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full text-left" />
       ) : null}
       <button
         type="submit"
         disabled={submitting}
-        className="w-full min-h-11 bg-m2m-deep text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 font-medium transition hover:bg-m2m-deep/90 disabled:opacity-60 font-nav"
+        className="w-full min-h-12 touch-manipulation bg-m2m-deep text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 font-medium transition hover:bg-m2m-deep/90 disabled:opacity-60 font-nav"
       >
         {submitting ? "Sending…" : "Submit"}
       </button>

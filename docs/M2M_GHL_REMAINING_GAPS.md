@@ -4,6 +4,7 @@
 
 | Read next | Purpose |
 |-----------|---------|
+| [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) | Env assumptions, tag rules, `npm run ghl:operator-check`, triage |
 | [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) | Ordered env + test sequences |
 | [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) | Account-side checklist |
 | [WORK_ORDER.md](./WORK_ORDER.md) — section **GHL integration — status** | Full pass summary |
@@ -17,6 +18,7 @@
 - UTM capture, `source_path`, buyer/seller typing, optional `notes` / `address` / `urgency`.
 - **`getPrimaryConsultationBookUrl()`** — single booking pattern; GHL URL when set, else Calendly fallback.
 - Server logs: `[ghl]` + `correlationId`; pipeline env gaps enumerated when opportunities skipped.
+- Operator script: `npm run ghl:operator-check` (optional `--ping`); see [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md).
 - Docs: runbook, this file, troubleshooting rows; `npm run ci` green.
 
 ---

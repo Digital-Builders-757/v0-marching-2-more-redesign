@@ -6,7 +6,13 @@ import { Footer } from "@/components/footer"
 import { ValuationSellerLeadForm } from "@/components/free-home-valuation/valuation-seller-lead-form"
 import { Header } from "@/components/header"
 import { M2mBrandLogo } from "@/components/m2m-brand-logo"
-import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim, M2mSection } from "@/components/m2m-layout"
+import {
+  M2mContainer,
+  M2mInsetHeroFrame,
+  M2mInsetHeroScrim,
+  M2mSection,
+  M2M_PHOTO_BAND_SCRIM_STYLE,
+} from "@/components/m2m-layout"
 import {
   GOOGLE_REVIEW_URL,
   M2M_PHONE_DISPLAY,
@@ -27,23 +33,23 @@ export default function FreeHomeValuationPage() {
 
       <main id="main-content" tabIndex={-1} className="bg-white">
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] overflow-hidden bg-white py-6 md:py-8">
-          <M2mInsetHeroFrame className="min-h-[calc(70vh-3rem)]">
+        <section className="relative min-h-[72vh] overflow-hidden bg-white py-5 sm:py-6 md:py-8">
+          <M2mInsetHeroFrame className="min-h-[min(72vh,820px)] sm:min-h-[calc(70vh-3rem)]">
             <div className="absolute inset-0">
               <Image
                 src="/images/cma-hero.png"
                 alt=""
                 fill
                 priority
-                className="object-cover"
+                className="object-cover object-[center_28%] sm:object-center"
                 sizes="100vw"
               />
             </div>
-            <M2mInsetHeroScrim variant="80" />
+            <M2mInsetHeroScrim variant="luminous" />
 
-            <M2mContainer className="relative max-w-5xl text-center pt-28 pb-20">
+            <M2mContainer className="relative z-10 max-w-5xl text-center pt-20 pb-16 sm:pt-28 sm:pb-20">
             {/* Kicker */}
-            <div className="inline-flex items-center gap-4 mb-8">
+            <div className="inline-flex flex-wrap items-center justify-center gap-4 mb-6 sm:mb-8">
               <p
                 className="text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold"
                 style={{ fontFamily: "var(--font-nav)" }}
@@ -55,7 +61,7 @@ export default function FreeHomeValuationPage() {
 
             {/* Heading */}
             <h1
-              className="font-light italic leading-[1.05] text-[clamp(2.5rem,6vw,4.5rem)] text-m2m-cream mb-6"
+              className="font-light italic leading-[1.05] text-[clamp(2.5rem,6vw,4.5rem)] text-m2m-cream mb-6 [text-shadow:0_2px_16px_rgba(5,13,6,0.5),0_1px_3px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Maximize Your<br />
@@ -65,7 +71,7 @@ export default function FreeHomeValuationPage() {
 
             {/* Subheading */}
             <p
-              className="text-base md:text-lg italic text-m2m-cream mb-8 max-w-xl mx-auto"
+              className="text-base md:text-lg italic text-m2m-cream mb-8 max-w-xl mx-auto [text-shadow:0_1px_12px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Effortless Home Valuation for Top Market<br />
@@ -77,7 +83,7 @@ export default function FreeHomeValuationPage() {
               href={REALSCOUT_HOME_VALUATION_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-block bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:bg-m2m-gold-lt mb-8"
+              className="inline-block min-h-12 touch-manipulation bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 shadow-[0_4px_26px_-4px_rgba(5,13,6,0.45)] transition hover:bg-m2m-gold-lt mb-8"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               Get Your Free Home Valuation
@@ -96,7 +102,7 @@ export default function FreeHomeValuationPage() {
 
             {/* Contact Link */}
             <p
-              className="text-sm text-m2m-cream/90"
+              className="text-sm text-m2m-cream/95"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               Have a question?{" "}
@@ -340,7 +346,7 @@ export default function FreeHomeValuationPage() {
         </section>
 
         {/* Bottom CTA Section */}
-        <section className="relative overflow-hidden py-24">
+        <section className="relative overflow-hidden py-20 sm:py-24">
           {/* Background image */}
           <div className="absolute inset-0">
             <Image
@@ -351,23 +357,23 @@ export default function FreeHomeValuationPage() {
               sizes="100vw"
             />
           </div>
-          <div className="absolute inset-0 bg-m2m-black/80" aria-hidden />
+          <div className="absolute inset-0 z-[1] pointer-events-none" style={M2M_PHOTO_BAND_SCRIM_STYLE} aria-hidden />
 
-          <M2mContainer className="relative max-w-3xl text-center">
+          <M2mContainer className="relative z-10 max-w-3xl px-4 text-center sm:px-6">
             <h2
-              className="font-light italic leading-[1.1] text-[clamp(2rem,5vw,3rem)] text-m2m-cream mb-10"
+              className="font-light italic leading-[1.1] text-[clamp(2rem,5vw,3rem)] text-m2m-cream mb-8 sm:mb-10 [text-shadow:0_1px_4px_rgba(5,13,6,0.45)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Ready to Discover Your<br />
               Home&apos;s True Value?
             </h2>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-stretch gap-3 sm:items-center sm:gap-4">
               <a
                 href={REALSCOUT_HOME_VALUATION_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:bg-m2m-gold-lt"
+                className="inline-block bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 shadow-[0_4px_22px_-4px_rgba(5,13,6,0.4)] transition hover:bg-m2m-gold-lt sm:min-w-[280px]"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Your Free Home Valuation
@@ -375,7 +381,7 @@ export default function FreeHomeValuationPage() {
 
               <a
                 href={M2M_PHONE_HREF}
-                className="inline-block border border-m2m-cream/50 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:border-m2m-cream"
+                className="inline-block border border-m2m-cream/45 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:border-m2m-gold hover:text-m2m-gold sm:min-w-[280px]"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Or give us a call — {M2M_PHONE_DISPLAY}
@@ -383,7 +389,7 @@ export default function FreeHomeValuationPage() {
 
               <Link
                 href="/our-team"
-                className="inline-block border border-m2m-cream/50 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:border-m2m-cream"
+                className="inline-block border border-m2m-cream/45 text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:border-m2m-gold hover:text-m2m-gold sm:min-w-[280px]"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Meet Your Team

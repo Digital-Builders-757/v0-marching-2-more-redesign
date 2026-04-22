@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
-import { M2mContainer } from "@/components/m2m-layout"
+import { M2mContainer, M2M_HOME_HERO_SCRIM_STYLE } from "@/components/m2m-layout"
 import { M2M_MEDIA } from "@/lib/m2m-media"
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF, REALSCOUT_HOME_VALUATION_URL } from "@/lib/m2m-site"
 
@@ -67,15 +67,7 @@ export function SellPageHero() {
       />
 
       {/* Gradient overlay for text readability */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background: `
-            linear-gradient(to right, rgba(5,13,6,0.92) 0%, rgba(5,13,6,0.75) 35%, rgba(5,13,6,0.45) 60%, rgba(5,13,6,0.2) 100%),
-            linear-gradient(to bottom, rgba(5,13,6,0.4) 0%, transparent 40%, transparent 70%, rgba(5,13,6,0.5) 100%)
-          `,
-        }}
-      />
+      <div className="absolute inset-0 z-[1] pointer-events-none" style={M2M_HOME_HERO_SCRIM_STYLE} />
 
       {/* Content */}
       <M2mContainer className="relative z-10 max-w-4xl">
@@ -92,7 +84,7 @@ export function SellPageHero() {
         {/* Headline */}
         <h1 
           ref={headlineRef}
-          className="font-light text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] tracking-tight text-m2m-cream mb-8"
+          className="font-light text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] tracking-tight text-m2m-cream mb-8 [text-shadow:0_1px_4px_rgba(5,13,6,0.45)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           <span className="block">Learn Your Home&apos;s</span>
@@ -102,8 +94,8 @@ export function SellPageHero() {
         {/* Subtitle */}
         <p 
           ref={subtitleRef}
-          className="text-base md:text-lg text-m2m-muted-lt leading-relaxed max-w-2xl mb-12 opacity-0"
-          style={{ fontFamily: 'var(--font-sans)', textShadow: '0 2px 8px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.2)' }}
+          className="text-base md:text-lg text-m2m-cream/92 leading-relaxed max-w-2xl mb-12 opacity-0"
+          style={{ fontFamily: 'var(--font-sans)', textShadow: '0 1px 3px rgba(5,13,6,0.5)' }}
         >
           Ready to sell? We provide expert guidance, professional marketing, and dedicated support 
           to help you get the best price for your home. Start with a free, no-obligation valuation.
@@ -115,14 +107,14 @@ export function SellPageHero() {
             href={REALSCOUT_HOME_VALUATION_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-block w-full bg-m2m-gold px-10 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:bg-m2m-gold-lt sm:w-auto"
+            className="inline-block w-full bg-m2m-gold px-10 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_18px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 hover:bg-m2m-gold-lt sm:w-auto"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Get Free Valuation
           </a>
           <Link
             href="#checklist"
-            className="inline-block w-full border border-m2m-gold/30 px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+            className="inline-block w-full border border-m2m-gold/45 px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Pre-Listing Checklist

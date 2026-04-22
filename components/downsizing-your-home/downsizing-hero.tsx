@@ -25,8 +25,8 @@ export function DownsizingHero() {
         sizes="100vw"
         priority
       />
-      <div className="absolute inset-0 bg-m2m-panel/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-m2m-deep/85 via-m2m-deep/25 to-m2m-panel/50" />
+      <div className="absolute inset-0 bg-m2m-panel/52" />
+      <div className="absolute inset-0 bg-gradient-to-t from-m2m-deep/68 via-m2m-deep/18 to-m2m-panel/42" />
 
       <M2mContainer className="relative z-10 flex min-h-[min(78vh,680px)] max-w-4xl flex-col items-center justify-center py-20 text-center lg:py-24">
         <h1

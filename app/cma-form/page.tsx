@@ -9,8 +9,10 @@ import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { m2mCmaFormInputClass, m2mCmaFormTextareaClass } from "@/lib/m2m-form"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
@@ -30,7 +32,7 @@ export default function CmaFormPage() {
     goals: "",
   })
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -40,7 +42,7 @@ export default function CmaFormPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    setSubmitError(null)
     setSubmitting(true)
     try {
       const name = `${formData.firstName} ${formData.lastName}`.trim()
@@ -69,7 +71,7 @@ export default function CmaFormPage() {
         notes,
       })
       if (!res.ok) {
-        setError(res.error)
+        setSubmitError(res)
         return
       }
       setDone(true)
@@ -93,13 +95,13 @@ export default function CmaFormPage() {
                 alt=""
                 fill
                 priority
-                className="object-cover"
+                className="object-cover object-[center_28%] sm:object-center"
                 sizes="100vw"
               />
             </div>
-            <M2mInsetHeroScrim variant="75" />
+            <M2mInsetHeroScrim variant="luminous" />
 
-            <M2mContainer className="relative pt-28 pb-16">
+            <M2mContainer className="relative z-10 pt-24 pb-14 sm:pt-28 sm:pb-16">
               <div className="mx-auto max-w-5xl">
                 {/* Kicker */}
                 <div className="flex items-center gap-4">
@@ -114,7 +116,7 @@ export default function CmaFormPage() {
 
                 {/* Heading */}
                 <h1
-                  className="mt-8 font-light italic text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] text-m2m-gold"
+                  className="mt-8 font-light italic text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] text-m2m-gold [text-shadow:0_1px_4px_rgba(5,13,6,0.45)]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   Comprehensive
@@ -339,10 +341,8 @@ export default function CmaFormPage() {
                       </div>
                     </div>
 
-                    {error ? (
-                      <p className="mb-4 text-center text-sm text-red-700 font-sans" role="alert">
-                        {error}
-                      </p>
+                    {submitError ? (
+                      <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="mb-5 w-full" />
                     ) : null}
 
                     {/* Privacy text */}
@@ -357,7 +357,7 @@ export default function CmaFormPage() {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="w-full rounded-md bg-m2m-deep py-4 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-m2m-cream transition hover:bg-m2m-deep/90 disabled:opacity-60"
+                      className="w-full min-h-12 touch-manipulation rounded-md bg-m2m-deep py-4 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-m2m-cream transition hover:bg-m2m-deep/90 disabled:opacity-60"
                       style={{ fontFamily: "var(--font-nav)" }}
                     >
                       {submitting ? "Sending…" : "That's it — Send!"}

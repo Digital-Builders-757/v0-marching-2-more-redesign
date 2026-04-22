@@ -1,6 +1,19 @@
 # Marching 2 More — GoHighLevel live cutover runbook
 
-**Purpose:** Step-by-step order for plugging real GHL values into the website and validating end-to-end. Companion docs: [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) (account-side tasks), [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) (architecture), [`.env.example`](../.env.example), [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md) (post-pass checklist).
+**Purpose:** Step-by-step order for plugging real GHL values into the website and validating end-to-end. Companion docs: [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) (assumptions + triage), [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) (account-side tasks), [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) (architecture), [`.env.example`](../.env.example), [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md) (post-pass checklist).
+
+---
+
+## 0. Repo-side sanity check (operators)
+
+After filling `.env.local` (or before promoting Vercel env):
+
+```bash
+npm run ghl:operator-check
+npm run ghl:operator-check -- --ping
+```
+
+See [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md). No secrets are printed; `--ping` confirms token + `GHL_LOCATION_ID` can read the location (HTTP status only).
 
 ---
 
@@ -90,7 +103,7 @@ Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-le
 | Symptom | What to check |
 |---------|----------------|
 | **503** / “Lead capture is not configured” | Missing `GHL_API_KEY` / `GHL_LOCATION_ID` or required `GHL_CF_*` in live mode |
-| **502** / generic CRM error | Invalid token, wrong location, API version, or GHL 4xx/5xx — see **Vercel logs** for `[ghl]` lines (`correlationId`, `status`, `bodyPreview`) |
+| **502** / generic CRM error | GHL rejected a step — in the browser Network response, copy **`correlationId`**, **`failed_step`**, **`crm_http_status`**. In **Vercel logs**, search the same `correlationId` and `[ghl]` (`path`, `statusBucket`, `upstreamDetail`, `bodyPreview`). See [M2M_GHL_OPERATOR_VERIFICATION.md §4](./M2M_GHL_OPERATOR_VERIFICATION.md#4-interpreting-production-failures-502--user-message) |
 | Contact saved, **no opportunity** | Not all of `GHL_BUYER_PIPELINE_ID`, `GHL_SELLER_PIPELINE_ID`, `GHL_BUYER_STAGE_NEW_INQUIRY_ID`, `GHL_SELLER_STAGE_NEW_INQUIRY_ID` set — intentional degradation |
 | **422** / validation from GHL | Wrong custom field IDs or value shapes — compare field IDs in GHL UI to env |
 | Tags not applied | Tag names in env must match GHL **exactly** |

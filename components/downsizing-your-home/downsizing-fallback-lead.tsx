@@ -7,8 +7,10 @@ import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { m2mLeadFieldInputClass } from "@/lib/m2m-form"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 
 const labelDark =
   "mb-1.5 block text-left text-[0.7rem] font-medium uppercase tracking-[0.12em] text-m2m-cream/85 font-nav"
@@ -26,12 +28,12 @@ export function DownsizingFallbackLead() {
     dateOfBirth: "",
   })
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    setSubmitError(null)
     setSubmitting(true)
     try {
       const name = `${form.firstName} ${form.lastName}`.trim()
@@ -50,7 +52,7 @@ export function DownsizingFallbackLead() {
         source_path: "/downsizing-your-home",
       })
       if (!res.ok) {
-        setError(res.error)
+        setSubmitError(res)
         return
       }
       setDone(true)
@@ -77,7 +79,7 @@ export function DownsizingFallbackLead() {
       <p className="text-center text-sm text-m2m-cream/90 font-sans">
         While we connect the guided quiz, leave your details and we&apos;ll send tailored next steps.
       </p>
-      <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-4">
+      <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-5 sm:space-y-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <Label htmlFor="ds-first" className={labelDark}>
@@ -143,12 +145,8 @@ export function DownsizingFallbackLead() {
             />
           </div>
         </div>
-        {error ? (
-          <p className="text-center text-sm text-red-300 font-sans" role="alert">
-            {error}
-          </p>
-        ) : null}
-        <Button type="submit" variant="m2mGold" className="w-full" disabled={submitting}>
+        {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onDark" className="w-full" /> : null}
+        <Button type="submit" variant="m2mGold" className="w-full min-h-12 touch-manipulation" disabled={submitting}>
           {submitting ? "Sending…" : "Submit"}
         </Button>
       </form>

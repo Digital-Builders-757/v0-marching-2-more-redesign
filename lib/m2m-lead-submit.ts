@@ -1,6 +1,6 @@
-import type { SubmitLeadRequest, SubmitLeadResponse } from "@/lib/ghl/types"
+import type { SubmitLeadFailure, SubmitLeadRequest, SubmitLeadResponse } from "@/lib/ghl/types"
 
-export type { SubmitLeadRequest, SubmitLeadResponse }
+export type { SubmitLeadFailure, SubmitLeadRequest, SubmitLeadResponse }
 
 /**
  * POST JSON to the server-only lead route. No secrets in the request.
@@ -30,6 +30,14 @@ export async function submitLeadToApi(body: SubmitLeadRequest): Promise<SubmitLe
       ok: false,
       error: "error" in obj && typeof obj.error === "string" ? obj.error : "Request failed",
       code: "code" in obj && typeof obj.code === "string" ? obj.code : undefined,
+      correlationId:
+        "correlationId" in obj && typeof obj.correlationId === "string" ? obj.correlationId : undefined,
+      failed_step:
+        "failed_step" in obj && (obj.failed_step === "contacts_upsert" || obj.failed_step === "contacts_tags" || obj.failed_step === "opportunities_create")
+          ? obj.failed_step
+          : undefined,
+      crm_http_status:
+        "crm_http_status" in obj && typeof obj.crm_http_status === "number" ? obj.crm_http_status : undefined,
     }
   }
 
