@@ -3,9 +3,11 @@
 import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { m2mDarkPanelInputClass } from "@/lib/m2m-form"
+import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { SubmitLeadFailure } from "@/lib/ghl/types"
 
@@ -18,6 +20,8 @@ export function SellValuationLeadMini() {
     email: "",
     phone: "",
     dateOfBirth: "",
+    address: "",
+    timeline: "",
   })
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
@@ -35,6 +39,8 @@ export function SellValuationLeadMini() {
         email: form.email,
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
+        address: form.address.trim() || undefined,
+        urgency: form.timeline,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
@@ -61,7 +67,12 @@ export function SellValuationLeadMini() {
   }
 
   return (
-    <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-5 border-t border-m2m-gold/20 pt-6 sm:space-y-4">
+    <form
+      data-m2m-lead="sell-seller-mini"
+      onSubmit={submit}
+      aria-busy={submitting}
+      className="mt-6 space-y-5 border-t border-m2m-gold/20 pt-6 sm:space-y-4"
+    >
       <p className="text-xs uppercase tracking-[0.15em] text-m2m-gold font-nav">Or request a call first</p>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <input
@@ -83,12 +94,29 @@ export function SellValuationLeadMini() {
           className={m2mDarkPanelInputClass}
         />
       </div>
+      <input
+        type="text"
+        placeholder="Property address (optional)"
+        autoComplete="street-address"
+        value={form.address}
+        onChange={(e) => setForm({ ...form, address: e.target.value })}
+        className={m2mDarkPanelInputClass}
+      />
       <M2mLeadDobField
         value={form.dateOfBirth}
         onChange={(v) => setForm({ ...form, dateOfBirth: v })}
         inputClassName={m2mDarkPanelInputClass}
         className="text-m2m-cream"
         label="Date of birth"
+        helperClassName="!opacity-100 text-m2m-cream/70"
+      />
+      <M2mLeadUrgencySelect
+        id="sell-mini-urgency"
+        value={form.timeline}
+        onChange={(v) => setForm({ ...form, timeline: v })}
+        variant="leadPanel"
+        className="text-m2m-cream"
+        hint={M2M_URGENCY_SHARED_HINT}
       />
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <input

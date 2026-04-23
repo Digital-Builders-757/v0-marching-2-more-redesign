@@ -11,6 +11,8 @@
  *   https://marketplace.gohighlevel.com/docs/ghl/contacts/add-tags
  * - POST https://services.leadconnectorhq.com/opportunities/
  *   https://marketplace.gohighlevel.com/docs/ghl/opportunities/create-opportunity
+ * - POST https://services.leadconnectorhq.com/contacts/:contactId/notes
+ *   https://marketplace.gohighlevel.com/docs/ghl/contacts/create-note
  *
  * Request/response shapes can vary by API version; keep all paths and bodies here.
  */
@@ -224,4 +226,26 @@ export async function createOpportunity(
   }
 
   return { opportunityId: id }
+}
+
+const NOTE_BODY_MAX = 8_000
+
+/** POST /contacts/:contactId/notes — `body` is the note text (GHL field name). */
+export async function createContactNote(
+  cfg: GhlConfig,
+  contactId: string,
+  noteText: string,
+  correlationId?: string,
+): Promise<void> {
+  const body = noteText.trim().slice(0, NOTE_BODY_MAX)
+  if (!body) return
+  await ghlFetch<unknown>(
+    cfg,
+    `/contacts/${encodeURIComponent(contactId)}/notes`,
+    {
+      method: "POST",
+      body: JSON.stringify({ body }),
+    },
+    requestLogCtx(correlationId, "contacts_note"),
+  )
 }

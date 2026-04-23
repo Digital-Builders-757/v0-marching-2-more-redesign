@@ -3,6 +3,7 @@
 import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,6 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import { cn } from "@/lib/utils"
@@ -35,6 +37,8 @@ export function PreForeclosureForm() {
     email: "",
     phone: "",
     dateOfBirth: "",
+    address: "",
+    timeline: "",
     message: "",
   })
   const [submitting, setSubmitting] = useState(false)
@@ -53,6 +57,8 @@ export function PreForeclosureForm() {
         email: form.email,
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
+        address: form.address.trim() || undefined,
+        urgency: form.timeline,
         notes: form.message || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
@@ -107,9 +113,10 @@ export function PreForeclosureForm() {
       </p>
 
       <form
+        data-m2m-lead="facing-foreclosure"
         onSubmit={handleSubmit}
         aria-busy={submitting}
-        className="mt-8 space-y-5"
+        className="mt-8 space-y-5 sm:space-y-4"
         aria-label="Request foreclosure guide"
       >
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -181,6 +188,29 @@ export function PreForeclosureForm() {
             className={m2mLeadFieldInputClass}
           />
         </div>
+
+        <div>
+          <Label htmlFor="pf-address" className={m2mLeadFieldLabelClass}>
+            Property address
+          </Label>
+          <Input
+            id="pf-address"
+            type="text"
+            autoComplete="street-address"
+            value={form.address}
+            onChange={(e) => setForm({ ...form, address: e.target.value })}
+            className={m2mLeadFieldInputClass}
+            placeholder="Optional — helps the team move faster"
+          />
+        </div>
+
+        <M2mLeadUrgencySelect
+          id="pf-urgency"
+          value={form.timeline}
+          onChange={(v) => setForm({ ...form, timeline: v })}
+          variant="interior"
+          hint={M2M_URGENCY_SHARED_HINT}
+        />
 
         <div>
           <Label htmlFor="pf-message" className={m2mLeadFieldLabelClass}>

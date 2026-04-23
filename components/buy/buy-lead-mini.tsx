@@ -3,9 +3,11 @@
 import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
-import { m2mInteriorFormInputClass } from "@/lib/m2m-form"
+import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
+import { cn } from "@/lib/utils"
 import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 
@@ -17,6 +19,8 @@ export function BuyLeadMini() {
     email: "",
     phone: "",
     dateOfBirth: "",
+    timeline: "",
+    context: "",
   })
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
@@ -34,6 +38,8 @@ export function BuyLeadMini() {
         email: form.email,
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
+        urgency: form.timeline,
+        notes: form.context.trim() || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
@@ -64,8 +70,13 @@ export function BuyLeadMini() {
   }
 
   return (
-    <form onSubmit={submit} aria-busy={submitting} className="mt-8 max-w-xl mx-auto text-left space-y-5 sm:space-y-4">
-      <p className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold font-nav text-center">Get matched with an agent</p>
+    <form
+      data-m2m-lead="buyer-mini"
+      onSubmit={submit}
+      aria-busy={submitting}
+      className="mx-auto mt-8 max-w-xl space-y-5 text-left sm:space-y-4"
+    >
+      <p className="text-center text-[0.65rem] font-nav uppercase tracking-[0.2em] text-m2m-gold">Get matched with an agent</p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <input
           type="text"
@@ -92,6 +103,12 @@ export function BuyLeadMini() {
         inputClassName={m2mInteriorFormInputClass}
         className="text-m2m-deep"
       />
+      <M2mLeadUrgencySelect
+        id="buy-mini-urgency"
+        value={form.timeline}
+        onChange={(v) => setForm({ ...form, timeline: v })}
+        variant="interior"
+      />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <input
           type="email"
@@ -110,6 +127,19 @@ export function BuyLeadMini() {
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })}
           className={m2mInteriorFormInputClass}
+        />
+      </div>
+      <div>
+        <label htmlFor="buy-mini-context" className="mb-1.5 block text-left text-sm font-medium text-m2m-deep font-sans">
+          Additional context <span className="font-normal text-m2m-muted">(optional)</span>
+        </label>
+        <textarea
+          id="buy-mini-context"
+          placeholder="e.g. cities, price range, must-haves"
+          value={form.context}
+          onChange={(e) => setForm({ ...form, context: e.target.value })}
+          rows={3}
+          className={cn(m2mInteriorFormTextareaClass, "min-h-[5.5rem]")}
         />
       </div>
       {submitError ? (

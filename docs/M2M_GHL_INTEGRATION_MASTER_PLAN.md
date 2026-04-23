@@ -1,6 +1,6 @@
 # Marching 2 More — GoHighLevel integration master plan
 
-**Last updated:** April 20, 2026  
+**Last updated:** April 22, 2026  
 **Owner:** Marching 2 More / Donavan McFadden  
 **Technical implementation owner:** website CTO / coding agent execution inside this repo  
 **Target completion window:** ship the core setup by **May 1, 2026**
@@ -126,6 +126,24 @@ Every form submission must include:
 
 If a page targets a seller pain point such as foreclosure, downsizing, valuation, or prep-to-list, the form should resolve to the **seller funnel**, even if the copy varies page to page.
 
+### Lead capture routes (expected CRM payload)
+
+Shared timeline strings for `urgency` (TEXT) come from one source: [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts) (same options as the CMA “Timeline for Selling” radios). `GHL_CF_ADDRESS` maps to the GHL field labeled **Property Address**; optional fields are omitted when empty.
+
+| Route / component | Funnel | `address` | `urgency` | `notes` (→ contact note in GHO) |
+|-------------------|--------|-----------|-----------|-----------------------------------|
+| `app/cma-form/page.tsx` | Seller | Street / city / ZIP composed | Timeline radios | Property condition + goals |
+| `app/contact-us/page.tsx` | Buyer or seller (user choice) | If seller, optional | Timeline select | Free message |
+| `components/buy/buy-lead-mini.tsx` | Buyer | — | Timeline select | Optional context (area, budget) |
+| `components/home-search/home-search-buyer-lead.tsx` | Buyer | — | Timeline select | Optional context |
+| `components/sell/sell-valuation-lead-mini.tsx` | Seller | Optional one-line | Timeline select | — |
+| `components/free-home-valuation/valuation-seller-lead-form.tsx` | Seller | Optional | Timeline select | Optional “before we call” |
+| `components/downsizing-your-home/downsizing-fallback-lead.tsx` | Seller | Optional | Timeline select | Optional context |
+| `components/facing-foreclosure/pre-foreclosure-form.tsx` | Seller | Optional | Timeline select | Message |
+| `components/improve-your-credit/credit-playbook-form.tsx` | Buyer | — | “When planning to buy” (same options) | Playbook line + optional one-line context |
+
+**Server:** `notes` are posted to GHL with `POST /contacts/:contactId/notes` after the contact is upserted. If the Notes API fails, the server still returns success and logs a warning (contact and pipeline data are already saved). See [`lib/ghl/client.ts`](../lib/ghl/client.ts) and [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
+
 ---
 
 ## Website submission contract
@@ -150,8 +168,9 @@ The API route should:
 4. write minimum custom field data
 5. apply appropriate lead tags
 6. create or update the opportunity in the correct pipeline / stage
-7. trigger or hand off to GHL workflow-friendly metadata
-8. return a stable success / failure contract to the website
+7. when `notes` is present, add a **contact note** in GHL (non-blocking on failure)
+8. trigger or hand off to GHL workflow-friendly metadata
+9. return a stable success / failure contract to the website
 
 ### Suggested request payload
 
@@ -170,6 +189,8 @@ type SubmitLeadRequest = {
   utm_content?: string
   source_page?: string
   source_path?: string
+  /** Free text; server posts to GHL contact Notes API when set (see `lib/ghl/submit-lead.ts`). */
+  notes?: string
 }
 ```
 

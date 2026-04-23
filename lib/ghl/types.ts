@@ -6,7 +6,7 @@
 export type LeadType = "buyer" | "seller"
 
 /** CRM call site when logging or returning `failed_step` (no secrets). */
-export type GhlApiStep = "contacts_upsert" | "contacts_tags" | "opportunities_create"
+export type GhlApiStep = "contacts_upsert" | "contacts_tags" | "opportunities_create" | "contacts_note"
 
 /** Inbound JSON from browser forms → POST /api/submit-lead */
 export type SubmitLeadRequest = {

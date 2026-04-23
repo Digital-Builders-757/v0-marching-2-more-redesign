@@ -3,9 +3,11 @@
 import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { m2mCmaFormInputClass } from "@/lib/m2m-form"
+import { cn } from "@/lib/utils"
 import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 
@@ -18,6 +20,8 @@ export function HomeSearchBuyerLead() {
     email: "",
     phone: "",
     dateOfBirth: "",
+    timeline: "",
+    context: "",
   })
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
@@ -37,6 +41,8 @@ export function HomeSearchBuyerLead() {
         email: form.email,
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
+        urgency: form.timeline,
+        notes: form.context.trim() || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
@@ -63,8 +69,13 @@ export function HomeSearchBuyerLead() {
   }
 
   return (
-    <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-5 max-w-md sm:space-y-4">
-      <p className="text-[0.62rem] tracking-[0.2em] uppercase text-m2m-gold font-nav">Want help from the team?</p>
+    <form
+      data-m2m-lead="home-search-buyer"
+      onSubmit={submit}
+      aria-busy={submitting}
+      className="mt-6 max-w-md space-y-5 sm:space-y-4"
+    >
+      <p className="text-[0.62rem] font-nav uppercase tracking-[0.2em] text-m2m-gold">Want help from the team?</p>
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-3">
         <input
           type="text"
@@ -90,6 +101,14 @@ export function HomeSearchBuyerLead() {
         onChange={(v) => setForm({ ...form, dateOfBirth: v })}
         inputClassName={inputClass}
         className="text-m2m-cream"
+        helperClassName="!opacity-100 text-m2m-cream/70"
+      />
+      <M2mLeadUrgencySelect
+        id="home-search-urgency"
+        value={form.timeline}
+        onChange={(v) => setForm({ ...form, timeline: v })}
+        variant="dark"
+        className="text-m2m-cream"
       />
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-3">
         <input
@@ -109,6 +128,22 @@ export function HomeSearchBuyerLead() {
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })}
           className={inputClass}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="home-search-context"
+          className="mb-1.5 block text-left text-sm font-medium text-m2m-cream/95 font-sans"
+        >
+          Additional context <span className="font-normal text-m2m-cream/60">(optional)</span>
+        </label>
+        <textarea
+          id="home-search-context"
+          placeholder="e.g. areas, price range, must-haves"
+          value={form.context}
+          onChange={(e) => setForm({ ...form, context: e.target.value })}
+          rows={3}
+          className={cn(inputClass, "block min-h-[5.5rem] w-full resize-y py-2.5")}
         />
       </div>
       {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onDark" className="w-full" /> : null}

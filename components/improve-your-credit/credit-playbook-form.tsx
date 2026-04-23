@@ -3,6 +3,7 @@
 import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { M2mLeadQuizSection } from "@/components/m2m-lead-quiz-section"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Button } from "@/components/ui/button"
@@ -15,6 +16,7 @@ import {
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { SubmitLeadFailure } from "@/lib/ghl/types"
+import { M2M_URGENCY_LABEL_CREDIT, M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { GOHIGHLEVEL_QUIZ_CREDIT_URL, isGohighlevelUrlConfigured } from "@/lib/m2m-site"
 
 import {
@@ -33,6 +35,8 @@ export function CreditPlaybookForm() {
     email: "",
     phone: "",
     dateOfBirth: "",
+    timeline: "",
+    context: "",
   })
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
@@ -44,13 +48,16 @@ export function CreditPlaybookForm() {
     setSubmitting(true)
     try {
       const name = `${form.firstName} ${form.lastName}`.trim()
+      const baseNote = "Credit Improvement Playbook — download request"
+      const notes = form.context.trim() ? `${baseNote}\n\n${form.context.trim()}` : baseNote
       const res = await submitLeadToApi({
         lead_type: "buyer",
         name,
         email: form.email,
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
-        notes: "Credit Improvement Playbook — download request",
+        urgency: form.timeline,
+        notes,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
@@ -117,6 +124,7 @@ export function CreditPlaybookForm() {
                 </p>
 
                 <form
+                  data-m2m-lead="improve-your-credit"
                   onSubmit={handleSubmit}
                   aria-busy={submitting}
                   className="space-y-8"
@@ -157,6 +165,14 @@ export function CreditPlaybookForm() {
                     inputClassName={m2mPlaybookInputClass}
                     className="text-m2m-deep"
                   />
+                  <M2mLeadUrgencySelect
+                    id="credit-playbook-urgency"
+                    label={M2M_URGENCY_LABEL_CREDIT}
+                    value={form.timeline}
+                    onChange={(v) => setForm({ ...form, timeline: v })}
+                    variant="playbook"
+                    hint={M2M_URGENCY_SHARED_HINT}
+                  />
                   <div>
                     <Label htmlFor="credit-playbook-email" className={m2mPlaybookFieldLabelClass}>
                       Enter your email here<span className="text-m2m-panel">*</span>
@@ -183,6 +199,19 @@ export function CreditPlaybookForm() {
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
                       className={m2mPlaybookInputClass}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="credit-playbook-context" className={m2mPlaybookFieldLabelClass}>
+                      Anything we should know? <span className="text-m2m-panel/50">(optional)</span>
+                    </Label>
+                    <Input
+                      id="credit-playbook-context"
+                      type="text"
+                      value={form.context}
+                      onChange={(e) => setForm({ ...form, context: e.target.value })}
+                      className={m2mPlaybookInputClass}
+                      placeholder="Credit goals, co-borrower, or timeline details"
                     />
                   </div>
 
