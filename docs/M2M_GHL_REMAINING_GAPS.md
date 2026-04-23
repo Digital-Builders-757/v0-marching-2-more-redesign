@@ -15,7 +15,7 @@
 
 - `POST /api/submit-lead` (Node) + `lib/ghl/` (config, validate, client, submit orchestration).
 - Lead forms wired: `/cma-form`, `/contact-us`, `/buy`, `/sell`, `/home-search`, `/free-home-valuation`, `/facing-foreclosure`, `/downsizing-your-home` (fallback), `/improve-your-credit` (local playbook path).
-- UTM capture, `source_path`, buyer/seller typing, optional `notes` / `address` / `urgency`.
+- UTM capture, `source_path`, buyer/seller typing, optional `notes` / `address` / `urgency` (per-route strategies in [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md#lead-capture-routes-expected-crm-payload)); server posts `notes` to GHL contact notes API when set.
 - **`getPrimaryConsultationBookUrl()`** — single booking pattern; GHL URL when set, else Calendly fallback.
 - Server logs: `[ghl]` + `correlationId`; pipeline env gaps enumerated when opportunities skipped.
 - Operator script: `npm run ghl:operator-check` (optional `--ping`); see [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md).
@@ -46,7 +46,6 @@
 ## Remaining website work (optional / polish)
 
 - E2E or scripted smoke tests for `/api/submit-lead` (Playwright when prioritized).
-- Optional: post `notes` to GHL conversation via Notes API (currently server log only).
 - Optional: distinct UX when `GHL_DRY_RUN=true` vs live (currently same success copy).
 
 ---

@@ -33,7 +33,11 @@ export async function submitLeadToApi(body: SubmitLeadRequest): Promise<SubmitLe
       correlationId:
         "correlationId" in obj && typeof obj.correlationId === "string" ? obj.correlationId : undefined,
       failed_step:
-        "failed_step" in obj && (obj.failed_step === "contacts_upsert" || obj.failed_step === "contacts_tags" || obj.failed_step === "opportunities_create")
+        "failed_step" in obj &&
+        (obj.failed_step === "contacts_upsert" ||
+          obj.failed_step === "contacts_tags" ||
+          obj.failed_step === "opportunities_create" ||
+          obj.failed_step === "contacts_note")
           ? obj.failed_step
           : undefined,
       crm_http_status:

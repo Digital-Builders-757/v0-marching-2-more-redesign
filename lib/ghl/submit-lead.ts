@@ -1,5 +1,5 @@
 import { getGhlConfig, listUnsetPipelineEnvVars } from "./config"
-import { addTagsToContact, createOpportunity, GhlApiError, ghlStatusBucket, upsertContact } from "./client"
+import { addTagsToContact, createContactNote, createOpportunity, GhlApiError, ghlStatusBucket, upsertContact } from "./client"
 import { normalizedLeadToCustomFields, pipelineStageForLeadType, resolveTagsForLead } from "./lead-mapping"
 import type { GhlApiStep, NormalizedLead } from "./types"
 import { parseSubmitLeadBody } from "./validate"
@@ -33,6 +33,9 @@ export async function submitLeadToGhl(lead: NormalizedLead, correlationId: strin
   if (cfg.dryRun) {
     const cf = normalizedLeadToCustomFields(lead, cfg)
     const tg = resolveTagsForLead(lead, cfg)
+    if (lead.notes?.trim()) {
+      console.info("[ghl] dry_run_would_create_note", { correlationId, charCount: lead.notes.trim().length })
+    }
     console.info("[ghl] dry_run_skip", {
       correlationId,
       leadType: lead.leadType,
@@ -104,12 +107,17 @@ export async function submitLeadToGhl(lead: NormalizedLead, correlationId: strin
     }
 
     if (lead.notes?.trim()) {
-      /** Optional: GHL note API can be added when account workflow needs it. */
-      console.info("[ghl] lead_notes_present_not_posted", {
-        correlationId,
-        contactId,
-        charCount: lead.notes.length,
-      })
+      try {
+        await createContactNote(cfg, contactId, lead.notes, correlationId)
+        console.info("[ghl] contact_note_created", { correlationId, contactId, charCount: lead.notes.trim().length })
+      } catch (noteErr) {
+        /** Non-fatal: contact + pipeline already saved. */
+        console.warn("[ghl] contact_note_failed_ignored", {
+          correlationId,
+          contactId,
+          message: noteErr instanceof Error ? noteErr.message : String(noteErr),
+        })
+      }
     }
 
     console.info("[ghl] submit_ok", { correlationId, contactId, opportunityId: opportunityId ?? null })
