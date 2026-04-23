@@ -3,9 +3,12 @@
 import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
-import { m2mInteriorFormInputClass } from "@/lib/m2m-form"
+import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
+import { cn } from "@/lib/utils"
+import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { SubmitLeadFailure } from "@/lib/ghl/types"
 
@@ -21,6 +24,8 @@ export function ValuationSellerLeadForm() {
     phone: "",
     dateOfBirth: "",
     address: "",
+    timeline: "",
+    context: "",
   })
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
@@ -39,6 +44,8 @@ export function ValuationSellerLeadForm() {
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
         address: form.address || undefined,
+        urgency: form.timeline,
+        notes: form.context.trim() || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
@@ -72,7 +79,7 @@ export function ValuationSellerLeadForm() {
   }
 
   return (
-    <div className="rounded-xl border border-m2m-deep/12 bg-white p-8 shadow-lg">
+    <div className="rounded-xl border border-m2m-deep/12 bg-white p-6 shadow-lg sm:p-8">
       <p className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-gold font-nav">Talk to the team</p>
       <h2 className="mt-2 text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
         Request a personalized valuation call
@@ -80,7 +87,12 @@ export function ValuationSellerLeadForm() {
       <p className="mt-2 text-sm leading-relaxed text-m2m-deep/82 font-sans">
         Short form — we&apos;ll reach out to coordinate your CMA and next steps.
       </p>
-      <form onSubmit={submit} aria-busy={submitting} className="mt-6 space-y-5 sm:space-y-4">
+      <form
+        data-m2m-lead="free-home-valuation"
+        onSubmit={submit}
+        aria-busy={submitting}
+        className="mt-6 space-y-5 sm:space-y-4"
+      >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <input
             type="text"
@@ -101,13 +113,26 @@ export function ValuationSellerLeadForm() {
             className={m2mInteriorFormInputClass}
           />
         </div>
-        <input
-          type="text"
-          placeholder="Property address (optional)"
-          autoComplete="street-address"
-          value={form.address}
-          onChange={(e) => setForm({ ...form, address: e.target.value })}
-          className={m2mInteriorFormInputClass}
+        <div>
+          <label htmlFor="valuation-address" className="mb-1.5 block text-sm font-medium text-m2m-deep font-sans">
+            Property address <span className="font-normal text-m2m-muted">(optional)</span>
+          </label>
+          <input
+            id="valuation-address"
+            type="text"
+            autoComplete="street-address"
+            value={form.address}
+            onChange={(e) => setForm({ ...form, address: e.target.value })}
+            className={m2mInteriorFormInputClass}
+            placeholder="Street, city, or ZIP"
+          />
+        </div>
+        <M2mLeadUrgencySelect
+          id="valuation-urgency"
+          value={form.timeline}
+          onChange={(v) => setForm({ ...form, timeline: v })}
+          variant="interior"
+          hint={M2M_URGENCY_SHARED_HINT}
         />
         <M2mLeadDobField
           value={form.dateOfBirth}
@@ -133,6 +158,19 @@ export function ValuationSellerLeadForm() {
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
             className={m2mInteriorFormInputClass}
+          />
+        </div>
+        <div>
+          <label htmlFor="valuation-context" className="mb-1.5 block text-sm font-medium text-m2m-deep font-sans">
+            Notes for your agent <span className="font-normal text-m2m-muted">(optional)</span>
+          </label>
+          <textarea
+            id="valuation-context"
+            placeholder="Access, goals, or timing details"
+            value={form.context}
+            onChange={(e) => setForm({ ...form, context: e.target.value })}
+            rows={3}
+            className={cn(m2mInteriorFormTextareaClass, "min-h-[5rem]")}
           />
         </div>
         {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full" /> : null}

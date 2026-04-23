@@ -70,11 +70,11 @@ These are **not** configurable per sub-account in code without a code change:
 ### 3.4 Property Address (`GHL_CF_ADDRESS`)
 
 - Maps to the GHL contact field labeled **Property Address** (per account decision).
-- **Omitted** when empty (e.g. `/home-search` buyer mini form with no address). That is intentional; do not require address in GHL for those paths unless product changes.
+- **Omitted** when empty (e.g. pure buyer minis with no address). That is intentional; do not require address in GHL for those paths unless product changes. Optional buyer **context** may appear in a **contact note** or timeline field instead of this address field.
 
 ### 3.5 Urgency (`GHL_CF_URGENCY`)
 
-- Maps to the **free-text** urgency field, **not** the dropdown field ID. Free-form strings from forms (e.g. CMA timeline) are sent as-is. Wrong field ID → wrong field or validation errors.
+- Maps to the **free-text** urgency field, **not** the dropdown field ID. The website now uses a **shared set of timeline labels** (see [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts)) so reports stay consistent; CMA and short forms use the same strings. Wrong field ID → wrong field or validation errors.
 
 ### 3.6 UTM fields
 
@@ -97,8 +97,9 @@ These are **not** configurable per sub-account in code without a code change:
 1. `POST /contacts/upsert`
 2. `POST /contacts/:id/tags` (if there is at least one tag)
 3. `POST /opportunities/` (if pipelines complete)
+4. `POST /contacts/:id/notes` (if the website sent `notes` in JSON — creates a **contact note**; failures are **logged and do not fail** the browser response, so you will not see `failed_step: "contacts_note"` in Network JSON; check Vercel for `[ghl] contact_note_failed_ignored` if a note is missing in GHO)
 
-A failure on step 2 or 3 still means step 1 may have **succeeded** (contact exists without new tags or opp).
+A failure on step 2 or 3 still means step 1 may have **succeeded** (contact exists without new tags or opp). A log-only failure on step 4 still means the lead response is **ok: true** when the contact was created.
 
 ---
 
@@ -108,7 +109,7 @@ User-facing copy stays generic; **operators** use:
 
 | Source | Fields |
 |--------|--------|
-| Browser **Network** tab → `POST /api/submit-lead` JSON | `correlationId`, optional `failed_step` (`contacts_upsert` / `contacts_tags` / `opportunities_create`), optional `crm_http_status` |
+| Browser **Network** tab → `POST /api/submit-lead` JSON | `correlationId`, optional `failed_step` (`contacts_upsert` / `contacts_tags` / `opportunities_create`), optional `crm_http_status` (note: contact note creation failures are log-only, not a failed response) |
 | **Vercel** logs | Search `correlationId` and `[ghl]` — `API error` / `upstream_error` includes `path`, `status`, `statusBucket`, `upstreamDetail`, `bodyPreview` (truncate, no token) |
 
 **`crm_http_status` (rough guide):**

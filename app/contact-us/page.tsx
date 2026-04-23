@@ -5,12 +5,14 @@ import { useEffect, useState } from "react"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mContainer } from "@/components/m2m-layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
+import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { LeadType, SubmitLeadFailure } from "@/lib/ghl/types"
@@ -25,6 +27,8 @@ export default function ContactUsPage() {
     email: "",
     phone: "",
     dateOfBirth: "",
+    address: "",
+    timeline: "",
     message: "",
   })
   const [submitted, setSubmitted] = useState(false)
@@ -38,6 +42,11 @@ export default function ContactUsPage() {
     if (intent === "seller") setLeadType("seller")
   }, [])
 
+  const messagePlaceholder =
+    leadType === "buyer"
+      ? "Preferred areas, price range, or questions (optional)"
+      : "Property, timeline, or other details (optional)"
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitError(null)
@@ -50,6 +59,8 @@ export default function ContactUsPage() {
         email: formData.email,
         phone: formData.phone,
         date_of_birth: formData.dateOfBirth,
+        address: leadType === "seller" ? formData.address.trim() || undefined : undefined,
+        urgency: formData.timeline,
         notes: formData.message || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
@@ -113,21 +124,30 @@ export default function ContactUsPage() {
                 <p className="mt-4 text-sm text-m2m-muted font-sans">We&apos;ll be in touch within 24 hours.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} aria-busy={submitting} className="space-y-6 sm:space-y-7">
-                <fieldset className="space-y-3">
-                  <legend className="text-sm font-medium text-m2m-deep font-sans mb-2">I am primarily…</legend>
-                  <div className="flex flex-wrap gap-6">
-                    <label className="flex cursor-pointer items-center gap-2 text-sm text-m2m-deep font-sans">
+              <form
+                data-m2m-lead="contact"
+                onSubmit={handleSubmit}
+                aria-busy={submitting}
+                className="space-y-6 sm:space-y-7"
+              >
+                <fieldset className="space-y-2">
+                  <legend className="mb-0.5 text-sm font-medium text-m2m-deep font-sans">I am primarily…</legend>
+                  <p className="text-xs leading-relaxed text-m2m-muted font-sans">We route buyers and sellers to different playbooks. Pick the best fit for today.</p>
+                  <div className="flex flex-wrap gap-6 pt-1">
+                    <label className="flex min-h-11 cursor-pointer items-center gap-2.5 text-sm text-m2m-deep font-sans touch-manipulation">
                       <input
                         type="radio"
                         name="leadType"
                         checked={leadType === "buyer"}
-                        onChange={() => setLeadType("buyer")}
+                        onChange={() => {
+                          setLeadType("buyer")
+                          setFormData((p) => ({ ...p, address: "" }))
+                        }}
                         className="size-4 border-m2m-deep/25 text-m2m-panel focus:ring-m2m-panel"
                       />
                       Looking to buy
                     </label>
-                    <label className="flex cursor-pointer items-center gap-2 text-sm text-m2m-deep font-sans">
+                    <label className="flex min-h-11 cursor-pointer items-center gap-2.5 text-sm text-m2m-deep font-sans touch-manipulation">
                       <input
                         type="radio"
                         name="leadType"
@@ -193,12 +213,32 @@ export default function ContactUsPage() {
                   />
                 </div>
 
+                <M2mLeadUrgencySelect
+                  id="contact-urgency"
+                  value={formData.timeline}
+                  onChange={(v) => setFormData({ ...formData, timeline: v })}
+                  variant="interior"
+                  hint={M2M_URGENCY_SHARED_HINT}
+                />
+
+                {leadType === "seller" ? (
+                  <Input
+                    type="text"
+                    placeholder="Property address (optional)"
+                    aria-label="Property address"
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    className={m2mInteriorFormInputClass}
+                    autoComplete="street-address"
+                  />
+                ) : null}
+
                 <Textarea
-                  placeholder="Anything else we should know?"
+                  placeholder={messagePlaceholder}
                   aria-label="Message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={5}
+                  rows={4}
                   className={m2mInteriorFormTextareaClass}
                 />
 

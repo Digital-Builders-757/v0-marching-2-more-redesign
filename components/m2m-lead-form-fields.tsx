@@ -11,6 +11,8 @@ export function M2mLeadDobField({
   className,
   inputClassName,
   required = true,
+  /** Override default helper line (e.g. higher contrast on dark hero forms). */
+  helperClassName,
 }: {
   id?: string
   label?: string
@@ -19,6 +21,7 @@ export function M2mLeadDobField({
   className?: string
   inputClassName?: string
   required?: boolean
+  helperClassName?: string
 }) {
   return (
     <div className={className}>
@@ -35,7 +38,9 @@ export function M2mLeadDobField({
         onChange={(e) => onChange(e.target.value)}
         className={cn(inputClassName)}
       />
-      <p className="mt-1 text-xs opacity-80 font-sans">Used only to verify identity and serve you faster.</p>
+      <p className={cn("mt-1 text-xs font-sans leading-relaxed", helperClassName ?? "opacity-80")}>
+        Used only to verify identity and serve you faster.
+      </p>
     </div>
   )
 }

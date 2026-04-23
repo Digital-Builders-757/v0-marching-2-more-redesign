@@ -11,6 +11,7 @@ import { Header } from "@/components/header"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { m2mCmaFormInputClass, m2mCmaFormTextareaClass } from "@/lib/m2m-form"
+import { M2M_URGENCY_TIMELINE_OPTIONS } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { SubmitLeadFailure } from "@/lib/ghl/types"
 
@@ -157,9 +158,10 @@ export default function CmaFormPage() {
                   </div>
                 ) : (
                   <form
+                    data-m2m-lead="cma"
                     onSubmit={handleSubmit}
                     aria-busy={submitting}
-                    className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5"
+                    className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-6 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5 sm:p-8"
                   >
                     {/* Property Address Section */}
                     <div className="mb-8">
@@ -245,13 +247,7 @@ export default function CmaFormPage() {
                         Select an option
                       </p>
                       <div className="space-y-2">
-                        {[
-                          "Immediate (0-1 month)",
-                          "Short Term (1-3 months)",
-                          "Medium Term (3-6 months)",
-                          "Long Term (6+ months)",
-                          "Undecided",
-                        ].map((option) => (
+                        {M2M_URGENCY_TIMELINE_OPTIONS.map((option) => (
                           <label key={option} className="flex cursor-pointer items-center gap-3">
                             <input
                               type="radio"
