@@ -90,7 +90,7 @@ export function HomeSearchBuyerLead() {
       data-m2m-lead="home-search-buyer"
       onSubmit={submit}
       aria-busy={submitting}
-      className="mt-6 max-w-md space-y-5 sm:space-y-4"
+      className="relative z-20 mt-6 max-w-md space-y-5 sm:space-y-4"
     >
       <p className="text-[0.62rem] font-nav uppercase tracking-[0.2em] text-m2m-gold">Want help from the team?</p>
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-3">
@@ -114,11 +114,14 @@ export function HomeSearchBuyerLead() {
         />
       </div>
       <M2mLeadDobField
+        id="home-search-dob"
         value={form.dateOfBirth}
         onChange={(v) => setForm({ ...form, dateOfBirth: v })}
         inputClassName={inputClass}
         className="text-m2m-cream"
         helperClassName="!opacity-100 text-m2m-cream/70"
+        selectContentClassName="z-[200] border-m2m-cream/25 bg-m2m-deep text-m2m-cream"
+        selectItemClassName="focus:bg-m2m-panel/80 focus:text-m2m-cream"
       />
       <M2mLeadUrgencySelect
         id="home-search-urgency"
