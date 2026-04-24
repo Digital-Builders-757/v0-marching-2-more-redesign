@@ -1,7 +1,12 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { M2M_URGENCY_TIMELINE_OPTIONS, M2M_URGENCY_LABEL_DEFAULT } from "@/lib/m2m-lead-urgency"
+import {
+  M2M_URGENCY_LABEL_DEFAULT,
+  M2M_URGENCY_SHORT_FORM_OPTIONS,
+  M2M_URGENCY_SHORT_FORM_DEFAULT,
+  M2M_URGENCY_TIMELINE_OPTIONS,
+} from "@/lib/m2m-lead-urgency"
 
 type UrgencyVariant = "interior" | "dark" | "cma" | "playbook" | "leadPanel"
 
@@ -32,6 +37,8 @@ const hintClass: Record<UrgencyVariant, string> = {
   leadPanel: "text-m2m-cream/65",
 }
 
+export type M2mLeadUrgencyMode = "full" | "short"
+
 type Props = {
   id: string
   label?: string
@@ -39,6 +46,8 @@ type Props = {
   onChange: (v: string) => void
   required?: boolean
   variant: UrgencyVariant
+  /** `full`: timeline list + empty “Select…” placeholder. `short`: passive defaults + timelines, default “Not sure yet”. */
+  mode?: M2mLeadUrgencyMode
   /** Extra class on the outer wrapper (e.g. M2mLeadDobField-style text color) */
   className?: string
   disabled?: boolean
@@ -53,10 +62,14 @@ export function M2mLeadUrgencySelect({
   onChange,
   required = true,
   variant,
+  mode = "full",
   className,
   disabled,
   hint,
 }: Props) {
+  const options = mode === "short" ? M2M_URGENCY_SHORT_FORM_OPTIONS : M2M_URGENCY_TIMELINE_OPTIONS
+  const showPlaceholder = mode === "full"
+
   return (
     <div className={className}>
       <label htmlFor={id} className={labelClass[variant]}>
@@ -72,8 +85,10 @@ export function M2mLeadUrgencySelect({
         className={cn(selectClass[variant], "touch-manipulation")}
         aria-describedby={hint ? `${id}-hint` : undefined}
       >
-        <option value="">{required ? "Select…" : "Optional — select…"}</option>
-        {M2M_URGENCY_TIMELINE_OPTIONS.map((opt) => (
+        {showPlaceholder ? (
+          <option value="">{required ? "Select…" : "Optional — select…"}</option>
+        ) : null}
+        {options.map((opt) => (
           <option key={opt} value={opt}>
             {opt}
           </option>

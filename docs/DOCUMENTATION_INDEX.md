@@ -21,6 +21,8 @@
 | [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) | GHL sub-account tasks: fields, pipelines, tags, workflows, calendars |
 | [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) | Ordered env + QA steps for live hookup and verification |
 | [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) | GHL assumptions, tag/field rules, `npm run ghl:operator-check`, production triage |
+| [M2M_LEAD_CAPTURE_MATRIX.md](./M2M_LEAD_CAPTURE_MATRIX.md) | Route/component matrix: submission path, DOB, urgency, partial-success notes |
+| [M2M_LEAD_CAPTURE_QA.md](./M2M_LEAD_CAPTURE_QA.md) | Manual QA template + live verification script |
 | [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md) | Skimmable status: done vs blocked (GHL) vs remaining QA / next operator steps |
 | [ROADMAP.md](./ROADMAP.md) | Pointer to MVP_STATUS_ROADMAP (search alias) |
 | [development/BRANCHING.md](./development/BRANCHING.md) | Branch + PR flow toward `develop` |

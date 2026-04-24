@@ -14,7 +14,7 @@ Marching 2 More — **Next.js marketing site** (not the TOTL/Supabase product un
 | [development/BRANCHING.md](./development/BRANCHING.md) | Branch / PR flow |
 | [development/RELEASING.md](./development/RELEASING.md) | Promote `develop` → `main` |
 | [releasenotes/README.md](./releasenotes/README.md) | Optional release note archive |
-| [troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md](./troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md) | Lint, images, lockfile |
+| [troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md](./troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md) | Lint, images, lockfile, **`/api/submit-lead`** / GHL triage |
 | [PROJECT_CONTEXT_PROMPT.md](./PROJECT_CONTEXT_PROMPT.md) | Paste-friendly agent context |
 | [../README.md](../README.md) | Clone, install, dev |
 

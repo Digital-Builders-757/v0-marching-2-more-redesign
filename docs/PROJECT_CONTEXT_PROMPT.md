@@ -18,5 +18,7 @@ Source of truth:
 Constants: lib/m2m-site.ts (CTAs, phone, mailto), lib/m2m-nav.ts (menus), lib/m2m-media.ts (images).
 Campaign pages: often Header outlineCream + green main + DivorceLandingFooter; not always in hamburger.
 
+Lead capture: POST /api/submit-lead, lib/ghl/*; phone and DOB optional on API; GHL failures return crm_* codes (see docs/M2M_GHL_OPERATOR_VERIFICATION.md §4).
+
 Before merge: npm run ci.
 ```

@@ -1,8 +1,5 @@
 import type { SubmitLeadFailure } from "@/lib/ghl/types"
 
-const CRM_USER_MESSAGE =
-  "We could not reach our CRM. Please call us or try again shortly."
-
 export type LeadSubmitFailureMessaging = {
   eyebrow: string
   title: string
@@ -13,12 +10,6 @@ export type LeadSubmitFailureMessaging = {
   showEscalationPath: boolean
   /** Shown in a compact reference well; omit for validation-only errors. */
   referenceId?: string
-}
-
-function isCrmUnreachableCopy(error: string, code?: string): boolean {
-  if (code === "ghl_upstream_error" || code === "internal_error") return true
-  if (error.includes("could not reach our CRM")) return true
-  return false
 }
 
 /**
@@ -60,12 +51,66 @@ export function getLeadSubmitFailureMessaging(failure: SubmitLeadFailure): LeadS
     }
   }
 
-  if (isCrmUnreachableCopy(error, code) || error === CRM_USER_MESSAGE) {
+  if (code === "crm_validation") {
+    return {
+      eyebrow: "Check your details",
+      title: "We couldn’t save this as entered",
+      body: error,
+      nextStep: "Review email and phone, then try again — or call us with the reference below.",
+      showEscalationPath: true,
+      referenceId: correlationId,
+    }
+  }
+
+  if (code === "crm_duplicate_or_merge") {
+    return {
+      eyebrow: "You may already be in our system",
+      title: "We matched an existing contact",
+      body: error,
+      nextStep: "If you’re not sure everything updated, call or message us with the reference below.",
+      showEscalationPath: true,
+      referenceId: correlationId,
+    }
+  }
+
+  if (code === "crm_auth") {
+    return {
+      eyebrow: "Connection issue",
+      title: "Our system didn’t accept the handoff",
+      body: error,
+      nextStep: "Please call or use the contact page — we’ll enter your request manually.",
+      showEscalationPath: true,
+      referenceId: correlationId,
+    }
+  }
+
+  if (code === "crm_rate_limit") {
+    return {
+      eyebrow: "Please wait a moment",
+      title: "Too many submissions at once",
+      body: error,
+      nextStep: "Wait a minute, then try again.",
+      showEscalationPath: false,
+    }
+  }
+
+  if (code === "crm_server") {
+    return {
+      eyebrow: "Temporary outage",
+      title: "Our records system is busy",
+      body: error,
+      nextStep: "Try again in a few minutes, or call us and we’ll take your information.",
+      showEscalationPath: true,
+      referenceId: correlationId,
+    }
+  }
+
+  if (code === "crm_unreachable") {
     return {
       eyebrow: "We’re still here for you",
-      title: "We couldn’t confirm your request just now",
-      body: "It may not have reached our team on the first try. You’re welcome to try again in a moment — or call or message us and we’ll make sure nothing is missed.",
-      nextStep: "Wait a moment and try again, or call us and we’ll take your information by phone.",
+      title: "We couldn’t finish sending this",
+      body: error,
+      nextStep: "Try again shortly, or call or message us with the reference below.",
       showEscalationPath: true,
       referenceId: correlationId,
     }
@@ -82,11 +127,22 @@ export function getLeadSubmitFailureMessaging(failure: SubmitLeadFailure): LeadS
     }
   }
 
+  if (code === "internal_error") {
+    return {
+      eyebrow: "Something went wrong",
+      title: "Please try again",
+      body: error,
+      nextStep: "If it happens again, contact us with the reference below.",
+      showEscalationPath: true,
+      referenceId: correlationId,
+    }
+  }
+
   return {
     eyebrow: "We’re still here for you",
     title: "Something didn’t go through",
-    body: "Your request may not have completed. Try again in a moment, or reach us by phone or on the contact page — we’ll sort it out with you.",
-    nextStep: "Try again shortly, or contact us and we’ll help you complete it.",
+    body: error,
+    nextStep: "Try again in a moment, or reach us by phone or on the contact page — we’ll sort it out with you.",
     showEscalationPath: true,
     referenceId: correlationId,
   }
