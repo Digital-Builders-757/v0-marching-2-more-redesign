@@ -6,11 +6,12 @@ import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
 import { cn } from "@/lib/utils"
 import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import type { SubmitLeadFailure } from "@/lib/ghl/types"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 
 /**
  * Short seller intake for /free-home-valuation — complements the RealScout instant estimate link.
@@ -30,6 +31,10 @@ export function ValuationSellerLeadForm() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -45,6 +50,7 @@ export function ValuationSellerLeadForm() {
         date_of_birth: form.dateOfBirth,
         address: form.address || undefined,
         urgency: form.timeline,
+        urgency_explicit: Boolean(form.timeline.trim()),
         notes: form.context.trim() || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
@@ -57,6 +63,7 @@ export function ValuationSellerLeadForm() {
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -66,10 +73,18 @@ export function ValuationSellerLeadForm() {
   if (done) {
     return (
       <div
-        className="rounded-xl border border-m2m-deep/12 bg-white p-8 text-center shadow-lg"
+        className="space-y-4 rounded-xl border border-m2m-deep/12 bg-white p-8 text-center shadow-lg"
         role="status"
         aria-live="polite"
       >
+        {successFollowUp?.warnings.length ? (
+          <M2mLeadSubmitWarnings
+            warnings={successFollowUp.warnings}
+            correlationId={successFollowUp.correlationId}
+            variant="onLight"
+            className="text-left"
+          />
+        ) : null}
         <p className="text-xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
           Thank you!
         </p>

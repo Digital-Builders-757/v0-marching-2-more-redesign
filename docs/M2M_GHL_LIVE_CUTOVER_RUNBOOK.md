@@ -67,7 +67,7 @@ Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-le
 
 1. Unset or avoid `GHL_DRY_RUN` in the environment you are testing (or use dry-run first for smoke).
 2. Open `/cma-form` (or `/sell` mini form).
-3. Fill required fields (name, email, phone, date of birth, address/timeline as prompted).
+3. Fill fields **as prompted on that form** (full-intake paths include phone and DOB; short campaign forms may only require name + email).
 4. Submit.
 5. **In GHL:** confirm contact upsert, tags, custom fields, and (if all four pipeline envs are set) a new opportunity on the **seller** pipeline at **New Inquiry** (or configured stage).
 
@@ -75,8 +75,8 @@ Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-le
 
 ## 6. Test sequence — buyer lead
 
-1. Open `/buy` (mini form), `/home-search`, or `/improve-your-credit` (local playbook form when quiz URL not set).
-2. Submit with valid data.
+1. Open `/buy` (mini form), `/home-search`, `/va-loan-benefits`, `/fha-loan`, `/resources` (checklist), or `/improve-your-credit` (local playbook form when quiz URL not set).
+2. Submit with valid data (each form’s required fields differ; name + email are always required by the API).
 3. **In GHL:** verify **buyer** tags/pipeline/opportunity as configured.
 
 ---

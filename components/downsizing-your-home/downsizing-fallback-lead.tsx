@@ -10,10 +10,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { m2mLeadFieldInputClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
 import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import type { SubmitLeadFailure } from "@/lib/ghl/types"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 
 const labelDark =
   "mb-1.5 block text-left text-[0.7rem] font-medium uppercase tracking-[0.12em] text-m2m-cream/85 font-nav"
@@ -36,6 +37,10 @@ export function DownsizingFallbackLead() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -51,6 +56,7 @@ export function DownsizingFallbackLead() {
         date_of_birth: form.dateOfBirth,
         address: form.address.trim() || undefined,
         urgency: form.timeline,
+        urgency_explicit: Boolean(form.timeline.trim()),
         notes: form.context.trim() || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
@@ -63,6 +69,7 @@ export function DownsizingFallbackLead() {
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -72,10 +79,18 @@ export function DownsizingFallbackLead() {
   if (done) {
     return (
       <div
-        className="rounded-sm border border-m2m-gold/25 bg-m2m-deep/40 px-6 py-8 text-center"
+        className="space-y-4 rounded-sm border border-m2m-gold/25 bg-m2m-deep/40 px-6 py-8 text-center"
         role="status"
         aria-live="polite"
       >
+        {successFollowUp?.warnings.length ? (
+          <M2mLeadSubmitWarnings
+            warnings={successFollowUp.warnings}
+            correlationId={successFollowUp.correlationId}
+            variant="onDark"
+            className="text-left"
+          />
+        ) : null}
         <p className="text-lg text-m2m-cream font-display">Thank you!</p>
         <p className="mt-2 text-sm text-m2m-cream/85 font-sans">We&apos;ll follow up with downsizing resources shortly.</p>
       </div>

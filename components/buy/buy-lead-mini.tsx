@@ -6,9 +6,10 @@ import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
 import { cn } from "@/lib/utils"
-import type { SubmitLeadFailure } from "@/lib/ghl/types"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 
 export function BuyLeadMini() {
@@ -25,6 +26,10 @@ export function BuyLeadMini() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,6 +44,7 @@ export function BuyLeadMini() {
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
         urgency: form.timeline,
+        urgency_explicit: Boolean(form.timeline.trim()),
         notes: form.context.trim() || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
@@ -51,6 +57,7 @@ export function BuyLeadMini() {
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -59,13 +66,19 @@ export function BuyLeadMini() {
 
   if (done) {
     return (
-      <p
-        className="text-m2m-muted text-base font-sans text-center"
-        role="status"
-        aria-live="polite"
-      >
-        Thank you! We&apos;ll reach out to help with your home search.
-      </p>
+      <div className="mx-auto max-w-xl space-y-4 text-center">
+        {successFollowUp?.warnings.length ? (
+          <M2mLeadSubmitWarnings
+            warnings={successFollowUp.warnings}
+            correlationId={successFollowUp.correlationId}
+            variant="onLight"
+            className="text-left"
+          />
+        ) : null}
+        <p className="text-m2m-muted text-base font-sans" role="status" aria-live="polite">
+          Thank you! We&apos;ll reach out to help with your home search.
+        </p>
+      </div>
     )
   }
 

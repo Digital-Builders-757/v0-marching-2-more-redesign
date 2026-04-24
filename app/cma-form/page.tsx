@@ -10,10 +10,11 @@ import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { m2mCmaFormInputClass, m2mCmaFormTextareaClass } from "@/lib/m2m-form"
 import { M2M_URGENCY_TIMELINE_OPTIONS } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import type { SubmitLeadFailure } from "@/lib/ghl/types"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 
 import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
@@ -35,6 +36,10 @@ export default function CmaFormPage() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -63,6 +68,7 @@ export default function CmaFormPage() {
         date_of_birth: formData.dateOfBirth,
         address,
         urgency: formData.timeline || undefined,
+        urgency_explicit: Boolean(formData.timeline.trim()),
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
@@ -75,6 +81,7 @@ export default function CmaFormPage() {
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -145,10 +152,18 @@ export default function CmaFormPage() {
                 {/* Form Card */}
                 {done ? (
                   <div
-                    className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 text-center shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5"
+                    className="mt-12 max-w-2xl space-y-4 rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 text-center shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5"
                     role="status"
                     aria-live="polite"
                   >
+                    {successFollowUp?.warnings.length ? (
+                      <M2mLeadSubmitWarnings
+                        warnings={successFollowUp.warnings}
+                        correlationId={successFollowUp.correlationId}
+                        variant="onLight"
+                        className="text-left"
+                      />
+                    ) : null}
                     <p className="text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                       Thank you!
                     </p>

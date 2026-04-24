@@ -56,16 +56,17 @@ These are **not** configurable per sub-account in code without a code change:
 
 ### 3.2 Date of birth
 
-- Required on every `POST /api/submit-lead`. Browser forms use `<input type="date">` → **`YYYY-MM-DD`**.
-- The same string is sent to the **DOB** custom field (`GHL_CF_DOB`). The field in GHL should be **date** or **text** compatible with that format.
+- **Optional** on `POST /api/submit-lead`. Full-intake forms use shared **month / day / year** selects ([`M2mLeadDobField`](../components/m2m-lead-form-fields.tsx)) that submit **`YYYY-MM-DD`** (min year **1920**, no future dates). Short campaign forms may omit DOB; the custom field is then **not** sent.
+- The field in GHL should be **date** or **text** compatible with `YYYY-MM-DD` when populated.
 
-**Code:** [`lib/ghl/validate.ts`](../lib/ghl/validate.ts) (`normalizeDob`).
+**Code:** [`lib/ghl/validate.ts`](../lib/ghl/validate.ts) (`submitLeadRequestSchema` superRefine); [`lib/m2m-dob.ts`](../lib/m2m-dob.ts).
 
 ### 3.3 Phone
 
-- Normalized to **E.164** when possible (e.g. US 10 digits → `+1…`). Odd inputs may yield `+` + digits only; GHL may reject invalid numbers.
+- **Optional** on the API. When provided, normalized to **E.164** when possible (e.g. US 10 digits → `+1…`). If the user enters fewer than 10 digits, validation fails with a field error.
+- When absent or empty, **`phone` is omitted** from the GHL upsert body so matching can rely on **email** (per GHL upsert behavior).
 
-**Code:** [`lib/ghl/validate.ts`](../lib/ghl/validate.ts) (`normalizePhoneToE164`).
+**Code:** [`lib/ghl/validate.ts`](../lib/ghl/validate.ts) (`normalizePhoneToE164`); [`lib/ghl/client.ts`](../lib/ghl/client.ts) (`upsertContact`).
 
 ### 3.4 Property Address (`GHL_CF_ADDRESS`)
 
@@ -74,7 +75,11 @@ These are **not** configurable per sub-account in code without a code change:
 
 ### 3.5 Urgency (`GHL_CF_URGENCY`)
 
-- Maps to the **free-text** urgency field, **not** the dropdown field ID. The website now uses a **shared set of timeline labels** (see [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts)) so reports stay consistent; CMA and short forms use the same strings. Wrong field ID → wrong field or validation errors.
+- Maps to the **free-text** urgency field, **not** the dropdown field ID. Timeline strings and passive defaults (**“Not sure yet”**, **“Just exploring”**) live in [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts). **Short forms** default to “Not sure yet” so the TEXT field is almost always populated; users can change it without an extra required field.
+- **Operator logs:** Vercel logs include `[ghl] urgency_meta` with `explicit: true|false` (from JSON `urgency_explicit`) and `valueBucket`: `none` | `passive_default` | `passive_explicit` | `timeline`. **`passive_default`** means the visitor did not change the default timeline select.
+- **Where to look in GHO:** Contact record → custom fields → the TEXT field bound to `GHL_CF_URGENCY` (not the dropdown, if you have both). If the value is missing, verify env ID and that no workflow clears the field after create.
+
+**Surface list:** [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](./M2M_LEAD_CAPTURE_MATRIX.md).
 
 ### 3.6 UTM fields
 
@@ -97,20 +102,37 @@ These are **not** configurable per sub-account in code without a code change:
 1. `POST /contacts/upsert`
 2. `POST /contacts/:id/tags` (if there is at least one tag)
 3. `POST /opportunities/` (if pipelines complete)
-4. `POST /contacts/:id/notes` (if the website sent `notes` in JSON — creates a **contact note**; failures are **logged and do not fail** the browser response, so you will not see `failed_step: "contacts_note"` in Network JSON; check Vercel for `[ghl] contact_note_failed_ignored` if a note is missing in GHO)
+4. `POST /contacts/:id/notes` (if the website sent `notes` in JSON)
 
-A failure on step 2 or 3 still means step 1 may have **succeeded** (contact exists without new tags or opp). A log-only failure on step 4 still means the lead response is **ok: true** when the contact was created.
+**Partial success:** If step 1 succeeds but step 2, 3, or 4 fails, the API still returns **`ok: true`** with optional **`warnings`**: `tags_failed`, `opportunity_failed`, `note_failed`. The UI shows a calm “Heads up” panel with the **`correlationId`**. Vercel logs: `[ghl] tags_failed_partial`, `[ghl] opportunity_failed_partial`, `[ghl] contact_note_failed_partial`.
+
+A failure on step 1 returns **`ok: false`** with `failed_step: "contacts_upsert"` (no contact ID in JSON).
+
+### 3.10 Duplicate / merge log hints
+
+On `crm_duplicate_or_merge`, server logs may include **`logDuplicateHint`**: `email` | `phone` | `merge` | `unknown` (derived from sanitized upstream text only). Use with **`correlationId`** to match the `[ghl] upstream_error` line in Vercel.
 
 ---
 
-## 4. Interpreting production failures (502 / user message)
+## 4. Interpreting production failures (HTTP status + `code`)
 
-User-facing copy stays generic; **operators** use:
+The browser receives **user-safe** `error` strings and a machine **`code`** for UI copy. Common CRM-related codes from [`lib/ghl/crm-user-message.ts`](../lib/ghl/crm-user-message.ts):
+
+| `code` | Typical HTTP | Meaning (high level) |
+|--------|----------------|----------------------|
+| `crm_validation` | 400 | GHL rejected payload (format, field value, tag, pipeline, etc.) — check env + field definitions |
+| `crm_duplicate_or_merge` | 400 | Duplicate / merge wording from GHL or **409** — user may already exist in the sub-account |
+| `crm_auth` | 502 | **401 / 403** from GHL — token, scope, or location |
+| `crm_rate_limit` | 429 | Too many requests |
+| `crm_server` | 502 | GHL **5xx** |
+| `crm_unreachable` | 502 | Other upstream failure, **or** transport error (**HTTP status 0** / fetch failure) |
+
+**Operators** still triage with:
 
 | Source | Fields |
 |--------|--------|
-| Browser **Network** tab → `POST /api/submit-lead` JSON | `correlationId`, optional `failed_step` (`contacts_upsert` / `contacts_tags` / `opportunities_create`), optional `crm_http_status` (note: contact note creation failures are log-only, not a failed response) |
-| **Vercel** logs | Search `correlationId` and `[ghl]` — `API error` / `upstream_error` includes `path`, `status`, `statusBucket`, `upstreamDetail`, `bodyPreview` (truncate, no token) |
+| Browser **Network** tab → `POST /api/submit-lead` JSON | `correlationId`, `code`, `error`, optional `failed_step` (`contacts_upsert` / `contacts_tags` / `opportunities_create`), optional `crm_http_status` (note: contact note creation failures are log-only, not a failed response) |
+| **Vercel** logs | Search `correlationId` and `[ghl]` — `API error` includes `path`, `status`, `statusBucket`, `upstreamDetail`, `bodyPreview` (truncate, no token); **`upstream_error`** includes **`crmUserCode`** (classified, no PII) |
 
 **`crm_http_status` (rough guide):**
 
@@ -137,9 +159,9 @@ See also [troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md](./troubleshooting/CO
 2. Optionally **`npm run ghl:operator-check -- --ping`**.
 3. In production, submit **one buyer** test (`/home-search` or `/buy`) and **one seller** test (`/cma-form` or `/free-home-valuation` form).
 4. For each response, note **`correlationId`** (even on success, if you add logging — success path logs it in Vercel).
-5. In GHL: contact, custom fields (especially **Lead type**, **DOB**, **Property Address** when sent), **tags**, and **opportunity** (if all four pipeline vars set).
+5. In GHL: contact, custom fields (especially **Lead type**, **DOB** when the form collected it, **Property Address** when sent), **tags**, and **opportunity** (if all four pipeline vars set).
 
-If **502** persists after env matches this doc, the remaining issue is **outside the repo** (token scopes, field definitions, tag names, or pipeline objects in GHL) unless logs show a new code path.
+If failures persist after env matches this doc, use the response **`code`** and Vercel `[ghl]` logs (`crmUserCode`, `upstreamDetail`) — remaining issues are usually **token scopes, field definitions, tag names, or pipeline objects in GHL** unless logs show `internal_error`.
 
 ---
 
@@ -147,6 +169,8 @@ If **502** persists after env matches this doc, the remaining issue is **outside
 
 - [`lib/ghl/config.ts`](../lib/ghl/config.ts) — env loading, tag parsing, pipeline completeness
 - [`lib/ghl/lead-mapping.ts`](../lib/ghl/lead-mapping.ts) — custom field list + tag resolution
+- [`lib/ghl/crm-user-message.ts`](../lib/ghl/crm-user-message.ts) — classify GHL failures → user-safe `code` + `error`
 - [`lib/ghl/client.ts`](../lib/ghl/client.ts) — LeadConnector requests
 - [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts) — orchestration + logging
-- [`app/api/submit-lead/route.ts`](../app/api/submit-lead/route.ts) — HTTP codes + `correlationId` on errors
+- [`app/api/submit-lead/route.ts`](../app/api/submit-lead/route.ts) — HTTP status + JSON errors (`correlationId`, `code`)
+- [`lib/m2m-lead-submit-error-copy.ts`](../lib/m2m-lead-submit-error-copy.ts) — alert copy per `code`

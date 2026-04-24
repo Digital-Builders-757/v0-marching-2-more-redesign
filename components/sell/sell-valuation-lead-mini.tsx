@@ -6,10 +6,11 @@ import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { m2mDarkPanelInputClass } from "@/lib/m2m-form"
 import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import type { SubmitLeadFailure } from "@/lib/ghl/types"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 
 /** Compact seller intake on /sell — same contract as other seller forms. */
 export function SellValuationLeadMini() {
@@ -26,6 +27,10 @@ export function SellValuationLeadMini() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -41,6 +46,7 @@ export function SellValuationLeadMini() {
         date_of_birth: form.dateOfBirth,
         address: form.address.trim() || undefined,
         urgency: form.timeline,
+        urgency_explicit: Boolean(form.timeline.trim()),
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
@@ -52,6 +58,7 @@ export function SellValuationLeadMini() {
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -60,9 +67,19 @@ export function SellValuationLeadMini() {
 
   if (done) {
     return (
-      <p className="text-sm text-m2m-cream/95 font-sans" role="status" aria-live="polite">
-        Thank you — we&apos;ll reach out shortly. You can still use the instant online tool below anytime.
-      </p>
+      <div className="space-y-4">
+        {successFollowUp?.warnings.length ? (
+          <M2mLeadSubmitWarnings
+            warnings={successFollowUp.warnings}
+            correlationId={successFollowUp.correlationId}
+            variant="onDark"
+            className="text-left"
+          />
+        ) : null}
+        <p className="text-sm text-m2m-cream/95 font-sans" role="status" aria-live="polite">
+          Thank you — we&apos;ll reach out shortly. You can still use the instant online tool below anytime.
+        </p>
+      </div>
     )
   }
 

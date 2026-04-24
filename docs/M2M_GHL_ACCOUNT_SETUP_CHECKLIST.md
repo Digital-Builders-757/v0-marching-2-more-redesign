@@ -25,7 +25,7 @@ Create or verify **contact** custom fields and paste each field’s **ID** into 
 
 | Field label (GHL) | Env var | Notes |
 |-------------------|---------|--------|
-| DOB | `GHL_CF_DOB` | Website sends **`YYYY-MM-DD`** from date inputs. |
+| DOB | `GHL_CF_DOB` | When collected, website sends **`YYYY-MM-DD`** (date inputs). Short forms may omit DOB; the field is not written when absent. |
 | **Property Address** | `GHL_CF_ADDRESS` | Free text; omitted when a form does not collect address. |
 | Urgency (**text** field) | `GHL_CF_URGENCY` | Use the **TEXT** urgency field’s ID — **not** the dropdown urgency field. |
 | Lead Type | `GHL_CF_LEAD_TYPE` | Website sends exact strings **`Buyer`** or **`Seller`**. Field must accept those values (text or matching single-select options). |

@@ -1,11 +1,19 @@
 import { getGhlConfig, listUnsetPipelineEnvVars } from "./config"
+import { classifyGhlUserFacingError } from "./crm-user-message"
 import { addTagsToContact, createContactNote, createOpportunity, GhlApiError, ghlStatusBucket, upsertContact } from "./client"
 import { normalizedLeadToCustomFields, pipelineStageForLeadType, resolveTagsForLead } from "./lead-mapping"
-import type { GhlApiStep, NormalizedLead } from "./types"
+import type { GhlApiStep, NormalizedLead, SubmitLeadWarningCode } from "./types"
 import { parseSubmitLeadBody } from "./validate"
+import { urgencyLogBucket } from "@/lib/m2m-lead-urgency"
 
 export type SubmitLeadResult =
-  | { ok: true; contactId?: string; opportunityId?: string }
+  | {
+      ok: true
+      contactId?: string
+      opportunityId?: string
+      correlationId: string
+      warnings?: SubmitLeadWarningCode[]
+    }
   | {
       ok: false
       error: string
@@ -42,8 +50,16 @@ export async function submitLeadToGhl(lead: NormalizedLead, correlationId: strin
       sourcePath: lead.sourcePath,
       tagCount: tg.length,
       customFieldCount: cf.length,
+      urgencyBucket: urgencyLogBucket(lead.urgency, lead.urgencyExplicit),
+      urgencyExplicit: Boolean(lead.urgencyExplicit),
+      hasUrgency: Boolean(lead.urgency?.trim()),
     })
-    return { ok: true, contactId: "dry-run-contact", opportunityId: "dry-run-opportunity" }
+    return {
+      ok: true,
+      contactId: "dry-run-contact",
+      opportunityId: "dry-run-opportunity",
+      correlationId,
+    }
   }
 
   const customFields = normalizedLeadToCustomFields(lead, cfg)
@@ -57,16 +73,26 @@ export async function submitLeadToGhl(lead: NormalizedLead, correlationId: strin
     })
   }
 
-  try {
-    console.info("[ghl] submit_start", {
-      correlationId,
-      leadType: lead.leadType,
-      sourcePath: lead.sourcePath,
-      tagCount: tags.length,
-      customFieldCount: customFields.length,
-      willCreateOpportunity: Boolean(pipelineStageForLeadType(lead.leadType, cfg)),
-    })
+  console.info("[ghl] submit_start", {
+    correlationId,
+    leadType: lead.leadType,
+    sourcePath: lead.sourcePath,
+    tagCount: tags.length,
+    customFieldCount: customFields.length,
+    customFieldIdsCount: customFields.length,
+    willCreateOpportunity: Boolean(pipelineStageForLeadType(lead.leadType, cfg)),
+    hasUrgency: Boolean(lead.urgency?.trim()),
+    urgencyBucket: urgencyLogBucket(lead.urgency, lead.urgencyExplicit),
+    urgencyExplicit: Boolean(lead.urgencyExplicit),
+  })
 
+  console.info("[ghl] urgency_meta", {
+    correlationId,
+    explicit: Boolean(lead.urgencyExplicit),
+    valueBucket: urgencyLogBucket(lead.urgency, lead.urgencyExplicit),
+  })
+
+  try {
     const { contactId } = await upsertContact(cfg, {
       firstName: lead.firstName,
       lastName: lead.lastName,
@@ -79,23 +105,55 @@ export async function submitLeadToGhl(lead: NormalizedLead, correlationId: strin
 
     console.info("[ghl] contact_upserted", { correlationId, contactId })
 
-    await addTagsToContact(cfg, contactId, tags, correlationId)
-    console.info("[ghl] tags_applied", { correlationId, contactId, tagCount: tags.length })
+    const warnings: SubmitLeadWarningCode[] = []
+
+    try {
+      await addTagsToContact(cfg, contactId, tags, correlationId)
+      console.info("[ghl] tags_applied", { correlationId, contactId, tagCount: tags.length })
+    } catch (tagErr) {
+      if (tagErr instanceof GhlApiError) {
+        console.error("[ghl] tags_failed_partial", {
+          correlationId,
+          contactId,
+          status: tagErr.status,
+          failed_step: tagErr.step,
+        })
+        warnings.push("tags_failed")
+      } else {
+        console.error("[ghl] tags_failed_partial_unexpected", { correlationId, contactId, err: tagErr })
+        warnings.push("tags_failed")
+      }
+    }
 
     const pipe = pipelineStageForLeadType(lead.leadType, cfg)
     let opportunityId: string | undefined
 
     if (pipe) {
-      const oppName = `M2M Web — ${lead.leadType === "buyer" ? "Buyer" : "Seller"} — ${lead.fullName}`
-      const { opportunityId: oid } = await createOpportunity(cfg, {
-        contactId,
-        pipelineId: pipe.pipelineId,
-        pipelineStageId: pipe.stageId,
-        name: oppName,
-        correlationId,
-      })
-      opportunityId = oid
-      console.info("[ghl] opportunity_created", { correlationId, contactId, opportunityId })
+      try {
+        const oppName = `M2M Web — ${lead.leadType === "buyer" ? "Buyer" : "Seller"} — ${lead.fullName}`
+        const { opportunityId: oid } = await createOpportunity(cfg, {
+          contactId,
+          pipelineId: pipe.pipelineId,
+          pipelineStageId: pipe.stageId,
+          name: oppName,
+          correlationId,
+        })
+        opportunityId = oid
+        console.info("[ghl] opportunity_created", { correlationId, contactId, opportunityId })
+      } catch (oppErr) {
+        if (oppErr instanceof GhlApiError) {
+          console.error("[ghl] opportunity_failed_partial", {
+            correlationId,
+            contactId,
+            status: oppErr.status,
+            failed_step: oppErr.step,
+          })
+          warnings.push("opportunity_failed")
+        } else {
+          console.error("[ghl] opportunity_failed_partial_unexpected", { correlationId, contactId, err: oppErr })
+          warnings.push("opportunity_failed")
+        }
+      }
     } else {
       const missing = listUnsetPipelineEnvVars()
       console.warn("[ghl] opportunity_skipped", {
@@ -111,31 +169,52 @@ export async function submitLeadToGhl(lead: NormalizedLead, correlationId: strin
         await createContactNote(cfg, contactId, lead.notes, correlationId)
         console.info("[ghl] contact_note_created", { correlationId, contactId, charCount: lead.notes.trim().length })
       } catch (noteErr) {
-        /** Non-fatal: contact + pipeline already saved. */
-        console.warn("[ghl] contact_note_failed_ignored", {
+        console.warn("[ghl] contact_note_failed_partial", {
           correlationId,
           contactId,
           message: noteErr instanceof Error ? noteErr.message : String(noteErr),
         })
+        warnings.push("note_failed")
       }
     }
 
-    console.info("[ghl] submit_ok", { correlationId, contactId, opportunityId: opportunityId ?? null })
-    return { ok: true, contactId, opportunityId }
+    console.info("[ghl] submit_ok", {
+      correlationId,
+      contactId,
+      opportunityId: opportunityId ?? null,
+      warningCount: warnings.length,
+      warnings: warnings.length ? warnings : undefined,
+    })
+
+    return {
+      ok: true,
+      contactId,
+      opportunityId,
+      correlationId,
+      ...(warnings.length ? { warnings } : {}),
+    }
   } catch (e) {
     if (e instanceof GhlApiError) {
+      const classified = classifyGhlUserFacingError({
+        httpStatus: e.status,
+        upstreamMessage: e.message,
+        upstreamDetail: e.upstreamDetail,
+        step: e.step,
+      })
       console.error("[ghl] upstream_error", {
         correlationId,
         status: e.status,
         statusBucket: ghlStatusBucket(e.status),
-        code: e.code,
+        crmUserCode: classified.code,
+        ghlCode: e.code,
         failed_step: e.step,
-        message: e.message,
+        logDuplicateHint: classified.logDuplicateHint,
+        logValidationHint: classified.logValidationHint,
       })
       return {
         ok: false,
-        error: "We could not reach our CRM. Please call us or try again shortly.",
-        code: e.code ?? "ghl_upstream_error",
+        error: classified.userError,
+        code: classified.code,
         correlationId,
         ...(e.step ? { failed_step: e.step } : {}),
         crm_http_status: e.status,
