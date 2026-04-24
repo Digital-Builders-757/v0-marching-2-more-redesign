@@ -4,8 +4,9 @@ import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
-import { m2mInteriorFormInputClass } from "@/lib/m2m-form"
 import { RESOURCE_EXTERNAL_LINKS } from "@/lib/m2m-site"
+
+import { ResourcesChecklistForm } from "./resources-checklist-form"
 
 export const metadata = {
   title: "Resources | Marching 2 More",
@@ -99,41 +100,7 @@ export default function ResourcesPage() {
             </p>
 
             {/* Form */}
-            <form className="mx-auto mt-10 max-w-3xl rounded-lg bg-white/90 p-6 backdrop-blur-sm md:p-8">
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  aria-label="First name"
-                  className={m2mInteriorFormInputClass}
-                />
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  aria-label="Last name"
-                  className={m2mInteriorFormInputClass}
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  aria-label="Email"
-                  className={m2mInteriorFormInputClass}
-                />
-              </div>
-
-              <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-m2m-deep/80 font-sans">
-                  <input type="checkbox" className="size-4 rounded border-m2m-deep/20 text-m2m-panel" />
-                  I agree to the terms & conditions
-                </label>
-                <button
-                  type="submit"
-                  className="inline-flex min-h-11 items-center justify-center bg-m2m-panel px-8 py-3 text-[0.75rem] font-medium tracking-[0.15em] text-m2m-cream transition hover:bg-m2m-panel-lt font-nav"
-                >
-                  Email me the Checklist
-                </button>
-              </div>
-            </form>
+            <ResourcesChecklistForm />
 
             {/* Resources Section */}
             <div className="mt-16">

@@ -85,6 +85,8 @@ GoHighLevel integration is now an active project, and the architectural boundary
 
 Source of truth for that boundary: [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md)
 
+Lead API responses use classified error **`code`** values (`crm_*`, `validation_error`, etc.), user-facing copy in [`lib/m2m-lead-submit-error-copy.ts`](../lib/m2m-lead-submit-error-copy.ts), and HTTP status mapping in [`app/api/submit-lead/route.ts`](../app/api/submit-lead/route.ts). See [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) §4.
+
 ## Out of scope (today)
 
 - Supabase, auth middleware, RLS, Stripe — not part of this repo unless explicitly added.

@@ -1,13 +1,25 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
+import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
+import {
+  M2M_URGENCY_LABEL_SHORT_FORM,
+  M2M_URGENCY_SHARED_HINT,
+  M2M_URGENCY_SHORT_FORM_DEFAULT,
+} from "@/lib/m2m-lead-urgency"
 import { cn } from "@/lib/utils"
+import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 
 import {
   DOWNSIZING_GUIDE_SECTION_ID,
@@ -17,18 +29,82 @@ import {
 } from "./content"
 
 export function DownsizingGuideForm() {
+  const pathname = usePathname()
+  const utm = useM2mUtm()
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
+    timeline: M2M_URGENCY_SHORT_FORM_DEFAULT,
     shipTo: "",
     specialInstructions: "",
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
+  const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Wire to CRM, Server Action, or transactional email — replace console stub before launch.
-    console.log("Downsizing guide request:", form)
+    setSubmitError(null)
+    setSubmitting(true)
+    try {
+      const name = `${form.firstName} ${form.lastName}`.trim()
+      const notes = [
+        form.shipTo.trim() ? `Ship to: ${form.shipTo.trim()}` : "",
+        form.specialInstructions.trim() ? `Notes: ${form.specialInstructions.trim()}` : "",
+        "Downsizing guide request",
+      ]
+        .filter(Boolean)
+        .join("\n")
+      const res = await submitLeadToApi({
+        lead_type: "seller",
+        name,
+        email: form.email.trim(),
+        address: form.shipTo.trim() || undefined,
+        urgency: form.timeline,
+        urgency_explicit: form.timeline.trim() !== M2M_URGENCY_SHORT_FORM_DEFAULT,
+        notes,
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+        utm_content: utm.utm_content,
+        source_page: typeof window !== "undefined" ? window.location.href : undefined,
+        source_path: pathname || "/downsizing-your-home",
+      })
+      if (!res.ok) {
+        setSubmitError(res)
+        return
+      }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
+      setDone(true)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  if (done) {
+    return (
+      <div
+        id={DOWNSIZING_GUIDE_SECTION_ID}
+        className="scroll-mt-28 space-y-4 rounded-sm bg-m2m-cream p-6 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:p-8 lg:p-9"
+      >
+        {successFollowUp?.warnings.length ? (
+          <M2mLeadSubmitWarnings
+            warnings={successFollowUp.warnings}
+            correlationId={successFollowUp.correlationId}
+            variant="onLight"
+            className="text-left"
+          />
+        ) : null}
+        <p className="text-center text-m2m-deep font-sans" role="status" aria-live="polite">
+          Thank you! We&apos;ll send your downsizing guide.
+        </p>
+      </div>
+    )
   }
 
   return (
@@ -44,7 +120,8 @@ export function DownsizingGuideForm() {
       </h2>
       <p className="mt-3 text-sm leading-relaxed text-m2m-deep/80 font-sans">{GUIDE_INTRO}</p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Request downsizing guide">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Request downsizing guide" aria-busy={submitting}>
+        {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full" /> : null}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div className="sm:col-span-1">
             <Label htmlFor="ds-first" className={m2mLeadFieldLabelClass}>
@@ -53,6 +130,7 @@ export function DownsizingGuideForm() {
             <Input
               id="ds-first"
               type="text"
+              required
               autoComplete="given-name"
               value={form.firstName}
               onChange={(e) => setForm({ ...form, firstName: e.target.value })}
@@ -66,6 +144,7 @@ export function DownsizingGuideForm() {
             <Input
               id="ds-last"
               type="text"
+              required
               autoComplete="family-name"
               value={form.lastName}
               onChange={(e) => setForm({ ...form, lastName: e.target.value })}
@@ -88,6 +167,17 @@ export function DownsizingGuideForm() {
             className={m2mLeadFieldInputClass}
           />
         </div>
+
+        <M2mLeadUrgencySelect
+          id="ds-guide-urgency"
+          label={M2M_URGENCY_LABEL_SHORT_FORM}
+          value={form.timeline}
+          onChange={(v) => setForm({ ...form, timeline: v })}
+          variant="interior"
+          mode="short"
+          required={false}
+          hint={M2M_URGENCY_SHARED_HINT}
+        />
 
         <div>
           <Label htmlFor="ds-ship" className={m2mLeadFieldLabelClass}>
@@ -119,8 +209,8 @@ export function DownsizingGuideForm() {
         </div>
 
         <div className="pt-2">
-          <Button type="submit" variant="m2mGold" className="w-full">
-            {GUIDE_CTA_LABEL}
+          <Button type="submit" variant="m2mGold" className="w-full" disabled={submitting}>
+            {submitting ? "Sending…" : GUIDE_CTA_LABEL}
           </Button>
         </div>
       </form>

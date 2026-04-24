@@ -14,10 +14,12 @@
 ## Done (in repo)
 
 - `POST /api/submit-lead` (Node) + `lib/ghl/` (config, validate, client, submit orchestration).
-- Lead forms wired: `/cma-form`, `/contact-us`, `/buy`, `/sell`, `/home-search`, `/free-home-valuation`, `/facing-foreclosure`, `/downsizing-your-home` (fallback), `/improve-your-credit` (local playbook path).
+- **CRM errors:** GHL failures are classified into stable JSON `code` values (`crm_validation`, `crm_duplicate_or_merge`, `crm_auth`, `crm_rate_limit`, `crm_server`, `crm_unreachable`) with user-safe `error` text — see [`lib/ghl/crm-user-message.ts`](../lib/ghl/crm-user-message.ts), [`lib/m2m-lead-submit-error-copy.ts`](../lib/m2m-lead-submit-error-copy.ts), and HTTP mapping in [`app/api/submit-lead/route.ts`](../app/api/submit-lead/route.ts).
+- **Validation:** `phone` and `date_of_birth` are **optional** on the API so short campaign forms can submit without them; full-intake forms still collect DOB/phone where the UI provides fields.
+- Lead forms wired: `/cma-form`, `/contact-us`, `/buy`, `/sell`, `/home-search`, `/free-home-valuation`, `/facing-foreclosure`, `/downsizing-your-home` (fallback + **guide form**), `/improve-your-credit` (local playbook path), **`/va-loan-benefits`**, **`/fha-loan`**, **`/navigating-divorce`**, **`/resources`** (checklist form), plus homepage **`Contact`** and parity **`ContactForm`** (see [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md#lead-capture-routes-expected-crm-payload)).
 - UTM capture, `source_path`, buyer/seller typing, optional `notes` / `address` / `urgency` (per-route strategies in [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md#lead-capture-routes-expected-crm-payload)); server posts `notes` to GHL contact notes API when set.
 - **`getPrimaryConsultationBookUrl()`** — single booking pattern; GHL URL when set, else Calendly fallback.
-- Server logs: `[ghl]` + `correlationId`; pipeline env gaps enumerated when opportunities skipped.
+- Server logs: `[ghl]` + `correlationId`; classified `crmUserCode` on upstream errors; pipeline env gaps enumerated when opportunities skipped.
 - Operator script: `npm run ghl:operator-check` (optional `--ping`); see [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md).
 - Docs: runbook, this file, troubleshooting rows; `npm run ci` green.
 

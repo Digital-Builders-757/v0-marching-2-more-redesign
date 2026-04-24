@@ -14,8 +14,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
 import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import type { LeadType, SubmitLeadFailure } from "@/lib/ghl/types"
+import type { LeadType, SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { getPrimaryConsultationBookUrl, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export default function ContactUsPage() {
@@ -34,6 +35,10 @@ export default function ContactUsPage() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -61,6 +66,7 @@ export default function ContactUsPage() {
         date_of_birth: formData.dateOfBirth,
         address: leadType === "seller" ? formData.address.trim() || undefined : undefined,
         urgency: formData.timeline,
+        urgency_explicit: Boolean(formData.timeline.trim()),
         notes: formData.message || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
@@ -73,6 +79,7 @@ export default function ContactUsPage() {
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setSubmitted(true)
     } finally {
       setSubmitting(false)
@@ -117,7 +124,15 @@ export default function ContactUsPage() {
             </div>
 
             {submitted ? (
-              <div className="py-12 text-center" role="status" aria-live="polite">
+              <div className="space-y-6 py-12 text-center" role="status" aria-live="polite">
+                {successFollowUp?.warnings.length ? (
+                  <M2mLeadSubmitWarnings
+                    warnings={successFollowUp.warnings}
+                    correlationId={successFollowUp.correlationId}
+                    variant="onLight"
+                    className="mx-auto max-w-lg text-left"
+                  />
+                ) : null}
                 <p className="text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                   Thank you!
                 </p>

@@ -8,15 +8,23 @@ export type LeadType = "buyer" | "seller"
 /** CRM call site when logging or returning `failed_step` (no secrets). */
 export type GhlApiStep = "contacts_upsert" | "contacts_tags" | "opportunities_create" | "contacts_note"
 
+/** Non-fatal step failures after contact upsert (safe machine codes for UI + logs). */
+export type SubmitLeadWarningCode = "tags_failed" | "opportunity_failed" | "note_failed"
+
 /** Inbound JSON from browser forms → POST /api/submit-lead */
 export type SubmitLeadRequest = {
   lead_type: LeadType
   name: string
   email: string
-  phone: string
-  date_of_birth: string
+  phone?: string
+  date_of_birth?: string
   address?: string
   urgency?: string
+  /**
+   * When true, the user changed urgency from the short-form default (“Not sure yet”).
+   * Logged server-side only for operator triage (not stored as a separate GHL field).
+   */
+  urgency_explicit?: boolean
   utm_source?: string
   utm_medium?: string
   utm_campaign?: string
@@ -33,10 +41,12 @@ export type NormalizedLead = {
   firstName: string
   lastName: string
   email: string
-  phoneE164: string
-  dateOfBirth: string
+  phoneE164?: string
+  dateOfBirth?: string
   address?: string
   urgency?: string
+  /** Carried for server logging only */
+  urgencyExplicit?: boolean
   utm: {
     source?: string
     medium?: string
@@ -59,9 +69,17 @@ export type SubmitLeadErrorResponse = {
   crm_http_status?: number
 }
 
-export type SubmitLeadResponse =
-  | { ok: true; contactId?: string; opportunityId?: string }
-  | SubmitLeadErrorResponse
+export type SubmitLeadSuccessResponse = {
+  ok: true
+  contactId?: string
+  opportunityId?: string
+  /** Present on every response for support correlation. */
+  correlationId: string
+  /** Steps that failed after the contact was saved — user should still know we have their info. */
+  warnings?: SubmitLeadWarningCode[]
+}
+
+export type SubmitLeadResponse = SubmitLeadSuccessResponse | SubmitLeadErrorResponse
 
 /** Failed lead API response — use with `M2mLeadSubmitErrorAlert`. */
 export type SubmitLeadFailure = SubmitLeadErrorResponse

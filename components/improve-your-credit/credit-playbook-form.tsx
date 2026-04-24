@@ -14,8 +14,9 @@ import {
   m2mPlaybookInputClass,
 } from "@/lib/m2m-form"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import type { SubmitLeadFailure } from "@/lib/ghl/types"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { M2M_URGENCY_LABEL_CREDIT, M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { GOHIGHLEVEL_QUIZ_CREDIT_URL, isGohighlevelUrlConfigured } from "@/lib/m2m-site"
 
@@ -41,6 +42,10 @@ export function CreditPlaybookForm() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -57,6 +62,7 @@ export function CreditPlaybookForm() {
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
         urgency: form.timeline,
+        urgency_explicit: Boolean(form.timeline.trim()),
         notes,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
@@ -69,6 +75,7 @@ export function CreditPlaybookForm() {
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -103,7 +110,15 @@ export function CreditPlaybookForm() {
         <div className="mx-auto max-w-xl">
           <div className="bg-m2m-cream px-6 py-10 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:px-10 sm:py-12">
             {done ? (
-              <div role="status" aria-live="polite" className="text-center">
+              <div role="status" aria-live="polite" className="space-y-4 text-center">
+                {successFollowUp?.warnings.length ? (
+                  <M2mLeadSubmitWarnings
+                    warnings={successFollowUp.warnings}
+                    correlationId={successFollowUp.correlationId}
+                    variant="onLight"
+                    className="text-left"
+                  />
+                ) : null}
                 <p
                   className="text-base font-semibold leading-snug text-m2m-deep sm:text-lg"
                   style={{ fontFamily: "var(--font-display)" }}

@@ -103,11 +103,11 @@ That is no longer the target architecture.
 
 - `name`
 - `email`
-- `phone`
-- `date_of_birth`
 
 ### Optional fields
 
+- `phone` (omitted from GHL upsert when absent; if provided, must look like a valid US-style number after normalization)
+- `date_of_birth` (when present, normalized to **`YYYY-MM-DD`** for the DOB custom field)
 - `address`
 - `urgency`
 
@@ -128,7 +128,11 @@ If a page targets a seller pain point such as foreclosure, downsizing, valuation
 
 ### Lead capture routes (expected CRM payload)
 
-Shared timeline strings for `urgency` (TEXT) come from one source: [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts) (same options as the CMA “Timeline for Selling” radios). `GHL_CF_ADDRESS` maps to the GHL field labeled **Property Address**; optional fields are omitted when empty.
+**Authoritative route/component matrix:** [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](./M2M_LEAD_CAPTURE_MATRIX.md) (submission path, DOB, urgency mode, partial-success notes).
+
+Shared timeline strings for `urgency` (TEXT) come from [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts), including passive defaults on short forms. `GHL_CF_ADDRESS` maps to the GHL field labeled **Property Address**; optional fields are omitted when empty.
+
+**API success:** responses include `correlationId` and optional `warnings` (`tags_failed` | `opportunity_failed` | `note_failed`) when the contact upsert succeeded but a later step failed — see [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
 
 | Route / component | Funnel | `address` | `urgency` | `notes` (→ contact note in GHO) |
 |-------------------|--------|-----------|-----------|-----------------------------------|
@@ -141,8 +145,17 @@ Shared timeline strings for `urgency` (TEXT) come from one source: [`lib/m2m-lea
 | `components/downsizing-your-home/downsizing-fallback-lead.tsx` | Seller | Optional | Timeline select | Optional context |
 | `components/facing-foreclosure/pre-foreclosure-form.tsx` | Seller | Optional | Timeline select | Message |
 | `components/improve-your-credit/credit-playbook-form.tsx` | Buyer | — | “When planning to buy” (same options) | Playbook line + optional one-line context |
+| `components/va-loan-benefits/va-lead-form.tsx` | Buyer | — | Short-form urgency (default “Not sure yet”) | Message + VA inquiry tag line |
+| `components/fha-loan/fha-quote-form.tsx` | Buyer | — | Short-form urgency | Subject + message |
+| `components/downsizing-your-home/downsizing-guide-form.tsx` | Seller | Ship-to → `address` when set | Short-form urgency | Special instructions + guide request |
+| `components/navigating-divorce/divorce-aerial-lead.tsx` | Seller | — | Short-form urgency | Message + guide request |
+| `components/contact/contact-form.tsx` | Seller (parity block) | — | Short-form urgency | Message |
+| `components/contact.tsx` (home) | Buyer or seller from interest select | — | Short-form urgency | Interest + message |
+| `app/resources/resources-checklist-form.tsx` | Buyer | — | Short-form urgency | Checklist request note |
 
 **Server:** `notes` are posted to GHL with `POST /contacts/:contactId/notes` after the contact is upserted. If the Notes API fails, the server still returns success and logs a warning (contact and pipeline data are already saved). See [`lib/ghl/client.ts`](../lib/ghl/client.ts) and [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
+
+**Errors:** Upstream GHL HTTP failures are mapped to user-safe JSON via [`lib/ghl/crm-user-message.ts`](../lib/ghl/crm-user-message.ts) (`crm_*` codes) and UI copy via [`lib/m2m-lead-submit-error-copy.ts`](../lib/m2m-lead-submit-error-copy.ts).
 
 ---
 
@@ -162,7 +175,7 @@ The website should continue posting to:
 
 The API route should:
 
-1. validate required fields
+1. validate required fields (`name`, `email`; optional `phone` / `date_of_birth` per form)
 2. normalize phone / strings / lead type
 3. create or update the contact in GoHighLevel
 4. write minimum custom field data
@@ -179,8 +192,8 @@ type SubmitLeadRequest = {
   lead_type: "buyer" | "seller"
   name: string
   email: string
-  phone: string
-  date_of_birth: string
+  phone?: string
+  date_of_birth?: string
   address?: string
   urgency?: string
   utm_source?: string
@@ -199,7 +212,15 @@ type SubmitLeadRequest = {
 ```ts
 type SubmitLeadResponse =
   | { ok: true; contactId?: string; opportunityId?: string }
-  | { ok: false; error: string; code?: string }
+  | {
+      ok: false
+      error: string
+      /** e.g. validation_error | config_error | crm_validation | crm_duplicate_or_merge | crm_auth | crm_rate_limit | crm_server | crm_unreachable | internal_error | bad_request | bad_response */
+      code?: string
+      correlationId?: string
+      failed_step?: "contacts_upsert" | "contacts_tags" | "opportunities_create"
+      crm_http_status?: number
+    }
 ```
 
 ---
@@ -213,7 +234,7 @@ They should then be separated using both:
 - tags
 - pipelines / opportunities
 
-### Minimum custom fields required in GHL
+### Minimum custom fields to configure in GHL
 
 - `Lead Type`
 - `Urgency`
@@ -221,10 +242,10 @@ They should then be separated using both:
 - `UTM Medium`
 - `UTM Campaign`
 - `UTM Content`
-- `DOB`
+- `DOB` (may be empty on short-form leads when not collected)
 - `Address`
 
-These fields are the minimum baseline because they support:
+These fields are the baseline because they support:
 
 - attribution
 - urgency-based routing
@@ -414,13 +435,13 @@ Server-only secrets must remain server-side only and must never use the `NEXT_PU
 
 ## Phase 2 — website submission path
 
-**Done (repo):** `POST /api/submit-lead`; Zod validation; upsert → tags → optional opportunity; stable JSON responses.
+**Done (repo):** `POST /api/submit-lead`; Zod validation; upsert → tags → optional opportunity; stable JSON responses with **`crm_*`** error classification and appropriate HTTP status codes.
 
 - live behavior requires valid **`GHL_*`** env (or `GHL_DRY_RUN=true` for testing without upstream calls)
 
 ## Phase 3 — page wiring
 
-**Status: shipped in repo** — seller and buyer surfaces wired; consultation URLs use **`getPrimaryConsultationBookUrl()`** (GHL when configured, else transitional Calendly). Remaining: swap **`GOHIGHLEVEL_BOOKING_URL`** to a real link when the account provides it.
+**Status: shipped in repo** — seller and buyer surfaces wired (including VA/FHA, divorce, downsizing guide, resources checklist, home contact, and parity contact form); consultation URLs use **`getPrimaryConsultationBookUrl()`** (GHL when configured, else transitional Calendly). Remaining: swap **`GOHIGHLEVEL_BOOKING_URL`** to a real link when the account provides it.
 
 - preserve thank-you UX and attribution capture (ongoing QA)
 
@@ -518,10 +539,10 @@ This plan is the governing source of truth for the active GHL integration scope 
 **Shipped in code (foundation + cutover readiness):**
 
 - Shared server modules under **`lib/ghl/`** (config, validation, LeadConnector-style HTTP client, contact upsert, tags, opportunity create).
-- **`POST /api/submit-lead`** — Node runtime, Zod validation, stable JSON responses; secrets stay server-only.
+- **`POST /api/submit-lead`** — Node runtime, Zod validation, stable JSON responses (**`crm_*`** error codes); secrets stay server-only.
 - Client helpers: **`lib/m2m-lead-submit.ts`**, **`lib/m2m-utm.ts`**, **`useM2mUtm`**, **`M2mLeadDobField`**.
-- Forms wired with `lead_type`, DOB, UTMs, and `source_path` on priority seller and buyer surfaces (see checklist doc).
-- **Observability:** per-request **`correlationId`**; logs **`opportunity_skipped`** with **`missingEnvVars`** when pipeline env incomplete; no raw email/phone in logs.
+- Forms wired with `lead_type`, optional DOB/phone, UTMs, and `source_path` on seller, buyer, and campaign surfaces (see [lead capture table](#lead-capture-routes-expected-crm-payload) and [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md)).
+- **Observability:** per-request **`correlationId`**; **`crmUserCode`** on classified upstream errors; logs **`opportunity_skipped`** with **`missingEnvVars`** when pipeline env incomplete; no raw email/phone in logs.
 - **Booking single source of truth:** **`getPrimaryConsultationBookUrl()`** — documented in **`lib/m2m-site.ts`**; contact page uses the same helper as header/footer/hero/blog.
 
 **Confirmed technical decisions**

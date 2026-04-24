@@ -1,6 +1,16 @@
-import type { SubmitLeadFailure, SubmitLeadRequest, SubmitLeadResponse } from "@/lib/ghl/types"
+import type {
+  SubmitLeadFailure,
+  SubmitLeadRequest,
+  SubmitLeadResponse,
+  SubmitLeadSuccessResponse,
+  SubmitLeadWarningCode,
+} from "@/lib/ghl/types"
 
 export type { SubmitLeadFailure, SubmitLeadRequest, SubmitLeadResponse }
+
+function isWarningCode(x: unknown): x is SubmitLeadWarningCode {
+  return x === "tags_failed" || x === "opportunity_failed" || x === "note_failed"
+}
 
 /**
  * POST JSON to the server-only lead route. No secrets in the request.
@@ -45,10 +55,28 @@ export async function submitLeadToApi(body: SubmitLeadRequest): Promise<SubmitLe
     }
   }
 
-  return {
+  const warningsRaw = "warnings" in obj && Array.isArray(obj.warnings) ? obj.warnings : []
+  const warnings = warningsRaw.filter(isWarningCode)
+
+  const success: SubmitLeadSuccessResponse = {
     ok: true,
     contactId: "contactId" in obj && typeof obj.contactId === "string" ? obj.contactId : undefined,
     opportunityId:
       "opportunityId" in obj && typeof obj.opportunityId === "string" ? obj.opportunityId : undefined,
+    correlationId:
+      "correlationId" in obj && typeof obj.correlationId === "string"
+        ? obj.correlationId
+        : /** backward compat */ "",
+    ...(warnings.length ? { warnings } : {}),
   }
+
+  if (!success.correlationId) {
+    return {
+      ok: false,
+      error: "Invalid response from server",
+      code: "bad_response",
+    }
+  }
+
+  return success
 }

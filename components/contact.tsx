@@ -1,21 +1,80 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 
+import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
+import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
+import { useM2mUtm } from "@/components/m2m-utm-effect"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
+import {
+  M2M_URGENCY_LABEL_SHORT_FORM,
+  M2M_URGENCY_SHARED_HINT,
+  M2M_URGENCY_SHORT_FORM_DEFAULT,
+} from "@/lib/m2m-lead-urgency"
+import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+
+function leadTypeFromInterest(interest: string): "buyer" | "seller" {
+  if (interest === "buying" || interest === "pcs") return "buyer"
+  if (interest === "selling" || interest === "valuation") return "seller"
+  return "seller"
+}
+
 export function Contact() {
+  const pathname = usePathname()
+  const utm = useM2mUtm()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     interest: "",
+    timeline: M2M_URGENCY_SHORT_FORM_DEFAULT,
     message: "",
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
+  const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
+    setSubmitError(null)
+    setSubmitting(true)
+    try {
+      const name = `${formData.firstName} ${formData.lastName}`.trim()
+      const interestLine = formData.interest
+        ? `Interest: ${formData.interest.replace(/-/g, " ")}`
+        : "Interest: not specified"
+      const notes = [interestLine, formData.message.trim()].filter(Boolean).join("\n\n")
+      const res = await submitLeadToApi({
+        lead_type: leadTypeFromInterest(formData.interest),
+        name,
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || undefined,
+        urgency: formData.timeline,
+        urgency_explicit: formData.timeline.trim() !== M2M_URGENCY_SHORT_FORM_DEFAULT,
+        notes,
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+        utm_content: utm.utm_content,
+        source_page: typeof window !== "undefined" ? window.location.href : undefined,
+        source_path: pathname || "/",
+      })
+      if (!res.ok) {
+        setSubmitError(res)
+        return
+      }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
+      setDone(true)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -55,10 +114,27 @@ export function Contact() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5" aria-busy={submitting}>
+          {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onDark" className="w-full" /> : null}
+          {done ? (
+            <div className="space-y-4">
+              {successFollowUp?.warnings.length ? (
+                <M2mLeadSubmitWarnings
+                  warnings={successFollowUp.warnings}
+                  correlationId={successFollowUp.correlationId}
+                  variant="onDark"
+                  className="text-left"
+                />
+              ) : null}
+              <p className="text-m2m-cream font-sans" role="status" aria-live="polite">
+                Thank you! We&apos;ll be in touch soon.
+              </p>
+            </div>
+          ) : null}
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 ${done ? "hidden" : ""}`}>
             <FormGroup
               label="First Name"
+              required
               value={formData.firstName}
               onChange={(v) => setFormData({ ...formData, firstName: v })}
               placeholder="John"
@@ -71,10 +147,11 @@ export function Contact() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 ${done ? "hidden" : ""}`}>
             <FormGroup
               label="Email"
               type="email"
+              required
               value={formData.email}
               onChange={(v) => setFormData({ ...formData, email: v })}
               placeholder="john@example.com"
@@ -88,7 +165,7 @@ export function Contact() {
             />
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className={`flex flex-col gap-2 ${done ? "hidden" : ""}`}>
             <label 
               className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold"
               style={{ fontFamily: 'var(--font-nav)' }}
@@ -109,7 +186,20 @@ export function Contact() {
             </select>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className={`${done ? "hidden" : ""}`}>
+            <M2mLeadUrgencySelect
+              id="home-contact-urgency"
+              label={M2M_URGENCY_LABEL_SHORT_FORM}
+              value={formData.timeline}
+              onChange={(v) => setFormData({ ...formData, timeline: v })}
+              variant="dark"
+              mode="short"
+              required={false}
+              hint={M2M_URGENCY_SHARED_HINT}
+            />
+          </div>
+
+          <div className={`flex flex-col gap-2 ${done ? "hidden" : ""}`}>
             <label 
               className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold"
               style={{ fontFamily: 'var(--font-nav)' }}
@@ -127,13 +217,14 @@ export function Contact() {
 
           <button
             type="submit"
-            className="text-[0.7rem] tracking-[0.2em] uppercase bg-m2m-gold text-m2m-deep font-medium px-9 py-4 transition-colors hover:bg-m2m-gold-lt self-start mt-1"
+            disabled={submitting || done}
+            className="text-[0.7rem] tracking-[0.2em] uppercase bg-m2m-gold text-m2m-deep font-medium px-9 py-4 transition-colors hover:bg-m2m-gold-lt self-start mt-1 disabled:opacity-70"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
-            Send Message
+            {submitting ? "Sending…" : "Send Message"}
           </button>
 
-          <p className="text-[0.6rem] text-m2m-muted italic tracking-wider leading-relaxed">
+          <p className={`text-[0.6rem] text-m2m-muted italic tracking-wider leading-relaxed ${done ? "hidden" : ""}`}>
             We respect your privacy. Your information will never be shared with third parties.
           </p>
         </form>
@@ -167,12 +258,14 @@ function FormGroup({
   onChange,
   placeholder,
   type = "text",
+  required: requiredProp,
 }: {
   label: string
   value: string
   onChange: (value: string) => void
   placeholder: string
   type?: string
+  required?: boolean
 }) {
   return (
     <div className="flex flex-col gap-2">
@@ -185,6 +278,7 @@ function FormGroup({
       <input
         type={type}
         value={value}
+        required={requiredProp}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className="bg-black/35 border border-m2m-gold/20 text-m2m-cream text-sm font-light px-4 py-3.5 outline-none transition-colors focus:border-m2m-gold placeholder:text-m2m-muted"

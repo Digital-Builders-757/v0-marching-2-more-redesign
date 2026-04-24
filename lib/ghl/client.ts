@@ -26,6 +26,8 @@ export class GhlApiError extends Error {
     readonly status: number,
     readonly code?: string,
     readonly step?: GhlApiStep,
+    /** Sanitized snippet from upstream JSON (for classification only; do not show raw to users). */
+    readonly upstreamDetail?: string,
   ) {
     super(message)
     this.name = "GhlApiError"
@@ -68,16 +70,26 @@ async function ghlFetch<T>(
   logCtx?: GhlLogContext,
 ): Promise<T> {
   const url = `${cfg.baseUrl.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`
-  const res = await fetch(url, {
-    ...init,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${cfg.apiKey}`,
-      Version: cfg.apiVersion,
-      ...init.headers,
-    },
-  })
+  let res: Response
+  try {
+    res = await fetch(url, {
+      ...init,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${cfg.apiKey}`,
+        Version: cfg.apiVersion,
+        ...init.headers,
+      },
+    })
+  } catch (err) {
+    console.error("[ghl] fetch_failed", {
+      ...(logCtx ?? {}),
+      path,
+      errName: err instanceof Error ? err.name : "unknown",
+    })
+    throw new GhlApiError("Network request failed", 0, "ghl_network_error", logCtx?.step)
+  }
 
   const text = await res.text()
   let body: unknown = null
@@ -101,7 +113,13 @@ async function ghlFetch<T>(
       upstreamDetail,
       bodyPreview: text.slice(0, 500),
     })
-    throw new GhlApiError(msg || "Upstream error", res.status, "ghl_upstream_error", logCtx?.step)
+    throw new GhlApiError(
+      msg || "Upstream error",
+      res.status,
+      "ghl_upstream_error",
+      logCtx?.step,
+      upstreamDetail,
+    )
   }
 
   return body as T
@@ -117,7 +135,8 @@ export async function upsertContact(
     lastName: string
     fullName: string
     email: string
-    phone: string
+    /** E.164 when present; omit from request body when absent (GHL upsert can match on email only). */
+    phone?: string
     customFields: GhlCustomFieldEntry[]
     /** Optional; when set, API errors and parse failures include this id in server logs. */
     correlationId?: string
@@ -129,7 +148,9 @@ export async function upsertContact(
     lastName: params.lastName,
     name: params.fullName,
     email: params.email,
-    phone: params.phone,
+  }
+  if (params.phone?.trim()) {
+    body.phone = params.phone
   }
   if (params.customFields.length > 0) {
     body.customFields = params.customFields

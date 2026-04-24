@@ -6,9 +6,10 @@ import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { m2mCmaFormInputClass } from "@/lib/m2m-form"
 import { cn } from "@/lib/utils"
-import type { SubmitLeadFailure } from "@/lib/ghl/types"
+import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 
 /** Buyer intake on /home-search — dark-on-hero styling. */
@@ -26,6 +27,10 @@ export function HomeSearchBuyerLead() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
   const inputClass = `${m2mCmaFormInputClass} min-h-12 sm:min-h-11 touch-manipulation bg-m2m-deep/40 border-m2m-cream/40 text-m2m-cream placeholder:text-m2m-cream/58 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]`
 
@@ -42,6 +47,7 @@ export function HomeSearchBuyerLead() {
         phone: form.phone,
         date_of_birth: form.dateOfBirth,
         urgency: form.timeline,
+        urgency_explicit: Boolean(form.timeline.trim()),
         notes: form.context.trim() || undefined,
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
@@ -54,6 +60,7 @@ export function HomeSearchBuyerLead() {
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -62,9 +69,19 @@ export function HomeSearchBuyerLead() {
 
   if (done) {
     return (
-      <p className="mt-6 text-sm text-m2m-cream/90 font-sans" role="status" aria-live="polite">
-        Thank you! An agent will reach out to help with your search.
-      </p>
+      <div className="mt-6 max-w-md space-y-4">
+        {successFollowUp?.warnings.length ? (
+          <M2mLeadSubmitWarnings
+            warnings={successFollowUp.warnings}
+            correlationId={successFollowUp.correlationId}
+            variant="onDark"
+            className="text-left"
+          />
+        ) : null}
+        <p className="text-sm text-m2m-cream/90 font-sans" role="status" aria-live="polite">
+          Thank you! An agent will reach out to help with your search.
+        </p>
+      </div>
     )
   }
 

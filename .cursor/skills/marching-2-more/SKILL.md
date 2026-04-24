@@ -17,6 +17,10 @@ description: >-
 - **Analytics**: `@vercel/analytics` in `app/layout.tsx`.
 - **No Supabase/auth API in `package.json`** — do not assume TOTL dashboards, RLS, or `@supabase/*` unless the user adds them.
 
+## Lead capture (GHL)
+
+- Browser posts JSON to **`/api/submit-lead`** only (no `GHL_*` in client bundles). Optional **`phone`** / **`date_of_birth`** on the API; failures return classified **`crm_*`** codes. Details: **`docs/M2M_GHL_INTEGRATION_MASTER_PLAN.md`**, **`docs/M2M_GHL_OPERATOR_VERIFICATION.md`** §4.
+
 ## Constants and CTAs
 
 - **Single source** for phone, emails, Calendly, RealScout, Google reviews, partners, and resource links: **`lib/m2m-site.ts`**.
