@@ -98,15 +98,21 @@ const sectionSurface: Record<
 
 export type M2mSectionVariant = keyof typeof sectionSurface
 
+const sectionY: Record<"default" | "tight", string> = {
+  default: "py-16 md:py-20",
+  tight: "py-10 md:py-14",
+}
+
 export function M2mSection({
   variant = "transparent",
+  density = "default",
   className,
   ...props
-}: ComponentProps<"section"> & { variant?: M2mSectionVariant }) {
+}: ComponentProps<"section"> & { variant?: M2mSectionVariant; density?: "default" | "tight" }) {
   return (
     <section
       className={cn(
-        "py-16 md:py-20",
+        sectionY[density],
         sectionSurface[variant],
         className,
       )}
@@ -126,8 +132,13 @@ export function M2mProse({
     <div
       className={cn(
         "max-w-3xl text-pretty",
-        tone === "onLight" && "text-m2m-deep/90",
-        tone === "onDark" && "text-m2m-cream/90",
+        "[&_p]:mb-4 [&_p]:last:mb-0",
+        "[&_ul]:mb-4 [&_ul]:list-outside [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:marker:text-m2m-gold/50",
+        "[&_ol]:mb-4 [&_ol]:list-outside [&_ol]:list-decimal [&_ol]:pl-6",
+        "[&_li]:my-1.5",
+        "[&_a]:underline [&_a]:decoration-m2m-gold/45 [&_a]:underline-offset-[3px] [&_a]:transition-colors",
+        tone === "onLight" && "text-m2m-deep/90 [&_a]:text-m2m-deep/95 hover:[&_a]:text-m2m-gold",
+        tone === "onDark" && "text-m2m-cream/90 [&_a]:text-m2m-cream/95 hover:[&_a]:text-m2m-gold",
         className,
       )}
       {...props}

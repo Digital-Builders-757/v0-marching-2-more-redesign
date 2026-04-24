@@ -36,7 +36,7 @@
 - Site URLs / phone / mailto / Calendly: `lib/m2m-site.ts`
 - Nav + footer link lists: `lib/m2m-nav.ts`
 - Marketing imagery (Blob): `lib/m2m-media.ts`
-- Lead POST + GHL: `app/api/submit-lead/route.ts`, `lib/ghl/*` (see [docs/M2M_GHL_INTEGRATION_MASTER_PLAN.md](docs/M2M_GHL_INTEGRATION_MASTER_PLAN.md))
+- Lead POST + GHL: `app/api/submit-lead/route.ts`, `lib/ghl/*` — live system behavior: [docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md); scope: [docs/M2M_GHL_INTEGRATION_MASTER_PLAN.md](docs/M2M_GHL_INTEGRATION_MASTER_PLAN.md)
 - Campaign landings often use `components/<slug>/content.ts` + `Header` `consultationCtaVariant="outlineCream"` + `DivorceLandingFooter`.
 
 ## Archive

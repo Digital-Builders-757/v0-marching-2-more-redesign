@@ -1,9 +1,18 @@
 # Marching 2 More — GoHighLevel integration master plan
 
-**Last updated:** April 22, 2026  
+**Last updated:** April 24, 2026  
 **Owner:** Marching 2 More / Donavan McFadden  
 **Technical implementation owner:** website CTO / coding agent execution inside this repo  
-**Target completion window:** ship the core setup by **May 1, 2026**
+**Target completion window:** core website → GHL pipeline **live-validated** (manual QA, April 2026); ongoing polish (booking URL, GHL automations) continues in the account.
+
+---
+
+## See also (operational entry points)
+
+- **End-to-end system behavior (canonical):** [`docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md`](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) — architecture, where data lands in GHO, operator verification order, partial success.
+- **Client / team (non-technical):** [`docs/M2M_CLIENT_CRM_HANDOFF_GUIDE.md`](./M2M_CLIENT_CRM_HANDOFF_GUIDE.md) — what the site does vs what GHO does, how to confirm leads, common mistakes.
+
+This master plan remains the **scope, phases, and business** record for the integration; the system guide is the best **single place** for “how it works in production” after cutover.
 
 ---
 
@@ -134,24 +143,24 @@ Shared timeline strings for `urgency` (TEXT) come from [`lib/m2m-lead-urgency.ts
 
 **API success:** responses include `correlationId` and optional `warnings` (`tags_failed` | `opportunity_failed` | `note_failed`) when the contact upsert succeeded but a later step failed — see [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
 
-| Route / component | Funnel | `address` | `urgency` | `notes` (→ contact note in GHO) |
-|-------------------|--------|-----------|-----------|-----------------------------------|
-| `app/cma-form/page.tsx` | Seller | Street / city / ZIP composed | Timeline radios | Property condition + goals |
-| `app/contact-us/page.tsx` | Buyer or seller (user choice) | If seller, optional | Timeline select | Free message |
-| `components/buy/buy-lead-mini.tsx` | Buyer | — | Timeline select | Optional context (area, budget) |
-| `components/home-search/home-search-buyer-lead.tsx` | Buyer | — | Timeline select | Optional context |
-| `components/sell/sell-valuation-lead-mini.tsx` | Seller | Optional one-line | Timeline select | — |
-| `components/free-home-valuation/valuation-seller-lead-form.tsx` | Seller | Optional | Timeline select | Optional “before we call” |
-| `components/downsizing-your-home/downsizing-fallback-lead.tsx` | Seller | Optional | Timeline select | Optional context |
-| `components/facing-foreclosure/pre-foreclosure-form.tsx` | Seller | Optional | Timeline select | Message |
-| `components/improve-your-credit/credit-playbook-form.tsx` | Buyer | — | “When planning to buy” (same options) | Playbook line + optional one-line context |
-| `components/va-loan-benefits/va-lead-form.tsx` | Buyer | — | Short-form urgency (default “Not sure yet”) | Message + VA inquiry tag line |
-| `components/fha-loan/fha-quote-form.tsx` | Buyer | — | Short-form urgency | Subject + message |
-| `components/downsizing-your-home/downsizing-guide-form.tsx` | Seller | Ship-to → `address` when set | Short-form urgency | Special instructions + guide request |
-| `components/navigating-divorce/divorce-aerial-lead.tsx` | Seller | — | Short-form urgency | Message + guide request |
-| `components/contact/contact-form.tsx` | Seller (parity block) | — | Short-form urgency | Message |
-| `components/contact.tsx` (home) | Buyer or seller from interest select | — | Short-form urgency | Interest + message |
-| `app/resources/resources-checklist-form.tsx` | Buyer | — | Short-form urgency | Checklist request note |
+| Route / component | Funnel | `address` | `urgency` | `notes` (→ contact note in GHO) | Live route |
+|-------------------|--------|-----------|-----------|-----------------------------------|------------|
+| `app/cma-form/page.tsx` | Seller | Street / city / ZIP composed | Timeline radios | Property condition + goals | `/cma-form` |
+| `app/contact-us/page.tsx` | Buyer or seller (user choice) | If seller, optional | Timeline select | Free message | `/contact-us` |
+| `components/buy/buy-lead-mini.tsx` | Buyer | — | Timeline select | Optional context (area, budget) | `/buy` (CTA block) |
+| `components/home-search/home-search-buyer-lead.tsx` | Buyer | — | Timeline select | Optional context | `/home-search` |
+| `components/sell/sell-valuation-lead-mini.tsx` | Seller | Optional one-line | Timeline select | — | `/sell` (valuation block) |
+| `components/free-home-valuation/valuation-seller-lead-form.tsx` | Seller | Optional | Timeline select | Optional “before we call” | `/free-home-valuation` |
+| `components/downsizing-your-home/downsizing-fallback-lead.tsx` | Seller | Optional | Timeline select | Optional context | `/downsizing-your-home` |
+| `components/facing-foreclosure/pre-foreclosure-form.tsx` | Seller | Optional | Timeline select | Message | `/facing-foreclosure` |
+| `components/improve-your-credit/credit-playbook-form.tsx` | Buyer | — | “When planning to buy” (same options) | Playbook line + optional one-line context | `/improve-your-credit` |
+| `components/va-loan-benefits/va-lead-form.tsx` | Buyer | — | Short-form urgency (default “Not sure yet”) | Message + VA inquiry tag line | `/va-loan-benefits` |
+| `components/fha-loan/fha-quote-form.tsx` | Buyer | — | Short-form urgency | Subject + message | `/fha-loan` |
+| `components/downsizing-your-home/downsizing-guide-form.tsx` | Seller | Ship-to → `address` when set | Short-form urgency | Special instructions + guide request | `/downsizing-your-home` |
+| `components/navigating-divorce/divorce-aerial-lead.tsx` | Seller | — | Short-form urgency | Message + guide request | `/navigating-divorce` |
+| `components/contact/contact-form.tsx` | Seller (parity) | — | Short-form urgency | Message | **Not mounted** (only `ContactUsParity`; unused) |
+| `components/contact.tsx` | Buyer or seller from interest | — | Short-form urgency | Interest + message | **Not mounted** (use `/contact-us`) |
+| `app/resources/resources-checklist-form.tsx` | Buyer | — | Short-form urgency | Checklist request note | `/resources` |
 
 **Server:** `notes` are posted to GHL with `POST /contacts/:contactId/notes` after the contact is upserted. If the Notes API fails, the server still returns success and logs a warning (contact and pipeline data are already saved). See [`lib/ghl/client.ts`](../lib/ghl/client.ts) and [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
 
@@ -252,14 +261,22 @@ These fields are the baseline because they support:
 - buyer vs seller separation
 - future reporting and agent assignment rules
 
+### Data stored vs visible in the GHO UI
+
+**Successful field population and what operators see on the default contact screen are not the same thing.** The API can write custom fields (including **Urgency** as TEXT via `GHL_CF_URGENCY` and **DOB** via `GHL_CF_DOB`) while operators still do not *notice* the values until those fields are **added to the contact record layout** (or opened in the custom-fields panel) in GHO. Live QA showed **urgency** and **date of birth** saving correctly; earlier confusion was often **GHL UI visibility** (e.g. Urgency not placed on the contact view), not failed writes. Operators should follow the verification order in [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) and [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md).
+
+**Do not confuse** the **TEXT** urgency field (what the site writes) with a separate **dropdown** Urgency field in GHO, if both exist — only the TEXT field ID is bound in env as `GHL_CF_URGENCY`.
+
 ---
 
 ## Pipelines
 
 Maintain separate pipelines for:
 
-- **Buyer pipeline**
-- **Seller pipeline**
+- **M2M Buyer Pipeline** (env: `GHL_BUYER_PIPELINE_ID`) — first stage for new web leads: **New Inquiry** (env: `GHL_BUYER_STAGE_NEW_INQUIRY_ID`)
+- **M2M Seller Pipeline** (env: `GHL_SELLER_PIPELINE_ID`) — first stage: **New Inquiry** (env: `GHL_SELLER_STAGE_NEW_INQUIRY_ID`)
+
+**Base tags (intended production names, exact match in GHO):** `M2M - Buyer` and `M2M - Seller` via `GHL_TAG_LEAD_BUYER` / `GHL_TAG_LEAD_SELLER` (comma-separated if multiple). UUIDs and tag spelling live in GHO and Vercel env — see [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md).
 
 ### Default stage progression
 
@@ -512,11 +529,13 @@ The integration is not “done” until the following are true:
 3. Consultation links use **`getPrimaryConsultationBookUrl()`** (GHL-first, Calendly fallback while `GOHIGHLEVEL_BOOKING_URL` is still a placeholder).
 4. Cutover docs: [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md), [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md); structured server logs with **`correlationId`** for live debugging.
 
-**Remaining (outside repo-only work)**
+**Ongoing (account / marketing, not code-blocked)**
 
-1. Populate **`GHL_*`** env in Vercel and complete [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md).
-2. Replace **`GOHIGHLEVEL_*`** public URLs in `lib/m2m-site.ts` when available.
-3. Run end-to-end QA per runbook against the real sub-account before May 1 deadline.
+1. Keep **`GHL_*`** in Vercel aligned with the live GHO sub-account ([M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md)); rotate tokens per policy.
+2. Replace **`GOHIGHLEVEL_*`** placeholder public URLs in `lib/m2m-site.ts` when final links are supplied.
+3. GHO-side: workflows, SMS/email, calendars, and reporting — **source of truth in GHO**, verified there (see [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md)).
+
+**Manual QA:** Core submit path, custom fields (including DOB + TEXT urgency with layout visibility understood), tags, and opportunities are **exercised against production**; treat [M2M_LEAD_CAPTURE_QA.md](./M2M_LEAD_CAPTURE_QA.md) as the live checklist template.
 
 ---
 
@@ -549,7 +568,7 @@ This plan is the governing source of truth for the active GHL integration scope 
 
 - **Dry run:** `GHL_DRY_RUN=true` skips upstream calls; custom field env vars optional (placeholders injected server-side).
 - **Partial pipelines:** If any of the four pipeline/stage env vars are missing, contact upsert + tags still run; opportunities are skipped (degraded mode, not a silent failure — see logs).
-- **Notes:** Long `notes` are accepted in the API and logged server-side when present; auto-posting to GHL conversations is **not** implemented (optional follow-up).
+- **Notes:** When the client sends `notes`, the server posts a **contact note** via GHL `POST /contacts/:contactId/notes` after the contact upsert ([`lib/ghl/client.ts`](../lib/ghl/client.ts) `createContactNote`). If that call fails, the response can still be success with `warnings` including **`note_failed`** (contact and pipeline data may already be saved).
 
 **Still requires the GHL account + Vercel env (not completable from repo alone):**
 

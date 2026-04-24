@@ -25,8 +25,8 @@ export function M2mLeadSubmitErrorAlert({
 
   const shell =
     variant === "onDark"
-      ? "border-m2m-gold/30 bg-m2m-deep/50 text-m2m-cream shadow-[inset_0_1px_0_rgba(205,176,95,0.12)] backdrop-blur-[2px]"
-      : "border-m2m-deep/10 bg-white text-m2m-deep shadow-[0_2px_16px_-4px_rgba(5,13,6,0.1)]"
+      ? "border-m2m-gold/30 bg-m2m-deep/50 text-m2m-cream shadow-[inset_0_1px_0_rgba(205,176,95,0.1)] shadow-[0_4px_24px_-6px_rgba(5,13,6,0.25)] backdrop-blur-[2px]"
+      : "border-m2m-deep/10 bg-white text-m2m-deep shadow-[0_2px_20px_-4px_rgba(5,13,6,0.08),0_1px_0_rgba(5,13,6,0.04)]"
 
   const eyebrowCls =
     variant === "onDark" ? "text-m2m-gold/95" : "text-m2m-gold-dim"
@@ -44,15 +44,15 @@ export function M2mLeadSubmitErrorAlert({
 
   const refWell =
     variant === "onDark"
-      ? "bg-m2m-black/25 ring-1 ring-m2m-cream/10"
-      : "bg-m2m-cream/80 ring-1 ring-m2m-deep/8"
+      ? "bg-m2m-black/30 ring-1 ring-m2m-cream/12"
+      : "bg-m2m-cream/90 ring-1 ring-m2m-deep/10"
 
   return (
     <div
       role="alert"
       aria-live="polite"
       className={cn(
-        "rounded-xl border px-4 py-4 sm:px-5 sm:py-[1.125rem]",
+        "rounded-xl border px-4 py-4 sm:px-5 sm:py-5",
         shell,
         className,
       )}
@@ -60,8 +60,10 @@ export function M2mLeadSubmitErrorAlert({
       <p className={cn("text-[0.62rem] font-medium uppercase tracking-[0.2em] font-nav", eyebrowCls)}>
         {m.eyebrow}
       </p>
-      <p className="mt-2 text-[0.98rem] font-medium leading-snug font-sans">{m.title}</p>
-      <p className="mt-2 text-sm leading-relaxed text-pretty font-sans opacity-[0.96]">{m.body}</p>
+      <p className="mt-2.5 text-base font-semibold leading-snug tracking-tight font-sans">{m.title}</p>
+      <p className="mt-2 text-sm leading-[1.55] text-pretty font-sans [text-wrap:pretty] opacity-[0.96]">
+        {m.body}
+      </p>
 
       {m.nextStep ? (
         <div
@@ -106,7 +108,12 @@ export function M2mLeadSubmitErrorAlert({
         >
           <p className="text-[0.62rem] font-medium uppercase tracking-[0.14em]">Reference</p>
           <div className={cn("mt-2 rounded-md px-3 py-2", refWell)}>
-            <p className="font-mono text-[0.72rem] leading-relaxed tracking-wide break-all text-left select-all">
+            <p
+              className={cn(
+                "text-left font-mono text-[0.74rem] leading-relaxed tracking-wide [overflow-wrap:anywhere] break-all select-all tabular-nums",
+                variant === "onDark" ? "text-m2m-cream" : "text-m2m-deep/95",
+              )}
+            >
               {m.referenceId}
             </p>
           </div>

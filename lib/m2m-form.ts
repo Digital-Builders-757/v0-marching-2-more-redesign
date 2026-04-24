@@ -38,3 +38,32 @@ export const m2mDarkPanelFieldLabelClass =
 
 export const m2mDarkPanelInputClass =
   "min-h-11 w-full rounded-lg border border-m2m-gold/20 bg-black/20 px-4 py-3 text-sm text-m2m-cream outline-none transition placeholder:text-m2m-muted focus-visible:border-m2m-gold focus-visible:ring-2 focus-visible:ring-m2m-gold/30 font-sans"
+
+/** Full-width primary submit on light / interior forms (e.g. buy lead mini, CTA card on white). */
+export const m2mFormPrimaryButtonOnLight = cn(
+  "w-full min-h-12 touch-manipulation rounded-md",
+  "bg-m2m-deep text-m2m-cream",
+  "px-8 py-4 text-[0.7rem] font-medium font-nav uppercase tracking-[0.2em]",
+  "shadow-sm transition hover:bg-m2m-deep/90 active:scale-[0.99]",
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-panel focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-cream",
+  "disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none",
+)
+
+/** Full-width gold primary on dark green panels (e.g. sell valuation lead mini). */
+export const m2mFormPrimaryButtonOnDarkPanel = cn(
+  "w-full min-h-12 touch-manipulation rounded-md",
+  "bg-m2m-gold text-m2m-deep",
+  "py-3 text-[0.65rem] font-medium font-nav uppercase tracking-[0.2em]",
+  "shadow-sm transition hover:bg-m2m-gold-lt active:scale-[0.99]",
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold-lt focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-panel/90",
+  "disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none",
+)
+
+/**
+ * Merged with shadcn `Button variant="m2mPanel"` on light backgrounds (e.g. contact page).
+ * Keeps CVA styles; adds stronger focus ring, tap target, and active feedback.
+ */
+export const m2mFormSubmitShadcnPanelEnhance = cn(
+  "w-full !h-auto !rounded-md min-h-12 touch-manipulation active:scale-[0.99]",
+  "focus-visible:ring-2 focus-visible:ring-m2m-gold/55 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-cream/80",
+)

@@ -7,7 +7,11 @@ import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
-import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
+import {
+  m2mFormPrimaryButtonOnLight,
+  m2mInteriorFormInputClass,
+  m2mInteriorFormTextareaClass,
+} from "@/lib/m2m-form"
 import { cn } from "@/lib/utils"
 import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
@@ -161,7 +165,8 @@ export function BuyLeadMini() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full min-h-12 touch-manipulation bg-m2m-deep text-m2m-cream text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 font-medium transition hover:bg-m2m-deep/90 disabled:opacity-60 font-nav"
+        aria-busy={submitting}
+        className={m2mFormPrimaryButtonOnLight}
       >
         {submitting ? "Sending…" : "Submit"}
       </button>

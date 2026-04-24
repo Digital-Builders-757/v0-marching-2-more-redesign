@@ -44,12 +44,12 @@ export function Footer() {
             >
               Quick Links
             </h3>
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-0.5">
               {M2M_FOOTER_QUICK_LINKS.map((l) => (
                 <Link
                   key={l.label}
                   href={l.href}
-                  className="text-xs tracking-wider text-m2m-muted hover:text-m2m-cream transition-colors"
+                  className="inline-flex min-h-11 w-full max-w-xs items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
                   {l.label}
@@ -96,12 +96,12 @@ export function Footer() {
             >
               Policies
             </h3>
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-0.5">
               {M2M_FOOTER_POLICY_LINKS.map((l) => (
                 <Link
                   key={l.label}
                   href={l.href}
-                  className="text-xs tracking-wider text-m2m-muted hover:text-m2m-cream transition-colors"
+                  className="inline-flex min-h-11 w-full max-w-xs items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
                   {l.label}
@@ -113,7 +113,7 @@ export function Footer() {
               href={GOOGLE_REVIEW_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-3 w-fit text-xs tracking-wider text-m2m-muted underline decoration-m2m-gold/40 underline-offset-4 transition-colors hover:text-m2m-cream"
+              className="mt-2 inline-flex min-h-11 w-full max-w-xs items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted underline decoration-m2m-gold/40 underline-offset-4 transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               Leave a Google review →
@@ -133,14 +133,14 @@ export function Footer() {
             </p>
             <a
               href={M2M_PHONE_HREF}
-              className="text-xs tracking-wider text-m2m-muted hover:text-m2m-cream transition-colors"
+              className="inline-flex min-h-11 w-full max-w-xs items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               {M2M_PHONE_DISPLAY}
             </a>
             <a
               href={M2M_EMAIL_HREF}
-              className="break-words text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream"
+              className="inline-flex min-h-11 w-full max-w-sm items-center break-words rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               {M2M_EMAIL_DISPLAY}
