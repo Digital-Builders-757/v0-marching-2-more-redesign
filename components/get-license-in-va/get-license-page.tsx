@@ -139,7 +139,7 @@ export function GetLicensePage() {
         </M2mContainer>
       </M2mSection>
 
-      <M2mSection variant="light" className="py-12">
+      <M2mSection variant="light" density="tight">
         <M2mContainer className="max-w-3xl text-center">
           <p className="text-sm text-m2m-deep/75" style={{ fontFamily: "var(--font-sans)" }}>
             Prefer to browse the rest of the site?{" "}

@@ -2,6 +2,8 @@
 
 **Audience:** Operators wiring **Vercel env** to the **live M2M GHL sub-account**. This doc complements [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) (what to create in GHL) and [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) (cutover order).
 
+**Start here for full flow:** [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) (website → API → GHO, where each datum lands, partial success, verification order).
+
 **Secrets:** Never commit `.env.local` or paste `GHL_API_KEY` into tickets. The browser must never receive `GHL_*` variables (Network tab should only show JSON **to** `/api/submit-lead`, no CRM token).
 
 ---
@@ -37,7 +39,7 @@ Use the IDs your sub-account actually shows in GHL; the values below are the **i
 | `GHL_CF_URGENCY` | `2L3vthC9f5mvV8mriGVo` (**TEXT** urgency field, not the dropdown field) |
 | `GHL_CF_LEAD_TYPE` | `2mWB1HfGmUQV57n8WRSs` |
 | `GHL_CF_UTM_*` | four IDs as in `.env.example` / your runbook |
-| Pipelines / stages | buyer + seller pipeline IDs and **New Inquiry** stage UUIDs |
+| Pipelines / stages | **M2M Buyer Pipeline** / **M2M Seller Pipeline** — IDs in env; first stage for web leads: **New Inquiry** (`GHL_BUYER_STAGE_NEW_INQUIRY_ID` / `GHL_SELLER_STAGE_NEW_INQUIRY_ID`) |
 
 If any ID is copied from another sub-account or an old sandbox, GHL will often return **422** or **400** on upsert.
 
@@ -58,6 +60,7 @@ These are **not** configurable per sub-account in code without a code change:
 
 - **Optional** on `POST /api/submit-lead`. Full-intake forms use shared **month / day / year** selects ([`M2mLeadDobField`](../components/m2m-lead-form-fields.tsx)) that submit **`YYYY-MM-DD`** (min year **1920**, no future dates). Short campaign forms may omit DOB; the custom field is then **not** sent.
 - The field in GHL should be **date** or **text** compatible with `YYYY-MM-DD` when populated.
+- **GHO UI:** A value can be **stored** on the contact while still **not obvious** on the default contact view until the DOB custom field is **on the contact layout** (or you open the full custom-fields list). If operators do not “see” DOB, check layout first, then Vercel logs for that `correlationId`. Live QA confirmed DOB saving; confusion was often visibility in GHO.
 
 **Code:** [`lib/ghl/validate.ts`](../lib/ghl/validate.ts) (`submitLeadRequestSchema` superRefine); [`lib/m2m-dob.ts`](../lib/m2m-dob.ts).
 
@@ -77,7 +80,7 @@ These are **not** configurable per sub-account in code without a code change:
 
 - Maps to the **free-text** urgency field, **not** the dropdown field ID. Timeline strings and passive defaults (**“Not sure yet”**, **“Just exploring”**) live in [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts). **Short forms** default to “Not sure yet” so the TEXT field is almost always populated; users can change it without an extra required field.
 - **Operator logs:** Vercel logs include `[ghl] urgency_meta` with `explicit: true|false` (from JSON `urgency_explicit`) and `valueBucket`: `none` | `passive_default` | `passive_explicit` | `timeline`. **`passive_default`** means the visitor did not change the default timeline select.
-- **Where to look in GHO:** Contact record → custom fields → the TEXT field bound to `GHL_CF_URGENCY` (not the dropdown, if you have both). If the value is missing, verify env ID and that no workflow clears the field after create.
+- **Where to look in GHO:** Contact record → custom fields → the **TEXT** field bound to `GHL_CF_URGENCY` (not the dropdown, if you have both). If the value is “missing” on screen, first confirm the TEXT field is **on the contact record layout** (GHO can hide custom fields until they are added to the default view). Live QA: urgency was saving correctly; operators did not see it until the Urgency custom field was **visible/active in the GHO contact view**. If still empty in data after layout check, verify env ID and that no workflow clears the field after create.
 
 **Surface list:** [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](./M2M_LEAD_CAPTURE_MATRIX.md).
 
@@ -108,7 +111,19 @@ These are **not** configurable per sub-account in code without a code change:
 
 A failure on step 1 returns **`ok: false`** with `failed_step: "contacts_upsert"` (no contact ID in JSON).
 
-### 3.10 Duplicate / merge log hints
+### 3.10 Recommended verification order in GHO (after a successful submit)
+
+Use this order so you do not mistake **layout** for **data**:
+
+1. **Contacts** — find the person (email/phone); confirm the contact exists in the M2M location.
+2. **Contact custom fields** — Lead type, DOB, Property Address, **Urgency (TEXT)**, UTMs as applicable. Expand “custom fields” if needed; add fields to the **contact layout** in GHO settings if the team should see them at a glance.
+3. **Tags** — expect base tags **`M2M - Buyer`** or **`M2M - Seller`** (plus any path-based tags from `GHL_PATH_TAGS`). If `tags_failed` appeared, some tags may be missing.
+4. **Notes** — free-text from the form, when sent. If `note_failed` appeared, the note may be absent while the contact is still saved.
+5. **Opportunities / pipeline board** — **M2M Buyer Pipeline** or **M2M Seller Pipeline**, stage **New Inquiry** (if all four pipeline env vars were set; else see `opportunity_skipped` / `opportunity_failed` in logs or `opportunity_failed` in `warnings`).
+
+**Partial success** (`ok: true` + `warnings`): the contact upsert from step 1 in §3.9 **succeeded**; use the list above to see *which* later steps need attention (tags, opportunity, or note).
+
+### 3.11 Duplicate / merge log hints
 
 On `crm_duplicate_or_merge`, server logs may include **`logDuplicateHint`**: `email` | `phone` | `merge` | `unknown` (derived from sanitized upstream text only). Use with **`correlationId`** to match the `[ghl] upstream_error` line in Vercel.
 
@@ -158,8 +173,8 @@ See also [troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md](./troubleshooting/CO
 1. Run **`npm run ghl:operator-check`** locally with the same values as Vercel (or validate in Vercel env UI).
 2. Optionally **`npm run ghl:operator-check -- --ping`**.
 3. In production, submit **one buyer** test (`/home-search` or `/buy`) and **one seller** test (`/cma-form` or `/free-home-valuation` form).
-4. For each response, note **`correlationId`** (even on success, if you add logging — success path logs it in Vercel).
-5. In GHL: contact, custom fields (especially **Lead type**, **DOB** when the form collected it, **Property Address** when sent), **tags**, and **opportunity** (if all four pipeline vars set).
+4. For each response, note **`correlationId`** (success path logs it in Vercel).
+5. In GHO, verify in this order: **(1) Contact exists** → **(2) Custom fields** (Lead type, **DOB** if collected, **Property Address** if sent, **Urgency TEXT** — add fields to the contact **layout** if the team should see them without drilling in) → **(3) Tags** (`M2M - Buyer` / `M2M - Seller`) → **(4) Notes** (if the form sent message/context) → **(5) Opportunity** on **M2M Buyer Pipeline** or **M2M Seller Pipeline** at **New Inquiry** (if all four pipeline env vars set; otherwise expect skip in logs). See §3.10.
 
 If failures persist after env matches this doc, use the response **`code`** and Vercel `[ghl]` logs (`crmUserCode`, `upstreamDetail`) — remaining issues are usually **token scopes, field definitions, tag names, or pipeline objects in GHL** unless logs show `internal_error`.
 

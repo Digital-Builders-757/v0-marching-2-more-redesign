@@ -49,8 +49,8 @@ export function M2mLeadSubmitWarnings({
 
   const shell =
     variant === "onDark"
-      ? "border-amber-400/35 bg-m2m-black/20 text-m2m-cream/95"
-      : "border-amber-700/20 bg-amber-50/90 text-m2m-deep"
+      ? "border-amber-400/30 bg-m2m-black/25 text-m2m-cream/95 shadow-[0_2px_16px_-4px_rgba(0,0,0,0.35)]"
+      : "border-amber-600/20 bg-amber-50/95 text-m2m-deep shadow-[0_1px_0_rgba(0,0,0,0.04),0_2px_16px_-6px_rgba(180,83,9,0.12)]"
 
   const linkCls =
     variant === "onDark"
@@ -61,25 +61,69 @@ export function M2mLeadSubmitWarnings({
     <div
       role="status"
       aria-live="polite"
-      className={cn("rounded-xl border px-4 py-3.5 sm:px-5", shell, className)}
+      className={cn("rounded-xl border px-4 py-4 sm:px-5 sm:py-[1.125rem]", shell, className)}
     >
-      <p className="text-[0.62rem] font-medium uppercase tracking-[0.18em] font-nav opacity-90">
+      <p
+        className={cn(
+          "text-[0.62rem] font-medium uppercase tracking-[0.2em] font-nav",
+          variant === "onDark" ? "text-amber-200/95" : "text-amber-900/85",
+        )}
+      >
         Heads up
       </p>
-      <ul className="mt-2 list-disc space-y-2 pl-4 text-sm leading-relaxed font-sans">
+      <ul
+        className={cn(
+          "mt-3 list-outside list-disc space-y-3 pl-[1.1rem] text-sm leading-[1.55] font-sans",
+          variant === "onDark" ? "marker:text-amber-300/50" : "marker:text-amber-700/45",
+        )}
+      >
         {warnings.map((w) => {
           const c = warningCopy(w)
           return (
-            <li key={w}>
-              <span className="font-medium">{c.title}</span>
-              <span className="block opacity-95">{c.body}</span>
+            <li key={w} className="pl-1">
+              <span
+                className={cn(
+                  "font-semibold [text-wrap:pretty]",
+                  variant === "onDark" ? "text-m2m-cream/95" : "text-m2m-deep/95",
+                )}
+              >
+                {c.title}
+              </span>
+              <span
+                className={cn(
+                  "mt-1.5 block [text-wrap:pretty]",
+                  variant === "onDark" ? "text-m2m-cream/88" : "text-m2m-deep/88",
+                )}
+              >
+                {c.body}
+              </span>
             </li>
           )
         })}
       </ul>
-      <p className="mt-3 text-[0.68rem] leading-snug font-mono break-all opacity-90">
-        Reference: {correlationId}
-      </p>
+      <div
+        className={cn(
+          "mt-4 rounded-md px-3 py-2.5",
+          variant === "onDark" ? "bg-m2m-black/30 ring-1 ring-m2m-cream/10" : "bg-white/80 ring-1 ring-amber-900/10",
+        )}
+      >
+        <p
+          className={cn(
+            "text-[0.62rem] font-medium uppercase tracking-[0.14em]",
+            variant === "onDark" ? "text-m2m-cream/65" : "text-m2m-deep/60",
+          )}
+        >
+          Reference
+        </p>
+        <p
+          className={cn(
+            "mt-1 text-[0.72rem] leading-relaxed font-mono tracking-wide [overflow-wrap:anywhere] break-all tabular-nums",
+            variant === "onDark" ? "text-m2m-cream/90" : "text-m2m-deep/95",
+          )}
+        >
+          {correlationId}
+        </p>
+      </div>
       <p className={cn("mt-3 text-sm font-sans", variant === "onDark" ? "text-m2m-cream/88" : "text-m2m-deep/85")}>
         <a href={M2M_PHONE_HREF} className={linkCls}>
           {M2M_PHONE_DISPLAY}

@@ -11,7 +11,11 @@ import { M2mContainer } from "@/components/m2m-layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
+import {
+  m2mFormSubmitShadcnPanelEnhance,
+  m2mInteriorFormInputClass,
+  m2mInteriorFormTextareaClass,
+} from "@/lib/m2m-form"
 import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
@@ -264,8 +268,9 @@ export default function ContactUsPage() {
                 <Button
                   type="submit"
                   variant="m2mPanel"
-                  className="w-full min-h-12 touch-manipulation"
+                  className={m2mFormSubmitShadcnPanelEnhance}
                   disabled={submitting}
+                  aria-busy={submitting}
                 >
                   {submitting ? "Sending…" : "That's it — Send!"}
                 </Button>

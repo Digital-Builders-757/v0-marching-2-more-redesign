@@ -7,7 +7,7 @@ import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
-import { m2mDarkPanelInputClass } from "@/lib/m2m-form"
+import { m2mDarkPanelInputClass, m2mFormPrimaryButtonOnDarkPanel } from "@/lib/m2m-form"
 import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
@@ -159,7 +159,8 @@ export function SellValuationLeadMini() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full min-h-12 touch-manipulation rounded-lg bg-m2m-gold py-3 text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition hover:bg-m2m-gold-lt disabled:opacity-60 font-nav"
+        aria-busy={submitting}
+        className={m2mFormPrimaryButtonOnDarkPanel}
       >
         {submitting ? "Sending…" : "Request contact"}
       </button>

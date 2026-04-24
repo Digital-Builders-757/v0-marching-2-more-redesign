@@ -95,7 +95,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
           {/* Wix parity: hamburger/menu (shown on desktop too) */}
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center text-m2m-cream/90 transition-colors hover:text-m2m-cream"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-m2m-cream/90 transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-panel"
             onClick={() => {
               setMenuOpen((wasOpen) => {
                 if (!wasOpen) {
@@ -143,11 +143,11 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
       {menuOpen ? (
         <div className="relative z-[80]">
           <nav
-            className="absolute right-4 top-2 w-[min(360px,calc(100vw-2rem))] overflow-hidden rounded-md bg-m2m-panel shadow-xl ring-1 ring-black/20 sm:right-6"
+            className="absolute right-4 top-2 flex max-h-[min(78vh,540px)] w-[min(360px,calc(100vw-2rem))] flex-col overflow-hidden rounded-md bg-m2m-panel shadow-xl ring-1 ring-black/20 sm:right-6"
             aria-label="Site"
           >
             {/* Site search (keyword routing) */}
-            <div className="border-b border-white/10 p-4 pb-3">
+            <div className="shrink-0 border-b border-white/10 p-4 pb-3">
               <form
                 role="search"
                 className="space-y-2"
@@ -175,7 +175,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
                       submitMenuSearch()
                     }
                   }}
-                  className="w-full rounded-sm border border-m2m-deep/10 bg-white px-3 py-2.5 text-sm text-m2m-deep placeholder:text-m2m-muted/80 outline-none ring-m2m-gold/30 focus:ring-2"
+                  className="min-h-11 w-full rounded-md border border-m2m-deep/12 bg-white px-3 py-2.5 text-sm text-m2m-deep shadow-sm outline-none transition placeholder:text-m2m-muted/80 focus-visible:ring-2 focus-visible:ring-m2m-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-panel"
                   aria-label="Menu search"
                   aria-describedby="m2m-menu-search-hint"
                 />
@@ -189,12 +189,12 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
                 </p>
               ) : null}
               {menuSearchQuery.trim() && menuSuggestions.length > 0 ? (
-                <ul className="mt-3 max-h-48 space-y-1 overflow-y-auto">
+                <ul className="mt-3 max-h-48 space-y-0.5 overflow-y-auto pr-0.5">
                   {menuSuggestions.map((s) => (
                     <li key={s.href}>
                       <button
                         type="button"
-                        className="w-full rounded-sm px-2 py-2 text-left text-sm text-m2m-cream transition hover:bg-white/10"
+                        className="w-full rounded-md px-2 py-2.5 text-left text-sm text-m2m-cream transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/45 focus-visible:ring-inset"
                         onClick={() => navigateMenuSearch(s.href)}
                       >
                         <span className="font-medium">{s.title}</span>
@@ -206,12 +206,12 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
               ) : null}
             </div>
 
-            <ul className="flex flex-col gap-1 p-2 pt-0">
+            <ul className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto overscroll-y-contain p-2 pt-1">
               {M2M_WIX_HEADER_MENU_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block min-h-11 rounded-sm px-3 py-3 text-base font-medium leading-snug text-m2m-cream hover:bg-white/10"
+                    className="flex min-h-11 items-center rounded-md px-3 py-2.5 text-base font-medium leading-snug text-m2m-cream transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/40"
                     onClick={() => setMenuOpen(false)}
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
@@ -220,10 +220,10 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
                 </li>
               ))}
 
-              <li className="pt-2">
+              <li className="pt-1">
                 <a
                   href={M2M_PHONE_HREF}
-                  className="block min-h-11 rounded-sm px-3 py-3 text-base font-medium leading-snug text-m2m-cream hover:bg-white/10"
+                  className="flex min-h-11 items-center rounded-md px-3 py-2.5 text-base font-medium leading-snug text-m2m-cream transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/40"
                   onClick={() => setMenuOpen(false)}
                   style={{ fontFamily: "var(--font-nav)" }}
                 >

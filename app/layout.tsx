@@ -50,6 +50,9 @@ export default function RootLayout({
       <body
         className={`${jost.variable} ${cormorant.variable} ${playfair.variable} ${montserrat.variable} font-sans antialiased overflow-x-clip`}
       >
+        <a href="#main-content" className="m2m-skip-link">
+          Skip to main content
+        </a>
         <ScrollToTop />
         {children}
         <Analytics />
