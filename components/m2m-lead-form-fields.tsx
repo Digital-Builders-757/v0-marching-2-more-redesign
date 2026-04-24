@@ -1,9 +1,16 @@
 "use client"
 
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 
-import { cn } from "@/lib/utils"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { M2M_DOB_MIN_YEAR } from "@/lib/m2m-dob"
+import { cn } from "@/lib/utils"
 
 const MONTH_OPTIONS: { value: string; label: string }[] = [
   { value: "01", label: "January" },
@@ -32,10 +39,10 @@ function parseIsoParts(iso: string): { y: string; m: string; d: string } {
   return { y: "", m: "", d: "" }
 }
 
-const selectBase =
-  "min-h-11 w-full rounded border bg-transparent px-2.5 py-2 text-sm focus:outline-none focus:ring-2 touch-manipulation font-sans"
+const triggerBase =
+  "min-h-11 w-full rounded border bg-transparent px-2.5 py-2 text-sm outline-none focus:ring-2 touch-manipulation font-sans data-[size=default]:h-auto data-[size=default]:min-h-11"
 
-/** Shared date-of-birth field for GHL-required intake (YYYY-MM-DD). */
+/** Shared date-of-birth field for GHL-required intake (YYYY-MM-DD). Uses Radix Select so menus work inside overflow-hidden heroes. */
 export function M2mLeadDobField({
   id = "m2m-dob",
   label = "Date of birth",
@@ -44,8 +51,10 @@ export function M2mLeadDobField({
   className,
   inputClassName,
   required = true,
-  /** Override default helper line (e.g. higher contrast on dark hero forms). */
   helperClassName,
+  /** Popover panel (portaled). Use on dark heroes so the list matches the form. */
+  selectContentClassName,
+  selectItemClassName,
 }: {
   id?: string
   label?: string
@@ -55,8 +64,25 @@ export function M2mLeadDobField({
   inputClassName?: string
   required?: boolean
   helperClassName?: string
+  selectContentClassName?: string
+  selectItemClassName?: string
 }) {
-  const { y: yVal, m: mVal, d: dVal } = parseIsoParts(value)
+  const [parts, setParts] = useState(() => parseIsoParts(value))
+  const [prevProp, setPrevProp] = useState(value)
+
+  if (value !== prevProp) {
+    const wasComplete = /^\d{4}-\d{2}-\d{2}$/.test(prevProp)
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+      setParts(parseIsoParts(value))
+    } else if (value === "" && wasComplete) {
+      setParts({ y: "", m: "", d: "" })
+    }
+    setPrevProp(value)
+  }
+
+  const yVal = parts.y
+  const mVal = parts.m
+  const dVal = parts.d
 
   const currentYear = new Date().getUTCFullYear()
   const years = useMemo(
@@ -76,7 +102,7 @@ export function M2mLeadDobField({
     return Array.from({ length: maxDay }, (_, i) => String(i + 1).padStart(2, "0"))
   }, [maxDay])
 
-  const setParts = (y: string, m: string, d: string) => {
+  const emitIso = (y: string, m: string, d: string) => {
     if (!y || !m || !d) {
       onChange("")
       return
@@ -90,7 +116,23 @@ export function M2mLeadDobField({
     onChange(`${y}-${m}-${ds}`)
   }
 
-  const selectCls = cn(selectBase, inputClassName)
+  const patchParts = (patch: Partial<{ y: string; m: string; d: string }>) => {
+    setParts((prev) => {
+      let next = { ...prev, ...patch }
+      if (next.y && next.m && next.d) {
+        const max = daysInMonth(parseInt(next.y, 10), parseInt(next.m, 10))
+        if (parseInt(next.d, 10) > max) {
+          next = { ...next, d: String(max).padStart(2, "0") }
+        }
+      }
+      queueMicrotask(() => emitIso(next.y, next.m, next.d))
+      return next
+    })
+  }
+
+  const triggerCls = cn(triggerBase, inputClassName)
+
+  const dobComplete = /^\d{4}-\d{2}-\d{2}$/.test(value)
 
   return (
     <fieldset className={className}>
@@ -98,66 +140,90 @@ export function M2mLeadDobField({
         {label}
         {required ? <span className="text-m2m-panel"> *</span> : null}
       </legend>
+      {required ? (
+        <input
+          type="text"
+          name={`${id}-iso`}
+          value={dobComplete ? value : ""}
+          readOnly
+          required
+          tabIndex={-1}
+          className="sr-only"
+          aria-label={`${label} (complete date required)`}
+          onInvalid={(e) => {
+            e.preventDefault()
+            requestAnimationFrame(() => {
+              document.getElementById(`${id}-month`)?.focus()
+            })
+          }}
+        />
+      ) : null}
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         <div className="col-span-2 sm:col-span-2">
-          <label htmlFor={`${id}-month`} className="sr-only">
+          <span className="sr-only" id={`${id}-month-hint`}>
             Birth month
-          </label>
-          <select
-            id={`${id}-month`}
-            autoComplete="bday-month"
-            value={mVal}
-            required={required}
-            className={selectCls}
-            onChange={(e) => setParts(yVal, e.target.value, dVal)}
-          >
-            <option value="">Month</option>
-            {MONTH_OPTIONS.map((mo) => (
-              <option key={mo.value} value={mo.value}>
-                {mo.label}
-              </option>
-            ))}
-          </select>
+          </span>
+          <Select value={mVal || undefined} onValueChange={(v) => patchParts({ m: v })}>
+            <SelectTrigger
+              id={`${id}-month`}
+              aria-labelledby={`${id}-month-hint`}
+              aria-required={required}
+              className={triggerCls}
+            >
+              <SelectValue placeholder="Month" />
+            </SelectTrigger>
+            <SelectContent className={selectContentClassName}>
+              {MONTH_OPTIONS.map((mo) => (
+                <SelectItem key={mo.value} value={mo.value} className={selectItemClassName}>
+                  {mo.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         <div>
-          <label htmlFor={`${id}-day`} className="sr-only">
+          <span className="sr-only" id={`${id}-day-hint`}>
             Birth day
-          </label>
-          <select
-            id={`${id}-day`}
-            autoComplete="bday-day"
-            value={dVal}
-            required={required}
-            className={selectCls}
-            onChange={(e) => setParts(yVal, mVal, e.target.value)}
-          >
-            <option value="">Day</option>
-            {dayOptions.map((day) => (
-              <option key={day} value={day}>
-                {parseInt(day, 10)}
-              </option>
-            ))}
-          </select>
+          </span>
+          <Select value={dVal || undefined} onValueChange={(v) => patchParts({ d: v })}>
+            <SelectTrigger
+              id={`${id}-day`}
+              aria-labelledby={`${id}-day-hint`}
+              aria-required={required}
+              className={triggerCls}
+            >
+              <SelectValue placeholder="Day" />
+            </SelectTrigger>
+            <SelectContent className={selectContentClassName}>
+              {dayOptions.map((day) => (
+                <SelectItem key={day} value={day} className={selectItemClassName}>
+                  {parseInt(day, 10)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         <div>
-          <label htmlFor={`${id}-year`} className="sr-only">
+          <span className="sr-only" id={`${id}-year-hint`}>
             Birth year
-          </label>
-          <select
-            id={`${id}-year`}
-            autoComplete="bday-year"
-            value={yVal}
-            required={required}
-            className={selectCls}
-            onChange={(e) => setParts(e.target.value, mVal, dVal)}
-          >
-            <option value="">Year</option>
-            {years.map((y) => (
-              <option key={y} value={y}>
-                {y}
-              </option>
-            ))}
-          </select>
+          </span>
+          <Select value={yVal || undefined} onValueChange={(v) => patchParts({ y: v })}>
+            <SelectTrigger
+              id={`${id}-year`}
+              aria-labelledby={`${id}-year-hint`}
+              aria-required={required}
+              className={triggerCls}
+            >
+              <SelectValue placeholder="Year" />
+            </SelectTrigger>
+            <SelectContent className={cn("max-h-60", selectContentClassName)}>
+              {years.map((y) => (
+                <SelectItem key={y} value={y} className={selectItemClassName}>
+                  {y}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
       <p className={cn("mt-1.5 text-xs font-sans leading-relaxed", helperClassName ?? "opacity-80")}>

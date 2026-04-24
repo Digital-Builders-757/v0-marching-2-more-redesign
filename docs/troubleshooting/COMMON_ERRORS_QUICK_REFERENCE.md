@@ -17,3 +17,4 @@
 | Lead API returns **500** / `internal_error` | Unexpected server error in `lib/ghl` orchestration | **Vercel:** `[ghl] submit_unexpected` + `correlationId` |
 | Contact in GHL but user saw an error | Step 1 succeeded; step 2+ failed (tags/opportunity), or note-only failure | Check `failed_step`; notes failures: `[ghl] contact_note_failed_ignored` (response can still be `ok: true`) |
 | Contact in GHL but **no opportunity** | Only some of the four pipeline/stage env vars set | Set all of `GHL_BUYER_PIPELINE_ID`, `GHL_SELLER_PIPELINE_ID`, `GHL_BUYER_STAGE_NEW_INQUIRY_ID`, `GHL_SELLER_STAGE_NEW_INQUIRY_ID`, or expect contact+tags only (see server log `opportunity_skipped`) |
+| DOB dropdown “won’t open” / clicks dead on inset hero | Native `<select>` + ancestor **`overflow-hidden`** (e.g. `M2mInsetHeroFrame`) or z-index overlap | **`M2mLeadDobField`** uses Radix **`Select`** (portaled content); **`/home-search`** lead form uses **`relative z-20`** |
