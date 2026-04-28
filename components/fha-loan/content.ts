@@ -1,21 +1,12 @@
 /**
  * Copy and asset paths for `/fha-loan` only.
- *
- * Swap points:
- * - `HERO_BACKGROUND` — advisor + clients in office (replace with final FHA hero art)
- * - `FLAG_QUOTE_BACKGROUND` — full-bleed American flag behind quote form
  */
-import { M2M_MEDIA } from "@/lib/m2m-media"
 
-/** Hero: professional consultation scene (placeholder until FHA-specific photo). */
-export const HERO_BACKGROUND = M2M_MEDIA.contactHeroStill
+/** Hero: approachable first-time homebuyer aspirational imagery. */
+export const HERO_BACKGROUND = "/images/fha-loan/fha-hero-first-time-buyer.jpg" as const
 
-/**
- * Patriotic background for quote section (Unsplash placeholder).
- * Self-host: add e.g. `public/images/fha-loan/flag-hero.jpg` and set `FLAG_QUOTE_BACKGROUND` to that path.
- */
-export const FLAG_QUOTE_BACKGROUND =
-  "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2400&q=80" as const
+/** Quote form background — helpful, guided, confidence-building imagery. */
+export const FLAG_QUOTE_BACKGROUND = "/images/fha-loan/fha-quiz-guidance.jpg" as const
 
 export const HERO_HEADLINE = "Is the FHA Loan Right for You?" as const
 

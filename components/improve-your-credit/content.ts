@@ -1,9 +1,6 @@
 /**
  * Copy and image constants for `/improve-your-credit`.
- *
- * SWAP: Replace placeholder `M2M_MEDIA` / remote URLs with final campaign art in this file only.
  */
-import { M2M_MEDIA } from "@/lib/m2m-media"
 
 /** Anchor for in-page CTAs until a PDF URL exists. */
 export const CREDIT_PLAYBOOK_SECTION_ID = "credit-playbook" as const
@@ -11,17 +8,14 @@ export const CREDIT_PLAYBOOK_SECTION_ID = "credit-playbook" as const
 export const HERO_HEADLINE =
   "Crush Credit Along Your Path to Homeownership" as const
 
-/** Hero collage — left still (finance / paperwork mood). */
-// SWAP: client hero left — calculator, cash, “credit” paperwork still life
-export const HERO_IMAGE_LEFT = M2M_MEDIA.contactHeroStill
+/** Hero collage — left still (financial planning, confidence, outcome-driven). */
+export const HERO_IMAGE_LEFT = "/images/credit/credit-hero-financial-planning.jpg" as const
 
-/** Hero — center feature card background (agents / trust). */
-// SWAP: client center card — team in front of building with campaign overlay
-export const HERO_IMAGE_CENTER = M2M_MEDIA.teamPhotoWide
+/** Hero — center feature card background (celebration, success, achievement). */
+export const HERO_IMAGE_CENTER = "/images/credit/credit-hero-success-celebration.jpg" as const
 
-/** Hero collage — right (focus / planning mood). */
-// SWAP: client hero right — buyer reviewing documents or stressed/at-desk candid
-export const HERO_IMAGE_RIGHT = M2M_MEDIA.sellHeroStill
+/** Hero collage — right (confident buyer who achieved their goal). */
+export const HERO_IMAGE_RIGHT = "/images/credit/credit-hero-confident-buyer.jpg" as const
 
 export const HERO_FEATURE_OVERLAY_LINE_1 = "improve your credit" as const
 export const HERO_FEATURE_OVERLAY_LINE_2 = "TO BUY A NEW HOME." as const
@@ -76,16 +70,14 @@ export const CREDIT_HOMEWORK_STEPS = [
   "If something is inaccurate, dispute it with the credit bureaus using their documented process.",
 ] as const
 
-/** Tall column beside review/homework — emotional / editorial hook. */
-// SWAP: client education hero — stressed at desk or credit-paperwork moment
-export const EDUCATION_LARGE_IMAGE = M2M_MEDIA.sellHeroStill
+/** Tall column beside review/homework — empowering, focused financial planning. */
+export const EDUCATION_LARGE_IMAGE = "/images/credit/credit-education-planning.jpg" as const
 
-/** Small collage under homework card — interior/lifestyle placeholders. */
-// SWAP: client homework strip — three small interior photos (bath, living, kitchen)
+/** Small collage under homework card — aspirational lifestyle imagery. */
 export const HOMEWORK_COLLAGE_IMAGES = [
-  M2M_MEDIA.buyHeroStill,
-  M2M_MEDIA.familyBackyard,
-  M2M_MEDIA.partnersHeroStill,
+  "/images/credit/credit-hero-financial-planning.jpg",
+  "/images/credit/credit-takeaways-home-goal.jpg",
+  "/images/credit/credit-hero-confident-buyer.jpg",
 ] as const
 
 export const DOWNLOAD_GUIDE_CTA = "Download your guide today" as const
@@ -101,9 +93,8 @@ export const TAKEAWAY_ITEMS = [
   { label: "Avoid opening new credit accounts" },
 ] as const
 
-/** Full-bleed banner behind takeaways + icon row. */
-// SWAP: client takeaways banner — suburban home or garden path, golden hour
-export const TAKEAWAYS_BACKGROUND = M2M_MEDIA.familyBackyard
+/** Full-bleed banner behind takeaways + icon row — aspirational home goal. */
+export const TAKEAWAYS_BACKGROUND = "/images/credit/credit-takeaways-home-goal.jpg" as const
 
 export const VIDEO_HEADING = "Marching 2 More & crushing credit" as const
 export const VIDEO_SUBHEAD =
@@ -125,6 +116,5 @@ export const PLAYBOOK_CARD_TITLE =
 
 export const PLAYBOOK_DOWNLOAD_BUTTON = "Click here to download" as const
 
-/** Closing band — wide landscape placeholder (tablet / credit dashboard mood). */
-// SWAP: client closing — person holding tablet showing credit score UI
-export const CLOSING_HERO_IMAGE = M2M_MEDIA.buyHeroStill
+/** Closing band — digital success, progress monitoring imagery. */
+export const CLOSING_HERO_IMAGE = "/images/credit/credit-closing-digital-success.jpg" as const
