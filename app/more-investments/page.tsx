@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { InvestmentsHero } from "@/components/more-investments/investments-hero"
 import { InvestmentsSocialProof } from "@/components/more-investments/investments-social-proof"
+import { InvestmentsTools } from "@/components/more-investments/investments-tools"
 import { InvestmentsValue } from "@/components/more-investments/investments-value"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
 
@@ -18,6 +19,7 @@ export default function MoreInvestmentsPage() {
       <Header consultationCtaVariant="outlineCream" />
       <main id="main-content" tabIndex={-1} className="bg-m2m-panel">
         <InvestmentsHero />
+        <InvestmentsTools />
         <InvestmentsValue />
         <InvestmentsSocialProof />
       </main>

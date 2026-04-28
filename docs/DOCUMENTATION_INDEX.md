@@ -38,6 +38,7 @@
 | Doc | Purpose |
 |-----|---------|
 | [marching2more/M2M_SITE_REBUILD_SPEC.md](./marching2more/M2M_SITE_REBUILD_SPEC.md) | Supplementary rebuild notes (verify against repo) |
+| [marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md](./marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md) | Client page fixes batch — decisions and route map |
 | [releasenotes/README.md](./releasenotes/README.md) | Optional **`/release`** archives |
 
 ## Archive (historical)

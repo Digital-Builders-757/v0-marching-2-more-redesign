@@ -1,15 +1,15 @@
 import Link from "next/link"
-import { Globe, Smile, Star, Zap } from "lucide-react"
+import { BookOpen, Calculator, Handshake, MessageCircle } from "lucide-react"
 
 import { M2mContainer } from "@/components/m2m-layout"
 
 import { FEATURES_CTA_STRIP, FEATURES_GRID } from "./content"
 
 const featureIcons = {
-  smile: Smile,
-  star: Star,
-  globe: Globe,
-  zap: Zap,
+  book: BookOpen,
+  handshake: Handshake,
+  message: MessageCircle,
+  calculator: Calculator,
 } as const
 
 export function FhaFeatures() {

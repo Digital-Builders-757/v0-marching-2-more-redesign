@@ -44,12 +44,14 @@ export const CALENDLY_BOOK_URL = "https://calendly.com/marching2more/45min"
 export const GOHIGHLEVEL_BOOKING_URL = "REPLACE_WITH_GOHIGHLEVEL_BOOKING_URL" as const
 
 /**
- * **Booking link source of truth**
+ * **Public scheduling calendar (optional)**
  *
- * All “Book a consultation” / primary scheduling CTAs (header, footer, hero, blog, contact trust row)
- * should use {@link getPrimaryConsultationBookUrl} so behavior stays consistent: when
- * `GOHIGHLEVEL_BOOKING_URL` is a real `http(s)` URL, that wins; otherwise the site uses
- * {@link CALENDLY_BOOK_URL} until GHL calendars are live. Do not hardcode Calendly in page components.
+ * Use for “Schedule online” / pick-a-time flows. Primary “Book a consultation” **button** surfaces
+ * (header, footer) use {@link getConsultationRequestUrl} (`/contact-us?intent=consultation`) with
+ * expectation copy; this helper remains for secondary calendar links wherever scheduling is explicitly offered.
+ *
+ * When `GOHIGHLEVEL_BOOKING_URL` is a real `http(s)` URL, that wins; otherwise the site uses
+ * {@link CALENDLY_BOOK_URL}. Do not hardcode raw Calendly URLs in page components.
  */
 export function getPrimaryConsultationBookUrl(): string {
   return isGohighlevelBookingConfigured(GOHIGHLEVEL_BOOKING_URL) ? GOHIGHLEVEL_BOOKING_URL : CALENDLY_BOOK_URL
@@ -71,6 +73,20 @@ export function isGohighlevelUrlConfigured(url: string): boolean {
 export const GOHIGHLEVEL_QUIZ_CREDIT_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_CREDIT_URL" as const
 export const GOHIGHLEVEL_QUIZ_DOWNSIZING_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_DOWNSIZING_URL" as const
 export const GOHIGHLEVEL_QUIZ_FORECLOSURE_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_FORECLOSURE_URL" as const
+/** Investor readiness / education quiz (e.g. GHL survey) — `/more-investments#investor-tools`. */
+export const GOHIGHLEVEL_QUIZ_INVESTOR_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_INVESTOR_URL" as const
+/**
+ * Optional embeddable BRRRR analyzer (GHL, Airtable, or hosted sheet).
+ * When unset, the investor tools section shows a placeholder card.
+ */
+export const GOHIGHLEVEL_BRRRR_ANALYZER_URL = "REPLACE_WITH_GOHIGHLEVEL_BRRRR_ANALYZER_URL" as const
+
+/** Short consultation request form — expectation copy on `/contact-us`. */
+export const M2M_CONTACT_CONSULTATION_PATH = "/contact-us?intent=consultation" as const
+
+export function getConsultationRequestUrl(): string {
+  return M2M_CONTACT_CONSULTATION_PATH
+}
 
 /** Moseley Real Estate School — Virginia salesperson licensing (Donavan referral path). */
 export const MOSELEY_VA_SALESPERSON_LICENSE_URL =

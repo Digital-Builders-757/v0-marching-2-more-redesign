@@ -1,8 +1,7 @@
 /**
  * Copy and image URLs for `/more-investments`.
  *
- * Replace placeholder imagery with final campaign assets under `public/images/more-investments/`
- * or new entries in `lib/m2m-media.ts`.
+ * Carousel art: semantic `investorCarousel*` keys in `lib/m2m-media.ts` — one URL per slide role; swap blobs there.
  */
 import { M2M_MEDIA } from "@/lib/m2m-media"
 
@@ -18,9 +17,8 @@ export const HERO_SLIDES = [
     id: "intro",
     variant: "intro" as const,
     headlineLines: ["DIFFERENT", "TYPES OF", "REAL ESTATE", "INVESTING"] as const,
-    /** Metaphor image — houses on coins / growth (swap for brand photo). */
-    centerImage: M2M_MEDIA.buyHeroStill,
-    centerImageAlt: "Conceptual image representing real estate investment growth",
+    centerImage: M2M_MEDIA.investorCarouselIntroCenter,
+    centerImageAlt: "Home investment opportunity and growth path",
   },
   {
     id: "fix-flip",
@@ -28,13 +26,13 @@ export const HERO_SLIDES = [
     title: "FIX N' FLIP INVESTING",
     topLeftText:
       "PURCHASING A DISTRESSED PROPERTY, TYPICALLY AT A DISCOUNTED PRICE,",
-    topRightImage: M2M_MEDIA.sellHeroStill,
+    topRightImage: M2M_MEDIA.investorCarouselFixFlipTop,
     topRightAlt: "Exterior of a home ready for renovation",
     bridgeText: "YOU CAN TURN TRASH...",
-    collageLeft: M2M_MEDIA.partnersHeroStill,
+    collageLeft: M2M_MEDIA.investorCarouselFixFlipCollageLeft,
     collageLeftAlt: "Renovated home exterior",
-    collageRight: M2M_MEDIA.blogIndexBackdrop,
-    collageRightAlt: "Updated modern kitchen interior",
+    collageRight: M2M_MEDIA.investorCarouselFixFlipCollageRight,
+    collageRightAlt: "Updated kitchen and living space after renovation",
     bridgeText2: "...INTO TREASURE!",
     bottomText:
       "WITH THE INTENTION OF RENOVATING OR IMPROVING DISTRESSED PROPERTIES AND THEN SELLING THEM QUICKLY, YOU CAN MAKE A SIZEABLE PROFIT.",
@@ -44,10 +42,10 @@ export const HERO_SLIDES = [
     variant: "multifamily" as const,
     title: "MULTI-FAMILY INVESTING",
     row1Text: "INVESTORS CAN LIVE IN ONE UNIT AND RENT OUT THE OTHERS",
-    row1Image: M2M_MEDIA.teamCtaBackdrop,
-    row1Alt: "Modern multi-story residential building",
-    row2Image: M2M_MEDIA.reviewsBackdrop,
-    row2Alt: "Row of townhomes",
+    row1Image: M2M_MEDIA.investorCarouselMultifamilyUpper,
+    row1Alt: "Multi-unit residential building",
+    row2Image: M2M_MEDIA.investorCarouselMultifamilyLower,
+    row2Alt: "Residential street and rental properties",
     row2Text: "ALLOWING THEM TO OFFSET THEIR OWN HOUSING EXPENSES WITH RENTAL INCOME.",
     summary:
       "MULTI-FAMILY INVESTING IS AN EXCELLENT WAY TO GENERATE MONTHLY CASH FLOW AND BUILD LONG-TERM WEALTH WITH REAL ESTATE.",
@@ -59,16 +57,50 @@ export const HERO_SLIDES = [
     labelA: "VACATION RENTALS, AIRBNB, VRBO...",
     labelB: "SHORT-TERM RENTAL PROPERTIES CAN BE LUCRATIVE REAL ESTATE INVESTMENTS",
     labelC: "THESE ARE GREAT TO HAVE IN AREAS WITH HIGH TOURIST DEMAND OR BUSINESS TRAVEL.",
-    imageTop: M2M_MEDIA.familyBackyard,
-    imageTopAlt: "Coastal cottage style rental",
-    imageMain: M2M_MEDIA.contactHeroStill,
-    imageMainAlt: "Distinctive vacation rental home",
+    imageTop: M2M_MEDIA.investorCarouselShortTermTop,
+    imageTopAlt: "Comfortable residential rental curb appeal",
+    imageMain: M2M_MEDIA.investorCarouselShortTermMain,
+    imageMainAlt: "Welcoming short-term rental home exterior",
   },
 ] as const
 
 export type HeroSlide = (typeof HERO_SLIDES)[number]
 
 export const INVESTOR_VALUE_SECTION_ID = "investor-value" as const
+
+export const INVESTOR_TOOLS_SECTION_ID = "investor-tools" as const
+
+export const INVESTOR_TOOLS_QUIZ_TITLE = "Investor readiness quiz" as const
+
+export const INVESTOR_TOOLS_INTRO =
+  "A short questionnaire helps clarify your experience level, focus neighborhoods, and how actively you want to pursue deals." as const
+
+export const INVESTOR_TOOLS_SUBHEAD =
+  "We’ll use what you share to suggest practical next steps. This isn’t tax or legal advice — always confirm strategy with licensed professionals." as const
+
+export const INVESTOR_BRRRR_TITLE = "BRRRR deal analyzer" as const
+
+export const INVESTOR_BRRRR_BLURB =
+  "Work through buy, rehab, rent, refinance, and repeat assumptions in one place before you vet specific listings with the team." as const
+
+/** Placeholders for mail / campaign tools until URLs ship. */
+export const INVESTOR_PLACEHOLDER_TOOLS = [
+  {
+    id: "p1",
+    title: "Rental yield snapshot",
+    body: "Compare rough cash flow assumptions across Hampton Roads submarkets.",
+  },
+  {
+    id: "p2",
+    title: "Scope-of-work estimator",
+    body: "Ballpark cosmetic vs. heavier rehab tiers so underwriting conversations start in the right range.",
+  },
+  {
+    id: "p3",
+    title: "Hold timeline planner",
+    body: "Map exit timing against lease seasons and military-market cycles relevant to your strategy.",
+  },
+] as const
 
 export const INVESTOR_VALUE_HEADING = "How we help you invest with intention" as const
 
