@@ -1,8 +1,15 @@
-/** Production marketing imagery (Vercel Blob). Prefer these over Unsplash in `next/image` and cards. */
+/**
+ * Production marketing imagery (Vercel Blob).
+ * Prefer these over Unsplash in `next/image` and cards.
+ *
+ * Semantic campaign keys (divorceVaFhaCreditInvestor…) point at interim assets; swap the URL once
+ * the matching shoot uploads — search this file only.
+ */
 
 const BLOB_BASE = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com"
 
-export const M2M_MEDIA = {
+/** Core library — neutral product photography and headshots */
+const CORE = {
   headshotDonavan: `${BLOB_BASE}/e81220_8e480009b082445c98c907867aaa4c9d~mv2-KalLf1y4zskbfQKC2EMe8s55rwTz3x.avif`,
   headshotRoger: `${BLOB_BASE}/Roger%20Lee%20copy-oGCmwJdfHIojKRd0KSU9KThUhCbtek.avif`,
   headshotKristin: `${BLOB_BASE}/DSC_0936-8_1-fP8OcW80aTTISgh6g9ONEXmaAKcPTO.avif`,
@@ -18,4 +25,58 @@ export const M2M_MEDIA = {
   contactHeroStill: `${BLOB_BASE}/-post-ai-image-72291.png-s80gDsDR2DizqJSBhQrT95yxOc2O01.jpeg`,
   partnersHeroStill: `${BLOB_BASE}/-post-ai-image-19289-VMjgEppbjmetIgqpoqeYogIoctYAr0.png`,
   partnersCtaStill: `${BLOB_BASE}/-post-ai-image-19388-jf99jfe9gtZUgHDymGUB60jS4Jvrd8.png`,
+} as const
+
+/** Campaign semantics: TODO(asset) in JSDoc = replace URL when bespoke photo is ready */
+export const M2M_MEDIA = {
+  ...CORE,
+
+  /* --- `/navigating-divorce` — tender, stabilizing, human --- */
+  /** TODO(asset): Quiet interior or couple at neutral moment; interim: backyard warmth */
+  divorceHeroBackdrop: CORE.familyBackyard,
+  /** Small crop — listing / transition stress → calm sale path */
+  divorceCollageSellDuring: CORE.sellHeroStill,
+  /** Tender family / human moment — distinct from sell panel */
+  divorceCollageFamily: CORE.familyBackyard,
+  /** Neutral interior — “home base” during transition */
+  divorceCollageInterior: CORE.partnersCtaStill,
+  /** Thoughtful paperwork / pause — softer than cliché courthouse stock */
+  divorceCollageSymbolic: CORE.contactHeroStill,
+  /** Full-bleed behind valuation steps — stable home equity mood */
+  divorceValuationBackground: CORE.teamCtaBackdrop,
+  /** Wide aerial / neighborhood — “new chapter” Hampton Roads context */
+  divorceAerialBackground: CORE.blogIndexBackdrop,
+
+  /* --- `/va-loan-benefits` — household + service trust --- */
+  /** TODO(asset): Uniform optional, military family keys handoff; interim: stable family backyard */
+  vaLoanHero: CORE.familyBackyard,
+  /** TODO(asset): Service patch / partner still; interim: office trust corridor */
+  vaLoanCtaBand: CORE.teamPhotoWide,
+
+  /* --- `/fha-loan` — approachable guidance --- */
+  /** TODO(asset): Agent + buyers at counter / kitchen table; interim: partnering still */
+  fhaHero: CORE.partnersHeroStill,
+  /** Behind quote form — warmth, no Unsplash; interim: suburban family goal */
+  fhaQuoteBackdrop: CORE.familyBackyard,
+
+  /* --- `/improve-your-credit` — momentum + confidence --- */
+  creditHeroLeft: CORE.reviewsBackdrop,
+  creditHeroCenter: CORE.teamPhotoWide,
+  creditHeroRight: CORE.familyBackyard,
+  creditEducationLarge: CORE.blogIndexBackdrop,
+  creditHomeworkA: CORE.contactHeroStill,
+  creditHomeworkB: CORE.sellHeroStill,
+  creditHomeworkC: CORE.partnersCtaStill,
+  creditTakeawaysBanner: CORE.teamCtaBackdrop,
+  creditClosingBanner: CORE.familyBackyard,
+
+  /* --- `/more-investments` carousel — lifestyles + outcomes; keep slides visually distinct --- */
+  investorCarouselIntroCenter: CORE.buyHeroStill,
+  investorCarouselFixFlipTop: CORE.sellHeroStill,
+  investorCarouselFixFlipCollageLeft: CORE.partnersHeroStill,
+  investorCarouselFixFlipCollageRight: CORE.familyBackyard,
+  investorCarouselMultifamilyUpper: CORE.teamCtaBackdrop,
+  investorCarouselMultifamilyLower: CORE.reviewsBackdrop,
+  investorCarouselShortTermTop: CORE.blogIndexBackdrop,
+  investorCarouselShortTermMain: CORE.partnersCtaStill,
 } as const

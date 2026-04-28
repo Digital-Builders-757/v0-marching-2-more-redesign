@@ -7,7 +7,7 @@ import { Header } from "@/components/header"
 import { M2mContainer } from "@/components/m2m-layout"
 
 import { BLOG_POSTS, getPostBySlug } from "@/lib/blog/posts"
-import { getPrimaryConsultationBookUrl } from "@/lib/m2m-site"
+import { getConsultationRequestUrl, getPrimaryConsultationBookUrl } from "@/lib/m2m-site"
 
 export async function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }))
@@ -74,9 +74,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 Back to Blog
               </Link>
               <a
-                href={getPrimaryConsultationBookUrl()}
-                target="_blank"
-                rel="noreferrer"
+                href={getConsultationRequestUrl()}
                 className="text-[0.65rem] tracking-[0.2em] uppercase text-m2m-gold hover:text-m2m-cream transition-colors"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
@@ -105,20 +103,27 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <Link
-                  href="/home-search"
+                  href="/contact-us?intent=buyer"
                   className="inline-flex items-center justify-center bg-m2m-deep px-6 py-3 text-[0.7rem] tracking-[0.2em] uppercase font-medium text-m2m-cream"
                   style={{ fontFamily: "var(--font-nav)" }}
                 >
                   Work With Us
                 </Link>
                 <a
-                  href={getPrimaryConsultationBookUrl()}
-                  target="_blank"
-                  rel="noreferrer"
+                  href={getConsultationRequestUrl()}
                   className="inline-flex items-center justify-center border border-m2m-deep/20 px-6 py-3 text-[0.7rem] tracking-[0.2em] uppercase font-medium text-m2m-deep"
                   style={{ fontFamily: "var(--font-nav)" }}
                 >
                   Book Consultation
+                </a>
+                <a
+                  href={getPrimaryConsultationBookUrl()}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center border border-m2m-deep/15 px-6 py-3 text-[0.65rem] tracking-[0.18em] uppercase font-medium text-m2m-muted"
+                  style={{ fontFamily: "var(--font-nav)" }}
+                >
+                  Schedule online
                 </a>
               </div>
             </div>
