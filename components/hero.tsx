@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import {
-  getPrimaryConsultationBookUrl,
+  getConsultationRequestUrl,
   M2M_PHONE_DISPLAY,
   M2M_PHONE_HREF,
   REALSCOUT_HOME_VALUATION_URL,
@@ -87,7 +87,7 @@ export function Hero() {
 
         <div className="mt-10 grid w-full gap-3 sm:mt-12 sm:gap-4 sm:max-w-2xl sm:grid-cols-2">
           <a
-            href="/home-search"
+            href="/contact-us?intent=buyer"
             className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/40 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
             style={{ fontFamily: "var(--font-nav)" }}
           >
@@ -103,9 +103,7 @@ export function Hero() {
             Free Home Valuation
           </a>
           <a
-            href={getPrimaryConsultationBookUrl()}
-            target="_blank"
-            rel="noreferrer"
+            href={getConsultationRequestUrl()}
             className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-cream/35 text-m2m-cream/95 transition-all duration-300 hover:border-m2m-cream hover:text-m2m-cream hover:scale-[1.02]"
             style={{ fontFamily: "var(--font-nav)" }}
           >

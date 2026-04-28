@@ -58,28 +58,28 @@ export const FHA_VALUE_POINTS = [
 
 export const FEATURES_GRID = [
   {
-    key: "eco",
-    title: "Eco-Friendly Design",
-    body: "One of the ways in which we provide exceptional value is through the wide range of features that we offer. Our team created them to provide every customer with the best possible experience. Explore some of the main features below, and please get in touch to receive additional information.",
-    icon: "smile" as const,
+    key: "milestones",
+    title: "Plain-language FHA milestones",
+    body: "We walk you through common steps—pre-approval, appraisal, and repair expectations—so you know what tends to come next. (Final loan decisions belong to your lender.)",
+    icon: "book" as const,
   },
   {
-    key: "support",
-    title: "24/7 Support",
-    body: "Our customers deserve the highest level of support, and we work tirelessly to maintain those standards. When you choose to work with our team, know that you are consistently choosing quality and excellence. Customer service is at the heart of everything that we do.",
-    icon: "star" as const,
+    key: "network",
+    title: "Hampton Roads–savvy partners",
+    body: "We connect you with lending and inspection professionals who regularly work FHA transactions in this market—so questions get answered with local context.",
+    icon: "handshake" as const,
   },
   {
-    key: "lang",
-    title: "Multilingual Functionality",
-    body: "In today's globalized world, chances are you are interacting with people from more than just one country. This is where our multilingual functionality comes into play. Take advantage of this unique capability to expand your reach.",
-    icon: "globe" as const,
+    key: "communication",
+    title: "Business-hours communication",
+    body: "You get clear updates during business hours and timely follow-up when timing matters for offers, responses, and deadlines.",
+    icon: "message" as const,
   },
   {
-    key: "tech",
-    title: "Advanced Tech",
-    body: "We are constantly working to improve our offerings and expand upon our technological capabilities. Our expert team of professionals is passionate about developing the most advanced tech on the market. Ready to experience the future? Get in touch.",
-    icon: "zap" as const,
+    key: "numbers",
+    title: "Payment and cost clarity",
+    body: "We help you understand how monthly payment pieces fit together—without promising outcomes only a lender can guarantee.",
+    icon: "calculator" as const,
   },
 ] as const
 

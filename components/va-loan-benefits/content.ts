@@ -45,7 +45,7 @@ export const BENEFITS_CLOSING =
 export const CTA_BANNER_BACKGROUND = "/images/va-loan/va-cta-patriotic-home.jpg" as const
 
 export const CTA_BANNER_HEADLINE = "Are You Ready To Use Your VA Loan?" as const
-export const CTA_BANNER_BUTTON = "Start" as const
+export const CTA_BANNER_BUTTON = "Get on the List" as const
 
 export const LEAD_HEADING = "Get on the List" as const
 export const LEAD_SUBHEAD = "Sign up to receive your personalized home list!" as const

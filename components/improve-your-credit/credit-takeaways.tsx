@@ -21,7 +21,7 @@ const ICONS = [CalendarCheck, Banknote, Globe2, CreditCard] as const
 export function CreditTakeaways() {
   return (
     <section className="border-b border-m2m-gold/15" aria-labelledby="credit-takeaways-heading">
-      <div className="bg-m2m-panel-lt/90 py-4">
+      <div className="bg-m2m-panel-lt/90 py-8">
         <M2mContainer className="flex justify-center">
           <Link
             href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
@@ -34,6 +34,8 @@ export function CreditTakeaways() {
           </Link>
         </M2mContainer>
       </div>
+
+      <div className="min-h-8 sm:min-h-10" aria-hidden />
 
       <div className="relative min-h-[28rem] w-full sm:min-h-[32rem]">
         <Image

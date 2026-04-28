@@ -26,7 +26,7 @@ export function ReviewsCta() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4" data-gsap="fade-up" data-gsap-delay="0.2">
           <Link
-            href="/home-search"
+            href="/contact-us?intent=buyer"
             className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt"
             style={{ fontFamily: "var(--font-nav)" }}
           >

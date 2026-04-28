@@ -67,6 +67,40 @@ export type HeroSlide = (typeof HERO_SLIDES)[number]
 
 export const INVESTOR_VALUE_SECTION_ID = "investor-value" as const
 
+export const INVESTOR_TOOLS_SECTION_ID = "investor-tools" as const
+
+export const INVESTOR_TOOLS_QUIZ_TITLE = "Investor readiness quiz" as const
+
+export const INVESTOR_TOOLS_INTRO =
+  "A short questionnaire helps clarify your experience level, focus neighborhoods, and how actively you want to pursue deals." as const
+
+export const INVESTOR_TOOLS_SUBHEAD =
+  "We’ll use what you share to suggest practical next steps. This isn’t tax or legal advice — always confirm strategy with licensed professionals." as const
+
+export const INVESTOR_BRRRR_TITLE = "BRRRR deal analyzer" as const
+
+export const INVESTOR_BRRRR_BLURB =
+  "Work through buy, rehab, rent, refinance, and repeat assumptions in one place before you vet specific listings with the team." as const
+
+/** Placeholders for mail / campaign tools until URLs ship. */
+export const INVESTOR_PLACEHOLDER_TOOLS = [
+  {
+    id: "p1",
+    title: "Rental yield snapshot",
+    body: "Compare rough cash flow assumptions across Hampton Roads submarkets.",
+  },
+  {
+    id: "p2",
+    title: "Scope-of-work estimator",
+    body: "Ballpark cosmetic vs. heavier rehab tiers so underwriting conversations start in the right range.",
+  },
+  {
+    id: "p3",
+    title: "Hold timeline planner",
+    body: "Map exit timing against lease seasons and military-market cycles relevant to your strategy.",
+  },
+] as const
+
 export const INVESTOR_VALUE_HEADING = "How we help you invest with intention" as const
 
 export const INVESTOR_VALUE_SUBHEAD =
