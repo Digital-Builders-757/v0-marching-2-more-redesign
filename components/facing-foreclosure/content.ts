@@ -62,3 +62,38 @@ export const FORM_PLACEHOLDER_MESSAGE =
   "Optional: key dates, lender name, or how you’d like us to help." as const
 
 export const FORM_SUBMIT_LABEL = "Send my guide" as const
+
+/**
+ * Stand-in imagery for printed guide spreads (swap when export/PDF thumbnails exist).
+ * Quotes summarize the complimentary foreclosure guide emphasis.
+ */
+export const GUIDE_CAROUSEL_SLIDES = [
+  {
+    id: "g1",
+    image: M2M_MEDIA.contactHeroStill,
+    imageAlt: "Foreclosure guide — understanding your timeline",
+    quote:
+      "Clarity starts with your timeline — notices, milestones, and what they mean in plain language before you make big decisions.",
+  },
+  {
+    id: "g2",
+    image: M2M_MEDIA.sellHeroStill,
+    imageAlt: "Foreclosure guide — lender communication",
+    quote:
+      "Strong communication with your lender matters. The guide walks through how to get organized and what to ask at each step.",
+  },
+  {
+    id: "g3",
+    image: M2M_MEDIA.partnersCtaStill,
+    imageAlt: "Foreclosure guide — options and paths",
+    quote:
+      "From loss-mitigation programs to short sales, you deserve to understand paths that may protect your home or your credit.",
+  },
+  {
+    id: "g4",
+    image: M2M_MEDIA.teamPhotoWide,
+    imageAlt: "Marching 2 More — local guidance",
+    quote:
+      "You are not alone in Hampton Roads. Request the guide and we will follow up with practical next steps for your situation.",
+  },
+] as const

@@ -1,10 +1,7 @@
 /**
  * Copy and nav for `/navigating-divorce` only.
  *
- * Image swap points (replace with final campaign art):
- * - `COLLAGE_IMAGES.*` — four-panel hero gallery beneath headline
- * - `VALUATION_BACKGROUND` — full-bleed mood image behind “A Simple Valuation Process”
- * - `AERIAL_BACKGROUND` — neighborhood / aerial behind lead section
+ * Imagery: semantic keys in `lib/m2m-media.ts` (`divorce*`); swap URLs there when final art ships.
  */
 import { M2M_MEDIA } from "@/lib/m2m-media"
 
@@ -12,7 +9,7 @@ import type { M2MNavLink } from "@/lib/m2m-nav"
 
 /** Top footer link row (reference order). */
 export const DIVORCE_FOOTER_TOP_LINKS: readonly M2MNavLink[] = [
-  { label: "Work With Us", href: "/home-search" },
+  { label: "Work With Us", href: "/contact-us?intent=buyer" },
   { label: "Home Valuation", href: "/free-home-valuation" },
   { label: "Pre-Listing Checklist", href: "/resources" },
   { label: "Our Team", href: "/our-team" },
@@ -20,20 +17,22 @@ export const DIVORCE_FOOTER_TOP_LINKS: readonly M2MNavLink[] = [
   { label: "Contact Us", href: "/contact-us" },
 ] as const
 
+export const DIVORCE_HERO_BACKGROUND = M2M_MEDIA.divorceHeroBackdrop
+
 export const COLLAGE_IMAGES = {
-  /** Panel 1 — couple / interior (gold panel overlay). */
-  sellDuringDivorce: M2M_MEDIA.familyBackyard,
-  /** Panel 2 — family imagery. */
-  family: M2M_MEDIA.familyBackyard,
-  /** Panel 3 — interior / lifestyle. */
-  interior: M2M_MEDIA.sellHeroStill,
-  /** Panel 4 — legal / symbolic (replace with gavel + house when available). */
-  legal: M2M_MEDIA.contactHeroStill,
+  /** Listing / transition — home as asset */
+  sellDuringDivorce: M2M_MEDIA.divorceCollageSellDuring,
+  /** Tender human beat — distinct from adjacent panel */
+  family: M2M_MEDIA.divorceCollageFamily,
+  /** Stable interior mood */
+  interior: M2M_MEDIA.divorceCollageInterior,
+  /** Pause + paperwork — not courthouse cliché */
+  legal: M2M_MEDIA.divorceCollageSymbolic,
 } as const
 
-/** Full-bleed section backgrounds (local paths or blob). */
-export const VALUATION_BACKGROUND = "/images/sell-with-confidence-bg.png" as const
-export const AERIAL_BACKGROUND = "/images/home-search-hero.png" as const
+/** Full-bleed section backgrounds */
+export const VALUATION_BACKGROUND = M2M_MEDIA.divorceValuationBackground
+export const AERIAL_BACKGROUND = M2M_MEDIA.divorceAerialBackground
 
 export const SUPPORT_PARAGRAPH =
   "This comprehensive resource offers valuable insights and expert advice on managing real estate matters during divorce proceedings." as const

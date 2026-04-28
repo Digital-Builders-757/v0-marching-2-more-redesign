@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
-import { getPrimaryConsultationBookUrl } from "@/lib/m2m-site"
+import { getConsultationRequestUrl } from "@/lib/m2m-site"
 
 export type M2mConsultationCtaVariant = "gold" | "outlineCream"
 
@@ -17,7 +17,7 @@ const variantClass: Record<M2mConsultationCtaVariant, string> = {
 }
 
 export function M2mConsultationCta({
-  href = getPrimaryConsultationBookUrl(),
+  href = getConsultationRequestUrl(),
   variant = "gold",
   className,
   children = "BOOK A HOME CONSULTATION",
@@ -26,8 +26,6 @@ export function M2mConsultationCta({
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noreferrer"
       className={cn(
         "inline-flex min-h-11 items-center justify-center px-5 py-3 text-center text-[0.62rem] font-medium uppercase tracking-[0.2em] transition font-nav focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold",
         variantClass[variant],

@@ -32,7 +32,7 @@ export function BuyCTA() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href="/contact-us?intent=buyer"
+            href="/contact-us?intent=consultation"
             className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-deep text-m2m-cream font-medium transition-all duration-300 hover:bg-m2m-deep/90"
             style={{ fontFamily: 'var(--font-nav)' }}
           >

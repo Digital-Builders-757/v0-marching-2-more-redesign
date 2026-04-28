@@ -12,11 +12,11 @@ import {
 
 export function CreditClosing() {
   return (
-    <section className="pb-20 pt-4 sm:pb-24" aria-labelledby="credit-closing-heading">
+    <section className="border-b border-m2m-gold/15 pb-12 pt-8 sm:pb-16 sm:pt-10" aria-labelledby="credit-closing-heading">
       <h2 id="credit-closing-heading" className="sr-only">
         Get the credit guide
       </h2>
-      <M2mContainer className="flex flex-col items-center gap-10">
+      <M2mContainer className="flex flex-col items-center gap-14 sm:gap-16">
         <Link href={`#${CREDIT_PLAYBOOK_SECTION_ID}`} className={m2mOutlineGoldLinkClass}>
           {DOWNLOAD_GUIDE_CTA}
         </Link>

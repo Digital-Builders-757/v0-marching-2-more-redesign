@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useMemo, useState } from "react"
+import { useSearchParams } from "next/navigation"
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
@@ -24,7 +25,32 @@ import type { LeadType, SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/g
 import { getPrimaryConsultationBookUrl, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 export default function ContactUsPage() {
+  return (
+    <Suspense fallback={<ContactUsShellFallback />}>
+      <ContactUsPageInner />
+    </Suspense>
+  )
+}
+
+function ContactUsShellFallback() {
+  return (
+    <>
+      <Header />
+      <main id="main-content" tabIndex={-1} className="bg-white">
+        <section className="pb-20 pt-28">
+          <M2mContainer className="max-w-2xl">
+            <p className="text-sm text-m2m-muted font-sans">Loading form…</p>
+          </M2mContainer>
+        </section>
+      </main>
+      <Footer />
+    </>
+  )
+}
+
+function ContactUsPageInner() {
   const utm = useM2mUtm()
+  const searchParams = useSearchParams()
   const [leadType, setLeadType] = useState<LeadType>("seller")
   const [formData, setFormData] = useState({
     firstName: "",
@@ -45,11 +71,12 @@ export default function ContactUsPage() {
   } | null>(null)
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const intent = params.get("intent")?.toLowerCase()
+    const intent = searchParams.get("intent")?.toLowerCase() ?? ""
     if (intent === "buyer") setLeadType("buyer")
     if (intent === "seller") setLeadType("seller")
-  }, [])
+  }, [searchParams])
+
+  const isConsultIntent = useMemo(() => searchParams.get("intent")?.toLowerCase() === "consultation", [searchParams])
 
   const messagePlaceholder =
     leadType === "buyer"
@@ -94,7 +121,7 @@ export default function ContactUsPage() {
     <>
       <Header />
       <main id="main-content" tabIndex={-1} className="bg-white">
-        <section className="pb-20 pt-28">
+        <section id="contact-intro" className="pb-20 pt-28">
           <M2mContainer className="max-w-2xl">
             <p className="m2m-eyebrow mb-3 text-m2m-deep">Contact Us</p>
 
@@ -105,10 +132,18 @@ export default function ContactUsPage() {
               Introduce Yourself
             </h1>
 
-            <p className="mb-6 text-base leading-relaxed text-m2m-muted font-sans">
-              Tell us a bit about your goals. One of our agents will review your request and follow up with your next
-              steps within 24hrs.
-            </p>
+            {isConsultIntent ? (
+              <p className="mb-6 text-base leading-relaxed text-m2m-muted font-sans">
+                Request a consultation — share the best way to reach you and a few words about what you need. During
+                business hours, we typically have an agent follow up within about an hour. Evenings and weekends may be
+                the next business day.
+              </p>
+            ) : (
+              <p className="mb-6 text-base leading-relaxed text-m2m-muted font-sans">
+                Tell us a bit about your goals. One of our agents will review your request and follow up with your next
+                steps within 24hrs.
+              </p>
+            )}
 
             <div className="mb-10 flex flex-col gap-3 border-y border-m2m-deep/10 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
               <a
@@ -123,7 +158,7 @@ export default function ContactUsPage() {
                 rel="noreferrer"
                 className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
               >
-                Book a consultation
+                Schedule a time online
               </a>
             </div>
 
@@ -140,7 +175,11 @@ export default function ContactUsPage() {
                 <p className="text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
                   Thank you!
                 </p>
-                <p className="mt-4 text-sm text-m2m-muted font-sans">We&apos;ll be in touch within 24 hours.</p>
+                <p className="mt-4 text-sm text-m2m-muted font-sans">
+                  {isConsultIntent
+                    ? "We received your request and will reach out as soon as we can — typically within about an hour during business hours."
+                    : "We&apos;ll be in touch within 24 hours."}
+                </p>
               </div>
             ) : (
               <form

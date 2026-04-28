@@ -26,7 +26,7 @@ export const M2M_WIX_HEADER_MENU_LINKS: readonly M2MNavLink[] = [
 export const M2M_FOOTER_QUICK_LINKS: readonly M2MNavLink[] = [
   { label: "Home Valuation", href: "/free-home-valuation" },
   { label: "Pre-Listing Checklist", href: "/resources" },
-  { label: "Work With Us", href: "/home-search" },
+  { label: "Work With Us", href: "/contact-us?intent=buyer" },
   { label: "Our Team", href: "/our-team" },
   { label: "Reviews", href: "/reviews" },
   { label: "Contact Us", href: "/contact-us" },
