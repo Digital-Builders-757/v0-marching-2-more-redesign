@@ -118,3 +118,24 @@ export const PLAYBOOK_DOWNLOAD_BUTTON = "Click here to download" as const
 
 /** Closing band — digital success, progress monitoring imagery. */
 export const CLOSING_HERO_IMAGE = "/images/credit/credit-closing-digital-success.jpg" as const
+
+export const CREDIT_FAQ_ITEMS = [
+  {
+    id: "cr-1",
+    question: "Will checking my credit hurt my score?",
+    answer:
+      "Soft checks for your own review typically do not hurt scores the way a hard inquiry from a new loan application can. We still recommend staggering applications and talking with your loan officer before multiple pulls.",
+  },
+  {
+    id: "cr-2",
+    question: "How long until I see a change on my report?",
+    answer:
+      "It depends on what is dragging the score down — late payments, high utilization, or errors. Disputes and pay-downs can take weeks to months to reflect. We help you prioritize the levers that matter for mortgage timing.",
+  },
+  {
+    id: "cr-3",
+    question: "Do you replace a lender or credit repair company?",
+    answer:
+      "No. We are your real estate team — we help you understand how credit fits your homebuying timeline and connect you with reputable partners. Legal or specialized repair questions belong with licensed professionals.",
+  },
+] as const

@@ -135,6 +135,8 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
           <M2mConsultationCta
             variant={consultationCtaVariant === "outlineCream" ? "outlineCream" : "gold"}
             className="hidden md:inline-flex"
+            data-m2m-track="consultation_request"
+            data-m2m-track-loc="header_desktop"
           />
         </div>
       </div>
@@ -245,6 +247,8 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
                 <M2mConsultationCta
                   variant={consultationCtaVariant === "outlineCream" ? "outlineCream" : "gold"}
                   className="block w-full min-h-12 rounded-sm px-3 py-3.5 text-[0.65rem] leading-snug tracking-[0.18em]"
+                  data-m2m-track="consultation_request"
+                  data-m2m-track-loc="header_mobile_menu"
                   onClick={() => setMenuOpen(false)}
                 />
               </li>

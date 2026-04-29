@@ -56,7 +56,12 @@ export function InvestmentsValue() {
         </div>
 
         <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-8">
-          <M2mConsultationCta variant="outlineCream" className="w-full min-[400px]:w-auto">
+          <M2mConsultationCta
+            variant="outlineCream"
+            className="w-full min-[400px]:w-auto"
+            data-m2m-track="consultation_request"
+            data-m2m-track-loc="investments_value"
+          >
             Book a consultation
           </M2mConsultationCta>
           <Link

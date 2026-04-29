@@ -65,9 +65,11 @@ export function Hero() {
           <span className="flex shrink-0 items-center gap-3">
             <span className="block h-px w-8 bg-m2m-gold" aria-hidden />
           </span>
-          <span className="min-w-0 max-w-full text-pretty break-words leading-snug">
-            Licensed Real Estate Professionals in Virginia Beach, VA, USA • Veteran Owned | 5.0 ★ ★ ★ ★ ★
-          </span>
+            <span className="min-w-0 max-w-full text-pretty break-words leading-snug">
+              Licensed Real Estate Professionals in Virginia Beach, VA, USA • Veteran Owned
+              <span aria-hidden="true"> | 5.0 ★ ★ ★ ★ ★</span>
+              <span className="sr-only"> Five out of five star client rating.</span>
+            </span>
         </div>
 
         <h1
@@ -89,6 +91,8 @@ export function Hero() {
         <div className="mt-10 grid w-full gap-3 sm:mt-12 sm:gap-4 sm:max-w-2xl sm:grid-cols-2">
           <a
             href="/contact-us?intent=buyer"
+            data-m2m-track="hero_work_with_us"
+            data-m2m-track-loc="home_hero"
             className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream shadow-[0_4px_18px_-6px_rgba(5,13,6,0.45)] transition-all duration-300 border border-m2m-gold/45 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold touch-manipulation"
             style={{ fontFamily: "var(--font-nav)" }}
           >
@@ -98,6 +102,8 @@ export function Hero() {
             href={REALSCOUT_HOME_VALUATION_URL}
             target="_blank"
             rel="noreferrer"
+            data-m2m-track="hero_free_valuation_realscout"
+            data-m2m-track-loc="home_hero"
             className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_20px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 bg-m2m-gold hover:bg-m2m-gold-lt hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold touch-manipulation"
             style={{ fontFamily: "var(--font-nav)" }}
           >
@@ -112,7 +118,9 @@ export function Hero() {
           <span className="text-m2m-cream/65">Prefer to talk?</span>
           <a
             href={M2M_PHONE_HREF}
-            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold"
+            data-m2m-track="hero_phone"
+            data-m2m-track-loc="home_hero"
+            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
           >
             {M2M_PHONE_DISPLAY}
           </a>
@@ -121,7 +129,9 @@ export function Hero() {
           </span>
           <a
             href={getConsultationRequestUrl()}
-            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold"
+            data-m2m-track="hero_consultation_request"
+            data-m2m-track-loc="home_hero"
+            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
           >
             Book a consultation
           </a>

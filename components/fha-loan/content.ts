@@ -93,17 +93,19 @@ export const FEATURES_CTA_STRIP = {
 
 export const TESTIMONIALS = [
   {
-    name: "Alexa Young, CA",
+    name: "The Cole Family — U.S. Navy",
     quote:
-      "Testimonials provide a sense of what it's like to work with you or use your products. Change the text and add your own.",
+      "Donavan was very responsive and really took his time to explain everything we did not know. He took what can be a laborious and stressful process and made it an enjoyable one.",
   },
   {
-    name: "Morgan James, NY",
-    quote: "A great testimonial can boost your brand's image. Click to edit and add your own.",
+    name: "Karen Gonzalez — U.S. Navy",
+    quote:
+      "Patient and diligent throughout the entire process and readily available at all times… Honest and a pleasure to work with. The process was so easy.",
   },
   {
-    name: "Lisa Driver, MI",
-    quote: "Have customers review you and share what they had to say. Click to edit and add your testimonial.",
+    name: "Terri Hill — Hampton PD referral",
+    quote:
+      "Roger built trust. He was relatable. He was patient — and helped my relative in a way that earned a repeat client.",
   },
 ] as const
 
@@ -112,3 +114,24 @@ export const QUOTE_FORM = {
   subtitle: "Please take a moment to fill out the form.",
   submitLabel: "Submit",
 } as const
+
+export const FHA_FAQ_ITEMS = [
+  {
+    id: "fh-1",
+    question: "Is FHA only for first-time buyers?",
+    answer:
+      "No. FHA can work for many buyers who want a lower down payment path and meet program and lender requirements — not only first-time purchases.",
+  },
+  {
+    id: "fh-2",
+    question: "Will I pay FHA mortgage insurance forever?",
+    answer:
+      "FHA includes an upfront premium and ongoing MIP. How long MIP stays depends on your loan term and down payment — your loan officer walks through the specifics before you lock.",
+  },
+  {
+    id: "fh-3",
+    question: "Who sets my final approval — you or the lender?",
+    answer:
+      "The lender approves the loan. We help you choose homes, negotiate, and stay coordinated on deadlines so the file your lender needs stays clean.",
+  },
+] as const

@@ -43,7 +43,15 @@ Working with a team that understands the local market dynamics gives you a signi
 - Navigate multiple offers with confidence
 - Close smoothly and on your timeline
 
-> Ready to make your move? Let's talk about your goals.`,
+> Ready to make your move? Let's talk about your goals.
+
+### Local next steps
+
+When you are ready to act, pair market context with a clear plan.
+
+[Request a free home valuation](/free-home-valuation)
+
+[Start your home search with our team](/home-search)`,
   },
   {
     slug: "costly-mistakes-selling-without-realtor",
@@ -73,7 +81,13 @@ Selling your home in Hampton Roads on your own might seem like a smart way to sa
 
 Studies consistently show that homes sold with professional representation sell for more money, even after accounting for commission costs.
 
-> Thinking about selling? Let us show you what your home is really worth.`,
+> Thinking about selling? Let us show you what your home is really worth.
+
+### Seller tools on marching2more.com
+
+[Request a free home valuation](/free-home-valuation)
+
+[Request a comparative market analysis (CMA)](/cma-form)`,
   },
   {
     slug: "selling-coastal-properties-hampton-roads",
@@ -110,7 +124,13 @@ We help sellers address buyer concerns proactively:
 - Recent maintenance and updates
 - Storm preparedness features
 
-> Have a waterfront property to sell? We specialize in coastal listings.`,
+> Have a waterfront property to sell? We specialize in coastal listings.
+
+### Next steps for sellers
+
+[Request a CMA tuned to waterfront comps](/cma-form)
+
+[Talk with the team about timing and presentation](/contact-us?intent=seller)`,
   },
   {
     slug: "role-of-real-estate-professional",
@@ -152,7 +172,13 @@ For military families in Virginia, the process can be more complex due to:
 
 We understand these challenges because we've lived them.
 
-> Ready to work with someone who gets it? Let's connect.`,
+> Ready to work with someone who gets it? Let's connect.
+
+### Meet the team & keep exploring
+
+[Our team & backgrounds](/our-team)
+
+[Home search — buying support in Hampton Roads](/home-search)`,
   },
   {
     slug: "va-loan-guide-military-families",
@@ -198,7 +224,11 @@ You may be eligible if you:
 - *Myth:* Sellers won't accept VA offers
 - *Myth:* You can only use VA once
 
-> Questions about VA loans? We help military families navigate this every day.`,
+> Questions about VA loans? We help military families navigate this every day.
+
+### Go deeper on this site
+
+[VA loan benefits, myths, and Hampton Roads context](/va-loan-benefits)`,
   },
   {
     slug: "pcs-relocation-checklist",
@@ -249,42 +279,62 @@ Receiving PCS orders can be both exciting and overwhelming. This comprehensive c
 
 Each area offers different benefits depending on your duty station, family size, and lifestyle preferences. We can help you find the right fit.
 
-> PCS orders to Hampton Roads? Let's start planning your move.`,
+> PCS orders to Hampton Roads? Let's start planning your move.
+
+### PCS-friendly next steps
+
+[Home search — tools + buyer lead form](/home-search)
+
+[Work with us (share your report date & housing goals)](/contact-us?intent=buyer)`,
   },
   {
     slug: "hampton-roads-home-buying-guide",
     title: "A First-Time Home Buying Guide for Hampton Roads",
     excerpt:
-      "A practical walkthrough for military families and first-time buyers: budgeting, VA loans, timelines, and what to expect.",
-    coverImage:
-      "https://static.wixstatic.com/media/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg/v1/fill/w_1903,h_813,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_4d26d16a6b6f431c9ade77e6af8af089~mv2.jpg",
+      "A practical walkthrough for military families and first-time buyers: budgeting, loan programs, timelines, neighborhoods, and what to expect before you tour.",
+    coverImage: M2M_MEDIA.buyHeroStill,
     author: "Marching 2 More",
     publishedAt: "2026-04-01",
     readTime: "6 min",
     category: "Buy",
-    content: `## What to Expect
+    content: `## What to expect in Hampton Roads
 
-Buying a home doesn't have to be overwhelming. Here's the process we recommend:
+Buying here often means competing with other well-qualified buyers—especially around military hubs. A calm, date-driven plan beats rushing the first house you tour.
 
-- Clarify budget + financing
-- Get a strong pre-approval
-- Identify must-haves vs nice-to-haves
-- Tour strategically
-- Negotiate confidently
+### Before you tour
 
-## Our Approach
+- Know your true monthly payment (principal, insurance, taxes, HOA if any)
+- Get **pre-approved**—not just pre-qualified—so your offer carries weight
+- Decide commute radius and non-negotiables before you fall in love with a floor plan
 
-We'll help you make clean decisions, avoid surprises, and keep the experience calm and organized.
+### A sequence that keeps you grounded
 
-> Demo note: this is placeholder content. We'll replace posts with Supabase-backed content later.`,
+1. **Align finances** — Budget, down payment, and loan program (VA, conventional, FHA)
+2. **Choose neighborhoods** — Schools, commute, flood zones, resale strength
+3. **Tour with intent** — Compare condition, updates, and price objectively
+4. **Offer and negotiate** — Understand what concessions are typical here
+5. **Due diligence** — Inspections, appraisal, and clear communication through closing
+
+### Military buyers
+
+PCS windows are real. If you are on orders, we help you sequence house-hunting, leave, and closing so you are not carrying two homes longer than necessary.
+
+## More on this site
+
+[Work with us — buyer intake](/contact-us?intent=buyer)
+
+[VA loan benefits and education](/va-loan-benefits)
+
+[Home search — tools and buyer form](/home-search)
+
+> Ready to map your timeline? Reach out and we will help you prioritize the next step.`,
   },
   {
     slug: "va-loan-basics",
     title: "VA Loan Basics: What Matters and What Doesn't",
     excerpt:
       "A clear explanation of eligibility, funding fees, appraisal timelines, and common misconceptions about VA loans.",
-    coverImage:
-      "https://static.wixstatic.com/media/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg/v1/fill/w_1903,h_812,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg",
+    coverImage: M2M_MEDIA.buyHeroStill,
     author: "Marching 2 More",
     publishedAt: "2026-03-21",
     readTime: "5 min",
@@ -298,15 +348,18 @@ VA loans can be an incredible advantage. The key is making sure your timeline an
 - *Myth:* VA loans always take longer
 - *Myth:* Sellers won't accept VA
 
-We'll help you present a clean offer and keep everything moving.`,
+We'll help you present a clean offer and keep everything moving.
+
+### More on this site
+
+[VA loan benefits — deeper guide for Hampton Roads](/va-loan-benefits)`,
   },
   {
     slug: "pre-listing-checklist",
     title: "Pre-Listing Checklist: Maximize Value Before You List",
     excerpt:
       "Small upgrades + smart preparation can change your final sale price. Here's a simple checklist that works.",
-    coverImage:
-      "https://static.wixstatic.com/media/63ece0_0f4f064e9f5d4f3492a21f78817e3539~mv2.jpg/v1/fill/w_1903,h_812,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_0f4f064e9f5d4f3492a21f78817e3539~mv2.jpg",
+    coverImage: M2M_MEDIA.sellHeroStill,
     author: "Marching 2 More",
     publishedAt: "2026-03-10",
     readTime: "4 min",
@@ -320,7 +373,13 @@ We want buyers to feel certainty the moment they walk in.
 - Fix the small obvious things
 - Make curb appeal effortless
 
-If you want the full guide, grab the Pre-Listing Checklist page.`,
+### Get the full seller guide
+
+Your next step is the printable pre-listing guide and checklist on our resources hub.
+
+[Resources — pre-listing checklist and seller tools](/resources)
+
+[Request a free home valuation](/free-home-valuation)`,
   },
 ]
 

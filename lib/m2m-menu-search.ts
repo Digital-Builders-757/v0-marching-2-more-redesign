@@ -18,6 +18,7 @@ const SUGGESTION_CATALOG: MenuSearchSuggestion[] = [
   { href: "/home-search", title: "Home Search", hint: "Search homes & buying" },
   { href: "/free-home-valuation", title: "Free Home Valuation", hint: "CMA & home value" },
   { href: "/contact-us", title: "Contact Us", hint: "Speak with the team" },
+  { href: "/blog", title: "Blog", hint: "Articles & local insights" },
 ]
 
 function normalize(q: string): string {
@@ -78,6 +79,8 @@ export function resolveMenuSearchQuery(raw: string): string | null {
   }
 
   if (/\bteam\b|meet the team|our team/.test(q)) return "/our-team"
+
+  if (/\bblog\b|articles?|market insights|pcs tips/.test(q)) return "/blog"
 
   return null
 }

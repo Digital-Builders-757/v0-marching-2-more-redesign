@@ -71,9 +71,10 @@ export function InvestmentsTools() {
             >
               <p className="text-sm font-medium text-m2m-gold-lt font-sans">{INVESTOR_BRRRR_TITLE}</p>
               <p className="mt-3 text-sm leading-relaxed text-m2m-cream/82 font-sans">
-                Embed URL wiring lives in{" "}
+                When your hosted analyzer URL is ready, it loads here automatically — set{" "}
                 <code className="text-[0.8rem] text-m2m-gold">GOHIGHLEVEL_BRRRR_ANALYZER_URL</code> in{" "}
-                <code className="text-[0.8rem] text-m2m-gold">lib/m2m-site.ts</code> once marketing hosts the analyzer.
+                <code className="text-[0.8rem] text-m2m-gold">lib/m2m-site.ts</code> (or any public https embed your team
+                prefers). Until then, use the contact link below and we will work numbers with you manually.
               </p>
             </div>
           )}
@@ -97,15 +98,15 @@ export function InvestmentsTools() {
                   {t.body}
                 </p>
                 <p className="mt-4 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-m2m-cream/55">
-                  Details coming soon
+                  In product backlog — ask the team for a manual walkthrough today
                 </p>
               </article>
             ))}
           </div>
 
           <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-m2m-cream/65 font-sans">
-            Additional tools discussed in email campaigns will be linked here as URLs are finalized — same pattern as
-            quiz and analyzer embeds.
+            As each tool gets a stable URL, we will wire it the same way as the quiz and BRRRR embeds — no redesign
+            required.
           </p>
 
           <p className="mt-6 text-center">
