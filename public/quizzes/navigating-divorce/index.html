@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navigating Divorce — Find Your Best Next Step | Marching 2 More</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="quiz-shell" id="quizShell">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-inner">
+      <span class="progress-label" id="progressLabel">Question 1 of 5</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE -->
+  <div class="stage" id="stage">
+
+    <!-- ══ WELCOME ══ -->
+    <section class="screen active" id="s-welcome" data-screen="welcome">
+      <div class="screen-body welcome-body">
+        <div class="brand-row">
+          <img src="logo.jpg" alt="The Marching 2 More Real Estate Team" class="brand-logo" />
+        </div>
+
+        <div class="welcome-text">
+          <p class="eyebrow">Navigating Divorce</p>
+          <h1 class="welcome-h1">Find Your Best<br/><em>Next Step Forward</em></h1>
+          <p class="welcome-desc">Answer 5 quick questions and we'll tell you exactly what to do next — whether that's a guide, a conversation, or a plan. No pressure. No obligation.</p>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Private &amp; confidential
+          </div>
+          <div class="trust-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Under 2 minutes
+          </div>
+          <div class="trust-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            No cost, no commitment
+          </div>
+        </div>
+
+        <button class="btn-cta" onclick="goTo('q1')">
+          Start My Assessment
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <p class="social-proof">Helping families in the Charlotte area navigate one of life's hardest transitions.</p>
+      </div>
+    </section>
+
+    <!-- ══ Q1 ══ -->
+    <section class="screen" id="s-q1" data-screen="q1">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">1 of 5</span>
+          <span class="q-hint">Be honest — there are no wrong answers</span>
+        </div>
+        <h2 class="q-heading">Are both decision-makers open to selling the home?</h2>
+        <p class="q-sub">Understanding where each party stands helps us give you the most relevant path forward.</p>
+        <div class="options" role="group" aria-label="Select one">
+          <button class="opt" data-q="q1" data-val="2" data-label="Yes — we're aligned on selling" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">✓</span>
+            <span class="opt-text">Yes — we're aligned on selling</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q1" data-val="1" data-label="One of us is still unsure" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">〜</span>
+            <span class="opt-text">One of us is still unsure</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q1" data-val="0" data-label="Not yet — there's real disagreement" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">✕</span>
+            <span class="opt-text">Not yet — there's real disagreement</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('welcome')">← Back</button>
+          <button class="btn-next" id="next-q1" onclick="goTo('q2')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Q2 ══ -->
+    <section class="screen" id="s-q2" data-screen="q2">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">2 of 5</span>
+          <span class="q-hint">Timing shapes which options make the most sense</span>
+        </div>
+        <h2 class="q-heading">How soon do you want this property issue resolved?</h2>
+        <p class="q-sub">There's no rush — we just want to understand where your head is at.</p>
+        <div class="options" role="group" aria-label="Select one">
+          <button class="opt" data-q="q2" data-val="2" data-label="As soon as possible" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">⚡</span>
+            <span class="opt-text">As soon as possible</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q2" data-val="1" data-label="Within the next 3–6 months" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">📅</span>
+            <span class="opt-text">Within the next 3–6 months</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q2" data-val="0" data-label="Still figuring out the timeline" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">🤔</span>
+            <span class="opt-text">Still figuring out the timeline</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('q1')">← Back</button>
+          <button class="btn-next" id="next-q2" onclick="goTo('bridge')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BRIDGE (pattern interrupt, builds trust) ══ -->
+    <section class="screen" id="s-bridge" data-screen="bridge">
+      <div class="screen-body bridge-body">
+        <div class="bridge-icon" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="23" stroke="#1e3a5f" stroke-width="1.5" opacity=".2"/>
+            <path d="M15 26l6 6 12-14" stroke="#1e3a5f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="bridge-h2">You're doing great.</h2>
+        <p class="bridge-p">Navigating this kind of decision takes real courage — especially when a home and a family are involved. The next few questions help us understand what feels hardest so we can point you toward the right resource.</p>
+        <button class="btn-cta" onclick="goTo('q3')">Keep Going →</button>
+      </div>
+    </section>
+
+    <!-- ══ Q3 ══ -->
+    <section class="screen" id="s-q3" data-screen="q3">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">3 of 5</span>
+          <span class="q-hint">Pick the one that resonates most right now</span>
+        </div>
+        <h2 class="q-heading">What feels hardest right now?</h2>
+        <p class="q-sub">This helps us connect you with the most relevant information and support.</p>
+        <div class="options options-2col" role="group" aria-label="Select one">
+          <button class="opt" data-q="q3" data-val="pricing" data-label="Pricing the home fairly" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">💰</span>
+            <span class="opt-text">Pricing the home fairly</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q3" data-val="communication" data-label="Communication between us" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">💬</span>
+            <span class="opt-text">Communication between us</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q3" data-val="timing" data-label="Getting the timing right" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">⏱</span>
+            <span class="opt-text">Getting the timing right</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q3" data-val="nextsteps" data-label="Agreeing on next steps" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">🗺</span>
+            <span class="opt-text">Agreeing on next steps</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('q2')">← Back</button>
+          <button class="btn-next" id="next-q3" onclick="goTo('q4')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Q4 ══ -->
+    <section class="screen" id="s-q4" data-screen="q4">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">4 of 5</span>
+          <span class="q-hint">Almost there — just two more</span>
+        </div>
+        <h2 class="q-heading">Have you already spoken with an attorney or mediator?</h2>
+        <p class="q-sub">This helps us understand how far along the process you are.</p>
+        <div class="options" role="group" aria-label="Select one">
+          <button class="opt" data-q="q4" data-val="yes" data-label="Yes — already working with one" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">⚖</span>
+            <span class="opt-text">Yes — already working with one</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q4" data-val="exploring" data-label="Exploring options right now" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">🔍</span>
+            <span class="opt-text">Exploring options right now</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q4" data-val="no" data-label="Not yet" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">○</span>
+            <span class="opt-text">Not yet</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('q3')">← Back</button>
+          <button class="btn-next" id="next-q4" onclick="goTo('q5')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Q5 ══ -->
+    <section class="screen" id="s-q5" data-screen="q5">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">5 of 5</span>
+          <span class="q-hint">Last one — your results are almost ready</span>
+        </div>
+        <h2 class="q-heading">Would you rather get a guide first, or talk with our team now?</h2>
+        <p class="q-sub">No wrong answer — we'll tailor your results either way.</p>
+        <div class="options" role="group" aria-label="Select one">
+          <button class="opt" data-q="q5" data-val="guide" data-label="Send me a guide to review first" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">📖</span>
+            <span class="opt-text">Send me a guide to review first</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q5" data-val="talk" data-label="I'd like to talk with your team" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">📞</span>
+            <span class="opt-text">I'd like to talk with your team</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q5" data-val="both" data-label="Both would be helpful" onclick="pick(this)">
+            <span class="opt-icon" aria-hidden="true">✦</span>
+            <span class="opt-text">Both would be helpful</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('q4')">← Back</button>
+          <button class="btn-next" id="next-q5" onclick="goTo('capture')" disabled>See My Results →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CAPTURE ══ -->
+    <section class="screen" id="s-capture" data-screen="capture">
+      <div class="screen-body capture-body">
+        <div class="capture-top">
+          <div class="capture-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Your results are ready
+          </div>
+          <h2 class="capture-h2">Where should we send your personalized next steps?</h2>
+          <p class="capture-sub">We'll send your recommendation — plus any relevant resources — straight to your inbox. One email. No spam, ever.</p>
+        </div>
+
+        <form id="leadForm" class="lead-form" onsubmit="submitLead(event)" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="f-first">First Name</label>
+              <input type="text" id="f-first" name="firstName" placeholder="Jane" required autocomplete="given-name" />
+            </div>
+            <div class="form-field">
+              <label for="f-last">Last Name</label>
+              <input type="text" id="f-last" name="lastName" placeholder="Smith" required autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" name="email" placeholder="jane@email.com" required autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label for="f-phone">Phone <span class="optional">(optional — for a faster response)</span></label>
+            <input type="tel" id="f-phone" name="phone" placeholder="(704) 555-0100" autocomplete="tel" />
+          </div>
+          <p class="form-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Private &amp; confidential. Your information is never sold or shared.
+          </p>
+          <button type="submit" class="btn-cta btn-submit" id="submitBtn">
+            <span id="btn-label">Show My Results →</span>
+            <span id="btn-spinner" class="spinner" style="display:none"></span>
+          </button>
+        </form>
+        <button class="btn-back-sm" onclick="goTo('q5')">← Back to questions</button>
+      </div>
+    </section>
+
+    <!-- ══ CALCULATING ══ -->
+    <section class="screen" id="s-calculating" data-screen="calculating">
+      <div class="screen-body calc-body">
+        <div class="calc-ring">
+          <svg class="calc-svg" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="34" stroke="var(--color-primary-light)" stroke-width="6"/>
+            <circle cx="40" cy="40" r="34" stroke="var(--color-primary)" stroke-width="6"
+              stroke-linecap="round" stroke-dasharray="213" stroke-dashoffset="213"
+              id="calcArc" style="transform:rotate(-90deg);transform-origin:center"/>
+          </svg>
+          <span class="calc-pct" id="calcPct">0%</span>
+        </div>
+        <p class="calc-label">Personalizing your results…</p>
+      </div>
+    </section>
+
+    <!-- ══ RESULTS ══ -->
+    <section class="screen" id="s-results" data-screen="results">
+      <div class="screen-body results-body">
+
+        <!-- Result badge -->
+        <div class="result-badge" id="r-badge"></div>
+
+        <!-- Personalized headline -->
+        <h2 class="result-h2" id="r-headline"></h2>
+
+        <!-- Explanation -->
+        <p class="result-explain" id="r-explain"></p>
+
+        <!-- Insight quote card -->
+        <div class="result-insight" id="r-insight">
+          <p class="insight-eyebrow">Based on your answers</p>
+          <p class="insight-quote" id="r-quote"></p>
+        </div>
+
+        <!-- Primary CTA block -->
+        <div class="result-cta-card" id="r-cta-card">
+          <p class="cta-card-label" id="r-cta-label"></p>
+          <h3 class="cta-card-title" id="r-cta-title"></h3>
+          <p class="cta-card-desc" id="r-cta-desc"></p>
+          <div class="cta-card-actions" id="r-cta-actions"></div>
+        </div>
+
+        <!-- Reassurance -->
+        <div class="result-reassurance">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <p>This conversation is neutral and low-pressure. We're not here to push you anywhere — just to help you think clearly about your options.</p>
+        </div>
+
+        <button class="btn-restart" onclick="restart()">Start over</button>
+      </div>
+    </section>
+
+  </div><!-- /stage -->
+</div><!-- /quiz-shell -->
+
+<script src="quiz.js"></script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  var scrollRaf=0;
+  function emitScroll(){
+    scrollRaf=0;
+    var x=window.scrollX||window.pageXOffset||0;
+    var y=window.scrollY||window.pageYOffset||0;
+    window.parent.postMessage({type:'INLINE_EDIT_SCROLL',scrollX:x,scrollY:y},'*');
+  }
+  window.addEventListener('scroll',function(){
+    if(scrollRaf)return;
+    scrollRaf=requestAnimationFrame(emitScroll);
+  },{passive:true,capture:true});
+  emitScroll();
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

@@ -18,7 +18,7 @@ import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { M2M_URGENCY_LABEL_CREDIT, M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
-import { GOHIGHLEVEL_QUIZ_CREDIT_URL, isGohighlevelUrlConfigured } from "@/lib/m2m-site"
+import { GOHIGHLEVEL_QUIZ_CREDIT_URL, isQuizEmbedSrcConfigured } from "@/lib/m2m-site"
 
 import {
   CREDIT_PLAYBOOK_SECTION_ID,
@@ -82,7 +82,7 @@ export function CreditPlaybookForm() {
     }
   }
 
-  const showLocalForm = !isGohighlevelUrlConfigured(GOHIGHLEVEL_QUIZ_CREDIT_URL)
+  const showLocalForm = !isQuizEmbedSrcConfigured(GOHIGHLEVEL_QUIZ_CREDIT_URL)
 
   const description = (
     <div className="space-y-4">

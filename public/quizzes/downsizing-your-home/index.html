@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Right-Size Your Home in Virginia | The Marching 2 More Real Estate Team</title>
+  <meta name="description" content="Get our free downsizing guide and a no-cost consultation with a team that helps you simplify, plan, and move into the next chapter with less stress." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <img src="logo.jpg" alt="The Marching 2 More Real Estate Team" class="header-logo" />
+    <a href="#main-form" class="header-cta">Get the Free Guide →</a>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Right-Sizing Your Life</p>
+      <h1 class="hero-h1">Is It Time to Right-Size<br/><em>Your Home in Virginia?</em></h1>
+      <p class="hero-sub">Get our free downsizing guide and a no-cost consultation with a team that helps you simplify, plan, and move into the next chapter with less stress.</p>
+      <p class="hero-trust">We help retirees, empty nesters, and families right-size their homes and their lives — from decluttering and vendor referrals to move coordination and finding the next home that truly fits.</p>
+
+      <div class="trust-pills">
+        <div class="trust-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Full Team Support
+        </div>
+        <div class="trust-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Local Virginia Focus
+        </div>
+        <div class="trust-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          No Cost, No Pressure
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN FORM -->
+    <div class="hero-form-wrap" id="main-form">
+      <div class="form-card">
+        <div class="form-card-top">
+          <p class="form-eyebrow">Free Guide + Consultation</p>
+          <h2 class="form-h2">Start Your Right-Sizing Journey</h2>
+          <p class="form-sub">Tell us what you need — we'll take it from there.</p>
+        </div>
+        <form id="mainForm" class="main-form" onsubmit="submitMainForm(event)" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="mf-first">First Name</label>
+              <input type="text" id="mf-first" placeholder="Jane" required autocomplete="given-name" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="mf-email">Email Address</label>
+            <input type="email" id="mf-email" placeholder="jane@email.com" required autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label for="mf-phone">Phone Number</label>
+            <input type="tel" id="mf-phone" placeholder="(757) 555-0100" autocomplete="tel" />
+          </div>
+          <div class="form-field">
+            <label for="mf-zip">Current ZIP Code</label>
+            <input type="text" id="mf-zip" placeholder="23456" inputmode="numeric" maxlength="10" />
+          </div>
+          <div class="form-field">
+            <label for="mf-intent">What do you need today?</label>
+            <div class="select-wrap">
+              <select id="mf-intent" required>
+                <option value="" disabled selected>Choose one…</option>
+                <option value="guide">I want the free guide</option>
+                <option value="consultation">I want a downsizing consultation</option>
+                <option value="both">I want both</option>
+              </select>
+              <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <p class="form-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Private &amp; confidential. Your information is never sold.
+          </p>
+          <button type="submit" class="btn-primary btn-full" id="mf-submit">
+            <span id="mf-label">Get My Free Guide &amp; Next Steps →</span>
+            <span id="mf-spinner" class="spinner" style="display:none"></span>
+          </button>
+        </form>
+
+        <!-- Success state -->
+        <div class="form-success" id="formSuccess" style="display:none">
+          <div class="success-icon">✓</div>
+          <h3 class="success-h3">You're all set!</h3>
+          <p class="success-p">Check your inbox — your guide is on its way. A member of our team will be in touch shortly to schedule your no-cost consultation.</p>
+          <a href="#quiz-section" class="btn-ghost">While you wait — take the quiz ↓</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     TRUST STRIP
+════════════════════════════════════════ -->
+<div class="trust-strip">
+  <div class="container trust-strip-inner">
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Full Marching 2 More Team</span>
+    </div>
+    <div class="trust-sep" aria-hidden="true">·</div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Client-Focused, Team-Driven Transitions</span>
+    </div>
+    <div class="trust-sep" aria-hidden="true">·</div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Serving Virginia Families</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     WHAT'S IN THE GUIDE
+════════════════════════════════════════ -->
+<section class="section section-guide">
+  <div class="container section-inner">
+    <div class="section-label-row">
+      <span class="section-eyebrow">The Free Guide</span>
+    </div>
+    <h2 class="section-h2">What You'll Learn Inside<br/><em>"Am I Ready to Right-Size?"</em></h2>
+    <p class="section-sub">Drawn from real conversations with families just like yours — no fluff, no sales pitch.</p>
+    <div class="guide-bullets">
+      <div class="guide-bullet">
+        <div class="bullet-num">01</div>
+        <div class="bullet-text">
+          <strong>Signs you may be emotionally and practically ready to downsize</strong> — including the lifestyle signals most people miss until they're already overwhelmed.
+        </div>
+      </div>
+      <div class="guide-bullet">
+        <div class="bullet-num">02</div>
+        <div class="bullet-text">
+          <strong>How housing costs, unused rooms, and upkeep may be limiting your retirement lifestyle</strong> — including the 30% rule that tells you when your home has become a financial burden.
+        </div>
+      </div>
+      <div class="guide-bullet">
+        <div class="bullet-num">03</div>
+        <div class="bullet-text">
+          <strong>Questions to ask about aging in place, safety, and how much space you really need</strong> — stairs, accessibility, grab bars, and what the aging-in-place movement means for your specific situation.
+        </div>
+      </div>
+      <div class="guide-bullet">
+        <div class="bullet-num">04</div>
+        <div class="bullet-text">
+          <strong>How to think through what to keep, what to let go, and where everything should go</strong> — a practical framework so "what do I do with all my stuff" stops feeling impossible.
+        </div>
+      </div>
+    </div>
+    <a href="#main-form" class="btn-primary btn-center">Get the Free Guide →</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     EMOTIONAL BLOCKERS
+════════════════════════════════════════ -->
+<section class="section section-blockers">
+  <div class="container section-inner">
+    <span class="section-eyebrow">We Understand</span>
+    <h2 class="section-h2">This Decision Carries Real Weight</h2>
+    <p class="section-sub">If any of these feel familiar, you're not alone — and you don't have to figure it out by yourself.</p>
+    <div class="blockers-grid">
+      <div class="blocker-card">
+        <div class="blocker-icon">🏠</div>
+        <h3>Fear of Making the Wrong Move</h3>
+        <p>What if the next place doesn't feel like home? What if you regret it? These are real fears — and the right planning process addresses them before you ever list.</p>
+      </div>
+      <div class="blocker-card">
+        <div class="blocker-icon">📷</div>
+        <h3>The Memories in These Walls</h3>
+        <p>The height chart in the hallway. The garden patio. The driveway where the kids played. Right-sizing isn't about erasing those memories — it's about carrying them forward.</p>
+      </div>
+      <div class="blocker-card">
+        <div class="blocker-icon">♿</div>
+        <h3>Worry About Safety as You Age</h3>
+        <p>Stairs, grab bars, wide doorways, single-story access — the home that worked at 45 may not be the right fit at 70. We help you think through what "aging in place" actually means for you.</p>
+      </div>
+      <div class="blocker-card">
+        <div class="blocker-icon">📦</div>
+        <h3>"What Do I Do With All My Stuff?"</h3>
+        <p>This is the question that stops most people cold. We help you build a decluttering plan — plus connections to organizers and vendors who specialize in exactly this transition.</p>
+      </div>
+      <div class="blocker-card">
+        <div class="blocker-icon">👨‍👩‍👧</div>
+        <h3>Adult Children with Mixed Opinions</h3>
+        <p>Your kids want what's best for you — but they don't always agree on what that is. We can be a neutral, knowledgeable resource for the whole family conversation.</p>
+      </div>
+      <div class="blocker-card">
+        <div class="blocker-icon">⏳</div>
+        <h3>"I'm Just Not Ready Yet"</h3>
+        <p>That's okay. You don't have to be. Getting informed now — before you're under pressure — is the most powerful thing you can do for your future self.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     HOW WE HELP
+════════════════════════════════════════ -->
+<section class="section section-howwehelp">
+  <div class="container section-inner">
+    <span class="section-eyebrow">Your Transition Partner</span>
+    <h2 class="section-h2">We're More Than a Listing Service.<br/><em>We're Your Right-Sizing Team.</em></h2>
+    <p class="section-sub">Most agents sell your house and hand you a key. We walk with you through the entire transition.</p>
+    <div class="steps-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Decision Support</h3>
+          <p>Before anything else, we help you answer the real question: is this actually the right time? We work through your goals, timeline, finances, and family situation — together.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Home Sale Planning</h3>
+          <p>We help you price and position your current home to maximize what you walk away with — so the equity you've built actually funds the life you want next.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Decluttering Plan + Vendor Referrals</h3>
+          <p>We help you build a room-by-room plan for what to keep, donate, sell, or let go — and connect you to trusted organizers, estate sale specialists, and movers who do this every day.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Move Coordination</h3>
+          <p>We coordinate the logistics so you don't have to hold all of it in your head. One team, one point of contact, no dropped balls.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Finding the Next Right-Sized Home</h3>
+          <p>Whether that's a smaller house, a single-story, a condo, or a 55+ community — we help you find a home that fits your new season of life, not just your old checklist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     IS RIGHT-SIZING RIGHT FOR YOU?
+════════════════════════════════════════ -->
+<section class="section section-readycheck">
+  <div class="container section-inner">
+    <span class="section-eyebrow">A Simple Gut Check</span>
+    <h2 class="section-h2">Signs It Might Be Time</h2>
+    <p class="section-sub">From our guide — these are the questions worth sitting with honestly.</p>
+    <div class="readycheck-grid">
+      <div class="readycheck-item">
+        <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <p>Are you worried about stairs, bathrooms, or accessibility as you age?</p>
+      </div>
+      <div class="readycheck-item">
+        <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <p>Do you have multiple rooms you rarely — or never — use?</p>
+      </div>
+      <div class="readycheck-item">
+        <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <p>Are your housing costs squeezing your budget for travel, hobbies, or time with family?</p>
+      </div>
+      <div class="readycheck-item">
+        <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <p>Does your home cause more heartache than joy when you look around it?</p>
+      </div>
+      <div class="readycheck-item">
+        <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <p>Has home maintenance become physically or financially overwhelming?</p>
+      </div>
+      <div class="readycheck-item">
+        <svg class="rc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <p>Is your home no longer tied to your career, kids, or other obligations that once anchored you here?</p>
+      </div>
+    </div>
+    <p class="readycheck-cta-text">If you answered yes to even two of these — it's worth a conversation.</p>
+    <a href="#main-form" class="btn-primary btn-center">Request a Free Consultation →</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     QUIZ SECTION
+════════════════════════════════════════ -->
+<section class="section section-quiz" id="quiz-section">
+  <div class="container section-inner">
+    <span class="section-eyebrow">Not Sure Yet?</span>
+    <h2 class="section-h2">Not Sure If It's Really Time to Downsize?</h2>
+    <p class="section-sub">Take this 60-second quiz to see whether right-sizing your home might be your next best step. You'll get a practical recommendation based on your situation — plus the option to download our guide or request a no-cost consultation.</p>
+    <div class="quiz-embed-wrap">
+      <iframe
+        src="quiz.html"
+        width="100%"
+        height="780"
+        frameborder="0"
+        style="border:none; border-radius: 16px; display:block;"
+        title="Am I Ready to Right-Size? Quiz"
+        id="quizFrame">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+<section class="section section-faq">
+  <div class="container section-inner section-inner-narrow">
+    <span class="section-eyebrow">Common Questions</span>
+    <h2 class="section-h2">Things People Ask Us</h2>
+
+    <div class="faq-list" id="faqList">
+      <details class="faq-item">
+        <summary class="faq-q">How do I know if I'm really ready to downsize?</summary>
+        <p class="faq-a">Readiness is part practical, part emotional. On the practical side: unused rooms, rising housing costs above 30% of income, and maintenance becoming overwhelming are clear signals. Emotionally: if thinking about a fresh start lifts a weight rather than adding one, that's a significant sign. Our guide — and our free consultation — walk you through both dimensions.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What if my kids disagree about what's best for me?</summary>
+        <p class="faq-a">This is one of the most common situations we navigate. Adult children care deeply, but they don't always agree — and sometimes the conversation becomes more about their comfort than yours. We can serve as a neutral, knowledgeable third party to help facilitate the family conversation with facts, options, and no pressure.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Should I consider a condo or a smaller house?</summary>
+        <p class="faq-a">Both have real trade-offs. A smaller house gives you more privacy and space — but you still have a yard to maintain. A condo typically has lower maintenance, but HOA fees can offset the savings. The right choice depends on your lifestyle preferences, budget, and how much you value community vs. privacy. We help you think through both.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What will I do with all my belongings?</summary>
+        <p class="faq-a">Start by thinking about what you want to keep — not what to get rid of. What do you actually use and love? That answer tells you how much space you really need. From there, we help you build a room-by-room plan and connect you to organizers, estate sale specialists, and donation resources who handle this transition every day.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How long does a typical downsizing process take?</summary>
+        <p class="faq-a">It varies widely — anywhere from 2 months to over a year depending on how much preparation is needed, the current market, and how quickly you want to move. Starting early is almost always better than waiting until you're under pressure. A free consultation gives you a realistic timeline for your specific situation.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Will downsizing actually save me money?</summary>
+        <p class="faq-a">In the long run, almost always — but there are real upfront costs to factor in (moving, staging, repairs). The bigger question for most people isn't whether it saves money — it's whether it frees up cash flow and equity that can fund the lifestyle they actually want in retirement. That's the conversation we help you have.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FINAL CTA
+════════════════════════════════════════ -->
+<section class="section section-finalcta">
+  <div class="container section-inner">
+    <h2 class="finalcta-h2">Ready to Start the Conversation?</h2>
+    <p class="finalcta-sub">Whether you want the guide, a consultation, or both — we're here when you're ready. No pressure, no rush.</p>
+
+    <div class="finalcta-form-wrap">
+      <div class="form-card form-card-dark">
+        <div class="form-card-top">
+          <p class="form-eyebrow">Free Guide + Consultation</p>
+          <h3 class="form-h2">Choose Your Next Step</h3>
+        </div>
+        <form id="finalForm" class="main-form" onsubmit="submitFinalForm(event)" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="ff-first">First Name</label>
+              <input type="text" id="ff-first" placeholder="Jane" required autocomplete="given-name" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="ff-email">Email Address</label>
+            <input type="email" id="ff-email" placeholder="jane@email.com" required autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label for="ff-phone">Phone Number</label>
+            <input type="tel" id="ff-phone" placeholder="(757) 555-0100" autocomplete="tel" />
+          </div>
+          <div class="form-field">
+            <label for="ff-zip">Current ZIP Code</label>
+            <input type="text" id="ff-zip" placeholder="23456" inputmode="numeric" maxlength="10" />
+          </div>
+          <div class="form-field">
+            <label for="ff-intent">What do you need today?</label>
+            <div class="select-wrap">
+              <select id="ff-intent" required>
+                <option value="" disabled selected>Choose one…</option>
+                <option value="guide">I want the free guide</option>
+                <option value="consultation">I want a downsizing consultation</option>
+                <option value="both">I want both</option>
+              </select>
+              <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <p class="form-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Private &amp; confidential. Your information is never sold.
+          </p>
+          <button type="submit" class="btn-primary btn-full" id="ff-submit">
+            <span id="ff-label">Get My Free Guide &amp; Next Steps →</span>
+            <span id="ff-spinner" class="spinner" style="display:none"></span>
+          </button>
+        </form>
+        <div class="form-success" id="finalSuccess" style="display:none">
+          <div class="success-icon">✓</div>
+          <h3 class="success-h3">You're all set!</h3>
+          <p class="success-p">Your guide is on its way. A member of our team will follow up shortly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="finalcta-contact">
+      <p>Prefer to call directly? <a href="tel:7574346433">(757) 434-6433</a></p>
+      <p>Or email us at <a href="mailto:info@marching2more.com">info@marching2more.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <img src="logo.jpg" alt="The Marching 2 More Real Estate Team" class="footer-logo" />
+    <div class="footer-info">
+      <p>The Marching 2 More Real Estate Team · Brokered by Creed Realty</p>
+      <p>info@marching2more.com · (757) 434-6433</p>
+      <p class="footer-fine">Client Focused. Team Driven. · Equal Housing Opportunity</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  var scrollRaf=0;
+  function emitScroll(){
+    scrollRaf=0;
+    var x=window.scrollX||window.pageXOffset||0;
+    var y=window.scrollY||window.pageYOffset||0;
+    window.parent.postMessage({type:'INLINE_EDIT_SCROLL',scrollX:x,scrollY:y},'*');
+  }
+  window.addEventListener('scroll',function(){
+    if(scrollRaf)return;
+    scrollRaf=requestAnimationFrame(emitScroll);
+  },{passive:true,capture:true});
+  emitScroll();
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

@@ -89,6 +89,13 @@ export const AERIAL_COPY = {
   ],
 } as const
 
+export const DIVORCE_QUIZ_SECTION_ID = "navigating-divorce-quiz" as const
+
+export const DIVORCE_QUIZ_HEADING = "Not sure what to do next?" as const
+
+export const DIVORCE_QUIZ_DESCRIPTION =
+  "Answer a few quick questions and get a practical read on whether a guide, a neutral conversation, or timing work is your best next step — no pressure, no obligation." as const
+
 export const TEAM_SOCIAL = {
   donavan: {
     linkedin: "https://www.linkedin.com/in/donavan-mcfadden",

@@ -67,14 +67,27 @@ export function isGohighlevelUrlConfigured(url: string): boolean {
 }
 
 /**
+ * Quiz iframe source is “live”: external https URL, or a same-origin static quiz under `/public/quizzes/`.
+ */
+export function isQuizEmbedSrcConfigured(url: string): boolean {
+  const u = url.trim()
+  if (!u || u.startsWith("REPLACE_WITH_")) return false
+  if (u.startsWith("/quizzes/")) return true
+  return isGohighlevelUrlConfigured(u)
+}
+
+/**
  * GoHighLevel quiz / survey embed or form URLs (lead-gen landings).
  * Replace with real https:// links when marketing provides them.
  */
 export const GOHIGHLEVEL_QUIZ_CREDIT_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_CREDIT_URL" as const
-export const GOHIGHLEVEL_QUIZ_DOWNSIZING_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_DOWNSIZING_URL" as const
+/** Local static quiz — `/downsizing-your-home` iframe embed (`public/quizzes/downsizing-your-home/quiz.html`). */
+export const GOHIGHLEVEL_QUIZ_DOWNSIZING_URL = "/quizzes/downsizing-your-home/quiz.html" as const
 export const GOHIGHLEVEL_QUIZ_FORECLOSURE_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_FORECLOSURE_URL" as const
 /** Investor readiness / education quiz (e.g. GHL survey) — `/more-investments#investor-tools`. */
 export const GOHIGHLEVEL_QUIZ_INVESTOR_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_INVESTOR_URL" as const
+/** Static divorce quiz embed — `/navigating-divorce` (`public/quizzes/navigating-divorce/index.html`). */
+export const GOHIGHLEVEL_QUIZ_NAVIGATING_DIVORCE_URL = "/quizzes/navigating-divorce/index.html" as const
 /**
  * Optional embeddable BRRRR analyzer (GHL, Airtable, or hosted sheet).
  * When unset, the investor tools section shows a placeholder card.

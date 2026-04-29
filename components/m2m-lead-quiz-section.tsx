@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
 import { Button } from "@/components/ui/button"
-import { isGohighlevelUrlConfigured } from "@/lib/m2m-site"
+import { isGohighlevelUrlConfigured, isQuizEmbedSrcConfigured } from "@/lib/m2m-site"
 import { cn } from "@/lib/utils"
 
 export type M2mLeadQuizSectionProps = {
@@ -21,7 +21,7 @@ export type M2mLeadQuizSectionProps = {
 }
 
 /**
- * Lead-gen quiz / survey block — embeds GHL when `embedSrc` is a real https URL,
+ * Lead-gen quiz / survey block — embeds when `embedSrc` is https (e.g. GHL) or a `/quizzes/...` static asset,
  * otherwise shows placeholder copy and optional CTA + `children` (e.g. local form).
  */
 export function M2mLeadQuizSection({
@@ -35,7 +35,7 @@ export function M2mLeadQuizSection({
   className,
   children,
 }: M2mLeadQuizSectionProps) {
-  const showEmbed = embedSrc && isGohighlevelUrlConfigured(embedSrc)
+  const showEmbed = Boolean(embedSrc && isQuizEmbedSrcConfigured(embedSrc))
   const showExternalCta = ctaHref && isGohighlevelUrlConfigured(ctaHref)
 
   return (
