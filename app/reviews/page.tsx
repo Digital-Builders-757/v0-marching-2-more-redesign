@@ -13,7 +13,7 @@ export default function ReviewsPage() {
   return (
     <>
       <Header />
-      <main id="main-content" tabIndex={-1} className="pt-20">
+      <main id="main-content" tabIndex={-1} className="pt-16 sm:pt-20">
         <ReviewsHero />
         <ReviewsList />
         <ReviewsCta />

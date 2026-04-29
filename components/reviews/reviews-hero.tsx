@@ -15,7 +15,7 @@ export function ReviewsHero() {
       />
       <div className="absolute inset-0 bg-m2m-reviews-band/68" aria-hidden />
 
-      <M2mContainer className="relative py-24 text-center md:py-32">
+      <M2mContainer className="relative py-16 text-center sm:py-20 md:py-28">
         <p
           className="text-m2m-gold text-sm tracking-[0.25em] uppercase"
           style={{ fontFamily: "var(--font-nav)" }}

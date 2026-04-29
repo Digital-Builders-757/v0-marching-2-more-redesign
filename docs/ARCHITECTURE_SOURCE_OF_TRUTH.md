@@ -1,7 +1,7 @@
 # Architecture — source of truth
 
 **Canonical technical overview** of this repository for humans and agents.  
-For workflow, see [WORKFLOW.md](./WORKFLOW.md). For visual rules, see [BRAND_CONSTITUTION.md](./BRAND_CONSTITUTION.md).
+For workflow, see [WORKFLOW.md](./WORKFLOW.md). For visual rules, see [BRAND_CONSTITUTION.md](./BRAND_CONSTITUTION.md). For cross-site polish principles vs execution log, see [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md) vs [WORK_ORDER.md](./WORK_ORDER.md).
 
 ## System shape
 

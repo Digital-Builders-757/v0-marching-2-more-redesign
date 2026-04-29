@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { DivorceAerialLead } from "@/components/navigating-divorce/divorce-aerial-lead"
 import { DivorceGalleryCollage } from "@/components/navigating-divorce/divorce-gallery-collage"
+import { DivorceQuiz } from "@/components/navigating-divorce/divorce-quiz"
 import { DivorceHero } from "@/components/navigating-divorce/divorce-hero"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
 import { DivorceNumberedTopics } from "@/components/navigating-divorce/divorce-numbered-topics"
@@ -23,6 +24,7 @@ export default function NavigatingDivorcePage() {
         <DivorceHero />
         <DivorceGalleryCollage />
         <DivorceSupportCta />
+        <DivorceQuiz />
         <DivorceNumberedTopics />
         <DivorceValuationProcess />
         <DivorceAerialLead />

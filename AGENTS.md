@@ -23,6 +23,8 @@
 
 **Full index:** [docs/DOCUMENTATION_INDEX.md](docs/DOCUMENTATION_INDEX.md)
 
+**Visual polish (principles + checklist):** [docs/M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](docs/M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md). Day-to-day execution and ships stay in [docs/WORK_ORDER.md](docs/WORK_ORDER.md).
+
 **Active overhaul (vision + standards):** [docs/M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](docs/M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) — execution log: [docs/WORK_ORDER.md](docs/WORK_ORDER.md).
 
 ## Tooling

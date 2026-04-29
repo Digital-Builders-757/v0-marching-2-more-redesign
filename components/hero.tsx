@@ -65,7 +65,7 @@ export function Hero() {
           <span className="flex shrink-0 items-center gap-3">
             <span className="block h-px w-8 bg-m2m-gold" aria-hidden />
           </span>
-          <span className="min-w-0 leading-snug">
+          <span className="min-w-0 max-w-full text-pretty break-words leading-snug">
             Licensed Real Estate Professionals in Virginia Beach, VA, USA • Veteran Owned | 5.0 ★ ★ ★ ★ ★
           </span>
         </div>
@@ -79,16 +79,17 @@ export function Hero() {
         </h1>
 
         <p
-          className="mt-6 max-w-xl text-base leading-relaxed text-m2m-cream [text-shadow:0_1px_10px_rgba(5,13,6,0.35)]"
+          className="mt-6 max-w-xl text-base leading-relaxed text-m2m-cream [text-shadow:0_1px_10px_rgba(5,13,6,0.35)] sm:text-[1.05rem]"
           style={{ fontFamily: "var(--font-sans)" }}
         >
-          Ask about our Financing Options.
+          Hampton Roads advisors for military families and discerning buyers—PCS moves, VA loans, luxury search, and a
+          calm plan from tour to closing.
         </p>
 
         <div className="mt-10 grid w-full gap-3 sm:mt-12 sm:gap-4 sm:max-w-2xl sm:grid-cols-2">
           <a
             href="/contact-us?intent=buyer"
-            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-gold/40 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
+            className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream shadow-[0_4px_18px_-6px_rgba(5,13,6,0.45)] transition-all duration-300 border border-m2m-gold/45 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Work With Us
@@ -97,31 +98,39 @@ export function Hero() {
             href={REALSCOUT_HOME_VALUATION_URL}
             target="_blank"
             rel="noreferrer"
-            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 bg-m2m-gold text-m2m-deep font-medium shadow-[0_4px_20px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02]"
+            className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_20px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 bg-m2m-gold hover:bg-m2m-gold-lt hover:scale-[1.02]"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Free Home Valuation
           </a>
-          <a
-            href={getConsultationRequestUrl()}
-            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-cream/35 text-m2m-cream/95 transition-all duration-300 hover:border-m2m-cream hover:text-m2m-cream hover:scale-[1.02]"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
-            Speak with an Agent.
-          </a>
+        </div>
+
+        <p
+          className="mt-8 flex max-w-xl flex-wrap items-center gap-x-3 gap-y-2 text-sm leading-snug text-m2m-cream/88 [text-shadow:0_1px_8px_rgba(5,13,6,0.35)]"
+          style={{ fontFamily: "var(--font-sans)" }}
+        >
+          <span className="text-m2m-cream/65">Prefer to talk?</span>
           <a
             href={M2M_PHONE_HREF}
-            className="w-full text-center text-[0.7rem] tracking-[0.2em] uppercase px-9 py-4 border border-m2m-cream/35 text-m2m-cream/95 transition-all duration-300 hover:border-m2m-cream hover:text-m2m-cream"
-            style={{ fontFamily: "var(--font-nav)" }}
+            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold"
           >
-            Call or Text — {M2M_PHONE_DISPLAY}
+            {M2M_PHONE_DISPLAY}
           </a>
-          </div>
+          <span className="text-m2m-cream/35" aria-hidden>
+            ·
+          </span>
+          <a
+            href={getConsultationRequestUrl()}
+            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold"
+          >
+            Book a consultation
+          </a>
+        </p>
 
           {/* Partner logos section */}
-          <div className="mt-16 pb-[100px]">
+          <div className="mt-12 pb-10 md:mt-16 md:pb-14">
             {/* Horizontal line */}
-            <div className="w-full h-px bg-m2m-cream/20 mb-[100px]" />
+            <div className="mb-10 h-px w-full bg-m2m-cream/20 md:mb-12" />
             
             {/* Logos row */}
             <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
@@ -171,7 +180,7 @@ export function Hero() {
             </div>
 
             {/* Have a question? Contact Us */}
-            <div className="mt-[100px] text-center">
+            <div className="mt-10 text-center md:mt-14">
               <span 
                 className="text-sm text-m2m-cream/70"
                 style={{ fontFamily: "var(--font-sans)" }}

@@ -1,9 +1,6 @@
 /**
  * Copy and image constants for `/improve-your-credit`.
- *
- * Imagery: `credit*` keys in `lib/m2m-media.ts` — momentum (sides), trust (center), goal (right).
  */
-import { M2M_MEDIA } from "@/lib/m2m-media"
 
 /** Anchor for in-page CTAs until a PDF URL exists. */
 export const CREDIT_PLAYBOOK_SECTION_ID = "credit-playbook" as const
@@ -11,14 +8,14 @@ export const CREDIT_PLAYBOOK_SECTION_ID = "credit-playbook" as const
 export const HERO_HEADLINE =
   "Crush Credit Along Your Path to Homeownership" as const
 
-/** Hero collage — left: forward path / suburban momentum */
-export const HERO_IMAGE_LEFT = M2M_MEDIA.creditHeroLeft
+/** Hero collage — left still (financial planning, confidence, outcome-driven). */
+export const HERO_IMAGE_LEFT = "/images/credit/credit-hero-financial-planning.jpg" as const
 
-/** Hero — center: team trust overlay */
-export const HERO_IMAGE_CENTER = M2M_MEDIA.creditHeroCenter
+/** Hero — center feature card background (celebration, success, achievement). */
+export const HERO_IMAGE_CENTER = "/images/credit/credit-hero-success-celebration.jpg" as const
 
-/** Hero collage — right: aspirational home / life goal */
-export const HERO_IMAGE_RIGHT = M2M_MEDIA.creditHeroRight
+/** Hero collage — right (confident buyer who achieved their goal). */
+export const HERO_IMAGE_RIGHT = "/images/credit/credit-hero-confident-buyer.jpg" as const
 
 export const HERO_FEATURE_OVERLAY_LINE_1 = "improve your credit" as const
 export const HERO_FEATURE_OVERLAY_LINE_2 = "TO BUY A NEW HOME." as const
@@ -73,14 +70,14 @@ export const CREDIT_HOMEWORK_STEPS = [
   "If something is inaccurate, dispute it with the credit bureaus using their documented process.",
 ] as const
 
-/** Tall column beside review/homework — editorial uplift */
-export const EDUCATION_LARGE_IMAGE = M2M_MEDIA.creditEducationLarge
+/** Tall column beside review/homework — empowering, focused financial planning. */
+export const EDUCATION_LARGE_IMAGE = "/images/credit/credit-education-planning.jpg" as const
 
-/** Small collage under homework card — varied interior / progress cues */
+/** Small collage under homework card — aspirational lifestyle imagery. */
 export const HOMEWORK_COLLAGE_IMAGES = [
-  M2M_MEDIA.creditHomeworkA,
-  M2M_MEDIA.creditHomeworkB,
-  M2M_MEDIA.creditHomeworkC,
+  "/images/credit/credit-hero-financial-planning.jpg",
+  "/images/credit/credit-takeaways-home-goal.jpg",
+  "/images/credit/credit-hero-confident-buyer.jpg",
 ] as const
 
 export const DOWNLOAD_GUIDE_CTA = "Download your guide today" as const
@@ -96,8 +93,8 @@ export const TAKEAWAY_ITEMS = [
   { label: "Avoid opening new credit accounts" },
 ] as const
 
-/** Full-bleed banner behind takeaways + icon row */
-export const TAKEAWAYS_BACKGROUND = M2M_MEDIA.creditTakeawaysBanner
+/** Full-bleed banner behind takeaways + icon row — aspirational home goal. */
+export const TAKEAWAYS_BACKGROUND = "/images/credit/credit-takeaways-home-goal.jpg" as const
 
 export const VIDEO_HEADING = "Marching 2 More & crushing credit" as const
 export const VIDEO_SUBHEAD =
@@ -119,5 +116,5 @@ export const PLAYBOOK_CARD_TITLE =
 
 export const PLAYBOOK_DOWNLOAD_BUTTON = "Click here to download" as const
 
-/** Closing band — goal-forward warmth */
-export const CLOSING_HERO_IMAGE = M2M_MEDIA.creditClosingBanner
+/** Closing band — digital success, progress monitoring imagery. */
+export const CLOSING_HERO_IMAGE = "/images/credit/credit-closing-digital-success.jpg" as const

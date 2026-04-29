@@ -23,17 +23,17 @@ const footerAgents = M2M_HEADER_AGENT_LINKS.slice(0, 2)
 
 export function DivorceLandingFooter() {
   return (
-    <footer className="bg-m2m-panel text-m2m-cream">
-      <M2mContainer className="py-14 lg:py-16">
+    <footer className="bg-m2m-panel pb-[env(safe-area-inset-bottom,0px)] text-m2m-cream">
+      <M2mContainer className="py-16 lg:py-20">
         <nav
-          className="mb-12 flex flex-wrap justify-center gap-x-8 gap-y-3 border-b border-m2m-gold/20 pb-10 md:justify-start"
+          className="mb-14 flex flex-wrap justify-center gap-x-8 gap-y-4 border-b border-m2m-gold/25 pb-12 md:justify-start"
           aria-label="Footer"
         >
           {DIVORCE_FOOTER_TOP_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-[0.72rem] font-medium tracking-[0.14em] text-m2m-gold-lt transition hover:text-m2m-cream"
+              className="text-[0.7rem] font-medium tracking-[0.16em] text-m2m-gold-lt transition hover:text-m2m-cream"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               {l.label}
@@ -41,16 +41,16 @@ export function DivorceLandingFooter() {
           ))}
         </nav>
 
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Left — about + team */}
           <div>
             <h2
-              className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-m2m-gold"
+              className="mb-5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-gold sm:text-[0.7rem]"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               About Marching 2 More
             </h2>
-            <p className="mb-10 max-w-lg text-sm leading-relaxed text-m2m-cream/85" style={{ fontFamily: "var(--font-sans)" }}>
+            <p className="mb-12 max-w-lg text-pretty text-sm leading-relaxed text-m2m-cream/85" style={{ fontFamily: "var(--font-sans)" }}>
               {ABOUT_COPY}
             </p>
 
@@ -109,9 +109,9 @@ export function DivorceLandingFooter() {
           </div>
 
           {/* Right — policies + CTAs + contact */}
-          <div className="lg:pl-6">
+          <div className="lg:pl-8">
             <h2
-              className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-m2m-gold"
+              className="mb-5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-gold sm:text-[0.7rem]"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               Policies

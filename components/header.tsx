@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
@@ -58,7 +58,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-m2m-gold/15 bg-m2m-panel">
+    <header className="sticky top-0 z-50 border-b border-m2m-gold/15 bg-m2m-panel pt-[env(safe-area-inset-top,0px)]">
       {/* Backdrop */}
       {menuOpen ? (
         <button
@@ -207,17 +207,27 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
             </div>
 
             <ul className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto overscroll-y-contain p-2 pt-1">
-              {M2M_WIX_HEADER_MENU_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="flex min-h-11 items-center rounded-md px-3 py-2.5 text-base font-medium leading-snug text-m2m-cream transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/40"
-                    onClick={() => setMenuOpen(false)}
-                    style={{ fontFamily: "var(--font-nav)" }}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+              {M2M_WIX_HEADER_MENU_LINKS.map((link, index) => (
+                <Fragment key={link.href}>
+                  {index === 3 || index === 5 ? (
+                    <li role="presentation" className="list-none px-2 py-2">
+                      <span className="block h-px bg-white/12" aria-hidden />
+                      <span className="sr-only">
+                        {index === 3 ? "Seller tools and home value" : "Team and contact"}
+                      </span>
+                    </li>
+                  ) : null}
+                  <li>
+                    <Link
+                      href={link.href}
+                      className="flex min-h-11 items-center rounded-md px-3 py-2.5 text-[0.95rem] font-medium leading-snug tracking-wide text-m2m-cream transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/40"
+                      onClick={() => setMenuOpen(false)}
+                      style={{ fontFamily: "var(--font-nav)" }}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                </Fragment>
               ))}
 
               <li className="pt-1">

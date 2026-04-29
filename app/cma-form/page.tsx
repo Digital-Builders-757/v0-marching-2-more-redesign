@@ -109,7 +109,7 @@ export default function CmaFormPage() {
             </div>
             <M2mInsetHeroScrim variant="luminous" />
 
-            <M2mContainer className="relative z-10 pt-24 pb-14 sm:pt-28 sm:pb-16">
+            <M2mContainer className="relative z-10 pt-20 pb-12 sm:pt-28 sm:pb-16">
               <div className="mx-auto max-w-5xl">
                 {/* Kicker */}
                 <div className="flex items-center gap-4">

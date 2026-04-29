@@ -6,7 +6,7 @@ import { M2M_MEDIA } from "@/lib/m2m-media"
 export function TeamHero() {
   return (
     <section
-      className="relative overflow-hidden pt-28 pb-16"
+      className="relative overflow-hidden pt-24 pb-14 sm:pt-28 sm:pb-16"
     >
       {/* Background image */}
       <div className="absolute inset-0">

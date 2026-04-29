@@ -12,7 +12,7 @@
 | [BRAND_CONSTITUTION.md](./BRAND_CONSTITUTION.md) | Colors, type roles, brand principles |
 | [WORKFLOW.md](./WORKFLOW.md) | Git, Ship/pr, branch flow pointers |
 | [PROJECT_CONTEXT_PROMPT.md](./PROJECT_CONTEXT_PROMPT.md) | Paste block for LLM sessions |
-| [DOCUMENTATION.md](./DOCUMENTATION.md) | Short index + repo role |
+| [DOCUMENTATION.md](./DOCUMENTATION.md) | Short stub — links here only (avoid duplicate tables) |
 | [WORK_ORDER.md](./WORK_ORDER.md) | Done recently + ordered next steps |
 | [MVP_STATUS_ROADMAP.md](./MVP_STATUS_ROADMAP.md) | P0/P1 priorities |
 | [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) | Active site overhaul: goals, standards, doc outcomes |
@@ -39,6 +39,9 @@
 |-----|---------|
 | [marching2more/M2M_SITE_REBUILD_SPEC.md](./marching2more/M2M_SITE_REBUILD_SPEC.md) | Supplementary rebuild notes (verify against repo) |
 | [marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md](./marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md) | Client page fixes batch — decisions and route map |
+| [marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md) | What actually matters next — priority hierarchy for site improvements |
+| [marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md) | Repo hygiene + mobile polish batch — docs foundation, shared UI, route-level mobile cleanup |
+| [marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md) | Site-wide UX uplift — homepage clarity, navigation, trust, conversion flow, mobile ergonomics |
 | [releasenotes/README.md](./releasenotes/README.md) | Optional **`/release`** archives |
 
 ## Archive (historical)

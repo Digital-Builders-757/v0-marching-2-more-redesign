@@ -47,6 +47,13 @@ export function Testimonials() {
           >
             Serving with integrity.<br />Leading with experience.
           </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-m2m-muted font-sans">
+            <Link href="/reviews" className="font-medium text-m2m-deep underline decoration-m2m-gold/40 underline-offset-4 transition-colors hover:text-m2m-gold">
+              Read more client reviews
+            </Link>
+            {" · "}
+            Veteran-owned team, 5★ rated on Google.
+          </p>
         </div>
 
         {/* Testimonial Cards - 3 Column Grid */}

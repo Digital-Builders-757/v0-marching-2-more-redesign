@@ -37,7 +37,7 @@ export function AgentProfile({
 
   return (
     <main id="main-content" tabIndex={-1} className="bg-white">
-      <section className="pt-32 pb-20">
+      <section className="pt-24 pb-16 sm:pt-32 sm:pb-20">
         <M2mContainer>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[300px_1fr_400px] lg:gap-16">
             {/* Left column - Info & CTAs */}

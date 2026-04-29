@@ -1,15 +1,14 @@
 /**
  * Copy and asset paths for `/fha-loan` only.
- *
- * Hero + quote backdrop: semantic keys in `lib/m2m-media.ts` (`fha*`); swap URLs when FHA-specific shoots land.
  */
+
 import { M2M_MEDIA } from "@/lib/m2m-media"
 
-/** Hero — guidance-forward, approachable */
-export const HERO_BACKGROUND = M2M_MEDIA.fhaHero
+/** Hero: approachable first-time homebuyer aspirational imagery. */
+export const HERO_BACKGROUND = "/images/fha-loan/fha-hero-first-time-buyer.jpg" as const
 
-/** Full-bleed behind FHA quote form — warmth; no third-party stock URL */
-export const FLAG_QUOTE_BACKGROUND = M2M_MEDIA.fhaQuoteBackdrop
+/** Quote form background — helpful, guided, confidence-building imagery. */
+export const FLAG_QUOTE_BACKGROUND = "/images/fha-loan/fha-quiz-guidance.jpg" as const
 
 export const HERO_HEADLINE = "Is the FHA Loan Right for You?" as const
 

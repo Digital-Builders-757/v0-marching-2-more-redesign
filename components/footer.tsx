@@ -33,7 +33,7 @@ const agentLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-m2m-gold/20 bg-m2m-black">
+    <footer className="border-t border-m2m-gold/20 bg-m2m-black pb-[env(safe-area-inset-bottom,0px)]">
       <M2mContainer className="py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Quick links */}

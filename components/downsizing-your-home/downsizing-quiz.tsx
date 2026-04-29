@@ -10,7 +10,9 @@ export function DownsizingQuiz() {
       id={DOWNSIZING_QUIZ_SECTION_ID}
       title={DOWNSIZING_QUIZ_HEADING}
       description={DOWNSIZING_QUIZ_DESCRIPTION}
+      embedVariant="standard"
       embedSrc={GOHIGHLEVEL_QUIZ_DOWNSIZING_URL}
+      className="border-t border-m2m-gold/10 md:border-m2m-gold/15"
       footnote="Results help us tailor resources and follow-up — no pressure, just clarity."
     >
       <DownsizingFallbackLead />

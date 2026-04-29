@@ -1,6 +1,6 @@
 # Work order (Marching 2 More - site redesign)
 
-**Execution spine for the public website.** Vision and rules: [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md). Current cross-site visual system pass: [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md). GoHighLevel integration is now an **active parallel track**; use [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) as the CRM / automation source of truth.
+**Execution spine for the public website.** Vision and rules: [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md). Cross-site visual principles and checklist: [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md)—**running priorities and ships stay in this file** (avoid treating both as competing “sources of truth”). GoHighLevel integration is an **active parallel track**; use [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) as the CRM / automation source of truth.
 
 ## GHL integration — status (cutover readiness pass)
 
@@ -42,6 +42,10 @@
 7. Run seller + buyer + contact test sequences from the runbook; confirm in GHL UI.
 
 ## Done recently
+
+- **Site experience uplift (journey + clarity)** — Homepage [`Hero`](../components/hero.tsx): sharper value line; **two** primary CTAs (Work With Us · Free Home Valuation); phone + **Book a consultation** as inline secondary (reduces competing hero buttons). Header menu: visual **section dividers** + slightly roomier nav type. [`Testimonials`](../components/testimonials.tsx): link to **`/reviews`** + trust line. [`PropertySearch`](../components/property-search.tsx): `min-h-12` primary/secondary CTAs. [`/contact-us`](../app/contact-us/page.tsx): reassurance note before form; trust strip hidden after submit. Brief: [marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md). `npm run ci` green.
+
+- **Repo hygiene + mobile UX polish** — Documentation spine trimmed (`DOCUMENTATION.md` points only at [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)); cross-links clarify WORK_ORDER vs [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md); marching2more specs labeled vs live repo. Shared shell: safe-area padding on header/footer, overflow discipline, globals typography tweaks, quiz iframe wrappers (`max-w-full`). Route-level spacing on core pages (`/`, `/buy`, `/sell`, `/contact-us`, `/home-search`, `/free-home-valuation`, `/cma-form`, `/resources`, `/our-team`, `/profile-page`, `/reviews`), campaign landings, and policy shells. Brief: [marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md). **`/contact`** remains a redirect to **`/contact-us`** (see [`app/contact/page.tsx`](../app/contact/page.tsx)). `npm run ci` green after ship.
 
 - **Client page fixes batch (CTA + campaign surfaces)** — `/contact-us?intent=consultation` for primary consultation CTA (`M2mConsultationCta`), `getPrimaryConsultationBookUrl()` retained for “Schedule online”; **Work With Us** → `/contact-us?intent=buyer` (hero, footer, reviews, divorce landings, blog). **VA loan** hero/CTA imagery + “Get on the List” banner. **Facing foreclosure** guide carousel (`pre-foreclosure-guide-carousel`). **Credit repair** refreshed `M2M_MEDIA` + spacing between duplicate download CTAs. **FHA loan** placeholder features replaced with accurate copy. **`/more-investments`** investor tools (`#investor-tools`): quiz embed + BRRRR analyzer placeholder + three tool stubs; env: `GOHIGHLEVEL_QUIZ_INVESTOR_URL`, `GOHIGHLEVEL_BRRRR_ANALYZER_URL` in [`lib/m2m-site.ts`](../lib/m2m-site.ts). Decision log: [`marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md`](./marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md). `npm run ci` green.
 
@@ -110,11 +114,9 @@ Authoritative list: `app/**/page.tsx`. Grouped reference: [docs/diagrams/site-ro
 - **Reviews** + **get-license-in-va**: section-by-section pass for dead zones and CTA bands as needed.
 - **Strict TypeScript in CI** - when ready, narrow `typescript.ignoreBuildErrors` in `next.config.mjs`.
 
-## Next 3 batches
+## Historical batches (overhaul era)
 
-1. **Batch A (shipped in this pass)** - Inset hero primitive + framed-route sweep; policy shell; profiles; blog/contact; footer `M2M_MEDIA`.
-2. **Batch B** - Blob/tool hero imagery; blog index backdrop; contact optional hero still; CMA form radio/hint token cleanup sweep on other long forms.
-3. **Batch C** - Campaign page CTA/form consistency audit; reviews GSAP + spacing parity; legal long-form readability (TOC anchors if needed); E2E smoke (e.g. Playwright) when prioritized.
+Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign consistency, and legal readability in rolling batches. Current site-wide batches are logged under **Done recently** above and in [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md). Remaining optional themes: Blob/tool hero imagery where assets exist; blog index backdrop; CMA/radio hint token sweep on long forms; reviews GSAP parity; Playwright smoke when prioritized.
 
 ## Shared-system follow-ups
 
@@ -130,9 +132,12 @@ Authoritative list: `app/**/page.tsx`. Grouped reference: [docs/diagrams/site-ro
 
 ## Next (website-only)
 
-1. **Content / parity QA** - Walk primary routes; confirm CTAs match [`lib/m2m-site.ts`](../lib/m2m-site.ts) (Calendly, RealScout, Google reviews, partners).
-2. **Tests** - Replace placeholder `npm test` with smoke E2E when prioritized.
-3. **Optional** - Strict Next typecheck in CI when the codebase is ready.
+1. **Priority guide** - see [M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md) for the decision frame that separates real leverage from random polish.
+2. **Site experience uplift** - see [M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md) for the next broad UX batch.
+3. **Repo hygiene + mobile UX pass** - see [M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md) for the docs-foundation cleanup and site-wide mobile polish batch.
+4. **Content / parity QA** - Walk primary routes; confirm CTAs match [`lib/m2m-site.ts`](../lib/m2m-site.ts) (Calendly, RealScout, Google reviews, partners).
+5. **Tests** - Replace placeholder `npm test` with smoke E2E when prioritized.
+6. **Optional** - Strict Next typecheck in CI when the codebase is ready.
 
 ## Source of truth
 

@@ -47,7 +47,7 @@ export default function FreeHomeValuationPage() {
             </div>
             <M2mInsetHeroScrim variant="luminous" />
 
-            <M2mContainer className="relative z-10 max-w-5xl text-center pt-20 pb-16 sm:pt-28 sm:pb-20">
+            <M2mContainer className="relative z-10 max-w-5xl text-center pt-16 pb-14 sm:pt-28 sm:pb-20">
             {/* Kicker */}
             <div className="inline-flex flex-wrap items-center justify-center gap-4 mb-6 sm:mb-8">
               <p

@@ -36,7 +36,7 @@ export function PropertySearch() {
                   href={REALSCOUT_MAP_SEARCH_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:opacity-90 font-nav"
+                  className="inline-flex min-h-12 items-center justify-center bg-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:opacity-90 font-nav"
                 >
                   Start Your Search Now
                 </a>
@@ -55,7 +55,7 @@ export function PropertySearch() {
               <div className="flex flex-col items-center sm:items-start">
                 <a
                   href="/contact-us"
-                  className="inline-block border border-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:bg-m2m-cream/40 font-nav"
+                  className="inline-flex min-h-12 items-center justify-center border border-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:bg-m2m-cream/40 font-nav"
                 >
                   Tell Us Your Needs
                 </a>

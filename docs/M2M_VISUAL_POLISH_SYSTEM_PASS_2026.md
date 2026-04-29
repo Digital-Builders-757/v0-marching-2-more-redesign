@@ -19,6 +19,8 @@ This is a **broad, system-driven visual polish pass** focused on:
 - typography rhythm
 - route-to-route consistency
 
+**Execution status and shipped batches:** use [WORK_ORDER.md](./WORK_ORDER.md) as the live log—do not duplicate running priorities here.
+
 Use this alongside:
 - [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) — overall website overhaul rules and vision
 - [WORK_ORDER.md](./WORK_ORDER.md) — live execution log and route status
