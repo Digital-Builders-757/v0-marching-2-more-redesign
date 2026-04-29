@@ -83,27 +83,33 @@ export function DivorceAerialLead() {
         <div className="absolute inset-0 bg-gradient-to-r from-m2m-deep/72 via-m2m-deep/52 to-m2m-deep/38" />
       </div>
 
-      <M2mContainer className="relative z-10 py-16 lg:flex lg:items-stretch lg:gap-14 lg:py-24">
-        <div className="mb-12 max-w-xl lg:mb-0 lg:flex-1 lg:pt-4">
+      <M2mContainer className="relative z-10 py-20 lg:flex lg:items-stretch lg:gap-16 lg:py-28">
+        <div className="mb-14 max-w-xl lg:mb-0 lg:flex-1 lg:pt-4">
+          <p
+            className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-gold-lt sm:text-[0.7rem]"
+            style={{ fontFamily: "var(--font-nav)" }}
+          >
+            We&apos;re Here For You
+          </p>
           <h2
             id="aerial-heading"
-            className="mb-4 text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold leading-tight text-m2m-cream"
-            style={{ fontFamily: "var(--font-nav)" }}
+            className="mb-4 text-balance text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold leading-tight text-m2m-cream"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {AERIAL_COPY.headline}
           </h2>
           <p
-            className="mb-10 text-lg italic leading-relaxed text-m2m-cream/95"
+            className="mb-10 text-pretty text-lg italic leading-relaxed text-m2m-cream/95"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             {AERIAL_COPY.subhead}
           </p>
           {AERIAL_COPY.blocks.map((b) => (
             <div key={b.title} className="mb-8 last:mb-0">
-              <h3 className="mb-2 text-base font-bold text-m2m-cream" style={{ fontFamily: "var(--font-sans)" }}>
+              <h3 className="mb-2 text-base font-bold text-m2m-gold-lt" style={{ fontFamily: "var(--font-nav)" }}>
                 {b.title}
               </h3>
-              <p className="text-sm leading-relaxed text-m2m-cream/90" style={{ fontFamily: "var(--font-sans)" }}>
+              <p className="text-pretty text-sm leading-relaxed text-m2m-cream/90" style={{ fontFamily: "var(--font-sans)" }}>
                 {b.body}
               </p>
             </div>
@@ -231,10 +237,10 @@ export function DivorceAerialLead() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full bg-m2m-panel py-4 text-center text-[0.95rem] font-medium text-m2m-cream transition hover:bg-m2m-panel-lt disabled:opacity-70"
-                    style={{ fontFamily: "var(--font-display)" }}
+                    className="w-full min-h-[52px] bg-m2m-panel py-4 text-center text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-m2m-cream transition hover:bg-m2m-panel-lt disabled:opacity-70"
+                    style={{ fontFamily: "var(--font-nav)" }}
                   >
-                    {submitting ? "Sending…" : "Get Your Free Guide Now!"}
+                    {submitting ? "Sending…" : "Get Your Free Guide Now"}
                   </button>
 
                   <p className="text-center">

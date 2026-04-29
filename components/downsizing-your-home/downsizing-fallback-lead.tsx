@@ -79,7 +79,7 @@ export function DownsizingFallbackLead() {
   if (done) {
     return (
       <div
-        className="space-y-4 rounded-sm border border-m2m-gold/25 bg-m2m-deep/40 px-6 py-8 text-center"
+        className="space-y-4 rounded-sm border border-m2m-gold/30 bg-m2m-deep/50 px-6 py-10 text-center shadow-[0_24px_60px_rgba(0,0,0,0.28)]"
         role="status"
         aria-live="polite"
       >
@@ -91,15 +91,15 @@ export function DownsizingFallbackLead() {
             className="text-left"
           />
         ) : null}
-        <p className="text-lg text-m2m-cream font-display">Thank you!</p>
+        <p className="text-xl text-m2m-cream font-display">Thank you!</p>
         <p className="mt-2 text-sm text-m2m-cream/85 font-sans">We&apos;ll follow up with downsizing resources shortly.</p>
       </div>
     )
   }
 
   return (
-    <div className="rounded-sm border border-m2m-gold/25 bg-m2m-deep/40 px-5 py-6 sm:px-8">
-      <p className="text-center text-sm text-m2m-cream/90 font-sans">
+    <div className="rounded-sm border border-m2m-gold/30 bg-m2m-deep/50 px-6 py-8 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:px-8">
+      <p className="text-center text-sm leading-relaxed text-m2m-cream/90 font-sans">
         While we connect the guided quiz, leave your details and we&apos;ll send tailored next steps.
       </p>
       <form
@@ -209,8 +209,8 @@ export function DownsizingFallbackLead() {
           />
         </div>
         {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onDark" className="w-full" /> : null}
-        <Button type="submit" variant="m2mGold" className="w-full min-h-12 touch-manipulation" disabled={submitting}>
-          {submitting ? "Sending…" : "Submit"}
+        <Button type="submit" variant="m2mGold" className="w-full min-h-[52px] touch-manipulation" disabled={submitting}>
+          {submitting ? "Sending…" : "Submit Your Info"}
         </Button>
       </form>
     </div>
