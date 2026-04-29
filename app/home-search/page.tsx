@@ -69,14 +69,14 @@ export default function HomeSearchPage() {
                     href={REALSCOUT_MAP_SEARCH_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center bg-m2m-gold px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_22px_-4px_rgba(5,13,6,0.4)] transition hover:bg-m2m-gold-lt sm:w-auto"
+                    className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center bg-m2m-gold px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_22px_-4px_rgba(5,13,6,0.4)] transition hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
                     Start Your Search
                   </a>
                   <a
                     href="/contact-us?intent=buyer"
-                    className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center border border-m2m-gold/50 bg-m2m-deep/25 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream shadow-[0_2px_14px_-4px_rgba(5,13,6,0.35)] transition hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+                    className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center border border-m2m-gold/50 bg-m2m-deep/25 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream shadow-[0_2px_14px_-4px_rgba(5,13,6,0.35)] transition hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
                     Speak with an Agent
@@ -104,7 +104,7 @@ export default function HomeSearchPage() {
                     href={REALSCOUT_HOME_VALUATION_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center bg-m2m-gold px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_22px_-4px_rgba(5,13,6,0.4)] transition hover:bg-m2m-gold-lt sm:w-auto"
+                    className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center bg-m2m-gold px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_22px_-4px_rgba(5,13,6,0.4)] transition hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
                     Free Home Evaluation
@@ -113,7 +113,7 @@ export default function HomeSearchPage() {
                     href={CREED_REALTY_SEARCH_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center border border-m2m-gold/50 bg-m2m-deep/25 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream shadow-[0_2px_14px_-4px_rgba(5,13,6,0.35)] transition hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+                    className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center border border-m2m-gold/50 bg-m2m-deep/25 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream shadow-[0_2px_14px_-4px_rgba(5,13,6,0.35)] transition hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
                     Free Listing Guide

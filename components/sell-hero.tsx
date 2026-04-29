@@ -105,7 +105,7 @@ export function SellHero() {
                   target="_blank"
                   rel="noreferrer"
                   data-gsap="magnetic"
-                  className="inline-block w-full text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:scale-[1.02] hover:bg-m2m-gold-lt sm:w-auto rounded-lg bg-m2m-gold px-8 py-4"
+                  className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-lg bg-m2m-gold px-8 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:scale-[1.02] hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get Your Free Home Valuation
@@ -115,7 +115,7 @@ export function SellHero() {
                 <Link
                   href="/free-home-valuation"
                   data-gsap="magnetic"
-                  className="inline-block w-full rounded-lg border border-m2m-gold/40 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+                  className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-lg border border-m2m-gold/40 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Learn More
@@ -125,7 +125,7 @@ export function SellHero() {
                 <Link
                   href="/sell#checklist"
                   data-gsap="magnetic"
-                  className="inline-block w-full rounded-lg border border-m2m-gold/40 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+                  className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-lg border border-m2m-gold/40 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get The Pre-Listing Checklist

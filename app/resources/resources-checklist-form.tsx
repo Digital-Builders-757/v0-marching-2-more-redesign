@@ -1,6 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation"
+import Link from "next/link"
 import { useState } from "react"
 
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
@@ -149,15 +150,23 @@ export function ResourcesChecklistForm() {
       </div>
 
       <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-m2m-deep/80 font-sans">
+        <label className="flex cursor-pointer items-start gap-2.5 text-sm leading-snug text-m2m-deep/80 font-sans">
           <input
             type="checkbox"
             required
             checked={agreed}
             onChange={(e) => setAgreed(e.target.checked)}
-            className="size-4 rounded border-m2m-deep/20 text-m2m-panel"
+            className="mt-0.5 size-4 shrink-0 rounded border-m2m-deep/20 text-m2m-panel"
           />
-          I agree to the terms &amp; conditions
+          <span>
+            I agree to the{" "}
+            <Link
+              href="/terms-and-conditions"
+              className="font-medium text-m2m-deep underline decoration-m2m-gold/40 underline-offset-2 hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
+            >
+              Terms and Conditions
+            </Link>
+          </span>
         </label>
         <button
           type="submit"
