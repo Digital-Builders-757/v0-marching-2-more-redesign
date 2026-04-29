@@ -90,7 +90,7 @@ export function DownsizingGuideForm() {
     return (
       <div
         id={DOWNSIZING_GUIDE_SECTION_ID}
-        className="scroll-mt-28 space-y-4 rounded-sm bg-m2m-cream p-6 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:p-8 lg:p-9"
+        className="scroll-mt-28 space-y-4 rounded-sm bg-m2m-cream p-8 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:p-10"
       >
         {successFollowUp?.warnings.length ? (
           <M2mLeadSubmitWarnings
@@ -100,7 +100,7 @@ export function DownsizingGuideForm() {
             className="text-left"
           />
         ) : null}
-        <p className="text-center text-m2m-deep font-sans" role="status" aria-live="polite">
+        <p className="text-center text-lg text-m2m-deep font-display" role="status" aria-live="polite">
           Thank you! We&apos;ll send your downsizing guide.
         </p>
       </div>
@@ -110,15 +110,21 @@ export function DownsizingGuideForm() {
   return (
     <div
       id={DOWNSIZING_GUIDE_SECTION_ID}
-      className="scroll-mt-28 rounded-sm bg-m2m-cream p-6 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:p-8 lg:p-9"
+      className="scroll-mt-28 rounded-sm bg-m2m-cream p-7 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:p-9 lg:p-10"
     >
+      <p
+        className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-panel sm:text-[0.7rem]"
+        style={{ fontFamily: "var(--font-nav)" }}
+      >
+        Free Resource
+      </p>
       <h2
-        className="text-2xl font-medium text-m2m-deep sm:text-[1.65rem]"
+        className="text-balance text-2xl font-medium text-m2m-deep sm:text-[1.65rem]"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {GUIDE_HEADING}
       </h2>
-      <p className="mt-3 text-sm leading-relaxed text-m2m-deep/80 font-sans">{GUIDE_INTRO}</p>
+      <p className="mt-4 text-pretty text-sm leading-relaxed text-m2m-deep/80 font-sans">{GUIDE_INTRO}</p>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-5" aria-label="Request downsizing guide" aria-busy={submitting}>
         {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full" /> : null}
@@ -208,8 +214,8 @@ export function DownsizingGuideForm() {
           />
         </div>
 
-        <div className="pt-2">
-          <Button type="submit" variant="m2mGold" className="w-full" disabled={submitting}>
+        <div className="pt-3">
+          <Button type="submit" variant="m2mGold" className="w-full min-h-[52px]" disabled={submitting}>
             {submitting ? "Sending…" : GUIDE_CTA_LABEL}
           </Button>
         </div>
