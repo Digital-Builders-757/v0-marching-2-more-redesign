@@ -97,3 +97,24 @@ export const GUIDE_CAROUSEL_SLIDES = [
       "You are not alone in Hampton Roads. Request the guide and we will follow up with practical next steps for your situation.",
   },
 ] as const
+
+export const FORECLOSURE_FAQ_ITEMS = [
+  {
+    id: "fc-1",
+    question: "Is it too late once I have received a notice?",
+    answer:
+      "Not necessarily. Timelines vary by lender and loan type. The first step is organizing dates and correspondence so you know what deadlines actually apply — that is what our guide and conversation are for.",
+  },
+  {
+    id: "fc-2",
+    question: "Will talking to you affect my lender relationship?",
+    answer:
+      "Seeking clarity is not the same as committing to a path. We focus on education and next steps; any agreements with your lender remain valid through your own communication with them.",
+  },
+  {
+    id: "fc-3",
+    question: "Do you charge for the guide?",
+    answer:
+      "The guide is complimentary. If you want deeper help on listing, short sale coordination, or timing a sale, we will explain those options transparently before you commit to anything.",
+  },
+] as const

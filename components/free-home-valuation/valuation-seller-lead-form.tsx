@@ -102,6 +102,13 @@ export function ValuationSellerLeadForm() {
       <p className="mt-2 text-sm leading-relaxed text-m2m-deep/82 font-sans">
         Short form — we&apos;ll reach out to coordinate your CMA and next steps.
       </p>
+      <div
+        className="mt-4 rounded-lg border border-m2m-deep/10 bg-m2m-cream/50 px-4 py-3 text-xs leading-relaxed text-m2m-deep/85 font-sans"
+        role="note"
+      >
+        Licensed Virginia professionals · Veteran-owned · Five-star rated team — your info stays private and goes
+        straight to our inbox (never sold).
+      </div>
       <form
         data-m2m-lead="free-home-valuation"
         onSubmit={submit}

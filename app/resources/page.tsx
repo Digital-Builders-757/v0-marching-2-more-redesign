@@ -1,17 +1,26 @@
+import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
+import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { RESOURCE_EXTERNAL_LINKS } from "@/lib/m2m-site"
 
 import { ResourcesChecklistForm } from "./resources-checklist-form"
 
-export const metadata = {
-  title: "Resources | Marching 2 More",
+export const metadata: Metadata = {
+  title: "Seller Resources & Pre-Listing Checklist",
   description:
-    "More resources for buyers and sellers, including the pre-listing checklist and helpful housing links.",
+    "Download the Marching 2 More pre-listing guide, explore trusted housing links (VA, HUD, Virginia Housing), and connect seller tools — CMA, valuation, and local team support in Hampton Roads.",
+  alternates: { canonical: "/resources" },
+  openGraph: {
+    title: "Resources for Sellers | Marching 2 More",
+    description:
+      "Pre-listing checklist and vetted links for Hampton Roads homeowners preparing to sell.",
+  },
 }
 
 const resourceLinks = [
@@ -48,6 +57,22 @@ const resourceLinks = [
     href: RESOURCE_EXTERNAL_LINKS.naca,
   },
 ]
+
+const internalGuides = [
+  { label: "Reviews from clients", href: "/reviews" },
+  { label: "Our team", href: "/our-team" },
+  { label: "Home search & buying", href: "/home-search" },
+  { label: "Free home valuation", href: "/free-home-valuation" },
+  { label: "CMA request", href: "/cma-form" },
+  { label: "Blog — local insights", href: "/blog" },
+  { label: "Downsizing guide", href: "/downsizing-your-home" },
+  { label: "Divorce & real estate", href: "/navigating-divorce" },
+  { label: "Facing foreclosure — options", href: "/facing-foreclosure" },
+  { label: "Credit playbook", href: "/improve-your-credit" },
+  { label: "VA loan benefits", href: "/va-loan-benefits" },
+  { label: "FHA loans", href: "/fha-loan" },
+  { label: "Real estate investing", href: "/more-investments" },
+] as const
 
 export default function ResourcesPage() {
   return (
@@ -102,6 +127,32 @@ export default function ResourcesPage() {
             {/* Form */}
             <ResourcesChecklistForm />
 
+            <div className="mx-auto mt-14 max-w-3xl rounded-md border border-m2m-cream/20 bg-m2m-deep/25 px-4 py-4 sm:px-6">
+              <p
+                className="text-center text-[0.65rem] font-medium uppercase tracking-[0.18em] text-m2m-gold"
+                style={{ fontFamily: "var(--font-nav)" }}
+              >
+                Guides on marching2more.com
+              </p>
+              <p
+                className="mt-2 text-center text-sm leading-relaxed text-m2m-cream/88"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                Jump to scenario-specific help, tools, and proof — then come back here for the printable checklist.
+              </p>
+              <nav aria-label="Internal guides" className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2">
+                {internalGuides.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-xs text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold font-sans"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
             {/* Resources Section */}
             <div className="mt-16">
               <h2
@@ -130,6 +181,7 @@ export default function ResourcesPage() {
             </M2mContainer>
           </M2mInsetHeroFrame>
         </section>
+        <M2mRelatedPages cluster="learn" omitHref="/resources" variant="onLight" />
       </main>
       <Footer />
     </>

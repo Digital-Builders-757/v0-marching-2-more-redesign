@@ -1,5 +1,11 @@
 /** Site-wide URLs and contact constants (Wix parity). */
 
+/**
+ * Canonical origin for metadataBase, JSON-LD, and OG URLs (no trailing slash).
+ * Adjust if the primary production host changes.
+ */
+export const M2M_SITE_ORIGIN = "https://www.marching2more.com" as const
+
 /** Canonical wordmark under `public/brand/` — swap file in place when final gold art ships. */
 export const M2M_BRAND_LOGO_SRC = "/brand/m2m-logo-gold.avif" as const
 

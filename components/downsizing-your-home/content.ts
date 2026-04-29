@@ -80,3 +80,24 @@ export const GUIDE_CALLOUT_HEADING = "Your personalized roadmap starts with the 
 
 export const GUIDE_CALLOUT_BODY =
   "Download the guide for a calm, step-by-step look at preparing your home, timing the market, and planning your next chapter — then connect with our team when you are ready to talk specifics." as const
+
+export const DOWNSIZING_FAQ_ITEMS = [
+  {
+    id: "ds-1",
+    question: "Do we need to buy our next home before we sell?",
+    answer:
+      "Not always. We help you compare bridge options, lease-backs, and contingent offers in Hampton Roads so the sequence matches your comfort level and equity picture — not a one-size-fits-all rule.",
+  },
+  {
+    id: "ds-2",
+    question: "How do we know if downsizing will actually save money?",
+    answer:
+      "We walk through current carrying costs, expected net proceeds, and your target monthly budget. The goal is clarity before you pack a single box.",
+  },
+  {
+    id: "ds-3",
+    question: "What if the house needs updates before listing?",
+    answer:
+      "We prioritize changes that buyers notice first and suggest a staging and pricing strategy so you are not over-improving for the neighborhood.",
+  },
+] as const

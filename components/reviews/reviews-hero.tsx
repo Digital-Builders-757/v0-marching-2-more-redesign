@@ -1,27 +1,34 @@
 "use client"
 
+import Image from "next/image"
+
 import { M2mContainer } from "@/components/m2m-layout"
+import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export function ReviewsHero() {
   return (
     <section className="relative overflow-hidden bg-m2m-reviews-band">
-      {/* Background image (Wix parity) */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://static.wixstatic.com/media/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg/v1/fill/w_1903,h_812,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/63ece0_85f19a3d9c0648609ff59e4b0a4c9578~mv2.jpg')",
-        }}
-      />
+      <div className="absolute inset-0">
+        <Image
+          src={M2M_MEDIA.reviewsBackdrop}
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          priority
+        />
+      </div>
       <div className="absolute inset-0 bg-m2m-reviews-band/68" aria-hidden />
 
       <M2mContainer className="relative py-16 text-center sm:py-20 md:py-28">
         <p
           className="text-m2m-gold text-sm tracking-[0.25em] uppercase"
           style={{ fontFamily: "var(--font-nav)" }}
+          aria-hidden="true"
         >
           ★ ★ ★ ★ ★
         </p>
+        <p className="sr-only">Five out of five stars from Marching 2 More clients.</p>
         <h1
           data-gsap="blur-in"
           className="mt-6 text-[clamp(2.25rem,5.5vw,4rem)] leading-[1.08] font-light text-m2m-cream [text-shadow:0_2px_12px_rgba(5,13,6,0.55)]"

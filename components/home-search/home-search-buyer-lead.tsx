@@ -92,6 +92,13 @@ export function HomeSearchBuyerLead() {
       aria-busy={submitting}
       className="relative z-20 mt-6 max-w-md space-y-5 sm:space-y-4"
     >
+      <div
+        className="rounded-sm border border-m2m-cream/25 bg-m2m-deep/40 px-3 py-2.5 text-xs leading-relaxed text-m2m-cream/90 font-sans"
+        role="note"
+      >
+        Licensed Virginia professionals · Veteran-owned · Five-star rated team — your info stays private and goes
+        straight to our team (never sold).
+      </div>
       <p className="text-[0.62rem] font-nav uppercase tracking-[0.2em] text-m2m-gold">Want help from the team?</p>
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-3">
         <input

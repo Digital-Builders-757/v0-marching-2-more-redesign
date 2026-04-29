@@ -113,3 +113,24 @@ export const TEAM_SOCIAL = {
     youtube: "https://www.youtube.com/results?search_query=Marching+2+More+real+estate",
   },
 } as const
+
+export const DIVORCE_FAQ_ITEMS = [
+  {
+    id: "dv-1",
+    question: "Can we talk before anything is finalized in court?",
+    answer:
+      "Yes. Many people reach out early for a neutral read on equity, timing, and how a sale could work alongside legal counsel. We stay in our lane as real estate advisors and coordinate respectfully with attorneys when needed.",
+  },
+  {
+    id: "dv-2",
+    question: "Will we have to sell immediately?",
+    answer:
+      "Not necessarily. Sometimes a buyout, deferred sale, or staged listing makes sense. We help you understand practical market options so you can align with your legal strategy.",
+  },
+  {
+    id: "dv-3",
+    question: "How do we get a fair value on the home?",
+    answer:
+      "We use comparable sales, condition, and current Hampton Roads demand — often with a CMA — so decisions are grounded in data, not guesswork.",
+  },
+] as const
