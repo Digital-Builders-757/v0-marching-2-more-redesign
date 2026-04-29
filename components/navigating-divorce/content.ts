@@ -4,7 +4,6 @@
  * Imagery: semantic keys in `lib/m2m-media.ts` (`divorce*`); swap URLs there when final art ships.
  */
 import { M2M_MEDIA } from "@/lib/m2m-media"
-
 import type { M2MNavLink } from "@/lib/m2m-nav"
 
 /** Top footer link row (reference order). */
@@ -17,17 +16,18 @@ export const DIVORCE_FOOTER_TOP_LINKS: readonly M2MNavLink[] = [
   { label: "Contact Us", href: "/contact-us" },
 ] as const
 
-export const DIVORCE_HERO_BACKGROUND = M2M_MEDIA.divorceHeroBackdrop
+/** Hero — emotionally supportive, human-centered, calm and hopeful transition mood. */
+export const DIVORCE_HERO_BACKGROUND = "/images/divorce/divorce-hero-hopeful-transition.jpg" as const
 
 export const COLLAGE_IMAGES = {
-  /** Listing / transition — home as asset */
-  sellDuringDivorce: M2M_MEDIA.divorceCollageSellDuring,
-  /** Tender human beat — distinct from adjacent panel */
-  family: M2M_MEDIA.divorceCollageFamily,
-  /** Stable interior mood */
-  interior: M2M_MEDIA.divorceCollageInterior,
-  /** Pause + paperwork — not courthouse cliché */
-  legal: M2M_MEDIA.divorceCollageSymbolic,
+  /** Panel 1 — couple in contemplative moment (gold panel overlay). */
+  sellDuringDivorce: "/images/divorce/divorce-couple-contemplative.jpg" as const,
+  /** Panel 2 — hopeful new beginning with keys. */
+  family: "/images/divorce/divorce-new-home-keys.jpg" as const,
+  /** Panel 3 — serene modern interior representing fresh start. */
+  interior: "/images/divorce/divorce-modern-interior.jpg" as const,
+  /** Panel 4 — hopeful transition imagery. */
+  legal: "/images/divorce/divorce-hero-hopeful-transition.jpg" as const,
 } as const
 
 /** Full-bleed section backgrounds */

@@ -1,9 +1,7 @@
 /**
  * Copy and image URLs for `/more-investments`.
- *
- * Carousel art: semantic `investorCarousel*` keys in `lib/m2m-media.ts` — one URL per slide role; swap blobs there.
+ * Updated with lifestyle + outcome-driven imagery that feels less stock, more real-world investor energy.
  */
-import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export const INVESTMENTS_HERO_INTRO = {
   headline: "Unlock Your Path to Financial Freedom",
@@ -11,14 +9,15 @@ export const INVESTMENTS_HERO_INTRO = {
     "Check out the ways we help our clients overcome common challenges faced by aspiring real estate investors and get started with confidence.",
 } as const
 
-/** Center “story” slides (inside carousel). Order matches pagination dots. */
+/** Center "story" slides (inside carousel). Order matches pagination dots. */
 export const HERO_SLIDES = [
   {
     id: "intro",
     variant: "intro" as const,
     headlineLines: ["DIFFERENT", "TYPES OF", "REAL ESTATE", "INVESTING"] as const,
-    centerImage: M2M_MEDIA.investorCarouselIntroCenter,
-    centerImageAlt: "Home investment opportunity and growth path",
+    /** Wealth-building, strategic success imagery. */
+    centerImage: "/images/investments/investor-hero-wealth-building.jpg" as const,
+    centerImageAlt: "Successful real estate investor surveying investment properties",
   },
   {
     id: "fix-flip",
@@ -26,13 +25,13 @@ export const HERO_SLIDES = [
     title: "FIX N' FLIP INVESTING",
     topLeftText:
       "PURCHASING A DISTRESSED PROPERTY, TYPICALLY AT A DISCOUNTED PRICE,",
-    topRightImage: M2M_MEDIA.investorCarouselFixFlipTop,
-    topRightAlt: "Exterior of a home ready for renovation",
+    topRightImage: "/images/investments/investor-fix-flip-before.jpg" as const,
+    topRightAlt: "Investor assessing renovation potential in fixer-upper",
     bridgeText: "YOU CAN TURN TRASH...",
-    collageLeft: M2M_MEDIA.investorCarouselFixFlipCollageLeft,
-    collageLeftAlt: "Renovated home exterior",
-    collageRight: M2M_MEDIA.investorCarouselFixFlipCollageRight,
-    collageRightAlt: "Updated kitchen and living space after renovation",
+    collageLeft: "/images/investments/investor-fix-flip-after.jpg" as const,
+    collageLeftAlt: "Beautifully renovated home interior",
+    collageRight: "/images/investments/investor-portfolio-success.jpg" as const,
+    collageRightAlt: "Successful investor reviewing portfolio",
     bridgeText2: "...INTO TREASURE!",
     bottomText:
       "WITH THE INTENTION OF RENOVATING OR IMPROVING DISTRESSED PROPERTIES AND THEN SELLING THEM QUICKLY, YOU CAN MAKE A SIZEABLE PROFIT.",
@@ -42,10 +41,10 @@ export const HERO_SLIDES = [
     variant: "multifamily" as const,
     title: "MULTI-FAMILY INVESTING",
     row1Text: "INVESTORS CAN LIVE IN ONE UNIT AND RENT OUT THE OTHERS",
-    row1Image: M2M_MEDIA.investorCarouselMultifamilyUpper,
-    row1Alt: "Multi-unit residential building",
-    row2Image: M2M_MEDIA.investorCarouselMultifamilyLower,
-    row2Alt: "Residential street and rental properties",
+    row1Image: "/images/investments/investor-multifamily-property.jpg" as const,
+    row1Alt: "Modern multi-family residential investment property",
+    row2Image: "/images/investments/investor-hero-wealth-building.jpg" as const,
+    row2Alt: "Strategic investor surveying properties",
     row2Text: "ALLOWING THEM TO OFFSET THEIR OWN HOUSING EXPENSES WITH RENTAL INCOME.",
     summary:
       "MULTI-FAMILY INVESTING IS AN EXCELLENT WAY TO GENERATE MONTHLY CASH FLOW AND BUILD LONG-TERM WEALTH WITH REAL ESTATE.",
@@ -57,10 +56,10 @@ export const HERO_SLIDES = [
     labelA: "VACATION RENTALS, AIRBNB, VRBO...",
     labelB: "SHORT-TERM RENTAL PROPERTIES CAN BE LUCRATIVE REAL ESTATE INVESTMENTS",
     labelC: "THESE ARE GREAT TO HAVE IN AREAS WITH HIGH TOURIST DEMAND OR BUSINESS TRAVEL.",
-    imageTop: M2M_MEDIA.investorCarouselShortTermTop,
-    imageTopAlt: "Comfortable residential rental curb appeal",
-    imageMain: M2M_MEDIA.investorCarouselShortTermMain,
-    imageMainAlt: "Welcoming short-term rental home exterior",
+    imageTop: "/images/investments/investor-short-term-rental.jpg" as const,
+    imageTopAlt: "Charming vacation rental property",
+    imageMain: "/images/investments/investor-portfolio-success.jpg" as const,
+    imageMainAlt: "Successful short-term rental investor",
   },
 ] as const
 

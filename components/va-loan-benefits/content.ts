@@ -1,13 +1,11 @@
 /**
  * Copy and assets for `/va-loan-benefits`.
- *
- * Hero + CTA band: `vaLoanHero` / `vaLoanCtaBand` in `lib/m2m-media.ts` — swap URLs when military-specific art ships.
  */
-import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export const VA_LEAD_SECTION_ID = "va-lead-form" as const
 
-export const HERO_BACKGROUND = M2M_MEDIA.vaLoanHero
+/** Hero — military homebuying, service, trust, and forward movement. */
+export const HERO_BACKGROUND = "/images/va-loan/va-hero-military-homecoming.jpg" as const
 
 export const HERO_KICKER = "Know Your Benefits" as const
 export const HERO_TITLE = "VA LOAN" as const
@@ -43,8 +41,8 @@ export const VA_BENEFIT_ITEMS = [
 export const BENEFITS_CLOSING =
   "The Marching 2 More Real Estate Team is proud to support military families with clear guidance and steady advocacy—aligned with the spirit of the VA home loan program. By helping you access these benefits, we work to empower veterans and their families on the path to homeownership, with greater security, stability, and confidence in Hampton Roads and beyond." as const
 
-/** CTA band — team trust / continuity (contrasts with hero). */
-export const CTA_BANNER_BACKGROUND = M2M_MEDIA.vaLoanCtaBand
+/** CTA banner — patriotic / service imagery with American flag and home. */
+export const CTA_BANNER_BACKGROUND = "/images/va-loan/va-cta-patriotic-home.jpg" as const
 
 export const CTA_BANNER_HEADLINE = "Are You Ready To Use Your VA Loan?" as const
 export const CTA_BANNER_BUTTON = "Get on the List" as const
