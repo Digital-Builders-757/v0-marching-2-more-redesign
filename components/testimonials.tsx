@@ -48,7 +48,10 @@ export function Testimonials() {
             Serving with integrity.<br />Leading with experience.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-m2m-muted font-sans">
-            <Link href="/reviews" className="font-medium text-m2m-deep underline decoration-m2m-gold/40 underline-offset-4 transition-colors hover:text-m2m-gold">
+            <Link
+              href="/reviews"
+              className="inline-flex min-h-11 items-center font-medium text-m2m-deep underline decoration-m2m-gold/40 underline-offset-4 transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
+            >
               Read more client reviews
             </Link>
             {" · "}
@@ -136,7 +139,7 @@ export function Testimonials() {
         >
           <a
             href="/reviews"
-            className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt text-center"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center rounded-lg bg-m2m-gold px-8 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             More Reviews
@@ -145,7 +148,7 @@ export function Testimonials() {
             href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep/30 text-m2m-deep rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center rounded-lg border border-m2m-deep/30 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Review us on Google &#9656;

@@ -31,6 +31,8 @@ export function resolveMenuSearchQuery(raw: string): string | null {
   const q = normalize(raw)
   if (!q) return null
 
+  if (/^(welcome|home|homepage|home page)$/i.test(q.trim())) return "/"
+
   if (/\bdonavan\b|\bdonovan\b/.test(q)) return "/profile-page"
   if (/\broger\b/.test(q)) return "/roger-lee"
   if (/\bkristin\b/.test(q)) return "/kristin-s-profile"

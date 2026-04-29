@@ -20,7 +20,7 @@ export function DivorceSupportCta() {
         </p>
         <a
           href="#guide-form"
-          className="inline-flex min-h-[52px] items-center justify-center bg-m2m-gold px-10 py-3.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-m2m-deep shadow-[0_8px_24px_rgba(205,176,95,0.25)] transition hover:bg-m2m-gold-lt"
+          className="inline-flex min-h-12 touch-manipulation items-center justify-center bg-m2m-gold px-10 py-3.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-m2m-deep shadow-[0_8px_24px_rgba(205,176,95,0.25)] transition hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
           style={{ fontFamily: "var(--font-nav)" }}
         >
           Get Your Free Guide

@@ -36,7 +36,7 @@ export function PropertySearch() {
                   href={REALSCOUT_MAP_SEARCH_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center bg-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:opacity-90 font-nav"
+                  className="inline-flex min-h-12 touch-manipulation items-center justify-center bg-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep font-nav"
                 >
                   Start Your Search Now
                 </a>
@@ -45,7 +45,7 @@ export function PropertySearch() {
                     href={CREED_REALTY_SEARCH_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:underline"
+                    className="inline-flex min-h-11 max-w-full items-center justify-center rounded-sm px-0.5 underline decoration-m2m-gold/55 underline-offset-2 hover:text-m2m-deep hover:decoration-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
                   >
                     Local Property Search Powered by CREED REALTY*
                   </a>
@@ -54,8 +54,8 @@ export function PropertySearch() {
 
               <div className="flex flex-col items-center sm:items-start">
                 <a
-                  href="/contact-us"
-                  className="inline-flex min-h-12 items-center justify-center border border-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:bg-m2m-cream/40 font-nav"
+                  href="/contact-us?intent=buyer"
+                  className="inline-flex min-h-12 touch-manipulation items-center justify-center border border-m2m-deep px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:bg-m2m-cream/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep font-nav"
                 >
                   Tell Us Your Needs
                 </a>

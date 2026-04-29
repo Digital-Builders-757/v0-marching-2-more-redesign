@@ -89,7 +89,7 @@ export function Hero() {
         <div className="mt-10 grid w-full gap-3 sm:mt-12 sm:gap-4 sm:max-w-2xl sm:grid-cols-2">
           <a
             href="/contact-us?intent=buyer"
-            className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream shadow-[0_4px_18px_-6px_rgba(5,13,6,0.45)] transition-all duration-300 border border-m2m-gold/45 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02]"
+            className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream shadow-[0_4px_18px_-6px_rgba(5,13,6,0.45)] transition-all duration-300 border border-m2m-gold/45 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold touch-manipulation"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Work With Us
@@ -98,7 +98,7 @@ export function Hero() {
             href={REALSCOUT_HOME_VALUATION_URL}
             target="_blank"
             rel="noreferrer"
-            className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_20px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 bg-m2m-gold hover:bg-m2m-gold-lt hover:scale-[1.02]"
+            className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_20px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 bg-m2m-gold hover:bg-m2m-gold-lt hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold touch-manipulation"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Free Home Valuation
@@ -189,7 +189,7 @@ export function Hero() {
               </span>
               <a
                 href="/contact-us"
-                className="text-sm text-m2m-cream hover:text-m2m-gold transition-colors"
+                className="inline-flex min-h-11 items-center px-1 text-sm font-medium text-m2m-cream underline decoration-m2m-gold/55 underline-offset-4 transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
                 style={{ fontFamily: "var(--font-sans)" }}
               >
                 Contact Us &#9656;

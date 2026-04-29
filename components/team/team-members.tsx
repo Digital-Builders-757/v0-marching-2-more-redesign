@@ -85,7 +85,10 @@ function MemberCard({ member }: { member: TeamMember }) {
 
   if (member.href) {
     return (
-      <Link href={member.href} className="group block">
+      <Link
+        href={member.href}
+        className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+      >
         {content}
       </Link>
     )

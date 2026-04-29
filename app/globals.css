@@ -114,6 +114,10 @@
   body {
     @apply bg-white text-m2m-deep font-sans font-light antialiased;
   }
+  /** Prevent stray horizontal overflow on narrow viewports (full-bleed sections, forms). */
+  main#main-content {
+    overflow-x: clip;
+  }
   ::selection {
     background-color: color-mix(in srgb, var(--gold) 36%, var(--white));
     color: var(--deep);
