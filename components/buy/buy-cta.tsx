@@ -30,17 +30,17 @@ export function BuyCTA() {
           answer your questions, and create a personalized plan to find your next home.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/contact-us?intent=consultation"
-            className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-deep text-m2m-cream font-medium transition-all duration-300 hover:bg-m2m-deep/90"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] bg-m2m-deep text-m2m-cream transition-all duration-300 hover:bg-m2m-deep/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Book a Consultation
           </Link>
           <a
             href={M2M_PHONE_HREF}
-            className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-deep text-m2m-deep transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] border border-m2m-deep text-m2m-deep transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Call {M2M_PHONE_DISPLAY}

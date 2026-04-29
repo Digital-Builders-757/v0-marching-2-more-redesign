@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils"
 
-/** Labels on light cream/white cards (campaign lead forms). */
+/**
+ * Interior / CRM lead surfaces: shared field + submit sizing for touch and contrast.
+ * Primary submit: panel on light (`m2mFormPrimaryButtonOnLight`), gold on dark panel (`m2mFormPrimaryButtonOnDarkPanel`).
+ * Shadcn `Button variant="m2mPanel"` on contact aligns via `m2mFormSubmitShadcnPanelEnhance`.
+ */
 export const m2mLeadFieldLabelClass =
   "mb-1.5 block text-left text-[0.7rem] font-medium uppercase tracking-[0.12em] text-m2m-deep/75 font-nav"
 

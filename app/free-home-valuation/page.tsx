@@ -83,7 +83,7 @@ export default function FreeHomeValuationPage() {
               href={REALSCOUT_HOME_VALUATION_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-block min-h-12 touch-manipulation bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 shadow-[0_4px_26px_-4px_rgba(5,13,6,0.45)] transition hover:bg-m2m-gold-lt mb-8"
+              className="inline-block min-h-12 touch-manipulation bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 shadow-[0_4px_26px_-4px_rgba(5,13,6,0.45)] transition hover:bg-m2m-gold-lt mb-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               Get Your Free Home Valuation

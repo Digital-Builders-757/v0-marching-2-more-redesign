@@ -24,10 +24,10 @@ export function ReviewsCta() {
           Ready to start your journey?
         </h2>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4" data-gsap="fade-up" data-gsap-delay="0.2">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row" data-gsap="fade-up" data-gsap-delay="0.2">
           <Link
             href="/contact-us?intent=buyer"
-            className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-[0.7rem] tracking-[0.2em] uppercase bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Work With Us
@@ -37,7 +37,7 @@ export function ReviewsCta() {
             href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-gold/30 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-[0.7rem] tracking-[0.2em] uppercase border border-m2m-gold/30 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Review us on Google ▸

@@ -19,7 +19,7 @@ export function TeamCTA() {
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/contact-us"
-            className="inline-flex items-center justify-center bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 transition hover:bg-m2m-gold-lt"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] bg-m2m-gold text-m2m-deep transition hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Contact Us

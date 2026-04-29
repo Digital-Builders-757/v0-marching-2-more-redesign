@@ -244,7 +244,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
               <li className="px-2 pb-2 pt-1 md:hidden">
                 <M2mConsultationCta
                   variant={consultationCtaVariant === "outlineCream" ? "outlineCream" : "gold"}
-                  className="block w-full rounded-sm px-3 py-3 text-[0.7rem]"
+                  className="block w-full min-h-12 rounded-sm px-3 py-3.5 text-[0.65rem] leading-snug tracking-[0.18em]"
                   onClick={() => setMenuOpen(false)}
                 />
               </li>
