@@ -77,7 +77,7 @@ export function Footer() {
                 <Link
                   key={a.name}
                   href={a.href}
-                  className="flex items-center gap-2 text-xs text-m2m-muted hover:text-m2m-cream transition-colors"
+                  className="-mx-1 inline-flex min-h-11 max-w-fit items-center gap-2 rounded-sm px-1 py-2 text-xs text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
                 >
                   <span className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-m2m-gold/25">
                     <Image src={a.img} alt="" fill className="object-cover object-top" sizes="32px" />

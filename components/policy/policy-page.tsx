@@ -15,8 +15,8 @@ export function PolicyPage({
   children?: ReactNode
 }) {
   return (
-    <main id="main-content" tabIndex={-1} className="bg-white">
-      <M2mSection variant="light" className="py-14 md:py-20">
+    <main id="main-content" tabIndex={-1} className="overflow-x-clip bg-white">
+      <M2mSection variant="light" className="py-16 md:py-20">
         <M2mContainer className="max-w-4xl">
           <h1
             className="text-pretty text-[clamp(1.85rem,5vw,2.75rem)] font-light leading-[1.15] text-m2m-deep sm:text-[clamp(2rem,4vw,2.75rem)]"

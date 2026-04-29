@@ -13,7 +13,8 @@ export type M2MNavLink = {
 
 /** Wix header hamburger menu (label "=") items. */
 export const M2M_WIX_HEADER_MENU_LINKS: readonly M2MNavLink[] = [
-  { label: "Welcome", href: "/" },
+  /** Clearer first-item label than legacy “Welcome” (same `/` destination). */
+  { label: "Home", href: "/" },
   { label: "Home Search", href: "/home-search" },
   { label: "More Resources", href: "/resources" },
   { label: "CMA Request Form", href: "/cma-form" },

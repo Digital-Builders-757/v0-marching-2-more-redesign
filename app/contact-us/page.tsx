@@ -155,10 +155,10 @@ function ContactUsPageInner() {
               </div>
             ) : null}
 
-            <div className="mb-10 flex flex-col gap-3 border-y border-m2m-deep/10 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
+            <div className="mb-10 flex flex-col gap-4 border-y border-m2m-deep/10 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
               <a
                 href={M2M_PHONE_HREF}
-                className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
+                className="inline-flex min-h-11 shrink-0 items-center text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep font-sans"
               >
                 Call or text — {M2M_PHONE_DISPLAY}
               </a>
@@ -166,7 +166,7 @@ function ContactUsPageInner() {
                 href={getPrimaryConsultationBookUrl()}
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold font-sans"
+                className="inline-flex min-h-11 shrink-0 items-center text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep font-sans"
               >
                 Schedule a time online
               </a>
@@ -188,7 +188,7 @@ function ContactUsPageInner() {
                 <p className="mt-4 text-sm text-m2m-muted font-sans">
                   {isConsultIntent
                     ? "We received your request and will reach out as soon as we can — typically within about an hour during business hours."
-                    : "We&apos;ll be in touch within 24 hours."}
+                    : "We'll be in touch within 24 hours."}
                 </p>
               </div>
             ) : (

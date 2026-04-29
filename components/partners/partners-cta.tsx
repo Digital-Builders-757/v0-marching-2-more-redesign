@@ -48,17 +48,17 @@ export function PartnersCTA() {
           you with trusted professionals in our network.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/contact-us"
-            className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 bg-m2m-gold text-m2m-deep font-medium transition-all duration-300 hover:bg-m2m-gold-lt"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] bg-m2m-gold text-m2m-deep transition-all duration-300 hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Contact Us
           </Link>
           <Link
             href="/our-team"
-            className="inline-block text-center text-[0.7rem] tracking-[0.2em] uppercase px-10 py-4 border border-m2m-gold/30 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] border border-m2m-gold/30 text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Meet Your Team

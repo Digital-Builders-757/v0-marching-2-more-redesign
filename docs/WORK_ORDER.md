@@ -43,6 +43,10 @@
 
 ## Done recently
 
+- **Priority-guide site pass** — Decision frame [M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md): `main#main-content` **`overflow-x: clip`** in [`app/globals.css`](../app/globals.css); homepage [**`Hero`**](../components/hero.tsx) primary **`focus-visible`** + **`touch-manipulation`**; [**`/contact-us`**](../app/contact-us/page.tsx) trust-row **tap targets**, success message copy fix; [**`/reviews`**](../app/reviews/page.tsx) mounts **`GSAPAnimations`** (**`blur-in`** / **`fade-up`** on hero + CTA); [**`M2mConsultationCta`**](../components/m2m-cta.tsx) **`min-h-12`**; mobile header book CTA sizing; [**`Footer`**](../components/footer.tsx) agent quick links expanded hit area; **`BuyCTA`** / **`SellCTA`** / **`ReviewsCta`** / [**`PartnersCTA`**](../components/partners/partners-cta.tsx) / [**`TeamCTA`**](../components/team/team-cta.tsx) **`inline-flex min-h-12`** + focus rings; [**`DivorceSupportCta`**](../components/navigating-divorce/divorce-support-cta.tsx); [**`PolicyPage`**](../components/policy/policy-page.tsx) rhythm; [**`TeamMembers`**](../components/team/team-members.tsx) focus ring on profile cards; [`lib/m2m-form.ts`](../lib/m2m-form.ts) hierarchy comment block. Deferred per guide: Blob hero swaps, **`GOHIGHLEVEL_*`** operator env.
+
+- **Home funnel follow-up (same priority frame)** — [`PropertySearch`](../components/property-search.tsx): **`focus-visible`** on CTAs + Creed attribution tap strip; secondary **Tell Us Your Needs** → **`/contact-us?intent=buyer`**; [`SellHero`](../components/sell-hero.tsx) three CTAs **`inline-flex min-h-12`** + focus rings; [`Testimonials`](../components/testimonials.tsx): **`/reviews`** eyebrow link + footer review CTAs; [**`/home-search`**](../app/home-search/page.tsx) inset **`focus-visible`** on hero CTAs; resources [**checklist form**](../app/resources/resources-checklist-form.tsx) consent links to **`/terms-and-conditions`**; [`lib/m2m-nav.ts`](../lib/m2m-nav.ts) menu first item **Welcome → Home**; [`lib/m2m-menu-search.ts`](../lib/m2m-menu-search.ts) **`welcome`** / **`home`** / **`homepage`** resolve to **`/`**.
+
 - **Site experience uplift (journey + clarity)** — Homepage [`Hero`](../components/hero.tsx): sharper value line; **two** primary CTAs (Work With Us · Free Home Valuation); phone + **Book a consultation** as inline secondary (reduces competing hero buttons). Header menu: visual **section dividers** + slightly roomier nav type. [`Testimonials`](../components/testimonials.tsx): link to **`/reviews`** + trust line. [`PropertySearch`](../components/property-search.tsx): `min-h-12` primary/secondary CTAs. [`/contact-us`](../app/contact-us/page.tsx): reassurance note before form; trust strip hidden after submit. Brief: [marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md). `npm run ci` green.
 
 - **Repo hygiene + mobile UX polish** — Documentation spine trimmed (`DOCUMENTATION.md` points only at [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)); cross-links clarify WORK_ORDER vs [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md); marching2more specs labeled vs live repo. Shared shell: safe-area padding on header/footer, overflow discipline, globals typography tweaks, quiz iframe wrappers (`max-w-full`). Route-level spacing on core pages (`/`, `/buy`, `/sell`, `/contact-us`, `/home-search`, `/free-home-valuation`, `/cma-form`, `/resources`, `/our-team`, `/profile-page`, `/reviews`), campaign landings, and policy shells. Brief: [marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md). **`/contact`** remains a redirect to **`/contact-us`** (see [`app/contact/page.tsx`](../app/contact/page.tsx)). `npm run ci` green after ship.
@@ -71,7 +75,7 @@
 2. **Agent profiles** - `/profile-page`, `/roger-lee`, `/kristin-s-profile`: elevated with tokens/buttons; further polish = photography art direction, optional pull-quote or stats strip.
 3. **Blog** - `/blog`, `/blog/[slug]`: typography improved; optional = index backdrop from `M2M_MEDIA.blogIndexBackdrop`, richer article typography (lists/blockquotes) when content supports it.
 4. **Contact** - `/contact-us`: hierarchy fixed; optional = light hero still (`M2M_MEDIA.contactHeroStill`) if it stays minimal.
-5. **Reviews** - `/reviews`: consider `GSAPAnimations` parity with other core pages; verify band tokens vs home.
+5. **Reviews** — `/reviews`: **`GSAPAnimations`** added; verify band tokens vs home during QA.
 
 ## Public route audit (strength + pattern)
 
@@ -84,7 +88,7 @@
 | `/partners` | core | Strong | Blob hero/CTA stills, containers. |
 | `/blog` | core | Good | Index rhythm; could add subtle backdrop. |
 | `/blog/[slug]` | core | Good | Editorial hero; prose tuned to brand. |
-| `/reviews` | core | Good | Missing optional GSAP parity; otherwise on system. |
+| `/reviews` | core | Good | **`GSAPAnimations`**; band tokens aligned with testimonials. |
 | `/contact`, `/contact-us` | core | Good | `/contact` redirect; contact page trust row + semantics. |
 | `/resources` | core | Good | Inset hero + form card; PNG hero until Blob. |
 | `/our-team`, `/team` | core | Strong | Team hero + members; `/team` redirect. |
@@ -111,12 +115,12 @@ Authoritative list: `app/**/page.tsx`. Grouped reference: [docs/diagrams/site-ro
 
 - Replace remaining **local PNG heroes** with `M2M_MEDIA` when assets exist (resources, home-search, CMA funnel).
 - **Blog** body: richer `prose` modifiers if posts gain structure beyond paragraphs.
-- **Reviews** + **get-license-in-va**: section-by-section pass for dead zones and CTA bands as needed.
+- **Reviews** + **get-license-in-va**: periodic pass for dead zones and CTA bands as needed (**`/reviews`** CTA tier refreshed this batch).
 - **Strict TypeScript in CI** - when ready, narrow `typescript.ignoreBuildErrors` in `next.config.mjs`.
 
 ## Historical batches (overhaul era)
 
-Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign consistency, and legal readability in rolling batches. Current site-wide batches are logged under **Done recently** above and in [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md). Remaining optional themes: Blob/tool hero imagery where assets exist; blog index backdrop; CMA/radio hint token sweep on long forms; reviews GSAP parity; Playwright smoke when prioritized.
+Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign consistency, and legal readability in rolling batches. Current site-wide batches are logged under **Done recently** above and in [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md). Remaining optional themes: Blob/tool hero imagery where assets exist; blog index backdrop; CMA/radio hint token sweep on long forms; Playwright smoke when prioritized.
 
 ## Shared-system follow-ups
 
@@ -132,12 +136,11 @@ Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign 
 
 ## Next (website-only)
 
-1. **Priority guide** - see [M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md) for the decision frame that separates real leverage from random polish.
-2. **Site experience uplift** - see [M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md) for the next broad UX batch.
-3. **Repo hygiene + mobile UX pass** - see [M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md) for the docs-foundation cleanup and site-wide mobile polish batch.
-4. **Content / parity QA** - Walk primary routes; confirm CTAs match [`lib/m2m-site.ts`](../lib/m2m-site.ts) (Calendly, RealScout, Google reviews, partners).
-5. **Tests** - Replace placeholder `npm test` with smoke E2E when prioritized.
-6. **Optional** - Strict Next typecheck in CI when the codebase is ready.
+1. **Content / parity QA** — Walk primary routes; confirm CTAs match [`lib/m2m-site.ts`](../lib/m2m-site.ts) (Calendly, RealScout, Google reviews, partners).
+2. **Tests** — Replace placeholder `npm test` with smoke E2E when prioritized.
+3. **Optional** — Strict Next typecheck in CI when the codebase is ready.
+
+Reference (not a competing queue): [M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md), [M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md), [M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md).
 
 ## Source of truth
 

@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { GSAPAnimations } from "@/components/gsap-animations"
 import { ReviewsHero } from "@/components/reviews/reviews-hero"
 import { ReviewsList } from "@/components/reviews/reviews-list"
 import { ReviewsCta } from "@/components/reviews/reviews-cta"
@@ -13,6 +14,7 @@ export default function ReviewsPage() {
   return (
     <>
       <Header />
+      <GSAPAnimations />
       <main id="main-content" tabIndex={-1} className="pt-16 sm:pt-20">
         <ReviewsHero />
         <ReviewsList />
