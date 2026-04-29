@@ -57,7 +57,7 @@ export function Footer() {
               ))}
             </nav>
 
-            <M2mConsultationCta variant="gold" className="mt-4 w-fit" />
+            <M2mConsultationCta variant="gold" className="mt-4 w-fit" data-m2m-track="consultation_request" data-m2m-track-loc="footer" />
           </div>
 
           {/* About */}

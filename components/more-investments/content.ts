@@ -82,22 +82,22 @@ export const INVESTOR_BRRRR_TITLE = "BRRRR deal analyzer" as const
 export const INVESTOR_BRRRR_BLURB =
   "Work through buy, rehab, rent, refinance, and repeat assumptions in one place before you vet specific listings with the team." as const
 
-/** Placeholders for mail / campaign tools until URLs ship. */
+/** Stubs for future hosted tools — copy stays honest until URLs ship in lib/m2m-site.ts. */
 export const INVESTOR_PLACEHOLDER_TOOLS = [
   {
     id: "p1",
     title: "Rental yield snapshot",
-    body: "Compare rough cash flow assumptions across Hampton Roads submarkets.",
+    body: "Planned worksheet to compare rough cash-flow assumptions across Hampton Roads submarkets — not a substitute for underwriting.",
   },
   {
     id: "p2",
     title: "Scope-of-work estimator",
-    body: "Ballpark cosmetic vs. heavier rehab tiers so underwriting conversations start in the right range.",
+    body: "Ballpark cosmetic vs. heavier rehab tiers so lender and contractor conversations start in the right range.",
   },
   {
     id: "p3",
     title: "Hold timeline planner",
-    body: "Map exit timing against lease seasons and military-market cycles relevant to your strategy.",
+    body: "Map exit timing against lease seasons and military-market cycles when that fits your strategy.",
   },
 ] as const
 
@@ -126,3 +126,24 @@ export const INVESTMENTS_TRUST_QUOTE =
   "Donavan was patient and diligent throughout the entire process and was readily available at all times… Highly recommend! Him and his team will take care of you!" as const
 
 export const INVESTMENTS_TRUST_ATTRIBUTION = "Marching 2 More client review" as const
+
+export const INVESTMENTS_FAQ_ITEMS = [
+  {
+    id: "inv-1",
+    question: "I have never owned a rental — where do I start?",
+    answer:
+      "We begin with your budget, risk comfort, and how hands-on you want to be. Then we map realistic Hampton Roads submarkets before you chase shiny spreadsheets.",
+  },
+  {
+    id: "inv-2",
+    question: "Do you guarantee returns or cash flow?",
+    answer:
+      "No ethical advisor can. We bring local context and deal discipline; your CPA, attorney, and lender sign off on numbers that affect your taxes and borrowing.",
+  },
+  {
+    id: "inv-3",
+    question: "What if I am active duty or PCS soon?",
+    answer:
+      "Military timelines change strategy — we factor lease-up seasons, property management options, and whether you need long-distance reliability from partners.",
+  },
+] as const

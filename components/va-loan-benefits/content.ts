@@ -58,3 +58,24 @@ export const LEAD_LABEL_MESSAGE = "Help Us Serve You" as const
 export const LEAD_TEXTAREA_PLACEHOLDER =
   "Tell us about your homebuying goals. Location, size & monthly budget?" as const
 export const LEAD_SUBMIT_LABEL = "Send" as const
+
+export const VA_FAQ_ITEMS = [
+  {
+    id: "va-1",
+    question: "Are VA offers really weaker in Hampton Roads?",
+    answer:
+      "Not when they are structured well. We help you pair a strong lender letter, realistic timelines, and clear communication so sellers see certainty — the same things they want on any offer.",
+  },
+  {
+    id: "va-2",
+    question: "Do I need perfect credit for a VA loan?",
+    answer:
+      "VA is often more flexible than conventional programs, but lenders still set their own overlays. Early pre-approval surfaces real numbers so you are not guessing.",
+  },
+  {
+    id: "va-3",
+    question: "Can I use a VA loan if I already used it once?",
+    answer:
+      "In many cases, yes — eligible veterans can restore entitlement after a sale or refinance depending on circumstances. Your loan officer confirms what applies to you.",
+  },
+] as const

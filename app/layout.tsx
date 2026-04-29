@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import { Jost, Cormorant_Garamond, Playfair_Display, Montserrat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { M2mCtaAnalytics } from '@/components/m2m-cta-analytics'
 import { ScrollToTop } from '@/components/scroll-to-top'
+import { M2M_SITE_ORIGIN } from '@/lib/m2m-site'
 import './globals.css'
 
 const jost = Jost({
@@ -31,9 +33,10 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Marching 2 More — Military Real Estate Specialists',
-  description: 'Military real estate specialists serving Hampton Roads, Virginia. VA loans, PCS relocations, and luxury property search.',
-  generator: 'v0.app',
+  metadataBase: new URL(M2M_SITE_ORIGIN),
+  title: 'Marching 2 More — Hampton Roads Real Estate Advisors',
+  description:
+    'Veteran-owned real estate team in Virginia Beach serving all of Hampton Roads — military & VA buyers, luxury search, home valuations, listing strategy, PCS moves, and five-star support.',
 }
 
 export const viewport: Viewport = {
@@ -56,6 +59,7 @@ export default function RootLayout({
         </a>
         <ScrollToTop />
         {children}
+        <M2mCtaAnalytics />
         <Analytics />
       </body>
     </html>

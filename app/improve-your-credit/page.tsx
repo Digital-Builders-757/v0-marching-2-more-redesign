@@ -7,12 +7,16 @@ import { CreditHero } from "@/components/improve-your-credit/credit-hero"
 import { CreditPlaybookForm } from "@/components/improve-your-credit/credit-playbook-form"
 import { CreditTakeaways } from "@/components/improve-your-credit/credit-takeaways"
 import { CreditVideo } from "@/components/improve-your-credit/credit-video"
+import { CREDIT_FAQ_ITEMS } from "@/components/improve-your-credit/content"
+import { M2mCampaignFaq } from "@/components/m2m-campaign-faq"
+import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
 
 export const metadata: Metadata = {
-  title: "Improve Your Credit | Marching 2 More",
+  title: "Credit & Homebuying Readiness | Hampton Roads",
   description:
-    "Build stronger credit on your path to homeownership — education, takeaways, and the Marching 2 More Credit Improvement Playbook for Hampton Roads buyers.",
+    "Improve credit before you buy — education, checklist-style takeaways, and the Credit Improvement Playbook from Marching 2 More for military and civilian buyers in Hampton Roads.",
+  alternates: { canonical: "/improve-your-credit" },
 }
 
 export default function ImproveYourCreditPage() {
@@ -26,6 +30,13 @@ export default function ImproveYourCreditPage() {
         <CreditTakeaways />
         <CreditVideo />
         <CreditClosing />
+        <M2mCampaignFaq
+          id="credit-faq-heading"
+          eyebrow="Credit myths"
+          heading="What buyers ask before they apply"
+          items={[...CREDIT_FAQ_ITEMS]}
+        />
+        <M2mRelatedPages cluster="life" omitHref="/improve-your-credit" variant="onDark" />
       </main>
       <DivorceLandingFooter />
     </>

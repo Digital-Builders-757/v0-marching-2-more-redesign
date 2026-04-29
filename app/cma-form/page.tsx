@@ -11,6 +11,7 @@ import { Header } from "@/components/header"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
+import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { m2mCmaFormInputClass, m2mCmaFormTextareaClass } from "@/lib/m2m-form"
 import { M2M_URGENCY_TIMELINE_OPTIONS } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
@@ -178,6 +179,13 @@ export default function CmaFormPage() {
                     aria-busy={submitting}
                     className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-6 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5 sm:p-8"
                   >
+                    <div
+                      className="mb-8 rounded-lg border border-m2m-deep/10 bg-white px-4 py-3 text-xs leading-relaxed text-m2m-deep/85 font-sans"
+                      role="note"
+                    >
+                      Licensed Virginia professionals · Veteran-owned · Five-star rated team — your info stays private
+                      and goes straight to our inbox (never sold).
+                    </div>
                     {/* Property Address Section */}
                     <div className="mb-8">
                       <h2
@@ -379,6 +387,7 @@ export default function CmaFormPage() {
             </M2mContainer>
           </M2mInsetHeroFrame>
         </section>
+        <M2mRelatedPages cluster="sell" omitHref="/cma-form" variant="onLight" />
       </main>
       <Footer />
     </>

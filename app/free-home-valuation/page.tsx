@@ -13,6 +13,7 @@ import {
   M2mSection,
   M2M_PHOTO_BAND_SCRIM_STYLE,
 } from "@/components/m2m-layout"
+import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import {
   GOOGLE_REVIEW_URL,
   M2M_PHONE_DISPLAY,
@@ -21,9 +22,15 @@ import {
 } from "@/lib/m2m-site"
 
 export const metadata: Metadata = {
-  title: "Free Home Valuation | Marching 2 More",
+  title: "Free Home Valuation & Seller Consultation",
   description:
-    "Maximize your home's value before you list. Get a free home valuation from the Marching 2 More team.",
+    "Get a free online home valuation and optional personalized CMA follow-up from Marching 2 More — veteran-owned listing advisors for Virginia Beach, Norfolk, Chesapeake, and Hampton Roads.",
+  alternates: { canonical: "/free-home-valuation" },
+  openGraph: {
+    title: "Free Home Valuation | Marching 2 More",
+    description:
+      "RealScout estimate plus team follow-up — no pressure, clear next steps.",
+  },
 }
 
 export default function FreeHomeValuationPage() {
@@ -397,6 +404,7 @@ export default function FreeHomeValuationPage() {
             </div>
           </M2mContainer>
         </section>
+        <M2mRelatedPages cluster="sell" omitHref="/free-home-valuation" variant="onLight" />
       </main>
 
       <Footer />

@@ -1,17 +1,21 @@
 import type { Metadata } from "next"
 
 import { Header } from "@/components/header"
+import { M2mCampaignFaq } from "@/components/m2m-campaign-faq"
+import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
 import { VaBenefitsContent } from "@/components/va-loan-benefits/va-benefits-content"
 import { VaCtaBanner } from "@/components/va-loan-benefits/va-cta-banner"
 import { VaHero } from "@/components/va-loan-benefits/va-hero"
 import { VaLeadForm } from "@/components/va-loan-benefits/va-lead-form"
 import { VaVideo } from "@/components/va-loan-benefits/va-video"
+import { VA_FAQ_ITEMS } from "@/components/va-loan-benefits/content"
 
 export const metadata: Metadata = {
-  title: "VA Loan Benefits | Marching 2 More",
+  title: "VA Home Loan Benefits | Hampton Roads Military Buyers",
   description:
-    "Understand VA home loan benefits and how the Marching 2 More team supports veterans and military families in Hampton Roads.",
+    "Zero-down basics, funding fee context, and PCS-friendly buying in Virginia Beach and Hampton Roads — VA loan education and team support from Marching 2 More.",
+  alternates: { canonical: "/va-loan-benefits" },
 }
 
 export default function VaLoanBenefitsPage() {
@@ -24,6 +28,13 @@ export default function VaLoanBenefitsPage() {
         <VaBenefitsContent />
         <VaCtaBanner />
         <VaLeadForm />
+        <M2mCampaignFaq
+          id="va-faq-heading"
+          eyebrow="VA misconceptions"
+          heading="What military buyers worry about"
+          items={[...VA_FAQ_ITEMS]}
+        />
+        <M2mRelatedPages cluster="military" omitHref="/va-loan-benefits" variant="onDark" />
       </main>
       <DivorceLandingFooter />
     </>
