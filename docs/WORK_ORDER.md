@@ -132,11 +132,12 @@ Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign 
 
 ## Next (website-only)
 
-1. **Site experience uplift** - see [M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md) for the next broad UX batch.
-2. **Repo hygiene + mobile UX pass** - see [M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md) for the docs-foundation cleanup and site-wide mobile polish batch.
-3. **Content / parity QA** - Walk primary routes; confirm CTAs match [`lib/m2m-site.ts`](../lib/m2m-site.ts) (Calendly, RealScout, Google reviews, partners).
-4. **Tests** - Replace placeholder `npm test` with smoke E2E when prioritized.
-5. **Optional** - Strict Next typecheck in CI when the codebase is ready.
+1. **Priority guide** - see [M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md) for the decision frame that separates real leverage from random polish.
+2. **Site experience uplift** - see [M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md) for the next broad UX batch.
+3. **Repo hygiene + mobile UX pass** - see [M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md) for the docs-foundation cleanup and site-wide mobile polish batch.
+4. **Content / parity QA** - Walk primary routes; confirm CTAs match [`lib/m2m-site.ts`](../lib/m2m-site.ts) (Calendly, RealScout, Google reviews, partners).
+5. **Tests** - Replace placeholder `npm test` with smoke E2E when prioritized.
+6. **Optional** - Strict Next typecheck in CI when the codebase is ready.
 
 ## Source of truth
 
