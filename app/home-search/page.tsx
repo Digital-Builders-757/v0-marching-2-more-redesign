@@ -39,7 +39,7 @@ export default function HomeSearchPage() {
             </div>
             <M2mInsetHeroScrim variant="luminous" />
 
-            <M2mContainer className="relative z-10 max-w-5xl pt-20 pb-14 sm:pt-28 sm:pb-16">
+            <M2mContainer className="relative z-10 max-w-5xl pt-16 pb-12 sm:pt-28 sm:pb-16">
             {/* Kicker */}
             <p
               className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"

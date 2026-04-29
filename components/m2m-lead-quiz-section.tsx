@@ -77,14 +77,14 @@ export function M2mLeadQuizSection({
         </div>
 
         {showEmbed ? (
-          <div className="mt-10 sm:mt-12">
+          <div className="mx-auto mt-10 max-w-full sm:mt-12">
             <div
               className={cn(
-                "overflow-hidden rounded-md border border-m2m-gold/30 bg-gradient-to-b from-m2m-deep/45 to-m2m-deep",
+                "max-w-full overflow-hidden rounded-md border border-m2m-gold/30 bg-gradient-to-b from-m2m-deep/45 to-m2m-deep",
                 "shadow-[0_28px_72px_-12px_rgba(0,0,0,0.4)] ring-1 ring-m2m-gold/25 ring-inset",
               )}
             >
-              <div className={cn("min-w-0", embedIframeWrapperClasses[variant])}>
+              <div className={cn(embedIframeWrapperClasses[variant])}>
                 <iframe
                   src={embedSrc}
                   title={title}

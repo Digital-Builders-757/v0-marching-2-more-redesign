@@ -83,7 +83,7 @@ export function M2mInsetHeroScrim({
 }
 
 export function M2mContainer({ className, ...props }: ComponentProps<"div">) {
-  return <div className={cn("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", className)} {...props} />
+  return <div className={cn("mx-auto min-w-0 w-full max-w-7xl px-4 sm:px-6 lg:px-8", className)} {...props} />
 }
 
 const sectionSurface: Record<
@@ -99,7 +99,7 @@ const sectionSurface: Record<
 export type M2mSectionVariant = keyof typeof sectionSurface
 
 const sectionY: Record<"default" | "tight", string> = {
-  default: "py-16 md:py-20",
+  default: "py-14 md:py-20",
   tight: "py-10 md:py-14",
 }
 

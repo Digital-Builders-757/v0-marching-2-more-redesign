@@ -70,7 +70,7 @@ export default function ResourcesPage() {
             </div>
             <M2mInsetHeroScrim variant="luminous" />
 
-            <M2mContainer className="relative z-10 max-w-5xl pt-20 pb-16 sm:pt-24 sm:pb-20">
+            <M2mContainer className="relative z-10 max-w-5xl pt-16 pb-14 sm:pt-24 sm:pb-20">
             {/* Kicker with line */}
             <div className="flex items-center justify-center gap-4 sm:justify-start">
               <p

@@ -37,7 +37,7 @@ function ContactUsShellFallback() {
     <>
       <Header />
       <main id="main-content" tabIndex={-1} className="bg-white">
-        <section className="pb-20 pt-28">
+        <section className="pb-16 pt-24 sm:pb-20 sm:pt-28">
           <M2mContainer className="max-w-2xl">
             <p className="text-sm text-m2m-muted font-sans">Loading form…</p>
           </M2mContainer>
@@ -121,7 +121,7 @@ function ContactUsPageInner() {
     <>
       <Header />
       <main id="main-content" tabIndex={-1} className="bg-white">
-        <section id="contact-intro" className="pb-20 pt-28">
+        <section id="contact-intro" className="pb-16 pt-24 sm:pb-20 sm:pt-28">
           <M2mContainer className="max-w-2xl">
             <p className="m2m-eyebrow mb-3 text-m2m-deep">Contact Us</p>
 
@@ -144,6 +144,16 @@ function ContactUsPageInner() {
                 steps within 24hrs.
               </p>
             )}
+
+            {!submitted ? (
+              <div
+                className="mb-8 rounded-lg border border-m2m-deep/10 bg-m2m-cream/50 px-4 py-3 text-xs leading-relaxed text-m2m-deep/85 font-sans sm:text-[0.8125rem]"
+                role="note"
+              >
+                Licensed Virginia professionals · Veteran-owned · Five-star rated team — your info stays private and goes
+                straight to our inbox (never sold).
+              </div>
+            ) : null}
 
             <div className="mb-10 flex flex-col gap-3 border-y border-m2m-deep/10 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
               <a

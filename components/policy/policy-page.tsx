@@ -16,10 +16,10 @@ export function PolicyPage({
 }) {
   return (
     <main id="main-content" tabIndex={-1} className="bg-white">
-      <M2mSection variant="light" className="py-16 md:py-20">
+      <M2mSection variant="light" className="py-14 md:py-20">
         <M2mContainer className="max-w-4xl">
           <h1
-            className="text-[clamp(2rem,4vw,2.75rem)] font-light leading-[1.15] text-m2m-deep"
+            className="text-pretty text-[clamp(1.85rem,5vw,2.75rem)] font-light leading-[1.15] text-m2m-deep sm:text-[clamp(2rem,4vw,2.75rem)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {title}
@@ -30,7 +30,7 @@ export function PolicyPage({
             </p>
           ) : null}
 
-          <p className="mt-6 text-sm leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+          <p className="mt-6 max-w-prose text-sm leading-relaxed text-m2m-muted sm:max-w-none sm:text-base" style={{ fontFamily: "var(--font-sans)" }}>
             This page is a migrated copy from our prior Wix site. If you need the canonical source, view it here:{" "}
             <Link
               href={sourceUrl}
@@ -45,7 +45,7 @@ export function PolicyPage({
 
           {children ? (
             <div
-              className="prose prose-sm prose-headings:font-normal prose-headings:text-m2m-deep prose-p:text-m2m-deep/90 prose-li:text-m2m-deep/90 prose-a:text-m2m-gold prose-a:no-underline hover:prose-a:underline mt-10 max-w-none"
+              className="prose prose-sm sm:prose-base prose-headings:scroll-mt-28 prose-headings:font-normal prose-headings:text-m2m-deep prose-p:text-m2m-deep/90 prose-p:leading-relaxed prose-li:text-m2m-deep/90 prose-li:leading-relaxed prose-a:break-words prose-a:text-m2m-gold prose-a:no-underline hover:prose-a:underline mt-10 max-w-none"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               {children}

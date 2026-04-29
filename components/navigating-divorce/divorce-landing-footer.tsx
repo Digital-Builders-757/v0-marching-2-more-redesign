@@ -23,7 +23,7 @@ const footerAgents = M2M_HEADER_AGENT_LINKS.slice(0, 2)
 
 export function DivorceLandingFooter() {
   return (
-    <footer className="bg-m2m-panel text-m2m-cream">
+    <footer className="bg-m2m-panel pb-[env(safe-area-inset-bottom,0px)] text-m2m-cream">
       <M2mContainer className="py-16 lg:py-20">
         <nav
           className="mb-14 flex flex-wrap justify-center gap-x-8 gap-y-4 border-b border-m2m-gold/25 pb-12 md:justify-start"

@@ -4,6 +4,8 @@ Source site: https://www.marching2more.com/
 
 Goal: recreate the **same information architecture + page sections + core copy + CTAs** in a custom build (v0 → codebase), then iterate.
 
+**Repo truth:** Live routing and shipped behavior live under `app/` and [DOCUMENTATION_INDEX.md](../DOCUMENTATION_INDEX.md). Treat this file as a **parity inventory** from the legacy site—verify URLs and CTAs against [`lib/m2m-site.ts`](../../lib/m2m-site.ts) before trusting a line here.
+
 > Notes
 > - This doc captures **structure + copy inventory + UI components**, not Wix implementation details.
 > - Keep all external integrations as links (RealScout, Calendly, tel/mailto) unless/until the client requests deeper integration.
