@@ -3,6 +3,7 @@
  *
  * Imagery: semantic keys in `lib/m2m-media.ts` (`divorce*`); swap URLs there when final art ships.
  */
+import { M2M_MEDIA } from "@/lib/m2m-media"
 import type { M2MNavLink } from "@/lib/m2m-nav"
 
 /** Top footer link row (reference order). */

@@ -2,6 +2,8 @@
  * Copy and asset paths for `/fha-loan` only.
  */
 
+import { M2M_MEDIA } from "@/lib/m2m-media"
+
 /** Hero: approachable first-time homebuyer aspirational imagery. */
 export const HERO_BACKGROUND = "/images/fha-loan/fha-hero-first-time-buyer.jpg" as const
 

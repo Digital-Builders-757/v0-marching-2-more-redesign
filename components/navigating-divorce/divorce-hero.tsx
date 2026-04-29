@@ -4,8 +4,6 @@ import { M2mContainer } from "@/components/m2m-layout"
 
 import { DIVORCE_HERO_BACKGROUND } from "./content"
 
-import { DIVORCE_HERO_BACKGROUND } from "./content"
-
 export function DivorceHero() {
   return (
     <section
