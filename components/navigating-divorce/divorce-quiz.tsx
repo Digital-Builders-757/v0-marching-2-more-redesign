@@ -9,7 +9,9 @@ export function DivorceQuiz() {
       id={DIVORCE_QUIZ_SECTION_ID}
       title={DIVORCE_QUIZ_HEADING}
       description={DIVORCE_QUIZ_DESCRIPTION}
+      embedVariant="tall"
       embedSrc={GOHIGHLEVEL_QUIZ_NAVIGATING_DIVORCE_URL}
+      className="bg-gradient-to-b from-m2m-panel via-m2m-deep/98 to-m2m-panel"
       footnote="Your answers stay private — we’ll use them to tailor follow-up resources, not pressure."
     />
   )

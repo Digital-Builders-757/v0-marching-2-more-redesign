@@ -79,7 +79,7 @@ export function DownsizingFallbackLead() {
   if (done) {
     return (
       <div
-        className="space-y-4 rounded-sm border border-m2m-gold/30 bg-m2m-deep/50 px-6 py-10 text-center shadow-[0_24px_60px_rgba(0,0,0,0.28)]"
+        className="space-y-4 rounded-md border border-m2m-gold/30 bg-gradient-to-br from-m2m-deep/85 to-m2m-deep/55 px-6 py-10 text-center shadow-[0_24px_60px_-8px_rgba(0,0,0,0.35)] ring-1 ring-m2m-gold/15 sm:px-10"
         role="status"
         aria-live="polite"
       >
@@ -88,25 +88,32 @@ export function DownsizingFallbackLead() {
             warnings={successFollowUp.warnings}
             correlationId={successFollowUp.correlationId}
             variant="onDark"
-            className="text-left"
+            className="text-left sm:max-w-xl"
           />
         ) : null}
-        <p className="text-xl text-m2m-cream font-display">Thank you!</p>
-        <p className="mt-2 text-sm text-m2m-cream/85 font-sans">We&apos;ll follow up with downsizing resources shortly.</p>
+        <p
+          className="text-xl leading-snug text-m2m-cream sm:text-[1.375rem]"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Thank you!
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-m2m-cream/85 font-sans">
+          We&apos;ll follow up with downsizing resources shortly.
+        </p>
       </div>
     )
   }
 
   return (
-    <div className="rounded-sm border border-m2m-gold/30 bg-m2m-deep/50 px-6 py-8 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:px-8">
-      <p className="text-center text-sm leading-relaxed text-m2m-cream/90 font-sans">
+    <div className="rounded-md border border-m2m-gold/30 bg-gradient-to-b from-m2m-deep/50 to-m2m-deep/35 px-5 py-8 shadow-[0_14px_40px_-14px_rgba(0,0,0,0.32)] ring-1 ring-m2m-gold/[0.13] ring-inset sm:px-8">
+      <p className="text-balance text-center text-[0.95rem] leading-relaxed text-m2m-cream/92 font-sans sm:text-sm">
         While we connect the guided quiz, leave your details and we&apos;ll send tailored next steps.
       </p>
       <form
         data-m2m-lead="downsizing-seller"
         onSubmit={submit}
         aria-busy={submitting}
-        className="mt-6 space-y-5 sm:space-y-4"
+        className="mt-7 space-y-5 sm:space-y-4"
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
