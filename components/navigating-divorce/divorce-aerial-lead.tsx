@@ -3,20 +3,19 @@
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import Image from "next/image"
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
 
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
-import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { M2mContainer } from "@/components/m2m-layout"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
-import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import {
   M2M_URGENCY_LABEL_SHORT_FORM,
   M2M_URGENCY_SHARED_HINT,
   M2M_URGENCY_SHORT_FORM_DEFAULT,
 } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
+import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 import { AERIAL_BACKGROUND, AERIAL_COPY } from "./content"
 
@@ -34,10 +33,6 @@ export function DivorceAerialLead() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
-  const [successFollowUp, setSuccessFollowUp] = useState<{
-    warnings: SubmitLeadWarningCode[]
-    correlationId: string
-  } | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -65,7 +60,6 @@ export function DivorceAerialLead() {
         setSubmitError(res)
         return
       }
-      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -120,14 +114,6 @@ export function DivorceAerialLead() {
           <div className="rounded-sm bg-[#f3f3fb] px-6 py-8 shadow-[0_20px_50px_rgba(0,0,0,0.35)] sm:px-8 sm:py-10">
             {done ? (
               <div className="space-y-4" role="status" aria-live="polite">
-                {successFollowUp?.warnings.length ? (
-                  <M2mLeadSubmitWarnings
-                    warnings={successFollowUp.warnings}
-                    correlationId={successFollowUp.correlationId}
-                    variant="onLight"
-                    className="text-left"
-                  />
-                ) : null}
                 <p className="text-center text-[0.95rem] font-medium leading-snug text-m2m-panel font-sans">
                   Thank you! We&apos;ll send your guide.
                 </p>
@@ -243,55 +229,32 @@ export function DivorceAerialLead() {
                     {submitting ? "Sending…" : "Get Your Free Guide Now"}
                   </button>
 
+                  <p className="text-center text-xs leading-relaxed text-m2m-panel/80" style={{ fontFamily: "var(--font-sans)" }}>
+                    Prefer direct support?
+                    <a
+                      href={M2M_PHONE_HREF}
+                      className="mx-1 text-m2m-panel underline decoration-m2m-gold/60 underline-offset-4 hover:text-m2m-gold-dim"
+                    >
+                      {M2M_PHONE_DISPLAY}
+                    </a>
+                    <a
+                      href="/contact-us?intent=seller"
+                      className="ml-1 text-m2m-panel underline decoration-m2m-gold/60 underline-offset-4 hover:text-m2m-gold-dim"
+                      aria-label="Contact us"
+                    >
+                      Contact us
+                    </a>{" "}
+                    and we&apos;ll help you map next steps.
+                  </p>
                   <p className="text-center">
                     <a
-                      href="#"
+                      href="/navigating-divorce#guide-form"
                       className="text-xs text-m2m-panel underline decoration-m2m-gold/60 underline-offset-4 hover:text-m2m-gold-dim"
                       style={{ fontFamily: "var(--font-sans)" }}
-                      onClick={(e) => e.preventDefault()}
                     >
-                      Click here to download
+                      Review this guide section again
                     </a>
                   </p>
-
-                  <div className="flex justify-center gap-5 pt-2 text-m2m-panel/70">
-                    <a
-                      href="https://www.facebook.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Facebook"
-                      className="hover:text-m2m-panel"
-                    >
-                      <Facebook className="h-5 w-5" strokeWidth={1.25} />
-                    </a>
-                    <a
-                      href="https://twitter.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Twitter"
-                      className="hover:text-m2m-panel"
-                    >
-                      <Twitter className="h-5 w-5" strokeWidth={1.25} />
-                    </a>
-                    <a
-                      href="https://www.instagram.com/marching2more"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Instagram"
-                      className="hover:text-m2m-panel"
-                    >
-                      <Instagram className="h-5 w-5" strokeWidth={1.25} />
-                    </a>
-                    <a
-                      href="https://www.linkedin.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="LinkedIn"
-                      className="hover:text-m2m-panel"
-                    >
-                      <Linkedin className="h-5 w-5" strokeWidth={1.25} />
-                    </a>
-                  </div>
                 </form>
               </>
             )}

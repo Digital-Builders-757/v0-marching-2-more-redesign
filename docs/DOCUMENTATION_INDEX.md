@@ -21,10 +21,14 @@
 | [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) | **Start here (live):** website → API → GHO architecture, where data lands, operator verification, partial success |
 | [M2M_CLIENT_CRM_HANDOFF_GUIDE.md](./M2M_CLIENT_CRM_HANDOFF_GUIDE.md) | Client/team: what the site vs GHO does, how to confirm leads, layout vs data visibility |
 | [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) | GHL sub-account tasks: fields, pipelines, tags, workflows, calendars |
+| [M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md](./M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) | Operator CRM spec: funnel pipelines, tags, layouts, QA (paired with MATRIX/SYSTEM_GUIDE for website behavior and strict full-pipeline success gating) |
+| [M2M_ASSET_MAP.md](./M2M_ASSET_MAP.md) | Marketing images inventory (`public/images/`), hero vs support roles, duplicates, CRM crosswalk to client GHL spec + LEAD_CAPTURE_MATRIX |
 | [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) | Ordered env + QA steps for live hookup and verification |
 | [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) | GHL assumptions, tag/field rules, `npm run ghl:operator-check`, production triage |
 | [M2M_LEAD_CAPTURE_MATRIX.md](./M2M_LEAD_CAPTURE_MATRIX.md) | Route-by-route matrix: funnels, key fields, urgency mode, GHO expectations |
 | [M2M_LEAD_CAPTURE_QA.md](./M2M_LEAD_CAPTURE_QA.md) | Manual QA template + live verification script |
+| [website-launch-hardening-report.md](./website-launch-hardening-report.md) | Client-facing pre-domain launch readiness (routes, forms, GHL, quizzes, CTAs, compliance notes) |
+| [internal-hardening-findings.md](./internal-hardening-findings.md) | Internal engineering detail, resolved items log, browser QA matrix |
 | [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md) | Skimmable status: done vs blocked (GHL) vs remaining QA / next operator steps |
 | [ROADMAP.md](./ROADMAP.md) | Pointer to MVP_STATUS_ROADMAP (search alias) |
 | [development/BRANCHING.md](./development/BRANCHING.md) | Branch + PR flow toward `develop` |

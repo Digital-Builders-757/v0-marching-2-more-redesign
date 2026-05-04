@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 import {
   Select,
@@ -68,17 +68,26 @@ export function M2mLeadDobField({
   selectItemClassName?: string
 }) {
   const [parts, setParts] = useState(() => parseIsoParts(value))
-  const [prevProp, setPrevProp] = useState(value)
+  const prevValueRef = useRef(value)
 
-  if (value !== prevProp) {
-    const wasComplete = /^\d{4}-\d{2}-\d{2}$/.test(prevProp)
+  useEffect(() => {
+    const previous = prevValueRef.current
+    const wasComplete = /^\d{4}-\d{2}-\d{2}$/.test(previous)
+    let nextParts: { y: string; m: string; d: string } | null = null
+
     if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-      setParts(parseIsoParts(value))
+      nextParts = parseIsoParts(value)
     } else if (value === "" && wasComplete) {
-      setParts({ y: "", m: "", d: "" })
+      nextParts = { y: "", m: "", d: "" }
     }
-    setPrevProp(value)
-  }
+
+    prevValueRef.current = value
+
+    if (!nextParts) return
+    queueMicrotask(() => {
+      setParts(nextParts)
+    })
+  }, [value])
 
   const yVal = parts.y
   const mVal = parts.m

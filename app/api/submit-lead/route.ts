@@ -51,6 +51,5 @@ export async function POST(request: Request) {
     contactId: result.contactId,
     opportunityId: result.opportunityId,
     correlationId: result.correlationId,
-    ...(result.warnings?.length ? { warnings: result.warnings } : {}),
   })
 }

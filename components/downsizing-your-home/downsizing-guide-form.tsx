@@ -5,13 +5,12 @@ import { useState } from "react"
 
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
-import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
 import {
   M2M_URGENCY_LABEL_SHORT_FORM,
@@ -42,10 +41,6 @@ export function DownsizingGuideForm() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
-  const [successFollowUp, setSuccessFollowUp] = useState<{
-    warnings: SubmitLeadWarningCode[]
-    correlationId: string
-  } | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -79,7 +74,6 @@ export function DownsizingGuideForm() {
         setSubmitError(res)
         return
       }
-      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -92,14 +86,6 @@ export function DownsizingGuideForm() {
         id={DOWNSIZING_GUIDE_SECTION_ID}
         className="scroll-mt-28 space-y-4 rounded-sm bg-m2m-cream p-8 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:p-10"
       >
-        {successFollowUp?.warnings.length ? (
-          <M2mLeadSubmitWarnings
-            warnings={successFollowUp.warnings}
-            correlationId={successFollowUp.correlationId}
-            variant="onLight"
-            className="text-left"
-          />
-        ) : null}
         <p className="text-center text-lg text-m2m-deep font-display" role="status" aria-live="polite">
           Thank you! We&apos;ll send your downsizing guide.
         </p>
@@ -131,7 +117,7 @@ export function DownsizingGuideForm() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div className="sm:col-span-1">
             <Label htmlFor="ds-first" className={m2mLeadFieldLabelClass}>
-              First name
+              First Name
             </Label>
             <Input
               id="ds-first"
@@ -145,7 +131,7 @@ export function DownsizingGuideForm() {
           </div>
           <div className="sm:col-span-1">
             <Label htmlFor="ds-last" className={m2mLeadFieldLabelClass}>
-              Last name
+              Last Name
             </Label>
             <Input
               id="ds-last"

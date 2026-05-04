@@ -1,13 +1,20 @@
 /**
  * Copy and assets for `/downsizing-your-home`.
  *
- * SWAP: Replace placeholder `M2M_MEDIA` when final campaign art exists.
+ * Imagery paths: `public/images/downsizing/` (see `docs/M2M_ASSET_MAP.md`).
  */
-import { M2M_MEDIA } from "@/lib/m2m-media"
 
-/** Hero lifestyle background — warm interior / family moment. */
-// SWAP: client hero — couple downsizing / packing kitchen scene
-export const HERO_BACKGROUND = M2M_MEDIA.familyBackyard
+/** Hero — multi-generational family reflecting on memories during a planned move */
+export const HERO_BACKGROUND =
+  "/images/downsizing/m2m-downsizing-hero-family-photo-album-transition.png" as const
+
+/** Editorial image — “signs” section supporting icon grid */
+export const PROBLEMS_SUPPORT_IMAGE =
+  "/images/downsizing/m2m-downsizing-signs-family-packing-kitchen.png" as const
+
+/** Services column — professional consultation beside moving readiness */
+export const SERVICES_EDITORIAL_IMAGE =
+  "/images/downsizing/m2m-downsizing-services-consultation-tablet-boxes.png" as const
 
 export const HERO_HEADLINE = "Is It Time To Downsize?" as const
 
@@ -49,7 +56,7 @@ export const GUIDE_HEADING = "Downsizing Guide" as const
 export const GUIDE_INTRO =
   "Request the guide for practical steps, timing considerations, and how we support your move — delivered by email or mailed to your home." as const
 
-export const GUIDE_CTA_LABEL = "Get your guide" as const
+export const GUIDE_CTA_LABEL = "Get Your Guide" as const
 
 export const SERVICE_BLOCKS = [
   {
@@ -80,6 +87,10 @@ export const GUIDE_CALLOUT_HEADING = "Your personalized roadmap starts with the 
 
 export const GUIDE_CALLOUT_BODY =
   "Download the guide for a calm, step-by-step look at preparing your home, timing the market, and planning your next chapter — then connect with our team when you are ready to talk specifics." as const
+
+/** Rounded vignette beside roadmap callout */
+export const GUIDE_CALLOUT_IMAGE =
+  "/images/downsizing/m2m-downsizing-guide-callout-moving-optimism.png" as const
 
 export const DOWNSIZING_FAQ_ITEMS = [
   {

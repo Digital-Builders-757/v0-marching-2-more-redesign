@@ -45,7 +45,7 @@ flowchart LR
   - **Buyer** → pipeline **`GHL_BUYER_PIPELINE_ID`**, first stage **`GHL_BUYER_STAGE_NEW_INQUIRY_ID`** (human name: **M2M Buyer Pipeline** / **New Inquiry** in the M2M account).
   - **Seller** → **`GHL_SELLER_PIPELINE_ID`**, **`GHL_SELLER_STAGE_NEW_INQUIRY_ID`** (**M2M Seller Pipeline** / **New Inquiry**).
   - Name pattern: `M2M Web — Buyer|Seller — {full name}` ([submit-lead](../lib/ghl/submit-lead.ts)).
-- If **any** of the four pipeline/stage env vars is missing, the server still upserts the contact and applies tags, logs **`[ghl] opportunity_skipped`**, and may return **`opportunity_failed`** in `warnings` if creation was attempted and failed.
+- If **any** of the four pipeline/stage env vars is missing, submission now fails fast with a configuration error and does **not** render a success state in the browser.
 
 ---
 
@@ -80,11 +80,12 @@ flowchart LR
 
 ---
 
-## 6. Partial success and warnings
+## 6. Strict success contract (no partial-success success states)
 
-- Order of operations: **upsert contact** → **tags** → **opportunity** (if configured) → **note** (if `notes` sent) — [§3.9 in operator doc](./M2M_GHL_OPERATOR_VERIFICATION.md).
+- Order of operations: **upsert contact** → **tags** → **opportunity** → **note** — [§3.9 in operator doc](./M2M_GHL_OPERATOR_VERIFICATION.md).
 - If the **first** step (upsert) fails, the API returns **`ok: false`**, a **`code`** (often `crm_*`), and a **`correlationId`**.
-- If the first step **succeeds** but a later step fails, the API can still return **`ok: true`** with **`warnings`**: `tags_failed`, `opportunity_failed`, or `note_failed`. The UI may show a quiet “Heads up” with the **`correlationId`**; Vercel logs include `[ghl] tags_failed_partial`, `[ghl] opportunity_failed_partial`, `[ghl] contact_note_failed_partial`.
+- If any later required step fails (`contacts_tags`, `opportunities_create`, `contacts_note`), the API now returns **`ok: false`** with `failed_step`, `code`, and `correlationId`.
+- Browser UIs should only show thank-you states when the server returns `ok: true` after full pipeline completion.
 - **Always** use **`correlationId`** to join browser → Vercel → GHO when debugging.
 
 ---
@@ -94,9 +95,9 @@ flowchart LR
 1. **TEXT urgency vs dropdown** — Look at the field tied to `GHL_CF_URGENCY`, not a differently labeled dropdown.
 2. **Contact layout** — Urgency and DOB may be **in the data** but **not on the default contact screen** until GHO admin adds them to the layout.
 3. **Tag spelling** — Env tags must match GHO **byte-for-byte** (ASCII hyphen, spaces).
-4. **Empty tag env** — If buyer/seller tag lists are empty, the **tags** API step is **skipped**; the contact can still be created.
-5. **“No opportunity”** — Often means incomplete pipeline **env** in Vercel, not a failed form submit.
-6. **Notes** — If `note_failed` appears, the **contact** may still exist; re-check or add a manual note in GHO.
+4. **Empty tag env** — If buyer/seller tag lists are empty, submission fails as a configuration issue (no success state).
+5. **“No opportunity”** — Usually means incomplete pipeline **env** in Vercel, and now correctly presents as a failed submission (no false success).
+6. **Notes** — Operator note creation is part of the required success path; note failures now block success.
 
 ---
 
@@ -105,7 +106,7 @@ flowchart LR
 | File | Role |
 |------|------|
 | [`app/api/submit-lead/route.ts`](../app/api/submit-lead/route.ts) | HTTP entry, `correlationId`, maps errors to status codes |
-| [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts) | Orchestration, warnings, logging |
+| [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts) | Orchestration, strict success contract, logging |
 | [`lib/ghl/lead-mapping.ts`](../lib/ghl/lead-mapping.ts) | Custom fields, tags, pipeline resolution |
 | [`lib/ghl/client.ts`](../lib/ghl/client.ts) | Upsert, tags, opportunity, **notes** |
 | [`lib/ghl/config.ts`](../lib/ghl/config.ts) | Env loading, `GHL_PATH_TAGS` |
