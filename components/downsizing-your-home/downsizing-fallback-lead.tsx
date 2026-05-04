@@ -96,6 +96,7 @@ export function DownsizingFallbackLead() {
         While we connect the guided quiz, leave your details and we&apos;ll send tailored next steps.
       </p>
       <form
+        data-testid="m2m-lead-form-downsizing-your-home"
         data-m2m-lead="downsizing-seller"
         onSubmit={submit}
         aria-busy={submitting}
@@ -111,7 +112,7 @@ export function DownsizingFallbackLead() {
               required
               autoComplete="given-name"
               value={form.firstName}
-              onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+              onChange={(e) => setForm((prev) => ({ ...prev, firstName: e.target.value }))}
               className={m2mLeadFieldInputClass}
             />
           </div>
@@ -124,7 +125,7 @@ export function DownsizingFallbackLead() {
               required
               autoComplete="family-name"
               value={form.lastName}
-              onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+              onChange={(e) => setForm((prev) => ({ ...prev, lastName: e.target.value }))}
               className={m2mLeadFieldInputClass}
             />
           </div>
@@ -132,7 +133,7 @@ export function DownsizingFallbackLead() {
         <M2mLeadDobField
           id="ds-dob"
           value={form.dateOfBirth}
-          onChange={(v) => setForm({ ...form, dateOfBirth: v })}
+          onChange={(v) => setForm((prev) => ({ ...prev, dateOfBirth: v }))}
           inputClassName={m2mLeadFieldInputClass}
           className="text-m2m-cream"
           helperClassName="!opacity-100 text-m2m-cream/70"
@@ -149,7 +150,7 @@ export function DownsizingFallbackLead() {
               required
               autoComplete="email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
               className={m2mLeadFieldInputClass}
             />
           </div>
@@ -163,7 +164,7 @@ export function DownsizingFallbackLead() {
               required
               autoComplete="tel"
               value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))}
               className={m2mLeadFieldInputClass}
             />
           </div>
@@ -177,7 +178,7 @@ export function DownsizingFallbackLead() {
             type="text"
             autoComplete="street-address"
             value={form.address}
-            onChange={(e) => setForm({ ...form, address: e.target.value })}
+            onChange={(e) => setForm((prev) => ({ ...prev, address: e.target.value }))}
             className={m2mLeadFieldInputClass}
             placeholder="Optional — helps us tailor your plan"
           />
@@ -185,7 +186,7 @@ export function DownsizingFallbackLead() {
         <M2mLeadUrgencySelect
           id="ds-urgency"
           value={form.timeline}
-          onChange={(v) => setForm({ ...form, timeline: v })}
+          onChange={(v) => setForm((prev) => ({ ...prev, timeline: v }))}
           variant="dark"
           hint={M2M_URGENCY_SHARED_HINT}
         />
@@ -197,7 +198,7 @@ export function DownsizingFallbackLead() {
             id="ds-context"
             rows={3}
             value={form.context}
-            onChange={(e) => setForm({ ...form, context: e.target.value })}
+            onChange={(e) => setForm((prev) => ({ ...prev, context: e.target.value }))}
             className={m2mLeadFieldTextareaClass}
             placeholder="Optional — goals, concerns, or timing details"
           />

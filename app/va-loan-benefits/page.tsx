@@ -10,13 +10,14 @@ import { VaHero } from "@/components/va-loan-benefits/va-hero"
 import { VaLeadForm } from "@/components/va-loan-benefits/va-lead-form"
 import { VaVideo } from "@/components/va-loan-benefits/va-video"
 import { VA_FAQ_ITEMS } from "@/components/va-loan-benefits/content"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata: Metadata = {
-  title: "VA Home Loan Benefits | Hampton Roads Military Buyers",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "VA Home Loan Benefits | Hampton Roads | Marching 2 More",
   description:
-    "Zero-down basics, funding fee context, and PCS-friendly buying in Virginia Beach and Hampton Roads — VA loan education and team support from Marching 2 More.",
-  alternates: { canonical: "/va-loan-benefits" },
-}
+    "Zero-down basics, funding fee context, and PCS-friendly buying in Virginia Beach and Hampton Roads — VA loan education and support from Marching 2 More.",
+  path: "/va-loan-benefits",
+})
 
 export default function VaLoanBenefitsPage() {
   return (

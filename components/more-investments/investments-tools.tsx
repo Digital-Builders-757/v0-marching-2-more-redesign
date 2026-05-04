@@ -2,7 +2,14 @@ import Link from "next/link"
 
 import { M2mLeadQuizSection } from "@/components/m2m-lead-quiz-section"
 import { M2mContainer } from "@/components/m2m-layout"
-import { GOHIGHLEVEL_BRRRR_ANALYZER_URL, GOHIGHLEVEL_QUIZ_INVESTOR_URL, isGohighlevelUrlConfigured } from "@/lib/m2m-site"
+import {
+  getConsultationRequestUrl,
+  GOHIGHLEVEL_BRRRR_ANALYZER_URL,
+  GOHIGHLEVEL_QUIZ_INVESTOR_URL,
+  isGohighlevelUrlConfigured,
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+} from "@/lib/m2m-site"
 import { cn } from "@/lib/utils"
 
 import {
@@ -28,6 +35,9 @@ export function InvestmentsTools() {
           </p>
         }
         embedSrc={GOHIGHLEVEL_QUIZ_INVESTOR_URL}
+        embedVariant="tall"
+        ctaHref={GOHIGHLEVEL_QUIZ_INVESTOR_URL}
+        ctaLabel="Open investor quiz"
         className="border-0 pb-10 md:pb-12"
         footnote={
           <>
@@ -39,10 +49,7 @@ export function InvestmentsTools() {
 
       <div className="border-t border-m2m-gold/15 bg-m2m-deep/35 pb-16 pt-12 md:pb-20 md:pt-16">
         <M2mContainer className="max-w-6xl">
-          <h3
-            className="text-center text-[clamp(1.35rem,2.8vw,1.85rem)] font-medium leading-snug text-m2m-cream"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
+          <h3 className="text-center text-[clamp(1.35rem,2.8vw,1.85rem)] font-medium leading-snug text-m2m-cream font-display">
             M2M BRRRR deal analyzer
           </h3>
           <p
@@ -58,6 +65,7 @@ export function InvestmentsTools() {
                 <iframe
                   src={GOHIGHLEVEL_BRRRR_ANALYZER_URL}
                   title={INVESTOR_BRRRR_TITLE}
+                  loading="lazy"
                   className="absolute inset-0 h-full w-full border-0"
                   allow="clipboard-write"
                 />
@@ -109,15 +117,22 @@ export function InvestmentsTools() {
             required.
           </p>
 
-          <p className="mt-6 text-center">
-            <Link
-              href="/contact-us?intent=buyer"
-              className="text-sm font-medium text-m2m-gold-lt underline decoration-m2m-gold/45 underline-offset-4 transition hover:text-m2m-cream"
-              style={{ fontFamily: "var(--font-nav)" }}
-            >
-              Contact the team about an investor plan →
-            </Link>
-          </p>
+          <div className="mx-auto mt-10 max-w-2xl text-center">
+            <p className="text-xs leading-relaxed text-m2m-cream/62 font-sans">
+              Prefer to walk through deals with someone?
+            </p>
+            <div className="m2m-quiet-action-row mt-3 justify-center">
+              <a href={M2M_PHONE_HREF} data-m2m-track="investments_phone_tools">
+                Call {M2M_PHONE_DISPLAY}
+              </a>
+              <span className="text-m2m-cream/35" aria-hidden>
+                ·
+              </span>
+              <Link href={getConsultationRequestUrl()} data-m2m-track="consultation_request">
+                Book a consultation
+              </Link>
+            </div>
+          </div>
         </M2mContainer>
       </div>
     </div>

@@ -7,18 +7,15 @@ import { M2mContainer } from "@/components/m2m-layout"
 import { ReviewsHero } from "@/components/reviews/reviews-hero"
 import { ReviewsList } from "@/components/reviews/reviews-list"
 import { ReviewsCta } from "@/components/reviews/reviews-cta"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata: Metadata = {
-  title: "Reviews & Testimonials | Five-Star Hampton Roads Team",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "Client Reviews & Testimonials | Marching 2 More",
   description:
-    "Read reviews from Navy and military families, first-time buyers, and Hampton Roads neighbors who worked with Marching 2 More for buying and selling — Virginia Beach–based, veteran-owned real estate.",
-  alternates: { canonical: "/reviews" },
-  openGraph: {
-    title: "Client Reviews | Marching 2 More",
-    description:
-      "Real stories from military relocation, listing, and purchase clients across Hampton Roads.",
-  },
-}
+    "Reviews from military families, first-time buyers, and Hampton Roads neighbors who bought or sold with Marching 2 More — veteran-owned in Virginia Beach.",
+  path: "/reviews",
+  openGraphTitle: "Client Reviews | Marching 2 More",
+})
 
 export default function ReviewsPage() {
   return (

@@ -11,6 +11,7 @@ import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { BLOG_POSTS, getPostBySlug } from "@/lib/blog/posts"
 import { m2mBlogCategoryToCluster } from "@/lib/m2m-content-clusters"
 import { BlogPostContentBlocks } from "@/lib/blog/render-post-content"
+import { M2M_SEO_SITE_NAME } from "@/lib/m2m-seo-metadata"
 import { getPrimaryConsultationBookUrl, M2M_SITE_ORIGIN } from "@/lib/m2m-site"
 
 export async function generateStaticParams() {
@@ -25,21 +26,29 @@ export async function generateMetadata({
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) {
-    return { title: "Article not found" }
+    return { title: `Article not found | ${M2M_SEO_SITE_NAME}` }
   }
   const description =
     post.excerpt.length > 165 ? `${post.excerpt.slice(0, 162).trimEnd()}…` : post.excerpt
-  const canonical = `${M2M_SITE_ORIGIN}/blog/${post.slug}`
+  const path = `/blog/${post.slug}`
+  const pageTitle = `${post.title} | ${M2M_SEO_SITE_NAME}`
   return {
-    title: post.title,
+    title: pageTitle,
     description,
-    alternates: { canonical },
+    alternates: { canonical: path },
     openGraph: {
       title: post.title,
       description,
       type: "article",
       publishedTime: post.publishedAt,
-      url: canonical,
+      url: path,
+      siteName: M2M_SEO_SITE_NAME,
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
     },
   }
 }

@@ -45,7 +45,10 @@ export function M2mLeadQuizSection({
   children,
 }: M2mLeadQuizSectionProps) {
   const showEmbed = Boolean(embedSrc && isQuizEmbedSrcConfigured(embedSrc))
-  const showExternalCta = ctaHref && isGohighlevelUrlConfigured(ctaHref)
+  const showExternalCta = Boolean(
+    ctaHref?.trim() &&
+      (isGohighlevelUrlConfigured(ctaHref) || isQuizEmbedSrcConfigured(ctaHref)),
+  )
   const variant = embedVariant === "tall" ? "tall" : "standard"
 
   return (
@@ -56,10 +59,7 @@ export function M2mLeadQuizSection({
     >
       <M2mContainer className="max-w-4xl">
         <div className="mx-auto max-w-3xl text-center">
-          <p
-            className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-gold sm:text-[0.7rem]"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
+          <p className="mb-4 text-center text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-m2m-gold sm:text-[0.68rem] font-nav">
             Quick Assessment
           </p>
           <h2
@@ -70,30 +70,47 @@ export function M2mLeadQuizSection({
           </h2>
           <div className="mx-auto mt-5 h-px w-16 bg-m2m-gold/60" aria-hidden />
           {description ? (
-            <div className="mx-auto mt-6 max-w-2xl text-balance text-sm leading-relaxed text-m2m-cream/90 sm:text-base font-sans">
+            <div className="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-m2m-cream/90 font-sans">
               {description}
             </div>
           ) : null}
         </div>
 
         {showEmbed ? (
-          <div className="mx-auto mt-10 max-w-full sm:mt-12">
-            <div
-              className={cn(
-                "max-w-full overflow-hidden rounded-md border border-m2m-gold/30 bg-gradient-to-b from-m2m-deep/45 to-m2m-deep",
-                "shadow-[0_28px_72px_-12px_rgba(0,0,0,0.4)] ring-1 ring-m2m-gold/25 ring-inset",
-              )}
-            >
-              <div className={cn(embedIframeWrapperClasses[variant])}>
-                <iframe
-                  src={embedSrc}
-                  title={title}
-                  className="absolute inset-0 h-full w-full min-h-full rounded-[inherit] border-0 bg-m2m-black/20"
-                  allow="clipboard-write"
-                />
+          <>
+            <div className="mx-auto mt-10 max-w-full sm:mt-12">
+              <div
+                className={cn(
+                  "max-w-full overflow-hidden rounded-md border border-m2m-gold/30 bg-gradient-to-b from-m2m-deep/45 to-m2m-deep",
+                  "shadow-[0_28px_72px_-12px_rgba(0,0,0,0.4)] ring-1 ring-m2m-gold/25 ring-inset",
+                )}
+              >
+                <div className={cn(embedIframeWrapperClasses[variant])}>
+                  <iframe
+                    src={embedSrc}
+                    title={title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full min-h-full rounded-[inherit] border-0 bg-m2m-black/20"
+                    allow="clipboard-write"
+                  />
+                </div>
               </div>
             </div>
-          </div>
+            {showExternalCta ? (
+              <div className="mt-8 flex justify-center px-1">
+                <Button
+                  asChild
+                  variant="m2mGold"
+                  size="lg"
+                  className="min-h-12 w-full max-w-sm px-8 sm:w-auto sm:max-w-none"
+                >
+                  <Link href={ctaHref!} target="_blank" rel="noreferrer">
+                    {ctaLabel}
+                  </Link>
+                </Button>
+              </div>
+            ) : null}
+          </>
         ) : null}
 
         {!showEmbed && children ? (
@@ -116,7 +133,7 @@ export function M2mLeadQuizSection({
         ) : null}
 
         {!showEmbed && !children && !showExternalCta ? (
-          <p className="mx-auto mt-10 max-w-xl rounded-md border border-dashed border-m2m-gold/35 bg-m2m-deep/30 px-5 py-5 text-center text-sm leading-relaxed text-m2m-cream/82 font-sans sm:px-6">
+          <p className="mx-auto mt-10 max-w-xl rounded-md border border-dashed border-m2m-gold/35 bg-m2m-deep/30 px-5 py-5 text-center text-base leading-relaxed text-m2m-cream/82 font-sans sm:px-6">
             Quiz connection is almost ready — we&apos;ll drop in the GoHighLevel embed URL in{" "}
             <code className="text-m2m-gold-lt">lib/m2m-site.ts</code> when marketing provides it.
           </p>

@@ -11,7 +11,7 @@ concurrency:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
@@ -39,3 +39,9 @@ jobs:
         # Next 16.2+ uses Turbopack for production builds; `--no-turbo` was removed from the CLI.
         # If linux CI hits lightningcss native resolution issues, pin/install the correct optional deps for the runner.
         run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: E2E (funnel regression)
+        run: npm run test:e2e

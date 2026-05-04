@@ -19,11 +19,7 @@ export function InvestmentsValue() {
       aria-labelledby="investments-value-heading"
     >
       <M2mContainer>
-        <h2
-          id="investments-value-heading"
-          className="max-w-3xl text-[clamp(1.65rem,3.2vw,2.35rem)] font-medium leading-snug text-m2m-cream"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
+        <h2 id="investments-value-heading" className="m2m-section-title max-w-3xl text-m2m-cream">
           {INVESTOR_VALUE_HEADING}
         </h2>
         <p
@@ -55,31 +51,24 @@ export function InvestmentsValue() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-8">
+        <div className="mt-12 flex flex-col items-start gap-5">
           <M2mConsultationCta
-            variant="outlineCream"
-            className="w-full min-[400px]:w-auto"
+            variant="gold"
+            className="w-full min-[400px]:w-auto px-9"
             data-m2m-track="consultation_request"
             data-m2m-track-loc="investments_value"
           >
-            Book a consultation
+            Book investor consultation
           </M2mConsultationCta>
-          <Link
-            href="/reviews"
-            className="text-sm font-medium text-m2m-gold-lt underline decoration-m2m-gold/45 underline-offset-4 transition hover:text-m2m-cream"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
-            Read client reviews
-          </Link>
-          <a
-            href={GOOGLE_REVIEW_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm font-medium text-m2m-gold-lt underline decoration-m2m-gold/45 underline-offset-4 transition hover:text-m2m-cream"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
-            Google reviews
-          </a>
+          <div className="m2m-quiet-action-row mt-0">
+            <Link href="/reviews">Client reviews</Link>
+            <span className="text-m2m-cream/35" aria-hidden>
+              ·
+            </span>
+            <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noreferrer">
+              Google reviews
+            </a>
+          </div>
         </div>
       </M2mContainer>
     </section>

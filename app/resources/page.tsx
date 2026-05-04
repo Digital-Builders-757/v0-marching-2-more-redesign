@@ -9,19 +9,17 @@ import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { RESOURCE_EXTERNAL_LINKS } from "@/lib/m2m-site"
 
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
+
 import { ResourcesChecklistForm } from "./resources-checklist-form"
 
-export const metadata: Metadata = {
-  title: "Seller Resources & Pre-Listing Checklist",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "Seller Resources & Pre-Listing Checklist | Marching 2 More",
   description:
-    "Download the Marching 2 More pre-listing guide, explore trusted housing links (VA, HUD, Virginia Housing), and connect seller tools — CMA, valuation, and local team support in Hampton Roads.",
-  alternates: { canonical: "/resources" },
-  openGraph: {
-    title: "Resources for Sellers | Marching 2 More",
-    description:
-      "Pre-listing checklist and vetted links for Hampton Roads homeowners preparing to sell.",
-  },
-}
+    "Pre-listing checklist, trusted housing links (VA, HUD, Virginia Housing), and seller tools — CMA, valuation, and Hampton Roads support from Marching 2 More.",
+  path: "/resources",
+  openGraphTitle: "Seller Resources | Marching 2 More",
+})
 
 const resourceLinks = [
   {

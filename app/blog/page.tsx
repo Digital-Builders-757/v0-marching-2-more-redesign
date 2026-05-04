@@ -6,18 +6,15 @@ import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata: Metadata = {
-  title: "Blog — Hampton Roads Real Estate & Military Moves",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "Blog | Hampton Roads Real Estate & Military Moves | Marching 2 More",
   description:
-    "Practical articles on Virginia Beach and Hampton Roads real estate, PCS moves, VA loans, selling strategy, coastal homes, and buyer/seller education from Marching 2 More.",
-  alternates: { canonical: "/blog" },
-  openGraph: {
-    title: "Marching 2 More Blog",
-    description:
-      "Local market context and military-friendly homebuying guidance from a veteran-owned Virginia Beach team.",
-  },
-}
+    "Practical articles on Virginia Beach and Hampton Roads real estate, PCS moves, VA loans, selling strategy, and buyer/seller education from Marching 2 More.",
+  path: "/blog",
+  openGraphTitle: "Marching 2 More Blog",
+})
 
 export default function BlogIndexPage() {
   return (

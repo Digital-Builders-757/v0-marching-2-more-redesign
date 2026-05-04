@@ -2,10 +2,12 @@
  * Copy and asset paths for `/fha-loan` only.
  */
 
-import { M2M_MEDIA } from "@/lib/m2m-media"
+/** Hero: inclusive family + advisor at home — consistent with FHA audience. */
+export const HERO_BACKGROUND = "/images/site/m2m-partners-consult-evening-home.png" as const
 
-/** Hero: approachable first-time homebuyer aspirational imagery. */
-export const HERO_BACKGROUND = "/images/fha-loan/fha-hero-first-time-buyer.jpg" as const
+/** Supporting line beneath headline — grants + FHA context without changing route anchors */
+export const HERO_SUBLINE =
+  "Understand FHA basics, down-payment assistance programs, Virginia Housing DPAL pathways, and local grants — plus whether this path fits your budget before you shop." as const
 
 /** Quote form background — helpful, guided, confidence-building imagery. */
 export const FLAG_QUOTE_BACKGROUND = "/images/fha-loan/fha-quiz-guidance.jpg" as const
@@ -110,12 +112,20 @@ export const TESTIMONIALS = [
 ] as const
 
 export const QUOTE_FORM = {
-  title: "Request a Quote",
-  subtitle: "Please take a moment to fill out the form.",
-  submitLabel: "Submit",
+  title: "Tell Us About Your FHA Goals",
+  subtitle:
+    "Questions about FHA, down payment grants, Virginia Housing DPAL or local assistance — send a note and we’ll outline practical next steps. (Loan approval stays with your lender.)",
+  submitLabel: "Send My Questions",
+  ariaSummary: "FHA homebuyer intake",
 } as const
 
 export const FHA_FAQ_ITEMS = [
+  {
+    id: "fh-0",
+    question: "Can you help with down payment grants or assistance programs?",
+    answer:
+      "Yes — we routinely help Hampton Roads buyers understand Virginia Housing DPAL paths, locality programs you may qualify for, and lender overlays. Program rules change often; our job is pairing you with the right introductions and timelines while your lender confirms eligibility.",
+  },
   {
     id: "fh-1",
     question: "Is FHA only for first-time buyers?",

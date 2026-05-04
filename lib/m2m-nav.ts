@@ -17,7 +17,7 @@ export const M2M_WIX_HEADER_MENU_LINKS: readonly M2MNavLink[] = [
   { label: "Home", href: "/" },
   { label: "Home Search", href: "/home-search" },
   { label: "More Resources", href: "/resources" },
-  { label: "CMA Request Form", href: "/cma-form" },
+  { label: "Request a CMA", href: "/cma-form" },
   { label: "Free Home Valuation", href: "/free-home-valuation" },
   { label: "Our Team", href: "/our-team" },
   { label: "Reviews", href: "/reviews" },
@@ -37,7 +37,7 @@ export const M2M_FOOTER_QUICK_LINKS: readonly M2MNavLink[] = [
 
 export const M2M_FOOTER_POLICY_LINKS: readonly M2MNavLink[] = [
   { label: "Cookie Policy", href: "/cookie-policy" },
-  { label: "Disclaimers", href: "/copy-of-privacy-policy" },
+  { label: "Disclaimers", href: "/privacy-policy" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms and Conditions", href: "/terms-and-conditions" },
   { label: "Accessibility Statement", href: "/accessibility-statement" },

@@ -40,7 +40,7 @@ function parseIsoParts(iso: string): { y: string; m: string; d: string } {
 }
 
 const triggerBase =
-  "min-h-11 w-full rounded border bg-transparent px-2.5 py-2 text-sm outline-none focus:ring-2 touch-manipulation font-sans data-[size=default]:h-auto data-[size=default]:min-h-11"
+  "min-h-12 w-full rounded border bg-transparent px-2.5 py-2 text-base outline-none focus:ring-2 touch-manipulation font-sans data-[size=default]:h-auto data-[size=default]:min-h-12 md:min-h-11 md:text-sm"
 
 /** Shared date-of-birth field for GHL-required intake (YYYY-MM-DD). Uses Radix Select so menus work inside overflow-hidden heroes. */
 export function M2mLeadDobField({
@@ -167,7 +167,7 @@ export function M2mLeadDobField({
           }}
         />
       ) : null}
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className="col-span-2 sm:col-span-2">
           <span className="sr-only" id={`${id}-month-hint`}>
             Birth month

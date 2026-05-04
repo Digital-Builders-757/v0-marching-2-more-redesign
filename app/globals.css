@@ -132,14 +132,22 @@
 
 @layer components {
   .m2m-eyebrow {
-    @apply text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-panel sm:text-[0.7rem] font-nav;
+    @apply text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-m2m-panel sm:tracking-[0.2em] font-nav;
   }
   .m2m-eyebrow-gold {
-    @apply text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-m2m-gold sm:text-[0.7rem] font-nav;
+    @apply text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-m2m-gold sm:tracking-[0.2em] font-nav;
   }
   .m2m-section-title {
     @apply text-[clamp(1.65rem,5vw,2.65rem)] font-medium leading-[1.12] tracking-tight text-pretty sm:text-[clamp(1.85rem,3.5vw,2.65rem)] sm:leading-tight;
     font-family: var(--font-display);
+  }
+
+  /** Secondary actions on panel (under one gold primary CTA)—use text links; avoid stacking multiple outline buttons */
+  .m2m-quiet-action-row {
+    @apply mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-normal normal-case tracking-normal text-m2m-cream/75 font-sans;
+  }
+  .m2m-quiet-action-row a {
+    @apply inline-flex min-h-10 items-center font-medium text-m2m-gold-lt underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-cream;
   }
 
   /** Skip to main: visually hidden until keyboard focus (see `app/layout.tsx`) */

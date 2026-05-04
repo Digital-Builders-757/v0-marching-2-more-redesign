@@ -118,7 +118,7 @@ export default function CmaFormPage() {
                     className="text-[0.62rem] tracking-[0.25em] uppercase text-m2m-gold"
                     style={{ fontFamily: "var(--font-nav)" }}
                   >
-                    CMA Request Form
+                    Request a CMA
                   </p>
                   <span className="h-px w-24 bg-m2m-cream/40" />
                 </div>

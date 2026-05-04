@@ -2,9 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Banknote, CalendarCheck, CreditCard, Globe2 } from "lucide-react"
 
-import { m2mOutlineGoldLinkClass } from "@/components/m2m-cta"
 import { M2mContainer } from "@/components/m2m-layout"
-import { cn } from "@/lib/utils"
 
 import {
   CREDIT_PLAYBOOK_SECTION_ID,
@@ -21,23 +19,7 @@ const ICONS = [CalendarCheck, Banknote, Globe2, CreditCard] as const
 export function CreditTakeaways() {
   return (
     <section className="border-b border-m2m-gold/15" aria-labelledby="credit-takeaways-heading">
-      <div className="bg-m2m-panel-lt/90 py-8">
-        <M2mContainer className="flex justify-center">
-          <Link
-            href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
-            className={cn(
-              m2mOutlineGoldLinkClass,
-              "w-full max-w-md border-m2m-gold/80 bg-m2m-panel px-4 hover:border-m2m-gold sm:w-auto",
-            )}
-          >
-            {DOWNLOAD_GUIDE_CTA}
-          </Link>
-        </M2mContainer>
-      </div>
-
-      <div className="min-h-8 sm:min-h-10" aria-hidden />
-
-      <div className="relative min-h-[28rem] w-full sm:min-h-[32rem]">
+      <div className="relative min-h-[26rem] w-full sm:min-h-[30rem]">
         <Image
           src={TAKEAWAYS_BACKGROUND}
           alt=""
@@ -50,11 +32,7 @@ export function CreditTakeaways() {
 
         <M2mContainer className="relative z-10 py-14 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
-            <h2
-              id="credit-takeaways-heading"
-              className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-medium leading-tight text-m2m-cream"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
+            <h2 id="credit-takeaways-heading" className="m2m-section-title leading-tight text-m2m-cream">
               {TAKEAWAYS_HEADING}
             </h2>
             <p
@@ -63,13 +41,18 @@ export function CreditTakeaways() {
             >
               {TAKEAWAYS_SUBHEAD}
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col items-center gap-3">
               <Link
                 href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
-                className="inline-flex min-h-12 min-w-[8rem] items-center justify-center bg-m2m-gold px-10 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-m2m-deep shadow-lg transition hover:bg-m2m-gold-lt"
-                style={{ fontFamily: "var(--font-nav)" }}
+                className="inline-flex min-h-12 w-full max-w-xs items-center justify-center bg-m2m-gold px-10 py-3.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-m2m-deep shadow-lg transition hover:bg-m2m-gold-lt sm:w-auto font-nav"
               >
                 {TAKEAWAYS_START_CTA}
+              </Link>
+              <Link
+                href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
+                className="font-sans text-sm font-medium text-m2m-gold-lt underline decoration-m2m-gold/45 underline-offset-4 hover:text-m2m-cream"
+              >
+                {DOWNLOAD_GUIDE_CTA}
               </Link>
             </div>
           </div>
@@ -83,7 +66,7 @@ export function CreditTakeaways() {
                     <Icon className="h-7 w-7" strokeWidth={1.5} aria-hidden />
                   </div>
                   <span
-                    className="mt-4 max-w-[14rem] text-sm font-medium leading-snug text-m2m-cream underline decoration-m2m-gold/50 underline-offset-4"
+                    className="mt-4 max-w-[14rem] text-sm font-medium leading-snug text-m2m-cream/95"
                     style={{ fontFamily: "var(--font-sans)" }}
                   >
                     {item.label}

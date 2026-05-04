@@ -246,11 +246,18 @@ async function submitLead(e) {
     'Quiz source: navigating-divorce-quiz-v2',
   ].join('\n');
 
+  const urgencyLabel = (S.answers.q2 && S.answers.q2.label) ? String(S.answers.q2.label) : '';
+  const urgency = urgencyLabel
+    ? 'Divorce quiz — timeline: ' + urgencyLabel
+    : 'Divorce quiz — timeline not captured';
+
   const body = JSON.stringify({
     lead_type: 'seller',
     name: (firstName + ' ' + lastName).trim(),
     email: email,
     phone: phone || undefined,
+    urgency: urgency,
+    urgency_explicit: Boolean(urgencyLabel),
     source_page: window.location.href,
     source_path: '/navigating-divorce',
     notes: notes,

@@ -49,9 +49,9 @@ Header and global footer use `M2mConsultationCta` and `M2mContainer` where appli
 
 | Path | Role |
 |------|------|
-| `app/` | Routes, `layout.tsx`, `page.tsx`, metadata |
+| `app/` | Routes, `layout.tsx`, `page.tsx`, metadata; root `loading.tsx` shows branded shell during slow navigations |
 | `components/` | Page sections, layout chrome (`header`, `footer`), feature folders (`buy/`, `sell/`, …) |
-| `lib/` | `m2m-site.ts`, `m2m-nav.ts`, `m2m-media.ts`, `m2m-form.ts`, `utils.ts`, etc. |
+| `lib/` | `m2m-site.ts`, `m2m-nav.ts`, `m2m-media.ts`, `m2m-seo-metadata.ts` (shared `title` / Open Graph / Twitter defaults), `m2m-form.ts`, `utils.ts`, etc. |
 | `public/` | Static assets; `public/brand/`, route-specific image folders with `.gitkeep` |
 | `.cursor/` | Skills and slash-command prompts |
 
@@ -73,8 +73,8 @@ See [diagrams/site-routes.md](./diagrams/site-routes.md) for a grouped route lis
 
 ## CI
 
-- `npm run ci` → lint, placeholder test, `tsc`, `next build`.
-- `typescript.ignoreBuildErrors` may be set in `next.config.mjs`; still run typecheck in CI.
+- `npm run ci` → lint, Vitest, `tsc`, `next build`, Playwright e2e.
+- **`next build`** runs the TypeScript pass as part of the production build; this repo does **not** set `typescript.ignoreBuildErrors` (types must be clean for deploy).
 
 ## External CRM boundary
 

@@ -52,12 +52,17 @@ export function M2mLeadSubmitErrorAlert({
       role="alert"
       aria-live="polite"
       className={cn(
-        "rounded-xl border px-4 py-4 sm:px-5 sm:py-5",
+        "rounded-xl border px-4 py-5 sm:px-5 sm:py-5",
         shell,
         className,
       )}
     >
-      <p className={cn("text-[0.62rem] font-medium uppercase tracking-[0.2em] font-nav", eyebrowCls)}>
+      <p
+        className={cn(
+          "text-[0.7rem] font-medium uppercase tracking-[0.16em] font-nav sm:text-[0.62rem] sm:tracking-[0.2em]",
+          eyebrowCls,
+        )}
+      >
         {m.eyebrow}
       </p>
       <p className="mt-2.5 text-base font-semibold leading-snug tracking-tight font-sans">{m.title}</p>
@@ -73,7 +78,9 @@ export function M2mLeadSubmitErrorAlert({
             nextStepMuted,
           )}
         >
-          <p className="text-[0.62rem] font-medium uppercase tracking-[0.16em] font-nav opacity-90">What you can do</p>
+          <p className="text-[0.65rem] font-medium uppercase tracking-[0.14em] font-nav opacity-90 sm:text-[0.62rem] sm:tracking-[0.16em]">
+            What you can do
+          </p>
           <p className="mt-1 text-sm leading-relaxed font-sans">{m.nextStep}</p>
         </div>
       ) : null}
@@ -86,13 +93,17 @@ export function M2mLeadSubmitErrorAlert({
             variant === "onDark" ? "text-m2m-cream/90" : "text-m2m-deep/85",
           )}
         >
-          <a href={M2M_PHONE_HREF} className={linkCls}>
+          <a
+            href={M2M_PHONE_HREF}
+            className={cn(linkCls, "inline-flex min-h-10 items-center")}
+            aria-label={`Call Marching 2 More at ${M2M_PHONE_DISPLAY}`}
+          >
             {M2M_PHONE_DISPLAY}
           </a>
           <span className="mx-2 opacity-45" aria-hidden>
             ·
           </span>
-          <Link href="/contact-us" className={linkCls}>
+          <Link href="/contact-us" className={cn(linkCls, "inline-flex min-h-10 items-center")}>
             Contact us
           </Link>
         </p>
@@ -106,11 +117,11 @@ export function M2mLeadSubmitErrorAlert({
             variant === "onDark" ? "text-m2m-cream/70" : "text-m2m-deep/55",
           )}
         >
-          <p className="text-[0.62rem] font-medium uppercase tracking-[0.14em]">Reference</p>
+          <p className="text-[0.65rem] font-medium uppercase tracking-[0.14em] font-nav">Reference</p>
           <div className={cn("mt-2 rounded-md px-3 py-2", refWell)}>
             <p
               className={cn(
-                "text-left font-mono text-[0.74rem] leading-relaxed tracking-wide [overflow-wrap:anywhere] break-all select-all tabular-nums",
+                "text-left font-mono text-[0.78rem] leading-relaxed tracking-wide [overflow-wrap:anywhere] break-all select-all tabular-nums sm:text-[0.74rem]",
                 variant === "onDark" ? "text-m2m-cream" : "text-m2m-deep/95",
               )}
             >

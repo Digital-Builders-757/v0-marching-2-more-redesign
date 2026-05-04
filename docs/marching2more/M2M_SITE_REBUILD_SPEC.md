@@ -70,7 +70,7 @@ Columns/sections observed:
   - Marching 2 More
 - Policies links:
   - Cookie Policy → `/cookie-policy`
-  - Disclaimers → `/copy-of-privacy-policy`
+  - Disclaimers → **`/privacy-policy`** (canonical today; legacy `/copy-of-privacy-policy` redirects)
   - Privacy Policy → `/privacy-policy`
   - Terms and Conditions → `/terms-and-conditions`
   - Accessibility Statement → `/accessibility-statement`
@@ -233,8 +233,8 @@ Internal routes:
 
 Policy routes:
 - `/cookie-policy`
-- `/copy-of-privacy-policy` (used for “Disclaimers”)
-- `/privacy-policy`
+- `/privacy-policy` (footer “Disclaimers” and privacy content)
+- `/copy-of-privacy-policy` (redirects to `/privacy-policy`)
 - `/terms-and-conditions`
 - `/accessibility-statement`
 

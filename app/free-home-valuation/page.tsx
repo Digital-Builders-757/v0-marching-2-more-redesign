@@ -20,18 +20,15 @@ import {
   M2M_PHONE_HREF,
   REALSCOUT_HOME_VALUATION_URL,
 } from "@/lib/m2m-site"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata: Metadata = {
-  title: "Free Home Valuation & Seller Consultation",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "Free Home Valuation & Seller Consultation | Marching 2 More",
   description:
-    "Get a free online home valuation and optional personalized CMA follow-up from Marching 2 More — veteran-owned listing advisors for Virginia Beach, Norfolk, Chesapeake, and Hampton Roads.",
-  alternates: { canonical: "/free-home-valuation" },
-  openGraph: {
-    title: "Free Home Valuation | Marching 2 More",
-    description:
-      "RealScout estimate plus team follow-up — no pressure, clear next steps.",
-  },
-}
+    "Free online home valuation and optional CMA follow-up from Marching 2 More — veteran-owned listing advisors for Virginia Beach, Norfolk, Chesapeake, and Hampton Roads.",
+  path: "/free-home-valuation",
+  openGraphTitle: "Free Home Valuation | Marching 2 More",
+})
 
 export default function FreeHomeValuationPage() {
   return (

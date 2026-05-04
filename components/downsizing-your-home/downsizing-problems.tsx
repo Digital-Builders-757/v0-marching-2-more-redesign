@@ -1,3 +1,4 @@
+import Image from "next/image"
 import {
   ChevronsUpDown,
   FileText,
@@ -9,7 +10,12 @@ import {
 
 import { M2mContainer } from "@/components/m2m-layout"
 
-import { PROBLEM_ITEMS, PROBLEMS_HEADING, PROBLEMS_SUBHEAD } from "./content"
+import {
+  PROBLEM_ITEMS,
+  PROBLEMS_HEADING,
+  PROBLEMS_SUBHEAD,
+  PROBLEMS_SUPPORT_IMAGE,
+} from "./content"
 
 const ICON_MAP = {
   utilityBills: Zap,
@@ -50,6 +56,17 @@ export function DownsizingProblems() {
         >
           {PROBLEMS_SUBHEAD}
         </p>
+
+        <div className="relative mx-auto mt-12 aspect-[21/10] max-w-4xl overflow-hidden rounded-sm border border-m2m-gold/25 bg-m2m-deep/30 shadow-[0_20px_45px_rgba(0,0,0,0.2)]">
+          <Image
+            src={PROBLEMS_SUPPORT_IMAGE}
+            alt="Family calmly packing dishes together during a supportive move"
+            fill
+            className="object-cover object-[center_38%]"
+            sizes="(max-width:896px) 100vw, 896px"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-m2m-deep/45 via-transparent to-transparent" aria-hidden />
+        </div>
 
         <ul className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-14">
           {PROBLEM_ITEMS.map((item) => {

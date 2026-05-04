@@ -64,10 +64,10 @@ export function getLeadSubmitFailureMessaging(failure: SubmitLeadFailure): LeadS
 
   if (code === "crm_duplicate_or_merge") {
     return {
-      eyebrow: "You may already be in our system",
-      title: "We matched an existing contact",
+      eyebrow: "Record already exists",
+      title: "We couldn’t complete this save",
       body: error,
-      nextStep: "If you’re not sure everything updated, call or message us with the reference below.",
+      nextStep: "Call or message us with the reference below — we’ll confirm or update your info on our side.",
       showEscalationPath: true,
       referenceId: correlationId,
     }

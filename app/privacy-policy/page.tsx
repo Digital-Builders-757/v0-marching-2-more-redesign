@@ -1,11 +1,17 @@
+import type { Metadata } from "next"
+
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { PolicyPage } from "@/components/policy/policy-page"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata = {
-  title: "Privacy Policy | Marching 2 More Real Estate",
-}
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "Privacy Policy | Marching 2 More",
+  description:
+    "How Marching 2 More handles personal information for Hampton Roads real estate clients and site visitors.",
+  path: "/privacy-policy",
+})
 
 export default function PrivacyPolicyPage() {
   return (

@@ -24,4 +24,4 @@ Slash-style prompts stored here drive repeatable workflows. For **stack rules an
 
 **Note:** [sumarize.md](./sumarize.md) is a stub redirect → [summarize.md](./summarize.md).
 
-**CI parity:** Pull requests run the same sequence as **`npm run ci`**: lint → test (placeholder) → typecheck → build (see `.github/workflows/pr-ci.yml`).
+**CI parity:** Pull requests run the same sequence as **`npm run ci`**: lint → Vitest → typecheck → build → Playwright e2e (see `.github/workflows/pr-ci.yml`).

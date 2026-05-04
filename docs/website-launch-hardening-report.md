@@ -3,7 +3,7 @@
 **Prepared for:** Marching 2 More — pre-domain-connection readiness  
 **Review type:** Repository-level launch hardening (QA, integrations, configuration patterns, and identified risks)  
 **Date:** May 1, 2026  
-**Report refreshed:** 2026-05-01 — aligns with shipped repo improvements (static quiz API verification, foreclosure quiz React fallback, production TypeScript enforcement, footer image `alt`). See [WORK_ORDER.md](WORK_ORDER.md) “Launch engineering pass”.
+**Report refreshed:** 2026-05-03 — route metadata normalized (`lib/m2m-seo-metadata.ts`: titles, descriptions, Open Graph, Twitter); footer disclaimers link to `/privacy-policy` (legacy `/copy-of-privacy-policy` redirects); menu CMA label aligned with on-page copy. See [WORK_ORDER.md](WORK_ORDER.md) “Launch engineering pass” for prior entries.
 
 ---
 
@@ -87,7 +87,7 @@ Out of scope: live server logs, live GHL account verification, legal review of c
 | `/facing-foreclosure` | Pre-foreclosure campaign | [`app/facing-foreclosure/page.tsx`](../app/facing-foreclosure/page.tsx), `PreForeclosureForm`, `FacingForeclosureQuiz` | Verified in code |
 | `/more-investments` | Investor education | [`app/more-investments/page.tsx`](../app/more-investments/page.tsx), `InvestmentsTools` | Verified in code |
 | `/get-license-in-va` | Licensing referral | [`app/get-license-in-va/page.tsx`](../app/get-license-in-va/page.tsx) | Verified in code |
-| Legal / policies | Cookie, privacy, terms, accessibility, disclaimers route | `app/cookie-policy`, `privacy-policy`, `terms-and-conditions`, `accessibility-statement`, `copy-of-privacy-policy` | Verified in code |
+| Legal / policies | Cookie, privacy, terms, accessibility; legacy disclaimers URL redirects to privacy | `app/cookie-policy`, `privacy-policy`, `terms-and-conditions`, `accessibility-statement`, `copy-of-privacy-policy` (→ `/privacy-policy`) | Verified in code |
 | `not-found` | 404 | [`app/not-found.tsx`](../app/not-found.tsx) | Verified in code |
 
 **Requires manual verification:** Final sitemap parity, redirects at DNS / edge, and that analytics and metadata match the **actual** production hostname (see §8 for `M2M_SITE_ORIGIN`).
@@ -194,9 +194,9 @@ The following **variable names** appear in server-side CRM configuration (see [`
 
 - **Forms:** Shared classes support **touch-sized** controls (`min-h` patterns in [`lib/m2m-form.ts`](../lib/m2m-form.ts)); many submit buttons use **`disabled={submitting}`** — reasonable duplicate-submit protection at the component level. **Requires manual verification** on real devices.
 - **Skip link:** Root layout includes “Skip to main content” ([`app/layout.tsx`](../app/layout.tsx)).
-- **Images:** [`next.config.mjs`](../next.config.mjs) sets `images.unoptimized: true` and whitelists remote hosts. **Requires manual verification** for broken remote assets and alt text coverage site-wide.
+- **Images:** [`next.config.mjs`](../next.config.mjs) uses **default Next.js image optimization** for `next/image` (local + `remotePatterns` hosts). **Requires manual verification** for broken remote assets and alt text coverage site-wide.
 - **Placeholder / swap copy:** Campaign `content.ts` files and [`lib/m2m-media.ts`](../lib/m2m-media.ts) document interim imagery — expect ongoing creative swaps; not a functional defect.
-- **Policy route naming:** “Disclaimers” in the footer points to `copy-of-privacy-policy` — **polish** item; verify client is comfortable with URL wording.
+- **Policy route naming:** Footer “Disclaimers” points to **`/privacy-policy`** (canonical). Legacy **`/copy-of-privacy-policy`** still redirects there for old bookmarks.
 ---
 
 ## 11. Compliance and Content Risk Notes

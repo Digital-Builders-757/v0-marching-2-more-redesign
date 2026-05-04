@@ -14,7 +14,7 @@ import {
   MENU_SEARCH_PLACEHOLDER,
   resolveMenuSearchQuery,
 } from "@/lib/m2m-menu-search"
-import { M2M_PHONE_HREF } from "@/lib/m2m-site"
+import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 import { M2M_HEADER_AGENT_LINKS, M2M_WIX_HEADER_MENU_LINKS } from "@/lib/m2m-nav"
 
 export type HeaderProps = {
@@ -235,6 +235,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
               <li className="pt-1">
                 <a
                   href={M2M_PHONE_HREF}
+                  aria-label={`Call or text Marching 2 More at ${M2M_PHONE_DISPLAY}`}
                   className="flex min-h-11 items-center rounded-md px-3 py-2.5 text-base font-medium leading-snug text-m2m-cream transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/40"
                   onClick={() => setMenuOpen(false)}
                   style={{ fontFamily: "var(--font-nav)" }}

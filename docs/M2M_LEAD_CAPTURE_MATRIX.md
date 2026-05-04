@@ -1,6 +1,6 @@
 # Lead capture — route and surface matrix
 
-**Last updated:** 2026-05-01
+**Last updated:** 2026-05-03
 
 **API:** All production lead capture in this table posts **only** to `POST /api/submit-lead` (via `submitLeadToApi` in [`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts)). No GHL keys in the browser.
 
@@ -9,6 +9,8 @@
 **Urgency (TEXT):** The site writes timeline strings to the **TEXT** custom field `GHL_CF_URGENCY`, not a separate dropdown. **Short** forms use passive defaults in [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts) (“Not sure yet” / “Just exploring”) unless the user changes the control — server logs `[ghl] urgency_meta` with `explicit` and `valueBucket` for support.
 
 **GHO UI:** A field can be **saved** and still **not appear** on the default contact screen until that custom field is on the **contact layout** in GoHighLevel. See [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) §3.2, §3.5, §3.10.
+
+**Static quizzes** (`public/quizzes/...`) post the same JSON contract; they set **`source_path`** to the parent campaign route and include **`urgency`** (quiz timeline / landing intent) so `GHL_CF_URGENCY` stays populated like React forms.
 
 **Excluded (not in matrix):** Quiz embeds, external-only links, and pages without `submitLeadToApi` (see [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md)).
 

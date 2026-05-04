@@ -137,15 +137,16 @@ export function classifyGhlUserFacingError(params: {
 
   if (httpStatus === 409 || looksLikeDuplicateOrMerge(hints)) {
     const logDuplicateHint = duplicateLogHint(hints)
+    /** Strict pipeline: no “thank you” unless all steps succeed — do not imply a silent partial save. */
     return {
       code: "crm_duplicate_or_merge",
       logDuplicateHint,
       userError:
         logDuplicateHint === "phone"
-          ? "We already have a contact that matches this phone number (sometimes paired with a different email). Your details may still have updated — if you’re unsure anything saved, call or message us with the reference below."
+          ? "We couldn’t finish saving this submission because our system already has a contact that matches this phone number. Call or text us with the reference below — we’ll help without creating duplicate records."
           : logDuplicateHint === "email"
-            ? "We already have a contact with this email. Your details may still have updated — if you’re unsure anything saved, call or message us with the reference below."
-            : "We already have a contact that matches part of what you submitted. Your details may still have updated — if you’re unsure anything saved, call or message us with the reference below.",
+            ? "We couldn’t finish saving this submission because our system already has a contact with this email. Call or text us with the reference below — we’ll connect this request to the right record."
+            : "We couldn’t finish saving this submission because our system detected an existing contact that matches part of what you sent. Call or text us with the reference below — we’ll take care of you.",
     }
   }
 

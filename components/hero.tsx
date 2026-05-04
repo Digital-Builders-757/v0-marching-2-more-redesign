@@ -48,12 +48,18 @@ export function Hero() {
         {/* Background image with horizontal parallax */}
         <div
           ref={imageRef}
-          className="absolute inset-[-5%] z-0 bg-cover bg-center bg-no-repeat will-change-transform"
-          style={{
-            backgroundImage: "url('/images/hero-background.png')",
-            transform: "translateX(0) scale(1.1)",
-          }}
-        />
+          className="absolute inset-[-5%] z-0 overflow-hidden will-change-transform"
+          style={{ transform: "translateX(0) scale(1.1)" }}
+        >
+          <Image
+            src="/images/site/m2m-home-hero-military-keys-porch.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
 
         <M2mInsetHeroScrim variant="home" />
 
@@ -88,11 +94,12 @@ export function Hero() {
           calm plan from tour to closing.
         </p>
 
-        <div className="mt-10 grid w-full gap-3 sm:mt-12 sm:gap-4 sm:max-w-2xl sm:grid-cols-2">
+        <div className="mt-10 grid w-full gap-4 sm:mt-12 sm:max-w-2xl sm:grid-cols-2 sm:gap-4">
           <a
             href="/contact-us?intent=buyer"
             data-m2m-track="hero_work_with_us"
             data-m2m-track-loc="home_hero"
+            aria-label="Work with Marching 2 More — contact us as a buyer"
             className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream shadow-[0_4px_18px_-6px_rgba(5,13,6,0.45)] transition-all duration-300 border border-m2m-gold/45 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold touch-manipulation"
             style={{ fontFamily: "var(--font-nav)" }}
           >
@@ -104,6 +111,7 @@ export function Hero() {
             rel="noreferrer"
             data-m2m-track="hero_free_valuation_realscout"
             data-m2m-track-loc="home_hero"
+            aria-label="Open RealScout free home valuation (opens in a new tab)"
             className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_20px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 bg-m2m-gold hover:bg-m2m-gold-lt hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold touch-manipulation"
             style={{ fontFamily: "var(--font-nav)" }}
           >
@@ -120,6 +128,7 @@ export function Hero() {
             href={M2M_PHONE_HREF}
             data-m2m-track="hero_phone"
             data-m2m-track-loc="home_hero"
+            aria-label={`Call Marching 2 More at ${M2M_PHONE_DISPLAY}`}
             className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
           >
             {M2M_PHONE_DISPLAY}
@@ -131,6 +140,7 @@ export function Hero() {
             href={getConsultationRequestUrl()}
             data-m2m-track="hero_consultation_request"
             data-m2m-track-loc="home_hero"
+            aria-label="Book a home consultation with Marching 2 More"
             className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
           >
             Book a consultation
@@ -199,6 +209,7 @@ export function Hero() {
               </span>
               <a
                 href="/contact-us"
+                aria-label="Contact Marching 2 More — have a question"
                 className="inline-flex min-h-11 items-center px-1 text-sm font-medium text-m2m-cream underline decoration-m2m-gold/55 underline-offset-4 transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
                 style={{ fontFamily: "var(--font-sans)" }}
               >

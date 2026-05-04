@@ -8,7 +8,7 @@
 |-----|---------|
 | [AGENTS.md](../AGENTS.md) | Agent entry: what the repo is, doc order, tooling |
 | [ARCHITECTURE_CONSTITUTION.md](./ARCHITECTURE_CONSTITUTION.md) | Short invariant list (for agents / slash commands) |
-| [ARCHITECTURE_SOURCE_OF_TRUTH.md](./ARCHITECTURE_SOURCE_OF_TRUTH.md) | Stack, folders, page patterns, CI |
+| [ARCHITECTURE_SOURCE_OF_TRUTH.md](./ARCHITECTURE_SOURCE_OF_TRUTH.md) | Stack, folders, page patterns, CI, shared route metadata (`lib/m2m-seo-metadata.ts`) |
 | [BRAND_CONSTITUTION.md](./BRAND_CONSTITUTION.md) | Colors, type roles, brand principles |
 | [WORKFLOW.md](./WORKFLOW.md) | Git, Ship/pr, branch flow pointers |
 | [PROJECT_CONTEXT_PROMPT.md](./PROJECT_CONTEXT_PROMPT.md) | Paste block for LLM sessions |
@@ -21,8 +21,9 @@
 | [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) | **Start here (live):** website → API → GHO architecture, where data lands, operator verification, partial success |
 | [M2M_CLIENT_CRM_HANDOFF_GUIDE.md](./M2M_CLIENT_CRM_HANDOFF_GUIDE.md) | Client/team: what the site vs GHO does, how to confirm leads, layout vs data visibility |
 | [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) | GHL sub-account tasks: fields, pipelines, tags, workflows, calendars |
-| [M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md](./M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) | Operator CRM spec: funnel pipelines, tags, layouts, QA (paired with MATRIX/SYSTEM_GUIDE for website behavior and strict full-pipeline success gating) |
-| [M2M_ASSET_MAP.md](./M2M_ASSET_MAP.md) | Marketing images inventory (`public/images/`), hero vs support roles, duplicates, CRM crosswalk to client GHL spec + LEAD_CAPTURE_MATRIX |
+| [M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md](./M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) | Operator CRM spec: funnel pipelines, tags, layouts, QA; **§0.1** documents how the live site uses **buyer/seller env pipelines** + **`GHL_PATH_TAGS`** vs three funnel-named boards |
+| [M2M_FUNNEL_SMOKE_CHECKLIST.md](./M2M_FUNNEL_SMOKE_CHECKLIST.md) | Short pre-release smoke list + Playwright funnel regression pointers (CTAs, forms, quizzes) |
+| [M2M_ASSET_MAP.md](./M2M_ASSET_MAP.md) | **`public/images/` inventory** (local raster), hero vs support roles; **`lib/m2m-media.ts`** for Blob URLs; duplicates; CRM crosswalk to GHL spec + LEAD_CAPTURE_MATRIX |
 | [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) | Ordered env + QA steps for live hookup and verification |
 | [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) | GHL assumptions, tag/field rules, `npm run ghl:operator-check`, production triage |
 | [M2M_LEAD_CAPTURE_MATRIX.md](./M2M_LEAD_CAPTURE_MATRIX.md) | Route-by-route matrix: funnels, key fields, urgency mode, GHO expectations |
@@ -62,3 +63,16 @@
 |------|---------|
 | [.cursor/skills/marching-2-more/SKILL.md](../.cursor/skills/marching-2-more/SKILL.md) | Stack and conventions |
 | [.cursor/commands/README.md](../.cursor/commands/README.md) | Slash commands (`/Ship`, `/pr`) |
+
+## Handoff (what to trust)
+
+| Question | Source of truth |
+|----------|-----------------|
+| Routes, layouts, metadata | `app/**` · shared SEO helper [`lib/m2m-seo-metadata.ts`](../lib/m2m-seo-metadata.ts) |
+| Nav / footer labels & hrefs | [`lib/m2m-nav.ts`](../lib/m2m-nav.ts) |
+| Site URLs, phone, booking placeholders | [`lib/m2m-site.ts`](../lib/m2m-site.ts) |
+| Marketing images (`public/images/`) | [`docs/M2M_ASSET_MAP.md`](./M2M_ASSET_MAP.md) + per-route `content.ts` |
+| Lead payload → GHL behavior | [`docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md`](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) · [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](./M2M_LEAD_CAPTURE_MATRIX.md) · **§0.1** in [`M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md`](./M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) (two env pipelines vs funnel-named boards) |
+| What shipped recently | [`docs/WORK_ORDER.md`](./WORK_ORDER.md) |
+
+**Done vs pending (GHL):** skimmable status in [`M2M_GHL_REMAINING_GAPS.md`](./M2M_GHL_REMAINING_GAPS.md); env template [`.env.example`](../.env.example).

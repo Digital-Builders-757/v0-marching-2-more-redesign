@@ -20,6 +20,7 @@ description: >-
 ## Lead capture (GHL)
 
 - Browser posts JSON to **`/api/submit-lead`** only (no `GHL_*` in client bundles). Optional **`phone`** / **`date_of_birth`** on the API; failures return classified **`crm_*`** codes. Details: **`docs/M2M_GHL_INTEGRATION_MASTER_PLAN.md`**, **`docs/M2M_GHL_OPERATOR_VERIFICATION.md`** §4.
+- **Static quizzes** in **`public/quizzes/`** use the same API; scripts **await** the response and show errors on failure (no silent success). **Pre-domain checklist:** **`docs/website-launch-hardening-report.md`** (client) · **`docs/internal-hardening-findings.md`** (engineering QA matrix).
 
 ## Constants and CTAs
 
@@ -35,7 +36,7 @@ description: >-
 ## Tooling
 
 - **Package manager**: **npm** only; keep a single lockfile (`package-lock.json`). Do not reintroduce `pnpm-lock.yaml` unless the team standardizes on pnpm everywhere.
-- Before merging substantial changes: **`npm run ci`** (lint, placeholder test, typecheck, build).
+- Before merging substantial changes: **`npm run ci`** (lint, Vitest, typecheck, build, Playwright e2e).
 - **ESLint**: `eslint.config.mjs` uses `eslint-config-next/core-web-vitals` (flat config). Do not add legacy `.eslintrc`.
 
 ## Code style

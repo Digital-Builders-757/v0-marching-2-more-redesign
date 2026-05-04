@@ -40,7 +40,6 @@ export function DivorceGalleryCollage() {
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 25vw, 50vw"
-            priority
           />
         </div>
 

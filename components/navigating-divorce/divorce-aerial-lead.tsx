@@ -129,6 +129,7 @@ export function DivorceAerialLead() {
                 </p>
 
                 <form
+                  data-testid="m2m-lead-form-navigating-divorce"
                   onSubmit={handleSubmit}
                   className="space-y-6"
                   aria-label="Request divorce and real estate guide"
@@ -147,7 +148,7 @@ export function DivorceAerialLead() {
                         autoComplete="given-name"
                         placeholder="First Name"
                         value={form.firstName}
-                        onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                        onChange={(e) => setForm((prev) => ({ ...prev, firstName: e.target.value }))}
                         className="w-full border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
                         style={{ fontFamily: "var(--font-sans)" }}
                       />
@@ -161,7 +162,7 @@ export function DivorceAerialLead() {
                         autoComplete="family-name"
                         placeholder="Last Name"
                         value={form.lastName}
-                        onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                        onChange={(e) => setForm((prev) => ({ ...prev, lastName: e.target.value }))}
                         className="w-full border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
                         style={{ fontFamily: "var(--font-sans)" }}
                       />
@@ -177,7 +178,7 @@ export function DivorceAerialLead() {
                     placeholder="Email*"
                     required
                     value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
                     className="w-full border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
                     style={{ fontFamily: "var(--font-sans)" }}
                   />
@@ -190,7 +191,7 @@ export function DivorceAerialLead() {
                     autoComplete="tel"
                     placeholder="Phone"
                     value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))}
                     className="w-full border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
                     style={{ fontFamily: "var(--font-sans)" }}
                   />
@@ -200,7 +201,7 @@ export function DivorceAerialLead() {
                 id="divorce-urgency"
                 label={M2M_URGENCY_LABEL_SHORT_FORM}
                 value={form.timeline}
-                onChange={(v) => setForm({ ...form, timeline: v })}
+                onChange={(v) => setForm((prev) => ({ ...prev, timeline: v }))}
                 variant="playbook"
                 mode="short"
                 required={false}
@@ -214,7 +215,7 @@ export function DivorceAerialLead() {
                   rows={4}
                   placeholder="Message"
                   value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
                   className="w-full resize-y border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
                   style={{ fontFamily: "var(--font-sans)" }}
                 />

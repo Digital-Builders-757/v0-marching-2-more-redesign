@@ -527,6 +527,14 @@ a{color:inherit;text-decoration:none}
   display:flex;align-items:center;gap:var(--space-2);
   font-size:var(--text-xs);color:var(--color-text-faint);
 }
+.lead-form-error{
+  margin:0;
+  font-size:var(--text-sm);
+  font-weight:500;
+  color:#b42318;
+  line-height:1.45;
+}
+[data-theme="dark"] .lead-form-error{color:#fca5a5}
 .btn-submit{
   width:100%;justify-content:center;align-self:stretch;
 }

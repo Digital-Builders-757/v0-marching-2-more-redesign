@@ -4,7 +4,7 @@ Marching 2 More — **Next.js marketing site** (not the TOTL/Supabase product un
 
 **Start here:** [AGENTS.md](../AGENTS.md) — then [ARCHITECTURE_CONSTITUTION.md](./ARCHITECTURE_CONSTITUTION.md), [ARCHITECTURE_SOURCE_OF_TRUTH.md](./ARCHITECTURE_SOURCE_OF_TRUTH.md), [BRAND_CONSTITUTION.md](./BRAND_CONSTITUTION.md), [WORKFLOW.md](./WORKFLOW.md).
 
-**Canonical doc map (tables of every doc):** [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)
+**Canonical doc map (tables of every doc):** [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md) — includes a short **Handoff** table (source-of-truth files) and [website-launch-hardening-report.md](./website-launch-hardening-report.md) for pre-domain readiness.
 
 Do not duplicate the index table here; maintain links only in **DOCUMENTATION_INDEX.md**.
 

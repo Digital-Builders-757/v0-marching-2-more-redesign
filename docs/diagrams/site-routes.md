@@ -19,7 +19,7 @@
 
 ## Resources and policies
 
-- `/resources`, `/cookie-policy`, `/privacy-policy`, `/terms-and-conditions`, `/accessibility-statement`, `/copy-of-privacy-policy`
+- `/resources`, `/cookie-policy`, `/privacy-policy` (canonical “Disclaimers” target), `/terms-and-conditions`, `/accessibility-statement`, `/copy-of-privacy-policy` (redirect → `privacy-policy`)
 
 ## Campaign / landing (often not in hamburger)
 

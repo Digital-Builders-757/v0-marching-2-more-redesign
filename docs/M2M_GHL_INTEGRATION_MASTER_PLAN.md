@@ -153,6 +153,7 @@ Shared timeline strings for `urgency` (TEXT) come from [`lib/m2m-lead-urgency.ts
 | `components/free-home-valuation/valuation-seller-lead-form.tsx` | Seller | Optional | Timeline select | Optional “before we call” | `/free-home-valuation` |
 | `components/downsizing-your-home/downsizing-fallback-lead.tsx` | Seller | Optional | Timeline select | Optional context | `/downsizing-your-home` |
 | `components/facing-foreclosure/pre-foreclosure-form.tsx` | Seller | Optional | Timeline select | Message | `/facing-foreclosure` |
+| `components/facing-foreclosure/facing-foreclosure-quiz-fallback-lead.tsx` | Seller | — | Timeline select | “Embed fallback” prefix + optional message | `/facing-foreclosure` (quiz section when GHL quiz URL unset) |
 | `components/improve-your-credit/credit-playbook-form.tsx` | Buyer | — | “When planning to buy” (same options) | Playbook line + optional one-line context | `/improve-your-credit` |
 | `components/va-loan-benefits/va-lead-form.tsx` | Buyer | — | Short-form urgency (default “Not sure yet”) | Message + VA inquiry tag line | `/va-loan-benefits` |
 | `components/fha-loan/fha-quote-form.tsx` | Buyer | — | Short-form urgency | Subject + message | `/fha-loan` |

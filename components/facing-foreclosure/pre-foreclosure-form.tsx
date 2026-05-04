@@ -114,6 +114,7 @@ export function PreForeclosureForm() {
       </p>
 
       <form
+        data-testid="m2m-lead-form-facing-foreclosure"
         data-m2m-lead="facing-foreclosure"
         onSubmit={handleSubmit}
         aria-busy={submitting}
@@ -130,7 +131,7 @@ export function PreForeclosureForm() {
               type="text"
               autoComplete="given-name"
               value={form.firstName}
-              onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+              onChange={(e) => setForm((prev) => ({ ...prev, firstName: e.target.value }))}
               className={m2mLeadFieldInputClass}
               required
             />
@@ -144,7 +145,7 @@ export function PreForeclosureForm() {
               type="text"
               autoComplete="family-name"
               value={form.lastName}
-              onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+              onChange={(e) => setForm((prev) => ({ ...prev, lastName: e.target.value }))}
               className={m2mLeadFieldInputClass}
               required
             />
@@ -154,7 +155,7 @@ export function PreForeclosureForm() {
         <M2mLeadDobField
           id="pf-dob"
           value={form.dateOfBirth}
-          onChange={(v) => setForm({ ...form, dateOfBirth: v })}
+          onChange={(v) => setForm((prev) => ({ ...prev, dateOfBirth: v }))}
           inputClassName={m2mLeadFieldInputClass}
           className="text-m2m-deep"
           required={false}
@@ -170,7 +171,7 @@ export function PreForeclosureForm() {
             required
             autoComplete="email"
             value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
             className={m2mLeadFieldInputClass}
           />
         </div>
@@ -186,7 +187,7 @@ export function PreForeclosureForm() {
             autoComplete="tel"
             placeholder={FORM_PLACEHOLDER_PHONE}
             value={form.phone}
-            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))}
             className={m2mLeadFieldInputClass}
           />
         </div>
@@ -200,7 +201,7 @@ export function PreForeclosureForm() {
             type="text"
             autoComplete="street-address"
             value={form.address}
-            onChange={(e) => setForm({ ...form, address: e.target.value })}
+            onChange={(e) => setForm((prev) => ({ ...prev, address: e.target.value }))}
             className={m2mLeadFieldInputClass}
             placeholder="Optional — helps the team move faster"
           />
@@ -209,7 +210,7 @@ export function PreForeclosureForm() {
         <M2mLeadUrgencySelect
           id="pf-urgency"
           value={form.timeline}
-          onChange={(v) => setForm({ ...form, timeline: v })}
+          onChange={(v) => setForm((prev) => ({ ...prev, timeline: v }))}
           variant="interior"
           hint={M2M_URGENCY_SHARED_HINT}
         />
@@ -223,7 +224,7 @@ export function PreForeclosureForm() {
             rows={5}
             placeholder={FORM_PLACEHOLDER_MESSAGE}
             value={form.message}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
+            onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
             className={cn(m2mLeadFieldTextareaClass, "min-h-[7.5rem]")}
           />
         </div>
