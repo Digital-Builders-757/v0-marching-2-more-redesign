@@ -370,7 +370,7 @@ Routes:
 - `/privacy-policy`
 - `/terms-and-conditions`
 - `/accessibility-statement`
-- `/copy-of-privacy-policy`
+- `/copy-of-privacy-policy` (redirect → `/privacy-policy`)
 - `not-found`
 
 #### Focus

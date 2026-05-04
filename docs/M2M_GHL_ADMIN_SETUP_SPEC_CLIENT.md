@@ -2,7 +2,10 @@
 **Site:** www.marching2more.com
 **Scope:** Pipelines, Stages, Tags, Custom Fields, Contact Layouts, Smart Lists, Automation Triggers
 **Namespace:** Clean `M2M-` prefix (separate from Recovery Masters / m2m-lead-generation conventions)
-**Funnels covered:** Foreclosure · Divorce · Downsizing
+**Funnels covered (detailed GHL pipelines in §1):** Foreclosure · Divorce · Downsizing  
+
+**Other live website routes:** `/fha-loan`, `/improve-your-credit`, `/more-investments`, `/va-loan-benefits`, and core buyer/seller pages use the same **`POST /api/submit-lead`** contract: **`lead_type`** `buyer` or `seller` per route (see **[`M2M_LEAD_CAPTURE_MATRIX.md`](M2M_LEAD_CAPTURE_MATRIX.md)**), optional **`GHL_PATH_TAGS`** for pathname→tag mapping, and env pipelines **`GHL_BUYER_*`** / **`GHL_SELLER_*`** as in §0.1. GHL operators may still maintain **three funnel-named boards** and **segment or move opportunities by tags/workflows** from this spec.
+
 **Apply in:** GHL → Settings (and Contacts → Smart Lists)
 
 ---
@@ -22,6 +25,23 @@
 **Why this matters:** every M2M asset is searchable by typing `M2M` in any GHL search box, and reporting filters are predictable.
 
 **Website integration contract (current repo):** public forms submit to `POST /api/submit-lead` on the Next.js site, then server-side code writes to GHL. The website now treats success as **full pipeline completion** (contact upsert + tags + opportunity + operator note). If any step fails, the UI stays in an error/retry path and does not show a thank-you state.
+
+### 0.1 Live site vs three funnel-named pipelines (read this when wiring Vercel)
+
+The **Next.js integration** uses **two** pipeline slots from environment variables, not three funnel-specific pipeline IDs:
+
+- **Buyer:** `GHL_BUYER_PIPELINE_ID` + `GHL_BUYER_STAGE_NEW_INQUIRY_ID` when JSON `lead_type` is `buyer`.
+- **Seller:** `GHL_SELLER_PIPELINE_ID` + `GHL_SELLER_STAGE_NEW_INQUIRY_ID` when `lead_type` is `seller`.
+
+**Foreclosure, divorce, and downsizing** pages submit **`lead_type: seller`** and therefore create opportunities on the **seller** pipeline configured in env until product code adds per-funnel pipeline IDs.
+
+**How to match this spec’s three GHL pipelines (`M2M – Foreclosure` / `M2M – Divorce` / `M2M – Downsizing`):**
+
+1. **`GHL_PATH_TAGS`** — optional env map: `/path:Tag A|Tag B` (comma-separated). Pathnames must match the site exactly, e.g. `/facing-foreclosure`, `/navigating-divorce`, `/downsizing-your-home`. Use funnel tags like `m2m-funnel-foreclosure` here.
+2. **Workflows in GHO** — route or move opportunities based on those tags, **or** use a single seller intake pipeline and segment in smart lists.
+3. **Custom field** bound to `GHL_CF_LEAD_TYPE` receives **`Seller`** for those routes; urgency TEXT is populated from forms and (for static quizzes) from quiz timeline answers.
+
+**§7.3 QA:** “Lands in M2M – Foreclosure pipeline” means the contact received the **correct foreclosure funnel tags** (and seller pipeline placement from env), or your automation placed them on the Foreclosure board — not that the website posts a separate Foreclosure pipeline ID today.
 
 ---
 
@@ -365,7 +385,7 @@ Match this against your launch report. Each must pass before DNS flip.
 - [ ] Foreclosure intake form → contact appears in GHL within 10s
 - [ ] Divorce intake form → contact appears in GHL within 10s
 - [ ] Downsizing intake form → contact appears in GHL within 10s
-- [ ] Quiz funnel → contact appears with quiz answers populated in custom fields
+- [ ] Quiz funnel → contact appears in GHL; **quiz answers** appear in the **contact note**; **timeline/urgency** from the quiz is also sent to the **TEXT** urgency custom field (`GHL_CF_URGENCY`) where configured
 - [ ] Generic contact form → contact appears with `m2m-funnel-general`
 
 ### 7.2 Tag application
@@ -375,9 +395,9 @@ Match this against your launch report. Each must pass before DNS flip.
 - [ ] UTM tags persist into custom fields (not just tags)
 
 ### 7.3 Pipeline placement
-- [ ] Foreclosure leads land in `M2M – Foreclosure` → `New Lead – Unworked`
-- [ ] Divorce leads land in `M2M – Divorce` → `New Lead – Unworked`
-- [ ] Downsizing leads land in `M2M – Downsizing` → `New Lead – Unworked`
+- [ ] **Seller campaign leads** (`/facing-foreclosure`, `/navigating-divorce`, `/downsizing-your-home`) create an opportunity on the **env-configured seller pipeline** (`GHL_SELLER_*`) at **New Inquiry** (or your mapped first stage).
+- [ ] **Funnel tags** from `GHL_PATH_TAGS` match each route (pathname keys exact).
+- [ ] If GHO uses **separate** funnel-named seller boards (Foreclosure / Divorce / Downsizing), workflows assign or move opportunities from web intake using those tags.
 - [ ] Owner is assigned (not unassigned)
 
 ### 7.4 Success page gating

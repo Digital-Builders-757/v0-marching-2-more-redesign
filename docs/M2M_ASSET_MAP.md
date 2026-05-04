@@ -3,10 +3,11 @@
 **Purpose:** Track client photography under `public/images/` so swaps stay intentional.  
 **Unpackaged originals:** verbatim copies preserved in [`public/images/_original-client-delivery/`](../public/images/_original-client-delivery/).
 
+**Maintenance:** When you add, rename, or retire a file under `public/images/`, update **this table** and the route’s `components/**/content.ts` (or [`lib/m2m-media.ts`](../lib/m2m-media.ts) for Blob URLs not yet replaced by local art).
+
 ## CRM spec vs shipped website tagging
 
-[`M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md`](M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) describes GoHighLevel **funnel-named pipelines** and `m2m-funnel-*` tags.  
-The repo’s **`POST /api/submit-lead`** contract is documented in **[`M2M_LEAD_CAPTURE_MATRIX.md`](M2M_LEAD_CAPTURE_MATRIX.md)** (Buyer/Seller env pipelines and `M2M - Buyer` / `M2M - Seller` tag names). Applying the client CRM model in GHL is **operator-side**; this imagery pass **does not** change API or tag strings.
+[`M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md`](M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) describes GoHighLevel **funnel-named pipelines** and `m2m-funnel-*` tags. The live site maps **`lead_type` buyer/seller** to **two** env pipelines (`GHL_BUYER_*`, `GHL_SELLER_*`); campaign seller funnels share the **seller** pipeline and rely on **`GHL_PATH_TAGS`** (exact paths) for funnel tags unless code is extended. Route-level payloads: **[`M2M_LEAD_CAPTURE_MATRIX.md`](M2M_LEAD_CAPTURE_MATRIX.md)**.
 
 Success UI on `/facing-foreclosure`, `/navigating-divorce`, `/downsizing-your-home`, and other wired forms remains **component-gated on the API response**, and now requires **full CRM pipeline completion** before thank-you states render (no partial-success success states).
 
@@ -39,8 +40,8 @@ Duplicate bytes (same photo in two places) are OK where called out below; intent
 
 | Filename | Path | Primary funnel | Where used | Role |
 |----------|------|----------------|-----------|------|
-| `m2m-home-hero-military-keys-porch.png` | `public/images/site/` | Site-wide | [`components/hero.tsx`](../components/hero.tsx) | Homepage hero backdrop (CSS parallax layer) |
-| `m2m-home-sell-military-consultation-kitchen.png` | `public/images/site/` | Site-wide | [`components/sell-hero.tsx`](../components/sell-hero.tsx) | Sell band backdrop |
+| `m2m-home-hero-military-keys-porch.png` | `public/images/site/` | Site-wide | [`components/hero.tsx`](../components/hero.tsx) | Homepage hero backdrop (`next/image` + parallax wrapper) |
+| `m2m-home-sell-military-consultation-kitchen.png` | `public/images/site/` | Site-wide | [`components/sell-hero.tsx`](../components/sell-hero.tsx) | Sell band backdrop (`next/image`, lazy) |
 | `m2m-partners-consult-evening-home.png` | `public/images/site/` | Site-wide | [`components/partners.tsx`](../components/partners.tsx), [`components/navigating-divorce/content.ts`](../components/navigating-divorce/content.ts) (`sellDuringDivorce` collage), [`components/improve-your-credit/content.ts`](../components/improve-your-credit/content.ts) (`TAKEAWAYS_BACKGROUND`), **`/fha-loan`** [`fha-loan/content.ts`](../components/fha-loan/content.ts) hero | Homepage partner circle; inclusive consult scene reused on divorce FHA-adjacent panel, FHA hero, credit takeaways backdrop |
 | `m2m-foreclosure-hero-woman-docs-kitchen.png` | `public/images/facing-foreclosure/` | Foreclosure | [`components/facing-foreclosure/pre-foreclosure-hero.tsx`](../components/facing-foreclosure/pre-foreclosure-hero.tsx) (`content.ts`) | Full-bleed hero |
 | `m2m-foreclosure-lead-renovation-planning.png` | `public/images/facing-foreclosure/` | Foreclosure | [`components/facing-foreclosure/pre-foreclosure-lead.tsx`](../components/facing-foreclosure/pre-foreclosure-lead.tsx) (`content.ts`) | Form pairing column |
@@ -63,14 +64,21 @@ Duplicate bytes (same photo in two places) are OK where called out below; intent
 | `m2m-credit-couple-plan-together.png` | `public/images/credit/` | Credit | Hero + collage + closing band | Hero pillar + collage + narrative band |
 | `m2m-credit-professional-consultation.png` | `public/images/credit/` | Credit | Hero + education homework strip | Hero pillar + education strip |
 | `m2m-credit-family-collaborative-home.png` | `public/images/credit/` | Credit | Tall education panel *(same raster as downsizing packing photo)* | Support column |
+| `va-hero-military-homecoming.jpg` | `public/images/va-loan/` | VA benefits (`/va-loan-benefits`) | [`va-loan-benefits/content.ts`](../components/va-loan-benefits/content.ts) (`HERO_BACKGROUND`), [`va-hero.tsx`](../components/va-loan-benefits/va-hero.tsx) | Hero backdrop |
+| `va-cta-patriotic-home.jpg` | `public/images/va-loan/` | VA benefits | [`content.ts`](../components/va-loan-benefits/content.ts) (`CTA_BANNER_BACKGROUND`), [`va-cta-banner.tsx`](../components/va-loan-benefits/va-cta-banner.tsx) | CTA band / support |
+| `fha-quiz-guidance.jpg` | `public/images/fha-loan/` | FHA (`/fha-loan`) | [`fha-loan/content.ts`](../components/fha-loan/content.ts) (`FLAG_QUOTE_BACKGROUND`), [`fha-quote-form.tsx`](../components/fha-loan/fha-quote-form.tsx) | Quote form backdrop |
+| `fha-hero-first-time-buyer.jpg` | `public/images/fha-loan/` | FHA | *(present on disk; not referenced in `content.ts` — optional future swap)* | — |
+| `investor-*.jpg` (6 files) | `public/images/investments/` | More investments (`/more-investments`) | [`more-investments/content.ts`](../components/more-investments/content.ts) (`HERO_SLIDES`), [`investments-hero.tsx`](../components/more-investments/investments-hero.tsx), [`investments-hero-slides.tsx`](../components/more-investments/investments-hero-slides.tsx) | Hero carousel |
 
 **Duplicates on purpose:** Downsizing hero and divorce collage (`photo-album-dining`) share one duplicate raster (`01_52_57` lineage); credit **`m2m-credit-family-collaborative-home`** repeats the downsizing packing image for thematic alignment across buyer education flows.
+
+**Responsive delivery:** Local photos under `public/images/` are referenced with `next/image` and **Next.js image optimization** (see `next.config.mjs` `images.remotePatterns` for allowed remote hosts). Prefer explicit `sizes` on `fill` images so mobile does not download desktop widths.
 
 ---
 
 ## Quiz embed UX
 
-[`M2mLeadQuizSection`](../components/m2m-lead-quiz-section.tsx) shows a tall iframe when `embedSrc` resolves to a hosted quiz (`https://…` or `/quizzes/…`). When **`ctaHref`** is also set to the same live quiz URL (or `/quizzes/…`), users get an **explicit button under the embed** (“Open quiz…”) — helpful if the iframe is blocked by cookies or CSP. **`GOHIGHLEVEL_QUIZ_*`** placeholders intentionally skip both until marketing supplies real URLs.
+[`M2mLeadQuizSection`](../components/m2m-lead-quiz-section.tsx) shows a tall iframe when `embedSrc` resolves to a hosted quiz (`https://…` or `/quizzes/…`). When **`ctaHref`** is also set to the same live quiz URL (or `/quizzes/…`), users get an **explicit button under the embed** (“Open quiz…”) — helpful if the iframe is blocked by cookies or CSP. **`GOHIGHLEVEL_QUIZ_*`** placeholders intentionally skip both until marketing supplies real URLs. Quiz and analyzer iframes use **`loading="lazy"`** where supported so embeds do not compete with the first paint.
 
 ---
 

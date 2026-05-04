@@ -13,18 +13,15 @@ import {
   REALSCOUT_HOME_VALUATION_URL,
   REALSCOUT_MAP_SEARCH_URL,
 } from "@/lib/m2m-site"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata: Metadata = {
-  title: "Home Search & Buyer Help | Hampton Roads",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "Home Search & Buyer Help | Hampton Roads | Marching 2 More",
   description:
-    "Start your Hampton Roads home search (Norfolk, Virginia Beach, Chesapeake, and beyond), or tell Marching 2 More what you need — military moves, VA loans, and buyer support.",
-  alternates: { canonical: "/home-search" },
-  openGraph: {
-    title: "Work With Us — Home Search | Marching 2 More",
-    description:
-      "Search listings and connect with a veteran-owned team for PCS and local buying.",
-  },
-}
+    "Search Hampton Roads listings (Norfolk, Virginia Beach, Chesapeake, and beyond) or tell us what you need — PCS moves, VA loans, and buyer support from Marching 2 More.",
+  path: "/home-search",
+  openGraphTitle: "Home Search & Buyer Help | Marching 2 More",
+})
 
 export default function HomeSearchPage() {
   return (

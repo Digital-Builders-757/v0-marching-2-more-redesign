@@ -1,16 +1,16 @@
 # v0-marching-2-more-redesign
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app) for **Marching 2 More** (military real estate marketing site).
+**Marching 2 More** — Hampton Roads military / veteran-focused real estate **marketing site** (Next.js App Router). Originated from [v0](https://v0.app); day-to-day source of truth is this repo, not the v0 project link below.
 
-## Documentation
+## Documentation (read order)
 
-- [AGENTS.md](./AGENTS.md) — **start here** (architecture, brand, workflow pointers)  
-- [docs/DOCUMENTATION.md](./docs/DOCUMENTATION.md) — index  
-- [docs/WORK_ORDER.md](./docs/WORK_ORDER.md) — recent work and next steps  
-- [docs/development/BRANCHING.md](./docs/development/BRANCHING.md) — feature branches → **`develop`**  
-- [docs/development/RELEASING.md](./docs/development/RELEASING.md) — **`develop` → `main`** when updating the live site  
-- Cursor slash commands: [`.cursor/commands/README.md`](./.cursor/commands/README.md) (**`/Ship`**, **`/pr`**, **`/verify`**, …)  
-- Project Cursor skill: `.cursor/skills/marching-2-more/SKILL.md` (AI / agent context for this repo)
+1. **[AGENTS.md](./AGENTS.md)** — what the repo is, canonical doc order, tooling, code anchors  
+2. **[docs/DOCUMENTATION_INDEX.md](./docs/DOCUMENTATION_INDEX.md)** — full map of active vs reference docs (do not duplicate that table elsewhere)  
+3. **[docs/DOCUMENTATION.md](./docs/DOCUMENTATION.md)** — short stub; links to the index only  
+4. **[docs/WORK_ORDER.md](./docs/WORK_ORDER.md)** — recent ships and next steps  
+5. **[docs/development/BRANCHING.md](./docs/development/BRANCHING.md)** · **[docs/development/RELEASING.md](./docs/development/RELEASING.md)** — **`develop`** and **`main`**  
+- Cursor: [`.cursor/commands/README.md`](./.cursor/commands/README.md) (**`/Ship`**, **`/pr`**, …) · [`.cursor/skills/marching-2-more/SKILL.md`](./.cursor/skills/marching-2-more/SKILL.md)  
+- Assets + CRM crosswalk: **[docs/M2M_ASSET_MAP.md](./docs/M2M_ASSET_MAP.md)** · GHL operator spec: **[docs/M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md](./docs/M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md)**
 
 ## Built with v0
 
@@ -27,7 +27,7 @@ npm install
 npm run dev
 ```
 
-Quality gate before a PR: `npm run ci` (lint, test placeholder, TypeScript, production build).
+Quality gate before a PR: `npm run ci` (lint, Vitest, TypeScript, production build, Playwright e2e).
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

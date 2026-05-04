@@ -25,7 +25,7 @@ Write a single message the user can copy with these sections:
 4. **Files touched:** high-signal paths only.  
 5. **Verification:** which of `npm run typecheck` / `test` / `lint` / `build` ran and result.  
 6. **Left to do:** ordered next steps (P0 first), each one concrete.  
-7. **Constraints / risks:** env, media hosts, lockfile choice, `ignoreBuildErrors`, or — for full-stack repos — RLS, auth, migrations.  
+7. **Constraints / risks:** env, media hosts, lockfile choice, stale `.next/types` after route renames (delete `.next` + rerun `tsc`), or — for full-stack repos — RLS, auth, migrations.  
 8. **Suggested command:** `/continue` or `/plan` + topic, or `/ship` if ready.
 
 Tone: factual, no fluff. If something was assumed, label **UNVERIFIED**.

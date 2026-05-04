@@ -10,19 +10,26 @@ import { Header } from "@/components/header"
 import { M2mCampaignFaq } from "@/components/m2m-campaign-faq"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
+import { M2M_FUNNEL_PAGE_TESTIDS } from "@/lib/m2m-funnel-regression"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata: Metadata = {
-  title: "Facing Foreclosure in Hampton Roads | Options & Guide",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "Facing Foreclosure Help | Hampton Roads | Marching 2 More",
   description:
-    "Free guide and practical next steps if you are behind on mortgage payments in Virginia Beach or Hampton Roads — timelines, lender communication, and paths to clarity with Marching 2 More.",
-  alternates: { canonical: "/facing-foreclosure" },
-}
+    "Behind on mortgage payments in Virginia Beach or Hampton Roads? Free guide, timelines, lender communication tips, and next steps from the veteran-owned Marching 2 More team.",
+  path: "/facing-foreclosure",
+})
 
 export default function FacingForeclosurePage() {
   return (
     <>
       <Header consultationCtaVariant="outlineCream" />
-      <main id="main-content" tabIndex={-1} className="bg-m2m-panel text-m2m-cream">
+      <main
+        id="main-content"
+        data-testid={M2M_FUNNEL_PAGE_TESTIDS["/facing-foreclosure"]}
+        tabIndex={-1}
+        className="bg-m2m-panel text-m2m-cream"
+      >
         <PreForeclosureHero />
         <PreForeclosureGuideCarousel />
         <FacingForeclosureQuiz />

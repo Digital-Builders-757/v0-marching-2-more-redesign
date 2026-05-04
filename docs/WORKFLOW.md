@@ -24,7 +24,7 @@ Index: [.cursor/commands/README.md](../.cursor/commands/README.md).
 
 ## Required checks
 
-- **`npm run ci`** before merging substantive work: lint, placeholder test, TypeScript, production build.
+- **`npm run ci`** before merging substantive work: lint, Vitest, TypeScript, production build, Playwright e2e.
 
 ## Documentation hygiene
 

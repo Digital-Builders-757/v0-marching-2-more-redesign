@@ -108,7 +108,8 @@ export function Testimonials() {
                     alt={testimonial.name}
                     width={40}
                     height={40}
-                    className="w-full h-full object-cover"
+                    sizes="40px"
+                    className="h-full w-full object-cover"
                   />
                 </div>
                 

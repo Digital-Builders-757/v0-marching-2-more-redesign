@@ -6,6 +6,11 @@ __v0_jsx-dev-runtime.ts
 # Common ignores
 node_modules
 .next/
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
 .env*.local
 # Wrong filename at repo root (Next.js expects `.env.local`, which is ignored above)
 env.local
@@ -18,3 +23,8 @@ tmp/
 # Local Cursor / PR draft scratch
 .pr-body-*.txt
 .pr-body-*.md
+.github-pr-body-*.md
+.github-release-pr-body.md
+
+# Local deliverable archives (keep repo lean; spec lives in docs + committed originals)
+/*.zip

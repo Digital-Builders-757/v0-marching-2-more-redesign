@@ -43,6 +43,8 @@
 
 ## Done recently
 
+- **Launch engineering pass (2026-05)** — Static quizzes **`public/quizzes/`** (downsizing `main.js`, `quiz.html`, divorce `quiz.js`) **await `/api/submit-lead`**, parse JSON, and show **inline error + retry** when `!ok` or network fails (no false success). **`FacingForeclosureQuiz`** mounts **`FacingForeclosureQuizFallbackLead`** when the GHL foreclosure embed URL is unset (mirrors downsizing fallback pattern). Footer agent thumbnails: meaningful **`alt`**. **`typescript.ignoreBuildErrors`** removed from [`next.config.mjs`](../next.config.mjs) — production build + `npm run ci` enforce TypeScript. Docs: [`website-launch-hardening-report.md`](./website-launch-hardening-report.md), [`internal-hardening-findings.md`](./internal-hardening-findings.md), [`DOCUMENTATION_INDEX.md`](./DOCUMENTATION_INDEX.md), matrix + roadmap + troubleshooting aligned. `npm run ci` green.
+
 - **Launch-readiness pass** — Homepage [`metadata`](../app/page.tsx): `canonical` + Open Graph; root layout drops **`generator`** meta; [`/home-search`](../app/home-search/page.tsx) single document **`h1`** (sr-only) + column **`h2`s**; decorative star rows **`aria-hidden`** + sr-only rating copy on [`Hero`](../components/hero.tsx) and [`ReviewsHero`](../components/reviews/reviews-hero.tsx); **`focus-visible`** rings on hero phone/consultation links; larger tap targets + focus rings on [`HomeTopicNav`](../components/home-topic-nav.tsx) and [`M2mRelatedPages`](../components/m2m-related-pages.tsx) links. `npm run ci` green.
 
 - **Conversion + content engine (growth system pass)** — Live [`/blog`](../app/blog/page.tsx) index (`BlogHero` + `BlogList` + metadata); **Blog** in header/footer nav ([`lib/m2m-nav.ts`](../lib/m2m-nav.ts)); [`lib/blog/render-post-content.tsx`](../lib/blog/render-post-content.tsx) subset renderer for post bodies; [`app/blog/[slug]/page.tsx`](../app/blog/[slug]/page.tsx) simplified article CTAs + client reviews link; [`lib/blog/posts.ts`](../lib/blog/posts.ts) removes demo/Supabase placeholder copy, Wix cover URLs → `M2M_MEDIA`, related internal links; [`app/resources/page.tsx`](../app/resources/page.tsx) internal guides strip; trust notes on [`HomeSearchBuyerLead`](../components/home-search/home-search-buyer-lead.tsx), [`ValuationSellerLeadForm`](../components/free-home-valuation/valuation-seller-lead-form.tsx), [`/cma-form`](../app/cma-form/page.tsx); [`/reviews`](../app/reviews/page.tsx) expectation line before CTA; [`M2mCampaignFaq`](../components/m2m-campaign-faq.tsx) + per-route FAQ copy on downsizing, divorce, foreclosure, credit, VA, FHA (`variant="light"`), investments; FHA [`TESTIMONIALS`](../components/fha-loan/content.ts) aligned to real client voice; investor tools honest placeholder copy ([`investments-tools.tsx`](../components/more-investments/investments-tools.tsx)). Menu search: `blog` keyword → `/blog`. Brief: [M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md](./marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md).
@@ -100,7 +102,7 @@
 | `/home-search` | core | Good | Inset hero; tool CTAs. |
 | `/free-home-valuation`, `/home-valuation` | core | Good | Inset hero + sections; `/home-valuation` redirect. |
 | `/cma-form` | core | Good | Inset hero + form card. |
-| Legal (`/cookie-policy`, `/privacy-policy`, `/terms-and-conditions`, `/accessibility-statement`, `/copy-of-privacy-policy`) | legal | Good | Token-aligned policy shell. |
+| Legal (`/cookie-policy`, `/privacy-policy`, `/terms-and-conditions`, `/accessibility-statement`; footer “Disclaimers” → `/privacy-policy`; `/copy-of-privacy-policy` redirects) | legal | Good | Token-aligned policy shell. |
 | `/get-license-in-va` | core | Good | Moseley VA license referral landing. |
 | `/fha-loan`, `/improve-your-credit`, `/more-investments`, `/navigating-divorce` | campaign | Strong-Good | Layout primitives; per-page copy/forms vary. |
 | `/downsizing-your-home`, `/va-loan-benefits`, `/facing-foreclosure` | campaign | Strong-Good | Same. |
@@ -120,8 +122,6 @@ Authoritative list: `app/**/page.tsx`. Grouped reference: [docs/diagrams/site-ro
 - Replace remaining **local PNG heroes** with `M2M_MEDIA` when assets exist (resources, home-search, CMA funnel).
 - **Blog** body: richer `prose` modifiers if posts gain structure beyond paragraphs.
 - **Reviews** + **get-license-in-va**: periodic pass for dead zones and CTA bands as needed (**`/reviews`** CTA tier refreshed this batch).
-- **Strict TypeScript in CI** - when ready, narrow `typescript.ignoreBuildErrors` in `next.config.mjs`.
-
 ## Historical batches (overhaul era)
 
 Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign consistency, and legal readability in rolling batches. Current site-wide batches are logged under **Done recently** above and in [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md). Remaining optional themes: Blob/tool hero imagery where assets exist; blog index backdrop; CMA/radio hint token sweep on long forms; Playwright smoke when prioritized.

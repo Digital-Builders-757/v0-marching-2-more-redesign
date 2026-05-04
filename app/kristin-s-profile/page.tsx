@@ -1,12 +1,18 @@
+import type { Metadata } from "next"
+
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AgentProfile } from "@/components/team/agent-profile"
 import { M2M_MEDIA } from "@/lib/m2m-media"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata = {
+export const metadata: Metadata = m2mStandardMetadata({
   title: "Kristin Allen | Marching 2 More",
-  description: "Meet Kristin Allen — Licensed Agent at Marching 2 More.",
-}
+  description:
+    "Kristin Allen — Virginia licensed agent with Marching 2 More, Hampton Roads real estate.",
+  path: "/kristin-s-profile",
+  openGraphTitle: "Kristin Allen | Marching 2 More",
+})
 
 export default function KristinProfilePage() {
   return (

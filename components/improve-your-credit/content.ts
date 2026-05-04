@@ -5,20 +5,19 @@
 /** Anchor for in-page CTAs until a PDF URL exists. */
 export const CREDIT_PLAYBOOK_SECTION_ID = "credit-playbook" as const
 
-export const HERO_HEADLINE =
-  "Crush Credit Along Your Path to Homeownership" as const
+export const HERO_HEADLINE = "Crushing Credit on Your Path to Homeownership" as const
 
-/** Hero collage — left still (financial planning, confidence, outcome-driven). */
-export const HERO_IMAGE_LEFT = "/images/credit/credit-hero-financial-planning.jpg" as const
+/** Hero collage — family credit planning scene (multicultural, inclusive). */
+export const HERO_IMAGE_LEFT = "/images/credit/m2m-credit-family-planning-goals.png" as const
 
-/** Hero — center feature card background (celebration, success, achievement). */
-export const HERO_IMAGE_CENTER = "/images/credit/credit-hero-success-celebration.jpg" as const
+/** Hero — multicultural couple coordinating documents and timing. */
+export const HERO_IMAGE_CENTER = "/images/credit/m2m-credit-couple-plan-together.png" as const
 
-/** Hero collage — right (confident buyer who achieved their goal). */
-export const HERO_IMAGE_RIGHT = "/images/credit/credit-hero-confident-buyer.jpg" as const
+/** Hero — professional consultation at kitchen table */
+export const HERO_IMAGE_RIGHT = "/images/credit/m2m-credit-professional-consultation.png" as const
 
-export const HERO_FEATURE_OVERLAY_LINE_1 = "improve your credit" as const
-export const HERO_FEATURE_OVERLAY_LINE_2 = "TO BUY A NEW HOME." as const
+export const HERO_FEATURE_OVERLAY_LINE_1 = "Improve your credit" as const
+export const HERO_FEATURE_OVERLAY_LINE_2 = "to buy with confidence." as const
 
 export const HERO_TEXT_CARD = {
   kicker: "Be ready to buy",
@@ -70,21 +69,22 @@ export const CREDIT_HOMEWORK_STEPS = [
   "If something is inaccurate, dispute it with the credit bureaus using their documented process.",
 ] as const
 
-/** Tall column beside review/homework — empowering, focused financial planning. */
-export const EDUCATION_LARGE_IMAGE = "/images/credit/credit-education-planning.jpg" as const
+/** Tall column beside review/homework — inclusive family financial planning moment. */
+export const EDUCATION_LARGE_IMAGE = "/images/credit/m2m-credit-family-collaborative-home.png" as const
 
-/** Small collage under homework card — aspirational lifestyle imagery. */
+/** Small collage under homework card */
 export const HOMEWORK_COLLAGE_IMAGES = [
-  "/images/credit/credit-hero-financial-planning.jpg",
-  "/images/credit/credit-takeaways-home-goal.jpg",
-  "/images/credit/credit-hero-confident-buyer.jpg",
+  "/images/credit/m2m-credit-professional-consultation.png",
+  "/images/credit/m2m-credit-family-planning-goals.png",
+  "/images/credit/m2m-credit-couple-plan-together.png",
 ] as const
 
 export const DOWNLOAD_GUIDE_CTA = "Download your guide today" as const
 
 export const TAKEAWAYS_HEADING = "Core Credit Takeaways" as const
-export const TAKEAWAYS_SUBHEAD = "Are You Ready To Crush Credit" as const
-export const TAKEAWAYS_START_CTA = "Start" as const
+export const TAKEAWAYS_SUBHEAD =
+  "Are you ready to build stronger credit step by step before you apply?" as const
+export const TAKEAWAYS_START_CTA = "Go to playbook" as const
 
 export const TAKEAWAY_ITEMS = [
   { label: "Pay your bills on time" },
@@ -93,10 +93,10 @@ export const TAKEAWAY_ITEMS = [
   { label: "Avoid opening new credit accounts" },
 ] as const
 
-/** Full-bleed banner behind takeaways + icon row — aspirational home goal. */
-export const TAKEAWAYS_BACKGROUND = "/images/credit/credit-takeaways-home-goal.jpg" as const
+/** Full-bleed banner behind takeaways + icon row */
+export const TAKEAWAYS_BACKGROUND = "/images/site/m2m-partners-consult-evening-home.png" as const
 
-export const VIDEO_HEADING = "Marching 2 More & crushing credit" as const
+export const VIDEO_HEADING = "Marching 2 More and Crushing Credit" as const
 export const VIDEO_SUBHEAD =
   "Hear straight talk on credit, homebuying, and how to prepare before you write an offer." as const
 
@@ -106,18 +106,17 @@ export const YOUTUBE_EMBED_SRC =
 export const PLAYBOOK_HEADING = "Credit Improvement Playbook" as const
 
 export const PLAYBOOK_PARAGRAPHS = [
-  "Unlock the gateway to your dream home with the Marching 2 More Real Estate Team’s Credit Improvement Playbook.",
-  "Gain a competitive edge in the homebuying journey by receiving expert advice directly in your inbox.",
-  "This comprehensive guide empowers you to navigate the complexities of credit repair, ensuring you’re primed for success in one of life’s significant investments.",
+  "Marching 2 More helps you tie credit readiness to real offers and closing timelines — starting with practical steps delivered straight to your inbox.",
+  "You will hear from our team when it matters: what to prioritize first, questions to ask a loan officer, and how to spot errors on your report.",
+  "This guide is educational, not legal or credit repair advice — we connect you with the right specialists when needed.",
 ] as const
 
-export const PLAYBOOK_CARD_TITLE =
-  "Prepare with confidence and secure your copy today to embark on your path to homeownership." as const
+export const PLAYBOOK_CARD_TITLE = "Tell us where to send your playbook." as const
 
-export const PLAYBOOK_DOWNLOAD_BUTTON = "Click here to download" as const
+export const PLAYBOOK_DOWNLOAD_BUTTON = "Send my playbook" as const
 
-/** Closing band — digital success, progress monitoring imagery. */
-export const CLOSING_HERO_IMAGE = "/images/credit/credit-closing-digital-success.jpg" as const
+/** Closing band — approachable guidance moment */
+export const CLOSING_HERO_IMAGE = "/images/credit/m2m-credit-couple-plan-together.png" as const
 
 export const CREDIT_FAQ_ITEMS = [
   {

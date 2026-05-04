@@ -10,19 +10,26 @@ import { FHA_FAQ_ITEMS } from "@/components/fha-loan/content"
 import { M2mCampaignFaq } from "@/components/m2m-campaign-faq"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
+import { M2M_FUNNEL_PAGE_TESTIDS } from "@/lib/m2m-funnel-regression"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata: Metadata = {
-  title: "FHA Loans for First-Time & Low Down Payment Buyers | HR",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "FHA Loans & Low Down Payments | Hampton Roads | Marching 2 More",
   description:
-    "FHA basics for Hampton Roads buyers — credit nuances, 3.5% down context, mortgage insurance, and how Marching 2 More pairs education with local inventory search.",
-  alternates: { canonical: "/fha-loan" },
-}
+    "FHA basics for Hampton Roads buyers — credit nuances, low down payment context, mortgage insurance, and local inventory support from Marching 2 More.",
+  path: "/fha-loan",
+})
 
 export default function FhaLoanPage() {
   return (
     <>
       <Header consultationCtaVariant="outlineCream" />
-      <main id="main-content" tabIndex={-1} className="bg-white">
+      <main
+        id="main-content"
+        data-testid={M2M_FUNNEL_PAGE_TESTIDS["/fha-loan"]}
+        tabIndex={-1}
+        className="bg-white"
+      >
         <FhaHero />
         <FhaWhySplit />
         <FhaFeatures />

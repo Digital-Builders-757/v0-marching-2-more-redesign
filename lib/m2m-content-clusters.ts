@@ -53,7 +53,7 @@ export const M2M_CONTENT_CLUSTERS: Record<M2mClusterId, M2mClusterDefinition> = 
       { href: "/navigating-divorce", label: "Divorce & real estate" },
       { href: "/facing-foreclosure", label: "Facing foreclosure" },
       { href: "/downsizing-your-home", label: "Downsizing" },
-      { href: "/improve-your-credit", label: "Credit & homebuying" },
+      { href: "/improve-your-credit", label: "Credit playbook & homebuying" },
       { href: "/free-home-valuation", label: "Home valuation" },
       { href: "/contact-us", label: "Contact the team" },
     ],

@@ -11,19 +11,26 @@ import { CREDIT_FAQ_ITEMS } from "@/components/improve-your-credit/content"
 import { M2mCampaignFaq } from "@/components/m2m-campaign-faq"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
+import { M2M_FUNNEL_PAGE_TESTIDS } from "@/lib/m2m-funnel-regression"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata: Metadata = {
-  title: "Credit & Homebuying Readiness | Hampton Roads",
+export const metadata: Metadata = m2mStandardMetadata({
+  title: "Crushing Credit for Homebuying | Marching 2 More",
   description:
-    "Improve credit before you buy — education, checklist-style takeaways, and the Credit Improvement Playbook from Marching 2 More for military and civilian buyers in Hampton Roads.",
-  alternates: { canonical: "/improve-your-credit" },
-}
+    "Build credit before you buy in Hampton Roads — education, practical takeaways, and the Credit Improvement Playbook from Marching 2 More for military and civilian buyers.",
+  path: "/improve-your-credit",
+})
 
 export default function ImproveYourCreditPage() {
   return (
     <>
       <Header consultationCtaVariant="outlineCream" />
-      <main id="main-content" tabIndex={-1} className="bg-m2m-panel text-m2m-cream">
+      <main
+        id="main-content"
+        data-testid={M2M_FUNNEL_PAGE_TESTIDS["/improve-your-credit"]}
+        tabIndex={-1}
+        className="bg-m2m-panel text-m2m-cream"
+      >
         <CreditHero />
         <CreditPlaybookForm />
         <CreditEducation />

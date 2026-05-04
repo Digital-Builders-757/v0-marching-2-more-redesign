@@ -2,7 +2,7 @@
 
 **Audience:** Operators wiring **Vercel env** to the **live M2M GHL sub-account**. This doc complements [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) (what to create in GHL) and [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) (cutover order).
 
-**Start here for full flow:** [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) (website → API → GHO, where each datum lands, partial success, verification order).
+**Start here for full flow:** [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) (website → API → GHO, where each datum lands, strict success contract, verification order).
 
 **Secrets:** Never commit `.env.local` or paste `GHL_API_KEY` into tickets. The browser must never receive `GHL_*` variables (Network tab should only show JSON **to** `/api/submit-lead`, no CRM token).
 
@@ -93,7 +93,8 @@ These are **not** configurable per sub-account in code without a code change:
 - Env vars `GHL_TAG_LEAD_BUYER` and `GHL_TAG_LEAD_SELLER` are **comma-separated lists** of tag names.
 - Names must match GHL **byte-for-byte** (spaces, hyphens, casing). Common mistake: pasting from Word with an **en dash** (`–`) instead of ASCII hyphen (`-`).
 - **Intended names:** `M2M - Buyer` and `M2M - Seller` (hyphen + spaces as in GHL).
-- If a tag list is **empty**, the site **skips** the tags API call for that lead type (contact still upserts). Empty env is easy to misread as “success” in GHL when no tags appear.
+- **Strict success:** If the resolved tag list for the lead is **empty** (both env lists empty or misconfigured), the API returns **`ok: false`** (`code: config_error`, `failed_step: contacts_tags`) — the UI must **not** show a thank-you state. Fix env and retry.
+- **Path-based tags:** Optional `GHL_PATH_TAGS` must use **exact** pathname keys as sent by the site (e.g. `/facing-foreclosure`, `/navigating-divorce`, `/downsizing-your-home`).
 
 ### 3.8 Pipelines / opportunities
 
@@ -117,7 +118,7 @@ Use this order so you do not mistake **layout** for **data**:
 
 1. **Contacts** — find the person (email/phone); confirm the contact exists in the M2M location.
 2. **Contact custom fields** — Lead type, DOB, Property Address, **Urgency (TEXT)**, UTMs as applicable. Expand “custom fields” if needed; add fields to the **contact layout** in GHO settings if the team should see them at a glance.
-3. **Tags** — expect base tags **`M2M - Buyer`** or **`M2M - Seller`** (plus any path-based tags from `GHL_PATH_TAGS`). If `tags_failed` appeared, some tags may be missing.
+3. **Tags** — expect base tags **`M2M - Buyer`** or **`M2M - Seller`** (plus any path-based tags from `GHL_PATH_TAGS`). If the submission failed with `failed_step: contacts_tags`, tags were not applied — treat as a failed lead until env is fixed and the visitor resubmits.
 4. **Notes** — operator note is part of required success path; failures should appear as failed submissions.
 5. **Opportunities / pipeline board** — **M2M Buyer Pipeline** or **M2M Seller Pipeline**, stage **New Inquiry** (if all four pipeline env vars are set; otherwise expect submission failure).
 
@@ -134,7 +135,7 @@ The browser receives **user-safe** `error` strings and a machine **`code`** for 
 | `code` | Typical HTTP | Meaning (high level) |
 |--------|----------------|----------------------|
 | `crm_validation` | 400 | GHL rejected payload (format, field value, tag, pipeline, etc.) — check env + field definitions |
-| `crm_duplicate_or_merge` | 400 | Duplicate / merge wording from GHL or **409** — user may already exist in the sub-account |
+| `crm_duplicate_or_merge` | 400 / 409 | Duplicate / merge from GHL — submission did **not** complete the full pipeline; user saw an error state, not thank-you |
 | `crm_auth` | 502 | **401 / 403** from GHL — token, scope, or location |
 | `crm_rate_limit` | 429 | Too many requests |
 | `crm_server` | 502 | GHL **5xx** |

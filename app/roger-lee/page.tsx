@@ -1,12 +1,18 @@
+import type { Metadata } from "next"
+
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AgentProfile } from "@/components/team/agent-profile"
 import { M2M_MEDIA } from "@/lib/m2m-media"
+import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
-export const metadata = {
+export const metadata: Metadata = m2mStandardMetadata({
   title: "Roger Lee | Marching 2 More",
-  description: "Meet Roger Lee — Founding Partner and Licensed Agent at Marching 2 More.",
-}
+  description:
+    "Roger Lee — founding partner and Virginia licensed agent with Marching 2 More, Hampton Roads.",
+  path: "/roger-lee",
+  openGraphTitle: "Roger Lee | Marching 2 More",
+})
 
 export default function RogerLeeProfilePage() {
   return (

@@ -31,8 +31,8 @@ const CORE = {
 export const M2M_MEDIA = {
   ...CORE,
 
-  /* --- `/navigating-divorce` — tender, stabilizing, human --- */
-  /** TODO(asset): Quiet interior or couple at neutral moment; interim: backyard warmth */
+  /* --- `/navigating-divorce` — production art lives in `/images/divorce/` via `navigating-divorce/content.ts` (see docs/M2M_ASSET_MAP.md). Keys below kept as Blob fallbacks for other routes/tests. --- */
+  /** Fallback only — route uses local PNGs */
   divorceHeroBackdrop: CORE.familyBackyard,
   /** Small crop — listing / transition stress → calm sale path */
   divorceCollageSellDuring: CORE.sellHeroStill,

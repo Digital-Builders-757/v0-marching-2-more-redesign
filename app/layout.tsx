@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(M2M_SITE_ORIGIN),
   title: 'Marching 2 More — Hampton Roads Real Estate Advisors',
   description:
-    'Veteran-owned real estate team in Virginia Beach serving all of Hampton Roads — military & VA buyers, luxury search, home valuations, listing strategy, PCS moves, and five-star support.',
+    'Veteran-owned Virginia Beach real estate team serving Hampton Roads — military and VA buyers, home search, valuations, listings, PCS moves, and full-service support.',
 }
 
 export const viewport: Viewport = {

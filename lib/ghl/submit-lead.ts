@@ -209,6 +209,9 @@ export async function submitLeadToGhl(lead: NormalizedLead, correlationId: strin
       })
       console.error("[ghl] upstream_error", {
         correlationId,
+        leadType: lead.leadType,
+        sourcePath: lead.sourcePath,
+        hasSourcePage: Boolean(lead.sourcePage?.trim()),
         status: e.status,
         statusBucket: ghlStatusBucket(e.status),
         crmUserCode: classified.code,
@@ -216,6 +219,7 @@ export async function submitLeadToGhl(lead: NormalizedLead, correlationId: strin
         failed_step: e.step,
         logDuplicateHint: classified.logDuplicateHint,
         logValidationHint: classified.logValidationHint,
+        upstreamDetail: e.upstreamDetail,
       })
       return {
         ok: false,

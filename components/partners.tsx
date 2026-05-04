@@ -47,8 +47,8 @@ export function Partners() {
           <div className="flex-shrink-0">
             <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px] rounded-full overflow-hidden">
               <Image
-                src="/images/bfam-sect.avif"
-                alt="Happy family together"
+                src="/images/site/m2m-partners-consult-evening-home.png"
+                alt=""
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 380px, (min-width: 768px) 320px, 280px"

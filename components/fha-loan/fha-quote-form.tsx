@@ -99,7 +99,7 @@ export function FhaQuoteForm() {
               />
             ) : null}
             <p className="text-center text-m2m-deep font-sans" role="status" aria-live="polite">
-              Thank you! We&apos;ll follow up about your FHA quote request.
+              Thank you! We&apos;ll follow up about your FHA questions.
             </p>
           </div>
         </M2mContainer>
@@ -128,7 +128,13 @@ export function FhaQuoteForm() {
           </h2>
           <p className="mb-10 text-center text-sm text-m2m-deep/80 font-sans">{QUOTE_FORM.subtitle}</p>
 
-          <form onSubmit={handleSubmit} className="space-y-7" aria-label="Request a quote" aria-busy={submitting}>
+          <form
+            data-testid="m2m-lead-form-fha-loan"
+            onSubmit={handleSubmit}
+            className="space-y-7"
+            aria-label={QUOTE_FORM.ariaSummary}
+            aria-busy={submitting}
+          >
             {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full" /> : null}
             <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
               <div>
@@ -141,7 +147,7 @@ export function FhaQuoteForm() {
                   required
                   autoComplete="given-name"
                   value={form.firstName}
-                  onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                  onChange={(e) => setForm((prev) => ({ ...prev, firstName: e.target.value }))}
                   className={m2mLeadFieldInputClass}
                 />
               </div>
@@ -155,7 +161,7 @@ export function FhaQuoteForm() {
                   required
                   autoComplete="family-name"
                   value={form.lastName}
-                  onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                  onChange={(e) => setForm((prev) => ({ ...prev, lastName: e.target.value }))}
                   className={m2mLeadFieldInputClass}
                 />
               </div>
@@ -171,7 +177,7 @@ export function FhaQuoteForm() {
                 required
                 autoComplete="email"
                 value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
                 className={m2mLeadFieldInputClass}
               />
             </div>
@@ -180,7 +186,7 @@ export function FhaQuoteForm() {
               id="fha-urgency"
               label={M2M_URGENCY_LABEL_SHORT_FORM}
               value={form.timeline}
-              onChange={(v) => setForm({ ...form, timeline: v })}
+              onChange={(v) => setForm((prev) => ({ ...prev, timeline: v }))}
               variant="interior"
               mode="short"
               required={false}
@@ -196,7 +202,7 @@ export function FhaQuoteForm() {
                 type="text"
                 required
                 value={form.subject}
-                onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                onChange={(e) => setForm((prev) => ({ ...prev, subject: e.target.value }))}
                 className={m2mLeadFieldInputClass}
               />
             </div>
@@ -209,7 +215,7 @@ export function FhaQuoteForm() {
                 id="fha-message"
                 rows={5}
                 value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
                 className={m2mLeadFieldTextareaClass}
               />
             </div>

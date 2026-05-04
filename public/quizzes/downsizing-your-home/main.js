@@ -74,11 +74,15 @@ async function submitForm(
     'Suggested tags (for ops): ' + buildTags(intent).join('; '),
   ].join('\n');
 
+  const urgency = 'Downsizing landing — next step: ' + String(intent || 'unspecified');
+
   const body = JSON.stringify({
     lead_type: 'seller',
     name: firstName.trim(),
     email: email,
     phone: phone || undefined,
+    urgency: urgency,
+    urgency_explicit: true,
     source_page: window.location.href,
     source_path: '/downsizing-your-home',
     notes: notes,

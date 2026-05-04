@@ -29,7 +29,7 @@
 
 ## Campaign imagery — semantic `M2M_MEDIA` map (handoff for next agent)
 
-**Source of truth:** [`lib/m2m-media.ts`](../../lib/m2m-media.ts) — `CORE` base URLs plus named keys (`divorce*`, `vaLoan*`, `fha*`, `credit*`, `investorCarousel*`). Campaign route `content.ts` files point at these keys so **only `m2m-media.ts` needs URL edits** when Blob assets are replaced.
+**Source of truth:** [`lib/m2m-media.ts`](../../lib/m2m-media.ts) — `CORE` base URLs plus named keys (`divorce*`, `vaLoan*`, `fha*`, `credit*`, `investorCarousel*`). Campaign route `content.ts` files point at these keys so **only `m2m-media.ts` needs URL edits** when Blob assets are replaced. Life-event funnel art also lives under `public/images/**/m2m-*.png` ([`docs/M2M_ASSET_MAP.md`](../../docs/M2M_ASSET_MAP.md)).
 
 | Theme | Keys (replace URL in one place) | Interim intent |
 |-------|----------------------------------|----------------|
