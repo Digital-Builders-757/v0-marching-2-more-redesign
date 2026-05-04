@@ -1,9 +1,8 @@
 /**
  * Copy and assets for `/facing-foreclosure`.
  *
- * SWAP: Replace placeholder imagery when client provides final hero and lifestyle art.
+ * Imagery paths: `public/images/facing-foreclosure/` (see `docs/M2M_ASSET_MAP.md`).
  */
-import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export const SIGNUP_SECTION_ID = "facing-foreclosure-lead" as const
 
@@ -14,13 +13,21 @@ export const FORECLOSURE_QUIZ_HEADING = "Not sure where to start?" as const
 export const FORECLOSURE_QUIZ_DESCRIPTION =
   "This short quiz helps you organize your situation — timeline, notices, and priorities — so you can see options more clearly." as const
 
-/** Hero — foreclosure / legal / keys mood. */
-// SWAP: client hero — gavel, keys, notice document (reference composition)
-export const HERO_BACKGROUND = M2M_MEDIA.contactHeroStill
+/** When the GHL quiz iframe is not configured, the quiz section shows this short intake instead. */
+export const FORECLOSURE_QUIZ_FALLBACK_HEADLINE = "Tell us how to reach you" as const
 
-/** Split section — empathetic couple / documents mood. */
-// SWAP: client — couple reviewing paperwork at home (reference)
-export const LEAD_SUPPORT_IMAGE = M2M_MEDIA.sellHeroStill
+export const FORECLOSURE_QUIZ_FALLBACK_SUB =
+  "Leave your details and we’ll follow up with practical next steps for your situation — no pressure." as const
+
+export const FORECLOSURE_QUIZ_FALLBACK_SUBMIT_LABEL = "Request Next Steps" as const
+
+/** Hero — calm, organized homeowner reviewing important paperwork */
+export const HERO_BACKGROUND =
+  "/images/facing-foreclosure/m2m-foreclosure-hero-woman-docs-kitchen.png" as const
+
+/** Split section — planning next steps with professional guidance */
+export const LEAD_SUPPORT_IMAGE =
+  "/images/facing-foreclosure/m2m-foreclosure-lead-renovation-planning.png" as const
 
 export const HERO_HEADLINE = "Facing Foreclosure in Hampton Roads?" as const
 
@@ -61,7 +68,7 @@ export const FORM_PLACEHOLDER_PHONE = "Phone" as const
 export const FORM_PLACEHOLDER_MESSAGE =
   "Optional: key dates, lender name, or how you’d like us to help." as const
 
-export const FORM_SUBMIT_LABEL = "Send my guide" as const
+export const FORM_SUBMIT_LABEL = "Send My Guide" as const
 
 /**
  * Stand-in imagery for printed guide spreads (swap when export/PDF thumbnails exist).
@@ -70,29 +77,29 @@ export const FORM_SUBMIT_LABEL = "Send my guide" as const
 export const GUIDE_CAROUSEL_SLIDES = [
   {
     id: "g1",
-    image: M2M_MEDIA.contactHeroStill,
-    imageAlt: "Foreclosure guide — understanding your timeline",
+    image: "/images/facing-foreclosure/m2m-foreclosure-guide-organize-finances.png",
+    imageAlt: "Planning home finances — organizing timelines and commitments",
     quote:
       "Clarity starts with your timeline — notices, milestones, and what they mean in plain language before you make big decisions.",
   },
   {
     id: "g2",
-    image: M2M_MEDIA.sellHeroStill,
-    imageAlt: "Foreclosure guide — lender communication",
+    image: "/images/facing-foreclosure/m2m-foreclosure-guide-couple-planning-keys.png",
+    imageAlt: "Couple reviewing next steps toward housing stability together",
     quote:
       "Strong communication with your lender matters. The guide walks through how to get organized and what to ask at each step.",
   },
   {
     id: "g3",
-    image: M2M_MEDIA.partnersCtaStill,
-    imageAlt: "Foreclosure guide — options and paths",
+    image: "/images/facing-foreclosure/m2m-foreclosure-guide-timeline-professional.png",
+    imageAlt: "Advisor walking through a clear step-by-step plan with homeowners",
     quote:
       "From loss-mitigation programs to short sales, you deserve to understand paths that may protect your home or your credit.",
   },
   {
     id: "g4",
-    image: M2M_MEDIA.teamPhotoWide,
-    imageAlt: "Marching 2 More — local guidance",
+    image: "/images/facing-foreclosure/m2m-foreclosure-guide-agent-tour-modern-home.png",
+    imageAlt: "Local realtor touring a move-forward home option with homeowners",
     quote:
       "You are not alone in Hampton Roads. Request the guide and we will follow up with practical next steps for your situation.",
   },

@@ -98,7 +98,7 @@ These are **not** configurable per sub-account in code without a code change:
 ### 3.8 Pipelines / opportunities
 
 - All **four** of `GHL_BUYER_PIPELINE_ID`, `GHL_SELLER_PIPELINE_ID`, `GHL_BUYER_STAGE_NEW_INQUIRY_ID`, `GHL_SELLER_STAGE_NEW_INQUIRY_ID` must be set for **opportunity** creation.
-- If any one is missing, behavior is **degraded by design:** contact upsert + tags (if any), then log `opportunity_skipped`.
+- If any one is missing, submission now fails as a configuration issue (no success state).
 
 ### 3.9 Request order (for log triage)
 
@@ -107,7 +107,7 @@ These are **not** configurable per sub-account in code without a code change:
 3. `POST /opportunities/` (if pipelines complete)
 4. `POST /contacts/:id/notes` (if the website sent `notes` in JSON)
 
-**Partial success:** If step 1 succeeds but step 2, 3, or 4 fails, the API still returns **`ok: true`** with optional **`warnings`**: `tags_failed`, `opportunity_failed`, `note_failed`. The UI shows a calm “Heads up” panel with the **`correlationId`**. Vercel logs: `[ghl] tags_failed_partial`, `[ghl] opportunity_failed_partial`, `[ghl] contact_note_failed_partial`.
+**Strict success:** Step 1-4 are required for a successful response. If any required step fails, the API returns **`ok: false`** with `code`, `correlationId`, and `failed_step` when available.
 
 A failure on step 1 returns **`ok: false`** with `failed_step: "contacts_upsert"` (no contact ID in JSON).
 
@@ -118,10 +118,8 @@ Use this order so you do not mistake **layout** for **data**:
 1. **Contacts** — find the person (email/phone); confirm the contact exists in the M2M location.
 2. **Contact custom fields** — Lead type, DOB, Property Address, **Urgency (TEXT)**, UTMs as applicable. Expand “custom fields” if needed; add fields to the **contact layout** in GHO settings if the team should see them at a glance.
 3. **Tags** — expect base tags **`M2M - Buyer`** or **`M2M - Seller`** (plus any path-based tags from `GHL_PATH_TAGS`). If `tags_failed` appeared, some tags may be missing.
-4. **Notes** — free-text from the form, when sent. If `note_failed` appeared, the note may be absent while the contact is still saved.
-5. **Opportunities / pipeline board** — **M2M Buyer Pipeline** or **M2M Seller Pipeline**, stage **New Inquiry** (if all four pipeline env vars were set; else see `opportunity_skipped` / `opportunity_failed` in logs or `opportunity_failed` in `warnings`).
-
-**Partial success** (`ok: true` + `warnings`): the contact upsert from step 1 in §3.9 **succeeded**; use the list above to see *which* later steps need attention (tags, opportunity, or note).
+4. **Notes** — operator note is part of required success path; failures should appear as failed submissions.
+5. **Opportunities / pipeline board** — **M2M Buyer Pipeline** or **M2M Seller Pipeline**, stage **New Inquiry** (if all four pipeline env vars are set; otherwise expect submission failure).
 
 ### 3.11 Duplicate / merge log hints
 
@@ -146,7 +144,7 @@ The browser receives **user-safe** `error` strings and a machine **`code`** for 
 
 | Source | Fields |
 |--------|--------|
-| Browser **Network** tab → `POST /api/submit-lead` JSON | `correlationId`, `code`, `error`, optional `failed_step` (`contacts_upsert` / `contacts_tags` / `opportunities_create`), optional `crm_http_status` (note: contact note creation failures are log-only, not a failed response) |
+| Browser **Network** tab → `POST /api/submit-lead` JSON | `correlationId`, `code`, `error`, optional `failed_step` (`contacts_upsert` / `contacts_tags` / `opportunities_create` / `contacts_note`), optional `crm_http_status` |
 | **Vercel** logs | Search `correlationId` and `[ghl]` — `API error` includes `path`, `status`, `statusBucket`, `upstreamDetail`, `bodyPreview` (truncate, no token); **`upstream_error`** includes **`crmUserCode`** (classified, no PII) |
 
 **`crm_http_status` (rough guide):**

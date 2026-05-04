@@ -142,6 +142,7 @@
     .ff input:focus{outline:none;border-color:var(--color-primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-primary) 12%,transparent)}
     .opt-note{font-weight:400;color:var(--color-text-faint)}
     .fprivacy{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-faint)}
+    .quiz-lead-error{margin:0;font-size:var(--text-sm);font-weight:600;color:#b42318;line-height:1.45}
     .btn-submit{width:100%;justify-content:center;align-self:stretch}
     .btn-back-sm{font-size:var(--text-xs);color:var(--color-text-faint);align-self:flex-start;margin-top:var(--space-2);transition:color var(--dur)}
     .btn-back-sm:hover{color:var(--color-text-muted)}
@@ -334,6 +335,7 @@
           <div class="ff"><label for="fe">Email Address</label><input type="email" id="fe" placeholder="jane@email.com" required autocomplete="email"/></div>
           <div class="ff"><label for="fp">Phone <span class="opt-note">(optional)</span></label><input type="tel" id="fp" placeholder="(757) 555-0100" autocomplete="tel"/></div>
           <p class="fprivacy"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Private &amp; confidential. Never sold.</p>
+          <p id="quiz-lead-error" class="quiz-lead-error" role="alert" style="display:none"></p>
           <button type="submit" class="btn-cta btn-submit" id="subBtn"><span id="sbl">Show My Results →</span><span id="ssp" class="spinner" style="display:none"></span></button>
         </form>
         <button class="btn-back-sm" onclick="goTo('q5')">← Back to questions</button>
@@ -373,7 +375,7 @@
 <script>
 const LINKS = {
   guide: '/downsizing-your-home#downsizing-guide',
-  call: '/contact-us',
+  call: '/contact-us?intent=seller',
 };
 
 const ST = { current:'welcome', qs:['q1','q2','q3','q4','q5'], answers:{}, result:null };
@@ -449,7 +451,7 @@ function render(type){
   $('rh').textContent=r.h;$('re').textContent=r.e;$('rq').textContent='\u201c'+r.q+'\u201d';
   $('rf').innerHTML='<p class="rf-title">What to focus on next</p>'+r.focus.map(f=>`<div class="rf-item"><div class="rf-dot"></div><span>${f}</span></div>`).join('');
   $('rcl').textContent=r.cl;$('rct').textContent=r.ct;$('rcd').textContent=r.cd;
-  $('rca').innerHTML=`<a href="${r.p.h}" target="_blank" rel="noopener" class="cta-p">${r.p.t}</a><a href="${r.s.h}" target="_blank" rel="noopener" class="cta-s">${r.s.t}</a>`;
+  $('rca').innerHTML=`<a href="${r.p.h}" class="cta-p">${r.p.t}</a><a href="${r.s.h}" class="cta-s">${r.s.t}</a>`;
 }
 
 function calcAnim(cb){
@@ -466,7 +468,15 @@ function calcAnim(cb){
 async function submitLead(ev){
   ev.preventDefault();
   const fn=$('fi').value.trim(),ln=$('fl').value.trim(),em=$('fe').value.trim(),ph=$('fp').value.trim();
-  if(!fn||!ln||!em)return;
+  const errEl = $('quiz-lead-error');
+  if(!fn||!ln||!em){
+    if (errEl) {
+      errEl.textContent = 'Please enter your first name, last name, and email.';
+      errEl.style.display = 'block';
+    }
+    return;
+  }
+  if (errEl) { errEl.textContent = ''; errEl.style.display = 'none'; }
   $('sbl').style.display='none';$('ssp').style.display='block';$('subBtn').disabled=true;
   const type=result();ST.result=type;
   const r=RES[type];
@@ -481,19 +491,43 @@ async function submitLead(ev){
     'Q5: ' + (ST.answers.q5?.label ?? ''),
     'Tag hints (CRM): ' + r.tags.join('; '),
   ].join('\n');
-  fetch('/api/submit-lead', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      lead_type: 'seller',
-      name: name,
-      email: em,
-      phone: ph || undefined,
-      source_page: window.location.href,
-      source_path: '/downsizing-your-home',
-      notes: notes,
-    }),
-  }).catch(function () {});
+  const body = JSON.stringify({
+    lead_type: 'seller',
+    name: name,
+    email: em,
+    phone: ph || undefined,
+    source_page: window.location.href,
+    source_path: '/downsizing-your-home',
+    notes: notes,
+  });
+  let res;
+  let data = null;
+  try {
+    res = await fetch('/api/submit-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: body,
+    });
+    try { data = await res.json(); } catch (e) { data = null; }
+  } catch (e) {
+    $('sbl').style.display='';$('ssp').style.display='none';$('subBtn').disabled=false;
+    if (errEl) {
+      errEl.textContent = 'Network error — check your connection and try again.';
+      errEl.style.display = 'block';
+    }
+    return;
+  }
+  const ok = res.ok && data && data.ok === true;
+  if (!ok) {
+    $('sbl').style.display='';$('ssp').style.display='none';$('subBtn').disabled=false;
+    const msg = (data && typeof data.error === 'string' && data.error) ||
+      'We could not save your info. Please try again or contact the team.';
+    if (errEl) {
+      errEl.textContent = msg;
+      errEl.style.display = 'block';
+    }
+    return;
+  }
   render(type);
   calcAnim(function () { goTo('results'); });
 }
@@ -504,6 +538,7 @@ function restart(){
   ST.qs.forEach(q=>{const nb=$('next-'+q);if(nb)nb.disabled=true});
   ['fi','fl','fe','fp'].forEach(id=>{const i=$(id);if(i)i.value=''});
   $('sbl').style.display='';$('ssp').style.display='none';const sb=$('subBtn');if(sb)sb.disabled=false;
+  const qe = $('quiz-lead-error'); if (qe) { qe.textContent=''; qe.style.display='none'; }
   goTo('welcome');
 }
 

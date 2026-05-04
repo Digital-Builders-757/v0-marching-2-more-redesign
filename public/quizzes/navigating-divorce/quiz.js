@@ -4,8 +4,8 @@
 ══════════════════════════════════════════════════ */
 
 const LINKS = {
-  bookCall: '/contact-us',
-  guide: '/resources',
+  bookCall: '/contact-us?intent=seller',
+  guide: '/navigating-divorce#guide-form',
 };
 
 // ── STATE ──────────────────────────────────────────
@@ -163,8 +163,8 @@ function renderResult(type) {
   $('r-cta-title').textContent = r.ctaTitle;
   $('r-cta-desc').textContent = r.ctaDesc;
   $('r-cta-actions').innerHTML = `
-    <a href="${r.primary.href}" target="_blank" rel="noopener noreferrer" class="cta-primary">${r.primary.text}</a>
-    <a href="${r.secondary.href}" target="_blank" rel="noopener noreferrer" class="cta-secondary">${r.secondary.text}</a>
+    <a href="${r.primary.href}" class="cta-primary">${r.primary.text}</a>
+    <a href="${r.secondary.href}" class="cta-secondary">${r.secondary.text}</a>
   `;
 }
 
@@ -197,6 +197,20 @@ function runCalculating(callback) {
 }
 
 // ── LEAD SUBMISSION ────────────────────────────────
+function resetCaptureSubmitUi() {
+  const btn = $('submitBtn');
+  $('btn-label').style.display = '';
+  $('btn-spinner').style.display = 'none';
+  if (btn) btn.disabled = false;
+}
+
+function setCaptureError(message) {
+  const el = $('lead-submit-error');
+  if (!el) return;
+  el.textContent = message || '';
+  el.style.display = message ? 'block' : 'none';
+}
+
 async function submitLead(e) {
   e.preventDefault();
 
@@ -205,9 +219,13 @@ async function submitLead(e) {
   const email     = $('f-email').value.trim();
   const phone     = $('f-phone').value.trim();
 
-  if (!firstName || !lastName || !email) return;
+  if (!firstName || !lastName || !email) {
+    setCaptureError('Please enter your first name, last name, and email.');
+    return;
+  }
 
-  // Loading state
+  setCaptureError('');
+
   const btn = $('submitBtn');
   $('btn-label').style.display = 'none';
   $('btn-spinner').style.display = 'block';
@@ -228,24 +246,47 @@ async function submitLead(e) {
     'Quiz source: navigating-divorce-quiz-v2',
   ].join('\n');
 
-  fetch('/api/submit-lead', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      lead_type: 'seller',
-      name: (firstName + ' ' + lastName).trim(),
-      email: email,
-      phone: phone || undefined,
-      source_page: window.location.href,
-      source_path: '/navigating-divorce',
-      notes: notes,
-    }),
-  }).catch(() => {});
+  const body = JSON.stringify({
+    lead_type: 'seller',
+    name: (firstName + ' ' + lastName).trim(),
+    email: email,
+    phone: phone || undefined,
+    source_page: window.location.href,
+    source_path: '/navigating-divorce',
+    notes: notes,
+  });
 
-  // Pre-render result so it's ready instantly after animation
+  let res;
+  let data = null;
+  try {
+    res = await fetch('/api/submit-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: body,
+    });
+    try {
+      data = await res.json();
+    } catch (_) {
+      data = null;
+    }
+  } catch (_) {
+    resetCaptureSubmitUi();
+    setCaptureError('Network error — check your connection and try again.');
+    return;
+  }
+
+  const ok = res.ok && data && data.ok === true;
+  if (!ok) {
+    resetCaptureSubmitUi();
+    const msg =
+      (data && typeof data.error === 'string' && data.error) ||
+      'We could not save your info. Please try again or use Contact Us.';
+    setCaptureError(msg);
+    return;
+  }
+
   renderResult(resultType);
 
-  // Run calculating animation, then reveal results
   runCalculating(() => {
     goTo('results');
   });
@@ -272,6 +313,7 @@ function restart() {
   $('btn-label').style.display = '';
   $('btn-spinner').style.display = 'none';
   const sb = $('submitBtn'); if (sb) sb.disabled = false;
+  setCaptureError('');
 
   goTo('welcome');
 }

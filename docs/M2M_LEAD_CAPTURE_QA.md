@@ -6,6 +6,8 @@ Use **live GoHighLevel (GHO)** (contact, custom fields, tags, notes, opportuniti
 
 **Live QA note (2026):** **Date of birth** and **Urgency (TEXT)** are writing correctly from production forms when the form collects them. If operators “don’t see” them in the UI, check whether those custom fields are **on the GHO contact record layout** — **successful population and visible field layout are not the same thing.** See [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) §3.10 and [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md).
 
+**Static quizzes (`public/quizzes/`):** Quiz UIs **await** the lead API and show an **error message** (not success) when the response is not `ok: true`. For QA, confirm both success and a forced error path (e.g. temporarily invalid payload) on staging if desired.
+
 ---
 
 ## GHO visibility check (do this for any “missing field” report)
@@ -24,7 +26,7 @@ Match [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) §3
 2. **Custom fields** — Lead type, DOB (if collected), **Property Address** (if sent), **Urgency (TEXT)**, UTMs; use layout/visibility check above.
 3. **Tags** — **M2M - Buyer** or **M2M - Seller** (and any path-based tags from env).
 4. **Notes** — when the form sends `notes` (message, CMA context, etc.).
-5. **Opportunities** — **M2M Buyer Pipeline** or **M2M Seller Pipeline**, stage **New Inquiry** (requires all four pipeline/stage env vars; else expect `opportunity_skipped` in logs or `opportunity_failed` in `warnings`).
+5. **Opportunities** — **M2M Buyer Pipeline** or **M2M Seller Pipeline**, stage **New Inquiry** (requires all four pipeline/stage env vars; if missing or invalid, expect submission failure and no success UI).
 
 ---
 
@@ -41,12 +43,13 @@ Match [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) §3
 
 On VA, FHA, divorce, downsizing **guide**, resources checklist, and similar: default **“Not sure yet”** (or shared short-form default) should still land in **`GHL_CF_URGENCY`**. Changing the select should set `urgency_explicit: true` in Vercel (`[ghl] urgency_meta`).
 
-## Partial success drill (staging / careful prod)
+## Forced failure drill (staging / careful prod)
 
-Temporarily misconfigure a non-critical step (e.g. invalid tag name) and confirm:
+Temporarily misconfigure one required step (e.g. invalid tag configuration) and confirm:
 
-- Response: `ok: true`, `warnings` contains `tags_failed`, UI shows **Heads up** panel.
-- Contact still created or updated in GHO; correlation id ties to `tags_failed_partial` in logs.
+- Response is `ok: false` with `code`, `correlationId`, and `failed_step` when available.
+- UI stays in error/retry mode (no thank-you state).
+- Vercel logs include the same `correlationId` and the failing CRM step.
 
 ## Duplicate / conflict matrix (edge cases)
 

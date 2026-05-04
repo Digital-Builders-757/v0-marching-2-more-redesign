@@ -11,10 +11,9 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass, m2mLeadFieldTextareaClass } from "@/lib/m2m-form"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
-import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
+import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import { cn } from "@/lib/utils"
 
 import {
@@ -45,10 +44,6 @@ export function PreForeclosureForm() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
-  const [successFollowUp, setSuccessFollowUp] = useState<{
-    warnings: SubmitLeadWarningCode[]
-    correlationId: string
-  } | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -77,7 +72,6 @@ export function PreForeclosureForm() {
         setSubmitError(res)
         return
       }
-      setSuccessFollowUp({ warnings: res.warnings ?? [], correlationId: res.correlationId })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -91,14 +85,6 @@ export function PreForeclosureForm() {
         role="status"
         aria-live="polite"
       >
-        {successFollowUp?.warnings.length ? (
-          <M2mLeadSubmitWarnings
-            warnings={successFollowUp.warnings}
-            correlationId={successFollowUp.correlationId}
-            variant="onLight"
-            className="text-left"
-          />
-        ) : null}
         <p
           className="text-center text-2xl font-semibold text-m2m-panel sm:text-[1.65rem]"
           style={{ fontFamily: "var(--font-display)" }}
@@ -171,6 +157,7 @@ export function PreForeclosureForm() {
           onChange={(v) => setForm({ ...form, dateOfBirth: v })}
           inputClassName={m2mLeadFieldInputClass}
           className="text-m2m-deep"
+          required={false}
         />
 
         <div>

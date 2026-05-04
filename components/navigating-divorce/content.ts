@@ -1,14 +1,13 @@
 /**
  * Copy and nav for `/navigating-divorce` only.
  *
- * Imagery: semantic keys in `lib/m2m-media.ts` (`divorce*`); swap URLs there when final art ships.
+ * Imagery: local files under `/images/divorce/` (semantics in `docs/M2M_ASSET_MAP.md`).
  */
-import { M2M_MEDIA } from "@/lib/m2m-media"
 import type { M2MNavLink } from "@/lib/m2m-nav"
 
 /** Top footer link row (reference order). */
 export const DIVORCE_FOOTER_TOP_LINKS: readonly M2MNavLink[] = [
-  { label: "Work With Us", href: "/contact-us?intent=buyer" },
+  { label: "Work With Us", href: "/contact-us?intent=seller" },
   { label: "Home Valuation", href: "/free-home-valuation" },
   { label: "Pre-Listing Checklist", href: "/resources" },
   { label: "Our Team", href: "/our-team" },
@@ -16,23 +15,26 @@ export const DIVORCE_FOOTER_TOP_LINKS: readonly M2MNavLink[] = [
   { label: "Contact Us", href: "/contact-us" },
 ] as const
 
-/** Hero — emotionally supportive, human-centered, calm and hopeful transition mood. */
-export const DIVORCE_HERO_BACKGROUND = "/images/divorce/divorce-hero-hopeful-transition.jpg" as const
+/** Hero — calm in-home consultation, mother and child supported by advisor */
+export const DIVORCE_HERO_BACKGROUND =
+  "/images/divorce/m2m-divorce-hero-mother-child-agent-consultation.png" as const
 
 export const COLLAGE_IMAGES = {
-  /** Panel 1 — couple in contemplative moment (gold panel overlay). */
-  sellDuringDivorce: "/images/divorce/divorce-couple-contemplative.jpg" as const,
-  /** Panel 2 — hopeful new beginning with keys. */
-  family: "/images/divorce/divorce-new-home-keys.jpg" as const,
-  /** Panel 3 — serene modern interior representing fresh start. */
-  interior: "/images/divorce/divorce-modern-interior.jpg" as const,
-  /** Panel 4 — hopeful transition imagery. */
-  legal: "/images/divorce/divorce-hero-hopeful-transition.jpg" as const,
+  /** Panel 1 — diverse couple with advisor at home (selling-plan context) */
+  sellDuringDivorce: "/images/site/m2m-partners-consult-evening-home.png" as const,
+  /** Panel 2 — supportive multi-generational moment on the porch */
+  family: "/images/divorce/m2m-divorce-collage-multigen-porch-steps.png" as const,
+  /** Panel 3 — quiet transition moment at home with memories */
+  interior: "/images/divorce/m2m-divorce-collage-photo-album-dining.png" as const,
+  /** Panel 4 — professional reviewing documents shoulder-to-shoulder */
+  legal: "/images/divorce/m2m-divorce-collage-consultant-documents-table.png" as const,
 } as const
 
 /** Full-bleed section backgrounds */
-export const VALUATION_BACKGROUND = M2M_MEDIA.divorceValuationBackground
-export const AERIAL_BACKGROUND = M2M_MEDIA.divorceAerialBackground
+export const VALUATION_BACKGROUND =
+  "/images/divorce/m2m-divorce-valuation-renovation-planning.png" as const
+export const AERIAL_BACKGROUND =
+  "/images/divorce/m2m-divorce-aerial-evening-consult-home.png" as const
 
 export const SUPPORT_PARAGRAPH =
   "This comprehensive resource offers valuable insights and expert advice on managing real estate matters during divorce proceedings." as const
@@ -108,7 +110,7 @@ export const TEAM_SOCIAL = {
     youtube: "https://www.youtube.com/results?search_query=Marching+2+More+real+estate",
   },
   company: {
-    facebook: "https://www.facebook.com",
+    facebook: "https://www.facebook.com/marching2more",
     instagram: "https://www.instagram.com/marching2more",
     youtube: "https://www.youtube.com/results?search_query=Marching+2+More+real+estate",
   },

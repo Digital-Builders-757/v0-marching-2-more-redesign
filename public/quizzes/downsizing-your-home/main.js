@@ -25,10 +25,43 @@ function buildTags(intent) {
   return base;
 }
 
-async function submitForm({ firstName, email, phone, zip, intent }, formEl, labelId, spinnerId, successId) {
-  if (!firstName || !email || !intent) return false;
+function resetLeadFormUi(formEl, labelId, spinnerId) {
+  const labelEl = document.getElementById(labelId);
+  const spinEl = document.getElementById(spinnerId);
+  const submitBtn = formEl.querySelector('[type="submit"]');
+  if (labelEl) labelEl.style.display = '';
+  if (spinEl) spinEl.style.display = 'none';
+  if (submitBtn) submitBtn.disabled = false;
+}
 
-  // Loading state
+function setLeadFormError(errorId, message) {
+  if (!errorId) return;
+  const errEl = document.getElementById(errorId);
+  if (!errEl) return;
+  errEl.textContent = message || '';
+  errEl.style.display = message ? 'block' : 'none';
+}
+
+async function submitForm(
+  fields,
+  formEl,
+  labelId,
+  spinnerId,
+  successId,
+  errorId,
+) {
+  const firstName = fields.firstName;
+  const email = fields.email;
+  const phone = fields.phone;
+  const zip = fields.zip;
+  const intent = fields.intent;
+  if (!firstName || !email || !intent) {
+    setLeadFormError(errorId, 'Please enter your name, email, and preferred next step.');
+    return false;
+  }
+
+  setLeadFormError(errorId, '');
+
   document.getElementById(labelId).style.display = 'none';
   document.getElementById(spinnerId).style.display = 'block';
   const submitBtn = formEl.querySelector('[type="submit"]');
@@ -41,26 +74,51 @@ async function submitForm({ firstName, email, phone, zip, intent }, formEl, labe
     'Suggested tags (for ops): ' + buildTags(intent).join('; '),
   ].join('\n');
 
+  const body = JSON.stringify({
+    lead_type: 'seller',
+    name: firstName.trim(),
+    email: email,
+    phone: phone || undefined,
+    source_page: window.location.href,
+    source_path: '/downsizing-your-home',
+    notes: notes,
+  });
+
   try {
-    await fetch('/api/submit-lead', {
+    const res = await fetch('/api/submit-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lead_type: 'seller',
-        name: firstName.trim(),
-        email,
-        phone: phone || undefined,
-        source_page: window.location.href,
-        source_path: '/downsizing-your-home',
-        notes,
-      }),
+      body: body,
     });
-  } catch (e) { /* silent fail */ }
 
-  // Show success
-  formEl.style.display = 'none';
-  document.getElementById(successId).style.display = 'flex';
-  return true;
+    let data = null;
+    try {
+      data = await res.json();
+    } catch (_) {
+      data = null;
+    }
+
+    const ok = res.ok && data && data.ok === true;
+    if (!ok) {
+      const msg =
+        (data && typeof data.error === 'string' && data.error) ||
+        'We could not send your request. Please try again or call the team.';
+      resetLeadFormUi(formEl, labelId, spinnerId);
+      setLeadFormError(errorId, msg);
+      return false;
+    }
+
+    formEl.style.display = 'none';
+    document.getElementById(successId).style.display = 'flex';
+    return true;
+  } catch (_) {
+    resetLeadFormUi(formEl, labelId, spinnerId);
+    setLeadFormError(
+      errorId,
+      'Network error — check your connection and try again.',
+    );
+    return false;
+  }
 }
 
 // ── HERO FORM ─────────────────────────────────────
@@ -72,7 +130,7 @@ async function submitMainForm(e) {
     phone:     document.getElementById('mf-phone').value.trim(),
     zip:       document.getElementById('mf-zip').value.trim(),
     intent:    document.getElementById('mf-intent').value,
-  }, e.target, 'mf-label', 'mf-spinner', 'formSuccess');
+  }, e.target, 'mf-label', 'mf-spinner', 'formSuccess', 'mf-submit-error');
 }
 
 // ── FINAL FORM ────────────────────────────────────
@@ -84,7 +142,7 @@ async function submitFinalForm(e) {
     phone:     document.getElementById('ff-phone').value.trim(),
     zip:       document.getElementById('ff-zip').value.trim(),
     intent:    document.getElementById('ff-intent').value,
-  }, e.target, 'ff-label', 'ff-spinner', 'finalSuccess');
+  }, e.target, 'ff-label', 'ff-spinner', 'finalSuccess', 'ff-submit-error');
 }
 
 // ── SMOOTH SCROLL INTENT ──────────────────────────
