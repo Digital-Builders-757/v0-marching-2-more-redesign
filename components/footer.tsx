@@ -134,8 +134,11 @@ export function Footer() {
             >
               Contact
             </h3>
-            <p className="text-xs text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+            <p className="text-xs leading-relaxed text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
               {M2M_ADDRESS_SINGLE_LINE}
+            </p>
+            <p className="text-[0.72rem] leading-relaxed text-m2m-cream/65" style={{ fontFamily: "var(--font-sans)" }}>
+              Fast responses by phone, text, or email.
             </p>
             <a
               href={M2M_PHONE_HREF}

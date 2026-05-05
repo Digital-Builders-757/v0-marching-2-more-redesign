@@ -59,6 +59,13 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-m2m-gold/15 bg-m2m-panel pt-[env(safe-area-inset-top,0px)]">
+      <Link
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[90] focus:rounded-md focus:bg-m2m-panel focus:px-4 focus:py-2 focus:text-xs focus:font-medium focus:text-m2m-cream focus:outline-none focus:ring-2 focus:ring-m2m-gold/50"
+      >
+        Skip to content
+      </Link>
+
       {/* Backdrop */}
       {menuOpen ? (
         <button

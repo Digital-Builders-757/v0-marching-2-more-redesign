@@ -41,7 +41,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100dvh] overflow-hidden bg-white py-6 md:py-8"
+      className="relative min-h-[100dvh] overflow-hidden bg-white py-4 md:py-6"
       aria-labelledby="hero-heading"
     >
       <M2mInsetHeroFrame className="min-h-[calc(100dvh-3rem)]">
@@ -63,7 +63,7 @@ export function Hero() {
 
         <M2mInsetHeroScrim variant="home" />
 
-        <M2mContainer className="relative z-10 flex max-w-3xl flex-col justify-center pb-16 pt-28 sm:pt-32 lg:pt-36">
+        <M2mContainer className="relative z-10 flex max-w-3xl flex-col justify-center pb-14 pt-24 sm:pt-28 lg:pt-32">
         <div
           className="flex max-w-full flex-wrap items-center gap-x-3 gap-y-2 text-[0.6rem] tracking-[0.22em] text-m2m-gold sm:text-[0.65rem] sm:tracking-[0.3em]"
           style={{ fontFamily: "var(--font-nav)" }}
@@ -72,8 +72,8 @@ export function Hero() {
             <span className="block h-px w-8 bg-m2m-gold" aria-hidden />
           </span>
             <span className="min-w-0 max-w-full text-pretty break-words leading-snug">
-              Licensed Real Estate Professionals in Virginia Beach, VA, USA • Veteran Owned
-              <span aria-hidden="true"> | 5.0 ★ ★ ★ ★ ★</span>
+              Veteran-owned in Virginia Beach, VA • Hampton Roads relocation, VA loans, and listing strategy
+              <span aria-hidden="true"> | 5.0 ★★★★★</span>
               <span className="sr-only"> Five out of five star client rating.</span>
             </span>
         </div>
@@ -90,8 +90,8 @@ export function Hero() {
           className="mt-6 max-w-xl text-base leading-relaxed text-m2m-cream [text-shadow:0_1px_10px_rgba(5,13,6,0.35)] sm:text-[1.05rem]"
           style={{ fontFamily: "var(--font-sans)" }}
         >
-          Hampton Roads advisors for military families and discerning buyers—PCS moves, VA loans, luxury search, and a
-          calm plan from tour to closing.
+          Hampton Roads advisors for military families and discerning buyers, with PCS moves, VA loans, luxury search,
+          and a calm plan from tour to closing.
         </p>
 
         <div className="mt-10 grid w-full gap-4 sm:mt-12 sm:max-w-2xl sm:grid-cols-2 sm:gap-4">
