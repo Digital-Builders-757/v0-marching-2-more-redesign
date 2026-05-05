@@ -15,16 +15,19 @@ export function ReviewsCta() {
         }}
       />
 
-      <M2mContainer className="relative py-20 md:py-28 text-center">
+      <M2mContainer className="relative py-20 text-center md:py-28">
         <h2
           data-gsap="blur-in"
-          className="text-[clamp(1.8rem,4vw,3rem)] leading-[1.1] font-light text-m2m-cream mb-8"
+          className="mb-6 text-[clamp(1.8rem,4vw,3rem)] font-light leading-[1.1] text-m2m-cream"
           style={{ fontFamily: "var(--font-display)" }}
         >
           Ready to start your journey?
         </h2>
+        <p className="mx-auto max-w-xl text-sm leading-relaxed text-m2m-cream/78 font-sans">
+          If you want the same calm process these clients got, we&apos;ll map the next step together and keep it simple.
+        </p>
 
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row" data-gsap="fade-up" data-gsap-delay="0.2">
+        <div className="flex flex-col items-center justify-center gap-4 pt-8 sm:flex-row" data-gsap="fade-up" data-gsap-delay="0.2">
           <Link
             href="/contact-us?intent=buyer"
             data-m2m-track="reviews_work_with_us"
