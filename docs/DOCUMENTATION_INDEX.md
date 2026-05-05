@@ -43,6 +43,8 @@
 | Doc | Purpose |
 |-----|---------|
 | [marching2more/M2M_SITE_REBUILD_SPEC.md](./marching2more/M2M_SITE_REBUILD_SPEC.md) | Supplementary rebuild notes (verify against repo) |
+| [marching2more/M2M_CATCHUP_ROADMAP.md](./marching2more/M2M_CATCHUP_ROADMAP.md) | Current execution order for the next Marching 2 More batches |
+| [marching2more/README.md](./marching2more/README.md) | Queue entry point for Cursor and handoffs |
 | [marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md](./marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md) | Client page fixes batch — decisions and route map |
 | [marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md) | What actually matters next — priority hierarchy for site improvements |
 | [marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md](./marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md) | Product growth batch — conversion clarity, content engine, trust, and maintainability |

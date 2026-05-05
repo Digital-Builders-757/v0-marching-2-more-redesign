@@ -1,6 +1,6 @@
 # Work order (Marching 2 More - site redesign)
 
-**Execution spine for the public website.** Vision and rules: [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md). Cross-site visual principles and checklist: [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md)—**running priorities and ships stay in this file** (avoid treating both as competing “sources of truth”). GoHighLevel integration is an **active parallel track**; use [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) as the CRM / automation source of truth.
+**Execution spine for the public website.** Vision and rules: [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md). Cross-site visual principles and checklist: [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md)—**running priorities and ships stay in this file** (avoid treating both as competing “sources of truth”). The current Marching 2 More queue lives in [marching2more/README.md](./marching2more/README.md) and [marching2more/M2M_CATCHUP_ROADMAP.md](./marching2more/M2M_CATCHUP_ROADMAP.md). GoHighLevel integration is an **active parallel track**; use [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) as the CRM / automation source of truth.
 
 ## GHL integration — status (cutover readiness pass)
 
