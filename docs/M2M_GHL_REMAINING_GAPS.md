@@ -29,7 +29,7 @@
 ## In progress / partial
 
 - **Public URLs in code:** `GOHIGHLEVEL_BOOKING_URL` and **`GOHIGHLEVEL_QUIZ_*`** (credit, foreclosure iframe, investor, BRRRR) may still be **`REPLACE_WITH_*`** until marketing/GHL supply links. Site degrades safely (fallback forms, static quiz error UI, no broken iframes).
-- **Opportunities:** creation only when **all four** pipeline/stage env vars are set; otherwise contact + tags only (by design).
+- **Pipelines (strict):** all **four** of `GHL_BUYER_PIPELINE_ID`, `GHL_SELLER_PIPELINE_ID`, `GHL_BUYER_STAGE_NEW_INQUIRY_ID`, `GHL_SELLER_STAGE_NEW_INQUIRY_ID` must be set for **live** submissions to succeed. If any are missing, the API returns **`ok: false`** / **`code: config_error`** / **`failed_step: opportunities_create`** after local checks — **no** contact is written in GHL (see `strict_failure_pipeline_unconfigured` in [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts)).
 
 ---
 
@@ -48,7 +48,7 @@
 
 ## Remaining website work (optional / polish)
 
-- E2E or scripted smoke tests for `/api/submit-lead` (Playwright when prioritized).
+- **API contract:** [`tests/e2e/submit-lead-api.spec.ts`](../tests/e2e/submit-lead-api.spec.ts) exercises JSON/validation errors and the unconfigured-CRM path against a running server (no live GHL in CI).
 - Optional: distinct UX when `GHL_DRY_RUN=true` vs live (currently same success copy).
 
 ---

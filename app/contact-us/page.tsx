@@ -7,12 +7,14 @@ import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
+import { M2mPostSubmitNextSteps } from "@/components/m2m-post-submit-next-steps"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mContainer } from "@/components/m2m-layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
+  m2mFormShellWidthSafeClass,
   m2mFormSubmitShadcnPanelEnhance,
   m2mInteriorFormInputClass,
   m2mInteriorFormTextareaClass,
@@ -140,8 +142,8 @@ function ContactUsPageInner() {
               </p>
             ) : (
               <p className="mb-6 text-base leading-relaxed text-m2m-muted font-sans">
-                Tell us a bit about your goals. One of our agents will review your request and follow up with a clear
-                next step within one business day.
+                Tell us a bit about your goals. Our team reviews every message personally — most replies land within one
+                business day; same-day replies are common when you reach us earlier in the day.
               </p>
             )}
 
@@ -190,13 +192,14 @@ function ContactUsPageInner() {
                     ? "We received your request and will reach out as soon as we can, usually within an hour during business hours."
                     : "We&apos;ll be in touch within one business day."}
                 </p>
+                <M2mPostSubmitNextSteps variant="onLight" />
               </div>
             ) : (
               <form
                 data-m2m-lead="contact"
                 onSubmit={handleSubmit}
                 aria-busy={submitting}
-                className="space-y-6 sm:space-y-7"
+                className={`space-y-6 sm:space-y-7 ${m2mFormShellWidthSafeClass}`}
               >
                 <fieldset className="space-y-2">
                   <legend className="mb-0.5 text-sm font-medium text-m2m-deep font-sans">I am primarily…</legend>

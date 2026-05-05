@@ -14,6 +14,8 @@ const SUGGESTION_CATALOG: MenuSearchSuggestion[] = [
   { href: "/roger-lee", title: "Roger Lee", hint: "Profile" },
   { href: "/kristin-s-profile", title: "Kristin Allen", hint: "Profile" },
   { href: "/our-team", title: "Our Team", hint: "Meet the team" },
+  { href: "/buy", title: "Buying with Marching 2 More", hint: "Buyer process & services" },
+  { href: "/sell", title: "Selling with Marching 2 More", hint: "Listing prep & valuation paths" },
   { href: "/sell#checklist", title: "Pre-listing checklist", hint: "Seller prep on /sell" },
   { href: "/home-search", title: "Home Search", hint: "Search homes & buying" },
   { href: "/free-home-valuation", title: "Free Home Valuation", hint: "CMA & home value" },
@@ -49,9 +51,20 @@ export function resolveMenuSearchQuery(raw: string): string | null {
     return "/sell#checklist"
   }
 
+  if (/search homes|home search|house search|homes for sale|find a home/.test(q)) {
+    return "/home-search"
+  }
+
+  if (/^(buy|buying|buyer|purchase)$/.test(q) || /\bhow to buy\b/.test(q)) {
+    return "/buy"
+  }
+
+  if (/^(sell|seller)$/.test(q)) {
+    return "/sell"
+  }
+
   if (
     /\b(buy|buying)\b/.test(q) ||
-    /search homes|home search|house search|homes for sale|find a home/.test(q) ||
     /\b(relocation|relocating)\b/.test(q) ||
     /\bmoving\b|\bmilitary relocation\b/.test(q)
   ) {
@@ -116,7 +129,7 @@ export function getMenuSearchSuggestions(raw: string, limit = 6): MenuSearchSugg
   return out.slice(0, limit)
 }
 
-export const MENU_SEARCH_PLACEHOLDER = "Search homes, valuation, contact, team…"
+export const MENU_SEARCH_PLACEHOLDER = "Search buy, sell, homes, valuation, contact…"
 
 export const MENU_SEARCH_EMPTY_HINT =
-  'Try "home valuation," "contact," "search homes," or "checklist."'
+  'Try "buy," "sell," "home valuation," "search homes," or "contact."'

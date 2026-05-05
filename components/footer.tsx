@@ -34,8 +34,8 @@ const agentLinks = [
 export function Footer() {
   return (
     <footer className="border-t border-m2m-gold/20 bg-m2m-black pb-[env(safe-area-inset-bottom,0px)]">
-      <M2mContainer className="py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <M2mContainer className="py-12 sm:py-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12 lg:grid-cols-4">
           {/* Quick links */}
           <div className="flex flex-col gap-3">
             <h3
@@ -49,7 +49,7 @@ export function Footer() {
                 <Link
                   key={l.label}
                   href={l.href}
-                  className="inline-flex min-h-11 w-full max-w-xs items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
+                  className="inline-flex min-h-11 w-full max-w-full items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black sm:max-w-xs"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
                   {l.label}
@@ -107,7 +107,7 @@ export function Footer() {
                 <Link
                   key={l.label}
                   href={l.href}
-                  className="inline-flex min-h-11 w-full max-w-xs items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
+                  className="inline-flex min-h-11 w-full max-w-full items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black sm:max-w-xs"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
                   {l.label}
@@ -119,7 +119,7 @@ export function Footer() {
               href={GOOGLE_REVIEW_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 inline-flex min-h-11 w-full max-w-xs items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted underline decoration-m2m-gold/40 underline-offset-4 transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
+              className="mt-2 inline-flex min-h-11 w-full max-w-full items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted underline decoration-m2m-gold/40 underline-offset-4 transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black sm:max-w-xs"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               Leave a Google review →
@@ -142,14 +142,14 @@ export function Footer() {
             </p>
             <a
               href={M2M_PHONE_HREF}
-              className="inline-flex min-h-11 w-full max-w-xs items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
+              className="inline-flex min-h-11 w-full max-w-full items-center rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black sm:max-w-xs"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               {M2M_PHONE_DISPLAY}
             </a>
             <a
               href={M2M_EMAIL_HREF}
-              className="inline-flex min-h-11 w-full max-w-sm items-center break-words rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
+              className="inline-flex min-h-11 w-full max-w-full min-w-0 items-center break-words rounded-sm px-1.5 -mx-1.5 text-xs tracking-wider text-m2m-muted transition-colors hover:text-m2m-cream focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black sm:max-w-sm"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               {M2M_EMAIL_DISPLAY}
@@ -159,7 +159,7 @@ export function Footer() {
       </M2mContainer>
 
       <div className="border-t border-m2m-gold/20">
-        <M2mContainer className="py-6">
+        <M2mContainer className="py-5 sm:py-6">
         <p className="text-[0.65rem] tracking-wider text-m2m-muted font-nav">
           ©2018 — {new Date().getFullYear()} MARCHING 2 MORE REALTY GROUP
         </p>

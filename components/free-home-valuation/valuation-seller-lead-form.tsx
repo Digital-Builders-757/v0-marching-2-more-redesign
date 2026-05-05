@@ -7,6 +7,7 @@ import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
+import { M2mPostSubmitNextSteps } from "@/components/m2m-post-submit-next-steps"
 import { m2mInteriorFormInputClass, m2mInteriorFormTextareaClass } from "@/lib/m2m-form"
 import { cn } from "@/lib/utils"
 import { M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
@@ -88,7 +89,10 @@ export function ValuationSellerLeadForm() {
         <p className="text-xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
           Thank you!
         </p>
-        <p className="mt-3 text-sm text-m2m-deep/80 font-sans">We&apos;ll be in touch soon.</p>
+        <p className="mt-3 text-sm text-m2m-deep/80 font-sans">
+          We&apos;ll be in touch soon — usually within one business day, often faster when you submit earlier in the day.
+        </p>
+        <M2mPostSubmitNextSteps variant="onLight" omitHrefs={["/free-home-valuation"]} />
       </div>
     )
   }

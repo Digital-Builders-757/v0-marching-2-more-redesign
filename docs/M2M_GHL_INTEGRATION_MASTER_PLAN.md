@@ -9,7 +9,7 @@
 
 ## See also (operational entry points)
 
-- **End-to-end system behavior (canonical):** [`docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md`](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) — architecture, where data lands in GHO, operator verification order, partial success.
+- **End-to-end system behavior (canonical):** [`docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md`](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) — architecture, where data lands in GHO, operator verification order, **strict** success (full pipeline or `ok: false`).
 - **Client / team (non-technical):** [`docs/M2M_CLIENT_CRM_HANDOFF_GUIDE.md`](./M2M_CLIENT_CRM_HANDOFF_GUIDE.md) — what the site does vs what GHO does, how to confirm leads, common mistakes.
 
 This master plan remains the **scope, phases, and business** record for the integration; the system guide is the best **single place** for “how it works in production” after cutover.
@@ -137,11 +137,11 @@ If a page targets a seller pain point such as foreclosure, downsizing, valuation
 
 ### Lead capture routes (expected CRM payload)
 
-**Authoritative route/component matrix:** [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](./M2M_LEAD_CAPTURE_MATRIX.md) (submission path, DOB, urgency mode, partial-success notes).
+**Authoritative route/component matrix:** [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](./M2M_LEAD_CAPTURE_MATRIX.md) (submission path, DOB, urgency mode).
 
 Shared timeline strings for `urgency` (TEXT) come from [`lib/m2m-lead-urgency.ts`](../lib/m2m-lead-urgency.ts), including passive defaults on short forms. `GHL_CF_ADDRESS` maps to the GHL field labeled **Property Address**; optional fields are omitted when empty.
 
-**API success:** responses include `correlationId` and optional `warnings` (`tags_failed` | `opportunity_failed` | `note_failed`) when the contact upsert succeeded but a later step failed — see [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
+**API success:** `ok: true` only when **contact upsert**, **tags**, **opportunity create**, and **contact note** all succeed — see [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts). Every response includes **`correlationId`**. On failure, **`ok: false`** with `code`, optional `failed_step`, and user-safe `error`.
 
 | Route / component | Funnel | `address` | `urgency` | `notes` (→ contact note in GHO) | Live route |
 |-------------------|--------|-----------|-----------|-----------------------------------|------------|
@@ -163,7 +163,7 @@ Shared timeline strings for `urgency` (TEXT) come from [`lib/m2m-lead-urgency.ts
 | `components/contact.tsx` | Buyer or seller from interest | — | Short-form urgency | Interest + message | **Not mounted** (use `/contact-us`) |
 | `app/resources/resources-checklist-form.tsx` | Buyer | — | Short-form urgency | Checklist request note | `/resources` |
 
-**Server:** `notes` are posted to GHL with `POST /contacts/:contactId/notes` after the contact is upserted. If the Notes API fails, the server still returns success and logs a warning (contact and pipeline data are already saved). See [`lib/ghl/client.ts`](../lib/ghl/client.ts) and [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
+**Server:** `notes` and submission metadata are combined into an **operator note** posted with `POST /contacts/:contactId/notes` **after** the opportunity is created. If that call fails, the handler returns **`ok: false`** (`failed_step: contacts_note` when classified). See [`lib/ghl/client.ts`](../lib/ghl/client.ts) and [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
 
 **Errors:** Upstream GHL HTTP failures are mapped to user-safe JSON via [`lib/ghl/crm-user-message.ts`](../lib/ghl/crm-user-message.ts) (`crm_*` codes) and UI copy via [`lib/m2m-lead-submit-error-copy.ts`](../lib/m2m-lead-submit-error-copy.ts).
 
@@ -453,7 +453,7 @@ Server-only secrets must remain server-side only and must never use the `NEXT_PU
 
 ## Phase 2 — website submission path
 
-**Done (repo):** `POST /api/submit-lead`; Zod validation; upsert → tags → optional opportunity; stable JSON responses with **`crm_*`** error classification and appropriate HTTP status codes.
+**Done (repo):** `POST /api/submit-lead`; Zod validation; upsert → tags → opportunity → operator note; stable JSON responses with **`crm_*`** error classification and appropriate HTTP status codes.
 
 - live behavior requires valid **`GHL_*`** env (or `GHL_DRY_RUN=true` for testing without upstream calls)
 
@@ -562,14 +562,14 @@ This plan is the governing source of truth for the active GHL integration scope 
 - **`POST /api/submit-lead`** — Node runtime, Zod validation, stable JSON responses (**`crm_*`** error codes); secrets stay server-only.
 - Client helpers: **`lib/m2m-lead-submit.ts`**, **`lib/m2m-utm.ts`**, **`useM2mUtm`**, **`M2mLeadDobField`**.
 - Forms wired with `lead_type`, optional DOB/phone, UTMs, and `source_path` on seller, buyer, and campaign surfaces (see [lead capture table](#lead-capture-routes-expected-crm-payload) and [M2M_GHL_REMAINING_GAPS.md](./M2M_GHL_REMAINING_GAPS.md)).
-- **Observability:** per-request **`correlationId`**; **`crmUserCode`** on classified upstream errors; logs **`opportunity_skipped`** with **`missingEnvVars`** when pipeline env incomplete; no raw email/phone in logs.
+- **Observability:** per-request **`correlationId`**; **`crmUserCode`** on classified upstream errors; logs **`strict_failure_pipeline_unconfigured`** with **`missingEnvVars`** when any of the four pipeline/stage env vars is unset; no raw email/phone in logs.
 - **Booking single source of truth:** **`getPrimaryConsultationBookUrl()`** — documented in **`lib/m2m-site.ts`**; contact page uses the same helper as header/footer/hero/blog.
 
 **Confirmed technical decisions**
 
 - **Dry run:** `GHL_DRY_RUN=true` skips upstream calls; custom field env vars optional (placeholders injected server-side).
-- **Partial pipelines:** If any of the four pipeline/stage env vars are missing, contact upsert + tags still run; opportunities are skipped (degraded mode, not a silent failure — see logs).
-- **Notes:** When the client sends `notes`, the server posts a **contact note** via GHL `POST /contacts/:contactId/notes` after the contact upsert ([`lib/ghl/client.ts`](../lib/ghl/client.ts) `createContactNote`). If that call fails, the response can still be success with `warnings` including **`note_failed`** (contact and pipeline data may already be saved).
+- **Pipelines:** All **four** buyer/seller pipeline + stage env vars must be set for **live** submissions. If any is missing, the API returns **`ok: false`** / **`config_error`** before calling GHL (`strict_failure_pipeline_unconfigured`).
+- **Notes:** Operator note (metadata + optional visitor `notes`) is posted **after** opportunity create ([`lib/ghl/client.ts`](../lib/ghl/client.ts) `createContactNote`). If that call fails, the handler returns **`ok: false`** — not a silent partial success.
 
 **Still requires the GHL account + Vercel env (not completable from repo alone):**
 

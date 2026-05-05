@@ -91,10 +91,11 @@ Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-le
 
 ## 8. What to verify in GHL after each submit
 
+- The browser received **`ok: true`** and a **`correlationId`** (otherwise fix env or upstream errors first — no “partial success” thank-you state).
 - Contact record exists / updates (upsert).
 - Custom fields populated (especially Lead Type, UTM fields).
 - Tags applied (exact names).
-- Opportunity created **only if** all four pipeline/stage env vars are set; otherwise contact + tags only (see server logs: `opportunity_skipped`).
+- Opportunity on the correct pipeline at **New Inquiry** — **required** for success today: if any of the four pipeline/stage env vars is missing, the submit **fails before GHL** (`strict_failure_pipeline_unconfigured` in logs; UI shows error, not thank-you).
 
 ---
 
@@ -104,7 +105,8 @@ Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-le
 |---------|----------------|
 | **503** / “Lead capture is not configured” | Missing `GHL_API_KEY` / `GHL_LOCATION_ID` or required `GHL_CF_*` in live mode |
 | **502** / generic CRM error | GHL rejected a step — in the browser Network response, copy **`correlationId`**, **`failed_step`**, **`crm_http_status`**. In **Vercel logs**, search the same `correlationId` and `[ghl]` (`path`, `statusBucket`, `upstreamDetail`, `bodyPreview`). See [M2M_GHL_OPERATOR_VERIFICATION.md §4](./M2M_GHL_OPERATOR_VERIFICATION.md#4-interpreting-production-failures-502--user-message) |
-| Contact saved, **no opportunity** | Not all of `GHL_BUYER_PIPELINE_ID`, `GHL_SELLER_PIPELINE_ID`, `GHL_BUYER_STAGE_NEW_INQUIRY_ID`, `GHL_SELLER_STAGE_NEW_INQUIRY_ID` set — intentional degradation |
+| **`ok: false` / `failed_step: opportunities_create`** / `config_error` | Any of the four pipeline/stage env vars unset — submit is rejected **before** GHL contact upsert; set all four on Vercel |
+| Contact saved, **no opportunity** | Should not happen on **`ok: true`** path — if you see it, treat as a product/ops bug and capture `correlationId` + logs |
 | **422** / validation from GHL | Wrong custom field IDs or value shapes — compare field IDs in GHL UI to env |
 | Tags not applied | Tag names in env must match GHL **exactly** |
 | Double booking confusion | Booking links should come only from `getPrimaryConsultationBookUrl()` in [`lib/m2m-site.ts`](../lib/m2m-site.ts) |
@@ -121,4 +123,4 @@ Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-le
 
 ## Server logs (operators)
 
-Successful path emits structured lines such as `submit_start`, `contact_upserted`, `tags_applied`, `opportunity_created` or `opportunity_skipped` with a **`correlationId`** — use it to match one browser submission to one request in logs. Do not paste raw logs containing lead PII into public channels.
+Successful path emits structured lines such as `submit_start`, `contact_upserted`, `tags_applied`, `opportunity_created`, `contact_note_created`, `submit_ok` with a **`correlationId`** — use it to match one browser submission to one request in logs. Misconfiguration before GHL logs **`strict_failure_pipeline_unconfigured`** or **`strict_failure_tags_missing`** (no `contact_upserted`). Do not paste raw logs containing lead PII into public channels.

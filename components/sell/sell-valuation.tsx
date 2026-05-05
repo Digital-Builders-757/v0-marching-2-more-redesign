@@ -91,7 +91,10 @@ export function SellValuation() {
               style={{ fontFamily: "var(--font-sans)" }}
             >
               Opens our RealScout home value report. Prefer a conversation first? Use{" "}
-              <Link href="/contact-us" className="text-m2m-gold underline-offset-2 hover:underline">
+              <Link
+                href="/contact-us?intent=seller"
+                className="text-m2m-gold underline-offset-2 hover:underline"
+              >
                 Contact Us
               </Link>
               .

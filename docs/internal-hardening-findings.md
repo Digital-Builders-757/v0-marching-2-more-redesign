@@ -22,34 +22,31 @@ The following items from the original hardening review are **addressed in repo**
 
 ## 1. Summary
 
-Repo review for Marching 2 More Next.js site: single lead API (`POST /api/submit-lead`), server-only GHL integration, mostly consistent form submit guards. **Open engineering follow-ups:** empty-tag warnings, partial-success `warnings` UX, unmounted parity contact components, optional Playwright smoke.
+Repo review for Marching 2 More Next.js site: single lead API (`POST /api/submit-lead`), server-only GHL integration, mostly consistent form submit guards. **Open engineering follow-ups:** unmounted parity contact components; optional richer telemetry on `failed_step`.
 
 ---
 
 ## 2. Suspicious or fragile patterns (still relevant)
 
-### 2.1 Empty tags — silent skip of tag step
+### 2.1 Empty tags — strict failure
 
 **File:** [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts)
 
-- Logs warning when no tags resolved; still upserts contact.
-- If ops expects **every** lead to be taggable for workflows, unset `GHL_TAG_LEAD_*` is a **silent** behavioral change.
+- If `GHL_TAG_LEAD_BUYER` / `GHL_TAG_LEAD_SELLER` resolve to an **empty** tag list for the lead, the API returns **`ok: false`** (`failed_step: contacts_tags`, `code: config_error`) — no GHL writes.
 
 ### 2.2 Opportunity creation — all-or-nothing env
 
 **File:** [`lib/ghl/config.ts`](../lib/ghl/config.ts) — `pipelines` is `null` unless all four of `GHL_BUYER_PIPELINE_ID`, `GHL_SELLER_PIPELINE_ID`, `GHL_BUYER_STAGE_NEW_INQUIRY_ID`, `GHL_SELLER_STAGE_NEW_INQUIRY_ID` are set.
 
-**File:** [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts) — skips opportunity with `opportunity_skipped` log.
+**File:** [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts) — if `pipelines` is incomplete, logs **`strict_failure_pipeline_unconfigured`** and returns **`ok: false`** before any GHL call.
 
-**Follow-up:** Operator checklist should confirm all four are set for production if opportunities are required.
+**Follow-up:** Operator checklist must set all four pipeline/stage IDs for production — otherwise every submit fails at configuration.
 
-### 2.3 Partial success semantics
+### 2.3 Success contract (strict full pipeline)
 
-Successful HTTP 200 from `/api/submit-lead` may include `warnings`: `tags_failed`, `opportunity_failed`, `note_failed`.
+**Current behavior:** `ok: true` only after contact upsert, tags, opportunity, and operator note all succeed. Any step failure → **`ok: false`** with `correlationId` for triage.
 
-**File:** [`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts) parses `warnings` on success.
-
-**Follow-up:** Verify React forms surface `warnings` to ops or logging (optional UX); if not, leads may think “all good” while tag failed.
+**File:** [`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts) may still parse optional `warnings[]` for forward compatibility — the live route does not emit them.
 
 ### 2.4 Unused / unmounted lead components
 
@@ -94,7 +91,7 @@ Run on **production-like** build with real `GHL_*` (or dry-run intentionally).
 
 | # | Surface | Action | Pass criteria |
 |---|---------|--------|----------------|
-| 1 | `/contact-us` | Submit buyer + seller variants | 200 JSON `ok`, GHL contact; tags; optional opportunity |
+| 1 | `/contact-us` | Submit buyer + seller variants | 200 JSON `ok`, GHL contact; tags; opportunity + note when env complete |
 | 2 | `/buy`, `/home-search` | Full buyer form | DOB + urgency land in expected custom fields |
 | 3 | `/free-home-valuation`, `/sell` | Seller form | Address + urgency |
 | 4 | `/cma-form` | Long seller intake | Long `notes` + composed address |
@@ -117,12 +114,11 @@ Run on **production-like** build with real `GHL_*` (or dry-run intentionally).
 
 **P1**
 
-2. Surface API `warnings` in UI for internal builds or log to client telemetry.
-3. Audit unused `components/contact*.tsx` usage; delete or integrate.
+1. Audit unused `components/contact*.tsx` usage; delete or integrate.
 
 **P2**
 
-4. Playwright smoke for `/api/submit-lead` + one static quiz path.
+1. Extend Playwright with more funnel `request` contracts if needed ([`tests/e2e/submit-lead-api.spec.ts`](../tests/e2e/submit-lead-api.spec.ts) covers the API entrypoint).
 
 ---
 

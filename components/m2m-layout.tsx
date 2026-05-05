@@ -37,7 +37,7 @@ export function M2mInsetHeroFrame({ className, ...props }: ComponentProps<"div">
   return (
     <div
       className={cn(
-        "relative mx-auto w-[min(95%,100%)] max-w-[1600px] overflow-hidden rounded-xl shadow-[0_2px_28px_-6px_rgba(5,13,6,0.18)] ring-1 ring-m2m-black/10",
+        "relative mx-auto min-w-0 w-[min(95%,100%)] max-w-[1600px] overflow-hidden rounded-xl shadow-[0_2px_28px_-6px_rgba(5,13,6,0.18)] ring-1 ring-m2m-black/10",
         className,
       )}
       {...props}
@@ -82,6 +82,7 @@ export function M2mInsetHeroScrim({
   )
 }
 
+/** Full-width content gutter aligned with header/footer. `min-w-0` prevents flex/grid overflow next to wide media. */
 export function M2mContainer({ className, ...props }: ComponentProps<"div">) {
   return <div className={cn("mx-auto min-w-0 w-full max-w-7xl px-4 sm:px-6 lg:px-8", className)} {...props} />
 }
@@ -112,6 +113,7 @@ export function M2mSection({
   return (
     <section
       className={cn(
+        "min-w-0",
         sectionY[density],
         sectionSurface[variant],
         className,
@@ -131,7 +133,7 @@ export function M2mProse({
   return (
     <div
       className={cn(
-        "max-w-3xl text-pretty",
+        "min-w-0 max-w-3xl text-pretty",
         "[&_p]:mb-4 [&_p]:last:mb-0",
         "[&_ul]:mb-4 [&_ul]:list-outside [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:marker:text-m2m-gold/50",
         "[&_ol]:mb-4 [&_ol]:list-outside [&_ol]:list-decimal [&_ol]:pl-6",

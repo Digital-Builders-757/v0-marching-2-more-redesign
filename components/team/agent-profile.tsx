@@ -73,7 +73,7 @@ export function AgentProfile({
               {/* CTAs */}
               <div className="flex flex-col gap-4">
                 <Button variant="m2mPanel" asChild className="h-auto rounded-full px-6 py-4 text-sm">
-                  <Link href="/contact-us" style={{ fontFamily: "var(--font-nav)" }}>
+                  <Link href="/contact-us?intent=buyer" style={{ fontFamily: "var(--font-nav)" }}>
                     Work with {firstName}
                   </Link>
                 </Button>

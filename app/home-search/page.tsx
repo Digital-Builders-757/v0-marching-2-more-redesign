@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
@@ -130,6 +131,49 @@ export default function HomeSearchPage() {
             </M2mContainer>
           </M2mInsetHeroFrame>
         </section>
+
+        <section
+          className="border-t border-m2m-deep/10 bg-m2m-cream/45 py-8 sm:py-9"
+          aria-label="Selling and equity paths"
+        >
+          <M2mContainer className="max-w-5xl text-center">
+            <p
+              className="text-sm leading-relaxed text-m2m-deep/85 font-sans sm:text-[0.9375rem]"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              <span className="font-medium text-m2m-deep">Selling or doing both?</span>{" "}
+              Continue on the{" "}
+              <Link
+                href="/sell"
+                className="font-medium text-m2m-deep underline decoration-m2m-gold/50 underline-offset-4 transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-panel"
+                data-m2m-track="home_search_sell_bridge"
+                data-m2m-track-loc="/home-search"
+              >
+                selling hub
+              </Link>
+              , get a{" "}
+              <Link
+                href="/free-home-valuation"
+                className="font-medium text-m2m-deep underline decoration-m2m-gold/50 underline-offset-4 transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-panel"
+                data-m2m-track="home_search_valuation_bridge"
+                data-m2m-track-loc="/home-search"
+              >
+                free valuation
+              </Link>
+              , or{" "}
+              <Link
+                href="/cma-form"
+                className="font-medium text-m2m-deep underline decoration-m2m-gold/50 underline-offset-4 transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-panel"
+                data-m2m-track="home_search_cma_bridge"
+                data-m2m-track-loc="/home-search"
+              >
+                request a CMA
+              </Link>
+              .
+            </p>
+          </M2mContainer>
+        </section>
+
         <M2mRelatedPages cluster="buy" omitHref="/home-search" variant="onLight" />
       </main>
       <Footer />

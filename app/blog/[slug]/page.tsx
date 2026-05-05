@@ -157,19 +157,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <BlogPostContentBlocks content={post.content} />
             </article>
 
-            <div className="mt-12 rounded-md border border-m2m-deep/10 bg-white p-6">
-              <p className="text-sm text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
-                Want help buying or selling in Hampton Roads? We&apos;ll make the next steps clear.
+            <div className="mt-12 rounded-md border border-m2m-deep/10 bg-white p-6 sm:p-8">
+              <p className="text-sm text-m2m-muted font-sans" style={{ fontFamily: "var(--font-sans)" }}>
+                Want help buying or selling in Hampton Roads? Tell us your goals on the short consult form — or grab a
+                calendar slot. Same licensed, veteran-owned team either way.
               </p>
-              <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-stretch">
                 <Link
                   href="/contact-us?intent=buyer"
                   data-m2m-track="blog_work_with_us"
                   data-m2m-track-loc={`blog_${post.slug}`}
-                  className="inline-flex min-h-12 items-center justify-center bg-m2m-deep px-6 py-3 text-[0.7rem] tracking-[0.2em] uppercase font-medium text-m2m-cream touch-manipulation"
+                  className="inline-flex min-h-12 flex-1 items-center justify-center bg-m2m-deep px-5 py-3 text-center text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-cream touch-manipulation sm:flex-none sm:px-6"
                   style={{ fontFamily: "var(--font-nav)" }}
                 >
                   Work With Us
+                </Link>
+                <Link
+                  href="/contact-us?intent=consultation"
+                  data-m2m-track="blog_consultation_form"
+                  data-m2m-track-loc={`blog_${post.slug}`}
+                  className="inline-flex min-h-12 flex-1 items-center justify-center border border-m2m-deep/30 bg-white px-5 py-3 text-center text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-deep touch-manipulation sm:flex-none sm:px-6"
+                  style={{ fontFamily: "var(--font-nav)" }}
+                >
+                  Request consultation
                 </Link>
                 <a
                   href={getPrimaryConsultationBookUrl()}
@@ -177,13 +187,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   rel="noreferrer"
                   data-m2m-track="blog_pick_a_time"
                   data-m2m-track-loc={`blog_${post.slug}`}
-                  className="inline-flex min-h-12 items-center justify-center border border-m2m-deep/25 px-6 py-3 text-[0.7rem] tracking-[0.2em] uppercase font-medium text-m2m-deep touch-manipulation"
+                  className="inline-flex min-h-12 flex-1 items-center justify-center border border-m2m-deep/25 px-5 py-3 text-center text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-deep touch-manipulation sm:flex-none sm:px-6"
                   style={{ fontFamily: "var(--font-nav)" }}
                 >
                   Pick a time
                 </a>
               </div>
-              <p className="mt-4 text-xs text-m2m-muted font-sans">
+              <p className="mt-4 text-xs leading-relaxed text-m2m-muted font-sans">
+                <Link href="/buy" className="text-m2m-gold underline-offset-4 hover:underline">
+                  Buying path
+                </Link>
+                {" · "}
+                <Link href="/sell" className="text-m2m-gold underline-offset-4 hover:underline">
+                  Selling path
+                </Link>
+                {" · "}
                 <Link href="/reviews" className="text-m2m-gold underline-offset-4 hover:underline">
                   Read what clients say about working with us
                 </Link>

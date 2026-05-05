@@ -8,7 +8,10 @@ export type LeadType = "buyer" | "seller"
 /** CRM call site when logging or returning `failed_step` (no secrets). */
 export type GhlApiStep = "contacts_upsert" | "contacts_tags" | "opportunities_create" | "contacts_note"
 
-/** Non-fatal step failures after contact upsert (safe machine codes for UI + logs). */
+/**
+ * Legacy / forward-compat — the live API returns `ok: false` if tags, opportunity, or note fails.
+ * `submitLeadToApi` still parses `warnings` when present for older responses.
+ */
 export type SubmitLeadWarningCode = "tags_failed" | "opportunity_failed" | "note_failed"
 
 /** Inbound JSON from browser forms → POST /api/submit-lead */
@@ -75,7 +78,7 @@ export type SubmitLeadSuccessResponse = {
   opportunityId?: string
   /** Present on every response for support correlation. */
   correlationId: string
-  /** Steps that failed after the contact was saved — user should still know we have their info. */
+  /** Not emitted by current server; optional for forward-compat / stale proxies. */
   warnings?: SubmitLeadWarningCode[]
 }
 

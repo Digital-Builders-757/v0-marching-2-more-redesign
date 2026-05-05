@@ -2,6 +2,8 @@
 
 **Canonical map** of project documentation. For a short “start here” path, read **[AGENTS.md](../AGENTS.md)**.
 
+**Execution queue vs ship log:** Batched product work is ordered in [`marching2more/README.md`](./marching2more/README.md) and [`marching2more/M2M_CATCHUP_ROADMAP.md`](./marching2more/M2M_CATCHUP_ROADMAP.md). [`WORK_ORDER.md`](./WORK_ORDER.md) is the rolling **done recently / next** timeline. Each `marching2more/*_WORK_ORDER.md` is the **scope + definition of done** for that batch (keep them aligned when behavior changes — avoid duplicating full narratives in multiple places).
+
 ## Source-of-truth (active)
 
 | Doc | Purpose |
@@ -18,7 +20,7 @@
 | [M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md](./M2M_WEBSITE_OVERHAUL_MASTER_PLAN.md) | Active site overhaul: goals, standards, doc outcomes |
 | [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md) | Cross-site visual system pass for buttons, image framing, surfaces, and route polish |
 | [M2M_GHL_INTEGRATION_MASTER_PLAN.md](./M2M_GHL_INTEGRATION_MASTER_PLAN.md) | Active GoHighLevel integration boundary, phases, env contract |
-| [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) | **Start here (live):** website → API → GHO architecture, where data lands, operator verification, partial success |
+| [M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) | **Start here (live):** website → API → GHO architecture, where data lands, operator verification, strict success |
 | [M2M_CLIENT_CRM_HANDOFF_GUIDE.md](./M2M_CLIENT_CRM_HANDOFF_GUIDE.md) | Client/team: what the site vs GHO does, how to confirm leads, layout vs data visibility |
 | [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) | GHL sub-account tasks: fields, pipelines, tags, workflows, calendars |
 | [M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md](./M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) | Operator CRM spec: funnel pipelines, tags, layouts, QA; **§0.1** documents how the live site uses **buyer/seller env pipelines** + **`GHL_PATH_TAGS`** vs three funnel-named boards |
@@ -43,6 +45,8 @@
 | Doc | Purpose |
 |-----|---------|
 | [marching2more/M2M_SITE_REBUILD_SPEC.md](./marching2more/M2M_SITE_REBUILD_SPEC.md) | Supplementary rebuild notes (verify against repo) |
+| [marching2more/M2M_CATCHUP_ROADMAP.md](./marching2more/M2M_CATCHUP_ROADMAP.md) | Current execution order for the next Marching 2 More batches |
+| [marching2more/README.md](./marching2more/README.md) | Queue entry point for Cursor and handoffs |
 | [marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md](./marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md) | Client page fixes batch — decisions and route map |
 | [marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md) | What actually matters next — priority hierarchy for site improvements |
 | [marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md](./marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md) | Product growth batch — conversion clarity, content engine, trust, and maintainability |

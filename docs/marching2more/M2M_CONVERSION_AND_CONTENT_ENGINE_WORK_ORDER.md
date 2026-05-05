@@ -184,6 +184,18 @@ Before shipping anything, ask:
 
 If the answer is no, skip it.
 
+---
+
+## Shipped (May 2026 — conversion + linking batch)
+
+- **`M2mPostSubmitNextSteps`** — After successful lead submits, visitors get **Explore while you wait** internal links (search, sell hub, valuation, CMA, resources, reviews, consultation form) with **`data-m2m-track="post_submit_next_step"`**; current funnel path can be omitted (e.g. `/home-search`, `/cma-form`, `/free-home-valuation`).
+- **`lib/m2m-content-clusters.ts`** — Stronger cluster intros; **Book a consultation** and **buy/sell** hubs added across buyer, seller, military, life, invest, and learn clusters where useful.
+- **`M2mRelatedPages`** — Virginia / veteran-owned trust line; **`min-h-11`** + **`related_page`** analytics on links.
+- **`/home-search`** — Seller **bridge** copy linking **sell**, **valuation**, and **CMA** above the related strip.
+- **`/resources`** — Internal guides list leads with **buy**, **sell**, and **consultation**.
+- **`/blog/[slug]`** — CTA row: **Work With Us** · **Request consultation** · **Pick a time**; footer text links to **`/buy`**, **`/sell`**, **`/reviews`**.
+- **`/contact-us`** — Non-consult intro clarifies typical response timing; success state includes **`M2mPostSubmitNextSteps`**.
+
 ## Definition of done
 - the site feels like a growth system, not just a polished brochure
 - the conversion paths are clearer
