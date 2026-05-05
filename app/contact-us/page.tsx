@@ -129,7 +129,7 @@ function ContactUsPageInner() {
               className="mb-6 font-light italic text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-m2m-deep"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Introduce Yourself
+              Let&apos;s Talk
             </h1>
 
             {isConsultIntent ? (
@@ -140,8 +140,8 @@ function ContactUsPageInner() {
               </p>
             ) : (
               <p className="mb-6 text-base leading-relaxed text-m2m-muted font-sans">
-                Tell us a bit about your goals. One of our agents will review your request and follow up with your next
-                steps within 24hrs.
+                Tell us a bit about your goals. One of our agents will review your request and follow up with a clear
+                next step within one business day.
               </p>
             )}
 
@@ -187,8 +187,8 @@ function ContactUsPageInner() {
                 </p>
                 <p className="mt-4 text-sm text-m2m-muted font-sans">
                   {isConsultIntent
-                    ? "We received your request and will reach out as soon as we can — typically within about an hour during business hours."
-                    : "We'll be in touch within 24 hours."}
+                    ? "We received your request and will reach out as soon as we can, usually within an hour during business hours."
+                    : "We&apos;ll be in touch within one business day."}
                 </p>
               </div>
             ) : (
@@ -321,7 +321,7 @@ function ContactUsPageInner() {
                   disabled={submitting}
                   aria-busy={submitting}
                 >
-                  {submitting ? "Sending…" : "That's it — Send!"}
+                  {submitting ? "Sending…" : "Send the message"}
                 </Button>
               </form>
             )}

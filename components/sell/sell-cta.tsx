@@ -44,14 +44,18 @@ export function SellCTA() {
           Let&apos;s Get You <em className="italic">Top Dollar</em>
         </h2>
         <p 
-          className="text-m2m-muted-lt text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto"
+          className="text-m2m-muted-lt text-base md:text-lg leading-relaxed mb-6 max-w-2xl mx-auto"
           style={{ fontFamily: 'var(--font-sans)' }}
         >
-          Our team has the expertise and local market knowledge to sell your home quickly 
-          and for the best possible price. Start with a free consultation today.
+          Our team has the local context and marketing discipline to position your home well, keep you informed, and
+          help you move with confidence.
+        </p>
+        <p className="mx-auto max-w-xl text-sm leading-relaxed text-m2m-cream/78 font-sans">
+          Start with a valuation or call us if you want to talk through timing, prep, and what the market is doing right
+          now.
         </p>
 
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href={REALSCOUT_HOME_VALUATION_URL}
             target="_blank"

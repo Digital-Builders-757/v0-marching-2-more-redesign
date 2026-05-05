@@ -23,20 +23,23 @@ export function BuyCTA() {
           Let&apos;s Find Your <em className="italic">Perfect Home</em>
         </h2>
         <p 
-          className="text-m2m-muted text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto"
+          className="text-m2m-muted text-base md:text-lg leading-relaxed mb-6 max-w-2xl mx-auto"
           style={{ fontFamily: 'var(--font-sans)' }}
         >
-          Schedule a free consultation with our team. We&apos;ll discuss your needs, 
-          answer your questions, and create a personalized plan to find your next home.
+          Schedule a free consultation with our team. We&apos;ll talk through your budget, PCS timing, neighborhood fit,
+          and the next step so you can move with clarity.
+        </p>
+        <p className="mx-auto max-w-xl text-sm leading-relaxed text-m2m-muted/85 font-sans">
+          No pressure, no jargon, just a straight answer on what makes sense for your search.
         </p>
 
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/contact-us?intent=consultation"
             className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] bg-m2m-deep text-m2m-cream transition-all duration-300 hover:bg-m2m-deep/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
-            Book a Consultation
+            Start Your Search
           </Link>
           <a
             href={M2M_PHONE_HREF}
