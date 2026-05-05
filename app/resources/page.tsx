@@ -110,7 +110,7 @@ export default function ResourcesPage() {
               className="mt-8 sm:mt-10 font-light italic text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] text-m2m-cream text-center [text-shadow:0_2px_16px_rgba(5,13,6,0.5),0_1px_4px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Prepare Your Home<br />for the Market
+              Seller Resources<br />& Next Steps
             </h1>
 
             {/* Subheading */}
@@ -118,8 +118,8 @@ export default function ResourcesPage() {
               className="mt-6 sm:mt-8 text-center text-base sm:text-lg md:text-xl leading-relaxed text-m2m-cream [text-shadow:0_1px_10px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
-              Use our 20 page guide to assist you with<br className="hidden md:block" />
-              every phase of selling your home.
+              Use the checklist, trusted links, and local guides below to move through the selling process with a
+              clearer plan.
             </p>
 
             {/* Form */}
@@ -136,7 +136,8 @@ export default function ResourcesPage() {
                 className="mt-2 text-center text-sm leading-relaxed text-m2m-cream/88"
                 style={{ fontFamily: "var(--font-sans)" }}
               >
-                Jump to scenario-specific help, tools, and proof — then come back here for the printable checklist.
+                Jump to the guide, tool, or proof that fits your next step, then come back here for the printable
+                checklist.
               </p>
               <nav aria-label="Internal guides" className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2">
                 {internalGuides.map((item) => (
@@ -157,7 +158,7 @@ export default function ResourcesPage() {
                 className="text-center text-lg md:text-xl text-m2m-cream/90"
                 style={{ fontFamily: "var(--font-sans)" }}
               >
-                Guidelines and resources — all in one place
+                Trusted links and next steps
               </h2>
 
               {/* Resource Links Grid */}

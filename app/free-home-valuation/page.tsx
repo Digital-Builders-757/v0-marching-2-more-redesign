@@ -68,9 +68,8 @@ export default function FreeHomeValuationPage() {
               className="font-light italic leading-[1.05] text-[clamp(2.5rem,6vw,4.5rem)] text-m2m-cream mb-6 [text-shadow:0_2px_16px_rgba(5,13,6,0.5),0_1px_3px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Maximize Your<br />
-              Home&apos;s Value Before<br />
-              You List.
+              Know Your Home&apos;s Value<br />
+              Before You List.
             </h1>
 
             {/* Subheading */}
@@ -78,8 +77,8 @@ export default function FreeHomeValuationPage() {
               className="text-base md:text-lg italic text-m2m-cream mb-8 max-w-xl mx-auto [text-shadow:0_1px_12px_rgba(5,13,6,0.4)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Effortless Home Valuation for Top Market<br />
-              Results in Virginia
+              Get a fast online estimate, then we can review the numbers together and decide what makes sense for your
+              sale.
             </p>
 
             {/* CTA Button */}
@@ -90,7 +89,7 @@ export default function FreeHomeValuationPage() {
               className="inline-block min-h-12 touch-manipulation bg-m2m-gold text-m2m-deep text-[0.7rem] tracking-[0.2em] uppercase font-medium px-10 py-4 shadow-[0_4px_26px_-4px_rgba(5,13,6,0.45)] transition hover:bg-m2m-gold-lt mb-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
               style={{ fontFamily: "var(--font-nav)" }}
             >
-              Get Your Free Home Valuation
+              See My Home&apos;s Value
             </a>
 
             {/* Veteran Owned Badge */}
@@ -109,10 +108,10 @@ export default function FreeHomeValuationPage() {
               className="text-sm text-m2m-cream/95"
               style={{ fontFamily: "var(--font-nav)" }}
             >
-              Have a question?{" "}
-            <Link href="/contact-us" className="underline hover:text-m2m-gold">
-              Contact Us
-            </Link>
+              Prefer to talk first?{" "}
+              <Link href="/contact-us" className="underline hover:text-m2m-gold">
+                Contact Us
+              </Link>
             </p>
             </M2mContainer>
           </M2mInsetHeroFrame>
@@ -128,11 +127,11 @@ export default function FreeHomeValuationPage() {
                   Instant online estimate
                 </p>
                 <h2 className="mt-2 text-2xl font-light text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
-                  Prefer an automated report first?
+                  Want the automated report first?
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-m2m-deep/85 font-sans">
-                  Open our secure RealScout home value tool anytime — then we can follow up with a human-reviewed CMA if
-                  you&apos;d like.
+                  Open our secure RealScout home value tool anytime, then we can follow up with a human-reviewed CMA if
+                  you want a second set of eyes.
                 </p>
                 <a
                   href={REALSCOUT_HOME_VALUATION_URL}
@@ -140,7 +139,7 @@ export default function FreeHomeValuationPage() {
                   rel="noreferrer"
                   className="mt-6 inline-flex min-h-11 items-center justify-center bg-m2m-gold px-8 py-3 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition hover:bg-m2m-gold-lt font-nav"
                 >
-                  Get Your Free Home Valuation
+                  Open RealScout Valuation
                 </a>
               </div>
             </div>
@@ -161,8 +160,8 @@ export default function FreeHomeValuationPage() {
               className="mb-6 text-[clamp(1.75rem,4vw,2.5rem)] font-light leading-[1.2] text-m2m-deep"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Start your journey with personalized<br />
-              guidance and dedicated support.
+              Get a plan for pricing, prep, and<br />
+              timing.
             </h2>
 
             {/* Body */}
@@ -170,9 +169,8 @@ export default function FreeHomeValuationPage() {
               className="mx-auto max-w-xl text-base leading-relaxed text-m2m-deep/85"
               style={{ fontFamily: "var(--font-sans)" }}
             >
-              Our team truly gets that selling your home is more than a transaction —
-              it&apos;s a personal journey. That is why we are committed to guide you
-              through each step. <strong>No pressure, only support.</strong>
+              Selling your home comes with a lot of moving pieces. We&apos;ll help you sort out the pricing, prep, and
+              next steps without pressure.
             </p>
           </M2mContainer>
         </M2mSection>
@@ -185,42 +183,42 @@ export default function FreeHomeValuationPage() {
               className="mb-12 text-center text-[clamp(1.5rem,3vw,2rem)] font-light text-m2m-deep"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              A Simple Valuation Process:
+              What happens next
             </h2>
 
             {/* Process Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
               {/* Step 1 */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Schedule a Walkthrough</h3>
+                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Tell us about the property</h3>
                 <p className="text-sm leading-relaxed text-m2m-deep/80" style={{ fontFamily: "var(--font-sans)" }}>
-                  Share your home&apos;s unique features and any concerns you have. We&apos;re here to listen and address your specific needs.
+                  Share the address, condition, and timing so we can point you in the right direction.
                 </p>
               </div>
 
               {/* Step 2 */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Review Market Positioning Options</h3>
+                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Review market positioning</h3>
                 <p className="text-sm leading-relaxed text-m2m-deep/80" style={{ fontFamily: "var(--font-sans)" }}>
-                  Comprehensive Market Analysis: Gain insights with a detailed Comparative Market Analysis (CMA), understanding how your home stacks up in the current market.
+                  We look at nearby sales, pricing, and how your home stacks up right now.
                 </p>
               </div>
 
               {/* Step 3 */}
               <div>
                 <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">
-                  Personalized Value Enhancement Checklist
+                  Get a prep checklist
                 </h3>
                 <p className="text-sm leading-relaxed text-m2m-deep/80" style={{ fontFamily: "var(--font-sans)" }}>
-                  Whether improving your home&apos;s value or listing as is, we provide expert guidance every step of the way.
+                  We&apos;ll suggest where a little prep helps and where you can keep it simple.
                 </p>
               </div>
 
               {/* Step 4 */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">No pressure, only support.</h3>
+                <h3 className="mb-3 text-sm font-semibold text-m2m-gold font-nav">Stay on track</h3>
                 <p className="text-sm leading-relaxed text-m2m-deep/80" style={{ fontFamily: "var(--font-sans)" }}>
-                  From contracts to closing, we handle everything. We coordinate with lawyers, manage projects, and keep your sale on track.
+                  From listing to closing, we help coordinate the moving parts so the sale stays on track.
                 </p>
               </div>
             </div>
