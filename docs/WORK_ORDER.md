@@ -148,7 +148,7 @@ Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign 
 2. **Tests** — Replace placeholder `npm test` with smoke E2E when prioritized.
 3. **Optional** — Strict Next typecheck in CI when the codebase is ready.
 
-Further product-growth ideas stay in [M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md](./marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md) (not a duplicate execution queue).
+Further product-growth ideas stay in [M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md](./marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md) (not a duplicate execution queue). Final launch polish / live QA lives in [M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md](./marching2more/M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md).
 
 Reference (not a competing queue): [M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md), [M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md), [M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md).
 
