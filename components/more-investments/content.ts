@@ -87,12 +87,12 @@ export const INVESTOR_PLACEHOLDER_TOOLS = [
   {
     id: "p1",
     title: "Rental yield snapshot",
-    body: "Planned worksheet to compare rough cash-flow assumptions across Hampton Roads submarkets — not a substitute for underwriting.",
+    body: "Compare rough rent and cash-flow assumptions across Hampton Roads submarkets before you underwrite.",
   },
   {
     id: "p2",
     title: "Scope-of-work estimator",
-    body: "Ballpark cosmetic vs. heavier rehab tiers so lender and contractor conversations start in the right range.",
+    body: "Frame cosmetic vs. heavier rehab tiers so lender and contractor conversations start in the right range.",
   },
   {
     id: "p3",

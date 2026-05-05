@@ -22,7 +22,7 @@ export function HomeTopicNav() {
         </p>
         <nav
           aria-label="Popular real estate topics"
-          className="mt-6 flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-5"
+          className="mt-6 flex flex-wrap justify-center gap-x-3 gap-y-3 sm:gap-x-4"
         >
           {M2M_HOME_TOPIC_LINKS.map((l) => (
             <Link
@@ -30,7 +30,7 @@ export function HomeTopicNav() {
               href={l.href}
               data-m2m-track="home_topic_link"
               data-m2m-track-loc={l.href}
-              className="inline-flex min-h-10 items-center rounded-sm px-1 py-2 text-xs text-m2m-deep underline decoration-m2m-gold/40 underline-offset-[5px] transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-panel sm:text-sm font-sans"
+              className="inline-flex min-h-10 items-center rounded-full border border-m2m-deep/10 bg-white/70 px-4 py-2 text-xs font-medium text-m2m-deep shadow-sm transition-colors hover:border-m2m-gold/30 hover:bg-white hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-panel sm:px-5 sm:text-sm font-sans"
             >
               {l.label}
             </Link>

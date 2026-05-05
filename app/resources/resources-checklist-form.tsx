@@ -173,7 +173,7 @@ export function ResourcesChecklistForm() {
           disabled={submitting}
           className="inline-flex min-h-11 items-center justify-center bg-m2m-panel px-8 py-3 text-[0.75rem] font-medium tracking-[0.15em] text-m2m-cream transition hover:bg-m2m-panel-lt font-nav disabled:opacity-70"
         >
-          {submitting ? "Sending…" : "Email me the Checklist"}
+          {submitting ? "Sending…" : "Send me the checklist"}
         </button>
       </div>
     </form>
