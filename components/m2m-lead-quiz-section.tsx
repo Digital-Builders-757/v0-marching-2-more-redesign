@@ -24,7 +24,7 @@ export type M2mLeadQuizSectionProps = {
 
 /**
  * Lead-gen quiz / survey block — embeds when `embedSrc` is https (e.g. GHL) or a `/quizzes/...` static asset,
- * otherwise shows placeholder copy and optional CTA + `children` (e.g. local form).
+ * otherwise shows a manual fallback CTA and optional `children` (e.g. local form).
  */
 const embedIframeWrapperClasses = {
   standard:
@@ -133,10 +133,12 @@ export function M2mLeadQuizSection({
         ) : null}
 
         {!showEmbed && !children && !showExternalCta ? (
-          <p className="mx-auto mt-10 max-w-xl rounded-md border border-dashed border-m2m-gold/35 bg-m2m-deep/30 px-5 py-5 text-center text-base leading-relaxed text-m2m-cream/82 font-sans sm:px-6">
-            Quiz connection is almost ready — we&apos;ll drop in the GoHighLevel embed URL in{" "}
-            <code className="text-m2m-gold-lt">lib/m2m-site.ts</code> when marketing provides it.
-          </p>
+          <div className="mx-auto mt-10 max-w-xl rounded-md border border-m2m-gold/25 bg-m2m-deep/35 px-5 py-6 text-center text-base leading-relaxed text-m2m-cream/86 font-sans sm:px-6">
+            <p>
+              This quiz is being handled manually for now. Use the consultation CTA and we’ll walk you through the same
+              questions directly.
+            </p>
+          </div>
         ) : null}
 
         {footnote ? (

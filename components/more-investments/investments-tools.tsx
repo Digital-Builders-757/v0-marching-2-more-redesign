@@ -72,18 +72,28 @@ export function InvestmentsTools() {
               </div>
             </div>
           ) : (
-            <div
-              className={cn(
-                "mx-auto mt-8 max-w-xl rounded-sm border border-dashed border-m2m-gold/40 bg-m2m-panel/50 px-6 py-8 text-center shadow-[0_16px_40px_rgba(0,0,0,0.2)] sm:px-8",
-              )}
-            >
-              <p className="text-sm font-medium text-m2m-gold-lt font-sans">{INVESTOR_BRRRR_TITLE}</p>
-              <p className="mt-3 text-sm leading-relaxed text-m2m-cream/82 font-sans">
-                When your hosted analyzer URL is ready, it loads here automatically — set{" "}
-                <code className="text-[0.8rem] text-m2m-gold">GOHIGHLEVEL_BRRRR_ANALYZER_URL</code> in{" "}
-                <code className="text-[0.8rem] text-m2m-gold">lib/m2m-site.ts</code> (or any public https embed your team
-                prefers). Until then, use the contact link below and we will work numbers with you manually.
+            <div className="mx-auto mt-8 max-w-2xl rounded-sm border border-m2m-gold/25 bg-m2m-panel/60 px-6 py-8 shadow-[0_16px_40px_rgba(0,0,0,0.2)] sm:px-8">
+              <p className="text-center text-sm font-medium text-m2m-gold-lt font-sans">{INVESTOR_BRRRR_TITLE}</p>
+              <p className="mx-auto mt-3 max-w-xl text-center text-sm leading-relaxed text-m2m-cream/82 font-sans">
+                Bring a deal and we’ll work the numbers with you manually for now, purchase through refinance, so you can
+                pressure-test the assumptions before you commit.
               </p>
+              <div className="mx-auto mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:items-center">
+                <a
+                  href={M2M_PHONE_HREF}
+                  data-m2m-track="investments_brrrr_phone"
+                  className="inline-flex min-h-11 items-center justify-center rounded-sm border border-m2m-gold/30 px-4 text-sm font-medium text-m2m-cream transition-colors hover:border-m2m-gold hover:text-m2m-gold"
+                >
+                  Call {M2M_PHONE_DISPLAY}
+                </a>
+                <Link
+                  href={getConsultationRequestUrl()}
+                  data-m2m-track="consultation_request"
+                  className="inline-flex min-h-11 items-center justify-center rounded-sm bg-m2m-gold px-4 text-sm font-semibold text-m2m-deep transition-colors hover:bg-m2m-gold-lt"
+                >
+                  Book a consultation
+                </Link>
+              </div>
             </div>
           )}
 
