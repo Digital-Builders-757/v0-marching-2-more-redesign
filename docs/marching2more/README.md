@@ -13,6 +13,7 @@ Current order:
 3. `M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md`
 4. `M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md` (reference / route-specific cleanup)
 5. GHL remaining gaps and cutover QA (`M2M_GHL_REMAINING_GAPS.md`, `M2M_GHL_LIVE_CUTOVER_RUNBOOK.md`)
+6. `M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md` (final route polish, loading feel, live verification)
 
 Rules:
 - Work top to bottom.

@@ -47,11 +47,15 @@
 | [marching2more/M2M_SITE_REBUILD_SPEC.md](./marching2more/M2M_SITE_REBUILD_SPEC.md) | Supplementary rebuild notes (verify against repo) |
 | [marching2more/M2M_CATCHUP_ROADMAP.md](./marching2more/M2M_CATCHUP_ROADMAP.md) | Current execution order for the next Marching 2 More batches |
 | [marching2more/README.md](./marching2more/README.md) | Queue entry point for Cursor and handoffs |
+| [marching2more/M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md](./marching2more/M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md) | Final route polish, loading feel, live verification, and release readiness |
 | [marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md](./marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md) | Client page fixes batch — decisions and route map |
 | [marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md) | What actually matters next — priority hierarchy for site improvements |
 | [marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md](./marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md) | Product growth batch — conversion clarity, content engine, trust, and maintainability |
 | [marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md) | Repo hygiene + mobile polish batch — docs foundation, shared UI, route-level mobile cleanup |
 | [marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md) | Site-wide UX uplift — homepage clarity, navigation, trust, conversion flow, mobile ergonomics |
+| [proof/README.md](./proof/README.md) | QA / proof hub — funnel smoke + lead QA + Playwright breakdown (thin pointers) |
+| [proof/QA_CHECKLIST.md](./proof/QA_CHECKLIST.md) | Forwards to canonical checklists — no standalone matrix duplicate |
+| [proof/E2E_SMOKE_PATHS.md](./proof/E2E_SMOKE_PATHS.md) | Repo-accurate list of what **`npm run test:e2e`** exercises |
 | [releasenotes/README.md](./releasenotes/README.md) | Optional **`/release`** archives |
 
 ## Archive (historical)
@@ -78,5 +82,6 @@
 | Marketing images (`public/images/`) | [`docs/M2M_ASSET_MAP.md`](./M2M_ASSET_MAP.md) + per-route `content.ts` |
 | Lead payload → GHL behavior | [`docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md`](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) · [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](./M2M_LEAD_CAPTURE_MATRIX.md) · **§0.1** in [`M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md`](./M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) (two env pipelines vs funnel-named boards) |
 | What shipped recently | [`docs/WORK_ORDER.md`](./WORK_ORDER.md) |
+| Automated Playwright scope (`npm run ci`) | [`docs/proof/E2E_SMOKE_PATHS.md`](./proof/E2E_SMOKE_PATHS.md) |
 
 **Done vs pending (GHL):** skimmable status in [`M2M_GHL_REMAINING_GAPS.md`](./M2M_GHL_REMAINING_GAPS.md); env template [`.env.example`](../.env.example).

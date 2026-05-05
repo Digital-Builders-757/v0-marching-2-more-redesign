@@ -8,6 +8,8 @@ Use **live GoHighLevel (GHO)** (contact, custom fields, tags, notes, opportuniti
 
 **Static quizzes (`public/quizzes/`):** Quiz UIs **await** the lead API and show an **error message** (not success) when the response is not `ok: true`. For QA, confirm both success and a forced error path (e.g. temporarily invalid payload) on staging if desired.
 
+**Repo / engineering checks (no live GHO):** `rg` over `*.{ts,tsx}` — `GHL_*` only under `lib/ghl/`, `scripts/`, `tests/`, `app/api/` (no client bundles). Browser code posts JSON only to **`/api/submit-lead`** ([`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts)). API errors return user-safe `error` + `code` + `correlationId` (no CRM tokens). **`GHL_DRY_RUN=true`** is **blocked when `VERCEL_ENV=production`** — use dry-run on preview/local/staging only ([`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts)). **`npm run ghl:operator-check`** (optional `--ping`) after env fill; **`npm run ci`** exercises the API contract without live CRM.
+
 ---
 
 ## GHO visibility check (do this for any “missing field” report)
@@ -72,3 +74,4 @@ On mobile and desktop, pick a birth year **before 2000** quickly (no “stuck in
 
 - [M2M_LEAD_CAPTURE_MATRIX.md](./M2M_LEAD_CAPTURE_MATRIX.md) — which routes collect what
 - [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) — cutover order
+- [proof/E2E_SMOKE_PATHS.md](./proof/E2E_SMOKE_PATHS.md) — automated Playwright scope in **`npm run ci`**

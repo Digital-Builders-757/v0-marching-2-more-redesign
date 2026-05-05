@@ -59,6 +59,8 @@
 - Confirm tags, custom fields, opportunities (or intentional skip), workflows firing.
 - Network tab: confirm **no** `GHL_*` secrets in client bundles.
 
+**Repo-side verification (2026-05, batch 3):** Code path matches runbook strict pipeline (tags → four pipeline envs → note always written via `buildOperatorNote`); `GHL_*` grep scope is server-only modules; quizzes under `public/quizzes/` post only to `/api/submit-lead`. **`/contact-us`** `intent` sync:** **`buyer`** → buyer; **`seller`** / **`consultation`** → seller; UTMs alone do not reset the radio ([`app/contact-us/page.tsx`](../app/contact-us/page.tsx)). Operator-facing doc fixes: §3.9 note semantics, quiz URL list parity with [`lib/m2m-site.ts`](../lib/m2m-site.ts), production dry-run guard documented.
+
 ---
 
 ## Next human actions (after this pass)

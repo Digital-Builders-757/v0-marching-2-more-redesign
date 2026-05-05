@@ -31,7 +31,7 @@ description: >-
 ## Images
 
 - Prefer **`next/image`** for content images. Remote hosts must appear in **`next.config.mjs`** → `images.remotePatterns`.
-- **`images.unoptimized: true`** is set; still use `Image` for ESLint alignment and consistent APIs.
+- Use **`next/image`** for marketing photos; **`next.config.mjs`** defines **`images.remotePatterns`** for Blob/Unsplash hosts (default optimization behavior applies unless overridden per-instance).
 
 ## Tooling
 

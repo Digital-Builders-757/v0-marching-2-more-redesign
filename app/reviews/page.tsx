@@ -25,7 +25,7 @@ export default function ReviewsPage() {
       <main id="main-content" tabIndex={-1} className="pt-16 sm:pt-20">
         <ReviewsHero />
         <ReviewsList />
-        <M2mContainer className="max-w-2xl pb-10 pt-4 text-center sm:pb-12">
+        <M2mContainer className="max-w-2xl pb-12 pt-6 text-center sm:pb-14 sm:pt-8">
           <p className="text-sm leading-relaxed text-m2m-deep/80 font-sans">
             Every story here is from a real client relationship — military families, first-time buyers, and Hampton Roads
             neighbors. When you are ready, we will walk you through what happens next (timeline, paperwork, and who you

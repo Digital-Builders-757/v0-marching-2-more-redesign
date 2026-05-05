@@ -1,6 +1,6 @@
 # Lead capture — route and surface matrix
 
-**Last updated:** 2026-05-03
+**Last updated:** 2026-05-05
 
 **API:** All production lead capture in this table posts **only** to `POST /api/submit-lead` (via `submitLeadToApi` in [`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts)). No GHL keys in the browser.
 
@@ -27,7 +27,7 @@ Marketing funnel copy can be foreclosure/divorce/downsizing, but payload routing
 | `/free-home-valuation` | Seller | `ValuationSellerLeadForm` | Y | Y | Optional one-line / property | Full select | Optional “before we call” | **M2M Seller Pipeline**, **New Inquiry**, **M2M - Seller**; `Lead type` = Seller |
 | `/sell` | Seller | `SellValuationLeadMini` (SellValuation) | Y | Y | Optional one-line | Full select | — | Same as seller row |
 | `/cma-form` | Seller | `app/cma-form/page` | Y | Y | Composed street / city / ZIP | Timeline radios (explicit choices) | Property condition, goals, etc. | Same as seller row; strong address + long notes when filled |
-| `/contact-us` | Buyer or seller (user) | `app/contact-us/page` | Y | Y | If seller path, optional | Full `M2mLeadUrgencySelect` | Free message | Tag + pipeline by selected lead type; combined intake |
+| `/contact-us` | Buyer or seller (user) | `app/contact-us/page` | Y | Y | If seller path, optional | Full `M2mLeadUrgencySelect` | Free message | Tag + pipeline by lead type; **`?intent=buyer`** forces **buyer** CRM on sync; **`?intent=seller`** or **`?intent=consultation`** forces **seller**; other query params (e.g. UTMs) **do not** reset the radio — default first paint is **seller** |
 | `/downsizing-your-home` | Seller | (1) `DownsizingFallbackLead` (2) `DownsizingGuideForm` | Y | (1) Y (2) — | (1) optional (2) ship-to → `address` when set | (1) full (2) short-form default + options | (1) optional context (2) guide + instructions | Same as seller row; (2) may populate **Property Address** when ship-to set |
 | `/facing-foreclosure` | Seller | (1) `PreForeclosureForm` (2) `FacingForeclosureQuizFallbackLead` in quiz section when GHL embed unset | Y | (1) Y (2) — | (1) optional (2) — | (1) full (2) full | (1) message (2) fallback note prefix + message | Same as seller row; quiz iframe loads when `GOHIGHLEVEL_QUIZ_FORECLOSURE_URL` is live `https` |
 | `/improve-your-credit` | Buyer | `CreditPlaybookForm` | Y | Y | — | Full select (when planning to buy) | Playbook request + optional line | Same as buyer row; `source_path` `/improve-your-credit` |

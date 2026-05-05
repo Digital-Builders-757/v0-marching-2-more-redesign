@@ -105,10 +105,10 @@ These are **not** configurable per sub-account in code without a code change:
 
 1. `POST /contacts/upsert`
 2. `POST /contacts/:id/tags` (if there is at least one tag)
-3. `POST /opportunities/` (if pipelines complete)
-4. `POST /contacts/:id/notes` (if the website sent `notes` in JSON)
+3. `POST /opportunities/` (when all four pipeline/stage env vars are set — required for live success)
+4. `POST /contacts/:id/notes` — **always** on success path: the server builds an operator note from submission metadata (source path/page, urgency, UTMs) plus an optional visitor message when the form sent `notes`. It does **not** skip this step when the visitor left the message box empty.
 
-**Strict success:** Step 1-4 are required for a successful response. If any required step fails, the API returns **`ok: false`** with `code`, `correlationId`, and `failed_step` when available.
+**Strict success:** Steps 1–4 are required for a successful response. If any required step fails, the API returns **`ok: false`** with `code`, `correlationId`, and `failed_step` when available.
 
 A failure on step 1 returns **`ok: false`** with `failed_step: "contacts_upsert"` (no contact ID in JSON).
 
@@ -164,6 +164,7 @@ See also [troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md](./troubleshooting/CO
 - No HTTP calls to GHL; responses are **synthetic** success.
 - Server injects placeholder custom field IDs if real `GHL_CF_*` are missing — **do not** use dry-run env shape as proof of production config.
 - Use for **UI and JSON contract** testing only.
+- **Production guard:** when `VERCEL_ENV === "production"`, the API **rejects** dry-run (`ok: false`, `code: config_error`) so a mis-set Vercel flag cannot silently disable real CRM writes. Use dry-run on **preview / local / staging** only — see [`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts).
 
 ---
 

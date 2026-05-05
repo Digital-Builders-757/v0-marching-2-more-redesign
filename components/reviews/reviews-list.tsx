@@ -64,7 +64,7 @@ export function ReviewsList() {
             {reviews.map((review, index) => (
               <div
                 key={index}
-                className="relative rounded-lg bg-white p-6 shadow-sm"
+                className="relative rounded-xl border border-m2m-deep/10 bg-white p-6 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.1)] ring-1 ring-m2m-deep/5"
                 data-gsap="fade-up"
                 data-gsap-delay={index * 0.05}
               >

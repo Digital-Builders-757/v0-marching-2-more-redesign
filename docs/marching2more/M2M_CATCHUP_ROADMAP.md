@@ -138,6 +138,25 @@ The site should be stronger at:
 
 ---
 
+### 6. Final polish + live QA
+
+**Why this is last:** after the main batches, the site should get one final polish pass plus live verification before the work is considered finished.
+
+**Work order:** `docs/marching2more/M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md`
+
+**Focus areas:**
+- final route polish sweep
+- loading and perceived performance
+- live lead-capture verification
+- docs and release readiness
+
+**Definition of done:**
+- the site feels fully finished
+- live behavior matches the docs
+- the repo is ready for the next release step
+
+---
+
 ## Cursor execution rule
 
 Work top to bottom.

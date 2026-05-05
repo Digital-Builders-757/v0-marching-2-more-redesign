@@ -3,7 +3,7 @@
 **Audience:** Developers / operator  
 **Companion doc:** [`website-launch-hardening-report.md`](website-launch-hardening-report.md) (client-facing)  
 **Rule:** No secret values in this file — reference env var **names** only.  
-**Last updated:** 2026-05-01
+**Last updated:** 2026-05-05
 
 ---
 
@@ -50,9 +50,9 @@ Repo review for Marching 2 More Next.js site: single lead API (`POST /api/submit
 
 ### 2.4 Unused / unmounted lead components
 
-**Reference:** [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](M2M_LEAD_CAPTURE_MATRIX.md) — `ContactForm` / `components/contact.tsx` may not be mounted on `app` routes.
+**Confirmed:** [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](M2M_LEAD_CAPTURE_MATRIX.md) — `ContactForm` is only referenced from **`ContactUsParity`**; no `app` route imports **`components/contact.tsx`**. Canonical surface is **`/contact-us`**.
 
-**Follow-up:** Grep for imports; remove dead code or wire intentionally to avoid duplicate maintenance.
+**Follow-up (optional hygiene):** remove parity folder or wire it intentionally once product confirms it is obsolete.
 
 ### 2.5 `failed_step` typing vs note step
 
