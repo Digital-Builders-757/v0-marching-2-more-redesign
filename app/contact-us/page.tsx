@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "next/navigation"
 
+import { M2mContactShellFallback } from "@/components/m2m-page-skeleton"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
@@ -28,25 +29,9 @@ import { getPrimaryConsultationBookUrl, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from
 
 export default function ContactUsPage() {
   return (
-    <Suspense fallback={<ContactUsShellFallback />}>
+    <Suspense fallback={<M2mContactShellFallback />}>
       <ContactUsPageInner />
     </Suspense>
-  )
-}
-
-function ContactUsShellFallback() {
-  return (
-    <>
-      <Header />
-      <main id="main-content" tabIndex={-1} className="bg-white">
-        <section className="pb-16 pt-24 sm:pb-20 sm:pt-28">
-          <M2mContainer className="max-w-2xl">
-            <p className="text-sm text-m2m-muted font-sans">Loading form…</p>
-          </M2mContainer>
-        </section>
-      </main>
-      <Footer />
-    </>
   )
 }
 
@@ -72,10 +57,11 @@ function ContactUsPageInner() {
     correlationId: string
   } | null>(null)
 
+  /** Sync CRM `lead_type` from URL `intent` only — do not override visitor radio when query has no buyer/seller/consultation intent (e.g. UTM-only updates). */
   useEffect(() => {
     const intent = searchParams.get("intent")?.toLowerCase() ?? ""
     if (intent === "buyer") setLeadType("buyer")
-    if (intent === "seller") setLeadType("seller")
+    else if (intent === "seller" || intent === "consultation") setLeadType("seller")
   }, [searchParams])
 
   const isConsultIntent = useMemo(() => searchParams.get("intent")?.toLowerCase() === "consultation", [searchParams])

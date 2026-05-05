@@ -7,8 +7,12 @@ Short manual pass to complement **`npm run test:e2e`** (Playwright) and **`npm r
 ```bash
 npm run build
 npx playwright install chromium   # first-time / CI agents
-npm run test:e2e
+npm run test:e2e                # included in npm run ci
 ```
+
+**Stable paths (`data-testid` load checks):** [`lib/m2m-funnel-regression.ts`](../lib/m2m-funnel-regression.ts) — `/facing-foreclosure`, `/navigating-divorce`, `/downsizing-your-home`, `/improve-your-credit`, `/fha-loan`, `/more-investments`.
+
+**Detailed Playwright breakdown:** [`docs/proof/E2E_SMOKE_PATHS.md`](./proof/E2E_SMOKE_PATHS.md).
 
 ## Per-funnel (5–10 min)
 

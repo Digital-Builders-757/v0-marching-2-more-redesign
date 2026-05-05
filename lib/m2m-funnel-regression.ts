@@ -1,6 +1,6 @@
 /**
  * Stable `data-testid` hooks for funnel pages — used by Playwright and documented in
- * docs/M2M_FUNNEL_SMOKE_CHECKLIST.md. Keep paths aligned with `app/<segment>/page.tsx`.
+ * docs/M2M_FUNNEL_SMOKE_CHECKLIST.md and docs/proof/E2E_SMOKE_PATHS.md. Keep paths aligned with `app/<segment>/page.tsx`.
  */
 export const M2M_FUNNEL_PAGE_TESTIDS = {
   "/facing-foreclosure": "m2m-page-facing-foreclosure",

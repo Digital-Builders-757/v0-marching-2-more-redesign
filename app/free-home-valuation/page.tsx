@@ -30,6 +30,10 @@ export const metadata: Metadata = m2mStandardMetadata({
   openGraphTitle: "Free Home Valuation | Marching 2 More",
 })
 
+/** Proof cards — align with CMA / lead form surfaces (border + soft elevation). */
+const valuationProofCardClass =
+  "rounded-xl border border-m2m-deep/10 bg-white p-6 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.1)] ring-1 ring-m2m-deep/5"
+
 export default function FreeHomeValuationPage() {
   return (
     <>
@@ -118,11 +122,11 @@ export default function FreeHomeValuationPage() {
         </section>
 
         {/* Seller lead capture + instant estimate */}
-        <M2mSection variant="light" className="border-t border-gray-100 py-16">
+        <M2mSection variant="light" className="border-t border-m2m-deep/10 py-16">
           <M2mContainer className="max-w-5xl">
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
               <ValuationSellerLeadForm />
-              <div className="rounded-xl border border-m2m-deep/10 bg-m2m-cream/50 p-8">
+              <div className="rounded-xl border border-m2m-deep/10 bg-m2m-cream/50 p-8 shadow-[0_8px_32px_-14px_rgba(5,13,6,0.06)] ring-1 ring-m2m-deep/5">
                 <p className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-m2m-gold font-nav">
                   Instant online estimate
                 </p>
@@ -176,7 +180,7 @@ export default function FreeHomeValuationPage() {
         </M2mSection>
 
         {/* Process Section */}
-        <M2mSection variant="light" className="border-t border-gray-100 py-16">
+        <M2mSection variant="light" className="border-t border-m2m-deep/10 py-16">
           <M2mContainer className="max-w-5xl">
             {/* Heading */}
             <h2
@@ -239,7 +243,7 @@ export default function FreeHomeValuationPage() {
         </M2mSection>
 
         {/* Testimonials Section */}
-        <section className="bg-gray-50 py-20">
+        <section className="border-t border-m2m-deep/10 bg-m2m-cream/45 py-16 md:py-20">
           <M2mContainer className="max-w-6xl">
             {/* Heading */}
             <h2
@@ -252,9 +256,9 @@ export default function FreeHomeValuationPage() {
             {/* Testimonials Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
               {/* Testimonial 1 */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className={valuationProofCardClass}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                  <div className="size-12 shrink-0 overflow-hidden rounded-full ring-1 ring-m2m-deep/10">
                     <Image
                       src="/images/testi-sanchez.avif"
                       alt="Kristin Jacob"
@@ -275,9 +279,9 @@ export default function FreeHomeValuationPage() {
               </div>
 
               {/* Testimonial 2 */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className={valuationProofCardClass}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                  <div className="size-12 shrink-0 overflow-hidden rounded-full ring-1 ring-m2m-deep/10">
                     <Image
                       src="/images/testi-cole.avif"
                       alt="Timothy L. Cunningham"
@@ -298,9 +302,9 @@ export default function FreeHomeValuationPage() {
               </div>
 
               {/* Testimonial 3 */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className={valuationProofCardClass}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                  <div className="size-12 shrink-0 overflow-hidden rounded-full ring-1 ring-m2m-deep/10">
                     <Image
                       src="/images/testi-tami.avif"
                       alt="Dwayne Jenkins"

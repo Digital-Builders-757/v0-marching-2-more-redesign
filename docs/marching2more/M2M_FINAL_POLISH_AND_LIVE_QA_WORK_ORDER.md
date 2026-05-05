@@ -1,7 +1,7 @@
 # Marching 2 More Final Polish + Live QA Work Order
 
 **Execution batch for the last-mile pass after the main site batches.**
-Source docs: [WORK_ORDER.md](../WORK_ORDER.md), [M2M_CATCHUP_ROADMAP.md](./M2M_CATCHUP_ROADMAP.md), [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md), [M2M_GHL_REMAINING_GAPS.md](../M2M_GHL_REMAINING_GAPS.md), [website-launch-hardening-report.md](../website-launch-hardening-report.md), [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](../M2M_GHL_LIVE_CUTOVER_RUNBOOK.md), [M2M_LEAD_CAPTURE_QA.md](../M2M_LEAD_CAPTURE_QA.md), [M2M_FUNNEL_SMOKE_CHECKLIST.md](../M2M_FUNNEL_SMOKE_CHECKLIST.md), and [QA_CHECKLIST.md](../proof/QA_CHECKLIST.md).
+Source docs: [WORK_ORDER.md](../WORK_ORDER.md), [M2M_CATCHUP_ROADMAP.md](./M2M_CATCHUP_ROADMAP.md), [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md), [M2M_GHL_REMAINING_GAPS.md](../M2M_GHL_REMAINING_GAPS.md), [website-launch-hardening-report.md](../website-launch-hardening-report.md), [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](../M2M_GHL_LIVE_CUTOVER_RUNBOOK.md), [M2M_GHL_OPERATOR_VERIFICATION.md](../M2M_GHL_OPERATOR_VERIFICATION.md), [M2M_LEAD_CAPTURE_QA.md](../M2M_LEAD_CAPTURE_QA.md), [M2M_FUNNEL_SMOKE_CHECKLIST.md](../M2M_FUNNEL_SMOKE_CHECKLIST.md), and [proof/](../proof/README.md) ([QA_CHECKLIST.md](../proof/QA_CHECKLIST.md) · [E2E_SMOKE_PATHS.md](../proof/E2E_SMOKE_PATHS.md)).
 
 ---
 
@@ -239,4 +239,6 @@ Only fix what materially improves the final launch quality. Keep it tight and sh
 - `docs/M2M_GHL_OPERATOR_VERIFICATION.md`
 - `docs/M2M_LEAD_CAPTURE_QA.md`
 - `docs/M2M_FUNNEL_SMOKE_CHECKLIST.md`
+- `docs/proof/README.md`
 - `docs/proof/QA_CHECKLIST.md`
+- `docs/proof/E2E_SMOKE_PATHS.md`

@@ -3,7 +3,7 @@
 **Prepared for:** Marching 2 More — pre-domain-connection readiness  
 **Review type:** Repository-level launch hardening (QA, integrations, configuration patterns, and identified risks)  
 **Date:** May 1, 2026  
-**Report refreshed:** 2026-05-03 — route metadata normalized (`lib/m2m-seo-metadata.ts`: titles, descriptions, Open Graph, Twitter); footer disclaimers link to `/privacy-policy` (legacy `/copy-of-privacy-policy` redirects); menu CMA label aligned with on-page copy. See [WORK_ORDER.md](WORK_ORDER.md) “Launch engineering pass” for prior entries.
+**Report refreshed:** 2026-05-05 — doc sync (**`docs/proof/`** pointers + Playwright scope doc); ContactForm parity row aligned with [M2M_LEAD_CAPTURE_MATRIX.md](M2M_LEAD_CAPTURE_MATRIX.md) (canonical **`/contact-us`**); post-launch E2E items reflect **`tests/e2e/submit-lead-api.spec.ts`** + **`funnel-regression.spec.ts`** in CI. Prior note: **2026-05-03** — route metadata via `lib/m2m-seo-metadata.ts`; footer disclaimers → `/privacy-policy`; menu CMA label. See [WORK_ORDER.md](WORK_ORDER.md).
 
 ---
 
@@ -41,8 +41,6 @@ This review covered, at the **repository level**:
 - **Known launch risks** visible from code and project configuration
 
 Out of scope: live server logs, live GHL account verification, legal review of claims, formal security assessment, and performance testing under production load.
-
-**Explicit disclaimer:** This is **not** a formal penetration test or enterprise cybersecurity audit.
 
 ---
 
@@ -116,7 +114,7 @@ Out of scope: live server logs, live GHL account verification, legal review of c
 | `/resources` — checklist form | Buyer | Checklist request | `/api/submit-lead` | Yes | Buyer | If configured | — | Verified in code |
 | Static downsizing quiz (`public/quizzes/...`) | Seller (in payload) | Varies by surface (`main.js` / `quiz.html` hero + in-quiz capture) | `/api/submit-lead` | Yes | Seller tags from env | If configured | Structured **notes**; **requires `res.ok` + JSON `ok` before success UI** | Verified in code |
 | Static divorce quiz | Seller | Name, email, phone; quiz answers in **notes** | `/api/submit-lead` | Yes | Seller | If configured | Awaits response before results animation | Verified in code |
-| `components/contact.tsx` / `ContactForm` | Varies | Wired to API in code | `/api/submit-lead` | If mounted | — | If configured | Docs matrix: **not mounted** on current `app` routes | Issue / debt — verify if still needed |
+| `components/contact.tsx` / `ContactForm` | Varies | Wired to API in code | `/api/submit-lead` | Only if parity shell mounted | — | If configured | **Not used on `app` routes** — [`/contact-us`](../app/contact-us/page.tsx) is canonical; parity components retained under `components/contact/` ([matrix](M2M_LEAD_CAPTURE_MATRIX.md)) | Verified in code |
 
 **Status key (overall):** **Verified in code** for orchestration and API contract; **Requires manual verification** for live GHL field IDs, tag spelling, pipeline IDs, and that GHL **contact layouts** show custom fields as expected (a known GHL UI nuance documented elsewhere in this repo).
 
@@ -226,8 +224,8 @@ The following items are **not legal advice**. They are **recommended for client 
 
 ### Post-launch improvements
 
-1. Automated E2E smoke tests for `/api/submit-lead` and critical forms.
-2. Consolidate or mount unused contact components if they are truly obsolete (`components/contact.tsx` per matrix).
+1. Extend Playwright coverage to additional primary forms (beyond [`tests/e2e/funnel-regression.spec.ts`](../tests/e2e/funnel-regression.spec.ts)) and optionally run against production GHO credentials (today: API contract tests in [`tests/e2e/submit-lead-api.spec.ts`](../tests/e2e/submit-lead-api.spec.ts) — see [`docs/proof/E2E_SMOKE_PATHS.md`](proof/E2E_SMOKE_PATHS.md)).
+2. Delete or deliberately mount **`components/contact/*`** parity if the team confirms it is obsolete — canonical lead UX is **`/contact-us`** (see [`M2M_LEAD_CAPTURE_MATRIX.md`](M2M_LEAD_CAPTURE_MATRIX.md)).
 3. SEO and CRO passes on campaign pages after creative finalization.
 
 ---

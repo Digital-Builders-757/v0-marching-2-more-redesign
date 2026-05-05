@@ -53,13 +53,15 @@ Follow [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md
 
 ## 4. Quiz / embed URLs
 
-In [`lib/m2m-site.ts`](../lib/m2m-site.ts):
+In [`lib/m2m-site.ts`](../lib/m2m-site.ts) (see also `isQuizEmbedSrcConfigured()`):
 
-- `GOHIGHLEVEL_QUIZ_CREDIT_URL`
-- `GOHIGHLEVEL_QUIZ_DOWNSIZING_URL`
-- `GOHIGHLEVEL_QUIZ_FORECLOSURE_URL`
+- `GOHIGHLEVEL_QUIZ_CREDIT_URL` — placeholder until set; **local playbook form** captures leads when unset.
+- `GOHIGHLEVEL_QUIZ_DOWNSIZING_URL` — **default** same-origin `/quizzes/downsizing-your-home/quiz.html` (static quiz posts to `/api/submit-lead`).
+- `GOHIGHLEVEL_QUIZ_NAVIGATING_DIVORCE_URL` — same-origin `/quizzes/navigating-divorce/index.html`.
+- `GOHIGHLEVEL_QUIZ_FORECLOSURE_URL` — placeholder until set; **React fallback lead** in the quiz region when unset.
+- `GOHIGHLEVEL_QUIZ_INVESTOR_URL` — optional embed on `/more-investments`.
 
-Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-lead-quiz-section.tsx) shows fallback copy or local/fallback forms (no broken iframe).
+Until a key is a real `https://` URL (or allowed `/quizzes/...` path), the UI uses fallbacks or static quizzes — **no** client CRM secrets; quizzes `fetch` JSON to **`/api/submit-lead`** only.
 
 ---
 
@@ -83,9 +85,11 @@ Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-le
 
 ## 7. Test sequence — contact us
 
-1. Open `/contact-us` (optionally `?intent=buyer` or `?intent=seller`).
+1. Open `/contact-us` (optionally `?intent=buyer`, `?intent=seller`, or `?intent=consultation`).
 2. Submit the form.
 3. **In GHL:** verify lead type field and path-based tags if using `GHL_PATH_TAGS`.
+
+**Intent → `lead_type` JSON:** `?intent=buyer` maps to **buyer**. **`seller`** or **`consultation`** maps to **seller**. Other query strings (including UTMs without `intent`) **do not** overwrite the visitor’s radio selection — initial load without `intent` still defaults the form to **seller**.
 
 ---
 
@@ -115,7 +119,7 @@ Until each is a real `https://` URL, [`M2mLeadQuizSection`](../components/m2m-le
 
 ## 10. Rollback / fallback
 
-- **Pause live CRM:** set `GHL_DRY_RUN=true` in Vercel (submissions succeed without upstream calls) **or** remove broken `GHL_*` and accept 503 until fixed (not ideal for production).
+- **Pause live CRM (non-production only):** set `GHL_DRY_RUN=true` on **preview** or **local** — **not** on Vercel **production** (the API blocks dry-run there and returns `ok: false`). Alternatively remove broken `GHL_*` and accept **503** until fixed.
 - **Booking:** if GHL URL is not ready, leave `GOHIGHLEVEL_BOOKING_URL` as placeholder; **`getPrimaryConsultationBookUrl()`** falls back to Calendly.
 - **Revert code deploy:** roll back the Vercel deployment to the last known good build.
 
