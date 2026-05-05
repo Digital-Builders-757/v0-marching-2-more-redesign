@@ -1,8 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
+
+import { CREED_REALTY_SEARCH_URL } from "@/lib/m2m-constants"
 import { M2M_MEDIA } from "@/lib/m2m-media"
+import { REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
 
 export function PropertySearchNew() {
   return (
@@ -95,35 +97,44 @@ export function PropertySearchNew() {
             </p>
 
             {/* CTAs */}
-            <div data-gsap-child className="flex flex-col sm:flex-row gap-4 mt-4">
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="#"
+            <div data-gsap-child className="flex flex-col gap-4 mt-4 sm:flex-row">
+              <div className="flex flex-col items-center gap-2 sm:items-start">
+                <a
+                  href={REALSCOUT_MAP_SEARCH_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-gold text-m2m-deep font-medium rounded-lg transition-all duration-300 hover:bg-m2m-gold-lt hover:scale-[1.02] text-center"
-                  style={{ fontFamily: 'var(--font-nav)' }}
+                  className="inline-flex min-h-12 touch-manipulation items-center justify-center rounded-lg bg-m2m-gold px-8 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep transition-all duration-300 hover:scale-[1.02] hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
+                  style={{ fontFamily: "var(--font-nav)" }}
                 >
                   Start Your Search Now
-                </Link>
-                <p 
-                  className="text-xs text-m2m-muted italic text-center"
-                  style={{ fontFamily: 'var(--font-sans)' }}
+                </a>
+                <p
+                  className="text-center text-xs italic text-m2m-muted sm:text-left"
+                  style={{ fontFamily: "var(--font-sans)" }}
                 >
-                  Local Property Search Powered by CREED REALTY*
+                  <a
+                    href={CREED_REALTY_SEARCH_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 max-w-full items-center justify-center rounded-sm px-0.5 underline decoration-m2m-gold/55 underline-offset-2 hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
+                  >
+                    Local Property Search Powered by CREED REALTY*
+                  </a>
                 </p>
               </div>
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/contact"
+              <div className="flex flex-col items-center gap-2 sm:items-start">
+                <a
+                  href="/contact-us?intent=buyer"
                   data-gsap="magnetic"
-                  className="inline-block text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-gold/20 text-m2m-cream rounded-lg transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold text-center"
-                  style={{ fontFamily: 'var(--font-nav)' }}
+                  className="inline-flex min-h-12 touch-manipulation items-center justify-center rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
+                  style={{ fontFamily: "var(--font-nav)" }}
                 >
                   Or — Tell us your needs
-                </Link>
-                <p 
-                  className="text-xs text-m2m-muted italic text-center"
-                  style={{ fontFamily: 'var(--font-sans)' }}
+                </a>
+                <p
+                  className="text-center text-xs italic text-m2m-muted sm:text-left"
+                  style={{ fontFamily: "var(--font-sans)" }}
                 >
                   We&apos;ll prepare the best options.
                 </p>

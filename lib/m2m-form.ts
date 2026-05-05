@@ -4,7 +4,11 @@ import { cn } from "@/lib/utils"
  * Interior / CRM lead surfaces: shared field + submit sizing for touch and contrast.
  * Primary submit: panel on light (`m2mFormPrimaryButtonOnLight`), gold on dark panel (`m2mFormPrimaryButtonOnDarkPanel`).
  * Shadcn `Button variant="m2mPanel"` on contact aligns via `m2mFormSubmitShadcnPanelEnhance`.
+ *
+ * `m2mFormShellWidthSafeClass` — apply to `<form>` or card wrappers in flex/grid columns to prevent horizontal overflow.
  */
+export const m2mFormShellWidthSafeClass = "min-w-0 max-w-full"
+
 export const m2mLeadFieldLabelClass =
   "mb-1.5 block text-left text-xs font-medium uppercase tracking-[0.1em] text-m2m-deep/75 font-nav sm:text-[0.7rem] sm:tracking-[0.12em]"
 

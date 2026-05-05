@@ -114,7 +114,8 @@
   body {
     @apply bg-white text-m2m-deep font-sans font-light antialiased;
   }
-  /** Prevent stray horizontal overflow on narrow viewports (full-bleed sections, forms). */
+  /** Prevent stray horizontal overflow on narrow viewports (full-bleed sections, forms).
+   *  Root `layout.tsx` also sets `overflow-x-clip` on `html` and `body` — keep both. */
   main#main-content {
     overflow-x: clip;
   }

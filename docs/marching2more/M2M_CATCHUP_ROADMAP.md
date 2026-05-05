@@ -134,6 +134,8 @@ The site should be stronger at:
 - operators can verify the live setup
 - remaining gaps are clearly known and owned
 
+**Repo status (2026-05):** GHL docs aligned with strict full-pipeline behavior in `lib/ghl/submit-lead.ts`; Playwright API smoke in `tests/e2e/submit-lead-api.spec.ts`. Live GHO checks still require operator credentials (`npm run ghl:operator-check`, runbook test submits).
+
 ---
 
 ## Cursor execution rule

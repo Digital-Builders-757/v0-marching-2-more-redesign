@@ -5,7 +5,7 @@ import { M2M_FUNNEL_PAGE_TESTIDS, M2M_FUNNEL_REGRESSION_PATHS } from "../../lib/
 import { fillM2mDobField } from "./helpers/forms"
 import { M2M_SUBMIT_LEAD_OK_BODY, stubSubmitLeadPost } from "./helpers/lead-api"
 
-const consultDesktop = `[data-m2m-track="consultation_request"][data-m2m-track-loc="header_desktop"]`
+const consultDesktop = `[data-m2m-track="consultation_request"][data-m2m-track-loc="header_bar"]`
 
 test.describe("funnel pages", () => {
   for (const path of M2M_FUNNEL_REGRESSION_PATHS) {
@@ -41,8 +41,8 @@ test.describe("consultation & contact guardrails", () => {
     await page.goto("/more-investments")
     const tools = page.locator("#investor-tools")
     await tools.scrollIntoViewIfNeeded()
-    await expect(tools.getByRole("link", { name: /757-206-2859/ })).toBeVisible()
-    const book = tools.getByRole("link", { name: /^book a consultation$/i })
+    await expect(tools.getByRole("link", { name: /757-206-2859/ }).first()).toBeVisible()
+    const book = tools.getByRole("link", { name: /^book a consultation$/i }).first()
     await expect(book).toBeVisible()
     await expect(book).toHaveAttribute("href", M2M_CONTACT_CONSULTATION_PATH)
   })

@@ -56,16 +56,24 @@ export function M2mRelatedPages({
         >
           {def.intro}
         </p>
-        <nav aria-label={`${def.title} links`} className="mt-6 flex flex-wrap gap-x-5 gap-y-2.5">
+        <p
+          className={`mt-3 max-w-2xl text-xs leading-relaxed ${isLight ? "text-m2m-deep/60" : "text-m2m-cream/65"}`}
+          style={{ fontFamily: "var(--font-sans)" }}
+        >
+          Same veteran-owned team, licensed in Virginia — every link stays on this site.
+        </p>
+        <nav aria-label={`${def.title} links`} className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
           {links.map((l) => (
             <Link
               key={l.href + l.label}
               href={l.href}
-              className={`inline-flex min-h-10 items-center rounded-sm px-0.5 py-1.5 text-sm underline underline-offset-4 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+              data-m2m-track="related_page"
+              data-m2m-track-loc={l.href}
+              className={`inline-flex min-h-11 items-center rounded-sm px-0.5 py-2 text-sm underline underline-offset-4 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
                 isLight
                   ? "text-m2m-deep underline decoration-m2m-gold/45 hover:text-m2m-gold focus-visible:outline-m2m-panel"
                   : "text-m2m-cream underline decoration-m2m-gold/40 hover:text-m2m-gold-lt focus-visible:outline-m2m-gold"
-              } font-sans`}
+              } font-sans touch-manipulation`}
             >
               {l.label}
             </Link>

@@ -55,7 +55,7 @@ export function Testimonials() {
               Read more client reviews
             </Link>
             {" · "}
-            Veteran-owned team, 5★ rated on Google.
+            Veteran-owned team—5★ on Google. Quotes reflect real clients who chose to share their experience.
           </p>
         </div>
 

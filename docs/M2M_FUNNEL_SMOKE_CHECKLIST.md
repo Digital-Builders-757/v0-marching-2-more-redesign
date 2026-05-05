@@ -30,6 +30,8 @@ npm run test:e2e
 
 - Lead posts go to **`POST /api/submit-lead`** only (see [`docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md`](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md)).
 - Never show **Thank you** if the browser did not receive `ok: true` with a valid `correlationId` from that route.
+- **CI / local:** [`tests/e2e/submit-lead-api.spec.ts`](../tests/e2e/submit-lead-api.spec.ts) validates invalid JSON, validation errors, and the unconfigured-CRM response (no live GHL token required).
+- **Production cutover:** after deploy, operators run [`M2M_GHL_LIVE_CUTOVER_RUNBOOK.md`](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) sequences and confirm records in GHO ([`M2M_GHL_OPERATOR_VERIFICATION.md`](./M2M_GHL_OPERATOR_VERIFICATION.md)).
 
 ## CRM copy guardrails
 

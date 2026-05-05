@@ -47,16 +47,18 @@ export function SellChecklist() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-deep text-m2m-cream font-medium rounded-lg transition-all duration-300 hover:bg-m2m-deep/90"
+                href="/resources"
+                scroll={false}
+                className="inline-flex min-h-12 touch-manipulation items-center justify-center gap-2 text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 bg-m2m-deep text-m2m-cream font-medium rounded-lg transition-all duration-300 hover:bg-m2m-deep/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 <Download className="w-4 h-4" />
                 Download Guide
               </Link>
               <Link
-                href="/contact"
-                className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep text-m2m-deep rounded-lg transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream"
+                href="/contact-us?intent=consultation"
+                scroll={false}
+                className="inline-flex min-h-12 touch-manipulation items-center justify-center text-[0.7rem] tracking-[0.2em] uppercase px-8 py-4 border border-m2m-deep text-m2m-deep rounded-lg transition-all duration-300 hover:bg-m2m-deep hover:text-m2m-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
                 style={{ fontFamily: 'var(--font-nav)' }}
               >
                 Schedule Consultation

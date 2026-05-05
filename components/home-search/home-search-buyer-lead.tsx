@@ -7,6 +7,7 @@ import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
+import { M2mPostSubmitNextSteps } from "@/components/m2m-post-submit-next-steps"
 import { m2mCmaFormInputClass } from "@/lib/m2m-form"
 import { cn } from "@/lib/utils"
 import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
@@ -79,8 +80,9 @@ export function HomeSearchBuyerLead() {
           />
         ) : null}
         <p className="text-sm text-m2m-cream/90 font-sans" role="status" aria-live="polite">
-          Thank you! An agent will reach out to help with your search.
+          Thank you! An agent will reach out to help with your search — often same day during business hours.
         </p>
+        <M2mPostSubmitNextSteps variant="onDark" align="start" omitHrefs={["/home-search"]} />
       </div>
     )
   }

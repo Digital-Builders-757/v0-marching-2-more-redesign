@@ -120,7 +120,7 @@ Use this order so you do not mistake **layout** for **data**:
 2. **Contact custom fields** — Lead type, DOB, Property Address, **Urgency (TEXT)**, UTMs as applicable. Expand “custom fields” if needed; add fields to the **contact layout** in GHO settings if the team should see them at a glance.
 3. **Tags** — expect base tags **`M2M - Buyer`** or **`M2M - Seller`** (plus any path-based tags from `GHL_PATH_TAGS`). If the submission failed with `failed_step: contacts_tags`, tags were not applied — treat as a failed lead until env is fixed and the visitor resubmits.
 4. **Notes** — operator note is part of required success path; failures should appear as failed submissions.
-5. **Opportunities / pipeline board** — **M2M Buyer Pipeline** or **M2M Seller Pipeline**, stage **New Inquiry** (if all four pipeline env vars are set; otherwise expect submission failure).
+5. **Opportunities / pipeline board** — **M2M Buyer Pipeline** or **M2M Seller Pipeline**, stage **New Inquiry** when all four pipeline env vars are set. If any pipeline env var is missing, the browser gets **`ok: false`** and logs show **`strict_failure_pipeline_unconfigured`** (no contact in GHO yet).
 
 ### 3.11 Duplicate / merge log hints
 

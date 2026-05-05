@@ -39,7 +39,7 @@ export function BuyCTA() {
             className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] bg-m2m-deep text-m2m-cream transition-all duration-300 hover:bg-m2m-deep/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
-            Start Your Search
+            Book a consultation
           </Link>
           <a
             href={M2M_PHONE_HREF}

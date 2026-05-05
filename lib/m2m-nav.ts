@@ -9,23 +9,29 @@ import { M2M_MEDIA } from "@/lib/m2m-media"
 export type M2MNavLink = {
   label: string
   href: string
+  /** When set, a divider + screen-reader section label appears before this row. */
+  dividerBefore?: string
 }
 
 /** Wix header hamburger menu (label "=") items. */
 export const M2M_WIX_HEADER_MENU_LINKS: readonly M2MNavLink[] = [
   /** Clearer first-item label than legacy “Welcome” (same `/` destination). */
   { label: "Home", href: "/" },
-  { label: "Home Search", href: "/home-search" },
+  { label: "Buy", href: "/buy" },
+  { label: "Sell", href: "/sell" },
+  { label: "Home Search", href: "/home-search", dividerBefore: "Search, tools, and resources" },
   { label: "More Resources", href: "/resources" },
   { label: "Request a CMA", href: "/cma-form" },
   { label: "Free Home Valuation", href: "/free-home-valuation" },
-  { label: "Our Team", href: "/our-team" },
+  { label: "Our Team", href: "/our-team", dividerBefore: "Team and contact" },
   { label: "Reviews", href: "/reviews" },
   { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact-us" },
 ] as const
 
 export const M2M_FOOTER_QUICK_LINKS: readonly M2MNavLink[] = [
+  { label: "Buy", href: "/buy" },
+  { label: "Sell", href: "/sell" },
   { label: "Home Valuation", href: "/free-home-valuation" },
   { label: "Pre-Listing Checklist", href: "/resources" },
   { label: "Work With Us", href: "/contact-us?intent=buyer" },

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import {
   getConsultationRequestUrl,
@@ -65,17 +66,26 @@ export function Hero() {
 
         <M2mContainer className="relative z-10 flex max-w-3xl flex-col justify-center pb-14 pt-24 sm:pt-28 lg:pt-32">
         <div
-          className="flex max-w-full flex-wrap items-center gap-x-3 gap-y-2 text-[0.6rem] tracking-[0.22em] text-m2m-gold sm:text-[0.65rem] sm:tracking-[0.3em]"
+          className="flex max-w-full flex-col gap-2 text-[0.6rem] tracking-[0.22em] text-m2m-gold sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-2 sm:text-[0.65rem] sm:tracking-[0.3em]"
           style={{ fontFamily: "var(--font-nav)" }}
         >
           <span className="flex shrink-0 items-center gap-3">
             <span className="block h-px w-8 bg-m2m-gold" aria-hidden />
           </span>
-            <span className="min-w-0 max-w-full text-pretty break-words leading-snug">
-              Veteran-owned in Virginia Beach, VA • Hampton Roads relocation, VA loans, and listing strategy
-              <span aria-hidden="true"> | 5.0 ★★★★★</span>
-              <span className="sr-only"> Five out of five star client rating.</span>
+          <span className="min-w-0 max-w-full text-pretty leading-snug sm:break-words">
+            <span className="block sm:inline">Veteran-owned in Virginia Beach, VA.</span>{" "}
+            <span className="block sm:inline">
+              Hampton Roads relocation, VA loans, and listing strategy.
+              <span aria-hidden="true" className="hidden sm:inline">
+                {" "}
+                | 5.0 ★★★★★
+              </span>
             </span>
+            <span className="mt-1 block text-m2m-cream/75 sm:hidden" aria-hidden>
+              5.0 ★★★★★
+            </span>
+            <span className="sr-only"> Five out of five star client rating.</span>
+          </span>
         </div>
 
         <h1
@@ -90,8 +100,9 @@ export function Hero() {
           className="mt-6 max-w-xl text-base leading-relaxed text-m2m-cream [text-shadow:0_1px_10px_rgba(5,13,6,0.35)] sm:text-[1.05rem]"
           style={{ fontFamily: "var(--font-sans)" }}
         >
-          Hampton Roads advisors for military families and discerning buyers, with PCS moves, VA loans, luxury search,
-          and a calm plan from tour to closing.
+          <strong className="font-semibold text-m2m-cream">For military families, local movers, and equity-minded sellers</strong>{" "}
+          in Norfolk, Virginia Beach, Chesapeake, and across Hampton Roads—PCS support, VA loans, luxury search, and a
+          calm plan from tour to closing.
         </p>
 
         <div className="mt-10 grid w-full gap-4 sm:mt-12 sm:max-w-2xl sm:grid-cols-2 sm:gap-4">
@@ -118,6 +129,43 @@ export function Hero() {
             Free Home Valuation
           </a>
         </div>
+
+        <p
+          className="mt-6 max-w-xl text-sm leading-relaxed text-m2m-cream/90 [text-shadow:0_1px_8px_rgba(5,13,6,0.35)]"
+          style={{ fontFamily: "var(--font-sans)" }}
+        >
+          <span className="text-m2m-cream/70">Explore services:</span>{" "}
+          <Link
+            href="/buy"
+            data-m2m-track="hero_buy_hub"
+            data-m2m-track-loc="home_hero"
+            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
+          >
+            Buying
+          </Link>
+          <span className="px-1 text-m2m-cream/35" aria-hidden>
+            ·
+          </span>
+          <Link
+            href="/sell"
+            data-m2m-track="hero_sell_hub"
+            data-m2m-track-loc="home_hero"
+            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
+          >
+            Selling
+          </Link>
+          <span className="px-1 text-m2m-cream/35" aria-hidden>
+            ·
+          </span>
+          <Link
+            href="/reviews"
+            data-m2m-track="hero_reviews"
+            data-m2m-track-loc="home_hero"
+            className="inline-flex min-h-11 items-center font-medium text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
+          >
+            Reviews
+          </Link>
+        </p>
 
         <p
           className="mt-8 flex max-w-xl flex-wrap items-center gap-x-3 gap-y-2 text-sm leading-snug text-m2m-cream/88 [text-shadow:0_1px_8px_rgba(5,13,6,0.35)]"

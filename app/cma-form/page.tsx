@@ -11,6 +11,7 @@ import { Header } from "@/components/header"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
+import { M2mPostSubmitNextSteps } from "@/components/m2m-post-submit-next-steps"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { m2mCmaFormInputClass, m2mCmaFormTextareaClass } from "@/lib/m2m-form"
 import { M2M_URGENCY_TIMELINE_OPTIONS } from "@/lib/m2m-lead-urgency"
@@ -171,6 +172,7 @@ export default function CmaFormPage() {
                     <p className="mt-4 text-sm text-m2m-deep/80 font-sans">
                       We received your CMA request. A member of the team will reach out shortly.
                     </p>
+                    <M2mPostSubmitNextSteps variant="onLight" omitHrefs={["/cma-form"]} />
                   </div>
                 ) : (
                   <form

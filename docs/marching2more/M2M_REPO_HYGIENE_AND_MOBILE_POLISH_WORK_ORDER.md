@@ -132,3 +132,25 @@ Do **not**:
 - no obvious overflow or layout breakage on phone widths
 - build checks pass
 - the repo is easier to extend in the next batch
+
+---
+
+## Shipped (May 2026 — hygiene + mobile primitives batch)
+
+**Docs**
+
+- [`DOCUMENTATION_INDEX.md`](../DOCUMENTATION_INDEX.md): clarifies **marching2more queue** vs **`WORK_ORDER.md`** ship log (single narrative path, less duplicate “source of truth” confusion).
+
+**Shared layout / overflow**
+
+- [`components/m2m-layout.tsx`](../components/m2m-layout.tsx): **`min-w-0`** on **`M2mInsetHeroFrame`**, **`M2mSection`**, **`M2mProse`**; JSDoc on **`M2mContainer`** for gutter + shrink behavior.
+- [`app/globals.css`](../app/globals.css): comment tying **`main#main-content`** overflow clip to root **`html`/`body`** clip in **`app/layout.tsx`**.
+
+**Forms**
+
+- [`lib/m2m-form.ts`](../lib/m2m-form.ts): **`m2mFormShellWidthSafeClass`** (`min-w-0 max-w-full`) for flex/grid form wrappers; wired on **[`/contact-us`](../app/contact-us/page.tsx)** form.
+
+**Mobile polish**
+
+- [`components/footer.tsx`](../components/footer.tsx): slightly tighter **mobile** vertical rhythm (`py-12`, `gap-10`); footer links use **`max-w-full`** on small screens (`sm:max-w-xs`) so labels are not artificially narrow; copyright bar **`py-5`** on phones.
+- [`components/policy/policy-page.tsx`](../components/policy/policy-page.tsx): **`py-12`** on small viewports before **`md`** breakpoint.

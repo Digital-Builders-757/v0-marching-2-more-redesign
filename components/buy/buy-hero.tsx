@@ -104,8 +104,9 @@ export function BuyHero() {
         {/* CTAs */}
         <div ref={ctasRef} className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
           <Link
-            href="/contact"
-            className="inline-block w-full text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_18px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 hover:bg-m2m-gold-lt sm:w-auto bg-m2m-gold px-10 py-4"
+            href="/home-search"
+            scroll={false}
+            className="inline-block w-full min-h-12 touch-manipulation text-center text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-deep shadow-[0_4px_18px_-4px_rgba(5,13,6,0.35)] transition-all duration-300 hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-cream sm:w-auto bg-m2m-gold px-10 py-4"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Start Your Search

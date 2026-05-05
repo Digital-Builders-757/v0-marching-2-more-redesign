@@ -127,3 +127,26 @@ Make the site feel like one system:
 - mobile layouts feel more deliberate
 - the public site has a more unified voice and visual rhythm
 - the experience feels better overall, not just prettier in spots
+
+---
+
+## Shipped (May 2026 — batch 1)
+
+**Pathing & nav**
+
+- Header menu (`lib/m2m-nav.ts`): **Buy** and **Sell** hub routes (`/buy`, `/sell`) placed after Home; section dividers use `dividerBefore` instead of index-based rules (`components/header.tsx`).
+- Footer quick links: **Buy** and **Sell** prepended for the same primary journeys.
+- Menu search (`lib/m2m-menu-search.ts`): routes short queries (`buy`, `sell`, …) to hub pages; placeholder/hint copy updated; suggestions catalog includes `/buy` and `/sell`.
+
+**Homepage**
+
+- Hero (`components/hero.tsx`): clearer **who we serve** (lead line + geography); kicker stacks on small viewports; **Explore services** links to `/buy`, `/sell`, `/reviews` between primary CTAs and phone/consult row.
+- Topic strip (`components/home-topic-nav.tsx`): hub links first in `M2M_HOME_TOPIC_LINKS` (`lib/m2m-content-clusters.ts`); larger tap targets (`min-h-11`, spacing).
+
+**Trust**
+
+- Testimonials intro (`components/testimonials.tsx`): explicit note that stories come from real clients.
+
+**Mobile**
+
+- Header (`components/header.tsx`): **Book consult** CTA visible on small screens (full “BOOK A HOME CONSULTATION” on `md+`); menu link rows `min-h-12`.

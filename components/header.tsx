@@ -14,7 +14,7 @@ import {
   MENU_SEARCH_PLACEHOLDER,
   resolveMenuSearchQuery,
 } from "@/lib/m2m-menu-search"
-import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
+import { getConsultationRequestUrl, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 import { M2M_HEADER_AGENT_LINKS, M2M_WIX_HEADER_MENU_LINKS } from "@/lib/m2m-nav"
 
 export type HeaderProps = {
@@ -124,7 +124,7 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
         </div>
 
         {/* Right cluster */}
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3">
           {/* Wix parity: agent headshot quick links */}
           <div className="hidden items-center gap-2 md:flex">
             {M2M_HEADER_AGENT_LINKS.map((agent) => (
@@ -141,10 +141,14 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
 
           <M2mConsultationCta
             variant={consultationCtaVariant === "outlineCream" ? "outlineCream" : "gold"}
-            className="hidden md:inline-flex"
+            className="inline-flex max-w-[9.25rem] px-3 py-2.5 text-[0.55rem] leading-tight sm:max-w-none sm:px-5 sm:py-3 sm:text-[0.62rem] md:inline-flex"
             data-m2m-track="consultation_request"
-            data-m2m-track-loc="header_desktop"
-          />
+            data-m2m-track-loc="header_bar"
+            href={getConsultationRequestUrl()}
+          >
+            <span className="md:hidden">Book consult</span>
+            <span className="hidden md:inline">BOOK A HOME CONSULTATION</span>
+          </M2mConsultationCta>
         </div>
       </div>
 
@@ -216,20 +220,18 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
             </div>
 
             <ul className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto overscroll-y-contain p-2 pt-1">
-              {M2M_WIX_HEADER_MENU_LINKS.map((link, index) => (
+              {M2M_WIX_HEADER_MENU_LINKS.map((link) => (
                 <Fragment key={link.href}>
-                  {index === 3 || index === 5 ? (
+                  {link.dividerBefore ? (
                     <li role="presentation" className="list-none px-2 py-2">
                       <span className="block h-px bg-white/12" aria-hidden />
-                      <span className="sr-only">
-                        {index === 3 ? "Seller tools and home value" : "Team and contact"}
-                      </span>
+                      <span className="sr-only">{link.dividerBefore}</span>
                     </li>
                   ) : null}
                   <li>
                     <Link
                       href={link.href}
-                      className="flex min-h-11 items-center rounded-md px-3 py-2.5 text-[0.95rem] font-medium leading-snug tracking-wide text-m2m-cream transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/40"
+                      className="flex min-h-12 items-center rounded-md px-3 py-3 text-[0.95rem] font-medium leading-snug tracking-wide text-m2m-cream transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/40"
                       onClick={() => setMenuOpen(false)}
                       style={{ fontFamily: "var(--font-nav)" }}
                     >

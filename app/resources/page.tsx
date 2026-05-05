@@ -57,6 +57,9 @@ const resourceLinks = [
 ]
 
 const internalGuides = [
+  { label: "Buying overview", href: "/buy" },
+  { label: "Selling overview", href: "/sell" },
+  { label: "Book a consultation", href: "/contact-us?intent=consultation" },
   { label: "Reviews from clients", href: "/reviews" },
   { label: "Our team", href: "/our-team" },
   { label: "Home search & buying", href: "/home-search" },
