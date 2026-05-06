@@ -1,14 +1,15 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Image from "next/image"
 import { gsap } from "gsap"
 
-import { M2M_HOME_HERO_SCRIM_STYLE } from "@/components/m2m-layout"
+import { M2M_HOME_HERO_SCRIM_STYLE, M2mContainer } from "@/components/m2m-layout"
 import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export function BlogHero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const tagRef = useRef<HTMLDivElement>(null)
+  const tagRef = useRef<HTMLParagraphElement>(null)
   const headingRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
 
@@ -44,29 +45,35 @@ export function BlogHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[50vh] flex-col justify-center overflow-hidden bg-m2m-black px-6 py-32 md:px-16 lg:px-24"
+      className="relative flex min-h-[min(52vh,560px)] flex-col justify-center overflow-hidden bg-m2m-black py-24 md:py-28"
     >
-      {/* Background image */}
+      <div className="pointer-events-none absolute inset-0">
+        <Image
+          src={M2M_MEDIA.blogIndexBackdrop}
+          alt=""
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+      </div>
+
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('${M2M_MEDIA.blogIndexBackdrop}')`,
-        }}
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={M2M_HOME_HERO_SCRIM_STYLE}
       />
 
-      {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 z-[1] pointer-events-none" style={M2M_HOME_HERO_SCRIM_STYLE} />
-
-      <div className="relative z-[2] max-w-4xl">
+      <M2mContainer className="relative z-[2] max-w-4xl">
         {/* Tag */}
-        <div 
+        <p 
           ref={tagRef}
-          className="inline-flex items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold mb-6 opacity-0"
+          className="mb-6 inline-flex items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-m2m-gold opacity-0"
           style={{ fontFamily: 'var(--font-nav)' }}
         >
-          <span className="block w-8 h-px bg-m2m-gold" />
+          <span className="block h-px w-8 bg-m2m-gold" aria-hidden />
           Insights & Resources
-        </div>
+          <span className="block h-px w-8 bg-m2m-gold" aria-hidden />
+        </p>
 
         {/* Headline */}
         <h1 
@@ -85,7 +92,7 @@ export function BlogHero() {
         >
           Expert insights on Hampton Roads real estate, military relocation tips, VA loans, and proven strategies for buying and selling homes.
         </p>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

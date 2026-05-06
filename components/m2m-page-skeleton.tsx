@@ -122,7 +122,7 @@ export function M2mContactShellFallback() {
       <main
         id="main-content"
         tabIndex={-1}
-        className="min-h-0 flex-1 bg-white"
+        className="min-h-0 flex-1 bg-gradient-to-b from-m2m-cream/30 via-white to-white"
       >
         <M2mLoadingContactBody />
       </main>

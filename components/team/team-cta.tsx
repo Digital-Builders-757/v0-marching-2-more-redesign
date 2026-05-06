@@ -22,14 +22,14 @@ export function TeamCTA() {
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/contact-us?intent=buyer"
-            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] bg-m2m-gold text-m2m-deep transition hover:bg-m2m-gold-lt focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] bg-m2m-gold text-m2m-deep transition hover:bg-m2m-gold-lt focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Contact Us
           </Link>
           <Link
             href="/reviews"
-            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] border border-m2m-cream/25 text-m2m-cream transition hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
+            className="inline-flex min-h-12 touch-manipulation items-center justify-center px-10 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] border border-m2m-cream/25 text-m2m-cream transition hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/55 focus-visible:ring-offset-2 focus-visible:ring-offset-m2m-black"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Read Reviews

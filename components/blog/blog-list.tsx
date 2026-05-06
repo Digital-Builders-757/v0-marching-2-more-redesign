@@ -3,7 +3,12 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Clock, User, Calendar } from "lucide-react"
+
+import { M2mContainer } from "@/components/m2m-layout"
 import { BLOG_POSTS } from "@/lib/blog/posts"
+
+const cardFocusRing =
+  "rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/45 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
 
 export function BlogList() {
   // Format date for display
@@ -13,21 +18,19 @@ export function BlogList() {
   }
 
   return (
-    <section className="bg-white px-6 py-20 md:px-16 lg:px-24 md:py-28">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-white py-16 md:py-20 lg:py-24">
+      <M2mContainer>
         {/* Featured Post */}
-        <div 
-          className="mb-16"
-          data-gsap="fade-up"
-        >
-          <Link href={`/blog/${BLOG_POSTS[0].slug}`} className="group block">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
+        <div className="mb-14 md:mb-16" data-gsap="fade-up">
+          <Link href={`/blog/${BLOG_POSTS[0].slug}`} className={`group block ${cardFocusRing}`}>
+            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+              <div className="relative aspect-[16/10] min-h-0 overflow-hidden rounded-sm ring-1 ring-m2m-deep/[0.08]">
                 <Image
                   src={BLOG_POSTS[0].coverImage}
                   alt={BLOG_POSTS[0].title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(min-width: 1024px) 42rem, 100vw"
                 />
                 <div className="absolute top-4 left-4">
                   <span 
@@ -38,7 +41,7 @@ export function BlogList() {
                   </span>
                 </div>
               </div>
-              <div className="flex flex-col gap-4">
+              <div className="flex min-w-0 flex-col gap-4">
                 <div className="flex items-center gap-4 text-m2m-muted text-xs">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
@@ -80,24 +83,25 @@ export function BlogList() {
         </div>
 
         {/* Divider */}
-        <div className="w-full h-px bg-m2m-deep/10 mb-16" data-gsap="line-reveal" />
+        <div className="mb-12 h-px w-full bg-m2m-deep/10 md:mb-14" data-gsap="line-reveal" />
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
           {BLOG_POSTS.slice(1).map((post, index) => (
             <Link 
               href={`/blog/${post.slug}`} 
               key={post.slug}
-              className="group flex flex-col"
+              className={`group flex min-h-0 flex-col ${cardFocusRing}`}
               data-gsap="fade-up"
               data-gsap-delay={index * 0.1}
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-xl mb-5">
+              <div className="relative mb-5 aspect-[16/10] min-h-0 overflow-hidden rounded-sm ring-1 ring-m2m-deep/[0.08]">
                 <Image
                   src={post.coverImage}
                   alt={post.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(min-width: 1024px) 28vw, (min-width: 768px) 45vw, 100vw"
                 />
                 <div className="absolute top-3 left-3">
                   <span 
@@ -140,7 +144,7 @@ export function BlogList() {
             </Link>
           ))}
         </div>
-      </div>
+      </M2mContainer>
     </section>
   )
 }

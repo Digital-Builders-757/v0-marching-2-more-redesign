@@ -11,9 +11,10 @@ Current order:
 1. `M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md`
 2. `M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md`
 3. `M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md`
-4. `M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md` (reference / route-specific cleanup)
-5. GHL remaining gaps and cutover QA (`M2M_GHL_REMAINING_GAPS.md`, `M2M_GHL_LIVE_CUTOVER_RUNBOOK.md`)
-6. `M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md` (final route polish, loading feel, live verification)
+4. `M2M_TEAM_IMAGERY_AND_PROFILE_POLISH_WORK_ORDER.md` — **shipped (2026-05)**; see `docs/WORK_ORDER.md` **Done recently** + `docs/M2M_ASSET_MAP.md` Blob section.
+5. `M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md` (reference / route-specific cleanup)
+6. GHL remaining gaps and cutover QA (`M2M_GHL_REMAINING_GAPS.md`, `M2M_GHL_LIVE_CUTOVER_RUNBOOK.md`)
+7. `M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md` (final route polish, loading feel, live verification)
 
 Rules:
 - Work top to bottom.

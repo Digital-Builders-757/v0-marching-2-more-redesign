@@ -24,7 +24,7 @@ export default function RogerLeeProfilePage() {
         role="Founding Partner"
         licenseNumber="0225-250-043"
         image={M2M_MEDIA.headshotRoger}
-        imageObjectPosition="object-[center_24%]"
+        imageObjectPosition="object-[center_30%]"
         email="Roger@marching2more.com"
         linkedin="https://www.linkedin.com/in/roger-lee"
         instagram="https://www.instagram.com/marching2more"

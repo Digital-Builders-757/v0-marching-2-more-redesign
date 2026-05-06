@@ -43,6 +43,10 @@
 
 ## Done recently
 
+- **Launch polish pass (2026-05 — routes + loading feel + conversion hygiene)** — **`/blog`**: [`BlogHero`](../components/blog/blog-hero.tsx) backdrop via **`next/image`**, shared **[`M2mContainer`](../components/m2m-layout.tsx)** alignment, symmetric gold eyebrow rule; [`BlogList`](../components/blog/blog-list.tsx) **`M2mContainer`** gutters, **`rounded-sm`** media shells + light rings, responsive **`sizes`**, **focus-visible** rings on post links. **`/reviews`**: [`ReviewsHero`](../components/reviews/reviews-hero.tsx) stable **`min-height`** band; backdrop **`pointer-events-none`**. **`/contact-us`**: non-consult thank-you line renders a real apostrophe (**We'll**); trust row **`min-w-0`**. **Shared CTAs / transitions:** [`M2mConsultationCta`](../components/m2m-cta.tsx) + [`m2mOutlineGoldLinkClass`](../components/m2m-cta.tsx) use calm **ring** focus styles on gold/panel; [`M2mContactShellFallback`](../components/m2m-page-skeleton.tsx) **`main`** uses the same **cream → white** gradient as [`M2mRouteLoading`](../components/m2m-page-skeleton.tsx) so Suspense handoffs match generic route loading. `npm run ci` green.
+
+- **Team imagery + agent profiles (2026-05 — marching2more batch 4)** — **[`/our-team`**](../app/our-team/page.tsx): [`TeamHero`](../components/team/team-hero.tsx) wide-shot **`object-position`** + **`min-height`** hero band; [`TeamMembers`](../components/team/team-members.tsx) unified **`aspect-[4/5]`** portrait frames + ring; **Jalessa Hendricks** card crops **`teamPhotoWide`** with zoom / focal **`object-position`** until a dedicated Blob portrait exists. **Profiles** ([`/profile-page`](../app/profile-page/page.tsx), [`/roger-lee`](../app/roger-lee/page.tsx), [`/kristin-s-profile`](../app/kristin-s-profile/page.tsx)): [`AgentProfile`](../components/team/agent-profile.tsx) coherent mobile/desktop layout (portrait-first on small screens), **`getConsultationRequestUrl()`** for **Book a consultation**, typography and spacing aligned with team surfaces. **Docs:** [M2M_ASSET_MAP](./M2M_ASSET_MAP.md) Blob team/agent table. Brief: [M2M_TEAM_IMAGERY_AND_PROFILE_POLISH_WORK_ORDER](./marching2more/M2M_TEAM_IMAGERY_AND_PROFILE_POLISH_WORK_ORDER.md). `npm run lint` / **`npm run typecheck`** / **`npm run build`** green.
+
 - **Final cleanup sweep (2026-05 — final polish batch 5)** — **`/free-home-valuation`** proof strip: cream band + testimonial / RealScout sidebar cards use **M2m** border/ring/elevation (no **gray-50** slab); avatar rings. **`/reviews`** list cards match the same card language; expectation copy **padding** slightly opened. `npm run lint` / **`npm run test`** / **`npm run typecheck`** / **`npm run build`** green.
 
 - **Live lead-capture verification — repo + docs (2026-05 — final polish batch 3)** — Audited **`POST /api/submit-lead`** → **`lib/ghl/submit-lead.ts`**: strict tags/pipeline/note order; **`GHL_DRY_RUN`** blocked in production; correlation IDs on all JSON outcomes. **`/contact-us`**: **`intent=buyer`** forces buyer CRM type; **`intent=seller`** or **`consultation`** forces seller — **UTM-only** (or other) query updates **do not** reset the visitor’s buyer/seller radio ([`app/contact-us/page.tsx`](../app/contact-us/page.tsx)). Docs: [M2M_GHL_OPERATOR_VERIFICATION](M2M_GHL_OPERATOR_VERIFICATION.md) §3.9 (operator note always created), §5 (production dry-run), [M2M_GHL_LIVE_CUTOVER_RUNBOOK](M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) §§4 · 7 · 10 (quiz parity, contact intent, rollback), [M2M_LEAD_CAPTURE_MATRIX](M2M_LEAD_CAPTURE_MATRIX.md), [M2M_LEAD_CAPTURE_QA](M2M_LEAD_CAPTURE_QA.md), [COMMON_ERRORS_QUICK_REFERENCE](troubleshooting/COMMON_ERRORS_QUICK_REFERENCE.md), [M2M_GHL_REMAINING_GAPS](M2M_GHL_REMAINING_GAPS.md). Local **`npm run ghl:operator-check`** green when env present; live GHO checklist still operator-owned.
@@ -90,7 +94,7 @@
 ## Highest-priority weak routes (next visual passes)
 
 1. **Framed-hero cluster** - `/`, `/home-search`, `/resources`, `/cma-form`, `/free-home-valuation`: shared system is in place; optional upgrades = Blob art instead of local PNGs where ready, and parallax only where it aids (home).
-2. **Agent profiles** - `/profile-page`, `/roger-lee`, `/kristin-s-profile`: elevated with tokens/buttons; further polish = photography art direction, optional pull-quote or stats strip.
+2. **Agent profiles** — `/profile-page`, `/roger-lee`, `/kristin-s-profile`: shared **`AgentProfile`** system refreshed (2026-05); optional later = dedicated **`headshotJalessa`** on **`/our-team`**, editorial extras (pull-quote / stats) if content grows.
 3. **Blog** - `/blog`, `/blog/[slug]`: typography improved; optional = index backdrop from `M2M_MEDIA.blogIndexBackdrop`, richer article typography (lists/blockquotes) when content supports it.
 4. **Contact** - `/contact-us`: hierarchy fixed; optional = light hero still (`M2M_MEDIA.contactHeroStill`) if it stays minimal.
 5. **Reviews** — `/reviews`: **`GSAPAnimations`** added; verify band tokens vs home during QA.
@@ -104,13 +108,13 @@
 | `/` | core | Good | Inset hero system; below-fold sections strong; buy page still reads slightly more "premium full-bleed." |
 | `/buy`, `/sell` | core | Strong | Full-bleed heroes, `M2M_MEDIA`, consistent sections. |
 | `/partners` | core | Strong | Blob hero/CTA stills, containers. |
-| `/blog` | core | Good | Index rhythm; could add subtle backdrop. |
+| `/blog` | core | Good | Hero: **`next/image`** backdrop + **`M2mContainer`**; list matches site gutters, framed thumbnails, focus rings. |
 | `/blog/[slug]` | core | Good | Editorial hero; prose tuned to brand. |
-| `/reviews` | core | Good | **`GSAPAnimations`**; band tokens aligned with testimonials. |
-| `/contact`, `/contact-us` | core | Good | `/contact` redirect; contact page trust row + semantics. |
+| `/reviews` | core | Good | **`GSAPAnimations`**; hero band **`min-height`** + non-interactive backdrop. |
+| `/contact`, `/contact-us` | core | Good | `/contact` redirect; trust row + semantics; thank-you messaging typo-free. |
 | `/resources` | core | Good | Inset hero + form card; PNG hero until Blob. |
 | `/our-team`, `/team` | core | Strong | Team hero + members; `/team` redirect. |
-| `/profile-page`, `/roger-lee`, `/kristin-s-profile` | interior | Good | `AgentProfile` on tokens + buttons. |
+| `/profile-page`, `/roger-lee`, `/kristin-s-profile` | interior | Strong | Shared **`AgentProfile`**; portrait framing aligned with **`/our-team`** cards; CTAs: buyer intent + **`getConsultationRequestUrl()`**. |
 | `/home-search` | core | Good | Inset hero; tool CTAs. |
 | `/free-home-valuation`, `/home-valuation` | core | Good | Inset hero + sections; `/home-valuation` redirect. |
 | `/cma-form` | core | Good | Inset hero + form card. |
@@ -146,8 +150,8 @@ Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign 
 
 ## Strong vs lagging (snapshot)
 
-- **Strong:** `/buy`, `/sell`, `/our-team`, `/partners`, most **campaign** landings, blog post hero treatment.
-- **Good (steady improvement):** home, tool pages (search, resources, valuation, CMA), blog index, contact, profiles, legal.
+- **Strong:** `/buy`, `/sell`, `/our-team`, agent profiles (`/profile-page`, `/roger-lee`, `/kristin-s-profile`), `/partners`, most **campaign** landings, blog post hero treatment.
+- **Good (steady improvement):** home, tool pages (search, resources, valuation, CMA), blog index, contact, legal.
 - **Lag if unattended:** any new route that skips `M2mContainer` / inset or full-bleed pattern; long forms that revert to raw gray borders.
 
 ## Next (website-only)
@@ -156,7 +160,7 @@ Earlier overhaul work tracked **inset hero** adoption, Blob/backdrops, campaign 
 2. **Tests** — Replace placeholder `npm test` with smoke E2E when prioritized.
 3. **Optional** — Strict Next typecheck in CI when the codebase is ready.
 
-Further product-growth ideas stay in [M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md](./marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md) (not a duplicate execution queue). Final launch polish / live QA lives in [M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md](./marching2more/M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md).
+Further product-growth ideas stay in [M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md](./marching2more/M2M_CONVERSION_AND_CONTENT_ENGINE_WORK_ORDER.md) (not a duplicate execution queue). Team imagery + profile polish batch is **logged above** (see [M2M_ASSET_MAP](./M2M_ASSET_MAP.md)); final launch polish / live QA lives in [M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md](./marching2more/M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md).
 
 Reference (not a competing queue): [M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md), [M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md](./marching2more/M2M_SITE_EXPERIENCE_UPLIFT_WORK_ORDER.md), [M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md](./marching2more/M2M_REPO_HYGIENE_AND_MOBILE_POLISH_WORK_ORDER.md).
 
