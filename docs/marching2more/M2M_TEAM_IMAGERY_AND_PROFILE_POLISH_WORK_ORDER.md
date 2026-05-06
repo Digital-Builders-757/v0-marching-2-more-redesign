@@ -1,6 +1,9 @@
 # Marching 2 More Team Imagery + Profile Polish Work Order
 
 **Execution batch for the team picture issue and the related profile-page cleanup.**
+
+**Status:** Shipped (2026-05). Roll-up: [WORK_ORDER.md](../WORK_ORDER.md) (**Done recently**); truthful asset routing: [M2M_ASSET_MAP.md](../M2M_ASSET_MAP.md) (**§ Vercel Blob — team & agent portraits**).
+
 Source docs: [WORK_ORDER.md](../WORK_ORDER.md), [M2M_CATCHUP_ROADMAP.md](./M2M_CATCHUP_ROADMAP.md), [M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md](./M2M_VISUAL_POLISH_SYSTEM_PASS_2026.md), [M2M_ASSET_MAP.md](../M2M_ASSET_MAP.md), [website-launch-hardening-report.md](../website-launch-hardening-report.md), and [QA_CHECKLIST.md](../proof/QA_CHECKLIST.md).
 
 ---

@@ -25,7 +25,7 @@
 | [M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md](./M2M_GHL_ACCOUNT_SETUP_CHECKLIST.md) | GHL sub-account tasks: fields, pipelines, tags, workflows, calendars |
 | [M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md](./M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) | Operator CRM spec: funnel pipelines, tags, layouts, QA; **§0.1** documents how the live site uses **buyer/seller env pipelines** + **`GHL_PATH_TAGS`** vs three funnel-named boards |
 | [M2M_FUNNEL_SMOKE_CHECKLIST.md](./M2M_FUNNEL_SMOKE_CHECKLIST.md) | Short pre-release smoke list + Playwright funnel regression pointers (CTAs, forms, quizzes) |
-| [M2M_ASSET_MAP.md](./M2M_ASSET_MAP.md) | **`public/images/` inventory** (local raster), hero vs support roles; **`lib/m2m-media.ts`** for Blob URLs; duplicates; CRM crosswalk to GHL spec + LEAD_CAPTURE_MATRIX |
+| [M2M_ASSET_MAP.md](./M2M_ASSET_MAP.md) | **`public/images/`** roster **and** Blob usage map (**[`lib/m2m-media.ts`](../lib/m2m-media.ts)** — team/agent keys, campaign reuse); hero vs support roles; duplicates; CRM crosswalk to GHL spec + LEAD_CAPTURE_MATRIX |
 | [M2M_GHL_LIVE_CUTOVER_RUNBOOK.md](./M2M_GHL_LIVE_CUTOVER_RUNBOOK.md) | Ordered env + QA steps for live hookup and verification |
 | [M2M_GHL_OPERATOR_VERIFICATION.md](./M2M_GHL_OPERATOR_VERIFICATION.md) | GHL assumptions, tag/field rules, `npm run ghl:operator-check`, production triage |
 | [M2M_LEAD_CAPTURE_MATRIX.md](./M2M_LEAD_CAPTURE_MATRIX.md) | Route-by-route matrix: funnels, key fields, urgency mode, GHO expectations |
@@ -80,7 +80,7 @@
 | Routes, layouts, metadata | `app/**` · shared SEO helper [`lib/m2m-seo-metadata.ts`](../lib/m2m-seo-metadata.ts) |
 | Nav / footer labels & hrefs | [`lib/m2m-nav.ts`](../lib/m2m-nav.ts) |
 | Site URLs, phone, booking placeholders | [`lib/m2m-site.ts`](../lib/m2m-site.ts) |
-| Marketing images (`public/images/`) | [`docs/M2M_ASSET_MAP.md`](./M2M_ASSET_MAP.md) + per-route `content.ts` |
+| Marketing images (`public/images/` + Blob `M2M_MEDIA`) | [`docs/M2M_ASSET_MAP.md`](./M2M_ASSET_MAP.md) + per-route `content.ts` / [`lib/m2m-media.ts`](../lib/m2m-media.ts) |
 | Lead payload → GHL behavior | [`docs/M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md`](./M2M_WEBSITE_TO_GHL_SYSTEM_GUIDE.md) · [`docs/M2M_LEAD_CAPTURE_MATRIX.md`](./M2M_LEAD_CAPTURE_MATRIX.md) · **§0.1** in [`M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md`](./M2M_GHL_ADMIN_SETUP_SPEC_CLIENT.md) (two env pipelines vs funnel-named boards) |
 | What shipped recently | [`docs/WORK_ORDER.md`](./WORK_ORDER.md) |
 | Automated Playwright scope (`npm run ci`) | [`docs/proof/E2E_SMOKE_PATHS.md`](./proof/E2E_SMOKE_PATHS.md) |

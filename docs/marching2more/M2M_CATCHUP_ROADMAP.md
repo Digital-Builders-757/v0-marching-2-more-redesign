@@ -107,6 +107,8 @@ The site should be stronger at:
 
 **Work order:** `docs/marching2more/M2M_TEAM_IMAGERY_AND_PROFILE_POLISH_WORK_ORDER.md`
 
+**Repo status (2026-05):** **Shipped** — implementation + [M2M_ASSET_MAP](../M2M_ASSET_MAP.md) Blob table; optional follow-up: upload **Jalessa** dedicated headshot to Blob and wire `lib/m2m-media.ts`.
+
 **Focus areas:**
 - team hero imagery
 - team member cards

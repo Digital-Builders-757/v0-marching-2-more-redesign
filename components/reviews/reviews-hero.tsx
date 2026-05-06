@@ -7,8 +7,8 @@ import { M2M_MEDIA } from "@/lib/m2m-media"
 
 export function ReviewsHero() {
   return (
-    <section className="relative overflow-hidden bg-m2m-reviews-band">
-      <div className="absolute inset-0">
+    <section className="relative min-h-[min(44vh,400px)] overflow-hidden bg-m2m-reviews-band">
+      <div className="pointer-events-none absolute inset-0">
         <Image
           src={M2M_MEDIA.reviewsBackdrop}
           alt=""

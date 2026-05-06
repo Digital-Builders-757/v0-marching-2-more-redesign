@@ -143,7 +143,7 @@ function ContactUsPageInner() {
               </div>
             ) : null}
 
-            <div className="mb-10 flex flex-col gap-4 border-y border-m2m-deep/10 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
+            <div className="mb-10 flex min-w-0 flex-col gap-4 border-y border-m2m-deep/10 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
               <a
                 href={M2M_PHONE_HREF}
                 className="inline-flex min-h-11 shrink-0 items-center text-sm font-medium text-m2m-deep transition-colors hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep font-sans"
@@ -176,7 +176,7 @@ function ContactUsPageInner() {
                 <p className="mt-4 text-sm text-m2m-muted font-sans">
                   {isConsultIntent
                     ? "We received your request and will reach out as soon as we can, usually within an hour during business hours."
-                    : "We&apos;ll be in touch within one business day."}
+                    : "We'll be in touch within one business day."}
                 </p>
                 <M2mPostSubmitNextSteps variant="onLight" />
               </div>

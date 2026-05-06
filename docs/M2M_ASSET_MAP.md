@@ -1,9 +1,9 @@
 # Marketing image asset map
 
-**Purpose:** Track client photography under `public/images/` so swaps stay intentional.  
+**Purpose:** Track **`public/images/`** files **and** document where **[`lib/m2m-media.ts`](../lib/m2m-media.ts)** (Vercel Blob) URLs appear so swaps stay intentional.  
 **Unpackaged originals:** verbatim copies preserved in [`public/images/_original-client-delivery/`](../public/images/_original-client-delivery/).
 
-**Maintenance:** When you add, rename, or retire a file under `public/images/`, update **this table** and the route’s `components/**/content.ts` (or [`lib/m2m-media.ts`](../lib/m2m-media.ts) for Blob URLs not yet replaced by local art).
+**Maintenance:** When you add, rename, or retire a file under `public/images/` **or** change a Blob key / consumer in code, update **this doc** and the route’s `components/**/content.ts` or **`lib/m2m-media.ts`** as appropriate.
 
 ## CRM spec vs shipped website tagging
 
@@ -73,6 +73,21 @@ Duplicate bytes (same photo in two places) are OK where called out below; intent
 **Duplicates on purpose:** Downsizing hero and divorce collage (`photo-album-dining`) share one duplicate raster (`01_52_57` lineage); credit **`m2m-credit-family-collaborative-home`** repeats the downsizing packing image for thematic alignment across buyer education flows.
 
 **Responsive delivery:** Local photos under `public/images/` are referenced with `next/image` and **Next.js image optimization** (see `next.config.mjs` `images.remotePatterns` for allowed remote hosts). Prefer explicit `sizes` on `fill` images so mobile does not download desktop widths.
+
+---
+
+## Vercel Blob — team & agent portraits (`lib/m2m-media.ts`)
+
+Semantic keys below live on the **`CORE`** object (spread into **`M2M_MEDIA`**). URLs point at Vercel Blob — tune **`object-position`** / zoom in consuming components when replacing a file.
+
+| Key | Where used | Role |
+|-----|------------|------|
+| **`teamPhotoWide`** | [`components/team/team-hero.tsx`](../components/team/team-hero.tsx) (**`/our-team`** full-bleed hero); [`components/team/team-members.tsx`](../components/team/team-members.tsx) — **Jalessa Hendricks** card only *(component applies zoom + `object-position` to crop one figure from the wide plate; add **`headshotJalessa`** in **`lib/m2m-media.ts`** when a dedicated portrait exists)*; campaign reuse via **`M2M_MEDIA`**: **`vaLoanCtaBand`**, **`creditHeroCenter`** ([`lib/m2m-media.ts`](../lib/m2m-media.ts)); blog cover for **`pcs-relocation-checklist`** ([`lib/blog/posts.ts`](../lib/blog/posts.ts)) | Wide group / office plate |
+| **`headshotDonavan`** | [`components/team/team-members.tsx`](../components/team/team-members.tsx); [`app/profile-page/page.tsx`](../app/profile-page/page.tsx); [`components/footer.tsx`](../components/footer.tsx) agent strip; [`lib/m2m-nav.ts`](../lib/m2m-nav.ts) **`M2M_HEADER_AGENT_LINKS`** | Portrait |
+| **`headshotRoger`** | [`components/team/team-members.tsx`](../components/team/team-members.tsx); [`app/roger-lee/page.tsx`](../app/roger-lee/page.tsx); [`components/footer.tsx`](../components/footer.tsx); **`M2M_HEADER_AGENT_LINKS`** | Portrait |
+| **`headshotKristin`** | [`components/team/team-members.tsx`](../components/team/team-members.tsx); [`app/kristin-s-profile/page.tsx`](../app/kristin-s-profile/page.tsx); **`M2M_HEADER_AGENT_LINKS`** *(header quick thumbnails — **not** in the footer’s two-thumb strip)* | Portrait |
+
+**Shared framing (team + profiles):** Member cards and **[`AgentProfile`](../components/team/agent-profile.tsx)** use portrait **`aspect-[4/5]`**, **`rounded-sm`**, and a light **`ring-1 ring-m2m-deep/[0.08]`** so **`/our-team`** and **`/profile-page`** · **`/roger-lee`** · **`/kristin-s-profile`** stay visually coherent. Per-agent **`object-position`** is set beside each **`next/image`** in those components / pages.
 
 ---
 
