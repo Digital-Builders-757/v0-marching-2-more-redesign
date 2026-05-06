@@ -47,6 +47,7 @@
 | [marching2more/M2M_SITE_REBUILD_SPEC.md](./marching2more/M2M_SITE_REBUILD_SPEC.md) | Supplementary rebuild notes (verify against repo) |
 | [marching2more/M2M_CATCHUP_ROADMAP.md](./marching2more/M2M_CATCHUP_ROADMAP.md) | Current execution order for the next Marching 2 More batches |
 | [marching2more/README.md](./marching2more/README.md) | Queue entry point for Cursor and handoffs |
+| [marching2more/M2M_TEAM_IMAGERY_AND_PROFILE_POLISH_WORK_ORDER.md](./marching2more/M2M_TEAM_IMAGERY_AND_PROFILE_POLISH_WORK_ORDER.md) | Team pictures fix + profile-page cleanup batch |
 | [marching2more/M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md](./marching2more/M2M_FINAL_POLISH_AND_LIVE_QA_WORK_ORDER.md) | Final route polish, loading feel, live verification, and release readiness |
 | [marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md](./marching2more/M2M_CLIENT_PAGE_FIXES_WORK_ORDER.md) | Client page fixes batch — decisions and route map |
 | [marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md](./marching2more/M2M_SITE_IMPROVEMENT_PRIORITY_GUIDE.md) | What actually matters next — priority hierarchy for site improvements |

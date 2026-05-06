@@ -101,7 +101,26 @@ The site should be stronger at:
 
 ---
 
-### 4. Client page fixes / route-specific cleanup
+### 4. Team imagery + profile polish
+
+**Why this is next:** the team and profile pages need the photo problem fixed before the final route/QA pass.
+
+**Work order:** `docs/marching2more/M2M_TEAM_IMAGERY_AND_PROFILE_POLISH_WORK_ORDER.md`
+
+**Focus areas:**
+- team hero imagery
+- team member cards
+- agent profile pages
+- asset-map and docs truth
+
+**Definition of done:**
+- team pictures frame correctly again
+- profile pages feel consistent with the team page
+- image docs match the real assets in use
+
+---
+
+### 5. Client page fixes / route-specific cleanup
 
 **Why this stays in the queue:** route-specific fixes are still useful as a target list once the bigger flows are stable.
 
@@ -119,7 +138,7 @@ The site should be stronger at:
 
 ---
 
-### 5. GHL remaining gaps and cutover QA
+### 6. GHL remaining gaps and cutover QA
 
 **Why this remains in the queue:** lead capture is only fully useful when the integration is verified end-to-end.
 
