@@ -25,8 +25,9 @@ export const HERO_SLIDES = [
     title: "FIX N' FLIP INVESTING",
     topLeftText:
       "PURCHASING A DISTRESSED PROPERTY, TYPICALLY AT A DISCOUNTED PRICE,",
-    topRightImage: "/images/investments/investor-fix-flip-before.jpg" as const,
-    topRightAlt: "Investor assessing renovation potential in fixer-upper",
+    topRightImage: "/images/investments/investor-fix-flip-property-focus.jpg" as const,
+    topRightAlt:
+      "Real estate investor reviewing property strategy and long-term wealth-building opportunities",
     bridgeText: "YOU CAN TURN TRASH...",
     collageLeft: "/images/investments/investor-fix-flip-after.jpg" as const,
     collageLeftAlt: "Beautifully renovated home interior",

@@ -3,7 +3,6 @@
 import Image from "next/image"
 
 import { M2mContainer } from "@/components/m2m-layout"
-import { CREED_REALTY_SEARCH_URL } from "@/lib/m2m-constants"
 import { REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
 
 export function PropertySearch() {
@@ -40,16 +39,6 @@ export function PropertySearch() {
                 >
                   Start Your Search Now
                 </a>
-                <p className="mt-2 text-center text-xs italic text-m2m-gold sm:text-left">
-                  <a
-                    href={CREED_REALTY_SEARCH_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 max-w-full items-center justify-center rounded-sm px-0.5 underline decoration-m2m-gold/55 underline-offset-2 hover:text-m2m-deep hover:decoration-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-deep"
-                  >
-                    Local Property Search Powered by CREED REALTY*
-                  </a>
-                </p>
               </div>
 
               <div className="flex flex-col items-center sm:items-start">

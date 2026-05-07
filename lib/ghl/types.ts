@@ -34,6 +34,8 @@ export type SubmitLeadRequest = {
   utm_content?: string
   source_page?: string
   source_path?: string
+  /** Human-readable guide title for funnel attribution (also echoed in operator note). */
+  guide_name?: string
   /** Free text (contact message, CMA goals, etc.) — maps to CRM note / custom handling in GHL */
   notes?: string
 }
@@ -58,6 +60,7 @@ export type NormalizedLead = {
   }
   sourcePage?: string
   sourcePath?: string
+  guideName?: string
   notes?: string
 }
 

@@ -8,6 +8,7 @@ import { VaBenefitsContent } from "@/components/va-loan-benefits/va-benefits-con
 import { VaCtaBanner } from "@/components/va-loan-benefits/va-cta-banner"
 import { VaHero } from "@/components/va-loan-benefits/va-hero"
 import { VaLeadForm } from "@/components/va-loan-benefits/va-lead-form"
+import { VaLoanQuiz } from "@/components/va-loan-benefits/va-loan-quiz"
 import { VaVideo } from "@/components/va-loan-benefits/va-video"
 import { VA_FAQ_ITEMS } from "@/components/va-loan-benefits/content"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
@@ -28,6 +29,7 @@ export default function VaLoanBenefitsPage() {
         <VaVideo />
         <VaBenefitsContent />
         <VaCtaBanner />
+        <VaLoanQuiz />
         <VaLeadForm />
         <M2mCampaignFaq
           id="va-faq-heading"

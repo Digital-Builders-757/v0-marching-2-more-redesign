@@ -43,7 +43,8 @@ export const M2M_FOOTER_QUICK_LINKS: readonly M2MNavLink[] = [
 
 export const M2M_FOOTER_POLICY_LINKS: readonly M2MNavLink[] = [
   { label: "Cookie Policy", href: "/cookie-policy" },
-  { label: "Disclaimers", href: "/privacy-policy" },
+  /** Wix path; redirects to `/privacy-policy` (see `app/copy-of-privacy-policy/page.tsx`). Distinct href keeps list keys unique. */
+  { label: "Disclaimers", href: "/copy-of-privacy-policy" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms and Conditions", href: "/terms-and-conditions" },
   { label: "Accessibility Statement", href: "/accessibility-statement" },

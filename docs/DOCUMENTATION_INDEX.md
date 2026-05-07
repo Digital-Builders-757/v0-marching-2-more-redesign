@@ -57,6 +57,7 @@
 | [proof/README.md](./proof/README.md) | QA / proof hub — funnel smoke + lead QA + Playwright breakdown (thin pointers) |
 | [proof/QA_CHECKLIST.md](./proof/QA_CHECKLIST.md) | Forwards to canonical checklists — no standalone matrix duplicate |
 | [proof/E2E_SMOKE_PATHS.md](./proof/E2E_SMOKE_PATHS.md) | Repo-accurate list of what **`npm run test:e2e`** exercises |
+| [reference/brrrr-deal-analyzer-spec.md](./reference/brrrr-deal-analyzer-spec.md) | BRRRR Deal Analyzer — scope and behavior notes (`/more-investments`) |
 | [releasenotes/README.md](./releasenotes/README.md) | Optional **`/release`** archives |
 
 ## Archive (historical)

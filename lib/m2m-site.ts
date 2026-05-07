@@ -40,36 +40,66 @@ export const M2M_ADDRESS_LINES = [
 export const M2M_ADDRESS_SINGLE_LINE =
   "600 Lynnhaven Pkwy, STE 106 Virginia Beach, VA 23452 United States" as const
 
-/** Wix parity primary CTA — fallback when GHL booking is not configured yet. */
-export const CALENDLY_BOOK_URL = "https://calendly.com/marching2more/45min"
+/**
+ * Last-resort public scheduler when GHL booking URL is unset (`NEXT_PUBLIC_GOHIGHLEVEL_BOOKING_URL` / {@link GOHIGHLEVEL_BOOKING_URL}).
+ * Google Calendar appointments (not Calendly).
+ *
+ * Legacy export name retained for imports / docs that reference `CALENDLY_BOOK_URL`.
+ */
+export const M2M_PUBLIC_BOOKING_FALLBACK_URL =
+  "https://calendar.google.com/calendar/u/0/appointments/AcZssZ0ySwtuGTI2v_rj3ODYeT6OfHwehQTsN8k7m3E=" as const
+
+/** @deprecated Prefer {@link M2M_PUBLIC_BOOKING_FALLBACK_URL} — same URL; name reflects historical Calendly use. */
+export const CALENDLY_BOOK_URL = M2M_PUBLIC_BOOKING_FALLBACK_URL
 
 /**
  * GoHighLevel public booking/scheduling URL (single primary calendar link).
- * Replace the placeholder with the real `https://` link from the GHL sub-account when ready.
+ * Prefer setting **`NEXT_PUBLIC_GOHIGHLEVEL_BOOKING_URL`** in Vercel so production uses GHL without a redeploy;
+ * otherwise replace this placeholder with the real `https://` link from the GHL sub-account.
  */
 export const GOHIGHLEVEL_BOOKING_URL = "REPLACE_WITH_GOHIGHLEVEL_BOOKING_URL" as const
 
+function bookingUrlFromEnv(): string {
+  if (typeof process === "undefined") return ""
+  return (process.env.NEXT_PUBLIC_GOHIGHLEVEL_BOOKING_URL ?? "").trim()
+}
+
 /**
- * **Public scheduling calendar (optional)**
+ * **Public scheduling calendar**
  *
  * Use for “Schedule online” / pick-a-time flows. Primary “Book a consultation” **button** surfaces
  * (header, footer) use {@link getConsultationRequestUrl} (`/contact-us?intent=consultation`) with
  * expectation copy; this helper remains for secondary calendar links wherever scheduling is explicitly offered.
  *
- * When `GOHIGHLEVEL_BOOKING_URL` is a real `http(s)` URL, that wins; otherwise the site uses
- * {@link CALENDLY_BOOK_URL}. Do not hardcode raw Calendly URLs in page components.
+ * Resolution order: **`NEXT_PUBLIC_GOHIGHLEVEL_BOOKING_URL`** → {@link GOHIGHLEVEL_BOOKING_URL} →
+ * {@link M2M_PUBLIC_BOOKING_FALLBACK_URL} (temporary fallback when GHL URL is not configured yet).
+ * Do not hardcode raw scheduling URLs in page components.
  */
 export function getPrimaryConsultationBookUrl(): string {
-  return isGohighlevelBookingConfigured(GOHIGHLEVEL_BOOKING_URL) ? GOHIGHLEVEL_BOOKING_URL : CALENDLY_BOOK_URL
+  const envUrl = bookingUrlFromEnv()
+  if (isGohighlevelUrlConfigured(envUrl)) return envUrl
+  if (isGohighlevelUrlConfigured(GOHIGHLEVEL_BOOKING_URL)) return GOHIGHLEVEL_BOOKING_URL
+  return M2M_PUBLIC_BOOKING_FALLBACK_URL
 }
 
-export function isGohighlevelBookingConfigured(url: string = GOHIGHLEVEL_BOOKING_URL): boolean {
-  return isGohighlevelUrlConfigured(url)
+/**
+ * True when pick-a-time links resolve to GoHighLevel (env or {@link GOHIGHLEVEL_BOOKING_URL}), not the public fallback scheduler.
+ * When checking an arbitrary URL string, pass it as the first argument.
+ */
+export function isGohighlevelBookingConfigured(url?: string): boolean {
+  if (url !== undefined) {
+    return isGohighlevelUrlConfigured(url)
+  }
+  const envUrl = bookingUrlFromEnv()
+  if (isGohighlevelUrlConfigured(envUrl)) return true
+  return isGohighlevelUrlConfigured(GOHIGHLEVEL_BOOKING_URL)
 }
 
-/** True when a GHL (or any) public URL is set — not a placeholder string. */
+/** True when a public URL is set — not empty and not a `REPLACE_WITH_*` placeholder. */
 export function isGohighlevelUrlConfigured(url: string): boolean {
-  return url.startsWith("https://") || url.startsWith("http://")
+  const u = url.trim()
+  if (!u || u.startsWith("REPLACE_WITH_")) return false
+  return u.startsWith("https://") || u.startsWith("http://")
 }
 
 /**
@@ -94,11 +124,44 @@ export const GOHIGHLEVEL_QUIZ_FORECLOSURE_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_F
 export const GOHIGHLEVEL_QUIZ_INVESTOR_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_INVESTOR_URL" as const
 /** Static divorce quiz embed — `/navigating-divorce` (`public/quizzes/navigating-divorce/index.html`). */
 export const GOHIGHLEVEL_QUIZ_NAVIGATING_DIVORCE_URL = "/quizzes/navigating-divorce/index.html" as const
+/** @deprecated VA assessment is inline React on `/va-loan-benefits`. Optional GHL-hosted replacement only. */
+export const GOHIGHLEVEL_QUIZ_VA_LOAN_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_VA_LOAN_URL" as const
 /**
- * Optional embeddable BRRRR analyzer (GHL, Airtable, or hosted sheet).
- * When unset, the investor tools section shows a placeholder card.
+ * @deprecated BRRRR analyzer ships first-party on `/more-investments`. Kept only if an external embed is needed later.
  */
 export const GOHIGHLEVEL_BRRRR_ANALYZER_URL = "REPLACE_WITH_GOHIGHLEVEL_BRRRR_ANALYZER_URL" as const
+
+/**
+ * Downsizing / right-sizing guide PDF — served from `public/downloads/m2m-downsizing-guide.pdf`.
+ * Set **`NEXT_PUBLIC_M2M_DOWNSIZING_GUIDE_PDF_URL`** to a full `https://` link (for example Vercel Blob) if the asset is hosted outside the repo.
+ */
+export const M2M_DOWNSIZING_GUIDE_PDF_DEFAULT_HREF = "/downloads/m2m-downsizing-guide.pdf" as const
+
+/** Suggested filename when triggering a browser download (same-origin or when `download` is honored). */
+export const M2M_DOWNSIZING_GUIDE_PDF_FILENAME = "M2M-Downsizing-Guide.pdf" as const
+
+export function getM2mDownsizingGuidePdfHref(): string {
+  if (typeof process === "undefined") return M2M_DOWNSIZING_GUIDE_PDF_DEFAULT_HREF
+  const env = (process.env.NEXT_PUBLIC_M2M_DOWNSIZING_GUIDE_PDF_URL ?? "").trim()
+  if (env && (env.startsWith("https://") || env.startsWith("http://") || env.startsWith("/"))) return env
+  return M2M_DOWNSIZING_GUIDE_PDF_DEFAULT_HREF
+}
+
+/**
+ * Divorce & real estate guide PDF — served from `public/downloads/m2m-divorce-sell-home-guide.pdf`.
+ * Set **`NEXT_PUBLIC_M2M_DIVORCE_GUIDE_PDF_URL`** to a full `https://` link (for example Vercel Blob) if the asset is hosted outside the repo.
+ */
+export const M2M_DIVORCE_GUIDE_PDF_DEFAULT_HREF = "/downloads/m2m-divorce-sell-home-guide.pdf" as const
+
+/** Suggested filename when triggering a browser download (same-origin or when `download` is honored). */
+export const M2M_DIVORCE_GUIDE_PDF_FILENAME = "M2M-Divorce-Sell-Home-Guide.pdf" as const
+
+export function getM2mDivorceGuidePdfHref(): string {
+  if (typeof process === "undefined") return M2M_DIVORCE_GUIDE_PDF_DEFAULT_HREF
+  const env = (process.env.NEXT_PUBLIC_M2M_DIVORCE_GUIDE_PDF_URL ?? "").trim()
+  if (env && (env.startsWith("https://") || env.startsWith("http://") || env.startsWith("/"))) return env
+  return M2M_DIVORCE_GUIDE_PDF_DEFAULT_HREF
+}
 
 /** Short consultation request form — expectation copy on `/contact-us`. */
 export const M2M_CONTACT_CONSULTATION_PATH = "/contact-us?intent=consultation" as const
@@ -116,9 +179,6 @@ export const REALSCOUT_MAP_SEARCH_URL =
 
 export const REALSCOUT_HOME_VALUATION_URL =
   "https://donavanmcfadden63.realscout.com/homesearch/home-reports?hva_public=true"
-
-export const CREED_REALTY_SEARCH_URL =
-  "https://donavan.atcoastal.com/results-gallery/?status=A"
 
 export const GOOGLE_REVIEW_URL = "https://g.page/r/Cdr645m9lC69EAE/review"
 

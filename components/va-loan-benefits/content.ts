@@ -4,6 +4,11 @@
 
 export const VA_LEAD_SECTION_ID = "va-lead-form" as const
 
+export const VA_QUIZ_SECTION_ID = "va-loan-quiz" as const
+export const VA_QUIZ_HEADING = "Is a VA Loan Your Best Next Step?" as const
+export const VA_QUIZ_DESCRIPTION =
+  "Five quick questions to see where you stand with your VA benefit and what to do next — no pressure, just clarity." as const
+
 /** Hero — military homebuying, service, trust, and forward movement. */
 export const HERO_BACKGROUND = "/images/va-loan/va-hero-military-homecoming.jpg" as const
 

@@ -14,6 +14,13 @@ export type GhlFieldIds = {
   utmContent: string
 }
 
+/** Optional contact custom fields — only sent when the matching env var is set (never required). */
+export type GhlOptionalFieldIds = {
+  guideName?: string
+  sourcePage?: string
+  sourcePath?: string
+}
+
 export type GhlPipelineConfig = {
   buyerPipelineId: string
   sellerPipelineId: string
@@ -34,6 +41,7 @@ export type GhlConfig = {
   apiVersion: string
   baseUrl: string
   fieldIds: GhlFieldIds
+  optionalFieldIds: GhlOptionalFieldIds
   pipelines: GhlPipelineConfig | null
   tags: GhlTagConfig
   dryRun: boolean
@@ -98,6 +106,12 @@ export function getGhlConfig(): GhlConfig {
     utmContent: req("GHL_CF_UTM_CONTENT", process.env.GHL_CF_UTM_CONTENT, dryRun),
   }
 
+  const optionalFieldIds: GhlOptionalFieldIds = {
+    guideName: opt(process.env.GHL_CF_GUIDE_NAME),
+    sourcePage: opt(process.env.GHL_CF_SOURCE_PAGE),
+    sourcePath: opt(process.env.GHL_CF_SOURCE_PATH),
+  }
+
   const bp = opt(process.env.GHL_BUYER_PIPELINE_ID)
   const sp = opt(process.env.GHL_SELLER_PIPELINE_ID)
   const bs = opt(process.env.GHL_BUYER_STAGE_NEW_INQUIRY_ID)
@@ -125,6 +139,7 @@ export function getGhlConfig(): GhlConfig {
     apiVersion: opt(process.env.GHL_API_VERSION) ?? "2021-07-28",
     baseUrl: opt(process.env.GHL_API_BASE_URL) ?? "https://services.leadconnectorhq.com",
     fieldIds,
+    optionalFieldIds,
     pipelines,
     tags,
     dryRun,

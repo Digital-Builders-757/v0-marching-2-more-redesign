@@ -34,6 +34,17 @@ const optionalDob = z
     return t === "" || t === undefined ? undefined : t
   })
 
+const optionalGuideName = z
+  .string()
+  .optional()
+  .transform((s) => {
+    const t = s?.trim()
+    return t === "" || t === undefined ? undefined : t
+  })
+  .refine((s) => s === undefined || s.length <= 200, {
+    message: "Guide name is too long",
+  })
+
 export const submitLeadRequestSchema = z
   .object({
     lead_type: leadTypeSchema,
@@ -50,6 +61,7 @@ export const submitLeadRequestSchema = z
     utm_content: optionalTrimmed,
     source_page: optionalTrimmed,
     source_path: optionalTrimmed,
+    guide_name: optionalGuideName,
     notes: optionalTrimmed,
   })
   .superRefine((data, ctx) => {
@@ -155,6 +167,7 @@ export function toNormalizedLead(parsed: SubmitLeadInput): NormalizedLead {
     },
     sourcePage: parsed.source_page,
     sourcePath: parsed.source_path,
+    guideName: parsed.guide_name,
     notes: parsed.notes,
   }
 }

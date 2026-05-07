@@ -2,19 +2,11 @@ import Link from "next/link"
 
 import { M2mLeadQuizSection } from "@/components/m2m-lead-quiz-section"
 import { M2mContainer } from "@/components/m2m-layout"
-import {
-  getConsultationRequestUrl,
-  GOHIGHLEVEL_BRRRR_ANALYZER_URL,
-  GOHIGHLEVEL_QUIZ_INVESTOR_URL,
-  isGohighlevelUrlConfigured,
-  M2M_PHONE_DISPLAY,
-  M2M_PHONE_HREF,
-} from "@/lib/m2m-site"
-import { cn } from "@/lib/utils"
+import { BrrrrDealAnalyzer } from "@/components/more-investments/brrrr-deal-analyzer"
+import { getConsultationRequestUrl, GOHIGHLEVEL_QUIZ_INVESTOR_URL, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 
 import {
   INVESTOR_BRRRR_BLURB,
-  INVESTOR_BRRRR_TITLE,
   INVESTOR_PLACEHOLDER_TOOLS,
   INVESTOR_TOOLS_INTRO,
   INVESTOR_TOOLS_QUIZ_TITLE,
@@ -23,8 +15,6 @@ import {
 } from "./content"
 
 export function InvestmentsTools() {
-  const brrrrLive = isGohighlevelUrlConfigured(GOHIGHLEVEL_BRRRR_ANALYZER_URL)
-
   return (
     <div id={INVESTOR_TOOLS_SECTION_ID} className="scroll-mt-28 border-b border-m2m-gold/15">
       <M2mLeadQuizSection
@@ -59,43 +49,9 @@ export function InvestmentsTools() {
             {INVESTOR_BRRRR_BLURB}
           </p>
 
-          {brrrrLive ? (
-            <div className="mt-8 overflow-hidden rounded-sm border border-m2m-gold/25 bg-m2m-deep/40 shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
-              <div className="relative aspect-[16/10] w-full min-h-[420px] sm:min-h-[480px]">
-                <iframe
-                  src={GOHIGHLEVEL_BRRRR_ANALYZER_URL}
-                  title={INVESTOR_BRRRR_TITLE}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full border-0"
-                  allow="clipboard-write"
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="mx-auto mt-8 max-w-2xl rounded-sm border border-m2m-gold/25 bg-m2m-panel/60 px-6 py-8 shadow-[0_16px_40px_rgba(0,0,0,0.2)] sm:px-8">
-              <p className="text-center text-sm font-medium text-m2m-gold-lt font-sans">{INVESTOR_BRRRR_TITLE}</p>
-              <p className="mx-auto mt-3 max-w-xl text-center text-sm leading-relaxed text-m2m-cream/82 font-sans">
-                Bring a deal and we’ll work the numbers with you manually for now, purchase through refinance, so you can
-                pressure-test the assumptions before you commit.
-              </p>
-              <div className="mx-auto mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:items-center">
-                <a
-                  href={M2M_PHONE_HREF}
-                  data-m2m-track="investments_brrrr_phone"
-                  className="inline-flex min-h-11 items-center justify-center rounded-sm border border-m2m-gold/30 px-4 text-sm font-medium text-m2m-cream transition-colors hover:border-m2m-gold hover:text-m2m-gold"
-                >
-                  Call {M2M_PHONE_DISPLAY}
-                </a>
-                <Link
-                  href={getConsultationRequestUrl()}
-                  data-m2m-track="consultation_request"
-                  className="inline-flex min-h-11 items-center justify-center rounded-sm bg-m2m-gold px-4 text-sm font-semibold text-m2m-deep transition-colors hover:bg-m2m-gold-lt"
-                >
-                  Book a consultation
-                </Link>
-              </div>
-            </div>
-          )}
+          <div className="mt-8">
+            <BrrrrDealAnalyzer />
+          </div>
 
           <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
             {INVESTOR_PLACEHOLDER_TOOLS.map((t) => (
@@ -123,8 +79,7 @@ export function InvestmentsTools() {
           </div>
 
           <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-m2m-cream/65 font-sans">
-            As each tool gets a stable URL, we will wire it the same way as the quiz and BRRRR embeds — no redesign
-            required.
+            The BRRRR analyzer runs on-site; hosted quizzes stay in GoHighLevel until each tool has a permanent embed URL.
           </p>
 
           <div className="mx-auto mt-10 max-w-2xl text-center">

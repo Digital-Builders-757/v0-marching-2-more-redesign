@@ -41,6 +41,16 @@ Use the IDs your sub-account actually shows in GHL; the values below are the **i
 | `GHL_CF_UTM_*` | four IDs as in `.env.example` / your runbook |
 | Pipelines / stages | **M2M Buyer Pipeline** / **M2M Seller Pipeline** — IDs in env; first stage for web leads: **New Inquiry** (`GHL_BUYER_STAGE_NEW_INQUIRY_ID` / `GHL_SELLER_STAGE_NEW_INQUIRY_ID`) |
 
+**Optional (guide funnels):** If you create matching **contact** custom fields in GHL, you may wire IDs so structured values duplicate what already appears in the operator note:
+
+| Variable | When to use |
+|----------|-------------|
+| `GHL_CF_GUIDE_NAME` | Text field for human-readable guide title (e.g. “Downsizing guide”) from `guide_name` on `POST /api/submit-lead`. |
+| `GHL_CF_SOURCE_PAGE` | Text/URL field for full page URL (`source_page`). |
+| `GHL_CF_SOURCE_PATH` | Text field for pathname (`source_path`, e.g. `/navigating-divorce`). |
+
+If these env vars are **unset**, submissions still succeed; `guide_name` and source metadata remain in the **contact note** ([`lib/ghl/submit-lead.ts`](../lib/ghl/submit-lead.ts) `buildOperatorNote`).
+
 If any ID is copied from another sub-account or an old sandbox, GHL will often return **422** or **400** on upsert.
 
 ---

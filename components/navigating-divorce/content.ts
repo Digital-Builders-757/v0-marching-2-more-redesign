@@ -19,17 +19,16 @@ export const DIVORCE_FOOTER_TOP_LINKS: readonly M2MNavLink[] = [
   { label: "Contact Us", href: "/contact-us" },
 ] as const
 
-/** Hero — calm in-home consultation, mother and child supported by advisor */
-export const DIVORCE_HERO_BACKGROUND =
-  "/images/divorce/m2m-divorce-hero-mother-child-agent-consultation.png" as const
+/** Hero — calm transition and new-chapter tone */
+export const DIVORCE_HERO_BACKGROUND = "/images/divorce/divorce-hero-hopeful-transition.jpg" as const
 
 export const COLLAGE_IMAGES = {
-  /** Panel 1 — diverse couple with advisor at home (selling-plan context) */
-  sellDuringDivorce: "/images/site/m2m-partners-consult-evening-home.png" as const,
-  /** Panel 2 — supportive multi-generational moment on the porch */
-  family: "/images/divorce/m2m-divorce-collage-multigen-porch-steps.png" as const,
-  /** Panel 3 — quiet transition moment at home with memories */
-  interior: "/images/divorce/m2m-divorce-collage-photo-album-dining.png" as const,
+  /** Panel 1 — couple in a thoughtful moment (decisions ahead) */
+  sellDuringDivorce: "/images/divorce/divorce-couple-contemplative.jpg" as const,
+  /** Panel 2 — keys and a fresh start with the home */
+  family: "/images/divorce/divorce-new-home-keys.jpg" as const,
+  /** Panel 3 — home space where practical choices take shape */
+  interior: "/images/divorce/divorce-modern-interior.jpg" as const,
   /** Panel 4 — professional reviewing documents shoulder-to-shoulder */
   legal: "/images/divorce/m2m-divorce-collage-consultant-documents-table.png" as const,
 } as const

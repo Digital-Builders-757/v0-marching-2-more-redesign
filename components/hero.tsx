@@ -49,18 +49,12 @@ export function Hero() {
         {/* Background image with horizontal parallax */}
         <div
           ref={imageRef}
-          className="absolute inset-[-5%] z-0 overflow-hidden will-change-transform"
-          style={{ transform: "translateX(0) scale(1.1)" }}
-        >
-          <Image
-            src="/images/site/m2m-home-hero-military-keys-porch.png"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-        </div>
+          className="absolute inset-[-5%] z-0 bg-cover bg-center bg-no-repeat will-change-transform"
+          style={{
+            backgroundImage: "url('/images/hero-background.png')",
+            transform: "translateX(0) scale(1.1)",
+          }}
+        />
 
         <M2mInsetHeroScrim variant="home" />
 

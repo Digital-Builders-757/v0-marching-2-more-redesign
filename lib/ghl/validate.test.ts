@@ -41,4 +41,25 @@ describe("parseSubmitLeadBody", () => {
     expect(r.ok).toBe(true)
     if (r.ok) expect(r.data.urgencyExplicit).toBe(false)
   })
+
+  it("passes guide_name through when valid", () => {
+    const r = parseSubmitLeadBody({
+      lead_type: "seller",
+      name: "Test User",
+      email: "a@b.co",
+      guide_name: "  Divorce guide  ",
+    })
+    expect(r.ok).toBe(true)
+    if (r.ok) expect(r.data.guideName).toBe("Divorce guide")
+  })
+
+  it("rejects guide_name longer than 200 chars", () => {
+    const r = parseSubmitLeadBody({
+      lead_type: "seller",
+      name: "Test User",
+      email: "a@b.co",
+      guide_name: "x".repeat(201),
+    })
+    expect(r.ok).toBe(false)
+  })
 })
