@@ -14,6 +14,7 @@ import {
   MENU_SEARCH_PLACEHOLDER,
   resolveMenuSearchQuery,
 } from "@/lib/m2m-menu-search"
+import { cn } from "@/lib/utils"
 import { getConsultationRequestUrl, M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
 import { M2M_HEADER_AGENT_LINKS, M2M_WIX_HEADER_MENU_LINKS } from "@/lib/m2m-nav"
 
@@ -134,7 +135,13 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
                 aria-label={agent.name}
                 className="relative h-10 w-10 overflow-hidden rounded-full border border-m2m-deep/10 transition hover:border-m2m-gold/40"
               >
-                <Image src={agent.image} alt={agent.name} fill className="object-cover object-top" sizes="40px" />
+                <Image
+                  src={agent.image}
+                  alt={agent.name}
+                  fill
+                  className={cn("object-cover", agent.headerImageClassName ?? "object-top")}
+                  sizes="40px"
+                />
               </Link>
             ))}
           </div>

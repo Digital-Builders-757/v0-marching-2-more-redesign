@@ -54,6 +54,8 @@ export type M2MAgentLink = {
   name: string
   href: string
   image: string
+  /** Optional `object-*` crop for header thumbnails when `image` is a wide plate (e.g. team photo). */
+  headerImageClassName?: string
 }
 
 /** Wix header quick links (headshots). */
@@ -72,5 +74,10 @@ export const M2M_HEADER_AGENT_LINKS: readonly M2MAgentLink[] = [
     name: "Kristin Allen",
     href: "/kristin-s-profile",
     image: M2M_MEDIA.headshotKristin,
+  },
+  {
+    name: "Jalessa Hendricks",
+    href: "/jalessa-hendricks",
+    image: M2M_MEDIA.headshotJalessa,
   },
 ] as const

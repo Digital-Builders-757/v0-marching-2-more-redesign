@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
@@ -23,6 +24,10 @@ type AgentProfileProps = {
   image: string
   /** Tailwind object-position helpers, e.g. `object-[center_32%]` — align with team card crops. */
   imageObjectPosition?: string
+  /** Optional zoom from wide plates — same knobs as `team-members` portrait cards. */
+  imageScaleClass?: string
+  /** Inline object-position for wide-plate crops (pairs with `imageScaleClass`). */
+  imageObjectStyle?: Pick<CSSProperties, "objectPosition">
   bio: string
   email?: string
   linkedin?: string
@@ -40,6 +45,8 @@ export function AgentProfile({
   licenseNumber,
   image,
   imageObjectPosition,
+  imageScaleClass,
+  imageObjectStyle,
   bio,
   email,
   linkedin,
@@ -68,7 +75,8 @@ export function AgentProfile({
                   alt={name}
                   fill
                   priority
-                  className={cn("object-cover", imageObjectPosition)}
+                  style={imageObjectStyle}
+                  className={cn("object-cover", imageObjectPosition, imageScaleClass)}
                   sizes="(min-width: 1024px) 33vw, min(320px, 100vw)"
                 />
               </div>

@@ -45,10 +45,9 @@ const teamMembers: TeamMember[] = [
   {
     name: "Jalessa Hendricks",
     subtitle: "Licensed Agent",
-    // Same asset as hero — portrait cards need a tighter crop from the wide plate (tune objectPosition if lineup changes)
-    image: M2M_MEDIA.teamPhotoWide,
-    imageScaleClass: "origin-[82%_26%] scale-[1.16]",
-    imageObjectStyle: { objectPosition: "82% 26%" },
+    href: "/jalessa-hendricks",
+    image: M2M_MEDIA.headshotJalessa,
+    imageObjectPosition: "object-[center_28%]",
   },
 ]
 
