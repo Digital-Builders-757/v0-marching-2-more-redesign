@@ -57,12 +57,52 @@ test.describe("quiz / embed sections", () => {
     await expect(page.locator('iframe[src="/quizzes/downsizing-your-home/quiz.html"]')).toBeVisible()
   })
 
-  test("va-loan-benefits: local VA quiz iframe is served and visible", async ({ page, request }) => {
-    const res = await request.get("/quizzes/va-loan-benefits/index.html")
-    expect(res.ok()).toBeTruthy()
+  test("downsizing: guide PDF is served", async ({ request }) => {
+    const res = await request.get("/downloads/m2m-downsizing-guide.pdf")
+    expect(res.status(), "downsizing guide PDF should return 200").toBe(200)
+    const ct = (res.headers()["content-type"] ?? "").toLowerCase()
+    expect(ct.includes("pdf") || ct.includes("octet-stream"), `expected PDF content-type, got ${ct}`).toBeTruthy()
+  })
+
+  test("navigating-divorce: guide PDF is served", async ({ request }) => {
+    const res = await request.get("/downloads/m2m-divorce-sell-home-guide.pdf")
+    expect(res.status(), "divorce guide PDF should return 200").toBe(200)
+    const ct = (res.headers()["content-type"] ?? "").toLowerCase()
+    expect(ct.includes("pdf") || ct.includes("octet-stream"), `expected PDF content-type, got ${ct}`).toBeTruthy()
+  })
+
+  test("va-loan-benefits: VA assessment quiz renders and reaches results", async ({ page }) => {
+    await stubSubmitLeadPost(page, { ...M2M_SUBMIT_LEAD_OK_BODY })
     await page.goto("/va-loan-benefits")
     await page.locator("#va-loan-quiz").scrollIntoViewIfNeeded()
-    await expect(page.locator('iframe[src="/quizzes/va-loan-benefits/index.html"]')).toBeVisible()
+    const quiz = page.getByTestId("m2m-va-loan-assessment-quiz")
+    await expect(quiz).toBeVisible()
+    await quiz.getByRole("button", { name: /start the assessment/i }).click()
+
+    await quiz.getByRole("button", { name: /i'm active-duty military/i }).click()
+    await quiz.getByRole("button", { name: /^continue →$/i }).click()
+
+    await quiz.getByRole("button", { name: /first time/i }).click()
+    await quiz.getByRole("button", { name: /^continue →$/i }).click()
+
+    await quiz.getByRole("button", { name: /keep going/i }).click()
+
+    await quiz.getByRole("button", { name: /early stage/i }).click()
+    await quiz.getByRole("button", { name: /^continue →$/i }).click()
+
+    await quiz.getByRole("button", { name: /not sure if i'm actually eligible/i }).click()
+    await quiz.getByRole("button", { name: /^continue →$/i }).click()
+
+    await quiz.getByRole("button", { name: /learn more about how it works first/i }).click()
+    await quiz.getByRole("button", { name: /see my results/i }).click()
+
+    await quiz.locator("#vaq-first").fill("E2E")
+    await quiz.locator("#vaq-last").fill("VAQuiz")
+    await quiz.locator("#vaq-email").fill("e2e-va-quiz@example.com")
+    await quiz.getByRole("button", { name: /show my results/i }).click()
+
+    await expect(quiz.getByRole("region", { name: /your assessment results/i })).toBeVisible({ timeout: 20_000 })
+    await expect(quiz.getByText(/you're not in a rush/i)).toBeVisible()
   })
 
   test("divorce: static quiz iframe + guide form present", async ({ page }) => {
@@ -127,7 +167,8 @@ test.describe("lead forms (mocked POST /api/submit-lead)", () => {
     await form.getByPlaceholder("Email*").fill("e2e-divorce@example.com")
     await form.getByRole("button", { name: /get your free guide now/i }).click()
     await expect(page.locator("#guide-form").getByRole("status")).toContainText(/thank you/i)
-    await expect(page.locator("#guide-form").getByRole("status")).toContainText(/send your guide/i)
+    await expect(page.locator("#guide-form").getByRole("status")).toContainText(/pdf/i)
+    await expect(page.getByRole("link", { name: /download the guide \(pdf\)/i })).toBeVisible()
   })
 
   test("improve-your-credit: playbook form submits", async ({ page }) => {

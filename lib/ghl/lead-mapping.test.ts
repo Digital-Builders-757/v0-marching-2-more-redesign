@@ -21,6 +21,7 @@ const mockCfg: GhlConfig = {
   },
   pipelines: null,
   tags: { buyer: [], seller: [], pathTags: {} },
+  optionalFieldIds: {},
   dryRun: false,
 }
 
@@ -38,5 +39,31 @@ describe("normalizedLeadToCustomFields", () => {
     const cf = normalizedLeadToCustomFields(lead, mockCfg)
     const u = cf.find((x) => x.id === "f-urg")
     expect(u?.value).toBe("Immediate (0-1 month)")
+  })
+
+  it("maps optional guide/source fields when env IDs are set", () => {
+    const cfg: GhlConfig = {
+      ...mockCfg,
+      optionalFieldIds: {
+        guideName: "cf-guide",
+        sourcePage: "cf-page",
+        sourcePath: "cf-path",
+      },
+    }
+    const lead: NormalizedLead = {
+      leadType: "seller",
+      fullName: "A B",
+      firstName: "A",
+      lastName: "B",
+      email: "a@b.co",
+      guideName: "Downsizing guide",
+      sourcePage: "https://example.com/page",
+      sourcePath: "/downsizing-your-home",
+      utm: {},
+    }
+    const cf = normalizedLeadToCustomFields(lead, cfg)
+    expect(cf.find((x) => x.id === "cf-guide")?.value).toBe("Downsizing guide")
+    expect(cf.find((x) => x.id === "cf-page")?.value).toBe("https://example.com/page")
+    expect(cf.find((x) => x.id === "cf-path")?.value).toBe("/downsizing-your-home")
   })
 })

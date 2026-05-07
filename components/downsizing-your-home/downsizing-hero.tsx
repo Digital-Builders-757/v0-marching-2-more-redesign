@@ -1,22 +1,13 @@
 import Image from "next/image"
-import Link from "next/link"
 
+import { DownloadGuideButton } from "@/components/m2m-guide-download/download-guide-button"
 import { M2mContainer } from "@/components/m2m-layout"
 
-import {
-  DOWNSIZING_GUIDE_SECTION_ID,
-  HERO_BACKGROUND,
-  HERO_BODY,
-  HERO_CTA_LABEL,
-  HERO_HEADLINE,
-} from "./content"
+import { HERO_BACKGROUND, HERO_BODY, HERO_CTA_LABEL, HERO_HEADLINE } from "./content"
 
 export function DownsizingHero() {
   return (
-    <section
-      className="relative min-h-[min(78vh,680px)] w-full"
-      aria-labelledby="downsizing-hero-heading"
-    >
+    <section className="relative min-h-[min(78vh,680px)] w-full" aria-labelledby="downsizing-hero-heading">
       <Image
         src={HERO_BACKGROUND}
         alt=""
@@ -49,13 +40,7 @@ export function DownsizingHero() {
           {HERO_BODY}
         </p>
         <div className="mt-10 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
-          <Link
-            href={`#${DOWNSIZING_GUIDE_SECTION_ID}`}
-            className="inline-flex min-h-[52px] w-full items-center justify-center bg-m2m-gold px-10 py-3.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-m2m-deep shadow-[0_8px_24px_rgba(205,176,95,0.25)] transition hover:bg-m2m-gold-lt sm:w-auto"
-            style={{ fontFamily: "var(--font-nav)" }}
-          >
-            {HERO_CTA_LABEL}
-          </Link>
+          <DownloadGuideButton>{HERO_CTA_LABEL}</DownloadGuideButton>
         </div>
       </M2mContainer>
     </section>

@@ -4,6 +4,8 @@
  * Imagery paths: `public/images/downsizing/` (see `docs/M2M_ASSET_MAP.md`).
  */
 
+import { M2M_GUIDE_FORM_SECTION_ID } from "@/lib/m2m-guide-download"
+
 /** Hero — multi-generational family reflecting on memories during a planned move */
 export const HERO_BACKGROUND =
   "/images/downsizing/m2m-downsizing-hero-family-photo-album-transition.png" as const
@@ -49,7 +51,8 @@ export const DOWNSIZING_QUIZ_HEADING = "Wondering if now is the right time to do
 export const DOWNSIZING_QUIZ_DESCRIPTION =
   "A short quiz helps you think through timing, lifestyle, and equity — so your next step feels clear, not rushed." as const
 
-export const DOWNSIZING_GUIDE_SECTION_ID = "downsizing-guide" as const
+/** Alias for the shared guide-form anchor (`lib/m2m-guide-download`). */
+export const DOWNSIZING_GUIDE_SECTION_ID = M2M_GUIDE_FORM_SECTION_ID
 
 export const GUIDE_HEADING = "Downsizing Guide" as const
 

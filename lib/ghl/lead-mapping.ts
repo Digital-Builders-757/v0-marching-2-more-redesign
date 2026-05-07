@@ -1,7 +1,7 @@
 import type { GhlConfig } from "./config"
 import type { GhlCustomFieldEntry, LeadType, NormalizedLead } from "./types"
 
-function addField(out: GhlCustomFieldEntry[], id: string, value: string | undefined) {
+function addField(out: GhlCustomFieldEntry[], id: string | undefined, value: string | undefined) {
   if (!value?.trim() || !id || id.startsWith("dry-run__")) return
   out.push({ id, value: value.trim() })
 }
@@ -20,6 +20,11 @@ export function normalizedLeadToCustomFields(lead: NormalizedLead, cfg: GhlConfi
   addField(out, f.utmMedium, lead.utm.medium)
   addField(out, f.utmCampaign, lead.utm.campaign)
   addField(out, f.utmContent, lead.utm.content)
+
+  const optIds = cfg.optionalFieldIds
+  addField(out, optIds.guideName, lead.guideName)
+  addField(out, optIds.sourcePage, lead.sourcePage)
+  addField(out, optIds.sourcePath, lead.sourcePath)
 
   return out
 }

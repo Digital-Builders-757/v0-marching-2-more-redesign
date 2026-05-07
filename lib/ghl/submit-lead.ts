@@ -34,6 +34,7 @@ function buildOperatorNote(lead: NormalizedLead): string {
 
   out.push("Submission metadata:")
   out.push(`- Lead type: ${lead.leadType}`)
+  if (lead.guideName?.trim()) out.push(`- Guide: ${lead.guideName.trim()}`)
   if (lead.sourcePath?.trim()) out.push(`- Source path: ${lead.sourcePath.trim()}`)
   if (lead.sourcePage?.trim()) out.push(`- Source page: ${lead.sourcePage.trim()}`)
   if (lead.urgency?.trim()) out.push(`- Urgency: ${lead.urgency.trim()}`)

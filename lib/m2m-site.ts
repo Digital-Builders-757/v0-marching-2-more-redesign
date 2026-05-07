@@ -124,13 +124,44 @@ export const GOHIGHLEVEL_QUIZ_FORECLOSURE_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_F
 export const GOHIGHLEVEL_QUIZ_INVESTOR_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_INVESTOR_URL" as const
 /** Static divorce quiz embed — `/navigating-divorce` (`public/quizzes/navigating-divorce/index.html`). */
 export const GOHIGHLEVEL_QUIZ_NAVIGATING_DIVORCE_URL = "/quizzes/navigating-divorce/index.html" as const
-/** Local VA loan buyer quiz — `/va-loan-benefits` iframe (`public/quizzes/va-loan-benefits/index.html`). */
-export const GOHIGHLEVEL_QUIZ_VA_LOAN_URL = "/quizzes/va-loan-benefits/index.html" as const
+/** @deprecated VA assessment is inline React on `/va-loan-benefits`. Optional GHL-hosted replacement only. */
+export const GOHIGHLEVEL_QUIZ_VA_LOAN_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_VA_LOAN_URL" as const
 /**
- * Optional embeddable BRRRR analyzer (GHL, Airtable, or hosted sheet).
- * When unset, the investor tools section shows a placeholder card.
+ * @deprecated BRRRR analyzer ships first-party on `/more-investments`. Kept only if an external embed is needed later.
  */
 export const GOHIGHLEVEL_BRRRR_ANALYZER_URL = "REPLACE_WITH_GOHIGHLEVEL_BRRRR_ANALYZER_URL" as const
+
+/**
+ * Downsizing / right-sizing guide PDF — served from `public/downloads/m2m-downsizing-guide.pdf`.
+ * Set **`NEXT_PUBLIC_M2M_DOWNSIZING_GUIDE_PDF_URL`** to a full `https://` link (for example Vercel Blob) if the asset is hosted outside the repo.
+ */
+export const M2M_DOWNSIZING_GUIDE_PDF_DEFAULT_HREF = "/downloads/m2m-downsizing-guide.pdf" as const
+
+/** Suggested filename when triggering a browser download (same-origin or when `download` is honored). */
+export const M2M_DOWNSIZING_GUIDE_PDF_FILENAME = "M2M-Downsizing-Guide.pdf" as const
+
+export function getM2mDownsizingGuidePdfHref(): string {
+  if (typeof process === "undefined") return M2M_DOWNSIZING_GUIDE_PDF_DEFAULT_HREF
+  const env = (process.env.NEXT_PUBLIC_M2M_DOWNSIZING_GUIDE_PDF_URL ?? "").trim()
+  if (env && (env.startsWith("https://") || env.startsWith("http://") || env.startsWith("/"))) return env
+  return M2M_DOWNSIZING_GUIDE_PDF_DEFAULT_HREF
+}
+
+/**
+ * Divorce & real estate guide PDF — served from `public/downloads/m2m-divorce-sell-home-guide.pdf`.
+ * Set **`NEXT_PUBLIC_M2M_DIVORCE_GUIDE_PDF_URL`** to a full `https://` link (for example Vercel Blob) if the asset is hosted outside the repo.
+ */
+export const M2M_DIVORCE_GUIDE_PDF_DEFAULT_HREF = "/downloads/m2m-divorce-sell-home-guide.pdf" as const
+
+/** Suggested filename when triggering a browser download (same-origin or when `download` is honored). */
+export const M2M_DIVORCE_GUIDE_PDF_FILENAME = "M2M-Divorce-Sell-Home-Guide.pdf" as const
+
+export function getM2mDivorceGuidePdfHref(): string {
+  if (typeof process === "undefined") return M2M_DIVORCE_GUIDE_PDF_DEFAULT_HREF
+  const env = (process.env.NEXT_PUBLIC_M2M_DIVORCE_GUIDE_PDF_URL ?? "").trim()
+  if (env && (env.startsWith("https://") || env.startsWith("http://") || env.startsWith("/"))) return env
+  return M2M_DIVORCE_GUIDE_PDF_DEFAULT_HREF
+}
 
 /** Short consultation request form — expectation copy on `/contact-us`. */
 export const M2M_CONTACT_CONSULTATION_PATH = "/contact-us?intent=consultation" as const

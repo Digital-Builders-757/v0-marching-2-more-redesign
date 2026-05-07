@@ -23,7 +23,7 @@ export function DivorceGalleryCollage() {
             <div className="relative mt-6 h-32 overflow-hidden rounded-sm sm:h-36 lg:h-44">
               <Image
                 src={COLLAGE_IMAGES.sellDuringDivorce}
-                alt=""
+                alt="Adult couple seated side by side in a quiet moment"
                 fill
                 className="object-cover brightness-90"
                 sizes="(min-width: 1024px) 25vw, 50vw"
@@ -36,7 +36,7 @@ export function DivorceGalleryCollage() {
         <div className="relative min-h-[300px] border-t border-m2m-gold/20 sm:border-t-0 sm:border-r lg:min-h-[400px]">
           <Image
             src={COLLAGE_IMAGES.family}
-            alt="Family during a thoughtful moment together"
+            alt="Couple with house keys in front of a home"
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 25vw, 50vw"
@@ -55,7 +55,7 @@ export function DivorceGalleryCollage() {
             <div className="relative mb-6 h-36 w-full overflow-hidden rounded-sm lg:h-44">
               <Image
                 src={COLLAGE_IMAGES.interior}
-                alt="Modern home interior"
+                alt="Bright living room with sofa, chairs, and large windows"
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 25vw, 50vw"
@@ -86,7 +86,7 @@ export function DivorceGalleryCollage() {
         <div className="relative min-h-[300px] border-t border-m2m-gold/20 lg:min-h-[400px]">
           <Image
             src={COLLAGE_IMAGES.legal}
-            alt="Symbolic imagery representing home and legal considerations"
+            alt="Professional reviewing documents with clients at a table"
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 25vw, 50vw"

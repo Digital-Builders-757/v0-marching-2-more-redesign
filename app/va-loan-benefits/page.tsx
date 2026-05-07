@@ -29,8 +29,8 @@ export default function VaLoanBenefitsPage() {
         <VaVideo />
         <VaBenefitsContent />
         <VaCtaBanner />
-        <VaLeadForm />
         <VaLoanQuiz />
+        <VaLeadForm />
         <M2mCampaignFaq
           id="va-faq-heading"
           eyebrow="VA misconceptions"

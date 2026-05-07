@@ -4,67 +4,20 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import Image from "next/image"
 
-import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
-import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { GuideDownloadForm } from "@/components/m2m-guide-download/guide-download-form"
 import { M2mContainer } from "@/components/m2m-layout"
-import { useM2mUtm } from "@/components/m2m-utm-effect"
-import type { SubmitLeadFailure } from "@/lib/ghl/types"
 import {
-  M2M_URGENCY_LABEL_SHORT_FORM,
-  M2M_URGENCY_SHARED_HINT,
-  M2M_URGENCY_SHORT_FORM_DEFAULT,
-} from "@/lib/m2m-lead-urgency"
-import { submitLeadToApi } from "@/lib/m2m-lead-submit"
-import { M2M_PHONE_DISPLAY, M2M_PHONE_HREF } from "@/lib/m2m-site"
+  getM2mDivorceGuidePdfHref,
+  M2M_DIVORCE_GUIDE_PDF_FILENAME,
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+} from "@/lib/m2m-site"
 
 import { AERIAL_BACKGROUND, AERIAL_COPY } from "./content"
 
 export function DivorceAerialLead() {
   const pathname = usePathname()
-  const utm = useM2mUtm()
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    timeline: M2M_URGENCY_SHORT_FORM_DEFAULT,
-    message: "",
-  })
-  const [submitting, setSubmitting] = useState(false)
-  const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
-  const [done, setDone] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitError(null)
-    setSubmitting(true)
-    try {
-      const name = `${form.firstName} ${form.lastName}`.trim()
-      const notes = [form.message.trim(), "Divorce home-selling guide request"].filter(Boolean).join("\n\n")
-      const res = await submitLeadToApi({
-        lead_type: "seller",
-        name,
-        email: form.email.trim(),
-        phone: form.phone.trim() || undefined,
-        urgency: form.timeline,
-        urgency_explicit: form.timeline.trim() !== M2M_URGENCY_SHORT_FORM_DEFAULT,
-        notes: notes || undefined,
-        utm_source: utm.utm_source,
-        utm_medium: utm.utm_medium,
-        utm_campaign: utm.utm_campaign,
-        utm_content: utm.utm_content,
-        source_page: typeof window !== "undefined" ? window.location.href : undefined,
-        source_path: pathname || "/navigating-divorce",
-      })
-      if (!res.ok) {
-        setSubmitError(res)
-        return
-      }
-      setDone(true)
-    } finally {
-      setSubmitting(false)
-    }
-  }
+  const [message, setMessage] = useState("")
 
   return (
     <section
@@ -112,124 +65,55 @@ export function DivorceAerialLead() {
 
         <div className="lg:w-[min(100%,420px)] lg:flex-shrink-0">
           <div className="rounded-sm bg-[#f3f3fb] px-6 py-8 shadow-[0_20px_50px_rgba(0,0,0,0.35)] sm:px-8 sm:py-10">
-            {done ? (
-              <div className="space-y-4" role="status" aria-live="polite">
-                <p className="text-center text-[0.95rem] font-medium leading-snug text-m2m-panel font-sans">
-                  Thank you! We&apos;ll send your guide.
-                </p>
-              </div>
-            ) : (
-              <>
-                <p
-                  className="mb-8 text-center text-[0.95rem] font-medium leading-snug text-m2m-panel"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Please complete the form below to receive a complimentary copy of our guide on &apos;How to Sell Your
-                  Home During a Divorce&apos;
-                </p>
-
-                <form
-                  data-testid="m2m-lead-form-navigating-divorce"
-                  onSubmit={handleSubmit}
-                  className="space-y-6"
-                  aria-label="Request divorce and real estate guide"
-                  aria-busy={submitting}
-                >
-                  {submitError ? (
-                    <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="w-full" />
-                  ) : null}
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <label className="block">
-                      <span className="sr-only">First name</span>
-                      <input
-                        type="text"
-                        name="firstName"
-                        required
-                        autoComplete="given-name"
-                        placeholder="First Name"
-                        value={form.firstName}
-                        onChange={(e) => setForm((prev) => ({ ...prev, firstName: e.target.value }))}
-                        className="w-full border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
-                        style={{ fontFamily: "var(--font-sans)" }}
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="sr-only">Last name</span>
-                      <input
-                        type="text"
-                        name="lastName"
-                        required
-                        autoComplete="family-name"
-                        placeholder="Last Name"
-                        value={form.lastName}
-                        onChange={(e) => setForm((prev) => ({ ...prev, lastName: e.target.value }))}
-                        className="w-full border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
-                        style={{ fontFamily: "var(--font-sans)" }}
-                      />
-                    </label>
-                  </div>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <GuideDownloadForm
+              variant="divorcePanel"
+              guideName="Divorce home-selling guide"
+              leadType="seller"
+              pdfHref={getM2mDivorceGuidePdfHref()}
+              downloadFilename={M2M_DIVORCE_GUIDE_PDF_FILENAME}
+              sourcePath={pathname || "/navigating-divorce"}
+              collectPhone
+              showUrgency
+              urgencySelectVariant="playbook"
+              urgencyFieldId="divorce-urgency"
+              fieldIdPrefix="divorce-guide"
+              formTestId="m2m-lead-form-navigating-divorce"
+              submitLabel="Get Your Free Guide Now"
+              formAriaLabel="Request divorce and real estate guide"
+              formWrapperClassName="contents"
+              successWrapperClassName="contents"
+              panelIntro={
+                <>
+                  Please complete the form below to receive a complimentary copy of our guide on &apos;How to Sell Your Home
+                  During a Divorce&apos;
+                </>
+              }
+              getNotes={() =>
+                [message.trim(), "Divorce home-selling guide request"].filter(Boolean).join("\n\n") || undefined
+              }
+              afterUrgencySlot={
                 <label className="block">
-                  <span className="sr-only">Email</span>
-                  <input
-                    type="email"
-                    name="email"
-                    autoComplete="email"
-                    placeholder="Email*"
-                    required
-                    value={form.email}
-                    onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
-                    className="w-full border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
+                  <span className="sr-only">Message</span>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    placeholder="Message"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="w-full resize-y border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
                     style={{ fontFamily: "var(--font-sans)" }}
                   />
                 </label>
-                <label className="block">
-                  <span className="sr-only">Phone</span>
-                  <input
-                    type="tel"
-                    name="phone"
-                    autoComplete="tel"
-                    placeholder="Phone"
-                    value={form.phone}
-                    onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))}
-                    className="w-full border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  />
-                </label>
-              </div>
-              <M2mLeadUrgencySelect
-                id="divorce-urgency"
-                label={M2M_URGENCY_LABEL_SHORT_FORM}
-                value={form.timeline}
-                onChange={(v) => setForm((prev) => ({ ...prev, timeline: v }))}
-                variant="playbook"
-                mode="short"
-                required={false}
-                hint={M2M_URGENCY_SHARED_HINT}
-                className="text-m2m-deep"
-              />
-              <label className="block">
-                <span className="sr-only">Message</span>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Message"
-                  value={form.message}
-                  onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
-                  className="w-full resize-y border-0 border-b border-m2m-panel/35 bg-transparent py-2 text-sm text-m2m-deep outline-none placeholder:text-m2m-muted focus:border-m2m-gold"
-                  style={{ fontFamily: "var(--font-sans)" }}
-                />
-              </label>
-
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full min-h-[52px] bg-m2m-panel py-4 text-center text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-m2m-cream transition hover:bg-m2m-panel-lt disabled:opacity-70"
-                    style={{ fontFamily: "var(--font-nav)" }}
-                  >
-                    {submitting ? "Sending…" : "Get Your Free Guide Now"}
-                  </button>
-
+              }
+              successThanksBody={
+                <p className="text-sm leading-relaxed text-m2m-deep/80 font-sans">
+                  Your Divorce &amp; Real Estate guide is ready. Open or download the PDF below. Our team may also follow up
+                  by email with tailored resources.
+                </p>
+              }
+              successDownloadLinkLabel="Download the guide (PDF)"
+              belowSubmitSlot={
+                <>
                   <p className="text-center text-xs leading-relaxed text-m2m-panel/80" style={{ fontFamily: "var(--font-sans)" }}>
                     Prefer direct support?
                     <a
@@ -256,9 +140,9 @@ export function DivorceAerialLead() {
                       Review this guide section again
                     </a>
                   </p>
-                </form>
-              </>
-            )}
+                </>
+              }
+            />
           </div>
         </div>
       </M2mContainer>
