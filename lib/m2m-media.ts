@@ -13,6 +13,12 @@ const CORE = {
   headshotDonavan: `${BLOB_BASE}/e81220_8e480009b082445c98c907867aaa4c9d~mv2-KalLf1y4zskbfQKC2EMe8s55rwTz3x.avif`,
   headshotRoger: `${BLOB_BASE}/Roger%20Lee%20copy-oGCmwJdfHIojKRd0KSU9KThUhCbtek.avif`,
   headshotKristin: `${BLOB_BASE}/DSC_0936-8_1-fP8OcW80aTTISgh6g9ONEXmaAKcPTO.avif`,
+  /**
+   * Jalessa Hendricks — portrait from legacy Wix `/jalessa-hendricks` (IMG_2553).
+   * TODO(asset): upload to Vercel Blob and swap URL (see `docs/M2M_ASSET_MAP.md`).
+   */
+  headshotJalessa:
+    "https://static.wixstatic.com/media/e7ae7a_ce0be24047e7428fac2f17f820057ec4~mv2.jpeg",
   /** Team/office — use until a dedicated headshot is uploaded. */
   teamPhotoWide: `${BLOB_BASE}/56d085e3a24effcebd880c3f6b20700c-b9nQPT49tOe3Bawn6ymNxBTkFMP2sW.jpg`,
   heroScreenshot: `${BLOB_BASE}/Screenshot%202026-04-03%20at%207.30.14%20PM-JVsmkDPrwryZHLk0Lm3Wqm4bAhGTc2.png`,

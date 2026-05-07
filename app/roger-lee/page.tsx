@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AgentProfile } from "@/components/team/agent-profile"
 import { M2M_MEDIA } from "@/lib/m2m-media"
+import { M2M_ROGER_INSTAGRAM_PERSONAL_URL } from "@/lib/m2m-team-social"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
 export const metadata: Metadata = m2mStandardMetadata({
@@ -18,7 +19,6 @@ export default function RogerLeeProfilePage() {
   return (
     <>
       <Header />
-      {/* PROFILE_DATA_GAP: Roger Lee — personal Instagram URL not provided; company Instagram + LinkedIn only. */}
       <AgentProfile
         name="Roger Lee"
         firstName="Roger"
@@ -28,6 +28,7 @@ export default function RogerLeeProfilePage() {
         imageObjectPosition="object-[center_30%]"
         email="Roger@marching2more.com"
         linkedin="https://www.linkedin.com/in/roger-lee"
+        instagramPersonal={M2M_ROGER_INSTAGRAM_PERSONAL_URL}
         bio={`Roger Lee is a dedicated real estate professional with a passion for helping clients achieve their homeownership dreams. With a background in the United States Navy, Roger brings discipline, integrity, and a strong work ethic to every transaction.
 
 His experience as a military family member gives him unique insight into the challenges faced by relocating families, making him an invaluable resource for those navigating the Hampton Roads real estate market.

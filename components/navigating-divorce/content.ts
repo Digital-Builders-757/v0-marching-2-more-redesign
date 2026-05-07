@@ -7,6 +7,7 @@ import type { M2MNavLink } from "@/lib/m2m-nav"
 import {
   M2M_COMPANY_INSTAGRAM_URL,
   M2M_DONAVAN_INSTAGRAM_PERSONAL_URL,
+  M2M_ROGER_INSTAGRAM_PERSONAL_URL,
 } from "@/lib/m2m-team-social"
 
 /** Top footer link row (reference order). */
@@ -109,7 +110,7 @@ export const TEAM_SOCIAL = {
   },
   roger: {
     linkedin: "https://www.linkedin.com/in/roger-lee",
-    instagram: M2M_COMPANY_INSTAGRAM_URL,
+    instagram: M2M_ROGER_INSTAGRAM_PERSONAL_URL,
     youtube: "https://www.youtube.com/results?search_query=Marching+2+More+real+estate",
   },
   company: {

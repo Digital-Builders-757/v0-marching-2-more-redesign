@@ -38,8 +38,8 @@ export const M2M_TEAM_MEMBERS_PUBLIC: M2mPublicTeamMember[] = [
   {
     name: "Jalessa Hendricks",
     subtitle: "Licensed Agent",
-    image: M2M_MEDIA.teamPhotoWide,
-    imageScaleClass: "origin-[82%_26%] scale-[1.16]",
-    imageObjectStyle: { objectPosition: "82% 26%" },
+    image: M2M_MEDIA.headshotJalessa,
+    href: "/jalessa-hendricks",
+    imageObjectPosition: "object-[center_28%]",
   },
 ]
