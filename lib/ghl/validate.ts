@@ -45,6 +45,18 @@ const optionalGuideName = z
     message: "Guide name is too long",
   })
 
+/** Quiz attribution strings — bounded length; stored on lead + operator note (optional GHL CF wiring later). */
+const optionalQuizMeta = z
+  .string()
+  .optional()
+  .transform((s) => {
+    const t = s?.trim()
+    return t === "" || t === undefined ? undefined : t
+  })
+  .refine((s) => s === undefined || s.length <= 400, {
+    message: "Quiz field value is too long",
+  })
+
 export const submitLeadRequestSchema = z
   .object({
     lead_type: leadTypeSchema,
@@ -62,49 +74,81 @@ export const submitLeadRequestSchema = z
     source_page: optionalTrimmed,
     source_path: optionalTrimmed,
     guide_name: optionalGuideName,
+    quiz_score_range: optionalQuizMeta,
+    quiz_main_issue: optionalQuizMeta,
+    quiz_goal: optionalQuizMeta,
+    quiz_timeline: optionalQuizMeta,
+    quiz_prior_attempt: optionalQuizMeta,
+    quiz_result: optionalQuizMeta,
+    quiz_source: optionalQuizMeta,
+    quiz_q1_buyer_type: optionalQuizMeta,
+    quiz_q2_credit: optionalQuizMeta,
+    quiz_q3_down_payment: optionalQuizMeta,
+    quiz_q4_timeline: optionalQuizMeta,
+    quiz_q5_concern: optionalQuizMeta,
+    foreclosure_intent: z.enum(["guide", "speak_now", "both"]).optional(),
     notes: optionalTrimmed,
   })
   .superRefine((data, ctx) => {
-    if (!data.date_of_birth) return
-    const s = data.date_of_birth
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Enter your full date of birth",
-        path: ["date_of_birth"],
-      })
-      return
+    if (data.date_of_birth) {
+      const s = data.date_of_birth
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Enter your full date of birth",
+          path: ["date_of_birth"],
+        })
+        return
+      }
+      const [ys, ms, ds] = s.split("-")
+      const y = Number(ys)
+      const m = Number(ms)
+      const d = Number(ds)
+      const now = new Date()
+      const maxY = now.getUTCFullYear()
+      if (y < M2M_DOB_MIN_YEAR || y > maxY) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Year must be between ${M2M_DOB_MIN_YEAR} and ${maxY}`,
+          path: ["date_of_birth"],
+        })
+        return
+      }
+      const date = new Date(Date.UTC(y, m - 1, d))
+      if (date.getUTCFullYear() !== y || date.getUTCMonth() !== m - 1 || date.getUTCDate() !== d) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "That calendar date isn’t valid — double-check month and day",
+          path: ["date_of_birth"],
+        })
+        return
+      }
+      const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+      if (date.getTime() > todayUtc) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Date of birth can’t be in the future",
+          path: ["date_of_birth"],
+        })
+      }
     }
-    const [ys, ms, ds] = s.split("-")
-    const y = Number(ys)
-    const m = Number(ms)
-    const d = Number(ds)
-    const now = new Date()
-    const maxY = now.getUTCFullYear()
-    if (y < M2M_DOB_MIN_YEAR || y > maxY) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `Year must be between ${M2M_DOB_MIN_YEAR} and ${maxY}`,
-        path: ["date_of_birth"],
-      })
-      return
-    }
-    const date = new Date(Date.UTC(y, m - 1, d))
-    if (date.getUTCFullYear() !== y || date.getUTCMonth() !== m - 1 || date.getUTCDate() !== d) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "That calendar date isn’t valid — double-check month and day",
-        path: ["date_of_birth"],
-      })
-      return
-    }
-    const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-    if (date.getTime() > todayUtc) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Date of birth can’t be in the future",
-        path: ["date_of_birth"],
-      })
+
+    if (data.foreclosure_intent) {
+      const digits = (data.phone ?? "").replace(/\D/g, "")
+      if (digits.length < 10) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Enter a valid phone number",
+          path: ["phone"],
+        })
+      }
+      if (!data.address?.trim()) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Enter your property address or ZIP code",
+          path: ["address"],
+        })
+      }
     }
   })
 
@@ -168,6 +212,19 @@ export function toNormalizedLead(parsed: SubmitLeadInput): NormalizedLead {
     sourcePage: parsed.source_page,
     sourcePath: parsed.source_path,
     guideName: parsed.guide_name,
+    quizScoreRange: parsed.quiz_score_range,
+    quizMainIssue: parsed.quiz_main_issue,
+    quizGoal: parsed.quiz_goal,
+    quizTimeline: parsed.quiz_timeline,
+    quizPriorAttempt: parsed.quiz_prior_attempt,
+    quizResult: parsed.quiz_result,
+    quizSource: parsed.quiz_source,
+    quizQ1BuyerType: parsed.quiz_q1_buyer_type,
+    quizQ2Credit: parsed.quiz_q2_credit,
+    quizQ3DownPayment: parsed.quiz_q3_down_payment,
+    quizQ4Timeline: parsed.quiz_q4_timeline,
+    quizQ5Concern: parsed.quiz_q5_concern,
+    foreclosureIntent: parsed.foreclosure_intent,
     notes: parsed.notes,
   }
 }

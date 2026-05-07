@@ -19,10 +19,17 @@ import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { submitLeadToApi } from "@/lib/m2m-lead-submit"
 import type { SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { M2M_URGENCY_LABEL_CREDIT, M2M_URGENCY_SHARED_HINT } from "@/lib/m2m-lead-urgency"
-import { GOHIGHLEVEL_QUIZ_CREDIT_URL, M2M_PHONE_DISPLAY, M2M_PHONE_HREF, isQuizEmbedSrcConfigured } from "@/lib/m2m-site"
+import {
+  GOHIGHLEVEL_QUIZ_CREDIT_URL,
+  M2M_PHONE_DISPLAY,
+  M2M_PHONE_HREF,
+  isGohighlevelUrlConfigured,
+  isQuizEmbedSrcConfigured,
+} from "@/lib/m2m-site"
 
 import {
   CREDIT_PLAYBOOK_SECTION_ID,
+  CREDIT_QUIZ_IFRAME_TITLE,
   PLAYBOOK_CARD_TITLE,
   PLAYBOOK_DOWNLOAD_BUTTON,
   PLAYBOOK_HEADING,
@@ -83,7 +90,9 @@ export function CreditPlaybookForm() {
     }
   }
 
-  const showLocalForm = !isQuizEmbedSrcConfigured(GOHIGHLEVEL_QUIZ_CREDIT_URL)
+  const quizEmbedSrc = GOHIGHLEVEL_QUIZ_CREDIT_URL
+  const showLocalForm = !isQuizEmbedSrcConfigured(quizEmbedSrc)
+  const quizExternalCtaHref = isGohighlevelUrlConfigured(quizEmbedSrc.trim()) ? quizEmbedSrc : undefined
 
   const description = (
     <div className="space-y-4">
@@ -100,9 +109,10 @@ export function CreditPlaybookForm() {
       id={CREDIT_PLAYBOOK_SECTION_ID}
       title={PLAYBOOK_HEADING}
       description={description}
-      embedSrc={GOHIGHLEVEL_QUIZ_CREDIT_URL}
+      embedSrc={quizEmbedSrc}
+      embedTitle={CREDIT_QUIZ_IFRAME_TITLE}
       embedVariant="tall"
-      ctaHref={GOHIGHLEVEL_QUIZ_CREDIT_URL}
+      ctaHref={quizExternalCtaHref}
       ctaLabel="Open credit quiz"
       footnote={
         showLocalForm ? (
@@ -128,7 +138,9 @@ export function CreditPlaybookForm() {
           </>
         ) : (
           <>
-            Prefer to talk instead of using the quiz? Call{" "}
+            Quiz submissions use the same secure{" "}
+            <code className="text-[0.8rem] text-m2m-gold-lt">POST /api/submit-lead</code> path as other Marching 2 More
+            capture forms — nothing posts to a third-party webhook from your browser. Prefer to talk now? Call{" "}
             <a className="text-m2m-gold-lt underline decoration-m2m-gold/55 underline-offset-4" href={M2M_PHONE_HREF}>
               {M2M_PHONE_DISPLAY}
             </a>{" "}

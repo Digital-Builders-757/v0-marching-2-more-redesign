@@ -8,10 +8,16 @@ import { cn } from "@/lib/utils"
 
 export type M2mLeadQuizSectionProps = {
   id?: string
+  /**
+   * Upper label above the title. Pass `null` to hide (default is “Quick Assessment”).
+   */
+  eyebrow?: string | null
   title: string
   description?: ReactNode
   /** When set and URL is live, renders a responsive iframe. */
   embedSrc?: string
+  /** Override iframe `title` (a11y + stable e2e); defaults to section `title`. */
+  embedTitle?: string
   /** Iframe sizing: embedded quiz strips vs taller full-shell static pages. Defaults to standard. */
   embedVariant?: "standard" | "tall"
   /** External quiz / form page (GHL). Used when embed is not configured or as fallback CTA. */
@@ -34,9 +40,11 @@ const embedIframeWrapperClasses = {
 
 export function M2mLeadQuizSection({
   id,
+  eyebrow,
   title,
   description,
   embedSrc,
+  embedTitle,
   embedVariant = "standard",
   ctaHref,
   ctaLabel = "Start the quiz",
@@ -44,6 +52,7 @@ export function M2mLeadQuizSection({
   className,
   children,
 }: M2mLeadQuizSectionProps) {
+  const eyebrowText = eyebrow === null ? null : (eyebrow ?? "Quick Assessment")
   const showEmbed = Boolean(embedSrc && isQuizEmbedSrcConfigured(embedSrc))
   const showExternalCta = Boolean(
     ctaHref?.trim() &&
@@ -59,9 +68,11 @@ export function M2mLeadQuizSection({
     >
       <M2mContainer className="max-w-4xl">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-4 text-center text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-m2m-gold sm:text-[0.68rem] font-nav">
-            Quick Assessment
-          </p>
+          {eyebrowText ? (
+            <p className="mb-4 text-center text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-m2m-gold sm:text-[0.68rem] font-nav">
+              {eyebrowText}
+            </p>
+          ) : null}
           <h2
             id={id ? `${id}-heading` : undefined}
             className="m2m-section-title text-balance text-m2m-cream"
@@ -88,7 +99,7 @@ export function M2mLeadQuizSection({
                 <div className={cn(embedIframeWrapperClasses[variant])}>
                   <iframe
                     src={embedSrc}
-                    title={title}
+                    title={embedTitle ?? title}
                     loading="lazy"
                     className="absolute inset-0 h-full w-full min-h-full rounded-[inherit] border-0 bg-m2m-black/20"
                     allow="clipboard-write"

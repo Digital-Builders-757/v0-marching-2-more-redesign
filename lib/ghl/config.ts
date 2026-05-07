@@ -19,6 +19,14 @@ export type GhlOptionalFieldIds = {
   guideName?: string
   sourcePage?: string
   sourcePath?: string
+  quizQ1BuyerType?: string
+  quizQ2Credit?: string
+  quizQ3DownPayment?: string
+  quizQ4Timeline?: string
+  quizQ5Concern?: string
+  quizResult?: string
+  quizSource?: string
+  foreclosureIntent?: string
 }
 
 export type GhlPipelineConfig = {
@@ -28,11 +36,15 @@ export type GhlPipelineConfig = {
   sellerStageNewInquiryId: string
 }
 
+export type ForeclosureIntentKey = "guide" | "speak_now" | "both"
+
 export type GhlTagConfig = {
   buyer: string[]
   seller: string[]
   /** Optional per-path tags (exact pathname keys, e.g. "/cma-form") */
   pathTags: Record<string, string[]>
+  /** Optional tags when `foreclosure_intent` is set (see `GHL_TAG_FORECLOSURE_INTENT_*`). */
+  foreclosureIntentTags: Record<ForeclosureIntentKey, string[]>
 }
 
 export type GhlConfig = {
@@ -110,6 +122,14 @@ export function getGhlConfig(): GhlConfig {
     guideName: opt(process.env.GHL_CF_GUIDE_NAME),
     sourcePage: opt(process.env.GHL_CF_SOURCE_PAGE),
     sourcePath: opt(process.env.GHL_CF_SOURCE_PATH),
+    quizQ1BuyerType: opt(process.env.GHL_CF_QUIZ_Q1_BUYER_TYPE),
+    quizQ2Credit: opt(process.env.GHL_CF_QUIZ_Q2_CREDIT),
+    quizQ3DownPayment: opt(process.env.GHL_CF_QUIZ_Q3_DOWN_PAYMENT),
+    quizQ4Timeline: opt(process.env.GHL_CF_QUIZ_Q4_TIMELINE),
+    quizQ5Concern: opt(process.env.GHL_CF_QUIZ_Q5_CONCERN),
+    quizResult: opt(process.env.GHL_CF_QUIZ_RESULT),
+    quizSource: opt(process.env.GHL_CF_QUIZ_SOURCE),
+    foreclosureIntent: opt(process.env.GHL_CF_FORECLOSURE_INTENT),
   }
 
   const bp = opt(process.env.GHL_BUYER_PIPELINE_ID)
@@ -131,6 +151,11 @@ export function getGhlConfig(): GhlConfig {
     buyer: parseTagList(process.env.GHL_TAG_LEAD_BUYER),
     seller: parseTagList(process.env.GHL_TAG_LEAD_SELLER),
     pathTags: parsePathTags(process.env.GHL_PATH_TAGS),
+    foreclosureIntentTags: {
+      guide: parseTagList(process.env.GHL_TAG_FORECLOSURE_INTENT_GUIDE),
+      speak_now: parseTagList(process.env.GHL_TAG_FORECLOSURE_INTENT_SPEAK_NOW),
+      both: parseTagList(process.env.GHL_TAG_FORECLOSURE_INTENT_BOTH),
+    },
   }
 
   return {

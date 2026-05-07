@@ -116,9 +116,12 @@ export function isQuizEmbedSrcConfigured(url: string): boolean {
  * GoHighLevel quiz / survey embed or form URLs (lead-gen landings).
  * Replace with real https:// links when marketing provides them.
  */
-export const GOHIGHLEVEL_QUIZ_CREDIT_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_CREDIT_URL" as const
+/** Local static quiz — `/improve-your-credit` iframe (`public/quizzes/credit-repair/index.html`). */
+export const GOHIGHLEVEL_QUIZ_CREDIT_URL = "/quizzes/credit-repair/index.html" as const
 /** Local static quiz — `/downsizing-your-home` iframe embed (`public/quizzes/downsizing-your-home/quiz.html`). */
 export const GOHIGHLEVEL_QUIZ_DOWNSIZING_URL = "/quizzes/downsizing-your-home/quiz.html" as const
+/** Local static quiz — `/fha-loan` buyer quiz (`public/quizzes/fha-loan/index.html`). */
+export const GOHIGHLEVEL_QUIZ_FHA_LOAN_URL = "/quizzes/fha-loan/index.html" as const
 export const GOHIGHLEVEL_QUIZ_FORECLOSURE_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_FORECLOSURE_URL" as const
 /** Investor readiness / education quiz (e.g. GHL survey) — `/more-investments#investor-tools`. */
 export const GOHIGHLEVEL_QUIZ_INVESTOR_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_INVESTOR_URL" as const
@@ -161,6 +164,21 @@ export function getM2mDivorceGuidePdfHref(): string {
   const env = (process.env.NEXT_PUBLIC_M2M_DIVORCE_GUIDE_PDF_URL ?? "").trim()
   if (env && (env.startsWith("https://") || env.startsWith("http://") || env.startsWith("/"))) return env
   return M2M_DIVORCE_GUIDE_PDF_DEFAULT_HREF
+}
+
+/**
+ * Pre-foreclosure / foreclosure options guide — default `public/downloads/m2m-pre-foreclosure-guide.pdf`.
+ * Override with **`NEXT_PUBLIC_M2M_PRE_FORECLOSURE_GUIDE_PDF_URL`** when hosted outside the repo.
+ */
+export const M2M_PRE_FORECLOSURE_GUIDE_PDF_DEFAULT_HREF = "/downloads/m2m-pre-foreclosure-guide.pdf" as const
+
+export const M2M_PRE_FORECLOSURE_GUIDE_PDF_FILENAME = "M2M-Pre-Foreclosure-Guide.pdf" as const
+
+export function getM2mPreForeclosureGuidePdfHref(): string {
+  if (typeof process === "undefined") return M2M_PRE_FORECLOSURE_GUIDE_PDF_DEFAULT_HREF
+  const env = (process.env.NEXT_PUBLIC_M2M_PRE_FORECLOSURE_GUIDE_PDF_URL ?? "").trim()
+  if (env && (env.startsWith("https://") || env.startsWith("http://") || env.startsWith("/"))) return env
+  return M2M_PRE_FORECLOSURE_GUIDE_PDF_DEFAULT_HREF
 }
 
 /** Short consultation request form — expectation copy on `/contact-us`. */

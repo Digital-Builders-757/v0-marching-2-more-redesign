@@ -20,7 +20,12 @@ const mockCfg: GhlConfig = {
     utmContent: "f-uo",
   },
   pipelines: null,
-  tags: { buyer: [], seller: [], pathTags: {} },
+  tags: {
+    buyer: [],
+    seller: [],
+    pathTags: {},
+    foreclosureIntentTags: { guide: [], speak_now: [], both: [] },
+  },
   optionalFieldIds: {},
   dryRun: false,
 }
