@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Is a VA Loan Your Best Next Step? | Marching 2 More</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --font-display:'Playfair Display',Georgia,serif;
+      --font-body:'DM Sans',system-ui,sans-serif;
+      --text-xs:clamp(.75rem,.7rem + .2vw,.875rem);
+      --text-sm:clamp(.875rem,.82rem + .28vw,1rem);
+      --text-base:clamp(1rem,.96rem + .2vw,1.125rem);
+      --text-lg:clamp(1.125rem,1rem + .6vw,1.5rem);
+      --text-xl:clamp(1.5rem,1.25rem + 1.1vw,2.25rem);
+      --text-2xl:clamp(2rem,1.4rem + 2.2vw,3.25rem);
+      --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;
+      --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;
+      --radius-sm:.375rem;--radius-md:.625rem;--radius-lg:1rem;--radius-xl:1.5rem;--radius-full:9999px;
+      --ease-out:cubic-bezier(.16,1,.3,1);
+      --dur:220ms;
+      /* Palette — M2M Deep Navy + Gold */
+      --color-bg:#f5f4ef;
+      --color-surface:#ffffff;
+      --color-surface-2:#f9f8f4;
+      --color-border:#e2ddd5;
+      --color-divider:#ece8e0;
+      --color-text:#1c1a16;
+      --color-text-muted:#5e5a52;
+      --color-text-faint:#a09c94;
+      --color-navy:#1e3a5f;
+      --color-navy-hover:#142a47;
+      --color-navy-light:#e6edf5;
+      --color-red:#b89230;
+      --color-red-light:#fdf4dc;
+      --color-red-border:#e6d09a;
+      --color-gold:#b89230;
+      --color-gold-light:#fdf4dc;
+      --shadow-sm:0 1px 3px rgba(28,26,22,.06);
+      --shadow-md:0 4px 18px rgba(28,26,22,.09);
+      --shadow-lg:0 14px 44px rgba(28,26,22,.13);
+      --shadow-cta:0 6px 24px rgba(30,58,95,.35);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased}
+    body{font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);line-height:1.6;overflow-x:hidden}
+    img,svg{display:block;max-width:100%}
+    input,button,select,textarea{font:inherit;color:inherit}
+    button{cursor:pointer;background:none;border:none}
+    h1,h2,h3{text-wrap:balance;line-height:1.2}
+    p{text-wrap:pretty}
+    a{color:inherit;text-decoration:none}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+    /* ── SHELL ── */
+    .shell{width:100%;min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column}
+
+    /* ── PROGRESS ── */
+    .prog-wrap{background:var(--color-bg);border-bottom:1px solid var(--color-divider);padding:var(--space-3) var(--space-6);opacity:0;pointer-events:none;transition:opacity var(--dur) var(--ease-out)}
+    .prog-wrap.visible{opacity:1;pointer-events:auto}
+    .prog-inner{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:var(--space-4)}
+    .prog-label{font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);white-space:nowrap;min-width:76px}
+    .prog-track{flex:1;height:4px;background:var(--color-divider);border-radius:var(--radius-full);overflow:hidden}
+    .prog-fill{height:100%;background:var(--color-gold);border-radius:var(--radius-full);width:0%;transition:width .5s var(--ease-out)}
+
+    /* ── STAGE ── */
+    .stage{flex:1;display:grid}
+    .screen{display:none;grid-area:1/1}
+    .screen.active{display:flex;animation:up var(--dur) var(--ease-out) both}
+    .screen.out{display:flex;animation:dn calc(var(--dur)*.8) ease both;pointer-events:none}
+    @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes dn{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
+
+    /* ── BODY ── */
+    .sbody{width:100%;max-width:560px;margin:0 auto;padding:clamp(var(--space-8),6vw,var(--space-12)) var(--space-6) var(--space-12);display:flex;flex-direction:column;gap:var(--space-6)}
+
+    /* ── WELCOME ── */
+    .w-body{gap:var(--space-8)}
+    .brand-logo{height:48px;width:auto;object-fit:contain}
+    .eyebrow{font-size:var(--text-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-gold)}
+    .w-h1{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:400}
+    .w-h1 em{font-style:italic;color:var(--color-navy)}
+    .w-desc{font-size:var(--text-base);color:var(--color-text-muted);max-width:48ch;line-height:1.8}
+    .trust-row{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+    .tpill{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:500;color:var(--color-text-muted)}
+    .tpill svg{color:var(--color-navy);flex-shrink:0}
+    .tpill.red svg{color:var(--color-red)}
+    .social-proof{font-size:var(--text-xs);color:var(--color-text-faint);font-style:italic}
+
+    /* ── BRIDGE ── */
+    .bridge-body{align-items:center;text-align:center;justify-content:center;min-height:55vh;gap:var(--space-6)}
+    .bridge-icon{width:80px;height:80px;background:var(--color-navy-light);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .bridge-h2{font-family:var(--font-display);font-size:var(--text-xl);font-weight:400}
+    .bridge-p{font-size:var(--text-base);color:var(--color-text-muted);max-width:40ch;line-height:1.8}
+
+    /* ── QUESTIONS ── */
+    .q-body{gap:var(--space-5)}
+    .q-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-2)}
+    .q-step{font-size:var(--text-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-gold)}
+    .q-hint{font-size:var(--text-xs);color:var(--color-text-faint);font-style:italic}
+    .q-heading{font-family:var(--font-display);font-size:var(--text-xl);font-weight:400}
+    .q-sub{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-top:calc(var(--space-2)*-1)}
+
+    /* ── OPTIONS ── */
+    .opts{display:flex;flex-direction:column;gap:var(--space-3)}
+    .opts-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+    @media(max-width:440px){.opts-2{grid-template-columns:1fr}}
+    .opt{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-5);background:var(--color-surface);border:1.5px solid var(--color-border);border-radius:var(--radius-lg);text-align:left;width:100%;cursor:pointer;transition:all var(--dur) var(--ease-out);box-shadow:var(--shadow-sm)}
+    .opt:hover{border-color:var(--color-navy);background:var(--color-navy-light);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+    .opt.sel{border-color:var(--color-navy);background:var(--color-navy-light);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-navy) 12%,transparent)}
+    .oi{font-size:1.25rem;line-height:1;width:1.8rem;text-align:center;flex-shrink:0}
+    .ot{flex:1;font-size:var(--text-base);font-weight:500;color:var(--color-text);line-height:1.4}
+    .oc{width:22px;height:22px;border:2px solid var(--color-border);border-radius:50%;flex-shrink:0;transition:all var(--dur) var(--ease-out);position:relative;background:var(--color-surface)}
+    .opt.sel .oc{background:var(--color-navy);border-color:var(--color-navy)}
+    .opt.sel .oc::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l3 3 5-6' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat}
+
+    /* ── NAV ── */
+    .qnav{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-divider);margin-top:var(--space-2)}
+    .btn-back{display:inline-flex;align-items:center;gap:var(--space-1);font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);transition:all var(--dur) var(--ease-out)}
+    .btn-back:hover{color:var(--color-text);background:var(--color-divider)}
+    .btn-next{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-3) var(--space-6);background:var(--color-navy);color:#fff;border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;transition:all var(--dur) var(--ease-out);box-shadow:var(--shadow-cta)}
+    .btn-next:hover:not(:disabled){background:var(--color-navy-hover);transform:translateY(-1px)}
+    .btn-next:disabled{opacity:.3;cursor:not-allowed;transform:none;box-shadow:none}
+
+    /* ── CTA BTN ── */
+    .btn-cta{display:inline-flex;align-items:center;gap:var(--space-3);padding:var(--space-4) var(--space-8);background:var(--color-navy);color:#fff;border-radius:var(--radius-full);font-size:var(--text-base);font-weight:600;transition:all var(--dur) var(--ease-out);box-shadow:var(--shadow-cta);align-self:flex-start}
+    .btn-cta:hover{background:var(--color-navy-hover);transform:translateY(-2px)}
+    .bridge-body .btn-cta{align-self:center}
+
+    /* ── CAPTURE ── */
+    .cap-body{gap:var(--space-6)}
+    .cap-badge{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);background:var(--color-navy-light);border:1px solid #c0cbe0;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:700;color:var(--color-navy);width:fit-content}
+    .cap-h2{font-family:var(--font-display);font-size:var(--text-xl);font-weight:400}
+    .cap-sub{font-size:var(--text-sm);color:var(--color-text-muted);max-width:44ch;line-height:1.75}
+    .lform{display:flex;flex-direction:column;gap:var(--space-4)}
+    .frow{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
+    @media(max-width:440px){.frow{grid-template-columns:1fr}}
+    .ff{display:flex;flex-direction:column;gap:var(--space-1)}
+    .ff label{font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted)}
+    .ff input,.ff select{padding:var(--space-3) var(--space-4);background:var(--color-surface);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-base);color:var(--color-text);transition:border-color var(--dur),box-shadow var(--dur);-webkit-appearance:none;appearance:none}
+    .ff input::placeholder{color:var(--color-text-faint)}
+    .ff input:focus,.ff select:focus{outline:none;border-color:var(--color-navy);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-navy) 12%,transparent)}
+    .select-wrap{position:relative}
+    .select-wrap select{width:100%;padding-right:var(--space-10)}
+    .select-arrow{position:absolute;right:var(--space-4);top:50%;transform:translateY(-50%);pointer-events:none;color:var(--color-text-faint)}
+    .opt-note{font-weight:400;color:var(--color-text-faint)}
+    .fprivacy{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-faint)}
+    .quiz-lead-error{margin:0;font-size:var(--text-sm);font-weight:600;color:#b42318;line-height:1.45}
+    .btn-submit{width:100%;justify-content:center;align-self:stretch}
+    .btn-back-sm{font-size:var(--text-xs);color:var(--color-text-faint);align-self:flex-start;margin-top:var(--space-2);transition:color var(--dur)}
+    .btn-back-sm:hover{color:var(--color-text-muted)}
+    .spinner{width:17px;height:17px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── CALCULATING ── */
+    .calc-body{align-items:center;justify-content:center;text-align:center;min-height:60vh;gap:var(--space-6)}
+    .calc-ring{position:relative;width:80px;height:80px}
+    .calc-svg{width:100%;height:100%}
+    .calc-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-weight:700;color:var(--color-navy)}
+    .calc-lbl{font-size:var(--text-sm);color:var(--color-text-muted)}
+
+    /* ── RESULTS ── */
+    .r-body{gap:var(--space-6);padding-bottom:var(--space-16)}
+    .r-badge{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:700;letter-spacing:.06em;text-transform:uppercase;width:fit-content}
+    .badge-ready{background:#e8ecf5;color:#1a2e5c;border:1px solid #c0cbe0}
+    .badge-learn{background:#fdf4dc;color:#7a5010;border:1px solid #e6d09a}
+    .badge-explore{background:#eaeff6;color:#1a3660;border:1px solid #9ab8e0}
+    .r-h2{font-family:var(--font-display);font-size:var(--text-xl);font-weight:400;line-height:1.3}
+    .r-explain{font-size:var(--text-base);color:var(--color-text-muted);line-height:1.8;max-width:54ch}
+    .r-insight{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5) var(--space-6);box-shadow:var(--shadow-sm)}
+    .ri-eye{font-size:var(--text-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:var(--space-2)}
+    .ri-q{font-family:var(--font-display);font-style:italic;font-size:var(--text-lg);color:var(--color-text-muted);line-height:1.6}
+    .r-focus{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5) var(--space-6);display:flex;flex-direction:column;gap:var(--space-3)}
+    .rf-title{font-size:var(--text-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint)}
+    .rf-item{display:flex;align-items:flex-start;gap:var(--space-3);font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6}
+    .rf-dot{width:8px;height:8px;border-radius:50%;background:var(--color-navy);flex-shrink:0;margin-top:6px}
+    .r-cta{display:flex;flex-direction:column;gap:var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-md)}
+    .rc-label{font-size:var(--text-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint)}
+    .rc-title{font-size:var(--text-lg);font-weight:600;color:var(--color-text)}
+    .rc-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7}
+    .rc-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);padding-top:var(--space-2)}
+    .cta-p{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-3) var(--space-6);background:var(--color-navy);color:#fff;border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;transition:all var(--dur) var(--ease-out);box-shadow:var(--shadow-cta)}
+    .cta-p:hover{background:var(--color-navy-hover);transform:translateY(-1px)}
+    .cta-p.red{background:var(--color-red)}
+    .cta-p.red:hover{background:#8a1a28}
+    .cta-s{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-3) var(--space-5);color:var(--color-text-muted);font-size:var(--text-sm);font-weight:500;border-radius:var(--radius-full);border:1px solid var(--color-border);transition:all var(--dur) var(--ease-out)}
+    .cta-s:hover{color:var(--color-text);background:var(--color-divider)}
+    .r-reassure{display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-4) var(--space-5);background:var(--color-surface-2);border:1px solid var(--color-divider);border-radius:var(--radius-md)}
+    .r-reassure svg{flex-shrink:0;margin-top:3px;opacity:.4;color:var(--color-navy)}
+    .r-reassure p{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.7}
+    .btn-restart{font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-2);align-self:flex-start;transition:color var(--dur)}
+    .btn-restart:hover{color:var(--color-text-muted)}
+
+    /* ── FLAG ACCENT BAR ── */
+    .flag-bar{height:4px;background:linear-gradient(90deg,var(--color-navy) 0%,var(--color-navy) 60%,var(--color-gold) 60%,var(--color-gold) 100%);width:100%}
+
+    :focus-visible{outline:2px solid var(--color-navy);outline-offset:3px;border-radius:var(--radius-sm)}
+  </style>
+</head>
+<body>
+<div class="flag-bar"></div>
+<div class="shell" id="shell">
+
+  <div class="prog-wrap" id="pw">
+    <div class="prog-inner">
+      <span class="prog-label" id="pl">Question 1 of 5</span>
+      <div class="prog-track"><div class="prog-fill" id="pf"></div></div>
+    </div>
+  </div>
+
+  <div class="stage">
+
+    <!-- WELCOME -->
+    <section class="screen active" id="s-welcome">
+      <div class="sbody w-body">
+        <img src="/brand/m2m-logo-gold.avif" alt="Marching 2 More Logo" class="brand-logo" />
+        <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+          <p class="eyebrow">VA Buyer Assessment</p>
+          <h1 class="w-h1">Is a VA Loan<br/><em>Your Best Next Step?</em></h1>
+          <p class="w-desc">Five quick questions to help you figure out where you stand with your VA home loan benefit — and what your clearest next move looks like.</p>
+        </div>
+        <div class="trust-row">
+          <div class="tpill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Led by Navy veteran Donavan McFadden</div>
+          <div class="tpill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>About 60 seconds</div>
+          <div class="tpill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Private &amp; confidential</div>
+        </div>
+        <button class="btn-cta" onclick="goTo('q1')">Start the Assessment <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <p class="social-proof">Helping active-duty service members, veterans, and military families move forward with confidence.</p>
+      </div>
+    </section>
+
+    <!-- Q1: Status -->
+    <section class="screen" id="s-q1">
+      <div class="sbody q-body">
+        <div class="q-meta"><span class="q-step">1 of 5</span><span class="q-hint">No wrong answers here</span></div>
+        <h2 class="q-heading">What best describes your current situation?</h2>
+        <p class="q-sub">This shapes how we interpret the rest of your answers.</p>
+        <div class="opts" role="group">
+          <button class="opt" data-q="q1" data-val="active" data-label="I'm active-duty military" onclick="pick(this)"><span class="oi">🎖️</span><span class="ot">I'm active-duty military</span><span class="oc"></span></button>
+          <button class="opt" data-q="q1" data-val="veteran" data-label="I'm a veteran" onclick="pick(this)"><span class="oi">⭐</span><span class="ot">I'm a veteran</span><span class="oc"></span></button>
+          <button class="opt" data-q="q1" data-val="family" data-label="I'm a military family member / surviving spouse" onclick="pick(this)"><span class="oi">🏠</span><span class="ot">I'm a military family member / surviving spouse</span><span class="oc"></span></button>
+          <button class="opt" data-q="q1" data-val="unsure" data-label="I'm not sure where I fit" onclick="pick(this)"><span class="oi">❓</span><span class="ot">I'm not sure where I fit</span><span class="oc"></span></button>
+        </div>
+        <div class="qnav">
+          <button class="btn-back" onclick="goTo('welcome')">← Back</button>
+          <button class="btn-next" id="next-q1" onclick="goTo('q2')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2: Prior use of benefit -->
+    <section class="screen" id="s-q2">
+      <div class="sbody q-body">
+        <div class="q-meta"><span class="q-step">2 of 5</span><span class="q-hint">Used it before? Still options available</span></div>
+        <h2 class="q-heading">Have you used your VA home loan benefit before?</h2>
+        <p class="q-sub">Your entitlement can often be restored or used again — even if you've bought before.</p>
+        <div class="opts" role="group">
+          <button class="opt" data-q="q2" data-val="no" data-label="No — this would be my first time" onclick="pick(this)"><span class="oi">🆕</span><span class="ot">No — this would be my first time</span><span class="oc"></span></button>
+          <button class="opt" data-q="q2" data-val="yes-sold" data-label="Yes — and I've since sold that home" onclick="pick(this)"><span class="oi">✓</span><span class="ot">Yes — and I've since sold that home</span><span class="oc"></span></button>
+          <button class="opt" data-q="q2" data-val="yes-still" data-label="Yes — and I still own that property" onclick="pick(this)"><span class="oi">🏡</span><span class="ot">Yes — and I still own that property</span><span class="oc"></span></button>
+          <button class="opt" data-q="q2" data-val="unsure" data-label="I'm not sure" onclick="pick(this)"><span class="oi">❓</span><span class="ot">I'm not sure</span><span class="oc"></span></button>
+        </div>
+        <div class="qnav">
+          <button class="btn-back" onclick="goTo('q1')">← Back</button>
+          <button class="btn-next" id="next-q2" onclick="goTo('bridge')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRIDGE -->
+    <section class="screen" id="s-bridge">
+      <div class="sbody bridge-body">
+        <div class="bridge-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M20 4L4 14v22h32V14L20 4z" stroke="#1a2e5c" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M15 36V24h10v12" stroke="#1a2e5c" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M20 4l16 10" stroke="#b22234" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2 class="bridge-h2">You've earned this benefit. Let's make sure you use it right.</h2>
+        <p class="bridge-p">Most service members never get a clear explanation of how their VA benefit actually works in a real purchase. That changes here. Three more questions and we'll give you a clear next step.</p>
+        <button class="btn-cta" onclick="goTo('q3')">Keep Going →</button>
+      </div>
+    </section>
+
+    <!-- Q3: Where in the process -->
+    <section class="screen" id="s-q3">
+      <div class="sbody q-body">
+        <div class="q-meta"><span class="q-step">3 of 5</span><span class="q-hint">Be honest — it helps us help you</span></div>
+        <h2 class="q-heading">Where are you in the homebuying process right now?</h2>
+        <p class="q-sub">There's no wrong place to be. We work with people at every stage.</p>
+        <div class="opts" role="group">
+          <button class="opt" data-q="q3" data-val="ready" data-label="Ready to move — I need to act soon (PCS, transition, or just decided)" onclick="pick(this)"><span class="oi">🚀</span><span class="ot">Ready to move — I need to act soon (PCS, transition, or just decided)</span><span class="oc"></span></button>
+          <button class="opt" data-q="q3" data-val="researching" data-label="Actively researching — I'm learning what I need before I pull the trigger" onclick="pick(this)"><span class="oi">🔍</span><span class="ot">Actively researching — learning before I pull the trigger</span><span class="oc"></span></button>
+          <button class="opt" data-q="q3" data-val="early" data-label="Early stage — I'm thinking about it but not in a rush" onclick="pick(this)"><span class="oi">📅</span><span class="ot">Early stage — thinking about it but not in a rush</span><span class="oc"></span></button>
+        </div>
+        <div class="qnav">
+          <button class="btn-back" onclick="goTo('q2')">← Back</button>
+          <button class="btn-next" id="next-q3" onclick="goTo('q4')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4: Biggest concern -->
+    <section class="screen" id="s-q4">
+      <div class="sbody q-body">
+        <div class="q-meta"><span class="q-step">4 of 5</span><span class="q-hint">One more after this</span></div>
+        <h2 class="q-heading">What's your biggest concern or question right now?</h2>
+        <p class="q-sub">Pick the one that feels most true — we'll address it in your results.</p>
+        <div class="opts" role="group">
+          <button class="opt" data-q="q4" data-val="eligible" data-label="I'm not sure if I'm actually eligible" onclick="pick(this)"><span class="oi">📋</span><span class="ot">I'm not sure if I'm actually eligible</span><span class="oc"></span></button>
+          <button class="opt" data-q="q4" data-val="process" data-label="I don't understand how the VA loan process works" onclick="pick(this)"><span class="oi">🗺️</span><span class="ot">I don't understand how the VA loan process works</span><span class="oc"></span></button>
+          <button class="opt" data-q="q4" data-val="compete" data-label="I'm worried about competing in this market with a VA loan" onclick="pick(this)"><span class="oi">⚡</span><span class="ot">I'm worried about competing in this market with a VA loan</span><span class="oc"></span></button>
+          <button class="opt" data-q="q4" data-val="credit" data-label="I'm not sure my credit or finances are ready" onclick="pick(this)"><span class="oi">💳</span><span class="ot">I'm not sure my credit or finances are ready</span><span class="oc"></span></button>
+        </div>
+        <div class="qnav">
+          <button class="btn-back" onclick="goTo('q3')">← Back</button>
+          <button class="btn-next" id="next-q4" onclick="goTo('q5')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q5: What would help -->
+    <section class="screen" id="s-q5">
+      <div class="sbody q-body">
+        <div class="q-meta"><span class="q-step">5 of 5</span><span class="q-hint">Last one — your results are almost ready</span></div>
+        <h2 class="q-heading">What would help you the most right now?</h2>
+        <p class="q-sub">This shapes the recommendation we'll give you.</p>
+        <div class="opts opts-2" role="group">
+          <button class="opt" data-q="q5" data-val="consult" data-label="Talk with a VA specialist" onclick="pick(this)"><span class="oi">📞</span><span class="ot">Talk with a VA specialist</span><span class="oc"></span></button>
+          <button class="opt" data-q="q5" data-val="info" data-label="Learn more about how it works first" onclick="pick(this)"><span class="oi">📖</span><span class="ot">Learn more about how it works first</span><span class="oc"></span></button>
+          <button class="opt" data-q="q5" data-val="plan" data-label="A clear plan to follow at my own pace" onclick="pick(this)"><span class="oi">🗺</span><span class="ot">A clear plan at my own pace</span><span class="oc"></span></button>
+          <button class="opt" data-q="q5" data-val="all" data-label="All of the above" onclick="pick(this)"><span class="oi">✦</span><span class="ot">All of the above</span><span class="oc"></span></button>
+        </div>
+        <div class="qnav">
+          <button class="btn-back" onclick="goTo('q4')">← Back</button>
+          <button class="btn-next" id="next-q5" onclick="goTo('capture')" disabled>See My Results →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPTURE -->
+    <section class="screen" id="s-capture">
+      <div class="sbody cap-body">
+        <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+          <div class="cap-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Your results are ready</div>
+          <h2 class="cap-h2">Where should we send your personalized next steps?</h2>
+          <p class="cap-sub">One email with a clear path forward — no spam, no obligation.</p>
+        </div>
+        <form id="lf" class="lform" onsubmit="submitLead(event)" novalidate>
+          <div class="frow">
+            <div class="ff"><label for="fi">First Name</label><input type="text" id="fi" placeholder="Jane" required autocomplete="given-name"/></div>
+            <div class="ff"><label for="fl">Last Name</label><input type="text" id="fl" placeholder="Smith" required autocomplete="family-name"/></div>
+          </div>
+          <div class="ff"><label for="fe">Email Address</label><input type="email" id="fe" placeholder="jane@email.com" required autocomplete="email"/></div>
+          <div class="ff"><label for="fp">Phone <span class="opt-note">(optional)</span></label><input type="tel" id="fp" placeholder="(757) 555-0100" autocomplete="tel"/></div>
+          <div class="ff">
+            <label for="fsit">What best describes your situation?</label>
+            <div class="select-wrap">
+              <select id="fsit">
+                <option value="" disabled selected>Choose one…</option>
+                <option value="active-duty">I'm active duty</option>
+                <option value="veteran">I'm a veteran</option>
+                <option value="military-family">I'm a military family member</option>
+                <option value="pcs">I'm relocating / PCS'ing</option>
+                <option value="unsure">I'm not sure where I fit</option>
+              </select>
+              <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <p class="fprivacy"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Private &amp; confidential. Never sold.</p>
+          <p id="quiz-lead-error" class="quiz-lead-error" role="alert" style="display:none"></p>
+          <button type="submit" class="btn-cta btn-submit" id="subBtn"><span id="sbl">Show My Results →</span><span id="ssp" class="spinner" style="display:none"></span></button>
+        </form>
+        <button class="btn-back-sm" onclick="goTo('q5')">← Back to questions</button>
+      </div>
+    </section>
+
+    <!-- CALCULATING -->
+    <section class="screen" id="s-calculating">
+      <div class="sbody calc-body">
+        <div class="calc-ring">
+          <svg class="calc-svg" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="34" stroke="var(--color-navy-light)" stroke-width="6"/>
+            <circle cx="40" cy="40" r="34" stroke="var(--color-navy)" stroke-width="6" stroke-linecap="round" stroke-dasharray="213" stroke-dashoffset="213" id="arc" style="transform:rotate(-90deg);transform-origin:center"/>
+          </svg>
+          <span class="calc-pct" id="cp">0%</span>
+        </div>
+        <p class="calc-lbl">Analyzing your situation…</p>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="screen" id="s-results">
+      <div class="sbody r-body">
+        <div class="r-badge" id="rb"></div>
+        <h2 class="r-h2" id="rh"></h2>
+        <p class="r-explain" id="re"></p>
+        <div class="r-insight"><p class="ri-eye">Based on your answers</p><p class="ri-q" id="rq"></p></div>
+        <div class="r-focus" id="rf"></div>
+        <div class="r-cta"><p class="rc-label" id="rcl"></p><h3 class="rc-title" id="rct"></h3><p class="rc-desc" id="rcd"></p><div class="rc-actions" id="rca"></div></div>
+        <div class="r-reassure"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><p>This conversation is no-pressure. We're here to help you understand your options and move at your pace — not push you anywhere.</p></div>
+        <button class="btn-restart" onclick="restart()">Start over</button>
+      </div>
+    </section>
+
+  </div>
+</div>
+<script>
+const LINKS = {
+  consult: '/contact-us?intent=buyer',
+  info: '/va-loan-benefits#va-faq-heading',
+};
+
+const ST = { current:'welcome', qs:['q1','q2','q3','q4','q5'], answers:{}, result:null };
+const $=id=>document.getElementById(id), el=id=>document.getElementById('s-'+id);
+
+function syncP(s) {
+  const pw=$('pw'),pf=$('pf'),pl=$('pl');
+  const qi=ST.qs.indexOf(s);
+  const hide=['welcome','bridge','calculating','results'].includes(s);
+  pw.classList.toggle('visible',!hide);
+  if(qi>=0){pf.style.width=Math.round(((qi+1)/ST.qs.length)*100)+'%';pl.textContent=`Question ${qi+1} of ${ST.qs.length}`}
+  else if(s==='capture'){pf.style.width='100%';pl.textContent='Almost done!';pw.classList.add('visible')}
+}
+function goTo(t){
+  if(t===ST.current)return;
+  const f=el(ST.current),to=el(t);
+  if(!to)return;
+  f.classList.remove('active');f.classList.add('out');
+  setTimeout(()=>f.classList.remove('out'),280);
+  setTimeout(()=>{to.classList.add('active');ST.current=t;syncP(t);window.parent.postMessage({type:'quiz-height',height:document.body.scrollHeight},'*');document.getElementById('shell').scrollIntoView({behavior:'smooth',block:'start'})},170);
+}
+function pick(b){
+  b.closest('.opts').querySelectorAll('.opt.sel').forEach(x=>x.classList.remove('sel'));
+  b.classList.add('sel');
+  ST.answers[b.dataset.q]={val:b.dataset.val,label:b.dataset.label};
+  const nb=$('next-'+b.dataset.q);if(nb)nb.disabled=false;
+}
+
+// Scoring: q3 timing drives bucket most strongly, with q5 intent confirming
+function result(){
+  const q3=ST.answers.q3?.val;
+  const q5=ST.answers.q5?.val;
+  if(q3==='ready') return 'ready';
+  if(q3==='researching' && (q5==='consult'||q5==='all')) return 'ready';
+  if(q3==='researching') return 'learn';
+  return 'explore';
+}
+
+const AUDSEG = {
+  active:'m2m|source:va|audience:active-duty',
+  veteran:'m2m|source:va|audience:veteran',
+  family:'m2m|source:va|audience:military-family',
+  unsure:'m2m|source:va|audience:unknown',
+};
+
+const RES={
+  ready:{
+    bc:'badge-ready',badge:'⭐ Ready to Move',
+    h:'Based on your answers, you\'re in a strong position to take action on your VA benefit.',
+    e:'Your timeline, status, and interest all point toward making a move. The most valuable thing you can do right now is get a clear picture of your eligibility, your purchasing power, and the Virginia market — before you\'re under pressure to decide.',
+    q:'"The buyers who compete and win are the ones who got prepared before everyone else. Your VA benefit is a weapon — let\'s make sure it\'s loaded."',
+    focus:['Confirm your Certificate of Eligibility (COE) status early — we can help you understand this step','Connect with a VA-friendly lender through our network so you know your actual numbers','Build a market strategy that lets you compete confidently — VA offers do win','Get clear on timing so you can make a decision, not just a wish'],
+    cl:'Your recommended next step',ct:'Request a VA Buyer Consultation',
+    cd:'A no-pressure conversation with our VA specialist team. We\'ll walk through your eligibility, your timeline, and exactly what a successful purchase looks like for your situation.',
+    p:{t:'Book a VA Consultation →',h:LINKS.consult},s:{t:'Learn More First',h:LINKS.info},
+    tags:['m2m|source:va','m2m|team:full-team','m2m|team:donavan-veteran','m2m|channel:landing-page','m2m|source:va|result:ready','m2m|source:va|intent:consult','m2m|source:va|status:consult-requested','m2m|source:va|priority:high-touch'],
+  },
+  learn:{
+    bc:'badge-learn',badge:'〜 Getting Oriented',
+    h:'You\'re in the right place — and closer than you might think.',
+    e:'Your answers show real interest and some urgency, but a few key pieces of the picture aren\'t fully clear yet. That\'s completely normal. The families who have the smoothest VA purchases are the ones who got informed before they were under pressure.',
+    q:'"Understanding how your benefit works before you need it is the single most powerful thing you can do. A 30-minute conversation can clear up months of confusion."',
+    focus:['Get clear on what VA eligibility actually means for your specific situation','Understand how the COE process works and what comes next after that','Learn how VA loans compete in the current Virginia market — the rules have changed','Know your numbers before you talk to a lender — we can guide you through that process'],
+    cl:'Your recommended next step',ct:'Talk With a VA Specialist',
+    cd:'One conversation with our team and most of the fog clears. We explain the benefit in plain English, walk through your situation honestly, and give you a clear picture of what\'s possible.',
+    p:{t:'Talk With a VA Specialist →',h:LINKS.consult},s:{t:'Read More About the VA Process',h:LINKS.info},
+    tags:['m2m|source:va','m2m|team:full-team','m2m|team:donavan-veteran','m2m|channel:landing-page','m2m|source:va|result:learn','m2m|source:va|intent:info','m2m|source:va|status:quiz-completed'],
+  },
+  explore:{
+    bc:'badge-explore',badge:'📖 Early Stage',
+    h:'You\'re not in a rush — and that\'s completely fine.',
+    e:'Based on your answers, you\'re in the early thinking stage. The best thing you can do right now isn\'t to move fast — it\'s to get informed so that when your timeline does shift, you\'re already ahead. Many VA buyers wish they had started learning sooner.',
+    q:'"The benefit doesn\'t have an expiration date — but your window to prepare does. Getting the basics now costs you nothing and gives you a major advantage later."',
+    focus:['Understand the core VA loan benefits so there are no surprises when you\'re ready','Start thinking about your COE and what eligibility looks like for your status','Know what a VA-friendly lender looks for — so you can prepare your finances in advance','Keep us in your network — when your timeline shifts, we\'re here and ready'],
+    cl:'Your recommended next step',ct:'Learn How the VA Benefit Works',
+    cd:'Start with the basics — no commitment required. We\'ll point you to the right information and make sure you know exactly where to come back when you\'re ready to move.',
+    p:{t:'Get Started →',h:LINKS.info},s:{t:'Talk With Our Team Anytime',h:LINKS.consult},
+    tags:['m2m|source:va','m2m|team:full-team','m2m|team:donavan-veteran','m2m|channel:landing-page','m2m|source:va|result:explore','m2m|source:va|status:quiz-completed'],
+  },
+};
+
+function render(type){
+  const r=RES[type];
+  $('rb').className='r-badge '+r.bc;$('rb').textContent=r.badge;
+  $('rh').textContent=r.h;$('re').textContent=r.e;$('rq').textContent=r.q;
+  $('rf').innerHTML='<p class="rf-title">What to focus on next</p>'+r.focus.map(f=>`<div class="rf-item"><div class="rf-dot"></div><span>${f}</span></div>`).join('');
+  $('rcl').textContent=r.cl;$('rct').textContent=r.ct;$('rcd').textContent=r.cd;
+  const primaryClass = type==='ready' ? 'cta-p' : type==='learn' ? 'cta-p' : 'cta-p';
+  $('rca').innerHTML=`<a href="${r.p.h}" target="_top" rel="noopener" class="${primaryClass}">${r.p.t}</a><a href="${r.s.h}" target="_top" rel="noopener" class="cta-s">${r.s.t}</a>`;
+}
+
+function calcAnim(cb){
+  goTo('calculating');
+  const arc=$('arc'),cp=$('cp'),total=213,dur=1800,start=performance.now();
+  function tick(now){
+    const p=Math.min((now-start)/dur,1),e=1-Math.pow(1-p,3);
+    arc.style.strokeDashoffset=total-e*total;cp.textContent=Math.round(e*100)+'%';
+    if(p<1)requestAnimationFrame(tick);else setTimeout(cb,200);
+  }
+  requestAnimationFrame(tick);
+}
+
+async function submitLead(ev){
+  ev.preventDefault();
+  const fn=$('fi').value.trim(),ln=$('fl').value.trim(),em=$('fe').value.trim(),ph=$('fp').value.trim();
+  const fsit=$('fsit');
+  const sit = fsit ? fsit.value : '';
+  const errEl = $('quiz-lead-error');
+  if(!fn||!ln||!em){
+    if (errEl) {
+      errEl.textContent = 'Please enter your first name, last name, and email.';
+      errEl.style.display = 'block';
+    }
+    return;
+  }
+  if (errEl) { errEl.textContent = ''; errEl.style.display = 'none'; }
+  $('sbl').style.display='none';$('ssp').style.display='block';$('subBtn').disabled=true;
+  const type=result();ST.result=type;
+  const r=RES[type];
+  const q1val=ST.answers.q1?.val??'unknown';
+  const audTag=AUDSEG[q1val]??'m2m|source:va|audience:unknown';
+  const sitTag = sit ? `m2m|source:va|audience:${sit}` : null;
+  const allTags=[...r.tags, audTag, ...(sitTag?[sitTag]:[])];
+  const name = (fn + ' ' + ln).trim();
+  var sitNote = '';
+  if (fsit && fsit.selectedIndex >= 0) {
+    var opt = fsit.options[fsit.selectedIndex];
+    if (opt && opt.value) sitNote = opt.text.trim();
+  }
+  const notes = [
+    'VA loan quiz (“Is a VA Loan Your Best Next Step?”)',
+    'Result: ' + type,
+    'Situation (form): ' + (sitNote || 'not specified'),
+    'Q1: ' + (ST.answers.q1?.label ?? ''),
+    'Q2: ' + (ST.answers.q2?.label ?? ''),
+    'Q3: ' + (ST.answers.q3?.label ?? ''),
+    'Q4: ' + (ST.answers.q4?.label ?? ''),
+    'Q5: ' + (ST.answers.q5?.label ?? ''),
+    'Tag hints (CRM): ' + allTags.join('; '),
+  ].join('\n');
+  var urgencyLabel = ST.answers.q3 && ST.answers.q3.label ? String(ST.answers.q3.label) : '';
+  var urgency = urgencyLabel
+    ? 'VA loan quiz — timeline: ' + urgencyLabel
+    : 'VA loan quiz — timeline not captured';
+  const body = JSON.stringify({
+    lead_type: 'buyer',
+    name: name,
+    email: em,
+    phone: ph || undefined,
+    urgency: urgency,
+    urgency_explicit: Boolean(urgencyLabel),
+    source_page: window.location.href,
+    source_path: '/va-loan-benefits',
+    notes: notes,
+  });
+  let res;
+  let data = null;
+  try {
+    res = await fetch('/api/submit-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: body,
+    });
+    try { data = await res.json(); } catch (e) { data = null; }
+  } catch (e) {
+    $('sbl').style.display='';$('ssp').style.display='none';$('subBtn').disabled=false;
+    if (errEl) {
+      errEl.textContent = 'Network error — check your connection and try again.';
+      errEl.style.display = 'block';
+    }
+    return;
+  }
+  const ok = res.ok && data && data.ok === true;
+  if (!ok) {
+    $('sbl').style.display='';$('ssp').style.display='none';$('subBtn').disabled=false;
+    const msg = (data && typeof data.error === 'string' && data.error) ||
+      'We could not save your info. Please try again or contact the team.';
+    if (errEl) {
+      errEl.textContent = msg;
+      errEl.style.display = 'block';
+    }
+    return;
+  }
+  render(type);
+  calcAnim(function () { goTo('results'); });
+}
+
+function restart(){
+  ST.answers={};ST.result=null;
+  document.querySelectorAll('.opt.sel').forEach(b=>b.classList.remove('sel'));
+  ST.qs.forEach(q=>{const nb=$('next-'+q);if(nb)nb.disabled=true});
+  ['fi','fl','fe','fp'].forEach(id=>{const i=$(id);if(i)i.value=''});
+  const fsit=$('fsit');if(fsit)fsit.selectedIndex=0;
+  $('sbl').style.display='';$('ssp').style.display='none';const sb=$('subBtn');if(sb)sb.disabled=false;
+  const qe = $('quiz-lead-error'); if (qe) { qe.textContent=''; qe.style.display='none'; }
+  goTo('welcome');
+}
+
+syncP('welcome');
+</script>
+</html>

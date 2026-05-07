@@ -9,11 +9,7 @@ import { Header } from "@/components/header"
 import { HomeSearchBuyerLead } from "@/components/home-search/home-search-buyer-lead"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
-import {
-  CREED_REALTY_SEARCH_URL,
-  REALSCOUT_HOME_VALUATION_URL,
-  REALSCOUT_MAP_SEARCH_URL,
-} from "@/lib/m2m-site"
+import { REALSCOUT_HOME_VALUATION_URL, REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
 export const metadata: Metadata = m2mStandardMetadata({
@@ -116,15 +112,13 @@ export default function HomeSearchPage() {
                     >
                       Free Home Evaluation
                     </a>
-                    <a
-                      href={CREED_REALTY_SEARCH_URL}
-                      target="_blank"
-                      rel="noreferrer"
+                    <Link
+                      href="/sell#checklist"
                       className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center border border-m2m-gold/50 bg-m2m-deep/25 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream shadow-[0_2px_14px_-4px_rgba(5,13,6,0.35)] transition hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                       style={{ fontFamily: "var(--font-nav)" }}
                     >
                       Free Listing Guide
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

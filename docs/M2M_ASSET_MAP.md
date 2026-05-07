@@ -95,6 +95,8 @@ Semantic keys below live on the **`CORE`** object (spread into **`M2M_MEDIA`**).
 
 [`M2mLeadQuizSection`](../components/m2m-lead-quiz-section.tsx) shows a tall iframe when `embedSrc` resolves to a hosted quiz (`https://…` or `/quizzes/…`). When **`ctaHref`** is also set to the same live quiz URL (or `/quizzes/…`), users get an **explicit button under the embed** (“Open quiz…”) — helpful if the iframe is blocked by cookies or CSP. **`GOHIGHLEVEL_QUIZ_*`** placeholders intentionally skip both until marketing supplies real URLs. Quiz and analyzer iframes use **`loading="lazy"`** where supported so embeds do not compete with the first paint.
 
+**Static quiz HTML (local `/public/quizzes/`):** `downsizing-your-home/quiz.html`, `navigating-divorce/index.html`, **`va-loan-benefits/index.html`** (iframe on **`/va-loan-benefits`** via **`GOHIGHLEVEL_QUIZ_VA_LOAN_URL`** in [`lib/m2m-site.ts`](../lib/m2m-site.ts)); submissions POST to **`/api/submit-lead`** inside each quiz script where wired.
+
 ---
 
 ## Related docs

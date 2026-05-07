@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 
-import { CREED_REALTY_SEARCH_URL } from "@/lib/m2m-constants"
 import { M2M_MEDIA } from "@/lib/m2m-media"
 import { REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
 
@@ -109,19 +108,6 @@ export function PropertySearchNew() {
                 >
                   Start Your Search Now
                 </a>
-                <p
-                  className="text-center text-xs italic text-m2m-muted sm:text-left"
-                  style={{ fontFamily: "var(--font-sans)" }}
-                >
-                  <a
-                    href={CREED_REALTY_SEARCH_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 max-w-full items-center justify-center rounded-sm px-0.5 underline decoration-m2m-gold/55 underline-offset-2 hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold"
-                  >
-                    Local Property Search Powered by CREED REALTY*
-                  </a>
-                </p>
               </div>
               <div className="flex flex-col items-center gap-2 sm:items-start">
                 <a

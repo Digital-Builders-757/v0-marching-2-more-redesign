@@ -57,6 +57,14 @@ test.describe("quiz / embed sections", () => {
     await expect(page.locator('iframe[src="/quizzes/downsizing-your-home/quiz.html"]')).toBeVisible()
   })
 
+  test("va-loan-benefits: local VA quiz iframe is served and visible", async ({ page, request }) => {
+    const res = await request.get("/quizzes/va-loan-benefits/index.html")
+    expect(res.ok()).toBeTruthy()
+    await page.goto("/va-loan-benefits")
+    await page.locator("#va-loan-quiz").scrollIntoViewIfNeeded()
+    await expect(page.locator('iframe[src="/quizzes/va-loan-benefits/index.html"]')).toBeVisible()
+  })
+
   test("divorce: static quiz iframe + guide form present", async ({ page }) => {
     await page.goto("/navigating-divorce")
     await page.locator("#navigating-divorce-quiz").scrollIntoViewIfNeeded()
