@@ -18,6 +18,7 @@ export default function RogerLeeProfilePage() {
   return (
     <>
       <Header />
+      {/* PROFILE_DATA_GAP: Roger Lee — personal Instagram URL not provided; company Instagram + LinkedIn only. */}
       <AgentProfile
         name="Roger Lee"
         firstName="Roger"
@@ -27,7 +28,6 @@ export default function RogerLeeProfilePage() {
         imageObjectPosition="object-[center_30%]"
         email="Roger@marching2more.com"
         linkedin="https://www.linkedin.com/in/roger-lee"
-        instagram="https://www.instagram.com/marching2more"
         bio={`Roger Lee is a dedicated real estate professional with a passion for helping clients achieve their homeownership dreams. With a background in the United States Navy, Roger brings discipline, integrity, and a strong work ethic to every transaction.
 
 His experience as a military family member gives him unique insight into the challenges faced by relocating families, making him an invaluable resource for those navigating the Hampton Roads real estate market.

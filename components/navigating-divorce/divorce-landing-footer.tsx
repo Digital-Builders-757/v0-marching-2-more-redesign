@@ -72,13 +72,28 @@ export function DivorceLandingFooter() {
                       </p>
                     </div>
                     <div className="flex items-center gap-3 text-m2m-gold-lt">
-                      <a href={social.linkedin} target="_blank" rel="noreferrer" aria-label={`${agent.name} on LinkedIn`}>
+                      <a
+                        href={social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${agent.name} on LinkedIn`}
+                      >
                         <Linkedin className="h-4 w-4" strokeWidth={1.5} />
                       </a>
-                      <a href={social.instagram} target="_blank" rel="noreferrer" aria-label={`${agent.name} on Instagram`}>
+                      <a
+                        href={social.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${agent.name} on Instagram`}
+                      >
                         <Instagram className="h-4 w-4" strokeWidth={1.5} />
                       </a>
-                      <a href={social.youtube} target="_blank" rel="noreferrer" aria-label={`${agent.name} on YouTube`}>
+                      <a
+                        href={social.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${agent.name} on YouTube`}
+                      >
                         <Youtube className="h-4 w-4" strokeWidth={1.5} />
                       </a>
                     </div>
@@ -94,13 +109,28 @@ export function DivorceLandingFooter() {
                   Marching 2 More
                 </span>
                 <div className="ml-auto flex items-center gap-3 text-m2m-gold-lt">
-                  <a href={TEAM_SOCIAL.company.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
+                  <a
+                    href={TEAM_SOCIAL.company.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                  >
                     <Facebook className="h-4 w-4" strokeWidth={1.5} />
                   </a>
-                  <a href={TEAM_SOCIAL.company.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
+                  <a
+                    href={TEAM_SOCIAL.company.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                  >
                     <Instagram className="h-4 w-4" strokeWidth={1.5} />
                   </a>
-                  <a href={TEAM_SOCIAL.company.youtube} target="_blank" rel="noreferrer" aria-label="YouTube">
+                  <a
+                    href={TEAM_SOCIAL.company.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube"
+                  >
                     <Youtube className="h-4 w-4" strokeWidth={1.5} />
                   </a>
                 </div>
