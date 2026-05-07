@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
 
-import { FacingForeclosureQuiz } from "@/components/facing-foreclosure/facing-foreclosure-quiz"
-import { PreForeclosureGuideCarousel } from "@/components/facing-foreclosure/pre-foreclosure-guide-carousel"
-import { PreForeclosureEducation } from "@/components/facing-foreclosure/pre-foreclosure-education"
-import { PreForeclosureHero } from "@/components/facing-foreclosure/pre-foreclosure-hero"
-import { PreForeclosureLead } from "@/components/facing-foreclosure/pre-foreclosure-lead"
 import { FORECLOSURE_FAQ_ITEMS } from "@/components/facing-foreclosure/content"
+import { PreForeclosureGuideValue } from "@/components/facing-foreclosure/pre-foreclosure-guide-value"
+import { PreForeclosureHeroWithForm } from "@/components/facing-foreclosure/pre-foreclosure-hero-with-form"
+import { PreForeclosureHowWeHelp } from "@/components/facing-foreclosure/pre-foreclosure-how-we-help"
+import { PreForeclosureOptions } from "@/components/facing-foreclosure/pre-foreclosure-options"
+import { PreForeclosureTeam, PreForeclosureFinalCta } from "@/components/facing-foreclosure/pre-foreclosure-team-and-final"
+import { PreForeclosureTrustStrip } from "@/components/facing-foreclosure/pre-foreclosure-trust-strip"
 import { Header } from "@/components/header"
 import { M2mCampaignFaq } from "@/components/m2m-campaign-faq"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
@@ -14,9 +15,9 @@ import { M2M_FUNNEL_PAGE_TESTIDS } from "@/lib/m2m-funnel-regression"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
 export const metadata: Metadata = m2mStandardMetadata({
-  title: "Facing Foreclosure Help | Hampton Roads | Marching 2 More",
+  title: "Facing Pre-Foreclosure in Virginia | Free Guide | Marching 2 More",
   description:
-    "Behind on mortgage payments in Virginia Beach or Hampton Roads? Free guide, timelines, lender communication tips, and next steps from the veteran-owned Marching 2 More team.",
+    "Behind on mortgage payments in Virginia? Free pre-foreclosure guide (instant + email), confidential help from the Marching 2 More team — options, timelines, and next steps without hype.",
   path: "/facing-foreclosure",
 })
 
@@ -30,17 +31,20 @@ export default function FacingForeclosurePage() {
         tabIndex={-1}
         className="bg-m2m-panel text-m2m-cream"
       >
-        <PreForeclosureHero />
-        <PreForeclosureGuideCarousel />
-        <FacingForeclosureQuiz />
-        <PreForeclosureEducation />
+        <PreForeclosureHeroWithForm />
+        <PreForeclosureTrustStrip />
+        <PreForeclosureGuideValue />
+        <PreForeclosureOptions />
+        <PreForeclosureHowWeHelp />
+        <PreForeclosureTeam />
         <M2mCampaignFaq
           id="foreclosure-faq-heading"
-          eyebrow="Straight answers"
-          heading="Questions when you are under pressure"
+          variant="panel"
+          eyebrow="Questions along the way"
+          heading="Straight answers"
           items={[...FORECLOSURE_FAQ_ITEMS]}
         />
-        <PreForeclosureLead />
+        <PreForeclosureFinalCta />
         <M2mRelatedPages cluster="life" omitHref="/facing-foreclosure" variant="onDark" />
       </main>
       <DivorceLandingFooter />

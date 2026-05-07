@@ -13,6 +13,7 @@ const SUGGESTION_CATALOG: MenuSearchSuggestion[] = [
   { href: "/profile-page", title: "Donavan McFadden", hint: "Profile" },
   { href: "/roger-lee", title: "Roger Lee", hint: "Profile" },
   { href: "/kristin-s-profile", title: "Kristin Allen", hint: "Profile" },
+  { href: "/jalessa-hendricks", title: "Jalessa Hendricks", hint: "Profile" },
   { href: "/our-team", title: "Our Team", hint: "Meet the team" },
   { href: "/buy", title: "Buying with Marching 2 More", hint: "Buyer process & services" },
   { href: "/sell", title: "Selling with Marching 2 More", hint: "Listing prep & valuation paths" },
@@ -39,7 +40,7 @@ export function resolveMenuSearchQuery(raw: string): string | null {
   if (/\bdonavan\b|\bdonovan\b/.test(q)) return "/profile-page"
   if (/\broger\b/.test(q)) return "/roger-lee"
   if (/\bkristin\b/.test(q)) return "/kristin-s-profile"
-  if (/\bjalessa\b/.test(q)) return "/our-team"
+  if (/\bjalessa\b/.test(q)) return "/jalessa-hendricks"
 
   if (
     /\bpre[\s-]?listing\b/.test(q) ||
@@ -86,7 +87,8 @@ export function resolveMenuSearchQuery(raw: string): string | null {
     /contact( us)?|speak with an agent|talk to an agent|book a consultation|book appointment/.test(q) ||
     /\bhelp me (buy|sell)\b/.test(q) ||
     (/\bconsultation\b/.test(q) && /\bagent\b/.test(q)) ||
-    (/\bagent\b/.test(q) && !/\bour team\b|meet the team|\broger\b|\bkristin\b|\bdonavan\b/.test(q))
+    (/\bagent\b/.test(q) &&
+      !/\bour team\b|meet the team|\broger\b|\bkristin\b|\bdonavan\b|\bjalessa\b/.test(q))
   ) {
     return "/contact-us"
   }

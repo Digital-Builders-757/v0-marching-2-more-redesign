@@ -2,7 +2,6 @@ import { expect, test } from "@playwright/test"
 
 import { M2M_CONTACT_CONSULTATION_PATH } from "../../lib/m2m-site"
 import { M2M_FUNNEL_PAGE_TESTIDS, M2M_FUNNEL_REGRESSION_PATHS } from "../../lib/m2m-funnel-regression"
-import { fillM2mDobField } from "./helpers/forms"
 import { M2M_SUBMIT_LEAD_OK_BODY, stubSubmitLeadPost } from "./helpers/lead-api"
 
 const consultDesktop = `[data-m2m-track="consultation_request"][data-m2m-track-loc="header_bar"]`
@@ -57,6 +56,54 @@ test.describe("quiz / embed sections", () => {
     await expect(page.locator('iframe[src="/quizzes/downsizing-your-home/quiz.html"]')).toBeVisible()
   })
 
+  test("downsizing: guide PDF is served", async ({ request }) => {
+    const res = await request.get("/downloads/m2m-downsizing-guide.pdf")
+    expect(res.status(), "downsizing guide PDF should return 200").toBe(200)
+    const ct = (res.headers()["content-type"] ?? "").toLowerCase()
+    expect(ct.includes("pdf") || ct.includes("octet-stream"), `expected PDF content-type, got ${ct}`).toBeTruthy()
+  })
+
+  test("navigating-divorce: guide PDF is served", async ({ request }) => {
+    const res = await request.get("/downloads/m2m-divorce-sell-home-guide.pdf")
+    expect(res.status(), "divorce guide PDF should return 200").toBe(200)
+    const ct = (res.headers()["content-type"] ?? "").toLowerCase()
+    expect(ct.includes("pdf") || ct.includes("octet-stream"), `expected PDF content-type, got ${ct}`).toBeTruthy()
+  })
+
+  test("va-loan-benefits: VA assessment quiz renders and reaches results", async ({ page }) => {
+    await stubSubmitLeadPost(page, { ...M2M_SUBMIT_LEAD_OK_BODY })
+    await page.goto("/va-loan-benefits")
+    await page.locator("#va-loan-quiz").scrollIntoViewIfNeeded()
+    const quiz = page.getByTestId("m2m-va-loan-assessment-quiz")
+    await expect(quiz).toBeVisible()
+    await quiz.getByRole("button", { name: /start the assessment/i }).click()
+
+    await quiz.getByRole("button", { name: /i'm active-duty military/i }).click()
+    await quiz.getByRole("button", { name: /^continue →$/i }).click()
+
+    await quiz.getByRole("button", { name: /first time/i }).click()
+    await quiz.getByRole("button", { name: /^continue →$/i }).click()
+
+    await quiz.getByRole("button", { name: /keep going/i }).click()
+
+    await quiz.getByRole("button", { name: /early stage/i }).click()
+    await quiz.getByRole("button", { name: /^continue →$/i }).click()
+
+    await quiz.getByRole("button", { name: /not sure if i'm actually eligible/i }).click()
+    await quiz.getByRole("button", { name: /^continue →$/i }).click()
+
+    await quiz.getByRole("button", { name: /learn more about how it works first/i }).click()
+    await quiz.getByRole("button", { name: /see my results/i }).click()
+
+    await quiz.locator("#vaq-first").fill("E2E")
+    await quiz.locator("#vaq-last").fill("VAQuiz")
+    await quiz.locator("#vaq-email").fill("e2e-va-quiz@example.com")
+    await quiz.getByRole("button", { name: /show my results/i }).click()
+
+    await expect(quiz.getByRole("region", { name: /your assessment results/i })).toBeVisible({ timeout: 20_000 })
+    await expect(quiz.getByText(/you're not in a rush/i)).toBeVisible()
+  })
+
   test("divorce: static quiz iframe + guide form present", async ({ page }) => {
     await page.goto("/navigating-divorce")
     await page.locator("#navigating-divorce-quiz").scrollIntoViewIfNeeded()
@@ -65,10 +112,10 @@ test.describe("quiz / embed sections", () => {
     await expect(page.getByTestId("m2m-lead-form-navigating-divorce")).toBeVisible()
   })
 
-  test("facing-foreclosure: quiz fallback (no remote embed) still renders children", async ({ page }) => {
+  test("facing-foreclosure: hero form is visible", async ({ page }) => {
     await page.goto("/facing-foreclosure")
-    await page.locator("#facing-foreclosure-quiz").scrollIntoViewIfNeeded()
-    await expect(page.getByTestId("m2m-page-facing-foreclosure")).toBeVisible()
+    await page.locator("#facing-foreclosure-lead").scrollIntoViewIfNeeded()
+    await expect(page.getByTestId("m2m-lead-form-facing-foreclosure")).toBeVisible()
   })
 })
 
@@ -83,9 +130,12 @@ test.describe("lead forms (mocked POST /api/submit-lead)", () => {
     await form.getByLabel(/last name/i).fill("Foreclosure")
     await form.getByLabel(/email/i).fill("e2e-foreclosure@example.com")
     await form.getByLabel(/phone/i).fill("7575550100")
-    await form.locator("#pf-urgency").selectOption({ label: "Immediate (0-1 month)" })
-    await form.getByRole("button", { name: /send my guide/i }).click()
-    await expect(page.locator("#facing-foreclosure-lead").getByRole("status")).toContainText(/thank you/i)
+    await form.getByLabel(/property address or zip/i).fill("Virginia Beach, VA 23451")
+    await form.locator("#pf-intent").selectOption("guide")
+    await form.getByRole("button", { name: /get the guide & send my request/i }).click()
+    await expect(page.locator("#facing-foreclosure-lead").getByRole("status")).toContainText(
+      /your guide is available now and has been sent to your email/i,
+    )
     await expect(form).not.toBeVisible()
   })
 
@@ -102,8 +152,9 @@ test.describe("lead forms (mocked POST /api/submit-lead)", () => {
     await form.getByLabel(/last name/i).fill("Fail")
     await form.getByLabel(/email/i).fill("e2e-fail@example.com")
     await form.getByLabel(/phone/i).fill("7575550101")
-    await form.locator("#pf-urgency").selectOption({ label: "Immediate (0-1 month)" })
-    await form.getByRole("button", { name: /send my guide/i }).click()
+    await form.getByLabel(/property address or zip/i).fill("23451")
+    await form.locator("#pf-intent").selectOption("speak_now")
+    await form.getByRole("button", { name: /get the guide & send my request/i }).click()
     await expect(form.getByRole("alert")).toBeVisible()
     await expect(page.getByRole("heading", { name: /^thank you$/i })).not.toBeVisible()
     await expect(form).toBeVisible()
@@ -119,38 +170,109 @@ test.describe("lead forms (mocked POST /api/submit-lead)", () => {
     await form.getByPlaceholder("Email*").fill("e2e-divorce@example.com")
     await form.getByRole("button", { name: /get your free guide now/i }).click()
     await expect(page.locator("#guide-form").getByRole("status")).toContainText(/thank you/i)
-    await expect(page.locator("#guide-form").getByRole("status")).toContainText(/send your guide/i)
+    await expect(page.locator("#guide-form").getByRole("status")).toContainText(/pdf/i)
+    await expect(page.getByRole("link", { name: /download the guide \(pdf\)/i })).toBeVisible()
   })
 
-  test("improve-your-credit: playbook form submits", async ({ page }) => {
+  test("improve-your-credit: credit repair quiz iframe loads and submits", async ({ page }) => {
     await stubSubmitLeadPost(page, { ...M2M_SUBMIT_LEAD_OK_BODY })
     await page.goto("/improve-your-credit")
     await page.locator("#credit-playbook").scrollIntoViewIfNeeded()
-    const form = page.getByTestId("m2m-lead-form-improve-your-credit")
-    await form.scrollIntoViewIfNeeded()
-    await page.locator("#credit-playbook-first").fill("E2E")
-    await page.locator("#credit-playbook-last").fill("Credit")
-    await fillM2mDobField(page, "credit-playbook-dob")
-    await form.locator("#credit-playbook-urgency").selectOption({ label: "Immediate (0-1 month)" })
-    await page.locator("#credit-playbook-email").fill("e2e-credit@example.com")
-    await page.locator("#credit-playbook-phone").fill("7575550102")
-    await form.getByRole("button", { name: /send my playbook/i }).click()
-    await expect(page.getByText(/^thank you!$/i).first()).toBeVisible()
-    await expect(page.getByText(/check your email for next steps/i)).toBeVisible()
+    const frame = page.frameLocator('iframe[title="Credit repair quiz — Marching 2 More"]')
+    await expect(frame.locator("#s-welcome")).toBeVisible({ timeout: 20_000 })
+
+    // Sticky site header can intercept pointer events at the iframe overlap; drive the quiz via globals.
+    await frame.locator("body").evaluate(async () => {
+      const g = window as unknown as Window & {
+        pick: (btn: HTMLElement) => void
+        goTo: (target: string) => void
+        submitLead: (e: { preventDefault(): void }) => Promise<void>
+      }
+      const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
+      const pickSel = (sel: string) => {
+        const el = document.querySelector(sel)
+        if (!el || !(el instanceof HTMLElement)) throw new Error(`missing ${sel}`)
+        g.pick(el)
+      }
+      g.goTo("q1")
+      await delay(220)
+      pickSel('[data-q="q1"][data-val="0"]')
+      g.goTo("q2")
+      await delay(220)
+      pickSel('[data-q="q2"][data-val="notsure"]')
+      g.goTo("bridge")
+      await delay(220)
+      g.goTo("q3")
+      await delay(220)
+      pickSel('[data-q="q3"][data-val="overall"]')
+      g.goTo("q4")
+      await delay(220)
+      pickSel('[data-q="q4"][data-val="0"]')
+      g.goTo("q5")
+      await delay(220)
+      pickSel('[data-q="q5"][data-val="no"]')
+      g.goTo("capture")
+      await delay(220)
+    })
+
+    await frame.locator("#f-first").fill("E2E")
+    await frame.locator("#f-last").fill("CreditQuiz")
+    await frame.locator("#f-email").fill("e2e-credit-quiz@example.com")
+    await frame.locator("#f-phone").fill("7575550102")
+
+    await frame.locator("body").evaluate(async () => {
+      const g = window as unknown as Window & { submitLead: (e: { preventDefault(): void }) => Promise<void> }
+      await g.submitLead({ preventDefault() {} })
+    })
+
+    await expect(frame.locator("#r-headline")).toContainText(/immediate game plan/i, { timeout: 25_000 })
   })
 
-  test("fha-loan: quote form submits", async ({ page }) => {
+  test("fha-loan: nested FHA quiz submits to submit-lead", async ({ page }) => {
     await stubSubmitLeadPost(page, { ...M2M_SUBMIT_LEAD_OK_BODY })
-    await page.goto("/fha-loan#request-quote")
-    const form = page.getByTestId("m2m-lead-form-fha-loan")
-    await form.scrollIntoViewIfNeeded()
-    await page.locator("#fha-first").fill("E2E")
-    await page.locator("#fha-last").fill("FHA")
-    await page.locator("#fha-email").fill("e2e-fha@example.com")
-    await page.locator("#fha-subject").fill("E2E FHA question")
-    await form.getByRole("button", { name: /send my questions/i }).click()
-    await expect(page.locator("#request-quote").getByRole("status")).toContainText(/follow up about your fha questions/i)
-    await expect(form).not.toBeVisible()
+    await page.goto("/fha-loan#fha-buyer-quiz")
+    const frame = page.frameLocator('iframe[title="FHA buyer quiz"]')
+    await expect(frame.locator("#s-welcome")).toBeVisible({ timeout: 20_000 })
+
+    await frame.locator("body").evaluate(async () => {
+      const g = window as unknown as Window & {
+        pick: (btn: HTMLElement) => void
+        goTo: (target: string) => void
+        submitLead: (e: { preventDefault(): void }) => Promise<void>
+      }
+      const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
+      const pickSel = (sel: string) => {
+        const el = document.querySelector(sel)
+        if (!el || !(el instanceof HTMLElement)) throw new Error(`missing ${sel}`)
+        g.pick(el)
+      }
+      g.goTo("q1")
+      await delay(300)
+      pickSel('[data-q="q1"][data-val="first"]')
+      g.goTo("q2")
+      await delay(300)
+      pickSel('[data-q="q2"][data-val="mid"]')
+      g.goTo("q3")
+      await delay(300)
+      pickSel('[data-q="q3"][data-val="fha-ready"]')
+      g.goTo("q4")
+      await delay(300)
+      pickSel('[data-q="q4"][data-val="mid"]')
+      g.goTo("q5")
+      await delay(300)
+      pickSel('[data-q="q5"][data-val="process"]')
+      g.goTo("capture")
+      await delay(300)
+    })
+
+    await frame.locator("#fi").fill("E2E")
+    await frame.locator("#fl").fill("FHAQuiz")
+    await frame.locator("#fe").fill("e2e-fha-quiz@example.com")
+    await frame.locator("body").evaluate(async () => {
+      const w = window as unknown as Window & { submitLead: (e: { preventDefault(): void }) => Promise<void> }
+      await w.submitLead({ preventDefault() {} })
+    })
+    await expect(frame.locator("#rh")).toBeVisible({ timeout: 25_000 })
   })
 })
 
@@ -166,8 +288,11 @@ test.describe("mobile sanity", () => {
     await form.getByLabel(/last name/i).fill("Mobile")
     await form.getByLabel(/email/i).fill("e2e-mobile@example.com")
     await form.getByLabel(/phone/i).fill("7575550103")
-    await form.locator("#pf-urgency").selectOption({ label: "Immediate (0-1 month)" })
-    await form.getByRole("button", { name: /send my guide/i }).click()
-    await expect(page.locator("#facing-foreclosure-lead").getByRole("status")).toContainText(/thank you/i)
+    await form.getByLabel(/property address or zip/i).fill("23451")
+    await form.locator("#pf-intent").selectOption("both")
+    await form.getByRole("button", { name: /get the guide & send my request/i }).click()
+    await expect(page.locator("#facing-foreclosure-lead").getByRole("status")).toContainText(
+      /your guide is available now/i,
+    )
   })
 })

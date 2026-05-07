@@ -34,6 +34,24 @@ export type SubmitLeadRequest = {
   utm_content?: string
   source_page?: string
   source_path?: string
+  /** Human-readable guide title for funnel attribution (also echoed in operator note). */
+  guide_name?: string
+  /** Credit repair quiz (& similar) — echoed in operator note for CRM workflows. */
+  quiz_score_range?: string
+  quiz_main_issue?: string
+  quiz_goal?: string
+  quiz_timeline?: string
+  quiz_prior_attempt?: string
+  quiz_result?: string
+  quiz_source?: string
+  /** FHA buyer quiz — echoed to operator note and optional GHL custom fields when configured. */
+  quiz_q1_buyer_type?: string
+  quiz_q2_credit?: string
+  quiz_q3_down_payment?: string
+  quiz_q4_timeline?: string
+  quiz_q5_concern?: string
+  /** `/facing-foreclosure` unified form — drives CRM tags + operator routing (GHL workflows handle email/SMS). */
+  foreclosure_intent?: "guide" | "speak_now" | "both"
   /** Free text (contact message, CMA goals, etc.) — maps to CRM note / custom handling in GHL */
   notes?: string
 }
@@ -58,6 +76,20 @@ export type NormalizedLead = {
   }
   sourcePage?: string
   sourcePath?: string
+  guideName?: string
+  quizScoreRange?: string
+  quizMainIssue?: string
+  quizGoal?: string
+  quizTimeline?: string
+  quizPriorAttempt?: string
+  quizResult?: string
+  quizSource?: string
+  quizQ1BuyerType?: string
+  quizQ2Credit?: string
+  quizQ3DownPayment?: string
+  quizQ4Timeline?: string
+  quizQ5Concern?: string
+  foreclosureIntent?: "guide" | "speak_now" | "both"
   notes?: string
 }
 

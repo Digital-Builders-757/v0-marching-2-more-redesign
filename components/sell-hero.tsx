@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react"
 import Link from "next/link"
-import Image from "next/image"
 
 import { M2mContainer } from "@/components/m2m-layout"
 import { REALSCOUT_HOME_VALUATION_URL } from "@/lib/m2m-site"
@@ -44,17 +43,12 @@ export function SellHero() {
       {/* Background image with parallax */}
       <div
         ref={imageRef}
-        className="absolute inset-[-10%] z-0 overflow-hidden will-change-transform"
-        style={{ transform: "translateX(0) scale(1.1)" }}
-      >
-        <Image
-          src="/images/site/m2m-home-sell-military-consultation-kitchen.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      </div>
+        className="absolute inset-[-10%] z-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        style={{
+          backgroundImage: "url('/images/sell-with-confidence-bg.png')",
+          transform: "translateX(0) scale(1.1)",
+        }}
+      />
       {/* Dark overlay for text readability */}
       <div 
         className="absolute inset-0 z-0"

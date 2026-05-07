@@ -1,7 +1,7 @@
 import type { GhlConfig } from "./config"
 import type { GhlCustomFieldEntry, LeadType, NormalizedLead } from "./types"
 
-function addField(out: GhlCustomFieldEntry[], id: string, value: string | undefined) {
+function addField(out: GhlCustomFieldEntry[], id: string | undefined, value: string | undefined) {
   if (!value?.trim() || !id || id.startsWith("dry-run__")) return
   out.push({ id, value: value.trim() })
 }
@@ -21,6 +21,19 @@ export function normalizedLeadToCustomFields(lead: NormalizedLead, cfg: GhlConfi
   addField(out, f.utmCampaign, lead.utm.campaign)
   addField(out, f.utmContent, lead.utm.content)
 
+  const optIds = cfg.optionalFieldIds
+  addField(out, optIds.guideName, lead.guideName)
+  addField(out, optIds.sourcePage, lead.sourcePage)
+  addField(out, optIds.sourcePath, lead.sourcePath)
+  addField(out, optIds.quizQ1BuyerType, lead.quizQ1BuyerType)
+  addField(out, optIds.quizQ2Credit, lead.quizQ2Credit)
+  addField(out, optIds.quizQ3DownPayment, lead.quizQ3DownPayment)
+  addField(out, optIds.quizQ4Timeline, lead.quizQ4Timeline)
+  addField(out, optIds.quizQ5Concern, lead.quizQ5Concern)
+  addField(out, optIds.quizResult, lead.quizResult)
+  addField(out, optIds.quizSource, lead.quizSource)
+  addField(out, optIds.foreclosureIntent, lead.foreclosureIntent)
+
   return out
 }
 
@@ -29,6 +42,10 @@ export function resolveTagsForLead(lead: NormalizedLead, cfg: GhlConfig): string
   const path = lead.sourcePath?.trim()
   const extra = path ? cfg.tags.pathTags[path] ?? [] : []
   const merged = [...base, ...extra]
+  const fi = lead.foreclosureIntent
+  if (fi === "guide" || fi === "speak_now" || fi === "both") {
+    merged.push(...(cfg.tags.foreclosureIntentTags[fi] ?? []))
+  }
   return [...new Set(merged.map((t) => t.trim()).filter(Boolean))]
 }
 

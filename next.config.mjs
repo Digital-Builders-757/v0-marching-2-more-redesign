@@ -30,6 +30,12 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      /** Legacy Wix CDN — Jalessa portrait until uploaded to Blob (`docs/M2M_ASSET_MAP.md`). */
+      {
+        protocol: "https",
+        hostname: "static.wixstatic.com",
+        pathname: "/media/**",
+      },
     ],
   },
 }

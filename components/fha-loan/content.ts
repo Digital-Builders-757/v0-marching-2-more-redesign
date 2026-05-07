@@ -2,146 +2,137 @@
  * Copy and asset paths for `/fha-loan` only.
  */
 
-/** Hero: inclusive family + advisor at home — consistent with FHA audience. */
+/** Hero — consult scene, approachable for first-time buyers. */
 export const HERO_BACKGROUND = "/images/site/m2m-partners-consult-evening-home.png" as const
 
-/** Supporting line beneath headline — grants + FHA context without changing route anchors */
+export const HERO_HEADLINE = "Want to Buy Sooner With Less Upfront Stress?" as const
+
 export const HERO_SUBLINE =
-  "Understand FHA basics, down-payment assistance programs, Virginia Housing DPAL pathways, and local grants — plus whether this path fits your budget before you shop." as const
+  "FHA loans can open the door with as little as 3.5% down for qualifying buyers — often with more flexible credit than many conventional options — and you may pair the path with grants or down payment help when you qualify. We help you understand the moving pieces before you shop." as const
 
-/** Quote form background — helpful, guided, confidence-building imagery. */
-export const FLAG_QUOTE_BACKGROUND = "/images/fha-loan/fha-quiz-guidance.jpg" as const
+export const HERO_PRIMARY_CTA = "Book my no-cost FHA consultation" as const
 
-export const HERO_HEADLINE = "Is the FHA Loan Right for You?" as const
+export const HERO_SECONDARY_CTA = "Take the FHA buyer quiz" as const
 
-export const WHY_SPLIT_LEFT = {
-  title: "Empower Growth",
-  ctaLabel: "Start Now",
-  ctaHref: "#request-quote",
-} as const
-
-export const WHY_CHOOSE_HEADER = {
-  kickerTop: "WHY CHOOSE",
-  brand: "MARCHING 2 MORE",
-  kickerBottom: "REAL ESTATE TEAM",
-  pill: "FOR FHA PURCHASERS",
-} as const
-
-export const FHA_VALUE_POINTS = [
+export const TRUST_STRIP_ITEMS = [
   {
-    title: "Local Expertise in Hampton Roads",
-    body: "In-depth knowledge of neighborhoods, trends & value under FHA limits.",
-    icon: "map" as const,
+    title: "Less cash up front",
+    body: "FHA can mean a smaller down payment than many buyers expect — we help you sanity-check numbers early.",
   },
   {
-    title: "Strong Network of FHA-Friendly Lenders & Inspectors",
-    body: "Partnerships with specialized lenders, inspectors & contractors.",
-    icon: "clipboard" as const,
+    title: "Credit doesn’t have to be perfect",
+    body: "Life happens. FHA is built to serve buyers still building strong credit — your lender confirms the final picture.",
   },
   {
-    title: "Clear Guidance Through the FHA Process",
-    body: "Assistance with requirements, documentation & deadlines.",
-    icon: "handshake" as const,
+    title: "Less mystery, more plan",
+    body: "We translate jargon, timelines, and paperwork so you always know the next best step.",
   },
   {
-    title: "Personalized Matching of Homes & Grant/Assistance Programs",
-    body: "Targeting listings & identifying down payment help.",
-    icon: "home" as const,
-  },
-  {
-    title: "Transparent Cost Breakdowns",
-    body: "Explaining monthly payments, closing costs, repairs & MIP.",
-    icon: "dollar" as const,
-  },
-  {
-    title: "Proven Track Record",
-    body: "Testimonials & case studies of successful FHA closings.",
-    icon: "check" as const,
+    title: "A path to move sooner",
+    body: "When FHA plus assistance fits, buying can feel closer than you thought — we help you sequence the work.",
   },
 ] as const
 
-export const FEATURES_GRID = [
-  {
-    key: "milestones",
-    title: "Plain-language FHA milestones",
-    body: "We walk you through common steps—pre-approval, appraisal, and repair expectations—so you know what tends to come next. (Final loan decisions belong to your lender.)",
-    icon: "book" as const,
-  },
-  {
-    key: "network",
-    title: "Hampton Roads–savvy partners",
-    body: "We connect you with lending and inspection professionals who regularly work FHA transactions in this market—so questions get answered with local context.",
-    icon: "handshake" as const,
-  },
-  {
-    key: "communication",
-    title: "Business-hours communication",
-    body: "You get clear updates during business hours and timely follow-up when timing matters for offers, responses, and deadlines.",
-    icon: "message" as const,
-  },
-  {
-    key: "numbers",
-    title: "Payment and cost clarity",
-    body: "We help you understand how monthly payment pieces fit together—without promising outcomes only a lender can guarantee.",
-    icon: "calculator" as const,
-  },
-] as const
-
-export const FEATURES_CTA_STRIP = {
-  headline: "If you'd like more information about our features, get in touch today.",
-  buttonLabel: "Get in Touch",
-  buttonHref: "/contact-us",
+export const OPPORTUNITY_SECTION = {
+  eyebrow: "FHA in plain language",
+  title: "A government-backed loan built for everyday buyers",
+  lead:
+    "Think of FHA as a toolbox: it can help lower the savings hurdle and widen credit flexibility compared with many conventional loans — with rules and insurance (MIP) designed to protect the program, not to scare you away.",
+  bullets: [
+    "Down payments as low as 3.5% for many qualifying buyers — freeing cash for inspections, movers, or reserves.",
+    "More forgiving credit overlays than many conventional paths — still underwritten and documented, but often more realistic for recovering credit.",
+    "Room for grants or down payment assistance when you qualify — locality rules change often; we help you chase the right applications at the right time.",
+  ],
+  disclaimer:
+    "Loan approval, limits, and mortgage insurance details are always confirmed by your lender. We coordinate timelines, education, and introductions so nothing falls through the cracks.",
 } as const
 
-export const TESTIMONIALS = [
-  {
-    name: "The Cole Family — U.S. Navy",
-    quote:
-      "Donavan was very responsive and really took his time to explain everything we did not know. He took what can be a laborious and stressful process and made it an enjoyable one.",
-  },
-  {
-    name: "Karen Gonzalez — U.S. Navy",
-    quote:
-      "Patient and diligent throughout the entire process and readily available at all times… Honest and a pleasure to work with. The process was so easy.",
-  },
-  {
-    name: "Terri Hill — Hampton PD referral",
-    quote:
-      "Roger built trust. He was relatable. He was patient — and helped my relative in a way that earned a repeat client.",
-  },
-] as const
+export const HOW_WE_HELP = {
+  eyebrow: "How we help",
+  title: "You focus on the dream — we handle the coordination",
+  items: [
+    {
+      title: "See if FHA is a fit (or not yet)",
+      body: "We help you understand tradeoffs, monthly payment pieces, and property expectations before you fall in love with a listing.",
+    },
+    {
+      title: "Readiness coaching",
+      body: "Credit pacing, savings checkpoints, and offer timing — we keep the plan practical and paced to your life.",
+    },
+    {
+      title: "Find grant & DPA leads",
+      body: "We flag programs worth exploring in your situation and help you understand how they layer with FHA when you qualify.",
+    },
+    {
+      title: "Assistance applications",
+      body: "Paperwork can be the bottleneck — we help you stay organized and submitted on time.",
+    },
+    {
+      title: "Lender introductions, quietly",
+      body: "When you are ready, we coordinate trusted introductions behind the scenes so conversations stay efficient (no lender endorsement chatter here).",
+    },
+    {
+      title: "Market entry on your terms",
+      body: "Search support, offer strategy, and calm updates as you move from “figuring it out” to keys in hand.",
+    },
+  ],
+} as const
 
-export const QUOTE_FORM = {
-  title: "Tell Us About Your FHA Goals",
-  subtitle:
-    "Questions about FHA, down payment grants, Virginia Housing DPAL or local assistance — send a note and we’ll outline practical next steps. (Loan approval stays with your lender.)",
-  submitLabel: "Send My Questions",
-  ariaSummary: "FHA homebuyer intake",
+export const WHO_THIS_IS_FOR = {
+  eyebrow: "Who this is for",
+  title: "Start here if this sounds like you",
+  items: [
+    "First-time buyers who want clarity before talking to a loan officer.",
+    "Households with limited savings who still want a truthful shot at ownership.",
+    "Anyone rebuilding credit after a rough season.",
+    "Buyers who know they will need down payment assistance or employer/local programs.",
+    "People who assumed homeownership “isn’t for me” — and want a hopeful second look.",
+  ],
 } as const
 
 export const FHA_FAQ_ITEMS = [
   {
-    id: "fh-0",
-    question: "Can you help with down payment grants or assistance programs?",
+    id: "fha-fq-1",
+    question: "Can FHA help me buy with less money down?",
     answer:
-      "Yes — we routinely help Hampton Roads buyers understand Virginia Housing DPAL paths, locality programs you may qualify for, and lender overlays. Program rules change often; our job is pairing you with the right introductions and timelines while your lender confirms eligibility.",
+      "Often yes — many qualifying FHA buyers use about 3.5% down, compared with higher conventional baselines. Your lender confirms your exact scenario, and we help you understand what that means for monthly cash flow and closing.",
   },
   {
-    id: "fh-1",
-    question: "Is FHA only for first-time buyers?",
+    id: "fha-fq-2",
+    question: "What if my credit isn’t perfect?",
     answer:
-      "No. FHA can work for many buyers who want a lower down payment path and meet program and lender requirements — not only first-time purchases.",
+      "FHA exists partly for buyers still polishing credit. You will still be underwritten, but the path can be more realistic than some conventional overlays. If you are not there yet, we map a readiness plan with dates and milestones.",
   },
   {
-    id: "fh-2",
-    question: "Will I pay FHA mortgage insurance forever?",
+    id: "fha-fq-3",
+    question: "Can FHA work with grants or down payment assistance?",
     answer:
-      "FHA includes an upfront premium and ongoing MIP. How long MIP stays depends on your loan term and down payment — your loan officer walks through the specifics before you lock.",
+      "Sometimes — when programs allow stacking and you qualify. Rules shift by locality and employer. We help you track what is open, prep applications, and keep your lender loop informed.",
   },
   {
-    id: "fh-3",
-    question: "Who sets my final approval — you or the lender?",
+    id: "fha-fq-4",
+    question: "What happens during the consultation?",
     answer:
-      "The lender approves the loan. We help you choose homes, negotiate, and stay coordinated on deadlines so the file your lender needs stays clean.",
+      "Expect a relaxed working session: goals, timeline, savings reality, credit story without judgment, and whether FHA or another structure is worth pursuing. You leave with a simple next-step list — not a sales ambush.",
+  },
+  {
+    id: "fha-fq-5",
+    question: "Do you help with assistance applications?",
+    answer:
+      "Yes — we are hands-on with organization, deadlines, and follow-ups so paperwork does not stall your momentum.",
+  },
+  {
+    id: "fha-fq-6",
+    question: "What if FHA is not the best fit for me?",
+    answer:
+      "Then we tell you plainly and pivot — conventional, VA (if you earned it), or a prep season first. The goal is the right tool, not forcing FHA.",
   },
 ] as const
+
+export const FINAL_CTA = {
+  title: "Ready for a calm, no-cost FHA conversation?",
+  body:
+    "Whether you are all-in this quarter or still assembling savings, one consultation turns noise into a checklist — and you will know what deserves your energy next.",
+  buttonLabel: "Book my no-cost consultation",
+  quizHint: "Prefer to self-guide first? Scroll up to the 60-second quiz anytime.",
+} as const

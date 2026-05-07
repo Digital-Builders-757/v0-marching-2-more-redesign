@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Credit Repair Quiz — Find Your Path to Better Credit | Marching 2 More</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="quiz-shell" id="quizShell">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-inner">
+      <span class="progress-label" id="progressLabel">Question 1 of 5</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+
+    <!-- ══ WELCOME ══ -->
+    <section class="screen active" id="s-welcome" data-screen="welcome">
+      <div class="screen-body welcome-body">
+
+        <div class="brand-row">
+          <img src="logo.jpg" alt="The Marching 2 More Real Estate Team" class="brand-logo" />
+        </div>
+
+        <div class="welcome-text">
+          <p class="eyebrow">Credit Repair Assessment</p>
+          <h1 class="welcome-h1">Find Out Exactly<br/><em>Where Your Credit Stands</em></h1>
+          <p class="welcome-desc">Answer 5 questions and get a personalized action plan — whether you're looking to buy a home, get approved for financing, or just finally fix what's been holding you back.</p>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            100% confidential
+          </div>
+          <div class="trust-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Under 2 minutes
+          </div>
+          <div class="trust-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            No credit pull required
+          </div>
+        </div>
+
+        <button class="btn-cta" onclick="goTo('q1')">
+          Take the Assessment
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <p class="social-proof">
+          Helping buyers and families across Hampton Roads build the credit clarity they need for their next move.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══ Q1: Current score range ══ -->
+    <section class="screen" id="s-q1" data-screen="q1">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">1 of 5</span>
+          <span class="q-hint">Estimate is fine — we don't need exact numbers</span>
+        </div>
+        <h2 class="q-heading">What's your current credit score range?</h2>
+        <p class="q-sub">If you're not sure, pick the range that feels closest. We can help you find out for free.</p>
+        <div class="options" role="group" aria-label="Select one">
+          <button class="opt" data-q="q1" data-val="0" data-label="Below 580 (Poor)" onclick="pick(this)">
+            <span class="opt-icon score-poor">◉</span>
+            <div class="opt-detail">
+              <span class="opt-text">Below 580</span>
+              <span class="opt-tag">Poor</span>
+            </div>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q1" data-val="1" data-label="580–669 (Fair)" onclick="pick(this)">
+            <span class="opt-icon score-fair">◉</span>
+            <div class="opt-detail">
+              <span class="opt-text">580–669</span>
+              <span class="opt-tag">Fair</span>
+            </div>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q1" data-val="2" data-label="670–739 (Good)" onclick="pick(this)">
+            <span class="opt-icon score-good">◉</span>
+            <div class="opt-detail">
+              <span class="opt-text">670–739</span>
+              <span class="opt-tag">Good</span>
+            </div>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q1" data-val="3" data-label="740+ (Very Good / Excellent)" onclick="pick(this)">
+            <span class="opt-icon score-great">◉</span>
+            <div class="opt-detail">
+              <span class="opt-text">740+</span>
+              <span class="opt-tag">Very Good / Excellent</span>
+            </div>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q1" data-val="?" data-label="I'm not sure" onclick="pick(this)">
+            <span class="opt-icon">❓</span>
+            <div class="opt-detail">
+              <span class="opt-text">I'm not sure</span>
+              <span class="opt-tag">We can help you find out</span>
+            </div>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('welcome')">← Back</button>
+          <button class="btn-next" id="next-q1" onclick="goTo('q2')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Q2: What's dragging the score down ══ -->
+    <section class="screen" id="s-q2" data-screen="q2">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">2 of 5</span>
+          <span class="q-hint">Select the one that applies most</span>
+        </div>
+        <h2 class="q-heading">What do you think is hurting your credit the most?</h2>
+        <p class="q-sub">This shapes the action plan we'll send you.</p>
+        <div class="options options-2col" role="group" aria-label="Select one">
+          <button class="opt" data-q="q2" data-val="collections" data-label="Collections or charge-offs" onclick="pick(this)">
+            <span class="opt-icon">⚠️</span>
+            <span class="opt-text">Collections or charge-offs</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q2" data-val="latemissed" data-label="Late or missed payments" onclick="pick(this)">
+            <span class="opt-icon">📅</span>
+            <span class="opt-text">Late or missed payments</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q2" data-val="highutil" data-label="High credit card balances" onclick="pick(this)">
+            <span class="opt-icon">💳</span>
+            <span class="opt-text">High credit card balances</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q2" data-val="thinfile" data-label="Not enough credit history" onclick="pick(this)">
+            <span class="opt-icon">📋</span>
+            <span class="opt-text">Not enough credit history</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q2" data-val="errors" data-label="Errors on my report" onclick="pick(this)">
+            <span class="opt-icon">🔍</span>
+            <span class="opt-text">Errors on my report</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q2" data-val="notsure" data-label="Not sure — I haven't checked" onclick="pick(this)">
+            <span class="opt-icon">🤷</span>
+            <span class="opt-text">Not sure — I haven't checked</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('q1')">← Back</button>
+          <button class="btn-next" id="next-q2" onclick="goTo('bridge')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BRIDGE ══ -->
+    <section class="screen" id="s-bridge" data-screen="bridge">
+      <div class="screen-body bridge-body">
+        <div class="bridge-icon" aria-hidden="true">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+            <circle cx="26" cy="26" r="25" stroke="#1a4731" stroke-width="1.5" opacity=".18"/>
+            <path d="M17 28l6 6 12-14" stroke="#1a4731" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="bridge-h2">You're on the right track.</h2>
+        <p class="bridge-p">Most people don't know that credit issues — even serious ones — can be addressed with the right strategy. The next questions help us figure out what that looks like for your specific situation.</p>
+        <button class="btn-cta" onclick="goTo('q3')">Keep Going →</button>
+      </div>
+    </section>
+
+    <!-- ══ Q3: Goal ══ -->
+    <section class="screen" id="s-q3" data-screen="q3">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">3 of 5</span>
+          <span class="q-hint">This shapes which resources we send you</span>
+        </div>
+        <h2 class="q-heading">What's your main goal right now?</h2>
+        <p class="q-sub">Pick the one that's driving you to fix your credit.</p>
+        <div class="options" role="group" aria-label="Select one">
+          <button class="opt" data-q="q3" data-val="homebuy" data-label="Buy a home" onclick="pick(this)">
+            <span class="opt-icon">🏠</span>
+            <span class="opt-text">Buy a home</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q3" data-val="refi" data-label="Refinance or lower my rate" onclick="pick(this)">
+            <span class="opt-icon">📉</span>
+            <span class="opt-text">Refinance or lower my rate</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q3" data-val="approval" data-label="Get approved for a car or loan" onclick="pick(this)">
+            <span class="opt-icon">🚗</span>
+            <span class="opt-text">Get approved for a car or loan</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q3" data-val="overall" data-label="Just improve my overall credit" onclick="pick(this)">
+            <span class="opt-icon">📈</span>
+            <span class="opt-text">Just improve my overall credit</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('q2')">← Back</button>
+          <button class="btn-next" id="next-q3" onclick="goTo('q4')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Q4: Timeline ══ -->
+    <section class="screen" id="s-q4" data-screen="q4">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">4 of 5</span>
+          <span class="q-hint">Almost there — one more after this</span>
+        </div>
+        <h2 class="q-heading">How soon do you need your credit in a better place?</h2>
+        <p class="q-sub">This helps us recommend the right urgency level and strategy.</p>
+        <div class="options" role="group" aria-label="Select one">
+          <button class="opt" data-q="q4" data-val="2" data-label="Within the next 90 days" onclick="pick(this)">
+            <span class="opt-icon">⚡</span>
+            <span class="opt-text">Within the next 90 days</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q4" data-val="1" data-label="Within 6 months to a year" onclick="pick(this)">
+            <span class="opt-icon">📅</span>
+            <span class="opt-text">Within 6 months to a year</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q4" data-val="0" data-label="No rush — I'm playing the long game" onclick="pick(this)">
+            <span class="opt-icon">🐢</span>
+            <span class="opt-text">No rush — I'm playing the long game</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('q3')">← Back</button>
+          <button class="btn-next" id="next-q4" onclick="goTo('q5')" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Q5: What they've tried ══ -->
+    <section class="screen" id="s-q5" data-screen="q5">
+      <div class="screen-body q-body">
+        <div class="q-meta">
+          <span class="q-step">5 of 5</span>
+          <span class="q-hint">Last question — your results are almost ready</span>
+        </div>
+        <h2 class="q-heading">Have you tried to address your credit before?</h2>
+        <p class="q-sub">This tells us where to start — so we don't waste your time covering ground you've already covered.</p>
+        <div class="options" role="group" aria-label="Select one">
+          <button class="opt" data-q="q5" data-val="pro" data-label="Yes — worked with a credit repair company" onclick="pick(this)">
+            <span class="opt-icon">🏢</span>
+            <span class="opt-text">Yes — worked with a credit repair company</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q5" data-val="diy" data-label="Yes — tried to fix it myself" onclick="pick(this)">
+            <span class="opt-icon">🔧</span>
+            <span class="opt-text">Yes — tried to fix it myself</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+          <button class="opt" data-q="q5" data-val="no" data-label="No — this is my first step" onclick="pick(this)">
+            <span class="opt-icon">🌱</span>
+            <span class="opt-text">No — this is my first step</span>
+            <span class="opt-check" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="goTo('q4')">← Back</button>
+          <button class="btn-next" id="next-q5" onclick="goTo('capture')" disabled>See My Results →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CAPTURE ══ -->
+    <section class="screen" id="s-capture" data-screen="capture">
+      <div class="screen-body capture-body">
+        <div class="capture-top">
+          <div class="capture-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Your credit action plan is ready
+          </div>
+          <h2 class="capture-h2">Where should we send your personalized plan?</h2>
+          <p class="capture-sub">One email with your next steps — no spam, no hard pitch. Just the information you need.</p>
+        </div>
+        <form id="leadForm" class="lead-form" onsubmit="submitLead(event)" novalidate>
+          <p id="captureError" class="capture-error" role="alert" hidden></p>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="f-first">First Name</label>
+              <input type="text" id="f-first" name="firstName" placeholder="Marcus" required autocomplete="given-name" />
+            </div>
+            <div class="form-field">
+              <label for="f-last">Last Name</label>
+              <input type="text" id="f-last" name="lastName" placeholder="Johnson" required autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" name="email" placeholder="marcus@email.com" required autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label for="f-phone">Phone <span class="optional">(optional — speeds up our response)</span></label>
+            <input type="tel" id="f-phone" name="phone" placeholder="(757) 555-0100" autocomplete="tel" />
+          </div>
+          <p class="form-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Private &amp; confidential. No credit pull. Your info is never sold.
+          </p>
+          <button type="submit" class="btn-cta btn-submit" id="submitBtn">
+            <span id="btn-label">Show My Action Plan →</span>
+            <span id="btn-spinner" class="spinner" style="display:none"></span>
+          </button>
+        </form>
+        <button class="btn-back-sm" onclick="goTo('q5')">← Back to questions</button>
+      </div>
+    </section>
+
+    <!-- ══ CALCULATING ══ -->
+    <section class="screen" id="s-calculating" data-screen="calculating">
+      <div class="screen-body calc-body">
+        <div class="calc-ring">
+          <svg class="calc-svg" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="34" stroke="var(--color-primary-light)" stroke-width="6"/>
+            <circle cx="40" cy="40" r="34" stroke="var(--color-primary)" stroke-width="6"
+              stroke-linecap="round" stroke-dasharray="213" stroke-dashoffset="213"
+              id="calcArc" style="transform:rotate(-90deg);transform-origin:center"/>
+          </svg>
+          <span class="calc-pct" id="calcPct">0%</span>
+        </div>
+        <p class="calc-label">Analyzing your credit profile…</p>
+      </div>
+    </section>
+
+    <!-- ══ RESULTS ══ -->
+    <section class="screen" id="s-results" data-screen="results">
+      <div class="screen-body results-body">
+
+        <div class="result-badge" id="r-badge"></div>
+        <h2 class="result-h2" id="r-headline"></h2>
+        <p class="result-explain" id="r-explain"></p>
+
+        <!-- Score visual -->
+        <div class="score-visual" id="r-score-visual"></div>
+
+        <!-- Insight card -->
+        <div class="result-insight">
+          <p class="insight-eyebrow">Based on your answers</p>
+          <p class="insight-quote" id="r-quote"></p>
+        </div>
+
+        <!-- What to focus on -->
+        <div class="focus-list" id="r-focus"></div>
+
+        <!-- CTA card -->
+        <div class="result-cta-card">
+          <p class="cta-card-label" id="r-cta-label"></p>
+          <h3 class="cta-card-title" id="r-cta-title"></h3>
+          <p class="cta-card-desc" id="r-cta-desc"></p>
+          <div class="cta-card-actions" id="r-cta-actions"></div>
+        </div>
+
+        <!-- Reassurance -->
+        <div class="result-reassurance">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <p>There's no pressure, no sales pitch, and no credit pull. This is just a conversation about where you are and where you want to go.</p>
+        </div>
+
+        <button class="btn-restart" onclick="restart()">Start over</button>
+      </div>
+    </section>
+
+  </div><!-- /stage -->
+</div><!-- /quiz-shell -->
+
+<script src="quiz.js"></script>
+</body>
+</html>

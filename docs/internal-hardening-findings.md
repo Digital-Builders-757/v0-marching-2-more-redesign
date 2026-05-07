@@ -3,7 +3,7 @@
 **Audience:** Developers / operator  
 **Companion doc:** [`website-launch-hardening-report.md`](website-launch-hardening-report.md) (client-facing)  
 **Rule:** No secret values in this file — reference env var **names** only.  
-**Last updated:** 2026-05-05
+**Last updated:** 2026-05-07
 
 ---
 
@@ -15,7 +15,7 @@ The following items from the original hardening review are **addressed in repo**
 |------|--------|
 | TypeScript bypass | **`typescript.ignoreBuildErrors`** removed from [`next.config.mjs`](../next.config.mjs); `next build` + `npm run ci` enforce types. |
 | Static quiz false success | [`public/quizzes/downsizing-your-home/main.js`](../public/quizzes/downsizing-your-home/main.js), [`quiz.html`](../public/quizzes/downsizing-your-home/quiz.html), [`public/quizzes/navigating-divorce/quiz.js`](../public/quizzes/navigating-divorce/quiz.js) **await** `fetch`, parse JSON, require **`res.ok` + `ok: true`** before success UI; inline error + re-enable submit. |
-| Foreclosure quiz empty block | [`FacingForeclosureQuiz`](../components/facing-foreclosure/facing-foreclosure-quiz.tsx) mounts [`FacingForeclosureQuizFallbackLead`](../components/facing-foreclosure/facing-foreclosure-quiz-fallback-lead.tsx) when GHL quiz URL unset. |
+| Foreclosure quiz empty block | **`/facing-foreclosure`** is **form-first**: unified seller **`PreForeclosureUnifiedForm`** (`components/facing-foreclosure/pre-foreclosure-form.tsx`) with on-page PDF + **`foreclosure_intent`** for GHL routing — **quiz block removed**. |
 | Footer avatar `alt` | [`components/footer.tsx`](../components/footer.tsx) — `alt` includes agent name. |
 
 ---
@@ -129,8 +129,8 @@ Run on **production-like** build with real `GHL_*` (or dry-run intentionally).
 - Client: `lib/m2m-lead-submit.ts`
 - Constants: `lib/m2m-site.ts`, `lib/m2m-nav.ts`
 - Quiz shell: `components/m2m-lead-quiz-section.tsx`
-- Foreclosure quiz fallback: `components/facing-foreclosure/facing-foreclosure-quiz-fallback-lead.tsx`
-- Static quizzes: `public/quizzes/downsizing-your-home/main.js`, `public/quizzes/downsizing-your-home/quiz.html`, `public/quizzes/navigating-divorce/quiz.js`
+- Foreclosure lead: `components/facing-foreclosure/pre-foreclosure-form.tsx`
+- Static quizzes: `public/quizzes/downsizing-your-home/main.js`, `public/quizzes/downsizing-your-home/quiz.html`, `public/quizzes/navigating-divorce/quiz.js`, `public/quizzes/credit-repair/`, `public/quizzes/fha-loan/`
 
 ---
 

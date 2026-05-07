@@ -1,58 +1,14 @@
 "use client"
 
-import type { CSSProperties } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
 import { M2mContainer, M2mSection } from "@/components/m2m-layout"
-import { M2M_MEDIA } from "@/lib/m2m-media"
+import { type M2mPublicTeamMember, M2M_TEAM_MEMBERS_PUBLIC } from "@/components/team/team-members-data"
 import { cn } from "@/lib/utils"
 
-type TeamMember = {
-  name: string
-  subtitle: string
-  image: string
-  href?: string
-  imageObjectPosition?: string
-  /** Slight zoom helps isolate one person when `image` is the wide team shot */
-  imageScaleClass?: string
-  imageObjectStyle?: Pick<CSSProperties, "objectPosition">
-}
-
-const teamMembers: TeamMember[] = [
-  {
-    name: "Donavan McFadden",
-    subtitle: "Founding Partner • Licensed Agent",
-    image: M2M_MEDIA.headshotDonavan,
-    href: "/profile-page",
-    imageObjectPosition: "object-[center_32%]",
-  },
-  {
-    name: "Roger Lee",
-    subtitle: "Founding Partner • Licensed Agent",
-    image: M2M_MEDIA.headshotRoger,
-    href: "/roger-lee",
-    imageObjectPosition: "object-[center_30%]",
-  },
-  {
-    name: "Kristin Allen",
-    subtitle: "Licensed Agent",
-    image: M2M_MEDIA.headshotKristin,
-    href: "/kristin-s-profile",
-    imageObjectPosition: "object-[center_32%]",
-  },
-  {
-    name: "Jalessa Hendricks",
-    subtitle: "Licensed Agent",
-    // Same asset as hero — portrait cards need a tighter crop from the wide plate (tune objectPosition if lineup changes)
-    image: M2M_MEDIA.teamPhotoWide,
-    imageScaleClass: "origin-[82%_26%] scale-[1.16]",
-    imageObjectStyle: { objectPosition: "82% 26%" },
-  },
-]
-
-function MemberCard({ member }: { member: TeamMember }) {
+export function M2mTeamMemberCard({ member }: { member: M2mPublicTeamMember }) {
   const content = (
     <div className="flex flex-col gap-6 rounded-sm border border-m2m-deep/10 p-6 transition-all duration-300 hover:border-m2m-gold/30 hover:shadow-lg">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
@@ -110,9 +66,9 @@ export function TeamMembers() {
       <M2mContainer>
         <h2 className="sr-only">Team members</h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
-          {teamMembers.map((member, index) => (
+          {M2M_TEAM_MEMBERS_PUBLIC.map((member, index) => (
             <div key={member.name} className="min-w-0" data-gsap="fade-up" data-gsap-delay={index * 0.15}>
-              <MemberCard member={member} />
+              <M2mTeamMemberCard member={member} />
             </div>
           ))}
         </div>

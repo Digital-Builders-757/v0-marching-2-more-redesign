@@ -18,6 +18,7 @@ export default function KristinProfilePage() {
   return (
     <>
       <Header />
+      {/* PROFILE_DATA_GAP: Kristin Allen — personal Instagram URL not provided; company Instagram + LinkedIn only. */}
       <AgentProfile
         name="Kristin Allen"
         firstName="Kristin"
@@ -25,7 +26,7 @@ export default function KristinProfilePage() {
         image={M2M_MEDIA.headshotKristin}
         imageObjectPosition="object-[center_32%]"
         email="Kristin@marching2more.com"
-        instagram="https://www.instagram.com/marching2more"
+        linkedin="https://www.linkedin.com/in/driven2solutions"
         bio={`Kristin Allen brings thoughtful attention to detail and a calm, supportive presence to each transaction. With a genuine passion for helping families find their perfect home, Kristin is dedicated to making the real estate process as smooth and stress-free as possible.
 
 Her commitment to clear communication and personalized service ensures that every client feels informed and cared for from first showing to closing day.`}

@@ -1,12 +1,14 @@
 import type { Metadata } from "next"
 
-import { Header } from "@/components/header"
-import { FhaFeatures } from "@/components/fha-loan/fha-features"
-import { FhaHero } from "@/components/fha-loan/fha-hero"
-import { FhaQuoteForm } from "@/components/fha-loan/fha-quote-form"
-import { FhaTestimonials } from "@/components/fha-loan/fha-testimonials"
-import { FhaWhySplit } from "@/components/fha-loan/fha-why-split"
+import { FhaBuyerQuizSection } from "@/components/fha-loan/fha-buyer-quiz-section"
 import { FHA_FAQ_ITEMS } from "@/components/fha-loan/content"
+import { FhaFinalCta } from "@/components/fha-loan/fha-final-cta"
+import { FhaHero } from "@/components/fha-loan/fha-hero"
+import { FhaHowWeHelp } from "@/components/fha-loan/fha-how-we-help"
+import { FhaOpportunitySection } from "@/components/fha-loan/fha-opportunity-section"
+import { FhaTrustStrip } from "@/components/fha-loan/fha-trust-strip"
+import { FhaWhoFor } from "@/components/fha-loan/fha-who-for"
+import { Header } from "@/components/header"
 import { M2mCampaignFaq } from "@/components/m2m-campaign-faq"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { DivorceLandingFooter } from "@/components/navigating-divorce/divorce-landing-footer"
@@ -14,9 +16,9 @@ import { M2M_FUNNEL_PAGE_TESTIDS } from "@/lib/m2m-funnel-regression"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
 export const metadata: Metadata = m2mStandardMetadata({
-  title: "FHA Loans & Low Down Payments | Hampton Roads | Marching 2 More",
+  title: "FHA Loans & Down Payment Help | Hampton Roads | Marching 2 More",
   description:
-    "FHA basics for Hampton Roads buyers — credit nuances, low down payment context, mortgage insurance, and local inventory support from Marching 2 More.",
+    "FHA path for first-time and budget-conscious Hampton Roads buyers — low down payment context, flexible credit, grants/DPA coaching, and a no-cost consultation with Marching 2 More.",
   path: "/fha-loan",
 })
 
@@ -28,20 +30,22 @@ export default function FhaLoanPage() {
         id="main-content"
         data-testid={M2M_FUNNEL_PAGE_TESTIDS["/fha-loan"]}
         tabIndex={-1}
-        className="bg-white"
+        className="bg-white text-m2m-deep"
       >
         <FhaHero />
-        <FhaWhySplit />
-        <FhaFeatures />
-        <FhaTestimonials />
+        <FhaTrustStrip />
+        <FhaOpportunitySection />
+        <FhaHowWeHelp />
+        <FhaWhoFor />
+        <FhaBuyerQuizSection />
         <M2mCampaignFaq
           id="fha-faq-heading"
           variant="light"
-          eyebrow="FHA basics"
-          heading="Common questions"
+          eyebrow="FAQ"
+          heading="Straight answers before you apply"
           items={[...FHA_FAQ_ITEMS]}
         />
-        <FhaQuoteForm />
+        <FhaFinalCta />
         <M2mRelatedPages cluster="buy" omitHref="/fha-loan" variant="onLight" />
       </main>
       <DivorceLandingFooter />

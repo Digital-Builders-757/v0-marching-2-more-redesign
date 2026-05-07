@@ -103,12 +103,15 @@ export const VIDEO_SUBHEAD =
 export const YOUTUBE_EMBED_SRC =
   "https://www.youtube.com/embed/kFpsCfoem24?start=91" as const
 
-export const PLAYBOOK_HEADING = "Credit Improvement Playbook" as const
+/** Stable `iframe` title for `/improve-your-credit` quiz embed (a11y + Playwright). */
+export const CREDIT_QUIZ_IFRAME_TITLE = "Credit repair quiz — Marching 2 More" as const
+
+export const PLAYBOOK_HEADING = "Credit Repair Assessment" as const
 
 export const PLAYBOOK_PARAGRAPHS = [
-  "Marching 2 More helps you tie credit readiness to real offers and closing timelines — starting with practical steps delivered straight to your inbox.",
-  "You will hear from our team when it matters: what to prioritize first, questions to ask a loan officer, and how to spot errors on your report.",
-  "This guide is educational, not legal or credit repair advice — we connect you with the right specialists when needed.",
+  "Take five quick questions and see whether your profile lines up with urgent repair, steady building, or fine-tuning — then get clear next steps.",
+  "Marching 2 More serves Hampton Roads buyers with practical guidance (not legal credit repair services). When you need specialized help, we point you to trusted partners.",
+  "Everything stays confidential — there's no credit pull from this quiz.",
 ] as const
 
 export const PLAYBOOK_CARD_TITLE = "Tell us where to send your playbook." as const

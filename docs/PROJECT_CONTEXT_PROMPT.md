@@ -20,7 +20,7 @@ Campaign pages: often Header outlineCream + green main + DivorceLandingFooter; n
 
 Lead capture: POST /api/submit-lead, lib/ghl/*; phone and DOB optional on API; GHL failures return crm_* codes (see docs/M2M_GHL_OPERATOR_VERIFICATION.md §4).
 
-Static quizzes under public/quizzes/ POST to the same API; JS awaits the response and surfaces errors before showing success UI (downsizing main.js + quiz.html, navigating-divorce quiz.js). Foreclosure quiz block uses FacingForeclosureQuizFallbackLead when GOHIGHLEVEL_QUIZ_FORECLOSURE_URL is unset.
+Static quizzes under public/quizzes/ POST to the same API; JS awaits the response and surfaces errors before showing success UI (downsizing, navigating-divorce, credit-repair, fha-loan). /facing-foreclosure uses a unified seller form with foreclosure_intent (guide / speak_now / both), not a quiz block.
 
 Launch readiness write-up: docs/website-launch-hardening-report.md (client) · docs/internal-hardening-findings.md (engineering).
 

@@ -45,7 +45,7 @@ export function M2mBrandLogo({
       alt={alt}
       width={width}
       height={height}
-      className={cn(variantClass[variant], className)}
+      className={cn(variantClass[variant], "object-contain", className)}
       priority={priority}
     />
   )

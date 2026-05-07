@@ -1,6 +1,6 @@
 # Lead capture — route and surface matrix
 
-**Last updated:** 2026-05-05
+**Last updated:** 2026-05-07
 
 **API:** All production lead capture in this table posts **only** to `POST /api/submit-lead` (via `submitLeadToApi` in [`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts)). No GHL keys in the browser.
 
@@ -29,10 +29,10 @@ Marketing funnel copy can be foreclosure/divorce/downsizing, but payload routing
 | `/cma-form` | Seller | `app/cma-form/page` | Y | Y | Composed street / city / ZIP | Timeline radios (explicit choices) | Property condition, goals, etc. | Same as seller row; strong address + long notes when filled |
 | `/contact-us` | Buyer or seller (user) | `app/contact-us/page` | Y | Y | If seller path, optional | Full `M2mLeadUrgencySelect` | Free message | Tag + pipeline by lead type; **`?intent=buyer`** forces **buyer** CRM on sync; **`?intent=seller`** or **`?intent=consultation`** forces **seller**; other query params (e.g. UTMs) **do not** reset the radio — default first paint is **seller** |
 | `/downsizing-your-home` | Seller | (1) `DownsizingFallbackLead` (2) `DownsizingGuideForm` | Y | (1) Y (2) — | (1) optional (2) ship-to → `address` when set | (1) full (2) short-form default + options | (1) optional context (2) guide + instructions | Same as seller row; (2) may populate **Property Address** when ship-to set |
-| `/facing-foreclosure` | Seller | (1) `PreForeclosureForm` (2) `FacingForeclosureQuizFallbackLead` in quiz section when GHL embed unset | Y | (1) Y (2) — | (1) optional (2) — | (1) full (2) full | (1) message (2) fallback note prefix + message | Same as seller row; quiz iframe loads when `GOHIGHLEVEL_QUIZ_FORECLOSURE_URL` is live `https` |
+| `/facing-foreclosure` | Seller | `PreForeclosureUnifiedForm` (`pre-foreclosure-form.tsx`) — hero + final CTA | Y | — | Required (address or ZIP) | Intent-derived TEXT (`urgency`); **`foreclosure_intent`**: `guide` / `speak_now` / `both` | Optional message | Same as seller row; optional tags **`GHL_TAG_FORECLOSURE_INTENT_*`**; optional CF **`GHL_CF_FORECLOSURE_INTENT`**; on-screen + link PDF **`m2m-pre-foreclosure-guide.pdf`** |
 | `/improve-your-credit` | Buyer | `CreditPlaybookForm` | Y | Y | — | Full select (when planning to buy) | Playbook request + optional line | Same as buyer row; `source_path` `/improve-your-credit` |
 | `/va-loan-benefits` | Buyer | `VALeadForm` | Y | — | — | Short-form; passive default if unchanged | Message + VA line | Same as buyer row |
-| `/fha-loan` | Buyer | `FHAQuoteForm` | Y | — | — | Short-form | Subject + message | Same as buyer row |
+| `/fha-loan` | Buyer | `FhaBuyerQuizSection` (static `public/quizzes/fha-loan/` iframe when configured) | Y | — | — | Quiz timeline / intent | Structured quiz fields + optional notes | Same as buyer row; see FHA quiz payload in `lib/ghl` validation |
 | `/navigating-divorce` | Seller | `DivorceAerialLead` | Y | — | — | Short-form | Message + guide request | Same as seller row |
 | `/resources` | Buyer | `ResourcesChecklistForm` | Y | — | — | Short-form | Checklist request | Same as buyer row |
 
@@ -54,11 +54,10 @@ Marketing funnel copy can be foreclosure/divorce/downsizing, but payload routing
 | `components/free-home-valuation/valuation-seller-lead-form.tsx` | Seller | Y | Full select | Alert |
 | `components/downsizing-your-home/downsizing-fallback-lead.tsx` | Seller | Y | Full select | Alert |
 | `components/downsizing-your-home/downsizing-guide-form.tsx` | Seller | — | Short-form | Alert |
-| `components/facing-foreclosure/pre-foreclosure-form.tsx` | Seller | Y | Full select | Alert |
-| `components/facing-foreclosure/facing-foreclosure-quiz-fallback-lead.tsx` | Seller | — | Full select | Alert |
+| `components/facing-foreclosure/pre-foreclosure-form.tsx` | Seller | — | Intent-derived (`urgency`) | Alert |
 | `components/improve-your-credit/credit-playbook-form.tsx` | Buyer | Y | Full select | Alert |
 | `components/va-loan-benefits/va-lead-form.tsx` | Buyer | — | Short-form | Alert |
-| `components/fha-loan/fha-quote-form.tsx` | Buyer | — | Short-form | Alert |
+| `components/fha-loan/fha-buyer-quiz-section.tsx` | Buyer | — | Quiz-driven | Alert |
 | `components/navigating-divorce/divorce-aerial-lead.tsx` | Seller | — | Short-form | Alert |
 | `app/resources/resources-checklist-form.tsx` | Buyer | — | Short-form | Alert |
 | `components/contact.tsx` | User (interest) | — | Short-form | Alert |
