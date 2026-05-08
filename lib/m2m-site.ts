@@ -52,6 +52,19 @@ export const M2M_PUBLIC_BOOKING_FALLBACK_URL =
 /** @deprecated Prefer {@link M2M_PUBLIC_BOOKING_FALLBACK_URL} — same URL; name reflects historical Calendly use. */
 export const CALENDLY_BOOK_URL = M2M_PUBLIC_BOOKING_FALLBACK_URL
 
+/** Agent profile primary CTA — Google Calendar appointments (Donavan). Same raster as {@link M2M_PUBLIC_BOOKING_FALLBACK_URL}. */
+export const M2M_AGENT_BOOKING_URL_DONAVAN = M2M_PUBLIC_BOOKING_FALLBACK_URL
+
+/** Agent profile primary CTA — Roger Lee (Calendly). */
+export const M2M_AGENT_BOOKING_URL_ROGER = "https://calendly.com/rogerlee-1" as const
+
+/** Agent profile primary CTA — Kristin Allen (Google Calendar appointments). */
+export const M2M_AGENT_BOOKING_URL_KRISTIN =
+  "https://calendar.google.com/calendar/u/0/appointments/AcZssZ2HP5PacWlBDu7WID_KhKOcO2F7Nv1jjnavtis=" as const
+
+/** Agent profile primary CTA — Jalessa Hendricks (no public calendar yet). */
+export const M2M_AGENT_BOOKING_HREF_JALESSA = "mailto:js@marching2more.com" as const
+
 /**
  * GoHighLevel public booking/scheduling URL (single primary calendar link).
  * Prefer setting **`NEXT_PUBLIC_GOHIGHLEVEL_BOOKING_URL`** in Vercel so production uses GHL without a redeploy;

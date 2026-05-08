@@ -128,26 +128,26 @@ export default function ResourcesPage() {
             {/* Form */}
             <ResourcesChecklistForm />
 
-            <div className="mx-auto mt-14 max-w-3xl rounded-md border border-m2m-cream/20 bg-m2m-deep/25 px-4 py-4 sm:px-6">
+            <div className="mx-auto mt-14 max-w-3xl rounded-md border border-m2m-cream/20 bg-m2m-deep/25 px-4 py-5 sm:px-7 sm:py-6">
               <p
-                className="text-center text-[0.65rem] font-medium uppercase tracking-[0.18em] text-m2m-gold"
+                className="text-center text-[0.72rem] font-medium uppercase tracking-[0.17em] text-m2m-gold sm:text-[0.82rem]"
                 style={{ fontFamily: "var(--font-nav)" }}
               >
                 Guides on marching2more.com
               </p>
               <p
-                className="mt-2 text-center text-sm leading-relaxed text-m2m-cream/88"
+                className="mt-3 text-center text-base leading-relaxed text-m2m-cream/88 sm:text-lg"
                 style={{ fontFamily: "var(--font-sans)" }}
               >
                 Jump to the guide, tool, or proof that fits your next step, then come back here for the printable
                 checklist.
               </p>
-              <nav aria-label="Internal guides" className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2">
+              <nav aria-label="Internal guides" className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-3">
                 {internalGuides.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-xs text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold font-sans"
+                    className="text-sm text-m2m-cream underline decoration-m2m-gold/45 underline-offset-[6px] transition-colors hover:text-m2m-gold sm:text-base font-sans"
                   >
                     {item.label}
                   </Link>

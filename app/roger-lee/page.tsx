@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AgentProfile } from "@/components/team/agent-profile"
 import { M2M_MEDIA } from "@/lib/m2m-media"
+import { M2M_AGENT_BOOKING_URL_ROGER } from "@/lib/m2m-site"
 import { M2M_ROGER_INSTAGRAM_PERSONAL_URL } from "@/lib/m2m-team-social"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
@@ -22,6 +23,7 @@ export default function RogerLeeProfilePage() {
       <AgentProfile
         name="Roger Lee"
         firstName="Roger"
+        bookingHref={M2M_AGENT_BOOKING_URL_ROGER}
         role="Founding Partner"
         licenseNumber="0225-250-043"
         image={M2M_MEDIA.headshotRoger}

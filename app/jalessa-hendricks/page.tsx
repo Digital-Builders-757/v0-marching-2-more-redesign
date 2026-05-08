@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AgentProfile } from "@/components/team/agent-profile"
 import { M2M_MEDIA } from "@/lib/m2m-media"
+import { M2M_AGENT_BOOKING_HREF_JALESSA } from "@/lib/m2m-site"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
 export const metadata: Metadata = m2mStandardMetadata({
@@ -22,6 +23,7 @@ export default function JalessaHendricksProfilePage() {
       <AgentProfile
         name="Jalessa Hendricks"
         firstName="Jalessa"
+        bookingHref={M2M_AGENT_BOOKING_HREF_JALESSA}
         role="Licensed Agent"
         licenseNumber="022-527-4391"
         image={M2M_MEDIA.headshotJalessa}
