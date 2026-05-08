@@ -101,7 +101,12 @@ export function HomeSearchBuyerLead() {
         Licensed Virginia professionals · Veteran-owned · Five-star rated team — your info stays private and goes
         straight to our team (never sold).
       </div>
-      <p className="text-[0.62rem] font-nav uppercase tracking-[0.2em] text-m2m-gold">Want help from the team?</p>
+      <div>
+        <p className="text-[0.62rem] font-nav uppercase tracking-[0.2em] text-m2m-gold">Speak with an agent</p>
+        <p className="mt-2 text-sm leading-relaxed text-m2m-cream/92 font-sans">
+          Tell us what you&apos;re looking for in the form below — an agent will follow up to help with your search.
+        </p>
+      </div>
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-3">
         <input
           type="text"

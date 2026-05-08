@@ -55,13 +55,13 @@ Duplicate bytes (same photo in two places) are OK where called out below; intent
 | `m2m-downsizing-guide-callout-moving-optimism.png` | `public/images/downsizing/` | Downsizing | `downsizing-services.tsx` | Roadmap callout vignette |
 | `divorce-hero-hopeful-transition.jpg` | `public/images/divorce/` | Divorce | [`DIVORCE_HERO_BACKGROUND`](../components/navigating-divorce/content.ts), [`divorce-hero.tsx`](../components/navigating-divorce/divorce-hero.tsx) | Hero backdrop |
 | `divorce-couple-contemplative.jpg` | `public/images/divorce/` | Divorce | Collage slot `sellDuringDivorce` in [`content.ts`](../components/navigating-divorce/content.ts) | Collage — thoughtful moment |
-| `divorce-new-home-keys.jpg` | `public/images/divorce/` | Divorce | Collage slot `family`; [`AERIAL_BACKGROUND`](../components/navigating-divorce/content.ts) (`divorce-aerial-lead.tsx` full-bleed) | Collage — keys / next chapter; aerial lead section |
-| `divorce-modern-interior.jpg` | `public/images/divorce/` | Divorce | Collage slot `interior` in [`content.ts`](../components/navigating-divorce/content.ts) | Collage — home context |
+| `divorce-new-home-keys.jpg` | `public/images/divorce/` | Divorce | [`AERIAL_BACKGROUND`](../components/navigating-divorce/content.ts) (`divorce-aerial-lead.tsx` full-bleed) only | Aerial lead — keys / next chapter |
+| `divorce-modern-interior.jpg` | `public/images/divorce/` | Divorce | *(on disk; optional collage swap — not used in current collage)* | — |
 | `m2m-divorce-collage-consultant-documents-table.png` | `public/images/divorce/` | Divorce | Collage slot `legal` | Collage — documents / counsel |
 | `m2m-divorce-hero-mother-child-agent-consultation.png` | `public/images/divorce/` | Divorce | *(on disk; superseded for hero by `divorce-hero-hopeful-transition.jpg`)* | Archive / swap-in |
 | ~~`m2m-divorce-collage-family-front-lawn.png`~~ | — | — | *(retired)* | — |
-| `m2m-divorce-collage-multigen-porch-steps.png` | `public/images/divorce/` | Divorce | *(on disk; optional — not used in current collage)* | — |
-| `m2m-divorce-collage-photo-album-dining.png` | `public/images/divorce/` | Divorce | *(on disk; optional — not used in current collage; same lineage as downsizing hero asset)* | — |
+| `m2m-divorce-collage-multigen-porch-steps.png` | `public/images/divorce/` | Divorce | Collage slot `family` in [`content.ts`](../components/navigating-divorce/content.ts) | Collage — home / family transition |
+| `m2m-divorce-collage-photo-album-dining.png` | `public/images/divorce/` | Divorce | Collage slot `interior` in [`content.ts`](../components/navigating-divorce/content.ts) | Collage — memory / packing “revenge tactics” beat (same lineage as downsizing hero asset) |
 | `m2m-divorce-valuation-renovation-planning.png` | `public/images/divorce/` | Divorce | [`VALUATION_BACKGROUND`](../components/navigating-divorce/content.ts) full-bleed section |
 | ~~`m2m-divorce-aerial-evening-consult-home.png`~~ | — | — | *(retired — removed from repo; hand artifacts on consult plate)* | — |
 | `m2m-credit-family-planning-goals.png` | `public/images/credit/` | Crushing credit (`/improve-your-credit`) | [`credit-hero.tsx`](../components/improve-your-credit/credit-hero.tsx), homework collage via [`content.ts`](../components/improve-your-credit/content.ts) | Hero pillar + collage support |
@@ -76,7 +76,7 @@ Duplicate bytes (same photo in two places) are OK where called out below; intent
 | `investor-short-term-rental.jpg` | `public/images/investments/` | More investments | Same (`HERO_SLIDES` short-term top) — **on-topic STR** where delivery batch has no hospitality shot | Hero carousel |
 | Other `investor-*.jpg` (on disk) | `public/images/investments/` | — | Optional future carousel swaps | Reserve |
 
-**Duplicates on purpose:** Downsizing hero raster and retired divorce collage slot (`m2m-divorce-collage-photo-album-dining`, optional on disk) share lineage; credit **`m2m-credit-family-collaborative-home`** repeats the downsizing packing image for thematic alignment across buyer education flows.
+**Duplicates on purpose:** Downsizing hero raster and divorce collage slot `interior` (`m2m-divorce-collage-photo-album-dining`) share lineage; credit **`m2m-credit-family-collaborative-home`** repeats the downsizing packing image for thematic alignment across buyer education flows.
 
 **Responsive delivery:** Local photos under `public/images/` are referenced with `next/image` and **Next.js image optimization** (see `next.config.mjs` `images.remotePatterns` for allowed remote hosts). Prefer explicit `sizes` on `fill` images so mobile does not download desktop widths.
 
