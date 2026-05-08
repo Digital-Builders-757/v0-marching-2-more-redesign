@@ -22,6 +22,12 @@ type AgentProfileProps = {
   role: string
   licenseNumber?: string
   image: string
+  /** Primary CTA — calendar, Calendly, or `mailto:`. */
+  bookingHref: string
+  /** Override primary button label (default: Work with {firstName}). */
+  bookingLabel?: string
+  /** Secondary CTA — consultation request form (default: Book a consultation). */
+  consultationLabel?: string
   /** Tailwind object-position helpers, e.g. `object-[center_32%]` — align with team card crops. */
   imageObjectPosition?: string
   /** Optional zoom from wide plates — same knobs as `team-members` portrait cards. */
@@ -46,6 +52,9 @@ export function AgentProfile({
   role,
   licenseNumber,
   image,
+  bookingHref,
+  bookingLabel,
+  consultationLabel,
   imageObjectPosition,
   imageScaleClass,
   imageObjectStyle,
@@ -61,6 +70,11 @@ export function AgentProfile({
   const showPersonalInstagram =
     Boolean(personalIgHref) &&
     !instagramUrlsEquivalent(personalIgHref!, M2M_COMPANY_INSTAGRAM_URL)
+
+  const primaryCtaLabel = bookingLabel ?? `Work with ${firstName}`
+  const secondaryCtaLabel = consultationLabel ?? "Book a consultation"
+  const bookingOpensNewTab =
+    bookingHref.startsWith("https://") || bookingHref.startsWith("http://")
 
   const portraitShell =
     "relative isolate aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-sm bg-m2m-deep/[0.02] ring-1 ring-m2m-deep/[0.08] sm:max-w-[320px] lg:max-w-none"
@@ -123,23 +137,30 @@ export function AgentProfile({
               )}
 
               <div className="flex flex-col gap-3">
-                <Button variant="m2mPanel" asChild className="w-full justify-center rounded-sm px-6 py-4">
-                  <Link
-                    href="/contact-us?intent=buyer"
+                <Button variant="m2mGold" asChild className="w-full justify-center rounded-sm px-6 py-4">
+                  <a
+                    href={bookingHref}
                     className="touch-manipulation"
                     style={{ fontFamily: "var(--font-nav)" }}
+                    {...(bookingOpensNewTab
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    data-m2m-track="agent_booking"
+                    data-m2m-track-loc={`agent_profile_${firstName.toLowerCase()}`}
                   >
-                    Work with {firstName}
-                  </Link>
+                    {primaryCtaLabel}
+                  </a>
                 </Button>
 
-                <Button variant="m2mGold" asChild className="w-full justify-center rounded-sm px-6 py-4">
+                <Button variant="m2mPanel" asChild className="w-full justify-center rounded-sm px-6 py-4">
                   <Link
                     href={getConsultationRequestUrl()}
                     className="touch-manipulation"
                     style={{ fontFamily: "var(--font-nav)" }}
+                    data-m2m-track="agent_consultation_form"
+                    data-m2m-track-loc={`agent_profile_${firstName.toLowerCase()}`}
                   >
-                    Book a consultation
+                    {secondaryCtaLabel}
                   </Link>
                 </Button>
 

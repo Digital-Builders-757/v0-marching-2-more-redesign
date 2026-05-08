@@ -1,4 +1,5 @@
 import { Fragment } from "react"
+import Image from "next/image"
 
 import { M2mContainer } from "@/components/m2m-layout"
 
@@ -7,6 +8,8 @@ import {
   BENEFITS_HEADING,
   BENEFITS_INTRO,
   BENEFITS_LIST_INTRO,
+  BENEFITS_EDITORIAL_ALT,
+  BENEFITS_EDITORIAL_IMAGE,
   VA_BENEFIT_ITEMS,
 } from "./content"
 
@@ -26,6 +29,16 @@ export function VaBenefitsContent() {
         >
           {BENEFITS_HEADING}
         </h2>
+
+        <div className="relative mx-auto mt-10 aspect-[21/9] max-h-72 w-full overflow-hidden rounded-sm ring-1 ring-m2m-gold/25 sm:mt-12">
+          <Image
+            src={BENEFITS_EDITORIAL_IMAGE}
+            alt={BENEFITS_EDITORIAL_ALT}
+            fill
+            className="object-cover object-[center_35%]"
+            sizes="(min-width:1024px) 48rem, 100vw"
+          />
+        </div>
 
         <p
           className="mt-8 text-center text-base leading-relaxed text-m2m-cream/90 sm:text-lg"

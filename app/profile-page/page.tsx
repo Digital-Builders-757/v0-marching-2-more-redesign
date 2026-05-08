@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AgentProfile } from "@/components/team/agent-profile"
 import { M2M_MEDIA } from "@/lib/m2m-media"
+import { M2M_AGENT_BOOKING_URL_DONAVAN } from "@/lib/m2m-site"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
 export const metadata: Metadata = m2mStandardMetadata({
@@ -22,6 +23,7 @@ export default function DonavanProfilePage() {
       <AgentProfile
         name="Donavan McFadden"
         firstName="Donavan"
+        bookingHref={M2M_AGENT_BOOKING_URL_DONAVAN}
         role="Founding Partner"
         licenseNumber="0225-233-714"
         image={M2M_MEDIA.headshotDonavan}

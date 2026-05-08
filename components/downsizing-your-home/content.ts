@@ -6,13 +6,12 @@
 
 import { M2M_GUIDE_FORM_SECTION_ID } from "@/lib/m2m-guide-download"
 
-/** Hero — multi-generational family reflecting on memories during a planned move */
-export const HERO_BACKGROUND =
-  "/images/downsizing/m2m-downsizing-hero-family-photo-album-transition.png" as const
+/** Hero — client campaign art (downsizing transition) */
+export const HERO_BACKGROUND = "/images/downsizing/m2m-downsizing-client-hero.png" as const
 
 /** Editorial image — “signs” section supporting icon grid */
 export const PROBLEMS_SUPPORT_IMAGE =
-  "/images/downsizing/m2m-downsizing-signs-family-packing-kitchen.png" as const
+  "/images/downsizing/m2m-downsizing-client-problems-banner.png" as const
 
 /** Services column — professional consultation beside moving readiness */
 export const SERVICES_EDITORIAL_IMAGE =
