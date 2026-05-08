@@ -37,8 +37,8 @@ export const COLLAGE_IMAGES = {
 /** Full-bleed section backgrounds */
 export const VALUATION_BACKGROUND =
   "/images/divorce/m2m-divorce-valuation-renovation-planning.png" as const
-export const AERIAL_BACKGROUND =
-  "/images/divorce/m2m-divorce-aerial-evening-consult-home.png" as const
+/** Full-bleed behind aerial lead — keys / next-chapter tone; replaces retired consult plate. */
+export const AERIAL_BACKGROUND = "/images/divorce/divorce-new-home-keys.jpg" as const
 
 export const SUPPORT_PARAGRAPH =
   "This comprehensive resource offers valuable insights and expert advice on managing real estate matters during divorce proceedings." as const

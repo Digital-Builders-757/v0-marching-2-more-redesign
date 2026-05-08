@@ -44,7 +44,7 @@ Duplicate bytes (same photo in two places) are OK where called out below; intent
 | `m2m-home-sell-military-consultation-kitchen.png` | `public/images/site/` | Site-wide | [`components/sell-hero.tsx`](../components/sell-hero.tsx) | Sell band backdrop (`next/image`, lazy) |
 | `m2m-partners-consult-evening-home.png` | `public/images/site/` | Site-wide | [`components/partners.tsx`](../components/partners.tsx), [`components/improve-your-credit/content.ts`](../components/improve-your-credit/content.ts) (`TAKEAWAYS_BACKGROUND`), **`/fha-loan`** [`fha-loan/content.ts`](../components/fha-loan/content.ts) hero | Homepage partner circle; consult scene reused on FHA hero, credit takeaways backdrop |
 | `m2m-foreclosure-hero-woman-docs-kitchen.png` | `public/images/facing-foreclosure/` | Foreclosure | [`components/facing-foreclosure/pre-foreclosure-hero.tsx`](../components/facing-foreclosure/pre-foreclosure-hero.tsx) (`content.ts`) | Full-bleed hero |
-| `m2m-foreclosure-lead-renovation-planning.png` | `public/images/facing-foreclosure/` | Foreclosure | [`components/facing-foreclosure/pre-foreclosure-lead.tsx`](../components/facing-foreclosure/pre-foreclosure-lead.tsx) (`content.ts`) | Form pairing column |
+| `m2m-foreclosure-lead-renovation-planning.png` | `public/images/facing-foreclosure/` | Foreclosure | [`pre-foreclosure-lead.tsx`](../components/facing-foreclosure/pre-foreclosure-lead.tsx) (`content.ts`) | Form pairing column |
 | `m2m-foreclosure-guide-organize-finances.png` | `public/images/facing-foreclosure/` | Foreclosure | [`components/facing-foreclosure/pre-foreclosure-guide-carousel.tsx`](../components/facing-foreclosure/pre-foreclosure-guide-carousel.tsx) (`content.ts`) | Guide carousel slide 1 |
 | `m2m-foreclosure-guide-couple-planning-keys.png` | `public/images/facing-foreclosure/` | Foreclosure | Same | Guide carousel slide 2 |
 | `m2m-foreclosure-guide-timeline-professional.png` | `public/images/facing-foreclosure/` | Foreclosure | Same | Guide carousel slide 3 |
@@ -55,15 +55,15 @@ Duplicate bytes (same photo in two places) are OK where called out below; intent
 | `m2m-downsizing-guide-callout-moving-optimism.png` | `public/images/downsizing/` | Downsizing | `downsizing-services.tsx` | Roadmap callout vignette |
 | `divorce-hero-hopeful-transition.jpg` | `public/images/divorce/` | Divorce | [`DIVORCE_HERO_BACKGROUND`](../components/navigating-divorce/content.ts), [`divorce-hero.tsx`](../components/navigating-divorce/divorce-hero.tsx) | Hero backdrop |
 | `divorce-couple-contemplative.jpg` | `public/images/divorce/` | Divorce | Collage slot `sellDuringDivorce` in [`content.ts`](../components/navigating-divorce/content.ts) | Collage — thoughtful moment |
-| `divorce-new-home-keys.jpg` | `public/images/divorce/` | Divorce | Collage slot `family` | Collage — keys / next chapter |
-| `divorce-modern-interior.jpg` | `public/images/divorce/` | Divorce | Collage slot `interior` | Collage — home context |
+| `divorce-new-home-keys.jpg` | `public/images/divorce/` | Divorce | Collage slot `family`; [`AERIAL_BACKGROUND`](../components/navigating-divorce/content.ts) (`divorce-aerial-lead.tsx` full-bleed) | Collage — keys / next chapter; aerial lead section |
+| `divorce-modern-interior.jpg` | `public/images/divorce/` | Divorce | Collage slot `interior` in [`content.ts`](../components/navigating-divorce/content.ts) | Collage — home context |
 | `m2m-divorce-collage-consultant-documents-table.png` | `public/images/divorce/` | Divorce | Collage slot `legal` | Collage — documents / counsel |
 | `m2m-divorce-hero-mother-child-agent-consultation.png` | `public/images/divorce/` | Divorce | *(on disk; superseded for hero by `divorce-hero-hopeful-transition.jpg`)* | Archive / swap-in |
 | ~~`m2m-divorce-collage-family-front-lawn.png`~~ | — | — | *(retired)* | — |
 | `m2m-divorce-collage-multigen-porch-steps.png` | `public/images/divorce/` | Divorce | *(on disk; optional — not used in current collage)* | — |
 | `m2m-divorce-collage-photo-album-dining.png` | `public/images/divorce/` | Divorce | *(on disk; optional — not used in current collage; same lineage as downsizing hero asset)* | — |
 | `m2m-divorce-valuation-renovation-planning.png` | `public/images/divorce/` | Divorce | [`VALUATION_BACKGROUND`](../components/navigating-divorce/content.ts) full-bleed section |
-| `m2m-divorce-aerial-evening-consult-home.png` | `public/images/divorce/` | Divorce | [`AERIAL_BACKGROUND`](../components/navigating-divorce/content.ts) |
+| ~~`m2m-divorce-aerial-evening-consult-home.png`~~ | — | — | *(retired — removed from repo; hand artifacts on consult plate)* | — |
 | `m2m-credit-family-planning-goals.png` | `public/images/credit/` | Crushing credit (`/improve-your-credit`) | [`credit-hero.tsx`](../components/improve-your-credit/credit-hero.tsx), homework collage via [`content.ts`](../components/improve-your-credit/content.ts) | Hero pillar + collage support |
 | `m2m-credit-couple-plan-together.png` | `public/images/credit/` | Credit | Hero + collage + closing band | Hero pillar + collage + narrative band |
 | `m2m-credit-professional-consultation.png` | `public/images/credit/` | Credit | Hero + education homework strip | Hero pillar + education strip |
@@ -71,8 +71,10 @@ Duplicate bytes (same photo in two places) are OK where called out below; intent
 | `va-hero-military-homecoming.jpg` | `public/images/va-loan/` | VA benefits (`/va-loan-benefits`) | [`va-loan-benefits/content.ts`](../components/va-loan-benefits/content.ts) (`HERO_BACKGROUND`), [`va-hero.tsx`](../components/va-loan-benefits/va-hero.tsx) | Hero backdrop |
 | `va-cta-patriotic-home.jpg` | `public/images/va-loan/` | VA benefits | [`content.ts`](../components/va-loan-benefits/content.ts) (`CTA_BANNER_BACKGROUND`), [`va-cta-banner.tsx`](../components/va-loan-benefits/va-cta-banner.tsx) | CTA band / support |
 | `fha-quiz-guidance.jpg` | `public/images/fha-loan/` | FHA (`/fha-loan`) | [`fha-loan/content.ts`](../components/fha-loan/content.ts) (`FLAG_QUOTE_BACKGROUND`), [`fha-quote-form.tsx`](../components/fha-loan/fha-quote-form.tsx) | Quote form backdrop |
-| `fha-hero-first-time-buyer.jpg` | `public/images/fha-loan/` | FHA | *(present on disk; not referenced in `content.ts` — optional future swap)* | — |
-| `investor-*.jpg` (7 files; **`investor-fix-flip-property-focus`** = fix-and-flip slide photo) | `public/images/investments/` | More investments (`/more-investments`) | [`more-investments/content.ts`](../components/more-investments/content.ts) (`HERO_SLIDES`), [`investments-hero.tsx`](../components/more-investments/investments-hero.tsx), [`investments-hero-slides.tsx`](../components/more-investments/investments-hero-slides.tsx) | Hero carousel |
+| `fha-hero-first-time-buyer.jpg` | `public/images/fha-loan/` | FHA | *(present on disk; optional future `/fha-loan` hero swap)* | — |
+| `ChatGPT Image May 3, 2026, …AM.png` (subset; URL-encoded in code) | `public/images/_original-client-delivery/` | More investments (`/more-investments`) | [`more-investments/content.ts`](../components/more-investments/content.ts) (`HERO_SLIDES`) — **seven files**, chosen to match intro / fix-flip / multifamily / consultation beats | Hero carousel |
+| `investor-short-term-rental.jpg` | `public/images/investments/` | More investments | Same (`HERO_SLIDES` short-term top) — **on-topic STR** where delivery batch has no hospitality shot | Hero carousel |
+| Other `investor-*.jpg` (on disk) | `public/images/investments/` | — | Optional future carousel swaps | Reserve |
 
 **Duplicates on purpose:** Downsizing hero raster and retired divorce collage slot (`m2m-divorce-collage-photo-album-dining`, optional on disk) share lineage; credit **`m2m-credit-family-collaborative-home`** repeats the downsizing packing image for thematic alignment across buyer education flows.
 

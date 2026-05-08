@@ -351,15 +351,15 @@ export default function FreeHomeValuationPage() {
           </M2mContainer>
         </section>
 
-        {/* Bottom CTA Section */}
+        {/* Bottom CTA Section — distinct backdrop from top hero (`cma-hero`) */}
         <section className="relative overflow-hidden py-20 sm:py-24">
           {/* Background image */}
           <div className="absolute inset-0">
             <Image
-              src="/images/cma-hero.png"
+              src="/images/sell-with-confidence-bg.png"
               alt=""
               fill
-              className="object-cover"
+              className="object-cover object-[center_35%]"
               sizes="100vw"
             />
           </div>

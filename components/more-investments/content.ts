@@ -1,6 +1,7 @@
 /**
  * Copy and image URLs for `/more-investments`.
- * Updated with lifestyle + outcome-driven imagery that feels less stock, more real-world investor energy.
+ * Hero carousel: seven semantic picks from `public/images/_original-client-delivery/` (URL-encoded) plus
+ * one curated STR photo — each slot matches the slide topic (prep → fix/flip → multifamily → short-term).
  */
 
 export const INVESTMENTS_HERO_INTRO = {
@@ -15,9 +16,10 @@ export const HERO_SLIDES = [
     id: "intro",
     variant: "intro" as const,
     headlineLines: ["DIFFERENT", "TYPES OF", "REAL ESTATE", "INVESTING"] as const,
-    /** Wealth-building, strategic success imagery. */
-    centerImage: "/images/investments/investor-hero-wealth-building.jpg" as const,
-    centerImageAlt: "Successful real estate investor surveying investment properties",
+    /** Home goals, credit, and financing prep — “getting ready to invest.” */
+    centerImage:
+      "/images/_original-client-delivery/ChatGPT%20Image%20May%203%2C%202026%2C%2002_44_53%20AM.png" as const,
+    centerImageAlt: "Household reviewing credit, savings goals, and homeowner readiness on a laptop",
   },
   {
     id: "fix-flip",
@@ -25,14 +27,16 @@ export const HERO_SLIDES = [
     title: "FIX N' FLIP INVESTING",
     topLeftText:
       "PURCHASING A DISTRESSED PROPERTY, TYPICALLY AT A DISCOUNTED PRICE,",
-    topRightImage: "/images/investments/investor-fix-flip-property-focus.jpg" as const,
-    topRightAlt:
-      "Real estate investor reviewing property strategy and long-term wealth-building opportunities",
+    topRightImage:
+      "/images/_original-client-delivery/ChatGPT%20Image%20May%203%2C%202026%2C%2002_48_42%20AM.png" as const,
+    topRightAlt: "Investor and contractor reviewing blueprints and samples during an active renovation",
     bridgeText: "YOU CAN TURN TRASH...",
-    collageLeft: "/images/investments/investor-fix-flip-after.jpg" as const,
-    collageLeftAlt: "Beautifully renovated home interior",
-    collageRight: "/images/investments/investor-portfolio-success.jpg" as const,
-    collageRightAlt: "Successful investor reviewing portfolio",
+    collageLeft:
+      "/images/_original-client-delivery/ChatGPT%20Image%20May%203%2C%202026%2C%2002_48_58%20AM.png" as const,
+    collageLeftAlt: "Agent touring clients through a bright finished home after improvements",
+    collageRight:
+      "/images/_original-client-delivery/ChatGPT%20Image%20May%203%2C%202026%2C%2001_47_23%20AM.png" as const,
+    collageRightAlt: "Advisor and client reviewing floor plans and investment documents at a table",
     bridgeText2: "...INTO TREASURE!",
     bottomText:
       "WITH THE INTENTION OF RENOVATING OR IMPROVING DISTRESSED PROPERTIES AND THEN SELLING THEM QUICKLY, YOU CAN MAKE A SIZEABLE PROFIT.",
@@ -42,10 +46,12 @@ export const HERO_SLIDES = [
     variant: "multifamily" as const,
     title: "MULTI-FAMILY INVESTING",
     row1Text: "INVESTORS CAN LIVE IN ONE UNIT AND RENT OUT THE OTHERS",
-    row1Image: "/images/investments/investor-multifamily-property.jpg" as const,
-    row1Alt: "Modern multi-family residential investment property",
-    row2Image: "/images/investments/investor-hero-wealth-building.jpg" as const,
-    row2Alt: "Strategic investor surveying properties",
+    row1Image:
+      "/images/_original-client-delivery/ChatGPT%20Image%20May%203%2C%202026%2C%2001_53_10%20AM.png" as const,
+    row1Alt: "Advisor reviewing options with clients in a modern home with multi-unit neighborhood context",
+    row2Image:
+      "/images/_original-client-delivery/ChatGPT%20Image%20May%203%2C%202026%2C%2001_40_31%20AM.png" as const,
+    row2Alt: "Family on the lawn in front of a suburban home — live-in ownership with rental income in mind",
     row2Text: "ALLOWING THEM TO OFFSET THEIR OWN HOUSING EXPENSES WITH RENTAL INCOME.",
     summary:
       "MULTI-FAMILY INVESTING IS AN EXCELLENT WAY TO GENERATE MONTHLY CASH FLOW AND BUILD LONG-TERM WEALTH WITH REAL ESTATE.",
@@ -58,9 +64,10 @@ export const HERO_SLIDES = [
     labelB: "SHORT-TERM RENTAL PROPERTIES CAN BE LUCRATIVE REAL ESTATE INVESTMENTS",
     labelC: "THESE ARE GREAT TO HAVE IN AREAS WITH HIGH TOURIST DEMAND OR BUSINESS TRAVEL.",
     imageTop: "/images/investments/investor-short-term-rental.jpg" as const,
-    imageTopAlt: "Charming vacation rental property",
-    imageMain: "/images/investments/investor-portfolio-success.jpg" as const,
-    imageMainAlt: "Successful short-term rental investor",
+    imageTopAlt: "Inviting short-term or vacation-style rental property exterior",
+    imageMain:
+      "/images/_original-client-delivery/ChatGPT%20Image%20May%203%2C%202026%2C%2001_40_25%20AM.png" as const,
+    imageMainAlt: "Advisor walking through strategy at a kitchen table with plans and a laptop",
   },
 ] as const
 
