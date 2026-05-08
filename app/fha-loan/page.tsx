@@ -35,11 +35,11 @@ export default function FhaLoanPage() {
       >
         <FhaHero />
         <FhaTrustStrip />
+        <FhaBuyerQuizSection />
         <FhaEditorialImageBand />
         <FhaOpportunitySection />
         <FhaHowWeHelp />
         <FhaWhoFor />
-        <FhaBuyerQuizSection />
         <M2mCampaignFaq
           id="fha-faq-heading"
           variant="light"

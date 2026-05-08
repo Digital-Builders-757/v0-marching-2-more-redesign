@@ -28,7 +28,7 @@ type AgentProfileProps = {
   bookingLabel?: string
   /** Secondary CTA — consultation request form (default: Book a consultation). */
   consultationLabel?: string
-  /** Tailwind object-position helpers, e.g. `object-[center_32%]` — align with team card crops. */
+  /** Tailwind object-position override; default top-anchored `object-top` (keeps hairlines in frame). */
   imageObjectPosition?: string
   /** Optional zoom from wide plates — same knobs as `team-members` portrait cards. */
   imageScaleClass?: string
@@ -93,7 +93,7 @@ export function AgentProfile({
                   fill
                   priority
                   style={imageObjectStyle}
-                  className={cn("object-cover", imageObjectPosition, imageScaleClass)}
+                  className={cn("object-cover", imageObjectPosition ?? "object-top", imageScaleClass)}
                   sizes="(min-width: 1024px) 33vw, min(320px, 100vw)"
                 />
               </div>

@@ -104,6 +104,14 @@ test.describe("quiz / embed sections", () => {
     await expect(quiz.getByText(/you're not in a rush/i)).toBeVisible()
   })
 
+  test("more-investments: investor quiz iframe is served and visible", async ({ page, request }) => {
+    const res = await request.get("/quizzes/more-investments/index.html")
+    expect(res.ok()).toBeTruthy()
+    await page.goto("/more-investments")
+    await page.locator("#investor-tools").scrollIntoViewIfNeeded()
+    await expect(page.locator('iframe[src="/quizzes/more-investments/index.html"]')).toBeVisible()
+  })
+
   test("divorce: static quiz iframe + guide form present", async ({ page }) => {
     await page.goto("/navigating-divorce")
     await page.locator("#navigating-divorce-quiz").scrollIntoViewIfNeeded()

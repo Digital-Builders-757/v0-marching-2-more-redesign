@@ -56,12 +56,6 @@ export function M2mRelatedPages({
         >
           {def.intro}
         </p>
-        <p
-          className={`mt-3 max-w-2xl text-xs leading-relaxed ${isLight ? "text-m2m-deep/60" : "text-m2m-cream/65"}`}
-          style={{ fontFamily: "var(--font-sans)" }}
-        >
-          Same veteran-owned team, licensed in Virginia — every link stays on this site.
-        </p>
         <nav aria-label={`${def.title} links`} className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
           {links.map((l) => (
             <Link

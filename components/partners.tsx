@@ -24,7 +24,9 @@ export function Partners() {
           {/* Left - Text content */}
           <div className="flex-1">
             {/* Kicker */}
-            <p className="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-m2m-gold font-nav">You&apos;re in great hands.</p>
+            <p className="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-m2m-gold-dim font-nav">
+              You&apos;re in great hands.
+            </p>
 
             {/* Headline */}
             <h2
@@ -65,11 +67,14 @@ export function Partners() {
                 href={partner.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="break-words text-sm text-m2m-gold transition-colors hover:text-m2m-gold-lt font-nav"
+                className="break-words text-sm font-medium text-m2m-deep underline decoration-m2m-gold/45 underline-offset-[5px] transition-colors hover:text-m2m-gold-dim hover:decoration-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold font-nav"
               >
                 {partner.name} &rsaquo;
               </a>
-              <span className="text-xs italic text-m2m-muted" style={{ fontFamily: "var(--font-sans)" }}>
+              <span
+                className="text-xs not-italic text-m2m-deep/75"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
                 {partner.service}
               </span>
             </div>

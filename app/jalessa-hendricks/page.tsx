@@ -27,7 +27,6 @@ export default function JalessaHendricksProfilePage() {
         role="Licensed Agent"
         licenseNumber="022-527-4391"
         image={M2M_MEDIA.headshotJalessa}
-        imageObjectPosition="object-[center_28%]"
         email="Jalessa@marching2more.com"
         bio={`Jalessa Hendricks is a proud Hampton Roads native, dedicated mother, and VCU alum who brings a unique blend of heart, precision, and purpose to the Marching 2 More team. With a background in Chemistry and Biology, she approaches real estate the same way she approached the lab: with attention to detail, a steady hand, and a commitment to getting every step of the process right.
 

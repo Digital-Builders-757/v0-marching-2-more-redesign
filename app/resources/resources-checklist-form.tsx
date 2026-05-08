@@ -87,9 +87,11 @@ export function ResourcesChecklistForm() {
 
   return (
     <form
-      className="mx-auto mt-10 max-w-3xl rounded-lg bg-white/90 p-6 backdrop-blur-sm md:p-8"
+      id="listing-guide-form"
+      className="mx-auto mt-10 max-w-3xl scroll-mt-28 rounded-lg bg-white/90 p-6 backdrop-blur-sm md:p-8 md:scroll-mt-32"
       onSubmit={handleSubmit}
       aria-busy={submitting}
+      aria-label="Request the printable pre-listing checklist"
     >
       {submitError ? <M2mLeadSubmitErrorAlert failure={submitError} variant="onLight" className="mb-4 w-full" /> : null}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

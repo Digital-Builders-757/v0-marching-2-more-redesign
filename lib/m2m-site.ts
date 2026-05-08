@@ -136,8 +136,8 @@ export const GOHIGHLEVEL_QUIZ_DOWNSIZING_URL = "/quizzes/downsizing-your-home/qu
 /** Local static quiz — `/fha-loan` buyer quiz (`public/quizzes/fha-loan/index.html`). */
 export const GOHIGHLEVEL_QUIZ_FHA_LOAN_URL = "/quizzes/fha-loan/index.html" as const
 export const GOHIGHLEVEL_QUIZ_FORECLOSURE_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_FORECLOSURE_URL" as const
-/** Investor readiness / education quiz (e.g. GHL survey) — `/more-investments#investor-tools`. */
-export const GOHIGHLEVEL_QUIZ_INVESTOR_URL = "REPLACE_WITH_GOHIGHLEVEL_QUIZ_INVESTOR_URL" as const
+/** Local static quiz — `/more-investments` investor path (`public/quizzes/more-investments/index.html`). */
+export const GOHIGHLEVEL_QUIZ_INVESTOR_URL = "/quizzes/more-investments/index.html" as const
 /** Static divorce quiz embed — `/navigating-divorce` (`public/quizzes/navigating-divorce/index.html`). */
 export const GOHIGHLEVEL_QUIZ_NAVIGATING_DIVORCE_URL = "/quizzes/navigating-divorce/index.html" as const
 /** @deprecated VA assessment is inline React on `/va-loan-benefits`. Optional GHL-hosted replacement only. */

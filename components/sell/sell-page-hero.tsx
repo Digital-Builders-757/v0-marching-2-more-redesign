@@ -114,14 +114,14 @@ export function SellPageHero() {
           </a>
           <Link
             href="#checklist"
-            className="inline-block w-full border border-m2m-gold/45 px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+            className="inline-block w-full rounded-sm border border-white/25 bg-m2m-deep/82 px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream [text-shadow:0_2px_12px_rgba(5,13,6,0.72)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_24px_-8px_rgba(5,13,6,0.55)] backdrop-blur-sm transition-all duration-300 hover:border-m2m-gold/75 hover:bg-m2m-deep/90 hover:text-m2m-cream sm:w-auto"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Pre-Listing Checklist
           </Link>
           <a
             href={M2M_PHONE_HREF}
-            className="inline-block w-full border border-white/10 px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-muted-lt transition-all duration-300 hover:border-m2m-muted-lt hover:text-m2m-cream sm:w-auto"
+            className="inline-block w-full rounded-sm border border-white/22 bg-m2m-deep/82 px-10 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream [text-shadow:0_2px_12px_rgba(5,13,6,0.72)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_24px_-8px_rgba(5,13,6,0.55)] backdrop-blur-sm transition-all duration-300 hover:border-m2m-gold/55 hover:bg-m2m-deep/90 sm:w-auto"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             {M2M_PHONE_DISPLAY}

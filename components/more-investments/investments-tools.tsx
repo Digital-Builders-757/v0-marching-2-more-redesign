@@ -18,6 +18,7 @@ export function InvestmentsTools() {
   return (
     <div id={INVESTOR_TOOLS_SECTION_ID} className="scroll-mt-28 border-b border-m2m-gold/15">
       <M2mLeadQuizSection
+        id="investor-quiz"
         title={INVESTOR_TOOLS_QUIZ_TITLE}
         description={
           <p className="text-m2m-cream/88 font-sans">
@@ -25,14 +26,27 @@ export function InvestmentsTools() {
           </p>
         }
         embedSrc={GOHIGHLEVEL_QUIZ_INVESTOR_URL}
+        embedTitle="Investor path quiz"
         embedVariant="tall"
         ctaHref={GOHIGHLEVEL_QUIZ_INVESTOR_URL}
         ctaLabel="Open investor quiz"
         className="border-0 pb-10 md:pb-12"
         footnote={
           <>
-            Hosted in GoHighLevel when <code className="text-[0.8rem] text-m2m-gold">GOHIGHLEVEL_QUIZ_INVESTOR_URL</code>{" "}
-            is configured in lib/m2m-site.ts.
+            Quiz submissions use the same secure{" "}
+            <code className="text-[0.8rem] text-m2m-gold-lt">POST /api/submit-lead</code> pipeline as other Marching 2 More
+            forms—nothing posts to a third-party webhook from your browser. Prefer to talk first? Call{" "}
+            <a className="text-m2m-gold-lt underline decoration-m2m-gold/55 underline-offset-4" href={M2M_PHONE_HREF}>
+              {M2M_PHONE_DISPLAY}
+            </a>{" "}
+            or{" "}
+            <Link
+              href="/contact-us?intent=consultation"
+              className="text-m2m-gold-lt underline decoration-m2m-gold/55 underline-offset-4"
+            >
+              contact the team
+            </Link>
+            .
           </>
         }
       />
@@ -79,7 +93,8 @@ export function InvestmentsTools() {
           </div>
 
           <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-m2m-cream/65 font-sans">
-            The BRRRR analyzer runs on-site; hosted quizzes stay in GoHighLevel until each tool has a permanent embed URL.
+            The BRRRR analyzer runs on-site below; the investor quiz above uses the same secure lead API as our other
+            assessment tools.
           </p>
 
           <div className="mx-auto mt-10 max-w-2xl text-center">
