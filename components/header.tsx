@@ -1,9 +1,9 @@
 "use client"
 
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useEffect, useState, type MouseEvent } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Menu, X } from "lucide-react"
 
 import { M2mBrandLogo } from "@/components/m2m-brand-logo"
@@ -23,8 +23,18 @@ export type HeaderProps = {
   consultationCtaVariant?: "default" | "outlineCream"
 }
 
+function goHomeTop(e: MouseEvent<HTMLAnchorElement>, pathname: string | null) {
+  if (pathname === "/") {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: "smooth" })
+    return true
+  }
+  return false
+}
+
 export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
   const router = useRouter()
+  const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuSearchQuery, setMenuSearchQuery] = useState("")
   const [menuSearchNoMatch, setMenuSearchNoMatch] = useState(false)
@@ -80,7 +90,12 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
       <div className="relative z-[70] mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-3" aria-label="Marching 2 More - Home">
+          <Link
+            href="/"
+            className="flex items-center gap-3"
+            aria-label="Marching 2 More - Home"
+            onClick={(e) => goHomeTop(e, pathname)}
+          >
             <M2mBrandLogo variant="header" priority />
 
             {/* Wix parity: brand text links */}
@@ -239,7 +254,10 @@ export function Header({ consultationCtaVariant = "default" }: HeaderProps) {
                     <Link
                       href={link.href}
                       className="flex min-h-12 items-center rounded-md px-3 py-3 text-[0.95rem] font-medium leading-snug tracking-wide text-m2m-cream transition hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-m2m-gold/40"
-                      onClick={() => setMenuOpen(false)}
+                      onClick={(e) => {
+                        if (link.href === "/") goHomeTop(e, pathname)
+                        setMenuOpen(false)
+                      }}
                       style={{ fontFamily: "var(--font-nav)" }}
                     >
                       {link.label}
