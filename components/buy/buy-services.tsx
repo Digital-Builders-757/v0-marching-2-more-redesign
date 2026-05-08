@@ -44,7 +44,7 @@ export function BuyServices() {
         {/* Header */}
         <div className="max-w-3xl mb-16" data-gsap="blur-in">
           <p 
-            className="text-sm tracking-[0.3em] uppercase text-m2m-gold mb-4"
+            className="text-sm tracking-[0.3em] uppercase text-m2m-deep/75 mb-4"
             style={{ fontFamily: 'var(--font-nav)' }}
           >
             Why Buy With Us
@@ -73,7 +73,7 @@ export function BuyServices() {
               data-gsap="fade-up"
               data-gsap-delay={index * 0.1}
             >
-              <service.icon className="w-8 h-8 text-m2m-gold mb-6" strokeWidth={1.5} />
+              <service.icon className="w-8 h-8 text-m2m-gold-dim mb-6" strokeWidth={1.5} />
               <h3 
                 className="text-lg text-m2m-deep mb-3"
                 style={{ fontFamily: 'var(--font-display)' }}

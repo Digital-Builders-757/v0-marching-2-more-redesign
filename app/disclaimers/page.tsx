@@ -3,30 +3,30 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
-import { AccessibilityStatementContent } from "@/components/policy/accessibility-statement-content"
+import { DisclaimersContent } from "@/components/policy/disclaimers-content"
 import { PolicyPage } from "@/components/policy/policy-page"
 import { M2M_SITE_ORIGIN } from "@/lib/m2m-site"
 import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 
 export const metadata: Metadata = m2mStandardMetadata({
-  title: "Accessibility Statement | Marching 2 More",
+  title: "Disclaimers | Marching 2 More",
   description:
-    "Marching 2 More commitment to web accessibility, feedback channels, WCAG-aligned practices, and how to reach us.",
-  path: "/accessibility-statement",
+    "General disclaimers for marching2more.com including external links, professional information, and testimonials.",
+  path: "/disclaimers",
 })
 
-export default function AccessibilityStatementPage() {
+export default function DisclaimersPage() {
   return (
     <>
       <Header />
       <GSAPAnimations />
       <PolicyPage
-        title="Accessibility Statement"
+        title="Disclaimers"
         lastUpdated="January 1, 2024"
-        sourceUrl={`${M2M_SITE_ORIGIN}/accessibility-statement`}
+        sourceUrl={`${M2M_SITE_ORIGIN}/disclaimers`}
         showLegacyMigrationNotice={false}
       >
-        <AccessibilityStatementContent />
+        <DisclaimersContent />
       </PolicyPage>
       <Footer />
     </>

@@ -24,7 +24,7 @@ export function SellHero() {
         const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height)
         // Move from left to right slowly (up to 50px)
         const parallaxOffset = scrollProgress * 50
-        image.style.transform = `translateX(${parallaxOffset}px) scale(1.1)`
+        image.style.transform = `translateX(${parallaxOffset}px) translateY(6%) scale(1.1)`
       }
     }
 
@@ -43,10 +43,10 @@ export function SellHero() {
       {/* Background image with parallax */}
       <div
         ref={imageRef}
-        className="absolute inset-[-10%] z-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        className="absolute inset-[-10%] z-0 bg-cover bg-top bg-no-repeat will-change-transform"
         style={{
           backgroundImage: "url('/images/sell-with-confidence-bg.png')",
-          transform: "translateX(0) scale(1.1)",
+          transform: "translateX(0) translateY(6%) scale(1.1)",
         }}
       />
       {/* Dark overlay for text readability */}
@@ -115,7 +115,7 @@ export function SellHero() {
                 <Link
                   href="/free-home-valuation"
                   data-gsap="magnetic"
-                  className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-lg border border-m2m-gold/40 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
+                  className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-lg border border-white/25 bg-m2m-deep/80 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream [text-shadow:0_2px_12px_rgba(5,13,6,0.65)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-300 hover:border-m2m-gold/70 hover:bg-m2m-deep/90 hover:text-m2m-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Learn More
@@ -125,7 +125,7 @@ export function SellHero() {
                 <Link
                   href="/sell#checklist"
                   data-gsap="magnetic"
-                  className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-lg border border-m2m-gold/40 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
+                  className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center rounded-lg border border-white/25 bg-m2m-deep/80 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream [text-shadow:0_2px_12px_rgba(5,13,6,0.65)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-300 hover:border-m2m-gold/70 hover:bg-m2m-deep/90 hover:text-m2m-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get The Pre-Listing Checklist

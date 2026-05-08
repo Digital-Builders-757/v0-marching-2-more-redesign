@@ -7,6 +7,7 @@ export type M2mPublicTeamMember = {
   subtitle: string
   image: string
   href?: string
+  /** Override only when a source photo needs a tweak; default is top-anchored `object-top` in the card. */
   imageObjectPosition?: string
   imageScaleClass?: string
   imageObjectStyle?: Pick<CSSProperties, "objectPosition">
@@ -19,27 +20,23 @@ export const M2M_TEAM_MEMBERS_PUBLIC: M2mPublicTeamMember[] = [
     subtitle: "Founding Partner • Licensed Agent",
     image: M2M_MEDIA.headshotDonavan,
     href: "/profile-page",
-    imageObjectPosition: "object-[center_32%]",
   },
   {
     name: "Roger Lee",
     subtitle: "Founding Partner • Licensed Agent",
     image: M2M_MEDIA.headshotRoger,
     href: "/roger-lee",
-    imageObjectPosition: "object-[center_30%]",
   },
   {
     name: "Kristin Allen",
     subtitle: "Licensed Agent",
     image: M2M_MEDIA.headshotKristin,
     href: "/kristin-s-profile",
-    imageObjectPosition: "object-[center_32%]",
   },
   {
     name: "Jalessa Hendricks",
     subtitle: "Licensed Agent",
     image: M2M_MEDIA.headshotJalessa,
     href: "/jalessa-hendricks",
-    imageObjectPosition: "object-[center_28%]",
   },
 ]

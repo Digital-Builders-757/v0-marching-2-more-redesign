@@ -9,7 +9,7 @@ export function HomeTopicNav() {
       <M2mContainer>
         <h2
           id="home-topic-nav-heading"
-          className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-m2m-gold"
+          className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-m2m-deep/80"
           style={{ fontFamily: "var(--font-nav)" }}
         >
           How we help in Hampton Roads
@@ -30,7 +30,7 @@ export function HomeTopicNav() {
               href={l.href}
               data-m2m-track="home_topic_link"
               data-m2m-track-loc={l.href}
-              className="inline-flex min-h-11 items-center rounded-full border border-m2m-deep/10 bg-white/70 px-4 py-2.5 text-xs font-medium text-m2m-deep shadow-sm transition-colors hover:border-m2m-gold/30 hover:bg-white hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-panel sm:px-5 sm:text-sm font-sans touch-manipulation"
+              className="inline-flex min-h-11 items-center rounded-full border border-m2m-deep/10 bg-white/70 px-4 py-2.5 text-xs font-medium text-m2m-deep shadow-sm transition-colors hover:border-m2m-deep/22 hover:bg-white hover:text-m2m-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-panel sm:px-5 sm:text-sm font-sans touch-manipulation"
             >
               {l.label}
             </Link>

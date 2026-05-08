@@ -6,7 +6,6 @@ import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
 
-import { HomeSearchBuyerLead } from "@/components/home-search/home-search-buyer-lead"
 import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
 import { M2mRelatedPages } from "@/components/m2m-related-pages"
 import { REALSCOUT_HOME_VALUATION_URL, REALSCOUT_MAP_SEARCH_URL } from "@/lib/m2m-site"
@@ -15,7 +14,7 @@ import { m2mStandardMetadata } from "@/lib/m2m-seo-metadata"
 export const metadata: Metadata = m2mStandardMetadata({
   title: "Home Search & Buyer Help | Hampton Roads | Marching 2 More",
   description:
-    "Search Hampton Roads listings (Norfolk, Virginia Beach, Chesapeake, and beyond) or tell us what you need — PCS moves, VA loans, and buyer support from Marching 2 More.",
+    "Search Hampton Roads listings (Norfolk, Virginia Beach, Chesapeake, and beyond), connect with our team about buying or VA loans, and find seller checklist resources on Marching 2 More.",
   path: "/home-search",
   openGraphTitle: "Home Search & Buyer Help | Marching 2 More",
 })
@@ -77,8 +76,16 @@ export default function HomeSearchPage() {
                     >
                       Start Your Search
                     </a>
+                    <Link
+                      href="/contact-us?intent=buyer"
+                      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center border border-m2m-gold/50 bg-m2m-deep/25 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream shadow-[0_2px_14px_-4px_rgba(5,13,6,0.35)] transition hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
+                      style={{ fontFamily: "var(--font-nav)" }}
+                      data-m2m-track="home_search_speak_agent"
+                      data-m2m-track-loc="/home-search"
+                    >
+                      Speak With an Agent
+                    </Link>
                   </div>
-                  <HomeSearchBuyerLead />
                 </div>
 
                 {/* Right column - Sell */}
@@ -93,7 +100,7 @@ export default function HomeSearchPage() {
                     className="mt-6 max-w-md text-[0.95rem] sm:text-sm leading-relaxed text-m2m-cream [text-shadow:0_1px_10px_rgba(5,13,6,0.45)]"
                     style={{ fontFamily: "var(--font-sans)" }}
                   >
-                    Get a free home evaluation online, and request our comprehensive listing guide when you connect with the team.
+                    Get a free home evaluation online—request our comprehensive listing guide on the Seller Resources page.
                   </p>
                   <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:flex-wrap sm:gap-4">
                     <a
@@ -106,9 +113,11 @@ export default function HomeSearchPage() {
                       Free Home Evaluation
                     </a>
                     <Link
-                      href="/sell#checklist"
+                      href="/resources#listing-guide-form"
                       className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center border border-m2m-gold/50 bg-m2m-deep/25 px-8 py-4 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-m2m-cream shadow-[0_2px_14px_-4px_rgba(5,13,6,0.35)] transition hover:border-m2m-gold hover:text-m2m-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold sm:w-auto"
                       style={{ fontFamily: "var(--font-nav)" }}
+                      data-m2m-track="home_search_listing_guide_resources"
+                      data-m2m-track-loc="/home-search"
                     >
                       Free Listing Guide
                     </Link>

@@ -60,7 +60,7 @@ export function Hero() {
 
         <M2mContainer className="relative z-10 flex max-w-3xl flex-col justify-center pb-14 pt-24 sm:pt-28 lg:pt-32">
         <div
-          className="flex max-w-full flex-col gap-2 text-[0.6rem] tracking-[0.22em] text-m2m-gold sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-2 sm:text-[0.65rem] sm:tracking-[0.3em]"
+          className="flex max-w-full flex-col gap-2 text-[0.6rem] tracking-[0.22em] text-m2m-gold sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-2 sm:text-[0.65rem] sm:tracking-[0.3em] [text-shadow:0_2px_12px_rgba(5,13,6,0.82)]"
           style={{ fontFamily: "var(--font-nav)" }}
         >
           <span className="flex shrink-0 items-center gap-3">
@@ -105,7 +105,7 @@ export function Hero() {
             data-m2m-track="hero_work_with_us"
             data-m2m-track-loc="home_hero"
             aria-label="Work with Marching 2 More — contact us as a buyer"
-            className="flex min-h-12 w-full items-center justify-center px-9 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream shadow-[0_4px_18px_-6px_rgba(5,13,6,0.45)] transition-all duration-300 border border-m2m-gold/45 hover:border-m2m-gold hover:text-m2m-gold hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold touch-manipulation"
+            className="flex min-h-12 w-full items-center justify-center rounded-sm border border-white/25 bg-m2m-deep/78 px-9 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream [text-shadow:0_2px_12px_rgba(5,13,6,0.7)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_24px_-8px_rgba(5,13,6,0.5)] backdrop-blur-sm transition-all duration-300 hover:border-m2m-gold/70 hover:bg-m2m-deep/88 hover:text-m2m-cream hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-m2m-gold touch-manipulation"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             Work With Us

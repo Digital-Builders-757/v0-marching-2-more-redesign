@@ -13,7 +13,7 @@ export function PropertySearch() {
           {/* Left column - Text content */}
           <div className="flex-1 flex flex-col gap-6 lg:pl-8">
             {/* Kicker */}
-            <p className="text-[0.65rem] uppercase tracking-[0.3em] text-m2m-gold font-nav">Find Your New Home</p>
+            <p className="text-[0.65rem] uppercase tracking-[0.3em] text-m2m-deep/75 font-nav">Find Your New Home</p>
 
             {/* Heading */}
             <h2

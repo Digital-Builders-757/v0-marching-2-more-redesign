@@ -86,7 +86,7 @@ export function Valuation() {
                 <Link
                   href="/free-home-valuation"
                   data-gsap="magnetic"
-                  className="inline-block w-full rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+                  className="inline-block w-full rounded-lg border border-white/25 bg-m2m-deep/80 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream [text-shadow:0_2px_12px_rgba(5,13,6,0.65)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-300 hover:border-m2m-gold/70 hover:bg-m2m-deep/90 hover:text-m2m-cream sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Learn More
@@ -96,7 +96,7 @@ export function Valuation() {
                 <Link
                   href="/sell#checklist"
                   data-gsap="magnetic"
-                  className="inline-block w-full rounded-lg border border-m2m-gold/20 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream transition-all duration-300 hover:border-m2m-gold hover:text-m2m-gold sm:w-auto"
+                  className="inline-block w-full rounded-lg border border-white/25 bg-m2m-deep/80 px-8 py-4 text-center text-[0.7rem] uppercase tracking-[0.2em] text-m2m-cream [text-shadow:0_2px_12px_rgba(5,13,6,0.65)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-300 hover:border-m2m-gold/70 hover:bg-m2m-deep/90 hover:text-m2m-cream sm:w-auto"
                   style={{ fontFamily: 'var(--font-nav)' }}
                 >
                   Get The Pre-Listing Checklist

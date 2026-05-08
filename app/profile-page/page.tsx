@@ -27,7 +27,8 @@ export default function DonavanProfilePage() {
         role="Founding Partner"
         licenseNumber="0225-233-714"
         image={M2M_MEDIA.headshotDonavan}
-        imageObjectPosition="object-[center_32%]"
+        /** Portrait crop — nudge raster down slightly so forehead/hair clears the rounded frame edge. */
+        imageScaleClass="translate-y-[5%]"
         email="Donavan@marching2more.com"
         linkedin="https://www.linkedin.com/in/donavan-mcfadden"
         instagramPersonal="https://www.instagram.com/mr.marching2more/"

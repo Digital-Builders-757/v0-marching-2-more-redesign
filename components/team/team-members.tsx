@@ -22,7 +22,11 @@ export function M2mTeamMemberCard({ member }: { member: M2mPublicTeamMember }) {
             src={member.image}
             alt={member.name}
             fill
-            className={cn("object-cover", member.imageObjectPosition, member.imageScaleClass)}
+            className={cn(
+              "object-cover",
+              member.imageObjectPosition ?? "object-top",
+              member.imageScaleClass,
+            )}
             style={member.imageObjectStyle}
             sizes="(min-width: 640px) 176px, 220px"
           />
@@ -32,12 +36,12 @@ export function M2mTeamMemberCard({ member }: { member: M2mPublicTeamMember }) {
           <h3 className="mb-1 text-xl text-m2m-deep" style={{ fontFamily: "var(--font-display)" }}>
             {member.name}
           </h3>
-          <p className="text-sm text-m2m-gold" style={{ fontFamily: "var(--font-nav)" }}>
+          <p className="text-sm text-m2m-deep/75" style={{ fontFamily: "var(--font-nav)" }}>
             {member.subtitle}
           </p>
 
           {member.href ? (
-            <div className="mt-4 inline-flex items-center gap-2 text-[0.65rem] tracking-[0.2em] uppercase text-m2m-muted transition-colors group-hover:text-m2m-gold">
+            <div className="mt-4 inline-flex items-center gap-2 text-[0.65rem] tracking-[0.2em] uppercase text-m2m-muted transition-colors group-hover:text-m2m-deep">
               View Profile <ArrowRight className="h-3 w-3" />
             </div>
           ) : null}

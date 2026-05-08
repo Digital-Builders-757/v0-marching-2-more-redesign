@@ -26,7 +26,8 @@ export default function KristinProfilePage() {
         bookingHref={M2M_AGENT_BOOKING_URL_KRISTIN}
         role="Licensed Agent"
         image={M2M_MEDIA.headshotKristin}
-        imageObjectPosition="object-[center_32%]"
+        /** Portrait crop — nudge raster down slightly so forehead/hair clears the rounded frame edge. */
+        imageScaleClass="translate-y-[5%]"
         email="Kristin@marching2more.com"
         linkedin="https://www.linkedin.com/in/driven2solutions"
         bio={`Kristin Allen brings thoughtful attention to detail and a calm, supportive presence to each transaction. With a genuine passion for helping families find their perfect home, Kristin is dedicated to making the real estate process as smooth and stress-free as possible.
