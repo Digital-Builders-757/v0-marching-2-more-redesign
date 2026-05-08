@@ -9,8 +9,8 @@ export const VA_QUIZ_HEADING = "Is a VA Loan Your Best Next Step?" as const
 export const VA_QUIZ_DESCRIPTION =
   "Five quick questions to see where you stand with your VA benefit and what to do next — no pressure, just clarity." as const
 
-/** Hero — military homebuying, service, trust, and forward movement. */
-export const HERO_BACKGROUND = "/images/va-loan/va-hero-military-homecoming.jpg" as const
+/** Hero — client campaign: military family at home in Hampton Roads. */
+export const HERO_BACKGROUND = "/images/va-loan/m2m-va-client-hero.png" as const
 
 export const HERO_KICKER = "Know Your Benefits" as const
 export const HERO_TITLE = "VA LOAN" as const
@@ -46,8 +46,13 @@ export const VA_BENEFIT_ITEMS = [
 export const BENEFITS_CLOSING =
   "The Marching 2 More Real Estate Team is proud to support military families with clear guidance and steady advocacy—aligned with the spirit of the VA home loan program. By helping you access these benefits, we work to empower veterans and their families on the path to homeownership, with greater security, stability, and confidence in Hampton Roads and beyond." as const
 
-/** CTA banner — patriotic / service imagery with American flag and home. */
-export const CTA_BANNER_BACKGROUND = "/images/va-loan/va-cta-patriotic-home.jpg" as const
+/** CTA banner — client campaign: keys and closing moment with the team. */
+export const CTA_BANNER_BACKGROUND = "/images/va-loan/m2m-va-client-cta.png" as const
+
+/** Editorial image above benefits list — client campaign: consult at home with servicemember. */
+export const BENEFITS_EDITORIAL_IMAGE = "/images/va-loan/m2m-va-client-benefits-editorial.png" as const
+export const BENEFITS_EDITORIAL_ALT =
+  "Military service member and family reviewing a home purchase with a professional at the kitchen table" as const
 
 export const CTA_BANNER_HEADLINE = "Are You Ready To Use Your VA Loan?" as const
 export const CTA_BANNER_BUTTON = "Get on the List" as const

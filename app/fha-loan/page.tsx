@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { FhaBuyerQuizSection } from "@/components/fha-loan/fha-buyer-quiz-section"
 import { FHA_FAQ_ITEMS } from "@/components/fha-loan/content"
+import { FhaEditorialImageBand } from "@/components/fha-loan/fha-editorial-image-band"
 import { FhaFinalCta } from "@/components/fha-loan/fha-final-cta"
 import { FhaHero } from "@/components/fha-loan/fha-hero"
 import { FhaHowWeHelp } from "@/components/fha-loan/fha-how-we-help"
@@ -34,6 +35,7 @@ export default function FhaLoanPage() {
       >
         <FhaHero />
         <FhaTrustStrip />
+        <FhaEditorialImageBand />
         <FhaOpportunitySection />
         <FhaHowWeHelp />
         <FhaWhoFor />

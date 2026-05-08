@@ -23,7 +23,7 @@ export function DivorceGalleryCollage() {
             <div className="relative mt-6 h-32 overflow-hidden rounded-sm sm:h-36 lg:h-44">
               <Image
                 src={COLLAGE_IMAGES.sellDuringDivorce}
-                alt="Couple in a quiet, thoughtful moment while considering next steps"
+                alt="Couple reviewing homebuying and property paperwork together with focus"
                 fill
                 className="object-cover brightness-90"
                 sizes="(min-width: 1024px) 25vw, 50vw"

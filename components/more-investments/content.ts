@@ -16,10 +16,10 @@ export const HERO_SLIDES = [
     id: "intro",
     variant: "intro" as const,
     headlineLines: ["DIFFERENT", "TYPES OF", "REAL ESTATE", "INVESTING"] as const,
-    /** Home goals, credit, and financing prep — “getting ready to invest.” */
-    centerImage:
-      "/images/_original-client-delivery/ChatGPT%20Image%20May%203%2C%202026%2C%2002_44_53%20AM.png" as const,
-    centerImageAlt: "Household reviewing credit, savings goals, and homeowner readiness on a laptop",
+    /** Client campaign — investor readiness / strategy at the table. */
+    centerImage: "/images/investments/m2m-investments-client-hero.png" as const,
+    centerImageAlt:
+      "Advisor and clients reviewing real estate plans and documents together at a table",
   },
   {
     id: "fix-flip",

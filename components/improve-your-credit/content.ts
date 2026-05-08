@@ -10,8 +10,8 @@ export const HERO_HEADLINE = "Crushing Credit on Your Path to Homeownership" as 
 /** Hero collage — family credit planning scene (multicultural, inclusive). */
 export const HERO_IMAGE_LEFT = "/images/credit/m2m-credit-family-planning-goals.png" as const
 
-/** Hero — multicultural couple coordinating documents and timing. */
-export const HERO_IMAGE_CENTER = "/images/credit/m2m-credit-couple-plan-together.png" as const
+/** Hero — credit dashboard and home-buying goals (client campaign). */
+export const HERO_IMAGE_CENTER = "/images/credit/m2m-credit-client-home-goals-dashboard.png" as const
 
 /** Hero — professional consultation at kitchen table */
 export const HERO_IMAGE_RIGHT = "/images/credit/m2m-credit-professional-consultation.png" as const

@@ -2,8 +2,11 @@
  * Copy and asset paths for `/fha-loan` only.
  */
 
-/** Hero — consult scene, approachable for first-time buyers. */
-export const HERO_BACKGROUND = "/images/site/m2m-partners-consult-evening-home.png" as const
+/** Hero — client campaign: approachable first-time / FHA buyer consult. */
+export const HERO_BACKGROUND = "/images/fha-loan/m2m-fha-client-hero.png" as const
+
+/** Full-bleed editorial band between hero funnel and deeper copy — second client campaign frame. */
+export const EDITORIAL_SECTION_IMAGE = "/images/fha-loan/m2m-fha-client-editorial.png" as const
 
 export const HERO_HEADLINE = "Want to Buy Sooner With Less Upfront Stress?" as const
 

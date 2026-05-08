@@ -24,8 +24,8 @@ export const DIVORCE_FOOTER_TOP_LINKS: readonly M2MNavLink[] = [
 export const DIVORCE_HERO_BACKGROUND = "/images/divorce/divorce-hero-hopeful-transition.jpg" as const
 
 export const COLLAGE_IMAGES = {
-  /** Panel 1 — quiet, weight-of-decisions moment while selling during divorce */
-  sellDuringDivorce: "/images/divorce/divorce-couple-contemplative.jpg" as const,
+  /** Panel 1 — serious planning, documents, and property decisions (client campaign). */
+  sellDuringDivorce: "/images/divorce/m2m-divorce-client-sell-during-collage.png" as const,
   /** Panel 2 — home + family on the porch; less “celebration / keys handoff” than fresh-start keys photo */
   family: "/images/divorce/m2m-divorce-collage-multigen-porch-steps.png" as const,
   /**
