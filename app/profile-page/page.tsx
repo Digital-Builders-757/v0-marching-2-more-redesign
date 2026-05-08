@@ -18,7 +18,7 @@ export default function DonavanProfilePage() {
   return (
     <>
       <Header />
-      {/* Social URLs verified 2026-05 — personal IG + company IG + LinkedIn */}
+      {/* Social: LinkedIn, YouTube @M2MHR, personal IG, company IG */}
       <AgentProfile
         name="Donavan McFadden"
         firstName="Donavan"
@@ -29,6 +29,7 @@ export default function DonavanProfilePage() {
         email="Donavan@marching2more.com"
         linkedin="https://www.linkedin.com/in/donavan-mcfadden"
         instagramPersonal="https://www.instagram.com/mr.marching2more/"
+        youtube="https://www.youtube.com/@M2MHR"
         bio={`Donavan's experience in the industry has given him a deep understanding of the real estate market which he is committed to employing in helping his clients achieve their goals. Donavan's passion for real estate was sparked at a young age when he saw firsthand the struggles of his mother as she worked to provide for her family. This drive led him to pursue a career in the United States Navy, where he honed his leadership skills and gained valuable life experience.
 
 While still on active duty, Donavan took advantage of the VA Home Loan program and purchased his first property, setting the foundation for his future success in real estate investing. Seeing the impact that home ownership and real estate investing had on his own life, he formed the Marching 2 More Team to help others achieve their own real estate goals.
