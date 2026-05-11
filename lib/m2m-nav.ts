@@ -69,6 +69,7 @@ export const M2M_HEADER_AGENT_LINKS: readonly M2MAgentLink[] = [
     name: "Roger Lee",
     href: "/roger-lee",
     image: M2M_MEDIA.headshotRoger,
+    headerImageClassName: "object-[center_22%]",
   },
   {
     name: "Kristin Allen",
