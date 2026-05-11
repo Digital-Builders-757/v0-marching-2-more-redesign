@@ -26,6 +26,7 @@ export const M2M_TEAM_MEMBERS_PUBLIC: M2mPublicTeamMember[] = [
     subtitle: "Founding Partner • Licensed Agent",
     image: M2M_MEDIA.headshotRoger,
     href: "/roger-lee",
+    imageObjectStyle: { objectPosition: "center 22%" },
   },
   {
     name: "Kristin Allen",

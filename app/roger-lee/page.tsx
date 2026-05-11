@@ -27,6 +27,7 @@ export default function RogerLeeProfilePage() {
         role="Founding Partner"
         licenseNumber="0225-250-043"
         image={M2M_MEDIA.headshotRoger}
+        imageObjectStyle={{ objectPosition: "center 22%" }}
         email="Roger@marching2more.com"
         linkedin="https://www.linkedin.com/in/roger-lee"
         instagramPersonal={M2M_ROGER_INSTAGRAM_PERSONAL_URL}

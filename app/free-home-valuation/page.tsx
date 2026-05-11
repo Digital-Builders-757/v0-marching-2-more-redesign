@@ -45,11 +45,11 @@ export default function FreeHomeValuationPage() {
           <M2mInsetHeroFrame className="min-h-[min(72vh,820px)] sm:min-h-[calc(70vh-3rem)]">
             <div className="absolute inset-0">
               <Image
-                src="/images/cma-hero.png"
-                alt=""
+                src="/images/m2m-free-valuation-hero.png"
+                alt="Sunny suburban brick home with lawn and for-sale sign"
                 fill
                 priority
-                className="object-cover object-[center_28%] sm:object-center"
+                className="object-cover object-[center_34%] sm:object-[center_38%]"
                 sizes="100vw"
               />
             </div>

@@ -1,14 +1,14 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
+import { useState } from "react"
 
 import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Footer } from "@/components/footer"
 import { GSAPAnimations } from "@/components/gsap-animations"
 import { Header } from "@/components/header"
-import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim } from "@/components/m2m-layout"
+import { M2mContainer, M2mInsetHeroFrame, M2mInsetHeroScrim, M2mSection } from "@/components/m2m-layout"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
 import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { M2mPostSubmitNextSteps } from "@/components/m2m-post-submit-next-steps"
@@ -96,22 +96,22 @@ export default function CmaFormPage() {
       <GSAPAnimations />
 
       <main id="main-content" tabIndex={-1} className="bg-white">
-        {/* Hero with background image */}
-        <section className="relative min-h-screen overflow-hidden bg-white py-6 md:py-8">
-          <M2mInsetHeroFrame className="min-h-[calc(100dvh-3rem)]">
+        {/* Hero — `public/images/cma-hero.png` must be an original photo export, not Cursor workspace screenshot captures */}
+        <section className="relative min-h-[72vh] overflow-hidden bg-white py-5 sm:py-6 md:py-8">
+          <M2mInsetHeroFrame className="min-h-[min(72vh,820px)] sm:min-h-[calc(70vh-3rem)] bg-m2m-deep">
             <div className="absolute inset-0">
               <Image
                 src="/images/cma-hero.png"
                 alt=""
                 fill
                 priority
-                className="object-cover object-[center_28%] sm:object-center"
+                className="object-cover object-[center_36%] sm:object-[center_40%]"
                 sizes="100vw"
               />
             </div>
             <M2mInsetHeroScrim variant="luminous" />
 
-            <M2mContainer className="relative z-10 pt-20 pb-12 sm:pt-28 sm:pb-16">
+            <M2mContainer className="relative z-10 pt-20 pb-14 sm:pt-28 sm:pb-20">
               <div className="mx-auto max-w-5xl">
                 {/* Kicker */}
                 <div className="flex items-center gap-4">
@@ -150,14 +150,21 @@ export default function CmaFormPage() {
                 >
                   Or give us a call — {M2M_PHONE_DISPLAY}
                 </a>
+              </div>
+            </M2mContainer>
+          </M2mInsetHeroFrame>
+        </section>
 
-                {/* Form Card */}
-                {done ? (
-                  <div
-                    className="mt-12 max-w-2xl space-y-4 rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 text-center shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5"
-                    role="status"
-                    aria-live="polite"
-                  >
+        <M2mSection variant="light" className="border-t border-m2m-deep/10 py-12 md:py-16">
+          <M2mContainer className="max-w-5xl">
+            <div className="mx-auto max-w-2xl">
+              {/* Form Card */}
+              {done ? (
+                <div
+                  className="space-y-4 rounded-xl border border-m2m-deep/12 bg-m2m-cream p-8 text-center shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5"
+                  role="status"
+                  aria-live="polite"
+                >
                     {successFollowUp?.warnings.length ? (
                       <M2mLeadSubmitWarnings
                         warnings={successFollowUp.warnings}
@@ -179,7 +186,7 @@ export default function CmaFormPage() {
                     data-m2m-lead="cma"
                     onSubmit={handleSubmit}
                     aria-busy={submitting}
-                    className="mt-12 max-w-2xl rounded-xl border border-m2m-deep/12 bg-m2m-cream p-6 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5 sm:p-8"
+                    className="rounded-xl border border-m2m-deep/12 bg-m2m-cream p-6 shadow-[0_8px_40px_-12px_rgba(5,13,6,0.18)] ring-1 ring-m2m-deep/5 sm:p-8"
                   >
                     <div
                       className="mb-8 rounded-lg border border-m2m-deep/10 bg-white px-4 py-3 text-xs leading-relaxed text-m2m-deep/85 font-sans"
@@ -385,10 +392,9 @@ export default function CmaFormPage() {
                     </button>
                   </form>
                 )}
-              </div>
-            </M2mContainer>
-          </M2mInsetHeroFrame>
-        </section>
+            </div>
+          </M2mContainer>
+        </M2mSection>
         <M2mRelatedPages cluster="sell" omitHref="/cma-form" variant="onLight" />
       </main>
       <Footer />
