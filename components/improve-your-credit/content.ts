@@ -5,15 +5,26 @@
 /** Anchor for in-page CTAs until a PDF URL exists. */
 export const CREDIT_PLAYBOOK_SECTION_ID = "credit-playbook" as const
 
+/** App Router path for the Improve Your Credit funnel (no trailing slash). */
+export const IMPROVE_CREDIT_PAGE_PATH = "/improve-your-credit" as const
+
+/** Hash link on this route, full URL from elsewhere — preserves keyboard / native hash scrolling. */
+export function getCreditPlaybookHref(pathname: string | null): string {
+  const normalized = (pathname ?? "").replace(/\/$/, "") || "/"
+  return normalized === IMPROVE_CREDIT_PAGE_PATH
+    ? `#${CREDIT_PLAYBOOK_SECTION_ID}`
+    : `${IMPROVE_CREDIT_PAGE_PATH}#${CREDIT_PLAYBOOK_SECTION_ID}`
+}
+
 export const HERO_HEADLINE = "Crushing Credit on Your Path to Homeownership" as const
 
-/** Hero collage — family credit planning scene (multicultural, inclusive). */
-export const HERO_IMAGE_LEFT = "/images/credit/m2m-credit-family-planning-goals.png" as const
+/** Hero collage — focused credit planning scene. */
+export const HERO_IMAGE_LEFT = "/images/credit/credit-hero-financial-planning.jpg" as const
 
-/** Hero — credit dashboard and home-buying goals (client campaign). */
-export const HERO_IMAGE_CENTER = "/images/credit/m2m-credit-client-home-goals-dashboard.png" as const
+/** Hero — celebration / milestone moment to break the repeated planning look. */
+export const HERO_IMAGE_CENTER = "/images/credit/credit-hero-success-celebration.jpg" as const
 
-/** Hero — professional consultation at kitchen table */
+/** Hero — professional consultation at kitchen table. */
 export const HERO_IMAGE_RIGHT = "/images/credit/m2m-credit-professional-consultation.png" as const
 
 export const HERO_FEATURE_OVERLAY_LINE_1 = "Improve your credit" as const
