@@ -6,6 +6,15 @@ import { Button } from "@/components/ui/button"
 import { isGohighlevelUrlConfigured, isQuizEmbedSrcConfigured } from "@/lib/m2m-site"
 import { cn } from "@/lib/utils"
 
+/** True when `ctaHref` should render as the optional gold button below the embed / fallback-only state. */
+function isLeadQuizSectionCtaConfigured(href: string | undefined): boolean {
+  const u = href?.trim() ?? ""
+  if (!u) return false
+  if (isGohighlevelUrlConfigured(u)) return true
+  if (isQuizEmbedSrcConfigured(u)) return true
+  return u.startsWith("/") && !u.startsWith("//")
+}
+
 export type M2mLeadQuizSectionProps = {
   id?: string
   /**
@@ -20,7 +29,7 @@ export type M2mLeadQuizSectionProps = {
   embedTitle?: string
   /** Iframe sizing: embedded quiz strips vs taller full-shell static pages. Defaults to standard. */
   embedVariant?: "standard" | "tall"
-  /** External quiz / form page (GHL). Used when embed is not configured or as fallback CTA. */
+  /** Optional CTA under embed / fallback-only: HTTPS (GHL), `/quizzes/...`, or same-site path (e.g. `/contact-us?intent=consultation`). */
   ctaHref?: string
   ctaLabel?: string
   footnote?: ReactNode
@@ -54,10 +63,9 @@ export function M2mLeadQuizSection({
 }: M2mLeadQuizSectionProps) {
   const eyebrowText = eyebrow === null ? null : (eyebrow ?? "Quick Assessment")
   const showEmbed = Boolean(embedSrc && isQuizEmbedSrcConfigured(embedSrc))
-  const showExternalCta = Boolean(
-    ctaHref?.trim() &&
-      (isGohighlevelUrlConfigured(ctaHref) || isQuizEmbedSrcConfigured(ctaHref)),
-  )
+  const ctaHrefTrimmed = ctaHref?.trim() ?? ""
+  const showExternalCta = isLeadQuizSectionCtaConfigured(ctaHref)
+  const ctaOpensNewTab = /^https?:\/\//i.test(ctaHrefTrimmed)
   const variant = embedVariant === "tall" ? "tall" : "standard"
 
   return (
@@ -115,7 +123,10 @@ export function M2mLeadQuizSection({
                   size="lg"
                   className="min-h-12 w-full max-w-sm px-8 sm:w-auto sm:max-w-none"
                 >
-                  <Link href={ctaHref!} target="_blank" rel="noreferrer">
+                  <Link
+                    href={ctaHref!}
+                    {...(ctaOpensNewTab ? { target: "_blank" as const, rel: "noreferrer" as const } : {})}
+                  >
                     {ctaLabel}
                   </Link>
                 </Button>
@@ -136,7 +147,10 @@ export function M2mLeadQuizSection({
               size="lg"
               className="min-h-12 w-full max-w-xs px-8 sm:w-auto sm:max-w-none sm:px-10"
             >
-              <Link href={ctaHref!} target="_blank" rel="noreferrer">
+              <Link
+                href={ctaHref!}
+                {...(ctaOpensNewTab ? { target: "_blank" as const, rel: "noreferrer" as const } : {})}
+              >
                 {ctaLabel}
               </Link>
             </Button>

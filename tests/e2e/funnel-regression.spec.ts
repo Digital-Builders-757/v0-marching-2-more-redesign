@@ -182,58 +182,26 @@ test.describe("lead forms (mocked POST /api/submit-lead)", () => {
     await expect(page.getByRole("link", { name: /download the guide \(pdf\)/i })).toBeVisible()
   })
 
-  test("improve-your-credit: credit repair quiz iframe loads and submits", async ({ page }) => {
+  test("improve-your-credit: playbook guide form submits", async ({ page }) => {
     await stubSubmitLeadPost(page, { ...M2M_SUBMIT_LEAD_OK_BODY })
-    await page.goto("/improve-your-credit")
-    await page.locator("#credit-playbook").scrollIntoViewIfNeeded()
-    const frame = page.frameLocator('iframe[title="Credit repair quiz — Marching 2 More"]')
-    await expect(frame.locator("#s-welcome")).toBeVisible({ timeout: 20_000 })
+    await page.goto("/improve-your-credit#guide-form")
+    const form = page.getByTestId("m2m-lead-form-improve-your-credit")
+    await expect(form).toBeVisible({ timeout: 60_000 })
+    await page.locator("#guide-form").scrollIntoViewIfNeeded()
+    await form.getByLabel(/^First Name$/i).fill("E2E")
+    await form.getByLabel(/^Last Name$/i).fill("Credit")
+    await form.getByLabel(/^Email$/i).fill("e2e-credit@example.com")
+    await form.getByLabel(/^Phone/i).fill("7575550102")
 
-    // Sticky site header can intercept pointer events at the iframe overlap; drive the quiz via globals.
-    await frame.locator("body").evaluate(async () => {
-      const g = window as unknown as Window & {
-        pick: (btn: HTMLElement) => void
-        goTo: (target: string) => void
-        submitLead: (e: { preventDefault(): void }) => Promise<void>
-      }
-      const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
-      const pickSel = (sel: string) => {
-        const el = document.querySelector(sel)
-        if (!el || !(el instanceof HTMLElement)) throw new Error(`missing ${sel}`)
-        g.pick(el)
-      }
-      g.goTo("q1")
-      await delay(220)
-      pickSel('[data-q="q1"][data-val="0"]')
-      g.goTo("q2")
-      await delay(220)
-      pickSel('[data-q="q2"][data-val="notsure"]')
-      g.goTo("bridge")
-      await delay(220)
-      g.goTo("q3")
-      await delay(220)
-      pickSel('[data-q="q3"][data-val="overall"]')
-      g.goTo("q4")
-      await delay(220)
-      pickSel('[data-q="q4"][data-val="0"]')
-      g.goTo("q5")
-      await delay(220)
-      pickSel('[data-q="q5"][data-val="no"]')
-      g.goTo("capture")
-      await delay(220)
-    })
+    await page.locator("#credit-guide-dob-month").click()
+    await page.getByRole("option", { name: "January" }).click()
+    await page.locator("#credit-guide-dob-day").click()
+    await page.getByRole("option", { name: "15", exact: true }).click()
+    await page.locator("#credit-guide-dob-year").click()
+    await page.getByRole("option", { name: "1990", exact: true }).click()
 
-    await frame.locator("#f-first").fill("E2E")
-    await frame.locator("#f-last").fill("CreditQuiz")
-    await frame.locator("#f-email").fill("e2e-credit-quiz@example.com")
-    await frame.locator("#f-phone").fill("7575550102")
-
-    await frame.locator("body").evaluate(async () => {
-      const g = window as unknown as Window & { submitLead: (e: { preventDefault(): void }) => Promise<void> }
-      await g.submitLead({ preventDefault() {} })
-    })
-
-    await expect(frame.locator("#r-headline")).toContainText(/immediate game plan/i, { timeout: 25_000 })
+    await form.getByRole("button", { name: /download your guide today/i }).click()
+    await expect(page.locator("#guide-form").getByRole("status")).toContainText(/thank you/i)
   })
 
   test("fha-loan: nested FHA quiz submits to submit-lead", async ({ page }) => {

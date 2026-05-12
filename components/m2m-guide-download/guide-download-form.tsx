@@ -3,13 +3,16 @@
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState, type ReactNode } from "react"
 
+import { M2mLeadDobField } from "@/components/m2m-lead-form-fields"
+import type { M2mLeadUrgencyMode } from "@/components/m2m-lead-urgency-field"
 import { M2mLeadUrgencySelect } from "@/components/m2m-lead-urgency-field"
 import { M2mLeadSubmitErrorAlert } from "@/components/m2m-lead-submit-error-alert"
+import { M2mLeadSubmitWarnings } from "@/components/m2m-lead-submit-warnings"
 import { useM2mUtm } from "@/components/m2m-utm-effect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import type { LeadType, SubmitLeadFailure } from "@/lib/ghl/types"
+import type { LeadType, SubmitLeadFailure, SubmitLeadWarningCode } from "@/lib/ghl/types"
 import { m2mLeadFieldInputClass, m2mLeadFieldLabelClass } from "@/lib/m2m-form"
 import {
   M2M_URGENCY_LABEL_SHORT_FORM,
@@ -23,12 +26,10 @@ const DIVORCE_FIELD_CLASS =
 
 export type GuideDownloadFormVariant = "interiorCream" | "divorcePanel"
 
-export type GuideDownloadFormProps = {
+export type GuideDownloadFormSharedProps = {
   variant: GuideDownloadFormVariant
   guideName: string
   leadType: LeadType
-  pdfHref: string
-  downloadFilename: string
   /** Fallback when `usePathname()` is unavailable */
   sourcePath: string
   submitLabel: string
@@ -44,13 +45,23 @@ export type GuideDownloadFormProps = {
   showUrgency?: boolean
   urgencySelectVariant?: "interior" | "playbook"
   urgencyFieldId: string
+  /** Timeline mode — `"short"` matches downsizing-style passive default; `"full"` matches playbook timelines. */
+  urgencyMode?: M2mLeadUrgencyMode
+  urgencyLabel?: string
+  urgencyRequired?: boolean
+  /** Overrides default initial timeline (`short` → passive default; `full` → empty). */
+  urgencyInitialValue?: string
   collectPhone?: boolean
+  /** When `collectPhone`, require a phone number (cream variant only). */
+  phoneRequired?: boolean
+  collectDateOfBirth?: boolean
+  /** Required when `collectDateOfBirth` is true (cream variant). */
+  dateOfBirthFieldId?: string
   afterUrgencySlot?: ReactNode
   belowSubmitSlot?: ReactNode
   formTestId?: string
   successThanksHeadline?: string
   successThanksBody: ReactNode
-  successDownloadLinkLabel: string
   getNotes: () => string | undefined
   /** Maps to GHL property-address field when set (e.g. downsizing ship-to line). */
   getAddress?: () => string | undefined
@@ -58,36 +69,74 @@ export type GuideDownloadFormProps = {
   fieldIdPrefix?: string
 }
 
-export function GuideDownloadForm({
-  variant,
-  guideName,
-  leadType,
-  pdfHref,
-  downloadFilename,
-  sourcePath,
-  submitLabel,
-  formAriaLabel,
-  formWrapperClassName,
-  successWrapperClassName,
-  anchorId,
-  resourceEyebrow,
-  heading,
-  intro,
-  panelIntro,
-  showUrgency = true,
-  urgencySelectVariant = "interior",
-  urgencyFieldId,
-  collectPhone = false,
-  afterUrgencySlot,
-  belowSubmitSlot,
-  formTestId,
-  successThanksHeadline = "Thank you!",
-  successThanksBody,
-  successDownloadLinkLabel,
-  getNotes,
-  getAddress,
-  fieldIdPrefix = "m2m-guide",
-}: GuideDownloadFormProps) {
+export type GuideDownloadFormProps =
+  | (GuideDownloadFormSharedProps & {
+      leadCaptureOnly?: false | undefined
+      pdfHref: string
+      downloadFilename: string
+      successDownloadLinkLabel: string
+    })
+  | (GuideDownloadFormSharedProps & {
+      leadCaptureOnly: true
+    })
+
+export function GuideDownloadForm(props: GuideDownloadFormProps) {
+  const leadCaptureOnly = props.leadCaptureOnly === true
+  const pdfHref =
+    !leadCaptureOnly && "pdfHref" in props && typeof props.pdfHref === "string" ? props.pdfHref : ""
+  const downloadFilename =
+    !leadCaptureOnly && "downloadFilename" in props && typeof props.downloadFilename === "string"
+      ? props.downloadFilename
+      : ""
+  const successDownloadLinkLabel =
+    !leadCaptureOnly &&
+    "successDownloadLinkLabel" in props &&
+    typeof props.successDownloadLinkLabel === "string"
+      ? props.successDownloadLinkLabel
+      : ""
+
+  const {
+    variant,
+    guideName,
+    leadType,
+    sourcePath,
+    submitLabel,
+    formAriaLabel,
+    formWrapperClassName,
+    successWrapperClassName,
+    anchorId,
+    resourceEyebrow,
+    heading,
+    intro,
+    panelIntro,
+    showUrgency = true,
+    urgencySelectVariant = "interior",
+    urgencyFieldId,
+    urgencyMode = "short",
+    urgencyLabel = M2M_URGENCY_LABEL_SHORT_FORM,
+    urgencyRequired = false,
+    urgencyInitialValue: urgencyInitialValueProp,
+    collectPhone = false,
+    phoneRequired = false,
+    collectDateOfBirth = false,
+    dateOfBirthFieldId = "m2m-guide-dob",
+    afterUrgencySlot,
+    belowSubmitSlot,
+    formTestId,
+    successThanksHeadline = "Thank you!",
+    successThanksBody,
+    getNotes,
+    getAddress,
+    fieldIdPrefix = "m2m-guide",
+  } = props
+
+  const urgencyInitialValue =
+    urgencyInitialValueProp !== undefined
+      ? urgencyInitialValueProp
+      : urgencyMode === "short"
+        ? M2M_URGENCY_SHORT_FORM_DEFAULT
+        : ""
+
   const pathname = usePathname()
   const utm = useM2mUtm()
   const autoDlRef = useRef<HTMLAnchorElement | null>(null)
@@ -96,19 +145,30 @@ export function GuideDownloadForm({
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
-  const [timeline, setTimeline] = useState(M2M_URGENCY_SHORT_FORM_DEFAULT)
+  const [dateOfBirth, setDateOfBirth] = useState("")
+  const [timeline, setTimeline] = useState(urgencyInitialValue)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<SubmitLeadFailure | null>(null)
   const [done, setDone] = useState(false)
+  const [successFollowUp, setSuccessFollowUp] = useState<{
+    warnings: SubmitLeadWarningCode[]
+    correlationId: string
+  } | null>(null)
 
-  const isExternalPdf = pdfHref.startsWith("http://") || pdfHref.startsWith("https://")
+  const isExternalPdf =
+    !leadCaptureOnly && (pdfHref.startsWith("http://") || pdfHref.startsWith("https://"))
 
   useEffect(() => {
-    if (!done || isExternalPdf) return
+    if (leadCaptureOnly || !done || isExternalPdf) return
     queueMicrotask(() => {
       autoDlRef.current?.click()
     })
-  }, [done, isExternalPdf])
+  }, [leadCaptureOnly, done, isExternalPdf])
+
+  const urgencyExplicit =
+    urgencyMode === "short"
+      ? timeline.trim() !== M2M_URGENCY_SHORT_FORM_DEFAULT
+      : Boolean(timeline.trim())
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -117,14 +177,25 @@ export function GuideDownloadForm({
     try {
       const name = `${firstName} ${lastName}`.trim()
       const notesRaw = getNotes()
+      const phoneOut =
+        collectPhone && phoneRequired
+          ? phone.trim()
+          : collectPhone
+            ? phone.trim() || undefined
+            : undefined
+      const dobOut =
+        collectDateOfBirth && variant === "interiorCream" && dateOfBirth.trim()
+          ? dateOfBirth.trim()
+          : undefined
       const res = await submitLeadToApi({
         lead_type: leadType,
         name,
         email: email.trim(),
-        phone: collectPhone ? phone.trim() || undefined : undefined,
+        phone: phoneOut,
+        date_of_birth: dobOut,
         address: getAddress?.()?.trim() || undefined,
         urgency: timeline,
-        urgency_explicit: timeline.trim() !== M2M_URGENCY_SHORT_FORM_DEFAULT,
+        urgency_explicit: urgencyExplicit,
         notes: notesRaw?.trim() ? notesRaw.trim() : undefined,
         guide_name: guideName,
         utm_source: utm.utm_source,
@@ -138,6 +209,10 @@ export function GuideDownloadForm({
         setSubmitError(res)
         return
       }
+      setSuccessFollowUp({
+        warnings: res.warnings ?? [],
+        correlationId: res.correlationId,
+      })
       setDone(true)
     } finally {
       setSubmitting(false)
@@ -149,8 +224,16 @@ export function GuideDownloadForm({
   const em = `${fieldIdPrefix}-email`
   const ph = `${fieldIdPrefix}-phone`
 
-  const successBlock = (
+  const successBlockPdf = (
     <div className="space-y-6" role="status" aria-live="polite">
+      {successFollowUp?.warnings.length ? (
+        <M2mLeadSubmitWarnings
+          warnings={successFollowUp.warnings}
+          correlationId={successFollowUp.correlationId}
+          variant="onLight"
+          className="text-left"
+        />
+      ) : null}
       <div className="space-y-3 text-center">
         <p className="text-lg font-medium text-m2m-deep font-display">{successThanksHeadline}</p>
         <div className="text-sm leading-relaxed text-m2m-deep/80 font-sans">{successThanksBody}</div>
@@ -177,6 +260,25 @@ export function GuideDownloadForm({
       </Button>
     </div>
   )
+
+  const successBlockLeadOnly = (
+    <div className="space-y-6" role="status" aria-live="polite">
+      {successFollowUp?.warnings.length ? (
+        <M2mLeadSubmitWarnings
+          warnings={successFollowUp.warnings}
+          correlationId={successFollowUp.correlationId}
+          variant="onLight"
+          className="text-left"
+        />
+      ) : null}
+      <div className="space-y-3 text-center">
+        <p className="text-lg font-medium text-m2m-deep font-display">{successThanksHeadline}</p>
+        <div className="text-sm leading-relaxed text-m2m-deep/80 font-sans">{successThanksBody}</div>
+      </div>
+    </div>
+  )
+
+  const successBlock = leadCaptureOnly ? successBlockLeadOnly : successBlockPdf
 
   if (done) {
     return (
@@ -308,11 +410,17 @@ export function GuideDownloadForm({
       {variant === "interiorCream" && collectPhone ? (
         <div>
           <Label htmlFor={ph} className={m2mLeadFieldLabelClass}>
-            Phone <span className="font-normal text-m2m-deep/60">(optional)</span>
+            Phone
+            {phoneRequired ? (
+              <span className="text-m2m-panel"> *</span>
+            ) : (
+              <span className="font-normal text-m2m-deep/60"> (optional)</span>
+            )}
           </Label>
           <Input
             id={ph}
             type="tel"
+            required={phoneRequired}
             autoComplete="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -321,15 +429,25 @@ export function GuideDownloadForm({
         </div>
       ) : null}
 
+      {variant === "interiorCream" && collectDateOfBirth ? (
+        <M2mLeadDobField
+          id={dateOfBirthFieldId}
+          value={dateOfBirth}
+          onChange={setDateOfBirth}
+          inputClassName={m2mLeadFieldInputClass}
+          className="text-m2m-deep"
+        />
+      ) : null}
+
       {showUrgency ? (
         <M2mLeadUrgencySelect
           id={urgencyFieldId}
-          label={M2M_URGENCY_LABEL_SHORT_FORM}
+          label={urgencyLabel}
           value={timeline}
           onChange={setTimeline}
           variant={urgencySelectVariant}
-          mode="short"
-          required={false}
+          mode={urgencyMode}
+          required={urgencyRequired}
           hint={M2M_URGENCY_SHARED_HINT}
           className={variant === "divorcePanel" ? "text-m2m-deep" : undefined}
         />
