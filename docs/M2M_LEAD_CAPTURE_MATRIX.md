@@ -1,6 +1,6 @@
 # Lead capture — route and surface matrix
 
-**Last updated:** 2026-05-07
+**Last updated:** 2026-05-12
 
 **API:** All production lead capture in this table posts **only** to `POST /api/submit-lead` (via `submitLeadToApi` in [`lib/m2m-lead-submit.ts`](../lib/m2m-lead-submit.ts)). No GHL keys in the browser.
 
@@ -30,7 +30,7 @@ Marketing funnel copy can be foreclosure/divorce/downsizing, but payload routing
 | `/contact-us` | Buyer or seller (user) | `app/contact-us/page` | Y | Y | If seller path, optional | Full `M2mLeadUrgencySelect` | Free message | Tag + pipeline by lead type; **`?intent=buyer`** forces **buyer** CRM on sync; **`?intent=seller`** or **`?intent=consultation`** forces **seller**; other query params (e.g. UTMs) **do not** reset the radio — default first paint is **seller** |
 | `/downsizing-your-home` | Seller | (1) `DownsizingFallbackLead` (2) `DownsizingGuideForm` | Y | (1) Y (2) — | (1) optional (2) ship-to → `address` when set | (1) full (2) short-form default + options | (1) optional context (2) guide + instructions | Same as seller row; (2) may populate **Property Address** when ship-to set |
 | `/facing-foreclosure` | Seller | `PreForeclosureUnifiedForm` (`pre-foreclosure-form.tsx`) — hero + final CTA | Y | — | Required (address or ZIP) | Intent-derived TEXT (`urgency`); **`foreclosure_intent`**: `guide` / `speak_now` / `both` | Optional message | Same as seller row; optional tags **`GHL_TAG_FORECLOSURE_INTENT_*`**; optional CF **`GHL_CF_FORECLOSURE_INTENT`**; on-screen + link PDF **`m2m-pre-foreclosure-guide.pdf`** |
-| `/improve-your-credit` | Buyer | `CreditPlaybookForm` | Y | Y | — | Full select (when planning to buy) | Playbook request + optional line | Same as buyer row; `source_path` `/improve-your-credit` |
+| `/improve-your-credit` | Buyer | `CreditPlaybookForm` (primary); **`CreditTakeaways`** also embeds static credit quiz (`public/quizzes/credit-repair/`) → **`POST /api/submit-lead`** on quiz completion | Y | Y | — | Full select (when planning to buy) | Playbook request + optional line | Same as buyer row; `source_path` `/improve-your-credit`; quiz payloads include quiz attribution fields per **`lib/ghl` validation** |
 | `/va-loan-benefits` | Buyer | `VALeadForm` | Y | — | — | Short-form; passive default if unchanged | Message + VA line | Same as buyer row |
 | `/fha-loan` | Buyer | `FhaBuyerQuizSection` (static `public/quizzes/fha-loan/` iframe when configured) | Y | — | — | Quiz timeline / intent | Structured quiz fields + optional notes | Same as buyer row; see FHA quiz payload in `lib/ghl` validation |
 | `/navigating-divorce` | Seller | `DivorceAerialLead` | Y | — | — | Short-form | Message + guide request | Same as seller row |

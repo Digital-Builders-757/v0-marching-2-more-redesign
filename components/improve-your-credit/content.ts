@@ -99,14 +99,7 @@ export const TAKEAWAYS_HEADING = "Core Credit Takeaways" as const
 export const TAKEAWAYS_SUBHEAD =
   "Are you ready to build stronger credit step by step before you apply?" as const
 
-export const TAKEAWAY_ITEMS = [
-  { label: "Pay your bills on time" },
-  { label: "Reduce your debt-to-income ratio" },
-  { label: "Monitor credit report" },
-  { label: "Avoid opening new credit accounts" },
-] as const
-
-/** Full-bleed banner behind takeaways + icon row */
+/** Full-bleed banner behind Core Credit Takeaways band (quiz embed + heading). */
 export const TAKEAWAYS_BACKGROUND = "/images/site/m2m-partners-consult-evening-home.png" as const
 
 export const VIDEO_HEADING = "Marching 2 More and Crushing Credit" as const
