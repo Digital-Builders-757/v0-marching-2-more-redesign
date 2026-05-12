@@ -2,18 +2,20 @@
  * Copy and image constants for `/improve-your-credit`.
  */
 
-/** Anchor for in-page CTAs until a PDF URL exists. */
-export const CREDIT_PLAYBOOK_SECTION_ID = "credit-playbook" as const
+import { M2M_GUIDE_FORM_SECTION_ID } from "@/lib/m2m-guide-download"
 
 /** App Router path for the Improve Your Credit funnel (no trailing slash). */
 export const IMPROVE_CREDIT_PAGE_PATH = "/improve-your-credit" as const
 
-/** Hash link on this route, full URL from elsewhere — preserves keyboard / native hash scrolling. */
+/** Same-page anchor for the credit lead form — use with a native `<a>` (reliable scroll vs Next `<Link>`). */
+export const CREDIT_GUIDE_FORM_HASH = `#${M2M_GUIDE_FORM_SECTION_ID}` as const
+
+/** Hash link on this route, full URL from elsewhere — shared `#guide-form` anchor (see `M2M_GUIDE_FORM_SECTION_ID`). */
 export function getCreditPlaybookHref(pathname: string | null): string {
   const normalized = (pathname ?? "").replace(/\/$/, "") || "/"
   return normalized === IMPROVE_CREDIT_PAGE_PATH
-    ? `#${CREDIT_PLAYBOOK_SECTION_ID}`
-    : `${IMPROVE_CREDIT_PAGE_PATH}#${CREDIT_PLAYBOOK_SECTION_ID}`
+    ? CREDIT_GUIDE_FORM_HASH
+    : `${IMPROVE_CREDIT_PAGE_PATH}${CREDIT_GUIDE_FORM_HASH}`
 }
 
 export const HERO_HEADLINE = "Crushing Credit on Your Path to Homeownership" as const
@@ -90,12 +92,12 @@ export const HOMEWORK_COLLAGE_IMAGES = [
   "/images/credit/m2m-credit-couple-plan-together.png",
 ] as const
 
-export const DOWNLOAD_GUIDE_CTA = "Download your guide today" as const
+/** Primary CTA — hero, links, and lead form submit (scrolls to `#guide-form`). */
+export const DOWNLOAD_GUIDE_CTA = "Download Your Guide Today" as const
 
 export const TAKEAWAYS_HEADING = "Core Credit Takeaways" as const
 export const TAKEAWAYS_SUBHEAD =
   "Are you ready to build stronger credit step by step before you apply?" as const
-export const TAKEAWAYS_START_CTA = "Go to playbook" as const
 
 export const TAKEAWAY_ITEMS = [
   { label: "Pay your bills on time" },
@@ -114,20 +116,32 @@ export const VIDEO_SUBHEAD =
 export const YOUTUBE_EMBED_SRC =
   "https://www.youtube.com/embed/kFpsCfoem24?start=91" as const
 
-/** Stable `iframe` title for `/improve-your-credit` quiz embed (a11y + Playwright). */
-export const CREDIT_QUIZ_IFRAME_TITLE = "Credit repair quiz — Marching 2 More" as const
+/** Echoed in GHL notes / `guide_name` on `POST /api/submit-lead`. */
+export const CREDIT_PLAYBOOK_GUIDE_NAME = "Credit Improvement Playbook" as const
 
-export const PLAYBOOK_HEADING = "Credit Repair Assessment" as const
+/** Base line merged into CRM notes for this funnel. */
+export const CREDIT_PLAYBOOK_NOTES_BASE = "Credit Improvement Playbook — download request" as const
 
-export const PLAYBOOK_PARAGRAPHS = [
-  "Take five quick questions and see whether your profile lines up with urgent repair, steady building, or fine-tuning — then get clear next steps.",
-  "Marching 2 More serves Hampton Roads buyers with practical guidance (not legal credit repair services). When you need specialized help, we point you to trusted partners.",
-  "Everything stays confidential — there's no credit pull from this quiz.",
+export const PLAYBOOK_RESOURCE_EYEBROW = "Free Resource" as const
+
+export const PLAYBOOK_HEADING = "Get your Credit Improvement Playbook" as const
+
+export const PLAYBOOK_INTRO_PARAGRAPHS = [
+  "Request our playbook for a practical overview of building credit before you buy — timelines, habits that matter for mortgage readiness, and how to avoid common mistakes.",
+  "Marching 2 More serves Hampton Roads buyers with guidance rooted in real-world homebuying (not legal credit repair services). When you need specialized help, we can point you to trusted partners.",
+  "Your details stay confidential — completing this form does not pull your credit.",
 ] as const
 
-export const PLAYBOOK_CARD_TITLE = "Tell us where to send your playbook." as const
+export const PLAYBOOK_FORM_ARIA_LABEL = "Credit Improvement Playbook download" as const
 
-export const PLAYBOOK_DOWNLOAD_BUTTON = "Send my playbook" as const
+export const PLAYBOOK_CONTEXT_LABEL = "Anything we should know?" as const
+
+export const PLAYBOOK_CONTEXT_OPTIONAL = "(optional)" as const
+
+export const PLAYBOOK_CONTEXT_PLACEHOLDER = "Credit goals, co-borrower, or timeline details" as const
+
+/** Submit button on the in-page lead capture (matches primary CTA wording). */
+export const CREDIT_FORM_SUBMIT_LABEL = DOWNLOAD_GUIDE_CTA
 
 /** Closing band — approachable guidance moment */
 export const CLOSING_HERO_IMAGE = "/images/credit/m2m-credit-couple-plan-together.png" as const

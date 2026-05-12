@@ -1,8 +1,11 @@
 import Image from "next/image"
 
+import { DownloadGuideButton } from "@/components/m2m-guide-download/download-guide-button"
 import { M2mContainer } from "@/components/m2m-layout"
 
 import {
+  CREDIT_GUIDE_FORM_HASH,
+  DOWNLOAD_GUIDE_CTA,
   HERO_FEATURE_OVERLAY_LINE_1,
   HERO_FEATURE_OVERLAY_LINE_2,
   HERO_HEADLINE,
@@ -102,6 +105,10 @@ export function CreditHero() {
               sizes="(max-width:1024px) 100vw, 25vw"
             />
           </div>
+        </div>
+
+        <div className="mt-12 flex justify-center sm:mt-14">
+          <DownloadGuideButton href={CREDIT_GUIDE_FORM_HASH}>{DOWNLOAD_GUIDE_CTA}</DownloadGuideButton>
         </div>
       </M2mContainer>
     </section>

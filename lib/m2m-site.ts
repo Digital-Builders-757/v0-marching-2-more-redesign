@@ -129,7 +129,7 @@ export function isQuizEmbedSrcConfigured(url: string): boolean {
  * GoHighLevel quiz / survey embed or form URLs (lead-gen landings).
  * Replace with real https:// links when marketing provides them.
  */
-/** Local static quiz — `/improve-your-credit` iframe (`public/quizzes/credit-repair/index.html`). */
+/** Local static quiz asset (`public/quizzes/credit-repair/`). `/improve-your-credit` uses first-party `#guide-form` capture — this URL is not embedded on that page. */
 export const GOHIGHLEVEL_QUIZ_CREDIT_URL = "/quizzes/credit-repair/index.html" as const
 /** Local static quiz — `/downsizing-your-home` iframe embed (`public/quizzes/downsizing-your-home/quiz.html`). */
 export const GOHIGHLEVEL_QUIZ_DOWNSIZING_URL = "/quizzes/downsizing-your-home/quiz.html" as const
@@ -161,6 +161,22 @@ export function getM2mDownsizingGuidePdfHref(): string {
   const env = (process.env.NEXT_PUBLIC_M2M_DOWNSIZING_GUIDE_PDF_URL ?? "").trim()
   if (env && (env.startsWith("https://") || env.startsWith("http://") || env.startsWith("/"))) return env
   return M2M_DOWNSIZING_GUIDE_PDF_DEFAULT_HREF
+}
+
+/**
+ * Credit / homebuying guide PDF — served from `public/downloads/m2m-credit-guide.pdf`.
+ * Set **`NEXT_PUBLIC_M2M_CREDIT_GUIDE_PDF_URL`** to a full `https://` link when hosted outside the repo.
+ */
+export const M2M_CREDIT_GUIDE_PDF_DEFAULT_HREF = "/downloads/m2m-credit-guide.pdf" as const
+
+/** Suggested filename when triggering a browser download (same-origin or when `download` is honored). */
+export const M2M_CREDIT_GUIDE_PDF_FILENAME = "M2M-Credit-Guide.pdf" as const
+
+export function getM2mCreditGuidePdfHref(): string {
+  if (typeof process === "undefined") return M2M_CREDIT_GUIDE_PDF_DEFAULT_HREF
+  const env = (process.env.NEXT_PUBLIC_M2M_CREDIT_GUIDE_PDF_URL ?? "").trim()
+  if (env && (env.startsWith("https://") || env.startsWith("http://") || env.startsWith("/"))) return env
+  return M2M_CREDIT_GUIDE_PDF_DEFAULT_HREF
 }
 
 /**
