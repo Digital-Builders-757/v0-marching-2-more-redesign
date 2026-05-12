@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { FhaBuyerQuizSection } from "@/components/fha-loan/fha-buyer-quiz-section"
+import { FhaConsultationCtaBand } from "@/components/fha-loan/fha-consultation-cta-band"
 import { FHA_FAQ_ITEMS } from "@/components/fha-loan/content"
 import { FhaEditorialImageBand } from "@/components/fha-loan/fha-editorial-image-band"
 import { FhaFinalCta } from "@/components/fha-loan/fha-final-cta"
@@ -39,6 +40,7 @@ export default function FhaLoanPage() {
         <FhaEditorialImageBand />
         <FhaOpportunitySection />
         <FhaHowWeHelp />
+        <FhaConsultationCtaBand />
         <FhaWhoFor />
         <M2mCampaignFaq
           id="fha-faq-heading"

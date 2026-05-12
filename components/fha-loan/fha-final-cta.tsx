@@ -1,12 +1,12 @@
 import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
-import { getPrimaryConsultationBookUrl } from "@/lib/m2m-site"
+import { getConsultationRequestUrl } from "@/lib/m2m-site"
 
 import { FINAL_CTA } from "./content"
 
 export function FhaFinalCta() {
-  const bookHref = getPrimaryConsultationBookUrl()
+  const consultationHref = getConsultationRequestUrl()
 
   return (
     <section
@@ -26,16 +26,14 @@ export function FhaFinalCta() {
           {FINAL_CTA.body}
         </p>
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <a
-            href={bookHref}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={consultationHref}
             data-m2m-track="fha_final_book"
             className="inline-flex min-h-12 w-full max-w-sm items-center justify-center rounded-full bg-m2m-gold px-8 py-3.5 text-sm font-semibold text-m2m-deep transition hover:bg-m2m-gold-lt sm:w-auto sm:text-[0.95rem]"
             style={{ fontFamily: "var(--font-nav)" }}
           >
             {FINAL_CTA.buttonLabel}
-          </a>
+          </Link>
           <Link
             href="#fha-buyer-quiz"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-m2m-cream/35 px-8 py-3.5 text-sm font-semibold text-m2m-cream transition hover:border-m2m-cream hover:bg-white/5"

@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { M2mContainer } from "@/components/m2m-layout"
-import { getPrimaryConsultationBookUrl } from "@/lib/m2m-site"
+import { getConsultationRequestUrl } from "@/lib/m2m-site"
 
 import {
   HERO_BACKGROUND,
@@ -13,7 +13,7 @@ import {
 } from "./content"
 
 export function FhaHero() {
-  const bookHref = getPrimaryConsultationBookUrl()
+  const consultationHref = getConsultationRequestUrl()
 
   return (
     <section className="relative min-h-[min(88vh,760px)] w-full" aria-labelledby="fha-hero-heading">
@@ -50,16 +50,14 @@ export function FhaHero() {
             {HERO_SUBLINE}
           </p>
           <div className="mx-auto mt-11 flex w-full max-w-lg flex-col gap-3 sm:max-w-2xl sm:flex-row sm:flex-wrap sm:justify-center">
-            <a
-              href={bookHref}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={consultationHref}
               data-m2m-track="fha_hero_book"
               className="inline-flex min-h-12 items-center justify-center rounded-full bg-m2m-gold px-8 py-3.5 text-center text-sm font-semibold text-m2m-deep shadow-[0_16px_40px_rgba(0,0,0,0.25)] transition hover:bg-m2m-gold-lt sm:min-h-[3.25rem] sm:text-[0.95rem]"
               style={{ fontFamily: "var(--font-nav)" }}
             >
               {HERO_PRIMARY_CTA}
-            </a>
+            </Link>
             <Link
               href="#fha-buyer-quiz"
               data-m2m-track="fha_hero_quiz"

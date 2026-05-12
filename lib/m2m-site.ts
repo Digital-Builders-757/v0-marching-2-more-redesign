@@ -78,7 +78,7 @@ function bookingUrlFromEnv(): string {
 }
 
 /**
- * **Public scheduling calendar**
+ * **Public scheduling calendar** (pick-a-time URLs only — not `/contact-us` consultation form CTAs).
  *
  * Use for “Schedule online” / pick-a-time flows. Primary “Book a consultation” **button** surfaces
  * (header, footer) use {@link getConsultationRequestUrl} (`/contact-us?intent=consultation`) with
