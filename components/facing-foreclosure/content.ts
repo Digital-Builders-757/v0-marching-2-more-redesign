@@ -45,6 +45,12 @@ export const GUIDE_VALUE_BULLETS = [
   "Red flags that help you avoid foreclosure rescue scams.",
 ] as const
 
+/** Full-bleed photo between “Paths we discuss” and “How we help” on `/facing-foreclosure`. */
+export const OPTIONS_TO_HELP_IMAGE =
+  "/images/facing-foreclosure/m2m-pre-foreclosure-past-due-documents.png" as const
+export const OPTIONS_TO_HELP_IMAGE_ALT =
+  "A worried homeowner at a desk reviews papers stamped Past Due and Urgent, resting his forehead in his hand." as const
+
 export const OPTIONS_SECTION = {
   eyebrow: "Paths we discuss",
   title: "There may still be time to choose your next chapter",

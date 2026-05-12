@@ -3,9 +3,9 @@ import { Banknote, CalendarCheck, CreditCard, Globe2 } from "lucide-react"
 
 import { M2mContainer } from "@/components/m2m-layout"
 
+import { CreditDownloadGuideLink } from "./credit-download-guide-link"
 import {
   CREDIT_PLAYBOOK_SECTION_ID,
-  DOWNLOAD_GUIDE_CTA,
   TAKEAWAY_ITEMS,
   TAKEAWAYS_BACKGROUND,
   TAKEAWAYS_HEADING,
@@ -47,12 +47,7 @@ export function CreditTakeaways() {
               >
                 {TAKEAWAYS_START_CTA}
               </a>
-              <a
-                href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
-                className="font-sans text-sm font-medium text-m2m-gold-lt underline decoration-m2m-gold/45 underline-offset-4 hover:text-m2m-cream"
-              >
-                {DOWNLOAD_GUIDE_CTA}
-              </a>
+              <CreditDownloadGuideLink className="font-sans text-sm font-medium text-m2m-gold-lt underline decoration-m2m-gold/45 underline-offset-4 hover:text-m2m-cream" />
             </div>
           </div>
 

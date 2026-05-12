@@ -4,6 +4,7 @@ import { FORECLOSURE_FAQ_ITEMS } from "@/components/facing-foreclosure/content"
 import { PreForeclosureGuideValue } from "@/components/facing-foreclosure/pre-foreclosure-guide-value"
 import { PreForeclosureHeroWithForm } from "@/components/facing-foreclosure/pre-foreclosure-hero-with-form"
 import { PreForeclosureHowWeHelp } from "@/components/facing-foreclosure/pre-foreclosure-how-we-help"
+import { PreForeclosureOptionsHelpBridgeImage } from "@/components/facing-foreclosure/pre-foreclosure-options-help-bridge-image"
 import { PreForeclosureOptions } from "@/components/facing-foreclosure/pre-foreclosure-options"
 import { PreForeclosureTeam, PreForeclosureFinalCta } from "@/components/facing-foreclosure/pre-foreclosure-team-and-final"
 import { PreForeclosureTrustStrip } from "@/components/facing-foreclosure/pre-foreclosure-trust-strip"
@@ -35,6 +36,7 @@ export default function FacingForeclosurePage() {
         <PreForeclosureTrustStrip />
         <PreForeclosureGuideValue />
         <PreForeclosureOptions />
+        <PreForeclosureOptionsHelpBridgeImage />
         <PreForeclosureHowWeHelp />
         <PreForeclosureTeam />
         <M2mCampaignFaq

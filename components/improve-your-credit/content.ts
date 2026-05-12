@@ -5,6 +5,17 @@
 /** Anchor for in-page CTAs until a PDF URL exists. */
 export const CREDIT_PLAYBOOK_SECTION_ID = "credit-playbook" as const
 
+/** App Router path for the Improve Your Credit funnel (no trailing slash). */
+export const IMPROVE_CREDIT_PAGE_PATH = "/improve-your-credit" as const
+
+/** Hash link on this route, full URL from elsewhere — preserves keyboard / native hash scrolling. */
+export function getCreditPlaybookHref(pathname: string | null): string {
+  const normalized = (pathname ?? "").replace(/\/$/, "") || "/"
+  return normalized === IMPROVE_CREDIT_PAGE_PATH
+    ? `#${CREDIT_PLAYBOOK_SECTION_ID}`
+    : `${IMPROVE_CREDIT_PAGE_PATH}#${CREDIT_PLAYBOOK_SECTION_ID}`
+}
+
 export const HERO_HEADLINE = "Crushing Credit on Your Path to Homeownership" as const
 
 /** Hero collage — focused credit planning scene. */

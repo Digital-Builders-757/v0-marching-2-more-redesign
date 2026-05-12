@@ -2,29 +2,19 @@ import Image from "next/image"
 
 import { m2mOutlineGoldLinkClass } from "@/components/m2m-cta"
 import { M2mContainer } from "@/components/m2m-layout"
-import { cn } from "@/lib/utils"
 
+import { CreditDownloadGuideLink } from "./credit-download-guide-link"
 import {
   CREDIT_FACTORS,
   CREDIT_HOMEWORK_HEADING,
   CREDIT_HOMEWORK_SCRIPT,
   CREDIT_HOMEWORK_STEPS,
-  CREDIT_PLAYBOOK_SECTION_ID,
   CREDIT_REVIEW_HEADING,
   CREDIT_REVIEW_INTRO,
   CREDIT_REVIEW_OUTRO,
-  DOWNLOAD_GUIDE_CTA,
   EDUCATION_LARGE_IMAGE,
   HOMEWORK_COLLAGE_IMAGES,
 } from "./content"
-
-function DownloadGuideLink({ className }: { className?: string }) {
-  return (
-    <a href={`#${CREDIT_PLAYBOOK_SECTION_ID}`} className={cn(m2mOutlineGoldLinkClass, className)}>
-      {DOWNLOAD_GUIDE_CTA}
-    </a>
-  )
-}
 
 export function CreditEducation() {
   return (
@@ -34,7 +24,7 @@ export function CreditEducation() {
     >
       <M2mContainer>
         <div className="mb-10 flex justify-center lg:mb-12">
-          <DownloadGuideLink />
+          <CreditDownloadGuideLink className={m2mOutlineGoldLinkClass} />
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
@@ -156,7 +146,7 @@ export function CreditEducation() {
             </article>
 
             <div className="flex justify-center pt-2 lg:justify-start">
-              <DownloadGuideLink />
+              <CreditDownloadGuideLink className={m2mOutlineGoldLinkClass} />
             </div>
           </div>
         </div>
