@@ -43,7 +43,7 @@ export function CreditHero() {
           <div className="relative flex aspect-[3/4] flex-col justify-end overflow-hidden bg-white ring-1 ring-m2m-gold/25 lg:aspect-auto lg:min-h-[22rem]">
             <Image
               src={HERO_IMAGE_CENTER}
-              alt="Parent and child at a table with a credit score dashboard and home-buying goals notes"
+              alt="A couple celebrating a homebuying milestone after improving their credit"
               fill
               className="object-cover object-[center_25%]"
               sizes="(max-width:1024px) 100vw, 25vw"
