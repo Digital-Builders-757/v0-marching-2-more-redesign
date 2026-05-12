@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 
 import { m2mOutlineGoldLinkClass } from "@/components/m2m-cta"
 import { M2mContainer } from "@/components/m2m-layout"
@@ -17,9 +16,9 @@ export function CreditClosing() {
         Get the credit guide
       </h2>
       <M2mContainer className="flex flex-col items-center gap-14 sm:gap-16">
-        <Link href={`#${CREDIT_PLAYBOOK_SECTION_ID}`} className={m2mOutlineGoldLinkClass}>
+        <a href={`#${CREDIT_PLAYBOOK_SECTION_ID}`} className={m2mOutlineGoldLinkClass}>
           {DOWNLOAD_GUIDE_CTA}
-        </Link>
+        </a>
 
         <div className="relative aspect-[21/9] w-full max-w-6xl overflow-hidden bg-m2m-deep/50 ring-1 ring-m2m-gold/20 sm:min-h-[280px]">
           <Image

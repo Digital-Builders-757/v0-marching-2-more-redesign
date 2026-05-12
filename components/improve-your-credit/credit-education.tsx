@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 
 import { m2mOutlineGoldLinkClass } from "@/components/m2m-cta"
 import { M2mContainer } from "@/components/m2m-layout"
@@ -21,9 +20,9 @@ import {
 
 function DownloadGuideLink({ className }: { className?: string }) {
   return (
-    <Link href={`#${CREDIT_PLAYBOOK_SECTION_ID}`} className={cn(m2mOutlineGoldLinkClass, className)}>
+    <a href={`#${CREDIT_PLAYBOOK_SECTION_ID}`} className={cn(m2mOutlineGoldLinkClass, className)}>
       {DOWNLOAD_GUIDE_CTA}
-    </Link>
+    </a>
   )
 }
 

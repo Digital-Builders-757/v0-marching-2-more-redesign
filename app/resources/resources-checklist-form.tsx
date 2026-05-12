@@ -69,7 +69,7 @@ export function ResourcesChecklistForm() {
 
   if (done) {
     return (
-      <div className="space-y-4">
+      <div className="mx-auto mt-10 max-w-3xl rounded-lg border border-m2m-deep/10 bg-m2m-cream/96 px-6 py-6 text-center shadow-[0_24px_60px_rgba(0,0,0,0.24)] backdrop-blur-sm md:px-8 md:py-8">
         {successFollowUp?.warnings.length ? (
           <M2mLeadSubmitWarnings
             warnings={successFollowUp.warnings}
@@ -78,8 +78,11 @@ export function ResourcesChecklistForm() {
             className="text-left"
           />
         ) : null}
-        <p className="text-m2m-deep font-sans" role="status" aria-live="polite">
+        <p className="text-base font-semibold text-m2m-deep sm:text-lg" role="status" aria-live="polite">
           Thank you! Check your email for the checklist.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-m2m-deep/80 font-sans">
+          If you want to keep browsing, the trusted links and next-step guides are still available above.
         </p>
       </div>
     )

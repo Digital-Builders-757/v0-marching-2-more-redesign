@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 import { Banknote, CalendarCheck, CreditCard, Globe2 } from "lucide-react"
 
 import { M2mContainer } from "@/components/m2m-layout"
@@ -42,18 +41,18 @@ export function CreditTakeaways() {
               {TAKEAWAYS_SUBHEAD}
             </p>
             <div className="mt-8 flex flex-col items-center gap-3">
-              <Link
+              <a
                 href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
                 className="inline-flex min-h-12 w-full max-w-xs items-center justify-center bg-m2m-gold px-10 py-3.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-m2m-deep shadow-lg transition hover:bg-m2m-gold-lt sm:w-auto font-nav"
               >
                 {TAKEAWAYS_START_CTA}
-              </Link>
-              <Link
+              </a>
+              <a
                 href={`#${CREDIT_PLAYBOOK_SECTION_ID}`}
                 className="font-sans text-sm font-medium text-m2m-gold-lt underline decoration-m2m-gold/45 underline-offset-4 hover:text-m2m-cream"
               >
                 {DOWNLOAD_GUIDE_CTA}
-              </Link>
+              </a>
             </div>
           </div>
 
